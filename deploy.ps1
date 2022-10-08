@@ -1,4 +1,8 @@
 hugo
+echo "hugo-------------------------"
 git add .
+echo "git add .-------------------------"
 git commit -m "autofeat"
-git push origin new
+echo "git commit-------------------------"
+git push origin main
+echo "git push over-------------------------"
