@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>computer network - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/computer-network/</link>
+        <description>computer network - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jul 2022 10:05:58 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/computer-network/" rel="self" type="application/rss+xml" /><item>
+    <title>CN_proto</title>
+    <link>https://qizhengzou.github.io/cn_proto/</link>
+    <pubDate>Sun, 17 Jul 2022 10:05:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cn_proto/</guid>
+    <description><![CDATA[趣谈网络协议 刘超 2018-05-14 开篇词 | 想成为技术牛人？先搞定网络协议！ 工作 15 年，我在 EMC 做过类似 GFS 的分布式存储开发，做过基于 Lucene 的搜索引擎，做过 Hadoop 的运维；在]]></description>
+</item><item>
+    <title>CN_HTTP</title>
+    <link>https://qizhengzou.github.io/cn_http/</link>
+    <pubDate>Mon, 24 Jan 2022 20:52:12 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cn_http/</guid>
+    <description><![CDATA[HTTP 用 Nginx 搭建 Web 服务器，照着网上的文章配好了，但里面那么多的指令，什么 keepalive、rewrite、proxy_pass 都是怎么回事？为什]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>pocc - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/pocc/</link>
+        <description>pocc - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jul 2022 15:33:49 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/pocc/" rel="self" type="application/rss+xml" /><item>
+    <title>Geekbang_POCC</title>
+    <link>https://qizhengzou.github.io/geekbang_pocc/</link>
+    <pubDate>Sun, 17 Jul 2022 15:33:49 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/geekbang_pocc/</guid>
+    <description><![CDATA[深入浅出计算机组成原理 徐文浩 2019-07-22 22 | 冒险和预测（一）：hazard是“危”也是“机” 过去两讲，我为你讲解了流水线设计 CPU 所需要的基本概念。接下来]]></description>
+</item></channel>
+</rss>

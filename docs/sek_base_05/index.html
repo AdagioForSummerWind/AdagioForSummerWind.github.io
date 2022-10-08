@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>SEK_base_05 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="SEK_base_05" />
+<meta property="og:description" content="笔记来自2021秋哈工大深圳软件工程授课教师张永兵 软件编码、测试和质量保障 5.1 软件编程 软件编程是一个复杂而迭代的过程，它不仅仅是编写代码，还应" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/sek_base_05/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-25T15:48:07+08:00" />
+<meta property="article:modified_time" content="2021-12-28T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="SEK_base_05"/>
+<meta name="twitter:description" content="笔记来自2021秋哈工大深圳软件工程授课教师张永兵 软件编码、测试和质量保障 5.1 软件编程 软件编程是一个复杂而迭代的过程，它不仅仅是编写代码，还应"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/sek_base_05/" /><link rel="prev" href="https://qizhengzou.github.io/sek_base_04/" /><link rel="next" href="https://qizhengzou.github.io/vocabulary/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SEK_base_05",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/sek_base_05\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "software engineering knowledge","wordcount":  7856 ,
+        "url": "https:\/\/qizhengzou.github.io\/sek_base_05\/","datePublished": "2021-11-25T15:48:07+08:00","dateModified": "2021-12-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">SEK_base_05</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-25 15:48:07">2021-11-25 15:48:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7856 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#51-软件编程">5.1 软件编程</a>
+      <ul>
+        <li><a href="#良好的编程实践">良好的编程实践</a></li>
+        <li><a href="#代码审查">代码审查</a></li>
+        <li><a href="#代码重构">代码重构</a></li>
+      </ul>
+    </li>
+    <li><a href="#52-软件测试">5.2 软件测试</a>
+      <ul>
+        <li><a href="#软件测试概述">软件测试概述</a>
+          <ul>
+            <li><a href="#软件缺陷术语">软件缺陷术语</a></li>
+            <li><a href="#软件测试概念">软件测试概念</a></li>
+            <li><a href="#软件测试基本原则">软件测试基本原则</a></li>
+            <li><a href="#软件测试团队">软件测试团队</a></li>
+          </ul>
+        </li>
+        <li><a href="#软件测试策略">软件测试策略</a>
+          <ul>
+            <li><a href="#软件测试对象">软件测试对象</a></li>
+            <li><a href="#软件测试过程">软件测试过程</a></li>
+            <li><a href="#软件测试类型">软件测试类型</a></li>
+            <li><a href="#测试用例">测试用例</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#53-白盒测试">5.3 白盒测试</a>
+      <ul>
+        <li><a href="#白盒测试方案">白盒测试方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#基本路径测试">基本路径测试</a></li>
+    <li><a href="#54-黑盒测试">5.4 黑盒测试</a></li>
+    <li><a href="#55-变异测试">5.5 变异测试</a></li>
+    <li><a href="#56-性能测试">5.6 性能测试</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>笔记来自2021秋哈工大深圳软件工程授课教师张永兵</p>
+</blockquote>
+<h1 id="软件编码测试和质量保障">软件编码、测试和质量保障</h1>
+<h2 id="51-软件编程">5.1 软件编程</h2>
+<p>软件编程是一个复杂而迭代的过程，它<strong>不仅仅是编写代码，还应该包括代码审查、单元测试、代码优化、集成调试等</strong>一系列工作。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228142530.png" /></p>
+<p>软件设计描述SDD(逻辑概念)&mdash;-&gt;程序代码Program code（物理实体）</p>
+<p>软件编码是一个复杂而迭代的过程，包括程序设计(program design)和程序实现(program implementation)。</p>
+<ul>
+<li>软件编码要求
+<ul>
+<li>正确的理解用户需求和软件设计思想</li>
+<li>正确的根据设计模型进行程序设计</li>
+<li>正确而高效率的编写和测试源代码</li>
+</ul>
+</li>
+<li>软件编码是设计的继续，会影响软件质量和可维护性。</li>
+</ul>
+<p>软件编程规范的必要性</p>
+<ul>
+<li>软件编码规范是与特定语言相关的描写如何编写代码的规则集合。</li>
+<li>现实
+<ul>
+<li>软件全生命周期的 70% 成本是维护</li>
+<li>软件在其生命周期中很少由原编写人员进行维护</li>
+</ul>
+</li>
+<li>目的
+<ul>
+<li>提高编码质量，避免不必要的程序错误</li>
+<li>增强程序代码的可读性、可重用性和可移植性</li>
+</ul>
+</li>
+</ul>
+<h3 id="良好的编程实践">良好的编程实践</h3>
+<p>不要编写需要外部文档支持的代码，这样的代码是脆弱的，要确保你的代码本身读起来就很清晰。</p>
+<ul>
+<li><strong>编写自文档化的代码</strong>
+<ul>
+<li>唯一能完整并正确地描述代码的文档是代码本身</li>
+<li>编写可以阅读的代码，其本身简单易懂</li>
+</ul>
+</li>
+</ul>
+<p><strong>程序模板</strong>：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143105.png" /></p>
+<p><strong>注释</strong>：</p>
+<ul>
+<li>学会只编写够用的注释，过犹不及，重视质量而不是数量。应该把时间花在编写不需要大量注释支持的代码上，即让代码自文档化。
+<ul>
+<li>好的注释解释为什么，而不是怎么样</li>
+<li>不要在注释中重复描述代码</li>
+<li>当你发现自己在编写密密麻麻的注释来解释代码时，需要停下来看是否存在更大的问题</li>
+<li>想一想在注释中写什么，不要不动脑筋就输入，写完之后还要在代码的上下文中回顾一下这些注释，它们是否包含正确的信息？</li>
+<li>当修改代码时，维护代码周围的所有注释</li>
+</ul>
+</li>
+<li>形式1：由 # 开头的“真正的”注释，说明选择当前实现的原因以及这种实现的原理和难点；</li>
+<li>形式2：文档字符串，说明如何使用包、模块、类、函数（方法），甚至包括使用示例和单元测试。</li>
+<li>例子：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143548.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228143608.png" /></li>
+</ul>
+<p><strong>函数编写的第一条规则是短小，第二条规则是更短小。函数应该做一件事，做好这件事，并且只做这件事。</strong></p>
+<p><strong>浮点运算</strong>：</p>
+<ul>
+<li>一个数值的准确度反映了这个值与它所代表的数量之间的接近程度，即衡量我们得到这个数值过程中的误差。</li>
+<li>数字的精度表示其规格的紧密程度，即能够区分所表达的数与其邻近数的程度。</li>
+<li>数字应该使用它们的准确度相当的精度来存储，但是应该使用底层硬件所能有效支持的最大精度来操作。</li>
+<li>大多数有尽十进制小数不能被有尽二进制小数准确表示。
+<ul>
+<li>$0.1_{10} = 0.1000000000000000055511151231257827021181583404541015625$</li>
+</ul>
+</li>
+<li>在正常的表示范围内乘以或除以2的幂（2、4、8、16、…）永远都是精确运算，永远不会存在舍入问题</li>
+</ul>
+<p>运用代码分析工具。</p>
+<h3 id="代码审查">代码审查</h3>
+<p><strong>代码审查（Code Review）是一种用来确认方案设计和代码实现的质量保证机制，它通过阅读代码来检查源代码与编码规范的符合性以及代码的质量。</strong></p>
+<p>代码审查的作用</p>
+<ul>
+<li>检查设计的合理性</li>
+<li>互为 Backup</li>
+<li>分享知识、设计、技术</li>
+<li>增加代码可读性</li>
+<li>处理代码中的“地雷区</li>
+</ul>
+<p><strong>缺陷检查表</strong>：</p>
+<ul>
+<li>编程规范
+<ul>
+<li>按照具体编程语言的编码规范进行检查，包括命名规则、程序注释、缩进排版、声明与初始化、语句格式等。</li>
+</ul>
+</li>
+<li>面向对象设计
+<ul>
+<li>类的设计和抽象是否合适</li>
+<li>是否符合面向接口编程的思想</li>
+<li>是否使用合适的设计模式</li>
+</ul>
+</li>
+<li>性能方面
+<ul>
+<li>在出现海量数据时，队列、表、文件在传输、上载等方面是否会出现问题，是否控制如分配的内存块大小、队列长度等</li>
+<li>对 Hashtable、Vector 等集合类数据结构的选择和设置是否合适</li>
+<li>有无滥用 String 对象的现象</li>
+<li>是否采用通用的线程池、对象池等高速缓存技术以提高性能</li>
+<li>类的接口是否定义良好，如参数类型等应避免内部转换</li>
+<li>是否采用内存或硬盘缓冲机制以提高效率？</li>
+<li>并发访问时的应对策略</li>
+<li>I/O 方面是否使用了合适的类或采用良好的方法以提高性能（如减少序列化、使用 buffer 类封装流等）</li>
+<li>同步方法的使用是否得当，是否过度使用？</li>
+<li>递归方法中的迭代次数是否合适（应保证在合理的栈空间范围内）</li>
+<li>如果调用了阻塞方法，是否考虑了保证性能的措施</li>
+<li>避免过度优化，对性能要求高的代码是否使用profile工具</li>
+</ul>
+</li>
+<li>资源释放处理
+<ul>
+<li>分配的内存是否释放，尤其在错误处理路径上（如 C/C++）</li>
+<li>错误发生时是否所有对象被释放，如数据库连接、Socket、文件等</li>
+<li>是否同一个对象被释放多次（如 C/C++）</li>
+<li>代码是否保存准确的对象引用计数</li>
+</ul>
+</li>
+<li>程序流程
+<ul>
+<li>循环结束条件是否准确</li>
+<li>是否避免了死循环的产生</li>
+<li>对循环的处理是否合适，应考虑到性能方面的影响</li>
+</ul>
+</li>
+<li>线程安全
+<ul>
+<li>代码中所有的全局变量是否是线程安全的</li>
+<li>需要被多个线程访问的对象是否线程安全，检查有无通过同步方法保护</li>
+<li>同步对象上的锁是否按相同的顺序获得和释放以避免死锁，注意</li>
+<li>错误处理代码</li>
+<li>是否存在可能的死锁或是竞争，当用到多个锁时，避免出现类似情况：线程A获得锁1，然后锁2，线程B获得锁2，然后锁1</li>
+<li>在保证线程安全的同时，注意避免过度使用同步，导致性能降低</li>
+</ul>
+</li>
+<li>数据库处理
+<ul>
+<li>数据库设计或SQL语句是否便于移植（注意与性能会存在冲突）</li>
+<li>数据库资源是否正常关闭和释放</li>
+<li>数据库访问模块是否正确封装，便于管理和提高性能</li>
+<li>是否采用合适的事务隔离级别</li>
+<li>是否采用存储过程以提高性能</li>
+<li>是否采用 PreparedStatement 以提高性能</li>
+</ul>
+</li>
+<li>通讯方面
+<ul>
+<li>Socket 通讯是否存在长期阻塞问题</li>
+<li>发送接收的数据流是否采用缓冲机制</li>
+<li>Socket 超时处理和异常处理</li>
+<li>数据传输的流量控制问题</li>
+</ul>
+</li>
+<li>JAVA对象处理
+<ul>
+<li>对象生命周期的处理，是否对象引用已失效可设置 null 并被回收</li>
+<li>在对象传值和传参方面有无问题，对象的 clone 方法使用是否过度</li>
+<li>是否大量经常地创建临时对象</li>
+<li>是否尽量使用局部对象（堆栈对象）</li>
+<li>在只需要对象引用的地方是否创建了新的对象实例</li>
+</ul>
+</li>
+<li>异常处理
+<ul>
+<li>每次当方法返回时是否正确处理了异常，如最简单的处理是记录日志到日志文件中</li>
+<li>是否对数据的值和范围是否合法进行校验，包括使用断言</li>
+<li>在出错路径上是否所有的资源和内存都已经释放</li>
+<li>所有抛出的异常是否都得到正确的处理，特别是对子方法抛出的异常，在整个调用栈中必须能够被捕捉并处理</li>
+<li>当调用导致错误发生时，方法的调用者应该得到一个通知</li>
+<li>不要忘了对错误处理部分的代码进行测试，很多代码在正常情况下执行良好，而一旦出错整个系统就崩溃了？</li>
+</ul>
+</li>
+<li>方法（函数）
+<ul>
+<li>方法的参数是否都做了校验</li>
+<li>数组类结构是否做了边界校验</li>
+<li>变量在使用前是否做了初始化</li>
+<li>返回堆对象的引用，不要返回栈对象的引用</li>
+<li>方法的 API 是否被良好定义，即是否尽量面向接口编程，以便于维护和重构</li>
+</ul>
+</li>
+<li>安全方面
+<ul>
+<li>对命令行执行的代码，需要详细检查命令行参数</li>
+<li>WEB 类程序检查是否对访问参数进行合法性验证</li>
+<li>重要信息的保存是否选用合适的加密算法</li>
+<li>通讯时考虑是否选用安全的通讯方式</li>
+</ul>
+</li>
+<li>其他
+<ul>
+<li>日志是否正常输出和控制</li>
+<li>配置信息如何获得，是否有硬编码</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码重构">代码重构</h3>
+<p>重构（Refactoring）是对软件内部结构的一种调整，其目的是在不改变软件功能和外部行为的前提下，提高其可理解性、可扩展性和可重用性。</p>
+<p>什么时候不适合重构？</p>
+<ul>
+<li>代码太混乱，设计完全错误
+<ul>
+<li>与其重构不如重新开始</li>
+</ul>
+</li>
+<li>明天是Deadline
+<ul>
+<li>永远不要做Last-Minute-Change；应推迟重构但不可忽略，即使进入Production的代码都正确地运行。</li>
+</ul>
+</li>
+<li>重构的工作量显著地影响估算
+<ul>
+<li>一个任务的估算时间是3天，如果为了重构，就需要更多的时间。</li>
+<li>推迟重构但不忽略，可以把重构作为一个新任务，或者安排在重构的迭代周期中完成</li>
+</ul>
+</li>
+</ul>
+<p>重构与添加新功能：</p>
+<ul>
+<li>添加新功能
+<ul>
+<li>添加新功能时，不应该修改既有代码，只管添加新功能</li>
+</ul>
+</li>
+<li>重构
+<ul>
+<li>重构时不再添加功能，只管改进程序结构</li>
+</ul>
+</li>
+<li>重构和添加新功能可交替进行</li>
+</ul>
+<p>糟糕的代码：</p>
+<ul>
+<li>重复的代码</li>
+<li>过长的函数（难以理解）</li>
+<li>发散式变化
+<ul>
+<li>某个类因为不同的原因在不同的方向上发生变化</li>
+<li>发散式变化指的是“一个类受多个外界变化的影响”，其基本思想是把相对不变的和相对变化相隔离，即封装变化。</li>
+</ul>
+</li>
+<li><strong>霰弹式修改</strong>
+<ul>
+<li>发生一次改变时，需要修改多个类的多个地方</li>
+<li>散弹式修改指的是“一种变化引发多个类的修改”，其基本思想是将变化率和变化内容相似的状态和行为放在同一个类中，即集中变化。</li>
+</ul>
+</li>
+<li><strong>数据泥团</strong>
+<ul>
+<li>同样的两至三项数据频繁地一起出现在类和参数表中。</li>
+<li>代码声明了某些字段，并声明了处理这些字段的方法，然后又声明了更多的字段和更多的方法，如此继续。</li>
+<li>各组字段名以类似的子串开头或结束。</li>
+<li>如果项是类中的字段，则使用抽取类将其取至一个新类中；</li>
+<li>如果值共同出现在方法的签名中，则使用引入参数对象的重构方法以抽取新对象；</li>
+<li>查看这些项的使用：通常可以利用移动方法等重构技术，从而将这些使用移至新的对象中。</li>
+</ul>
+</li>
+<li>幼稚的数据类
+<ul>
+<li>类仅有字段构成，或者只有简单的赋值方法和取值方法构成。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>抽取方法</strong>：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151111.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151137.png" /></li>
+<li><strong>引入解释性变量</strong>：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151242.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228151255.png" /></li>
+<li><strong>简化条件表达式</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211757.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211229211839.png" /></li>
+</ol>
+<h2 id="52-软件测试">5.2 软件测试</h2>
+<h3 id="软件测试概述">软件测试概述</h3>
+<h4 id="软件缺陷术语">软件缺陷术语</h4>
+<p>术语解释：</p>
+<ul>
+<li>错误（Error）：在软件生存期内的不希望或不可接受的人为错误，其结果是导致软件缺陷的产生。</li>
+<li>缺陷（Defect）：软件缺陷是存在于软件产品之中的那些不希望或不可接受的偏差，其结果是软件运行于某一特定条件时出现故障。</li>
+<li>故障（Fault）：软件运行过程中出现的一种不希望或不可接受的内部状态，若无适当措施（容错）加以及时处理，便产生软件失效。</li>
+<li>失效（Failure）：软件运行时产生的一种不希望或不可接受的外部行为结果。</li>
+<li>缺陷激活故障，故障演变为失效</li>
+</ul>
+<h4 id="软件测试概念">软件测试概念</h4>
+<p>IEEE：测试是使用人工和自动手段来运行或检测某个系统的过程，其目的在于检验系统是否满足规定的需求或弄清预期结果与实际结果之间的差别。</p>
+<ul>
+<li>该定义明确提出了<strong>软件测试以“检验是否满足需求”为目标</strong>。</li>
+</ul>
+<p><strong>软件测试的两种思维</strong></p>
+<ul>
+<li>正向思维：验证软件正常工作</li>
+<li>逆向思维：假定软件有缺陷</li>
+</ul>
+<p>软件测试的目的</p>
+<ul>
+<li>直接目标：发现软件错误</li>
+<li>期望目标：检查系统是否满足需求</li>
+<li>附带目标：改进软件过程</li>
+</ul>
+<p>测试的局限性</p>
+<ul>
+<li>测试的不彻底性</li>
+<li>测试的不完备性</li>
+<li>测试作用的间接性</li>
+</ul>
+<p><strong>用Venn Diagram来理解测试</strong>：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228153934.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154012.png" /></p>
+<h4 id="软件测试基本原则">软件测试基本原则</h4>
+<p><strong>缺陷的集群性</strong>：</p>
+<ul>
+<li>软件错误具有聚集性，对存在错误的部分应重点测试。</li>
+</ul>
+<p><strong>杀虫剂悖论：</strong></p>
+<ul>
+<li>用同样的测试用例多次重复进行测试，最后将不再能够发现新的缺陷。</li>
+<li><strong>测试用例需要定期评审和修改，同时要不断增加新的不同测试用例来测试软件的不同部分，从而发现更多潜在的缺陷</strong></li>
+</ul>
+<h4 id="软件测试团队">软件测试团队</h4>
+<p>软件测试团队的任务：</p>
+<ul>
+<li>软件测试与质量保证合二为一</li>
+</ul>
+<p>举例：微软研发团队：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228154455.png" /></p>
+<h3 id="软件测试策略">软件测试策略</h3>
+<h4 id="软件测试对象">软件测试对象</h4>
+<p><strong>软件测试并不等于程序测试，应贯穿于软件定义与开发的各个阶段</strong>。</p>
+<p><strong>测试对象包括</strong>：</p>
+<ul>
+<li>需求规格说明</li>
+<li>设计规格说明</li>
+<li>源程序</li>
+</ul>
+<h4 id="软件测试过程">软件测试过程</h4>
+<ul>
+<li>计划
+<ul>
+<li>识别测试需求</li>
+<li>分析质量风险</li>
+<li>拟定测试方案</li>
+<li>制定测试计划</li>
+</ul>
+</li>
+<li>准备
+<ul>
+<li>组织测试团队</li>
+<li>设计测试用例</li>
+<li>开发工具和脚本</li>
+<li>准备测试数据</li>
+</ul>
+</li>
+<li>执行
+<ul>
+<li>获得测试版本</li>
+<li>执行和实施测试</li>
+<li>记录测试结果</li>
+<li>跟踪和管理缺陷</li>
+</ul>
+</li>
+<li>报告
+<ul>
+<li>分析测试结果</li>
+<li>评价测试工作</li>
+<li>提交测试报告</li>
+</ul>
+</li>
+</ul>
+<h4 id="软件测试类型">软件测试类型</h4>
+<ul>
+<li>
+<p>测试对象角度（<strong>单元、集成、系统、验收、回归</strong>）</p>
+<ul>
+<li>单元测试
+<ul>
+<li>单元测试（Unit Testing）是对软件基本组成单元进行的测试，其测试对象是软件设计的最小单位（模块或者类）。</li>
+<li>单元测试一般由编写该单元代码的开发人员执行，用于检测被测代码的功能是否正确。</li>
+<li>单元测试环境
+<ul>
+<li>驱动模块(driver)：模拟被测模块的上一级模块，接收测试数据，把这些数据传送给所测模块，最后再输出实际测试结果；</li>
+<li>桩模块(stub)：模拟被测单元需调用的其他函数接口，模拟实现子函数的某些功能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>集成测试
+<ul>
+<li>集成测试（Integration Testing）是在单元测试的基础上，将所有模块按照总体设计的要求组装成为子系统或系统进行的测试。</li>
+<li>一次性集成方式：分别测试每个单元，再一次性将所有单元组装在一起进行测试。</li>
+<li>渐增式集成方式：先对某几个单元进行测试，然后将这些单元逐步组装成较大的系统，在组装过程中边连接边测试</li>
+<li>集成测试的对象是模块间的接口，其目的是找出在模块接口上，包括系统体系结构上的问题。</li>
+<li><strong>整体集成方式(非增量式集成)</strong>
+<ul>
+<li>把所有模块按设计要求一次全部组装起来，然后进行整体测试</li>
+<li>优点：
+<ul>
+<li>效率高，所需人力资源少；</li>
+<li>测试用例数目少，工作量低；</li>
+<li>简单，易行；</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>可能发现大量的错误，难以进行错误定位和修改；</li>
+<li>即使测试通过，也会遗漏很多错误；</li>
+<li>测试和修改过程中，新旧错误混杂，带来调试困难；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>自顶向下的增量集成</strong>：
+<ul>
+<li>从主控模块开始，按软件的控制层次结构，以深度优先或广度优先的策略，逐步把各个模块集成在一起。</li>
+<li>优点：能尽早地对程序的主要控制和决策机制进行检验，因此较早地发现错误；较少需要驱动模块；</li>
+<li>缺点：所需的桩模块数量巨大；在测试较高层模块时，低层处理采用桩模块替代，不能反映真实情况，重要数据不能及时回送到上层模块，因此测试并不充分；</li>
+</ul>
+</li>
+<li><strong>自底向上的集成测试</strong>：
+<ul>
+<li>从软件结构最底层的模块开始组装测试</li>
+<li>优点：不用桩模块，测试用例的设计亦相对简单；</li>
+<li>缺点：程序最后一个模块加入时才具有整体形象，难以尽早建立信心。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统测试：
+<ul>
+<li>系统测试（System Testing）是在实际运行环境或模拟实际运行环境下，针对系统的非功能特性所进行的测试，包括负载测试、性能测试、压力测试、恢复测试、安全测试和可靠性测试等。</li>
+<li><strong>恢复测试(Recovery Testing)</strong>
+<ul>
+<li>恢复测试是检验系统从软件或者硬件失败中恢复的能力，即采用各种人工干预方式使软件出错，而不能正常工作，从而检验系统的恢复能力。</li>
+<li>恢复性测试的例子
+<ul>
+<li>当供电出现问题时的恢复</li>
+<li>恢复程序的执行</li>
+<li>对选择的文件和数据进行恢复</li>
+<li>恢复处理日志方面的能力</li>
+<li>通过切换到一个并行系统来进行恢复</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>安全性测试(Security Testing)</strong>：
+<ul>
+<li>安全性测试检查系统对非法侵入的防范能力。</li>
+<li>安全性测试期间，测试人员假扮非法入侵者，采用各种办法试图突破防线。</li>
+<li>安全性测试的例子
+<ul>
+<li>想方设法截取或破译口令</li>
+<li>专门定做软件破坏系统的保护机制</li>
+<li>故意导致系统失败，企图趁恢复之机非法进入</li>
+<li>试图通过浏览非保密数据，推导所需信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>压力测试(Press Testing)</strong>：
+<ul>
+<li>压力测试是检查系统在资源超负荷情况下的表现，特别是对系统的处理时间有什么影响。</li>
+<li>压力测试的例子
+<ul>
+<li>对于一个固定输入速率(如每分钟120 个单词)的单词处理响应时间</li>
+<li>在一个非常短的时间内引入超负荷的数据容量</li>
+<li>成千上万的用户在同一时间从网上登录到系统</li>
+<li>引入需要大量内存资源的操作</li>
+<li>压力测试采用边界值和错误猜测方法，且需要工具的支持。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>性能测试(Performance Testing)
+<ul>
+<li>在实际应用的环境下系统性能的表现</li>
+<li>常与压力测试一起进行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>验收测试：
+<ul>
+<li>验收测试是在软件产品完成了功能测试和系统测试之后、产品发布之前所进行的软件测试活动，其目的是验证软件的功能和性能是否能够满足用户所期望的要求</li>
+</ul>
+</li>
+<li>回归测试：
+<ul>
+<li>在软件生命周期中的任何一个阶段，只要软件发生了改变，就可能给该软件带来问题。</li>
+<li>为了验证修改的正确性及其影响就需要进行回归测试。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>测试技术角度</p>
+<ul>
+<li>黑盒测试（功能测试）
+<ul>
+<li>又称功能测试，它将测试对象看做一个黑盒子，完全不考虑程序内部的逻辑结构和内部特性，只依据程序的需求规格说明书，检查程序的功能是否符合它的功能说明。</li>
+</ul>
+</li>
+<li>白盒测试（结构测试）
+<ul>
+<li>又称结构测试，它把测试对象看做一个透明的盒子，允许测试人员利用程序内部的逻辑结构及有关信息，设计或选择测试用例，对程序所有逻辑路径进行测试。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>程序执行角度</p>
+<ul>
+<li>静态测试
+<ul>
+<li>静态测试：通过人工分析或程序正确性证明的方式来确认程序正确性。</li>
+</ul>
+</li>
+<li>动态测试
+<ul>
+<li>动态测试：通过动态分析和程序测试等方法来检查程序执行状态，以确认程序是否有问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>人工干预角度</p>
+<ul>
+<li>手工测试
+<ul>
+<li>手工测试：测试人员根据测试大纲中所描述的测试步骤和方法，手工地输入测试数据并记录测试结果。</li>
+</ul>
+</li>
+<li>自动化测试
+<ul>
+<li>自动化测试：相对于手工测试而言，主要是通过所开发的软件测试工具、脚本等手段，按照测试工程师的预定计划对软件产品进行的自动测试。</li>
+</ul>
+</li>
+<li><strong>自动化测试只是对手工测试的一种补充，但绝不能代替手工测试，二者有各自的特点。</strong>
+<ul>
+<li>在系统功能逻辑测试、验收测试、适用性测试、涉及物理交互性测试时，多采用黑盒测试的手工测试方法；</li>
+<li>单元测试、集成测试、系统负载或性能、稳定性、可靠性测试等比较适合采用自动化测试；</li>
+<li>对那种不稳定软件的测试、开发周期很短的软件、一次性的软件等不适合自动化测试；</li>
+<li>工具本身并没有想象力和灵活性，一般自动化测试只能发现15~30%的缺陷，而手工测试可以发现70~85%的缺陷；自动化测试工具在进行功能测试时，其准确的含义是回归测试工具</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>测试的V模型</strong>：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228163103.png" /></p>
+<h4 id="测试用例">测试用例</h4>
+<p>设计良好的测试用例：</p>
+<ul>
+<li>降低软件测试成本</li>
+<li>保证测试工作质量</li>
+<li>评估和检验测试效果</li>
+</ul>
+<p>测试用例(testing case)：</p>
+<ul>
+<li>测试用例是为特定的目的而设计的一组测试输入、执行条件和预期的结果。</li>
+<li>测试用例是执行的最小测试实体。</li>
+<li>测试用例就是设计一个场景，使软件程序在这种场景下，必须能够正常运行并且达到程序所设计的执行结果。</li>
+</ul>
+<p>测试用例的特征：</p>
+<ul>
+<li>最有可能抓住错误的；</li>
+<li>不是重复的、多余的；</li>
+<li>一组相似测试用例中最有效的；</li>
+<li>既不是太简单，也不是太复杂。</li>
+</ul>
+<p>测试用例的重要性：</p>
+<ul>
+<li>指导人们系统地进行测试
+<ul>
+<li>临时性发挥也许会有灵感出现，但是多数情况下会感觉思维混乱，甚至一些功能根
+本没有测到而另一些功能已经重复测过几遍。</li>
+<li>测试用例可以帮助你理清头绪，进行比较系统的测试，不会有太多的重复，也不会
+让你的测试工作产生遗漏。</li>
+</ul>
+</li>
+<li>有效发现缺陷，提高测试效率
+<ul>
+<li>测试不可能是完备的而且受到时间约束，测试用例可以帮助你分清先后主次，从而更有效地组织测试工作。</li>
+<li>编写测试用例之后需要标识重要程度和优先级，以便在时间紧迫的情况下有重点地开展测试工作。</li>
+</ul>
+</li>
+<li>作为评估和检验的度量标准
+<ul>
+<li>测试用例的通过率和软件缺陷的数量是检验软件质量的量化标准，通过对测试用例的分析和改进可以逐步完善软件质量，不断提高测试的水平。</li>
+<li>测试用例也可以用于衡量测试人员的工作量、进度和效率，从而更有效地管理和规划测试工作。</li>
+</ul>
+</li>
+<li>积累和传递测试的经验与知识
+<ul>
+<li>测试用例不是简单地描述一种具体实现，而是描述处理具体问题的思路。设计和维护测试用例有助于人们不断积累经验和知识，通过复用测试用例可以做到任何人实现无品质差异的测试。</li>
+</ul>
+</li>
+</ul>
+<p><strong>测试用例设计要求</strong>：</p>
+<ul>
+<li>具有代表性和典型性</li>
+<li>寻求系统设计和功能设计的弱点</li>
+<li>既有正确输入也有错误或异常输入</li>
+<li>考虑用户实际的诸多使用场景</li>
+</ul>
+<h2 id="53-白盒测试">5.3 白盒测试</h2>
+<p><strong>测试的技术</strong>就是设计一组测试用例</p>
+<ul>
+<li>执行每个软件构件的内部逻辑和接口</li>
+<li>测试程序的输入和输出域以发现程序功能、行为和性能方面的错误</li>
+</ul>
+<p><strong>利用“白盒”测试用例设计技术执行程序内部逻辑</strong></p>
+<p>白盒测试(又称为“结构测试”或“逻辑驱动测试”)</p>
+<ul>
+<li>把测试对象看做一个透明的盒子，它允许测试人员利用程序内部的逻辑结构及有关信息，设计或选择测试用例，对程序所有逻辑路径进行测试。</li>
+</ul>
+<p>目的：</p>
+<ul>
+<li>白盒测试主要对程序模块进行如下的检查：</li>
+<li>对模块的每一个独立的执行路径至少测试一次；</li>
+<li>对所有的逻辑判定的每一个分支(真与假)都至少测试一次；</li>
+<li>在循环的边界和运行界限内执行循环体；</li>
+<li>测试内部数据结构的有效性；</li>
+<li><strong>错误隐藏在角落里，聚集在边界处</strong></li>
+</ul>
+<p>过程：
+&mdash;&mdash;&mdash;&mdash;&ndash;5.3p11</p>
+<h3 id="白盒测试方案">白盒测试方案</h3>
+<p>白盒测试方案技术之一：逻辑覆盖</p>
+<ul>
+<li>语句覆盖</li>
+<li>判定覆盖(分支覆盖)</li>
+<li>条件覆盖</li>
+<li>判定/条件覆盖</li>
+<li>条件组合覆盖</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215912.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211228215932.png" /></p>
+<p>白盒测试方案技术之二：控制结构测试</p>
+<ul>
+<li>
+<h2 id="基本路径测试">基本路径测试</h2>
+</li>
+</ul>
+<h2 id="54-黑盒测试">5.4 黑盒测试</h2>
+<p>黑盒测试方法 (等价类测试和边界值测试都是面向数据的测试)</p>
+<ul>
+<li>等价类测试
+<ul>
+<li>等价类：将程序的输入划分为若干个数据类，从中生成测试用例。并合理地假定“测试某等价类的代表值就等于对这一类其它值的测试”。</li>
+<li>等价类划分原则：
+<ul>
+<li>分而不交：划分出的任意两个等价类之间不存在交集-&gt;测试无冗余</li>
+<li>合而不变：所有等价类的并集仍然是原始的输入域-&gt;测试无漏洞</li>
+<li>类内等价：任意一个等价类中，所有数据相互“等价”-&gt;以一代全</li>
+</ul>
+</li>
+<li><strong>PDF上几个例子p28</strong></li>
+</ul>
+</li>
+<li>边界值测试
+<ul>
+<li>经过长期的测试工作经验表明，在输入域的边界或边界附近，常常会发现大量缺陷</li>
+<li>边界值测试倾向于选择系统边界或边界附近的数据来设计测试用例</li>
+</ul>
+</li>
+<li>场景法测试
+<ul>
+<li>基本流:系统从初始态到终止态的最主要的业务流程。测试中至少要确保系统基本流的执行是完全正确的。
+<ul>
+<li>完整的业务流程</li>
+</ul>
+</li>
+<li>备选流:备选事件流，以基本流为基础，在基本流所经过的每个判定节点处满足的不同触发条件而导致的其他事件流
+<ul>
+<li>仅为业务流程的执行片段</li>
+</ul>
+</li>
+<li>例子ATM机取款见PDF</li>
+</ul>
+</li>
+</ul>
+<h2 id="55-变异测试">5.5 变异测试</h2>
+<h2 id="56-性能测试">5.6 性能测试</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-28 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/sek_base_05/" data-title="SEK_base_05" data-hashtags="software engineering knowledge"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/sek_base_05/" data-hashtag="software engineering knowledge"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/sek_base_05/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/sek_base_05/" data-title="SEK_base_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/sek_base_05/" data-title="SEK_base_05"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/sek_base_05/" data-title="SEK_base_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/software-engineering-knowledge/">software engineering knowledge</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sek_base_04/" class="prev" rel="prev" title="SEK_base_04"><i class="fas fa-angle-left fa-fw"></i>SEK_base_04</a>
+            <a href="/vocabulary/" class="next" rel="next" title="some_words">some_words<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

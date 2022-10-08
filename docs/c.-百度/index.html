@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="prev" href="https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/" /><link rel="next" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/c.-%E7%99%BE%E5%BA%A6\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2328 ,
+        "url": "https:\/\/jefofrank.xyz\/c.-%E7%99%BE%E5%BA%A6\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2328 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#算法判断是否为镜面二叉树">算法：判断是否为镜面二叉树</a></li>
+    <li><a href="#算法二叉树的俯视图">算法：二叉树的俯视图</a></li>
+    <li><a href="#一个协程被网络io卡住了对应的线程会不会卡住">一个协程被网络io卡住了，对应的线程会不会卡住？</a></li>
+    <li><a href="#go-里面-make-和-new-有什么区别">go 里面 make 和 new 有什么区别？</a></li>
+    <li><a href="#map-是怎么实现的">map 是怎么实现的？</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#go里面-slice-和-array-有区别吗">go里面 slice 和 array 有区别吗？</a></li>
+    <li><a href="#归并排序是稳定的吗时间复杂度是多少">归并排序是稳定的吗？时间复杂度是多少？</a></li>
+    <li><a href="#写一个归并排序吧">写一个归并排序吧</a></li>
+    <li><a href="#空chan和关闭的chan进行读写会怎么样">空chan和关闭的chan进行读写会怎么样？</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#讲讲redis分布式锁的设计与实现">讲讲redis分布式锁的设计与实现</a></li>
+    <li><a href="#讲讲redis的哨兵模式">讲讲redis的哨兵模式</a></li>
+    <li><a href="#限流算法有哪些令牌桶算法怎么实现">限流算法有哪些？令牌桶算法怎么实现？</a></li>
+    <li><a href="#算法交换二叉树左右节点">算法：交换二叉树左右节点</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="golang开发面经百度三轮技术面">【Golang开发面经】百度（三轮技术面）</h1>
+<h1 id="写在前面">写在前面</h1>
+<blockquote>
+<p>百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我项目讲的不好吧，最终挂了。</p>
+</blockquote>
+<h1 id="笔试">笔试</h1>
+<p>略</p>
+<h1 id="一面">一面</h1>
+<blockquote>
+<p>一直深挖项目，挖了快半小时。然后再写两道题，最后再问一些简单的问题。</p>
+</blockquote>
+<h2 id="算法判断是否为镜面二叉树">算法：判断是否为镜面二叉树</h2>
+<h2 id="算法二叉树的俯视图">算法：二叉树的俯视图</h2>
+<h2 id="一个协程被网络io卡住了对应的线程会不会卡住">一个协程被网络io卡住了，对应的线程会不会卡住？</h2>
+<p>不会。因为都用epoll那是非阻塞调用，网络io和系统调用不一样的处理方式。网络io 是利用<code>非阻塞</code>，系统调用会创建新的线程来接管其他 goroutine。</p>
+<h2 id="go-里面-make-和-new-有什么区别">go 里面 make 和 new 有什么区别？</h2>
+<p>make 一般用来创建引用类型 slice、map 以及 channel 等等，并且是非零值的。而new 用于类型的内存分配，并且内存置为零。make 返回的是引用类型本身；而 new 返回的是指向类型的指针。</p>
+<h2 id="map-是怎么实现的">map 是怎么实现的？</h2>
+<p>map 的底层是一个结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go map 的底层结构体表示
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">hmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">count</span>     <span class="kt">int</span>    <span class="c1">// map中键值对的个数，使用len()可以获取 
+</span><span class="c1"></span>	<span class="nx">flags</span>     <span class="kt">uint8</span>
+	<span class="nx">B</span>         <span class="kt">uint8</span>  <span class="c1">// 哈希桶的数量的log2，比如有8个桶，那么B=3
+</span><span class="c1"></span>	<span class="nx">noverflow</span> <span class="kt">uint16</span> <span class="c1">// 溢出桶的数量
+</span><span class="c1"></span>	<span class="nx">hash0</span>     <span class="kt">uint32</span> <span class="c1">// 哈希种子
+</span><span class="c1"></span>
+	<span class="nx">buckets</span>    <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 指向哈希桶数组的指针，数量为 2^B 
+</span><span class="c1"></span>	<span class="nx">oldbuckets</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 扩容时指向旧桶的指针，当扩容时不为nil 
+</span><span class="c1"></span>	<span class="nx">nevacuate</span>  <span class="kt">uintptr</span>        
+
+	<span class="nx">extra</span> <span class="o">*</span><span class="nx">mapextra</span>  <span class="c1">// 可选字段
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+	<span class="nx">bucketCntBits</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">bucketCnt</span>     <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">bucketCntBits</span>     <span class="c1">// 桶数量 1 &lt;&lt; 3 = 8
+</span><span class="c1"></span><span class="p">)</span>
+
+<span class="c1">// Go map 的一个哈希桶，一个桶最多存放8个键值对
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">bmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// tophash存放了哈希值的最高字节
+</span><span class="c1"></span>	<span class="nx">tophash</span> <span class="p">[</span><span class="nx">bucketCnt</span><span class="p">]</span><span class="kt">uint8</span>
+    
+    <span class="c1">// 在这里有几个其它的字段没有显示出来，因为k-v的数量类型是不确定的，编译的时候才会确定
+</span><span class="c1"></span>    <span class="c1">// keys: 是一个数组，大小为bucketCnt=8，存放Key
+</span><span class="c1"></span>    <span class="c1">// elems: 是一个数组，大小为bucketCnt=8，存放Value
+</span><span class="c1"></span>    <span class="c1">// 你可能会想到为什么不用空接口，空接口可以保存任意类型。但是空接口底层也是个结构体，中间隔了一层。因此在这里没有使用空接口。
+</span><span class="c1"></span>    <span class="c1">// 注意：之所以将所有key存放在一个数组，将value存放在一个数组，而不是键值对的形式，是为了消除例如map[int64]所需的填充整数8（内存对齐）
+</span><span class="c1"></span>    
+    <span class="c1">// overflow: 是一个指针，指向溢出桶，当该桶不够用时，就会使用溢出桶
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        data-srcset="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 1.5x, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        title="在这里插入图片描述" />
+当向 map 中存储一个 kv 时，通过<code> k 的 hash 值与 buckets 长度取余</code>，定位到 key 在哪一个bucket中，<strong>hash 值的高8位存储在 bucket 的 tophash[i] 中</strong>，用来快速判断 key是否存在。<strong>当一个 bucket 满时，通过 overflow 指针链接到下一个 bucket。</strong></p>
+<h1 id="二面">二面</h1>
+<blockquote>
+<p>又深挖项目，这次挖了快40分钟了。。</p>
+</blockquote>
+<h2 id="go里面-slice-和-array-有区别吗">go里面 slice 和 array 有区别吗？</h2>
+<p>slice， 是切片，是引用类型，长度可变。
+array，是数组，是值类型，长度不可变。</p>
+<p><strong><code>slice的底层其实是基于array 实现的。</code></strong></p>
+<h2 id="归并排序是稳定的吗时间复杂度是多少">归并排序是稳定的吗？时间复杂度是多少？</h2>
+<p>是的，归并排序中相等元素的顺序不会改变。</p>
+<blockquote>
+<p>总时间 = 分解时间+解决问题时间+合并时间。</p>
+</blockquote>
+<ol>
+<li>分解时间就是把一个待排序序列分解成两序列，时间为一常数，时间复杂度<code>o(1)</code>。</li>
+<li>解决问题时间是两个递归式，把一个规模为n 的问题分成两个规模分别为 <code>n/2</code> 的子问题，时间为<code>2T(n/2)。</code></li>
+<li>合并时间复杂度为<code>o(n)</code>。</li>
+<li>总时间<code>T(n)=2T(n/2)+o(n)</code>，这个递归式可以用递归树来解，其解是<code>o(nlogn)</code>。</li>
+</ol>
+<p>所以是<code>O(nlogn)</code></p>
+<h2 id="写一个归并排序吧">写一个归并排序吧</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="nx">arr</span> <span class="o">*</span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">l</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">r</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">l</span> <span class="o">&gt;=</span> <span class="nx">r</span> <span class="p">{</span>
+		<span class="c1">//不可再分隔,只有一个元素
+</span><span class="c1"></span>		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="nx">mid</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">l</span><span class="o">+</span><span class="nx">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+	<span class="nf">mergeSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">mid</span><span class="p">)</span>
+	<span class="nf">mergeSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="nx">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">r</span><span class="p">)</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">mid</span><span class="p">]</span> <span class="p">&gt;</span> <span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+		<span class="nf">merge</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">mid</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//将arr[l...mid]和arr[mid+1...r]两部分进行归并
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">merge</span><span class="p">(</span><span class="nx">arr</span> <span class="o">*</span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">l</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">mid</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">r</span> <span class="kt">int</span><span class="p">)</span>  <span class="p">{</span>
+	<span class="c1">//先把arr中[l..r]区间的值copy一份到arr2
+</span><span class="c1"></span>	<span class="c1">//注意:这里可优化，copyarr 可改为长度为r-l+1的数组,下面的赋值等操作按偏移量l来修改即可，
+</span><span class="c1"></span>	<span class="nx">copyarr</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">index</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;=</span> <span class="nx">r</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">copyarr</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">index</span><span class="p">]</span>
+	<span class="p">}</span>
+	<span class="c1">//定义要合并的两个子数组各自目前数组内还没被合并的首位数字下标为i,j
+</span><span class="c1"></span>	<span class="c1">//初始化i，j
+</span><span class="c1"></span>	<span class="nx">i</span> <span class="o">:=</span> <span class="nx">l</span>
+	<span class="nx">j</span> <span class="o">:=</span> <span class="nx">mid</span><span class="o">+</span><span class="mi">1</span>
+	<span class="c1">//遍历并逐个确定数组[l,r]区间内数字的顺序
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;=</span> <span class="nx">r</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span> <span class="p">{</span>
+		<span class="c1">//防止i/j&#34;越界&#34;，应该先判断i和j的下变是否符合条件（因为两个子数组应该符合i&lt;=mid j&lt;=r）
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="nx">mid</span> <span class="p">{</span>
+			<span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">k</span><span class="p">]</span> <span class="p">=</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+			<span class="nx">j</span><span class="o">++</span>
+		<span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="nx">r</span> <span class="p">{</span>
+			<span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">k</span><span class="p">]</span> <span class="p">=</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+			<span class="nx">i</span><span class="o">++</span>
+		<span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">k</span><span class="p">]</span> <span class="p">=</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+			<span class="nx">i</span><span class="o">++</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="p">(</span><span class="o">*</span><span class="nx">arr</span><span class="p">)[</span><span class="nx">k</span><span class="p">]</span> <span class="p">=</span> <span class="nx">copyarr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+			<span class="nx">j</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">TestMerge</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+	<span class="nf">mergeSort</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="空chan和关闭的chan进行读写会怎么样">空chan和关闭的chan进行读写会怎么样？</h2>
+<ul>
+<li>
+<p>空chan</p>
+<ol>
+<li>读会读取到该chan类型的<code>零值</code>。</li>
+<li>写会直接写到chan中。</li>
+</ol>
+</li>
+<li>
+<p>关闭的chan</p>
+<ol>
+<li>读已经关闭的 chan 能一直读到东西，但是读到的内容根据通道内关闭前是否有元素而不同。<strong><code>如果有元素，就继续读剩下的元素，如果没有就是这个chan类型的零值，比如整型是 int，字符串是&quot;&quot; </code></strong>。</li>
+<li>写已经关闭的 chan 会 panic。因为源码上面就是这样写的，可以看<code>src/runtime/chan.go</code></li>
+</ol>
+</li>
+</ul>
+<h1 id="三面">三面</h1>
+<blockquote>
+<p>感觉就走个过场。。面完简历就共享了。。</p>
+</blockquote>
+<h2 id="讲讲redis分布式锁的设计与实现">讲讲redis分布式锁的设计与实现</h2>
+<p>这篇博客很详细了，可以看这篇博客 <a href="https://blog.csdn.net/Me_xuan/article/details/124418176" target="_blank" rel="noopener noreffer"> redis分布式锁实现 </a></p>
+<h2 id="讲讲redis的哨兵模式">讲讲redis的哨兵模式</h2>
+<p>一主两从三哨兵集群，当 master 节点宕机时，通过哨兵(sentinel)重新推选出新的master节点，保证集群的可用性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/96913a7b605f46fe89fe6006a58aa757.png"
+        data-srcset="https://img-blog.csdnimg.cn/96913a7b605f46fe89fe6006a58aa757.png, https://img-blog.csdnimg.cn/96913a7b605f46fe89fe6006a58aa757.png 1.5x, https://img-blog.csdnimg.cn/96913a7b605f46fe89fe6006a58aa757.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/96913a7b605f46fe89fe6006a58aa757.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="限流算法有哪些令牌桶算法怎么实现">限流算法有哪些？令牌桶算法怎么实现？</h2>
+<p>限流算法常见有计数器算法，滑动窗口，令牌桶算法。</p>
+<p>令牌桶算法是比较常见的限流算法之一，如下：</p>
+<ol>
+<li>所有的请求在处理之前都需要拿到一个可用的令牌才会被处理；</li>
+<li>根据<code>限流大小</code>，设置按照一定的速率往桶里添加令牌；</li>
+<li>桶设置最大的放置<code>令牌限制</code>，当桶满时、新添加的令牌就被丢弃或者拒绝；</li>
+<li>请求达到后首先要获取令牌桶中的令牌，拿着<code>令牌才可以进行其他的业务逻辑</code>，处理完业务逻辑之后，<code>将令牌直接删除</code>；</li>
+<li>令牌桶有<code>最低限额</code>，当桶中的令牌达到最低限额的时候，请求处理完之后将不会删除令牌，以此保证<code>足够的限流</code>；</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png"
+        data-srcset="https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png, https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png 1.5x, https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="算法交换二叉树左右节点">算法：交换二叉树左右节点</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/d.-%E6%BB%B4%E6%BB%B4/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/b.-b%E7%AB%99/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

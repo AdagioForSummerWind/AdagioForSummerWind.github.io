@@ -1,0 +1,60 @@
+---
+title: "Go_base_08"
+date: 2022-01-06T09:16:53+08:00
+lastmod: 2022-01-06
+tags: [go grammar]
+categories: [Go]
+slug: Go_Data_Operation
+draft: true
+---
+# 数据操作
+## go操作MySQL
+### go操作MySQL
+### Insert操作
+### Select操作
+### Update操作
+### Delete操作
+### MySQL事务
+## go操作Redis
+### Redis介绍
+### 链接Redis
+### String类型Set,Get操作
+### String批量操作
+### 设置过期时间
+### List队列操作
+### Hash表
+### Redis连接池
+## go操作ETCD
+### ETCD介绍
+### 操作ETCD
+## zookeeper
+### 基本操作测试
+### 简单的分布式server
+### Zookeeper命令行使用
+## go操作kafka
+### Kafka介绍
+### Kafka深层介绍
+### Kafka的安装
+### 操作Kafka
+## go操作RabbitMQ
+### RabbitMQ介绍
+### RabbitMQ安装
+### Simple模式
+### Work模式
+### Publish模式
+### Routing模式
+### Topic模式
+## go操作ElasticSearch
+### ElasticSearch介绍
+### ElasticSearch安装
+### Kibana安装
+### 操作ElasticSearch
+## NSQ
+### 安装
+### 生产者
+### 消费者
+## GORM
+## xorm
+## go操作memcached
+
+

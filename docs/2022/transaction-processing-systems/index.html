@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DistributedSystem_HongweiDu_12 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2022/unix-fs-and-distributed-fs/" /><link rel="next" href="https://qizhengzou.github.io/2022/web-searching-technologies/" /><link rel="canonical" href="https://qizhengzou.github.io/2022/transaction-processing-systems/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_12"/>
+<meta name="twitter:description" content="Transaction Processing Systems事务处理系统 File operations and Transaction operations： Definitions of Atomic Transactions ： Atomic Transaction: a sequence of data access operations that are atomic in the sense of: All-or-Nothing Serializability The ACID properties of a transaction in RM-ODP: Atomicity Consistency Isolation Durability What makes Database inc"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_12",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2022\/transaction-processing-systems\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "distributed_system","wordcount":  2148 ,
+        "url": "https:\/\/qizhengzou.github.io\/2022\/transaction-processing-systems\/","datePublished": "2022-01-01T15:21:45\u002b08:00","dateModified": "2022-01-01T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">DistributedSystem_HongweiDu_12</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2022-01-01>2022-01-01</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2148 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="transaction-processing-systems事务处理系统">Transaction Processing Systems事务处理系统</h1>
+<p>File operations and Transaction operations：</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101220659.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Definitions of Atomic Transactions ：</p>
+<ul>
+<li>Atomic Transaction: a sequence of data access operations that are atomic in the sense of:
+<ul>
+<li>All-or-Nothing</li>
+<li>Serializability</li>
+</ul>
+</li>
+<li>The ACID properties of a transaction in RM-ODP:
+<ul>
+<li>Atomicity</li>
+<li>Consistency</li>
+<li>Isolation</li>
+<li>Durability</li>
+</ul>
+</li>
+</ul>
+<p>What makes Database inconsistent?：</p>
+<ul>
+<li>Concurrent accesses of transactions</li>
+<li>Failures of servers</li>
+<li>Two well-known problems caused by concurrency:</li>
+<li><strong>Lost update problem</strong></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101220857.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Inconsistent Retrieval Problem：</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101220928.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Problem Caused by Server Failures：</p>
+<ul>
+<li>Transaction: transfer(A, B, 100)</li>
+<li>bal = A.Read();</li>
+<li>A.Write(bal - 100);</li>
+<li>&ldquo;bad&rdquo; &lt;-server crash point</li>
+<li>bal = B.Read();</li>
+<li>B.Write(bal + 100);</li>
+</ul>
+<p>Transactional File Operations:</p>
+<ul>
+<li>Transactions provide a programming environment:
+<ul>
+<li>Concurrency transparency</li>
+<li>Failure transparency</li>
+</ul>
+</li>
+<li>Transactional file service operations:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">TID = OpenTrans ()
+(Commit, Abort) = CloseTrans (TID)
+AbortTrans (TID)
+TWrite(TID, FID, i, Data)
+TRead(TID, FID, i, buf)
+FID = TCreate(TID, filename, type)
+TDelete(TID, FID)
+ ......
+</code></pre></td></tr></table>
+</div>
+</div><p>An Example of Using Transactions :</p>
+<ul>
+<li>Transaction: transfer (A, B, 100)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tid = OpenTrans();
+    Tread(tid, A, bal)
+    Twrite(tid, accountA, bal-100)
+    Tread(tid, accountB, bal)
+    Twrite(tid, accountB, bal+100)
+CloseTrans(tid);
+</code></pre></td></tr></table>
+</div>
+</div><p>How to achieve atomicity of transactions?:</p>
+<ul>
+<li>Failure Recovery (guarantee nothing-or-all)
+<ul>
+<li>Intention list approach</li>
+<li>Shadow version approach</li>
+</ul>
+</li>
+<li>Concurrency Control (guarantee serializability)
+<ul>
+<li>2-Phase Locking</li>
+<li>Timestamp Ordering</li>
+<li>Optimistic Method</li>
+</ul>
+</li>
+</ul>
+<p>Failure Recovery of Transactions :</p>
+<ul>
+<li>An execution of a transaction has Two Phases:
+<ol>
+<li>Tentative phase, the execution transaction body</li>
+<li>Commit phase, making tentative values permanent</li>
+</ol>
+</li>
+<li>Making transactions failure recoverable:
+<ul>
+<li>Keep the tentative values of data on disk that can survive failures</li>
+<li>Restore data items at the restart from a failure (recovery operation should be idempotent)</li>
+<li>Make the commit phase repeatable</li>
+</ul>
+</li>
+</ul>
+<p>Intention List Approach (failure recovery) :</p>
+<ul>
+<li>Example of intention list:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tid = OpenTrans;
+    TWrite(tid, fd1, len1, data1);
+    TWrite(tid, fd2, len2, data2);
+Close(tid)
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Intention List:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tid, status, 
+{&#34;Twrite, fd, pos1, len1, data1&#34;, 
+&#34;Twrite, fd, pos2, len2, data2&#34;}
+</code></pre></td></tr></table>
+</div>
+</div><p>Implementation of Intention List:</p>
+<ul>
+<li>Transaction operations by using intention list:
+<ul>
+<li>Twrite writes data to the intention list.</li>
+<li>Tread reads data from the intention list if it is present.</li>
+<li>CloseTrans performs operations in the intention list onto database files (or the recovery file).</li>
+</ul>
+</li>
+<li>Recovery manager: a program (part of the server) which is called when the server restarts from a failure.</li>
+<li>Recovery file: a file used by the recovery manager to restore the database to a consistency state. Each entry of the file, for one transaction, contains the information:
+<ul>
+<li>Tid</li>
+<li>transaction status</li>
+<li>intention list</li>
+</ul>
+</li>
+</ul>
+<p>Example of recovery:</p>
+<ul>
+<li>Transactions T and U:</li>
+<li>T: transfer (A, B, $20)</li>
+<li>U: transfer (C, B, $22)</li>
+<li>Recovery: remove tentative data created by U (p5 &amp; p6) and commit the data updated by T (p1 &amp; p2) to database.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101221702.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Shadow Version Approach (failure recovery) :</p>
+<ul>
+<li>When a transaction modifies a file or data item, it creates a shadow (tentative) version of the file.</li>
+<li>The subsequent Twrite/Tread are performed on the shadow version.</li>
+<li>At closeTrans, it detects version conflict with other concurrent transactions (done by concurrency control).</li>
+<li>If no conflict, the shadow version is merged with other concurrent versions already committed; otherwise it is aborted.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101221737.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Implementation of Shadow Version Approach:</p>
+<ul>
+<li>A copy of the file index block is created at the first Twrite of a transaction.</li>
+<li>Each Twrite operation creates shadow pages. The index entries of modified pages are made pointing to the shadow pages.</li>
+<li>The original file index block is replaced by the new one at the commit of the transaction (it’s an idempotent operation).</li>
+</ul>
+<p>Serializability (Serially Equivalent) :</p>
+<ul>
+<li>
+<p>Two transactions may conflict with each other when they access the same data item(s).</p>
+</li>
+<li>
+<p>Only write operations may cause inconsistency.</p>
+</li>
+<li>
+<p>Def. Serializability:  T  U (T completes before U starts):</p>
+<ol>
+<li>read operations in U must read the data written by T</li>
+<li>write operations in U must overwrite the data done by T</li>
+<li>T cannot see any effect of U</li>
+</ol>
+</li>
+</ul>
+<p>Absolute Sequential Execution:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101222016.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Serial Equivalence:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101222049.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Non-serial Equivalence :</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101222127.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Non-serial Equivalence of Lost Update and Inconsistent Retrievals:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101222249.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Serializability of Transactions :</p>
+<ul>
+<li>
+<p>Conflicting operations: Two operations access the same data item and one of them is write.</p>
+</li>
+<li>
+<p>Conflicting transactions: Two transactions that have conflicting operations in them.</p>
+</li>
+<li>
+<p>Serializability of transactionsT1 and T2:</p>
+</li>
+<li>
+<p>Serializability of Transactions:</p>
+<ul>
+<li>The execution of a set of transactions T1 T2, &hellip;, Tm, is equivalent to the execution of them in a serial order, i.e., Ti1  Ti2 -&gt;  , &hellip;,  Tim</li>
+</ul>
+</li>
+<li>
+<p>Note: Serializability is the minimum requirement for database consistency in general.</p>
+</li>
+</ul>
+<p>2-Phase Locking :</p>
+<ul>
+<li>First phase: obtaining locks.</li>
+<li>Second phase: releasing locks.</li>
+<li>When a transaction begins to release a lock, it cannot apply for locks any more.</li>
+<li>Why two phases of locking?</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    Server operations for T		Server operations for U	
+    write(a); 				
+	read(b);
+				               	read(b); 
+				               	write(b); 	
+	write(b); 	
+</code></pre></td></tr></table>
+</div>
+</div><p>Simple locking won’t work (2-Phase Locking):</p>
+<ul>
+<li>
+<p>First phase: obtaining locks.</p>
+</li>
+<li>
+<p>Second phase: releasing locks.</p>
+</li>
+<li>
+<p>When a transaction begins to release a lock, it cannot apply for locks any more.</p>
+</li>
+<li>
+<p>Think about by using simple locking:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Server operations for T		Server operations for U	
+lock(a);write(a); unlock(a)				
+lock(b); read(b); unlock(b)
+				               lock(b); read(b); unlock(b)
+				               lock(b);write(b); unlock(b)	
+lock(b);write(b); unlock(b)	
+</code></pre></td></tr></table>
+</div>
+</div><p>2-Phase Locking :</p>
+<ul>
+<li>
+<p>First phase: obtaining locks.</p>
+</li>
+<li>
+<p>Second phase: releasing locks.</p>
+</li>
+<li>
+<p>When a transaction begins to release a lock, it cannot apply for locks any more.</p>
+</li>
+<li>
+<p>Use two phases of locking:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Server operations for T		Server operations for U	
+lock(a);write(a); 				
+lock(b); read(b); 
+				               lock(b) – wait!!!  read(b); 
+				               …….		write(b); 	
+lock(b);write(b); unlock(a, b)	
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Note: U cannot obtain lock on b until T completes.</li>
+</ul>
+<p>Serializability of 2-Phase Locking:</p>
+<ul>
+<li>Serializability: All transactions are serialized in the order of the time they obtain locks on data items.</li>
+<li>Lock compatibility:<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101222824.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Implementation of Locking:</p>
+<ul>
+<li>Lock manager: a module of a server program. It maintains a table of locks for the data items of the server.Each entry in the table of locks has:
+<ul>
+<li>transaction ID</li>
+<li>data-item ID</li>
+<li>lock type</li>
+<li>a condition variable (a queue for clients waiting unlock)</li>
+</ul>
+</li>
+<li>Lock manager provides two operations:
+<ul>
+<li>lock(trans, dataItem, lockType)</li>
+<li>unlock(trans), signal the condition variable</li>
+</ul>
+</li>
+<li>The lock and unlock operations must be atomic</li>
+</ul>
+<p>Deadlock in 2-Phase Locking:</p>
+<ul>
+<li>Deadlock may occur in 2-Phase locking</li>
+<li>Deadlock prevention and handling:
+<ul>
+<li>Lock all data items a transaction accesses at the start of the transaction.</li>
+<li>Set timeout for waiting a lock.</li>
+</ul>
+</li>
+</ul>
+<p>Discussions on 2-Phase Locking:</p>
+<ul>
+<li>Advantages of locking:
+<ol>
+<li>No abort and restart.</li>
+<li>Simple for understanding and implementation.</li>
+</ol>
+</li>
+<li>Disadvantages:
+<ol>
+<li>Pessimistic.</li>
+<li>Poor efficiency (cost of locking and clients waiting for locks).</li>
+<li>Deadlock.</li>
+</ol>
+</li>
+</ul>
+<p>Timestamp Ordering :</p>
+<ul>
+<li>Serializability of Timestamp Ordering: transactions are serialized in the order of their start time (openTrans).</li>
+<li>Important Timestamps:
+<ol>
+<li>Each transaction is assigned an unique timestamp T (also used as TID) at the open.</li>
+<li>Each data item has a write-timestamp (wt) and a read-timestamp (rt).</li>
+</ol>
+</li>
+</ul>
+<p>Timestamp Ordering (Cont’d) :</p>
+<ul>
+<li>Read/Write Operations: the transaction’s timestamp T is compared with the rt and wt of the data to decide if the operation can proceed.</li>
+<li>Read Rule:
+<ul>
+<li>transaction T can read a data item only if the data item was last written by an earlier transaction.</li>
+<li>if a read of T is accepted, T becomes a tentative rt of the data (if T &gt; rt).</li>
+</ul>
+</li>
+<li>Write Rule:
+<ul>
+<li>transaction T can write the data only if the data was last read and written by earlier transactions.</li>
+<li>when a write of T is accepted, a tentative version of data is the created with timestamp T;</li>
+</ul>
+</li>
+<li>Commitment:
+<ul>
+<li>when T commits, its tentative version of data and tentative rt become permanent;</li>
+<li>if T aborts, all tentative data and rts created by T are removed.</li>
+</ul>
+</li>
+</ul>
+<p>Rules for Write:</p>
+<ul>
+<li>W1: T &gt;= rt and T &gt; wt, a tentative value is created.</li>
+<li>W2: T &lt; rt (including tentative rt) or T &lt; wt, abort.</li>
+<li>
+<pre><code>                   T1 &lt; T2 &lt; T3 &lt; T4
+</code></pre>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223354.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Rules for Read:</p>
+<ul>
+<li>R1: T &gt;= wt
+<ul>
+<li>if there is a tentative value made by itself, read this tentative value; otherwise:</li>
+<li>if there are tentative values whose timestamps are earlier than T, wait for the tentative values committed; otherwise:</li>
+<li>read data immediately.</li>
+</ul>
+</li>
+<li>R2: T &lt; wt,  abort.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223512.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Commitment of Transactions:</p>
+<ul>
+<li>The commit of a tentative value (including a tentative rt of a data object) has to wait for the commit of tentative values of earlier transactions.</li>
+<li>A transaction waits for the earlier transactions only, which avoids deadlocks.</li>
+<li>Note: all transactions are serialized in the order of the time when they start (openTrans).</li>
+</ul>
+<p>Multiversion Timestamp Ordering ;</p>
+<ul>
+<li>The server keeps old committed versions (a history of versions) as well as tentative versions in a list of versions of the data.</li>
+<li>A read that arrives too late need not be rejected. It returns the data whose version has the largest wt that is less than the transaction. A read still need to wait for a tentative version to commit/abort.</li>
+<li>There is no conflict between write operations, bcs each transaction writes on its own version of the data. But a write will be rejected if the data was read by a later transaction.</li>
+<li>A commit does not need to wait for earlier transactions (bcs multi-versions can co-exist) if it does not read data from earlier versions.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223611.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Multiversion Timestamp Ordering: late read / write:</p>
+<ul>
+<li>In multiversion timestamp ordering, a read operation can always proceed (provided the old version is still kept)</li>
+<li>But a write operation arrived too late can still be rejected.</li>
+<li>Example: after T3 read &amp; write…. (cont’d)..</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223652.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Multiversion Timestamp Ordering: late read/write (cont’d):</p>
+<ul>
+<li>Ater T5 reads the data and committed, if T4-write arrives, it’ll be aborted; otherwise you have conflict of T4 &amp; T5.</li>
+<li>Rule: a write operation arrived too late can still be rejected.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223725.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Discussions on Timestamp Ordering:</p>
+<ul>
+<li>Advantages:
+<ul>
+<li>No deadlocks.</li>
+</ul>
+</li>
+<li>Disadvantage:
+<ul>
+<li>Extra storage for timestamps.</li>
+<li>Possible abort and restart.</li>
+<li>A long transaction may block others.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Timestamp ordering method is pessmistic (over-strong):
+T				U			
+t1=openTrans
+				t2 = openTrans
+                                    	read(t2, b)
+				write(t2 ,b)
+				closeTrans(t2)
+read(t1, b) 	 &lt;- T will abort (unnecessarily)
+</code></pre></td></tr></table>
+</div>
+</div><p>Optimistic Method (Optimistic Timestamp Ordering) :</p>
+<ul>
+<li>Observation: the possibility of conflicts of two transactions is low. Transactions are allowed to progress as if there were no conflict at all.</li>
+<li>A transaction has three phases: tentative, validation and commit.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101223902.png" alt="" class="lazyload"></figure></li>
+<li>Tentative phase: read and write are returned immediately (write is to a tentative version). Read set (RS) and Write set (WS) of the trans are recorded.</li>
+<li>Validation phase: detect the conflicts with other concurrent transactions and decide commit/abort as the result.</li>
+<li>Commit phase: commit tentative values made by the transaction.
+Note: transactions are serialized in the order of their close time.</li>
+</ul>
+<p>Validation Condition :</p>
+<ul>
+<li>When validating Ti, system checks each Tj which is concurrent with Ti (i.e. Ti starts in between the start and completion of Tj).</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101224000.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Implementation Details :</p>
+<ul>
+<li>Three important time points of a transaction:</li>
+<li>start_t, finish_t and commit_t.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101224053.png" alt="" class="lazyload"></figure></li>
+<li>validation_set: a set of transactions being in validation.</li>
+<li>Note: start_t is the time of “openTrans”, finish_t is the time of “closeTrans”.</li>
+</ul>
+<p>Validation, Write, and Commit of Transaction Ti；</p>
+<ol>
+<li>When a Ti enters validation, record time finish_t,  make a copy of validation_set and add Ti into validation_set.
+<ul>
+<li>transactions whose commit_t is in between start_t and finish_t of Ti are concurrent in tentative phase but serial in validation phase with Ti.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101224154.png" alt="" class="lazyload"></figure></li>
+<li>transactions in validation_set are concurrent in validation phase with Ti.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101224215.png" alt="" class="lazyload"></figure></li>
+</ul>
+</li>
+<li>If Ti passes validation, it enters write-phase.</li>
+<li>Ti&rsquo;s commit_t is recorded and Ti is removed from validation_set.</li>
+</ol>
+<p>How long we need to keep information of Ti：</p>
+<ul>
+<li>Information of committed transactions should be kept for other transactions validation:
+<ul>
+<li>the information of a transaction can be removed when its commit_t &lt; start_t of any uncommitted transaction in the system.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101224304.png" alt="" class="lazyload"></figure></li>
+</ul>
+</li>
+</ul>
+<p>Discussions on Optimistic Method：</p>
+<ul>
+<li>Serializability
+<ul>
+<li>Transactions are serialized in the order of the time when they are closed.</li>
+</ul>
+</li>
+<li>Starvation problem
+<ul>
+<li>a (long) transaction may be aborted again and again.</li>
+</ul>
+</li>
+<li>Advantage
+<ul>
+<li>optimistic (high concurrency).</li>
+<li>no deadlock.</li>
+<li>a transaction will not be blocked by others.</li>
+</ul>
+</li>
+<li>Disadvantage:
+<ul>
+<li>complicate.</li>
+<li>starvation.</li>
+<li>abort and restart.</li>
+</ul>
+</li>
+</ul>
+<p>Conclusion of Concurrency Control Methods：</p>
+<ul>
+<li>
+<p>Two phase locking:</p>
+<ul>
+<li>Lock data items before access.</li>
+<li>Serialized in the order of obtaining locks.</li>
+<li>No abort and restart.</li>
+</ul>
+</li>
+<li>
+<p>Timestamp ordering:</p>
+<ul>
+<li>Check timestamps of data items before access.</li>
+<li>Serialized in the order of start time.</li>
+<li>Abort during execution.</li>
+</ul>
+</li>
+<li>
+<p>Optimistic method:</p>
+<ul>
+<li>Validate at the close.</li>
+<li>Serialized in the order of close time.</li>
+<li>Abort at validation.</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2022-01-01</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/distributed_system/"><i class="fas fa-tag fa-fw"></i>&nbsp;distributed_system</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2022/unix-fs-and-distributed-fs/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_11"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_11</a>
+                <a href="https://qizhengzou.github.io/2022/web-searching-technologies/" class="next" rel="next" title="DistributedSystem_HongweiDu_13">DistributedSystem_HongweiDu_13<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

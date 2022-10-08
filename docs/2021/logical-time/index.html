@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DistributedSystem_HongweiDu_04 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/physical-time/" /><link rel="next" href="https://qizhengzou.github.io/2021/mutual-exclusion-election-algorithms/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/logical-time/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_04"/>
+<meta name="twitter:description" content="Logical Time Motivation of logical clocks: Cannot synchronize physical clocks perfectly in distributed systems. [Lamport 1978] Main function of computer clocks – order events If two processes don’t interact, there is no need to sync clocks. This observation leads to “causality” Causality（因果性）:"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_04",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/logical-time\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "distributed_system","wordcount":  1029 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/logical-time\/","datePublished": "2021-12-03T14:35:49\u002b08:00","dateModified": "2021-12-10T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">DistributedSystem_HongweiDu_04</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-12-03>2021-12-03</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 1029 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="logical-time">Logical Time</h1>
+<p>Motivation of logical clocks:</p>
+<ul>
+<li>Cannot synchronize physical clocks perfectly in distributed systems. [Lamport 1978]</li>
+<li>Main function of computer clocks – order events
+<ul>
+<li>If two processes don’t interact, there is no need to sync clocks.</li>
+<li>This observation leads to “causality”</li>
+</ul>
+</li>
+</ul>
+<p>Causality（因果性）:</p>
+<ul>
+<li>Order events with happened-before  (-&gt;) relation
+<ul>
+<li>a &gt; b
+<ul>
+<li>a could have affected the outcome of b</li>
+</ul>
+</li>
+<li>a || b
+<ul>
+<li>a and b take place in different processes that don’t exchange data</li>
+<li>Their relative ordering does not matter (they are concurrent)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Definition of happened-before:</p>
+<ul>
+<li>Definition of “” relationship:
+<ul>
+<li>If a and b take place in the same process
+<ul>
+<li>a comes before b, then a -&gt; b</li>
+</ul>
+</li>
+<li>If a and b take place in the different processes
+<ul>
+<li>a is a “send” and b is the corresponding “receive”, then a -&gt; b</li>
+</ul>
+</li>
+<li>Transitive: if a -&gt; b and b -&gt; c, then a -&gt; c</li>
+</ul>
+</li>
+<li>Partial ordering – unordered events are concurrent</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145000.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Logical Clocks:</p>
+<ul>
+<li>A logical clock is a monotonically increasing software counter. It need not relate to a physical clock.
+<ul>
+<li>Corrections to a clock must be made by adding, not subtracting</li>
+</ul>
+</li>
+<li>Rule for assigning “time” values to events
+<ul>
+<li>if a -&gt; b then clock(a) &lt; clock(b)</li>
+</ul>
+</li>
+</ul>
+<p>Event counting example:</p>
+<ul>
+<li>Three processes: P0, P1, P2, events a, b, c, …</li>
+<li>A local event counter in each process.</li>
+<li>Processes occasionally communicate with each other, where inconsistency occurs, …</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145216.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Lamport’s algorithm, 1978:</p>
+<ul>
+<li>Each process Pi has a logical clock Li. Clock synchronization algorithm:
+<ul>
+<li>Li is initialized to 0;</li>
+<li>Update Li:
+<ul>
+<li>LC1: Li  is incremented by 1 for each new event happened in Pi</li>
+<li>LC2: when Pi sends message m, it attaches t =  Li to m</li>
+<li>LC3: when Pj receives (m,t) it sets Lj := max{Lj, t} , and then applies LC1 to increment Lj for event receive(m)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145316.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Problem: Identical timestamps:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145349.png" alt="" class="lazyload"></figure></li>
+<li>Concurrent events (e.g., a, g) may have the same timestamp</li>
+</ul>
+<p>Make timestamps unique:</p>
+<ul>
+<li>Append the process ID (or system ID) to the clock value after the decimal point:
+<ul>
+<li>e.g. if  P1, P2 both have L1 = L2 = 40, make L1 = 40.1, L2 = 40.2</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145434.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Problem: Detecting causal relations:</p>
+<ul>
+<li>If a -&gt; b, then L(a) &lt; L(b), however:</li>
+<li>If L(a) &lt; L(b), we cannot conclude that a -&gt; b</li>
+<li>It is not very useful in distributed systems.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145540.png" alt="" class="lazyload"></figure></li>
+<li>Solution: use <strong>vector clocks</strong></li>
+</ul>
+<p>Vector of Timestamps:</p>
+<ul>
+<li>Suppose there are a group of people and each needs to keep track of events happened to others.</li>
+<li>Requirement: Given two events, you need to tell whether they are sequential or concurrent.</li>
+<li>Solution: you need to have a vector of timestamps, one element for each member.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145641.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Vector clocks （向量时钟）:</p>
+<ul>
+<li>Each process Pi keeps a clock Vi which is a vector of N integers
+<ul>
+<li>Initialization: for 1 ≤ i ≤ N and 1 ≤ k ≤ N, Vi[k] := 0</li>
+<li>Update Vi :
+<ul>
+<li>VC1: when there is a new event in Pi, it sets Vi[i] := Vi[i] +1</li>
+<li>VC2: when Pi sends a message m out, it attaches t = Vi to m</li>
+<li>VC3: when Pj receives (m,t), for 1 ≤ k ≤ N, it sets Vj[k] := max{Vj[k], t[k]}, then applies VC1 to increment Vj[j] for event receive(m,t)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note: Vi[j] is a timestamp indicating that Pi knows all events that happened in Pj upto this time.</li>
+<li>example:
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145829.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145851.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145915.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210145953.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150014.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150037.png" alt="" class="lazyload"></figure></li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150059.png" alt="" class="lazyload"></figure></li>
+</ul>
+</li>
+</ul>
+<p>Detecting “-&gt;” or “||” events by time vectors:</p>
+<ul>
+<li>Define
+<ul>
+<li>V = V’ iff V[i] = V’[i] for i = 1, …, N</li>
+<li>V ≤ V’ iff V[i] ≤ V’[i] for i = 1, …, N</li>
+<li>V &lt; V’ iff V ≤ V’ and V ≠ V’</li>
+</ul>
+</li>
+<li>V(e) = timestamp vector of an event e</li>
+<li>For any two events a and b,
+<ul>
+<li>a -&gt; b iff V(a) &lt; V(b), a ≠ b</li>
+<li>a || b iff neither V(a) ≤ V(b) nor V(b) ≤ V(a)</li>
+</ul>
+</li>
+<li>an example:
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150247.png" alt="" class="lazyload"></figure></li>
+</ul>
+</li>
+</ul>
+<p>Summary on vector timestamps:</p>
+<ul>
+<li>No need to synchronize physical clocks</li>
+<li>Able to order causal events</li>
+<li>Able to identify concurrent events (but cannot order them)</li>
+</ul>
+<p>An Application of Timestamp Vectors: causally-ordered multicast:</p>
+<ul>
+<li>Multicast: a sender sends a message to a group of receivers. Every message must be received by all group members.</li>
+<li>Causally ordered multicast: if m1 -&gt;  m2, m1 must be received before m2 by all receivers.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150506.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Algorithm of Causally-Ordered Multicast:</p>
+<ul>
+<li>Each group member keeps a timestamp vector of n components (n group members), all initialized to 0.
+<ul>
+<li>When Pi multicasts a message m, it increments i-th component of its time vector Vi and attaches Vi to m.</li>
+<li>When Pj with Vj receives (m, Vi) from Pi:
+<ul>
+<li>if (Vj [k] &gt;= Vi[k] for all k, k≠ i), then
+<ul>
+<li>Vj [i] := Vi [i];  // Vi [i] is always greater than Vj [i]</li>
+<li>Vj [j] := Vj [j] + 1;</li>
+<li>Deliver m;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>otherwise
+<ul>
+<li>Delay m until “if” is met.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150745.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Causal-Order Preserved:</p>
+<ul>
+<li>If m1 -&gt; m2, m1 is received by (delivered to) all recipients before m2.</li>
+<li>If m1 || m2, m1 and m2 can be received in arbitrary order by recipients.</li>
+<li>Total ordered multicast（全序组播）: for case of m1 || m2, m1 and m2 must be received in the same order by all recipients (i.e., either all m1 before m2, or all m2 before m1).</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211210150851.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Question:</p>
+<ul>
+<li>Suppose a group of process P0 -P5 and timestamp vector is used to represent logical times. P0 sends out a message m1 with timestamp vector T0 = {5,7,2,3,4,8}:</li>
+<li>a) what is the event number of P0?</li>
+<li>b) what is the event number of the last event that P0 knows about P4?</li>
+<li>c) suppose P4 sends a message m2 with vector T4 = {5,7,3,3,6,8}. What is relationship between m1 and m2?</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-12-10</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/distributed_system/"><i class="fas fa-tag fa-fw"></i>&nbsp;distributed_system</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/physical-time/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_03"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_03</a>
+                <a href="https://qizhengzou.github.io/2021/mutual-exclusion-election-algorithms/" class="next" rel="next" title="DistributedSystem_HongweiDu_05">DistributedSystem_HongweiDu_05<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>scripts - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/scripts/</link>
+        <description>scripts - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 31 Jul 2022 09:37:14 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/scripts/" rel="self" type="application/rss+xml" /><item>
+    <title>Makefile</title>
+    <link>https://qizhengzou.github.io/makefile/</link>
+    <pubDate>Sun, 31 Jul 2022 09:37:14 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/makefile/</guid>
+    <description><![CDATA[https://seisman.github.io/how-to-write-makefile/postscript.html 概述 什么是makefile？或许很多Windows的程序员都不知道这个东西，因为那些Windows的集成开发环境 （integrated development e]]></description>
+</item></channel>
+</rss>

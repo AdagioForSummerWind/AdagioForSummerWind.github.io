@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>design mode - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/design-mode/</link>
+        <description>design mode - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Jan 2022 09:21:00 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/design-mode/" rel="self" type="application/rss+xml" /><item>
+    <title>Structural_type</title>
+    <link>https://qizhengzou.github.io/structural_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:21:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/structural_type/</guid>
+    <description><![CDATA[facade API 为facade 模块的外观接口，大部分代码使用此接口简化对facade类的访问。 facade模块同时暴露了a和b 两个Module 的NewX]]></description>
+</item><item>
+    <title>Behavioral_type</title>
+    <link>https://qizhengzou.github.io/behavioral_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:20:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/behavioral_type/</guid>
+    <description><![CDATA[mediator 中介者模式封装对象之间互交，使依赖变的简单，并且使复杂互交简单化，封装在中介者中。 例子中的中介者使用单例模式生成中介者。 中介者的chang]]></description>
+</item><item>
+    <title>Create_type</title>
+    <link>https://qizhengzou.github.io/create_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:19:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/create_type/</guid>
+    <description><![CDATA[simple factory go 语言没有构造函数一说，所以一般会定义NewXXX函数来初始化相关类。 NewXXX 函数根据参数返回不同接口时就是简单工厂模式。 在这个simplef]]></description>
+</item></channel>
+</rss>

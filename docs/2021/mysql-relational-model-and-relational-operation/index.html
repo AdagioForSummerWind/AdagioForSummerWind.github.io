@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_base_02 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/mysql-conceptual-structure/" /><link rel="next" href="https://qizhengzou.github.io/2021/big-data/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/mysql-relational-model-and-relational-operation./" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_base_02"/>
+<meta name="twitter:description" content="关系模型与关系运算 关系模型与关系运算简述 关系模型的提出与作用 关系模型最早由E.F.Codd在1970年提出 是从表(Table)及表的处理方式"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_02",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/mysql-relational-model-and-relational-operation.\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "mysql","wordcount":  2937 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/mysql-relational-model-and-relational-operation.\/","datePublished": "2021-11-07T09:18:21\u002b08:00","dateModified": "2021-11-09T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_base_02</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-07>2021-11-07</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2937 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#关系模型与关系运算简述">关系模型与关系运算简述</a>
+      <ul>
+        <li><a href="#关系模型的提出与作用">关系模型的提出与作用</a></li>
+        <li><a href="#关系模型与关系运算概览">关系模型与关系运算概览</a></li>
+      </ul>
+    </li>
+    <li><a href="#关系与关系模型">关系与关系模型</a>
+      <ul>
+        <li><a href="#关系">关系</a></li>
+        <li><a href="#关系模型">关系模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#关系代数运算">关系代数运算</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#关系模型与关系运算简述">关系模型与关系运算简述</a>
+      <ul>
+        <li><a href="#关系模型的提出与作用">关系模型的提出与作用</a></li>
+        <li><a href="#关系模型与关系运算概览">关系模型与关系运算概览</a></li>
+      </ul>
+    </li>
+    <li><a href="#关系与关系模型">关系与关系模型</a>
+      <ul>
+        <li><a href="#关系">关系</a></li>
+        <li><a href="#关系模型">关系模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#关系代数运算">关系代数运算</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="关系模型与关系运算">关系模型与关系运算</h1>
+<a class="post-dummy-target" id="关系模型与关系运算简述"></a><h2>关系模型与关系运算简述</h2>
+<a class="post-dummy-target" id="关系模型的提出与作用"></a><h3>关系模型的提出与作用</h3>
+<ul>
+<li>关系模型最早由<a href="https://en.wikipedia.org/wiki/Edgar_F._Codd" target="_blank">E.F.Codd</a>在1970年提出</li>
+<li>是从表(Table)及表的处理方式抽象出来的, 是在对传统表及其操作严格定义基础上，引入集合理论与逻辑学理论提出的</li>
+<li>是数据库的三大经典数据模型之一,也是现在大多数商品化数据库系统 所仍然使用的数据模型</li>
+<li>标准的数据库语言(SQL语言)是建立在关系模型基础之上的,数据库领
+域的众多理论也都是建立在关系模型基础之上的</li>
+</ul>
+<a class="post-dummy-target" id="关系模型与关系运算概览"></a><h3>关系模型与关系运算概览</h3>
+<p>一个关系(relation)就是一个Table<br>
+关系模型就是处理Table的，它由三个部分组成：<br>
+• 描述DB各种数据的基本结构形式(采用Table描述)<br>
+• 描述Table与Table之间所可能发生的各种操作(关系运算)<br>
+• 描述这些操作所应遵循的约束条件(被称为完整性条件)</p>
+<p>关系运算：关系代数和关系演算<br>
+关系演算：元组演算和域演算<br>
+关系代数示例：基于集合的运算<br>
+元组演算示例：检索出课程都及格的所有同学：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109093528.png" alt="" class="lazyload"></figure>
+域演算示例：检索出不是03系的所有学生:<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109093944.png" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="关系与关系模型"></a><h2>关系与关系模型</h2>
+<a class="post-dummy-target" id="关系"></a><h3>关系</h3>
+<ul>
+<li>域 (Domain)</li>
+<li>元组 (Tuple)</li>
+<li>笛卡尔积</li>
+<li>关系 (Relation)</li>
+<li>关系模式 (Relational Schema)</li>
+<li>属性 (Attribute)</li>
+<li>关系的度 (Degree)与关系的基数 (Cardinality)</li>
+<li>候选码、主码、主属性与非主属性、外码等</li>
+</ul>
+<p>域(Domain)：一组值的集合，这组值具有相同的数据类型，集合中元素的个数称为域的基数(Cardinality)<br>
+元组(d1 , d2 , … , dn)的每一个值di叫做一个分量(component),元组(d1 , d2 , … , dn)是从每一个域任取一个值所形成的一种组合，笛卡尔积是所有这种可能组合的集合，即：笛卡尔积是由n个域形成的所有可能的n- 元组的集合。<br>
+关系可用R(A1:D1 , A2:D2 , … , An:Dn )表示，可简记为R(A1 , A2 , … , An )，这种描述又被称为关系模式(Schema)或表标题(head)。R是关系的名字,Ai是属性,Di是属性所对应的域,n是关系的度或目(degree),
+关系中元组的数目称为关系的基数(Cardinality)<br>
+关系模式与关系：</p>
+<ul>
+<li>同一关系模式下，可有很多的关系</li>
+<li>关系模式是关系的结构,关系是关系模式在某一时刻的数据</li>
+<li>关系模式是稳定的；而关系是某一时刻的值，随时间变化</li>
+</ul>
+<p>理论上：任意两个元组不能完全相同。(集合的要求：集合内不能有相同的
+两个元素)；<strong>真实Table可能有完全相同的两行!</strong><br>
+属性不可再分特性:又被称为关系第一范式<br>
+候选码(Candidate Key)/候选键：关系中的一个属性组，其值能唯一标识一个元组，若从该属性组中去掉任何一个属性，它就不具有这一性质了，这样的属性组称作候选码<br>
+主码( Primary Key)/主键：当有多个候选码时，可以选定一个作为主码。DBMS以主码为主要线索管理关系中的各个元组。<br>
+主属性与非主属性：包含在任何一个候选码中的属性被称作主属性，而其他属性被称作非主属性<br>
+外码(Foreign Key)/外键：关系R中的一个属性组，它不是R的候选码，但它与另一个关系S的候选码相对应，则称这个属性组为R的外码或外键<br>
+超码：是指一个或多个属性的集合，这些属性的组合可以使我们在一个实体集中唯一地标识一个实体</p>
+<a class="post-dummy-target" id="关系模型"></a><h3>关系模型</h3>
+<ul>
+<li>
+<p>关系模型</p>
+<ul>
+<li>DB数据的基本结构：Relation/Table</li>
+<li>DB数据的基本操作有：∪(并, UNION)、-(差, DIFFERENCE)、×(广义积, PRODUCT)、 (选择, SELECTION)、 ∏(投影，PROJECTION)、 ∩(交, INTERSECTION) 、Join(连接, JOIN)、 ÷(除, DIVISION)运算</li>
+<li>DB数据的结构与操作受三个完整性的约束：实体完整性、参照完
+整性和用户自定义的完整性</li>
+</ul>
+</li>
+<li>
+<p>关系的完整性</p>
+<ul>
+<li>实体完整性
+<ul>
+<li>关系的主码中的属性值不能为空值</li>
+<li>空值：不知道或无意义的值</li>
+<li>意义：关系中的元组对应到现实世界相互之间可区分的一个个个体，这些个体是通过主码来唯一标识的；若主码为空，则出现不可标识的 个体，这是不容许的</li>
+</ul>
+</li>
+<li>空值的含义
+<ul>
+<li>空值：不知道、不存在或无意义的值</li>
+<li>在进行关系操作时，有时关系中的某属性值在当前是填不上的，比如档案中有“生日不详”、“下落不明”、“日程尚待公布”等，这时就需要空值来代表这种情况。关系模型中用‘?’表征</li>
+<li>数据库中有了空值，会影响许多方面，如影响聚集函数运算的正确 性，不能参与算术、比较或逻辑运算</li>
+<li>有空值的时候是需要特殊处理的，要特别注意</li>
+</ul>
+</li>
+<li>参照完整性
+<ul>
+<li>如果关系R1的外码Fk与关系R2的主 码Pk相对应，则R1中的每一个元组的 Fk值或者等于R2中某个元组的Pk值，或者为空值</li>
+<li>意义：如果关系R1的某个元组t1参照 了关系R2的某个元组t2，则t2必须存在</li>
+</ul>
+</li>
+<li>用户自定义完整性
+<ul>
+<li>用户针对具体的应用环境定义的完整性约束条件</li>
+<li>如S#要求是10位整数，其中前四位为年度，当前年度与他们的 差必须在4以内</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DBMS对关系完整性的支持</p>
+<ul>
+<li>实体完整性和参照完整性由DBMS系统自动支持</li>
+<li>DBMS系统通常提供了如下机制：
+<ul>
+<li>它使用户可以自行定义有关的完整性约束条件</li>
+<li>当有更新操作时，自动检验更新操作的正确性，即是否符合用户自定义的完整性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="关系代数运算"></a><h2>关系代数运算</h2>
+<p>基于集合，提供了一系列的关系代数操作：并、差、笛卡尔积(广义积)、
+交、选择、投影、连接和关系除，是一种集合思维的操作语言。关系代数操作以一个或多个关系为输入，结果是一个新的关系<br>
+关系代数基本操作分为：集合操作（并、交、差、笛卡尔积）和纯关系操作（选择、投影、连接、除）</p>
+<ul>
+<li>
+<p>并相容性（<strong>不一定要属性都一样</strong>）：</p>
+<ul>
+<li>参与运算的两个关系及其相关属性之间有一定的对应性</li>
+<li>定义：关系R与关系S存在相容性，当且仅当：
+<ul>
+<li>关系R和关系S的属性数目必须相同；</li>
+<li>对于任意i，关系R的第i个属性的域必须和关系S的第i个属性的域相同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>笛卡尔积：又叫cross join，是SQL中两表连接的一种方式。 假如A表中的数据为m行，B表中的数据有n行，那么A和B做笛卡尔积，结果为m*n行。 通常我们都要在实际SQL中避免直接使用笛卡尔积，因为它会使“数据爆炸”，尤其是数据量很大的时候。 但某些时候，巧妙的使用笛卡尔积，反而能快速帮助我们解决实际问题。<a href="https://zhuanlan.zhihu.com/p/133539313" target="_blank">笛卡尔积参考</a></p>
+</li>
+</ul>
+<ul>
+<li>选择<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109103642.png" alt="" class="lazyload"></figure></li>
+<li>投影<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109103823.png" alt="" class="lazyload"></figure></li>
+<li>连接
+<ul>
+<li>θ-连接
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109104047.png" alt="" class="lazyload"></figure>
+注：上式p SC1 (SC)表更名操作，即将表SC更名为SC1，当一个表需要和其自身进行连接运算时，通常要使用更名操作。<br>
+在讲解θ-连接操作时，使用笛卡尔积然后再进行选择来得到θ- 连接结果。这主要是方便大家理解。但当引入连接操作后，DBMS可直接进行连接操作，而不必先形成笛卡尔积</li>
+<li>等值连接
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109104413.png" alt="" class="lazyload"></figure><br>
+θ -连接的特例</li>
+<li>自然连接<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109104530.png" alt="" class="lazyload"></figure><br>
+自然连接=特殊的等值连接+去除重复属性组。</li>
+</ul>
+</li>
+<li>组合示例
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109105046.png" alt="" class="lazyload"></figure></li>
+<li>除
+<ul>
+<li>前提条件：给定关系R(A1 ,A2 , … ,An)为n度关系和关系S(B1 ,B2 , …,Bm)为m度关系，如果可以进行关系R与关系S的除运算，当且仅当：属性集{ B1 ,B2, … ,Bm}是属性集{ A1 ,A2, … ,An}的真子集，即m &lt; n</li>
+<li>示例<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211109110840.png" alt="" class="lazyload"></figure></li>
+</ul>
+</li>
+<li>外连接
+<ul>
+<li>定义：两个关系R与S进行连接时，如果关系R(或S)中的元组在S(或R)中找不到相匹配的元组，则为了避免该元组信息丢失，从而将该元组与S(或R)中假定存在的全为空值的元组形成连接，放置在结果关系中，这种连接称之为外连接(Outer Join)</li>
+<li>外连接 = 自然连接 (或 连接) + 失配的元组(与全空元组形成的连接)</li>
+<li>外连接的形式：左外连接、右外连接、全外连接
+<ul>
+<li>左外连接 = 自然连接(或θ连接) + 左侧表中失配的元组</li>
+<li>右外连接 = 自然连接(或θ连接) + 右侧表中失配的元组</li>
+<li>全外连接 = 自然连接(或θ连接) + 两侧表中失配的元组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-09</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/mysql/"><i class="fas fa-tag fa-fw"></i>&nbsp;mysql</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/mysql-conceptual-structure/" class="prev" rel="prev" title="Mysql_base_01"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_01</a>
+                <a href="https://qizhengzou.github.io/2021/big-data/" class="next" rel="next" title="BigData_base_01">BigData_base_01<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

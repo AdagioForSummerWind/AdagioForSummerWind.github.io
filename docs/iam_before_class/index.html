@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>iam_before_class - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="iam_before_class" />
+<meta property="og:description" content="1 | IAM系统概述 项目背景：为什么选择 IAM 系统作为实战项目？ 我们在做 Go 项目开发时，绕不开的一个话题是安全，如何保证 Go 应用的安全，是每个开发者都" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/iam_before_class/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-07T15:18:47+08:00" />
+<meta property="article:modified_time" content="2022-07-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="iam_before_class"/>
+<meta name="twitter:description" content="1 | IAM系统概述 项目背景：为什么选择 IAM 系统作为实战项目？ 我们在做 Go 项目开发时，绕不开的一个话题是安全，如何保证 Go 应用的安全，是每个开发者都"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/iam_before_class/" /><link rel="prev" href="https://qizhengzou.github.io/iam_intro/" /><link rel="next" href="https://qizhengzou.github.io/iam_standard_design/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "iam_before_class",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/iam_before_class\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "iam","wordcount":  15358 ,
+        "url": "https:\/\/qizhengzou.github.io\/iam_before_class\/","datePublished": "2022-07-07T15:18:47+08:00","dateModified": "2022-07-07T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">iam_before_class</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/iam/"><i class="far fa-folder fa-fw"></i>iam</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-07 15:18:47">2022-07-07 15:18:47</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 15358 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 31 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1--iam系统概述">1 | IAM系统概述</a>
+      <ul>
+        <li><a href="#项目背景为什么选择-iam-系统作为实战项目">项目背景：为什么选择 IAM 系统作为实战项目？</a></li>
+        <li><a href="#iam-系统是什么">IAM 系统是什么？</a></li>
+        <li><a href="#iam-系统的架构长啥样">IAM 系统的架构长啥样？</a></li>
+        <li><a href="#iam-使用流程">IAM 使用流程</a></li>
+        <li><a href="#iam-软件架构模式">IAM 软件架构模式</a>
+          <ul>
+            <li><a href="#前后端分离架构">前后端分离架构</a></li>
+            <li><a href="#mvc-架构">MVC 架构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2--配置go开发环境">2 | 配置go开发环境</a>
+      <ul>
+        <li><a href="#linux-服务器申请和配置">Linux 服务器申请和配置</a></li>
+        <li><a href="#依赖安装和配置">依赖安装和配置</a></li>
+        <li><a href="#go-编译环境安装和配置">Go 编译环境安装和配置</a>
+          <ul>
+            <li><a href="#protobuf-编译环境安装">ProtoBuf 编译环境安装</a></li>
+          </ul>
+        </li>
+        <li><a href="#go-开发-ide-安装和配置">Go 开发 IDE 安装和配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#3--快速部署">3 | 快速部署</a>
+      <ul>
+        <li><a href="#安装和配置数据库">安装和配置数据库</a></li>
+        <li><a href="#安装和配置-iam-系统">安装和配置 IAM 系统</a>
+          <ul>
+            <li><a href="#准备工作">准备工作</a></li>
+            <li><a href="#安装和配置-iam-apiserver">安装和配置 iam-apiserver</a></li>
+            <li><a href="#安装-iamctl">安装 iamctl</a></li>
+            <li><a href="#安装和配置-iam-authz-server">安装和配置 iam-authz-server</a></li>
+            <li><a href="#安装和配置-iam-pump">安装和配置 iam-pump</a></li>
+            <li><a href="#安装-man-文件">安装 man 文件</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1--iam系统概述">1 | IAM系统概述</h2>
+<h3 id="项目背景为什么选择-iam-系统作为实战项目">项目背景：为什么选择 IAM 系统作为实战项目？</h3>
+<p>我们在做 Go 项目开发时，绕不开的一个话题是安全，如何保证 Go 应用的安全，是每个开发者都要解决的问题。虽然 Go 应用的安全包含很多方面，但大体可分为如下 2 类：</p>
+<ul>
+<li>服务自身的安全：为了保证服务的安全，需要禁止非法用户访问服务。这可以通过服务器层面和软件层面来解决。服务器层面可以通过物理隔离、网络隔离、防火墙等技术从底层保证服务的安全性，软件层面可以通过 HTTPS、用户认证等手段来加强服务的安全性。服务器层面一般由运维团队来保障，软件层面则需要开发者来保障。</li>
+<li>服务资源的安全：服务内有很多资源，为了避免非法访问，开发者要避免 UserA 访问到 UserB 的资源，也即需要对资源进行授权。通常，我们可以通过资源授权系统来对资源进行授权。</li>
+</ul>
+<p>总的来说，为了保障 Go 应用的安全，我们需要对访问进行认证，对资源进行授权。那么，我们要如何实现访问认证和资源授权呢？认证功能不复杂，我们可以通过 JWT （JSON Web Token）认证来实现。授权功能比较复杂，授权功能的复杂性使得它可以囊括很多 Go 开发技能点。因此，在这个专栏中，我将认证和授权的功能实现升级为 IAM 系统，通过讲解它的构建过程，给你讲清楚 Go 项目开发的全部流程。</p>
+<h3 id="iam-系统是什么">IAM 系统是什么？</h3>
+<p>IAM（Identity and Access Management，身份识别与访问管理）系统是用 Go 语言编写的一个 Web 服务，用于给第三方用户提供访问控制服务。IAM 系统可以帮用户解决的问题是：在特定的条件下，谁能够 / 不能够对哪些资源做哪些操作（Who is able to do what on something given some context），也即完成资源授权功能。那么，IAM 系统是如何进行资源授权的呢？下面，我们通过 IAM 系统的资源授权的流程，来看下它是如何工作的，整个过程可以分为 4 步。<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/ee/50/eed75fcd91d6e726ca74315d65193150.jpg?wh=2513*1134"
+        data-srcset="https://static001.geekbang.org/resource/image/ee/50/eed75fcd91d6e726ca74315d65193150.jpg?wh=2513*1134, https://static001.geekbang.org/resource/image/ee/50/eed75fcd91d6e726ca74315d65193150.jpg?wh=2513*1134 1.5x, https://static001.geekbang.org/resource/image/ee/50/eed75fcd91d6e726ca74315d65193150.jpg?wh=2513*1134 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/ee/50/eed75fcd91d6e726ca74315d65193150.jpg?wh=2513*1134"
+        title="img" /></p>
+<p>用户需要提供昵称、密码、邮箱、电话等信息注册并登录到 IAM 系统，这里是以用户名和密码作为唯一的身份标识来访问 IAM 系统，并且完成认证。因为访问 IAM 的资源授权接口是通过密钥（secretID/secretKey）的方式进行认证的，所以用户需要在 IAM 中创建属于自己的密钥资源。因为 IAM 通过授权策略完成授权，所以用户需要在 IAM 中创建授权策略。请求 IAM 提供的授权接口，IAM 会根据用户的请求内容和授权策略来决定一个授权请求是否被允许。</p>
+<p>我们可以看到，在上面的流程中，IAM 使用到了 3 种系统资源：用户（User）、密钥（Secret）和策略（Policy），它们映射到程序设计中就是 3 种 RESTful 资源：用户（User）：实现对用户的增、删、改、查、修改密码、批量修改等操作。密钥（Secret）：实现对密钥的增、删、改、查操作。策略（Policy）：实现对策略的增、删、改、查、批量删除操作。</p>
+<h3 id="iam-系统的架构长啥样">IAM 系统的架构长啥样？</h3>
+<p>知道了 IAM 的功能之后，我们再来详细说说 IAM 系统的架构，架构图如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/0a/42/0a5f6fd67af1eda1c690c8216dc5e042.jpg?wh=3197*2063"
+        data-srcset="https://static001.geekbang.org/resource/image/0a/42/0a5f6fd67af1eda1c690c8216dc5e042.jpg?wh=3197*2063, https://static001.geekbang.org/resource/image/0a/42/0a5f6fd67af1eda1c690c8216dc5e042.jpg?wh=3197*2063 1.5x, https://static001.geekbang.org/resource/image/0a/42/0a5f6fd67af1eda1c690c8216dc5e042.jpg?wh=3197*2063 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/0a/42/0a5f6fd67af1eda1c690c8216dc5e042.jpg?wh=3197*2063"
+        title="img" /></p>
+<p>总的来说，IAM 架构中包括 9 大组件和 3 大数据库。我将这些组件和功能都总结在下面的表格中。这里面，我们主要记住 5 个核心组件，包括 iam-apiserver、iam-authz-server、iam-pump、marmotedu-sdk-go 和 iamctl 的功能，还有 3 个数据库 Redis、MySQL 和 MongoDB 的功能。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/6c/71/6cdbde36255c7fb2d4f2e718c9077a71.jpeg?wh=1920*1043"
+        data-srcset="https://static001.geekbang.org/resource/image/6c/71/6cdbde36255c7fb2d4f2e718c9077a71.jpeg?wh=1920*1043, https://static001.geekbang.org/resource/image/6c/71/6cdbde36255c7fb2d4f2e718c9077a71.jpeg?wh=1920*1043 1.5x, https://static001.geekbang.org/resource/image/6c/71/6cdbde36255c7fb2d4f2e718c9077a71.jpeg?wh=1920*1043 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/6c/71/6cdbde36255c7fb2d4f2e718c9077a71.jpeg?wh=1920*1043"
+        title="img" /></p>
+<p>此外，IAM 系统为存储数据使用到的 3 种数据库的说明如下所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/e6/f2/e68c21e1991c74becc4b8a6a8bf5a8f2.jpeg?wh=1818*496"
+        data-srcset="https://static001.geekbang.org/resource/image/e6/f2/e68c21e1991c74becc4b8a6a8bf5a8f2.jpeg?wh=1818*496, https://static001.geekbang.org/resource/image/e6/f2/e68c21e1991c74becc4b8a6a8bf5a8f2.jpeg?wh=1818*496 1.5x, https://static001.geekbang.org/resource/image/e6/f2/e68c21e1991c74becc4b8a6a8bf5a8f2.jpeg?wh=1818*496 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/e6/f2/e68c21e1991c74becc4b8a6a8bf5a8f2.jpeg?wh=1818*496"
+        title="img" /></p>
+<h3 id="iam-使用流程">IAM 使用流程</h3>
+<p>第 1 步，创建平台资源。用户通过 iam-webconsole（RESTful API）或 iamctl（sdk marmotedu-sdk-go）客户端请求 iam-apiserver 提供的 RESTful API 接口完成用户、密钥、授权策略的增删改查，iam-apiserver 会将这些资源数据持久化存储在 MySQL 数据库中。而且，为了确保通信安全，客户端访问服务端都是通过 HTTPS 协议来访问的。</p>
+<p>第 2 步，请求 API 完成资源授权。用户可以通过请求 iam-authz-server 提供的 /v1/authz 接口进行资源授权，请求 /v1/authz 接口需要通过密钥认证，认证通过后 /v1/authz 接口会查询授权策略，从而决定资源请求是否被允许。为了提高 /v1/authz 接口的性能，iam-authz-server 将密钥和策略信息缓存在内存中，以便实现快速查询。那密钥和策略信息是如何实现缓存的呢？首先，iam-authz-server 通过调用 iam-apiserver 提供的 gRPC 接口，将密钥和授权策略信息缓存到内存中。同时，为了使内存中的缓存信息和 iam-apiserver 中的信息保持一致，当 iam-apiserver 中有密钥或策略被更新时，iam-apiserver 会往特定的 Redis Channel（iam-authz-server 也会订阅该 Channel）中发送 PolicyChanged 和 SecretChanged 消息。这样一来，当 iam-authz-server 监听到有新消息时就会获取并解析消息，根据消息内容判断是否需要重新调用 gRPC 接来获取密钥和授权策略信息，再更新到内存中。</p>
+<p>第 3 步，授权日志数据分析。iam-authz-server 会将授权日志上报到 Redis 高速缓存中，然后 iam-pump 组件会异步消费这些授权日志，再把清理后的数据保存在 MongoDB 中，供运营系统 iam-operating-system 查询。这里还有一点你要<strong>注意</strong>：iam-authz-server 将授权日志保存在 Redis 高性能 key-value 数据库中，可以最大化减少写入延时。不保存在内存中是因为授权日志量我们没法预测，当授权日志量很大时，很可能会将内存耗尽，造成服务中断。</p>
+<p>第 4 步，运营平台授权数据展示。iam-operating-system 是 IAM 的运营系统，它可以通过查询 MongoDB 获取并展示运营数据，比如某个用户的授权 / 失败次数、授权失败时的授权信息等。此外，我们也可以通过 iam-operating-system 调用 iam-apiserver 服务来做些运营管理工作。比如，以上帝视角查看某个用户的授权策略供排障使用，或者调整用户可创建密钥的最大个数，再或者通过白名单的方式，让某个用户不受密钥个数限制的影响等等。</p>
+<h3 id="iam-软件架构模式">IAM 软件架构模式</h3>
+<p>在设计软件时，我们首先要做的就是选择一种软件架构模式，它对软件后续的开发方式、软件维护成本都有比较大的影响。因此，这里我也会和你简单聊聊 2 种最常用的软件架构模式，分别是前后端分离架构和 MVC 架构。</p>
+<h4 id="前后端分离架构">前后端分离架构</h4>
+<p>因为 IAM 系统采用的就是前后端分离的架构，所以我们就以 IAM 的运营系统 iam-operating-system 为例来详细说说这个架构。一般来说，运营系统的功能可多可少，对于一些具有复杂功能的运营系统，我们可以采用前后端分离的架构。其中，前端负责页面的展示以及数据的加载和渲染，后端只负责返回前端需要的数据。iam-operating-system 前后端分离架构如下图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/a2/76/a2e1f1cc135debd86611yya1f221c476.jpg?wh=2519*1447"
+        data-srcset="https://static001.geekbang.org/resource/image/a2/76/a2e1f1cc135debd86611yya1f221c476.jpg?wh=2519*1447, https://static001.geekbang.org/resource/image/a2/76/a2e1f1cc135debd86611yya1f221c476.jpg?wh=2519*1447 1.5x, https://static001.geekbang.org/resource/image/a2/76/a2e1f1cc135debd86611yya1f221c476.jpg?wh=2519*1447 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/a2/76/a2e1f1cc135debd86611yya1f221c476.jpg?wh=2519*1447"
+        title="img" /></p>
+<p>采用了前后端分离架构之后，当你通过浏览器请求前端 ops-webconsole 时，ops-webconsole 会先请求静态文件服务器加载静态文件，比如 HTML、CSS 和 JavaScript，然后它会执行 JavaScript，通过负载均衡请求后端数据，最后把后端返回的数据渲染到前端页面中。采用前后端分离的架构，让前后端通过 RESTful API 通信，会带来以下 5 点好处：可以让前、后端人员各自专注在自己业务的功能开发上，让专业的人做专业的事，来提高代码质量和开发效率前后端可并行开发和发布，这也能提高开发和发布效率，加快产品迭代速度前后端组件、代码分开，职责分明，可以增加代码的维护性和可读性，减少代码改动引起的 Bug 概率，同时也能快速定位 Bug前端 JavaScript 可以处理后台的数据，减少对后台服务器的压力可根据需要选择性水平扩容前端或者后端来节约成本</p>
+<h4 id="mvc-架构">MVC 架构</h4>
+<p>但是，如果运营系统功能比较少，采用前后端分离框架的弊反而大于利，比如前后端分离要同时维护 2 个组件会导致部署更复杂，并且前后端分离将人员也分开了，这会增加一定程度的沟通成本。同时，因为代码中也需要实现前后端交互的逻辑，所以会引入一定的开发量。这个时候，我们可以尝试直接采用 MVC 软件架构，MVC 架构如下图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/a2/eb/a23b8ba92705710c694fd7cb99812feb.jpg?wh=1753*869"
+        data-srcset="https://static001.geekbang.org/resource/image/a2/eb/a23b8ba92705710c694fd7cb99812feb.jpg?wh=1753*869, https://static001.geekbang.org/resource/image/a2/eb/a23b8ba92705710c694fd7cb99812feb.jpg?wh=1753*869 1.5x, https://static001.geekbang.org/resource/image/a2/eb/a23b8ba92705710c694fd7cb99812feb.jpg?wh=1753*869 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/a2/eb/a23b8ba92705710c694fd7cb99812feb.jpg?wh=1753*869"
+        title="img" />
+MVC 的全名是 Model View Controller，它是一种架构模式，分为 Model、View、Controller 三层，每一层的功能如下：View（视图）：提供给用户的操作界面，用来处理数据的显示。Controller（控制器）：根据用户从 View 层输入的指令，选取 Model 层中的数据，然后对其进行相应的操作，产生最终结果。Model（模型）：应用程序中用于处理数据逻辑的部分。</p>
+<p>MVC 架构的好处是通过控制器层将视图层和模型层分离之后，当更改视图层代码后时，我们就不需要重新编译控制器层和模型层的代码了。同样，如果业务流程发生改变也只需要变更模型层的代码就可以。在实际开发中为了更好的 UI 效果，视图层需要经常变更，但是通过 MVC 架构，在变更视图层时，我们根本不需要对业务逻辑层的代码做任何变化，这不仅减少了风险还能提高代码变更和发布的效率。</p>
+<p>除此之外，还有一种跟 MVC 比较相似的软件开发架构叫三层架构，它包括 UI 层、BLL 层和 DAL 层。其中，UI 层表示用户界面，BLL 层表示业务逻辑，DAL 层表示数据访问。在实际开发中很多人将 MVC 当成三层架构在用，比如说，很多人喜欢把软件的业务逻辑放在 Controller 层里，将数据库访问操作的代码放在 Model 层里，软件最终的代码放在 View 层里，就这样硬生生将 MVC 架构变成了伪三层架构。这种代码不仅不伦不类，同时也失去了三层架构和 MVC 架构的核心优势，也就是：通过 Controller 层将 Model 层和 View 层解耦，从而使代码更容易维护和扩展。因此在实际开发中，我们也要<strong>注意</strong>遵循 MVC 架构的开发规范，发挥 MVC 的核心价值。</p>
+<h2 id="2--配置go开发环境">2 | 配置go开发环境</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/28/8e/28e52b697e735ecd58770c5fede7e58e.jpg?wh=2588*1894"
+        data-srcset="https://static001.geekbang.org/resource/image/28/8e/28e52b697e735ecd58770c5fede7e58e.jpg?wh=2588*1894, https://static001.geekbang.org/resource/image/28/8e/28e52b697e735ecd58770c5fede7e58e.jpg?wh=2588*1894 1.5x, https://static001.geekbang.org/resource/image/28/8e/28e52b697e735ecd58770c5fede7e58e.jpg?wh=2588*1894 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/28/8e/28e52b697e735ecd58770c5fede7e58e.jpg?wh=2588*1894"
+        title="img" /></p>
+<h3 id="linux-服务器申请和配置">Linux 服务器申请和配置</h3>
+<p>毫无疑问，要安装一个 Go 开发环境，你首先需要有一个 Linux 服务器。Linux 服务器有很多操作系统可供选择，例如：CentOS、Ubuntu、RHEL、Debian 等，但目前生产环境用得最多的还是 CentOS 系统，为了跟生产环境保持一致，我们选择当前最新的 CentOS 版本：CentOS 8.2。因为本专栏的所有操作都是在 CentOS 8.2 系统上进行的，为了避免环境不一致导致的操作失败，我<strong>建议</strong>你也使用 CentOS 8.2。安装一个 Linux 服务器需要两步：服务器申请和配置。</p>
+<p>Linux 服务器申请：
+我们可以通过以下 3 种方式来安装一个 CentOS 8.2 系统。在物理机上安装一个 CentOS 8.2 系统。在 Windows/MacBook 上安装虚拟机管理软件，用虚拟机管理软件创建 CentOS 8.2 虚拟机。其中，Windows <strong>建议</strong>用 VMWare Workstation 来创建虚拟机，MacBook <strong>建议</strong>用 VirtualBox 来创建虚拟机。在诸如腾讯云、阿里云、华为云等平台上购买一个虚拟机，并预装 CentOS 8.2 系统。</p>
+<p>Linux 服务器配置：
+申请完 Linux 服务之后，我们需要通过 SecureCRT 或 Xshell 等工具登录 Linux 服务器，并对服务器做一些简单必要的配置，包括创建普通用户、添加 sudoers、配置 $HOME/.bashrc 文件。接下来，我们一一来说。</p>
+<p>第一步，用 Root 用户登录 Linux 系统，并创建普通用户。一般来说，一个项目会由多个开发人员协作完成，为了节省企业成本，公司不会给每个开发人员都配备一台服务器，而是让所有开发人员共用一个开发机，通过普通用户登录开发机进行开发。因此，为了模拟真实的企业开发环境，我们也通过一个普通用户的身份来进行项目的开发，创建方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># useradd going # 创建 going 用户，通过 going 用户登录开发机进行开发</span>
+<span class="c1"># passwd going # 设置密码</span>
+Changing password <span class="k">for</span> user going.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+</code></pre></td></tr></table>
+</div>
+</div><p>不仅如此，使用普通用户登录和操作开发机也可以保证系统的安全性，这是一个比较好的习惯，所以我们在日常开发中也要尽量避免使用 Root 用户。</p>
+<p>第二步，添加 sudoers。我们知道很多时候，普通用户也要用到 Root 的一些权限，但 Root 用户的密码一般是由系统管理员维护并定期更改的，每次都向管理员询问密码又很麻烦。因此，我<strong>建议</strong>你将普通用户加入到 sudoers 中，这样普通用户就可以通过 sudo 命令来暂时获取 Root 的权限。具体来说，你可以执行如下命令添加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sed -i <span class="s1">&#39;/^root.*ALL=(ALL).*ALL/a\going\tALL=(ALL) \tALL&#39;</span> /etc/sudoers
+</code></pre></td></tr></table>
+</div>
+</div><p>替换 CentOS 8.4 系统中自带的 Yum 源
+由于 Red Hat 提前宣布 CentOS 8 于 2021 年 12 月 31 日停止维护，官方的 Yum 源已不可使用，所以需要切换官方的 Yum 源，这里选择阿里提供的 Yum 源。切换命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mv /etc/yum.repos.d /etc/yum.repos.d.bak <span class="c1"># 先备份原有的 Yum 源</span>
+mkdir /etc/yum.repos.d 
+wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-vault-8.5.2111.repo
+yum clean all <span class="o">&amp;&amp;</span> yum makecache
+</code></pre></td></tr></table>
+</div>
+</div><p>第三步，用新的用户名（going）和密码登录 Linux 服务器。这一步也可以验证普通用户是否创建成功。第四步，配置 $HOME/.bashrc 文件。我们登录新服务器后的第一步就是配置 $HOME/.bashrc 文件，以使 Linux 登录 shell 更加易用，例如配置 LANG 解决中文乱码，配置 PS1 可以避免整行都是文件路径，并将 $HOME/bin 加入到 PATH 路径中。配置后的内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mkdir workspace
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># .bashrc</span>
+ 
+<span class="c1"># User specific aliases and functions</span>
+ 
+<span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;rm -i&#39;</span>
+<span class="nb">alias</span> <span class="nv">cp</span><span class="o">=</span><span class="s1">&#39;cp -i&#39;</span>
+<span class="nb">alias</span> <span class="nv">mv</span><span class="o">=</span><span class="s1">&#39;mv -i&#39;</span>
+ 
+<span class="c1"># Source global definitions</span>
+<span class="k">if</span> <span class="o">[</span> -f /etc/bashrc <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        . /etc/bashrc
+<span class="k">fi</span>
+ 
+<span class="c1"># User specific environment</span>
+<span class="c1"># Basic envs</span>
+<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span> <span class="c1"># 设置系统语言为 en_US.UTF-8，避免终端出现中文乱码</span>
+<span class="nb">export</span> <span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;[\u@dev \W]\$ &#39;</span> <span class="c1"># 默认的 PS1 设置会展示全部的路径，为了防止过长，这里只展示：&#34;用户名@dev 最后的目录名&#34;</span>
+<span class="nb">export</span> <span class="nv">WORKSPACE</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/workspace&#34;</span> <span class="c1"># 设置工作目录</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span> <span class="c1"># 将 $HOME/bin 目录加入到 PATH 变量中</span>
+ 
+<span class="c1"># Default entry folder</span>
+<span class="nb">cd</span> <span class="nv">$WORKSPACE</span> <span class="c1"># 登录系统，默认进入 workspace 目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>有一点需要我们<strong>注意</strong>，在 export PATH 时，最好把 $PATH 放到最后，因为我们添加到目录中的命令是期望被优先搜索并使用的。配置完 $HOME/.bashrc 后，我们还需要创建工作目录 workspace。将工作文件统一放在 $HOME/workspace 目录中，有几点好处。可以使我们的$HOME目录保持整洁，便于以后的文件查找和分类。如果哪一天 /分区空间不足，可以将整个 workspace 目录 mv 到另一个分区中，并在 /分区中保留软连接，例如：/home/going/workspace -&gt; /data/workspace/。如果哪天想备份所有的工作文件，可以直接备份 workspace。</p>
+<p>具体的操作指令是$ mkdir -p $HOME/workspace。配置好 $HOME/.bashrc 文件后，我们就可以执行 bash 命令将配置加载到当前 shell 中了。</p>
+<h3 id="依赖安装和配置">依赖安装和配置</h3>
+<p>在 Linux 系统上安装 IAM 系统会依赖一些 RPM 包和工具，有些是直接依赖，有些是间接依赖。为了避免后续的操作出现依赖错误，例如，因为包不存在而导致的编译、命令执行错误等，我们先统一依赖安装和配置。安装和配置步骤如下。</p>
+<p>第一步，安装依赖。首先，我们在 CentOS 系统上通过 yum 命令来安装所需工具的依赖，安装命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo yum -y install make autoconf automake cmake perl-CPAN libcurl-devel libtool gcc gcc-c++ glibc-headers zlib-devel git-lfs telnet ctags lrzsz jq expat-devel openssl-devel
+</code></pre></td></tr></table>
+</div>
+</div><p>第二步，安装 Git。因为安装 IAM 系统、执行 go get 命令、安装 protobuf 工具等都是通过 Git 来操作的，所以接下来我们还需要安装 Git。由于低版本的 Git 不支持&ndash;unshallow 参数，而 go get 在安装 Go 包时会用到 git fetch &ndash;unshallow 命令，因此我们要确保安装一个高版本的 Git，具体的安装方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /tmp
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.30.2.tar.gz
+tar -xvzf git-2.30.2.tar.gz
+<span class="nb">cd</span> git-2.30.2/
+./configure
+make
+sudo make install
+git --version          <span class="c1"># 输出 git 版本号，说明安装成功</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>把 Git 的二进制目录添加到 PATH 路径中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tee -a <span class="nv">$HOME</span>/.bashrc <span class="s">&lt;&lt;&#39;EOF&#39;
+</span><span class="s"># Configure for git
+</span><span class="s">export PATH=/usr/local/libexec/git-core:$PATH
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第三步，配置 Git。我们直接执行如下命令配置 Git：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global user.name <span class="s2">&#34;QizhengZou&#34;</span>    <span class="c1"># 用户名改成自己的</span>
+git config --global user.email <span class="s2">&#34;2838264218@qq.com&#34;</span>    <span class="c1"># 邮箱改成自己的</span>
+git config --global credential.helper store    <span class="c1"># 设置 Git，保存用户名和密码</span>
+git config --global core.longpaths <span class="nb">true</span> <span class="c1"># 解决 Git 中 &#39;Filename too long&#39; 的错误</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Git 中，我们会把非 ASCII 字符叫做 Unusual 字符。这类字符在 Git 输出到终端的时候默认是用 8 进制转义字符输出的（以防乱码），但现在的终端多数都支持直接显示非 ASCII 字符，所以我们可以关闭掉这个特性，具体的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global core.quotepath off
+</code></pre></td></tr></table>
+</div>
+</div><p>GitHub 限制最大只能克隆 100M 的单个文件，为了能够克隆大于 100M 的文件，我们还需要安装 Git Large File Storage，安装方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git lfs install --skip-repo
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="go-编译环境安装和配置">Go 编译环境安装和配置</h3>
+<p>我们知道，Go 是一门编译型语言，所以在部署 IAM 系统之前，我们需要将代码编译成可执行的二进制文件。因此我们需要安装 Go 编译环境。除了 Go，我们也会用 gRPC 框架展示 RPC 通信协议的用法，所以我们也需要将 ProtoBuf 的.proto 文件编译成 Go 语言的接口。因此，我们也需要安装 ProtoBuf 的编译环境。</p>
+<p>安装 Go 语言相对来说比较简单，我们只需要下载源码包、设置相应的环境变量即可。首先，我们从 Go 语言官方网站下载对应的 Go 安装包以及源码包，这里我下载的是 go1.17.2 版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget https://golang.google.cn/dl/go1.17.2.linux-amd64.tar.gz -O /tmp/go1.17.2.linux-amd64.tar.gz
+<span class="c1"># 解压安装</span>
+mkdir -p <span class="nv">$HOME</span>/go
+tar -xvzf /tmp/go1.17.2.linux-amd64.tar.gz -C <span class="nv">$HOME</span>/go
+mv <span class="nv">$HOME</span>/go/go <span class="nv">$HOME</span>/go/go1.17.2
+<span class="c1"># 将下列环境变量追加到$HOME/.bashrc 文件中</span>
+tee -a <span class="nv">$HOME</span>/.bashrc <span class="s">&lt;&lt;&#39;EOF&#39;
+</span><span class="s"># Go envs
+</span><span class="s">export GOVERSION=go1.17.2 # Go 版本设置
+</span><span class="s">export GO_INSTALL_DIR=$HOME/go # Go 安装目录
+</span><span class="s">export GOROOT=$GO_INSTALL_DIR/$GOVERSION # GOROOT 设置
+</span><span class="s">export GOPATH=$WORKSPACE/golang # GOPATH 设置
+</span><span class="s">export PATH=$GOROOT/bin:$GOPATH/bin:$PATH # 将 Go 语言自带的和通过 go install 安装的二进制文件加入到 PATH 路径中
+</span><span class="s">export GO111MODULE=&#34;on&#34; # 开启 Go moudles 特性
+</span><span class="s">export GOPROXY=https://goproxy.cn,direct # 安装 Go 模块时，代理服务器设置
+</span><span class="s">export GOPRIVATE=
+</span><span class="s">export GOSUMDB=off # 关闭校验 Go 依赖包的哈希值
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Go 语言是通过一系列的环境变量来控制 Go 编译器行为的。因此，我们一定要理解每一个环境变量的含义。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/4b/c1/4bde380dc05cd9900ec56dc7027c15c1.jpeg?wh=1920*1080"
+        data-srcset="https://static001.geekbang.org/resource/image/4b/c1/4bde380dc05cd9900ec56dc7027c15c1.jpeg?wh=1920*1080, https://static001.geekbang.org/resource/image/4b/c1/4bde380dc05cd9900ec56dc7027c15c1.jpeg?wh=1920*1080 1.5x, https://static001.geekbang.org/resource/image/4b/c1/4bde380dc05cd9900ec56dc7027c15c1.jpeg?wh=1920*1080 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/4b/c1/4bde380dc05cd9900ec56dc7027c15c1.jpeg?wh=1920*1080"
+        title="img" /></p>
+<p>因为 Go 以后会用 Go modules 来管理依赖，所以我<strong>建议</strong>你将 GO111MODULE 设置为 on。在使用模块的时候，$GOPATH 是无意义的，不过它还是会把下载的依赖储存在 $GOPATH/pkg/mod 目录中，也会把 go install 的二进制文件存放在 $GOPATH/bin 目录中。另外，我们还要将$GOPATH/bin、$GOROOT/bin 加入到 Linux 可执行文件搜索路径中。这样一来，我们就可以直接在 bash shell 中执行 go 自带的命令，以及通过 go install 安装的命令。最后就是进行测试了，如果我们执行 go version 命令可以成功输出 Go 的版本，就说明 Go 编译环境安装成功。具体的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bash
+go version
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="protobuf-编译环境安装">ProtoBuf 编译环境安装</h4>
+<p>接着，我们再来安装 protobuf 的编译器 protoc。protoc 需要 protoc-gen-go 来完成 Go 语言的代码转换，因此我们需要安装 protoc 和 protoc-gen-go 这 2 个工具。它们的安装方法比较简单，你直接看我下面给出的代码和操作注释就可以了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 第一步：安装 protobuf</span>
+<span class="nb">cd</span> /tmp/
+git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/protocolbuffers/protobuf
+<span class="nb">cd</span> protobuf
+./autogen.sh
+./configure
+make
+sudo make install
+protoc --version <span class="c1"># 查看 protoc 版本，成功输出版本号，说明安装成功</span>
+libprotoc 3.15.6
+
+<span class="c1"># 第二步：安装 protoc-gen-go</span>
+$ go get -u github.com/golang/protobuf/protoc-gen-go
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="go-开发-ide-安装和配置">Go 开发 IDE 安装和配置</h3>
+<p>编译环境准备完之后，我们还需要一个代码编辑器才能开始 Go 项目开发，并且为了提高开发效率，我们需要将这个编辑器配置成 Go IDE。目前，GoLand、VSCode 这些 IDE 都很优秀，我们使用的也很多，但它们都是 Windows 系统下的 IDE。因此，在 Linux 环境下我们可以选择将 Vim 配置成 Go IDE，熟悉 Vim IDE 的操作之后，它的开发效率不输 GoLand 和 VSCode。比如说，我们可以通过 SpaceVim 将 Vim 配置成一个 Go IDE。SpaceVim 是一个社区驱动的模块化的 Vim IDE，以模块的方式组织管理插件以及相关配置， 为不同的语言开发量身定制了相关的开发模块，该模块提供代码自动补全、 语法检查、格式化、调试、REPL 等特性。我们只需要载入相关语言的模块就能得到一个开箱即用的 Vim IDE 了。Vim 可以选择 NeoVim，NeoVim 是基于 Vim 的一个 fork 分支，它主要解决了 Vim8 之前版本中的异步执行、开发模式等问题，对 Vim 的兼容性很好。同时对 vim 的代码进行了大量地清理和重构，去掉了对老旧系统的支持，添加了新的特性。</p>
+<p>虽然 Vim8 后来也新增了异步执行等特性，在使用层面两者差异不大，但是<strong>NeoVim 开发更激进，新特性更多，架构也相对更合理，所以我选择了 NeoVim</strong>，你也可以根据个人爱好来选择（都是很优秀的编辑器，这里不做优缺点比较）。Vim IDE 的安装和配置主要分五步：</p>
+<p>第一步，安装 NeoVim。我们直接执行 pip3 和 yum 命令安装即可，安装方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pip3 install pynvim
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum -y install neovim
+</code></pre></td></tr></table>
+</div>
+</div><p>第二步，配置 $HOME/.bashrc。先配置 nvim 的别名为 vi，这样当我们执行 vi 时，Linux 系统就会默认调用 nvim。同时，配置 EDITOR 环境变量可以使一些工具，例如 Git 默认使用 nvim。配置方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tee -a <span class="nv">$HOME</span>/.bashrc <span class="s">&lt;&lt;&#39;EOF&#39;
+</span><span class="s"># Configure for nvim
+</span><span class="s">export EDITOR=nvim # 默认的编辑器（git 会用到）
+</span><span class="s">alias vi=&#34;nvim&#34;
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第三步，检查 nvim 是否安装成功。我们可以通过查看 NeoVim 版本来确认是否成功安装，如果成功输出版本号，说明 NeoVim 安装成功。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bash
+vi --version <span class="c1"># 输出 NVIM v0.3.8 说明安装成功</span>
+NVIM v0.3.8
+Build type: RelWithDebInfo
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>第四步，离线安装 SpaceVim。安装 SpaceVim 步骤稍微有点复杂，为了简化你的安装，同时消除网络的影响，我将安装和配置 SpaceVim 的步骤做成了一个离线安装包 <a href="https://github.com/marmotedu/marmotVim" target="_blank" rel="noopener noreffer">marmotVim</a> 。marmotVim 可以进行 SpaceVim 的安装、卸载、打包等操作，安装步骤如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /tmp
+wget https://marmotedu-1254073058.cos.ap-beijing.myqcloud.com/tools/marmotVim.tar.gz
+tar -xvzf marmotVim.tar.gz
+<span class="nb">cd</span> marmotVim
+./marmotVimCtl install
+</code></pre></td></tr></table>
+</div>
+</div><p>SpaceVim 配置文件为：$HOME/.SpaceVim.d/init.toml 和$HOME/.SpaceVim.d/autoload/custom_init.vim，你可自行配置（配置文件中有配置说明）：init.toml：SpaceVim 的配置文件custom_init.vim：兼容 vimrc，用户自定义的配置文件SpaceVim Go IDE 常用操作的按键映射如下表所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080"
+        data-srcset="https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080, https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080 1.5x, https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080"
+        title="img" /></p>
+<p>第五步，Go 工具安装。SpaceVim 会用到一些 Go 工具，比如在函数跳转时会用到 guru、godef 工具，在格式化时会用到 goimports，所以我们也需要安装这些工具。安装方法有 2 种：Vim 底线命令安装：vi test.go，然后执行：:GoInstallBinaries 安装。拷贝工具：直接将整理好的工具文件拷贝到$GOPATH/bin 目录下。为了方便，你可以直接拷贝我已经打包好的 Go 工具到指定目录下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /tmp
+wget https://marmotedu-1254073058.cos.ap-beijing.myqcloud.com/tools/gotools-for-spacevim.tgz
+mkdir -p <span class="nv">$GOPATH</span>/bin
+tar -xvzf gotools-for-spacevim.tgz -C <span class="nv">$GOPATH</span>/bin
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3--快速部署">3 | 快速部署</h2>
+<p>总的来说，我把部署过程分成 2 大步。安装和配置数据库：我们需要安装和配置 MariaDB、Redis 和 MongoDB。安装和配置 IAM 服务：我们需要安装和配置 iam-apiserver、iam-authz-server、iam-pump、iamctl 和 man 文件。</p>
+<p><a href="https://github.com/marmotedu/iam/blob/master/docs/guide/zh-CN/installation/README.md" target="_blank" rel="noopener noreffer">一键部署（卸载） IAM 系统</a>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">
+$ mkdir -p <span class="nv">$WORKSPACE</span>/golang/src/github.com/marmotedu
+$ <span class="nb">cd</span> <span class="nv">$WORKSPACE</span>/golang/src/github.com/marmotedu
+$ git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/marmotedu/iam
+
+<span class="c1"># 善用 alias，将常用操作配置成 alias，方便以后操作</span>
+
+$ tee -a <span class="nv">$HOME</span>/.bashrc <span class="s">&lt;&lt; &#39;EOF&#39;
+</span><span class="s"># Alias for quick access
+</span><span class="s">export GOWORK=&#34;$WORKSPACE/golang/src&#34;
+</span><span class="s">export IAM_ROOT=&#34;$GOWORK/github.com/marmotedu/iam&#34;
+</span><span class="s">export LINUX_PASSWORD=&#39;iam59!z$&#39;
+</span><span class="s">alias mm=&#34;cd $GOWORK/github.com/marmotedu&#34;
+</span><span class="s">alias i=&#34;cd $GOWORK/github.com/marmotedu/iam&#34;
+</span><span class="s">EOF</span>
+$ bash
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装和配置数据库">安装和配置数据库</h3>
+<p>因为 IAM 系统用到了 MariaDB、Redis、MongoDB 数据库来存储数据，而 IAM 服务在启动时会先尝试连接这些数据库，所以为了避免启动时连接数据库失败，这里我们先来安装需要的数据库。</p>
+<p>安装和配置 MariaDBIAM：
+IAM 会把 REST 资源的定义信息存储在关系型数据库中，关系型数据库我选择了 MariaDB。为啥选择 MariaDB，而不是 MySQL 呢？。选择 MariaDB 一方面是因为它是发展最快的 MySQL 分支，相比 MySQL，它加入了很多新的特性，并且它能够完全兼容 MySQL，包括 API 和命令行。另一方面是因为 MariaDB 是开源的，而且迭代速度很快。首先，我们可以通过以下命令安装和配置 MariaDB，并将 Root 密码设置为 iam59!z$：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ ./scripts/install/mariadb.sh iam::mariadb::install
+$ mysql -h127.0.0.1 -uroot -p<span class="s1">&#39;iam59!z$&#39;</span>
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>安装和配置 Redis：
+在 IAM 系统中，由于 iam-authz-server 是从 iam-apiserver 拉取并缓存用户的密钥 / 策略信息的，因此同一份密钥 / 策略数据会分别存在 2 个服务中，这可能会出现数据不一致的情况。数据不一致会带来一些问题，例如当我们通过 iam-apiserver 创建了一对密钥，但是这对密钥还没有被 iam-authz-server 缓存，这时候通过这对密钥访问 iam-authz-server 就会访问失败。为了保证数据的一致性，我们可以使用 Redis 的发布订阅 (pub/sub) 功能进行消息通知。同时，iam-authz-server 也会将授权审计日志缓存到 Redis 中，所以也需要安装 Redis key-value 数据库。我们可以通过以下命令来安装和配置 Redis，并将 Redis 的初始密码设置为 iam59!z$ ：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ ./scripts/install/redis.sh iam::redis::install
+$ redis-cli -h 127.0.0.1 -p <span class="m">6379</span> -a <span class="s1">&#39;iam59!z$&#39;</span> <span class="c1"># 连接 Redis，-h 指定主机，-p 指定监听端口，-a 指定登录密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>安装和配置 MongoDB因为 iam-pump 会将 iam-authz-server 产生的数据处理后存储在 MongoDB 中，所以我们也需要安装 MongoDB 数据库。主要分两步安装：首先安装 MongoDB，然后再创建 MongoDB 账号。</p>
+<p>第 1 步，安装 MongoDB
+首先，我们可以通过以下 4 步来安装 MongoDB。配置 MongoDB yum 源，并安装 MongoDB。CentOS8.x 系统默认没有配置安装 MongoDB 需要的 yum 源，所以我们需要先配置好 yum 源再安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo tee /etc/yum.repos.d/mongodb-org-4.4.repo<span class="s">&lt;&lt;&#39;EOF&#39;
+</span><span class="s">[mongodb-org-4.4]
+</span><span class="s">name=MongoDB Repository
+</span><span class="s">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.4/x86_64/
+</span><span class="s">gpgcheck=1
+</span><span class="s">enabled=1
+</span><span class="s">gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
+</span><span class="s">EOF</span>
+
+$ sudo yum install -y mongodb-org
+</code></pre></td></tr></table>
+</div>
+</div><p>关闭 SELinux。在安装的过程中，SELinux 有可能会阻止 MongoDB 访问 /sys/fs/cgroup，所以我们还需要关闭 SELinux：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo setenforce <span class="m">0</span>
+$ sudo sed -i <span class="s1">&#39;s/^SELINUX=.*$/SELINUX=disabled/&#39;</span> /etc/selinux/config <span class="c1"># 永久关闭 SELINUX</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>开启外网访问权限和登录验证。MongoDB 安装完之后，默认情况下是不会开启外网访问权限和登录验证，为了方便使用，我<strong>建议</strong>你先开启这些功能，执行如下命令开启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo sed -i <span class="s1">&#39;/bindIp/{s/127.0.0.1/0.0.0.0/}&#39;</span> /etc/mongod.conf
+$ sudo sed -i <span class="s1">&#39;/^#security/a\security:\n  authorization: enabled&#39;</span> /etc/mongod.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>配置完 MongoDB 之后，我们就可以启动它了，具体的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo systemctl start mongod
+$ sudo systemctl <span class="nb">enable</span> mongod <span class="c1"># 设置开机启动</span>
+$ sudo systemctl status mongod <span class="c1"># 查看 mongod 运行状态，如果输出中包含 active (running)字样说明 mongod 成功启动</span>
+<span class="c1"># 登陆</span>
+$ mongo --quiet <span class="s2">&#34;mongodb://127.0.0.1:27017&#34;</span>
+&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>第 2 步，创建 MongoDB 账号安装完 MongoDB 之后，默认是没有用户账号的，为了方便 IAM 服务使用，我们需要先创建好管理员账号，通过管理员账户登录 MongoDB，我们可以执行创建普通用户、数据库等操作。创建管理员账户。首先，我们通过 use admin 指令切换到 admin 数据库，再通过 db.auth(&ldquo;用户名&rdquo;，&ldquo;用户密码&rdquo;) 验证用户登录权限。如果返回 1 表示验证成功；如果返回 0 表示验证失败。具体的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mongo --quiet <span class="s2">&#34;mongodb://127.0.0.1:27017&#34;</span>
+&gt; use admin
+switched to db admin
+&gt; db.createUser<span class="o">({</span>user:<span class="s2">&#34;root&#34;</span>,pwd:<span class="s2">&#34;iam59!z</span>$<span class="s2">&#34;</span>,roles:<span class="o">[</span><span class="s2">&#34;root&#34;</span><span class="o">]})</span>
+Successfully added user: <span class="o">{</span> <span class="s2">&#34;user&#34;</span> : <span class="s2">&#34;root&#34;</span>, <span class="s2">&#34;roles&#34;</span> : <span class="o">[</span> <span class="s2">&#34;root&#34;</span> <span class="o">]</span> <span class="o">}</span>
+&gt; db.auth<span class="o">(</span><span class="s2">&#34;root&#34;</span>, <span class="s2">&#34;iam59!z</span>$<span class="s2">&#34;</span><span class="o">)</span>
+<span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>此外，如果想删除用户，可以使用 db.dropUser(&ldquo;用户名&rdquo;) 命令。db.createUser 用到了以下 3 个参数。user: 用户名。pwd: 用户密码。roles: 用来设置用户的权限，比如读、读写、写等。</p>
+<p>因为 admin 用户具有 MongoDB 的 Root 权限，权限过大安全性会降低。为了提高安全性，我们还需要创建一个 iam 普通用户来连接和操作 MongoDB。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mongo --quiet mongodb://root:<span class="s1">&#39;iam59!z$&#39;</span>@127.0.0.1:27017/iam_analytics?authSource<span class="o">=</span>admin <span class="c1"># 用管理员账户连接 MongoDB</span>
+&gt; use iam_analytics
+switched to db iam_analytics
+&gt; db.createUser<span class="o">({</span>user:<span class="s2">&#34;iam&#34;</span>,pwd:<span class="s2">&#34;iam59!z</span>$<span class="s2">&#34;</span>,roles:<span class="o">[</span><span class="s2">&#34;dbOwner&#34;</span><span class="o">]})</span>
+Successfully added user: <span class="o">{</span> <span class="s2">&#34;user&#34;</span> : <span class="s2">&#34;iam&#34;</span>, <span class="s2">&#34;roles&#34;</span> : <span class="o">[</span> <span class="s2">&#34;dbOwner&#34;</span> <span class="o">]</span> <span class="o">}</span>
+&gt; db.auth<span class="o">(</span><span class="s2">&#34;iam&#34;</span>, <span class="s2">&#34;iam59!z</span>$<span class="s2">&#34;</span><span class="o">)</span>
+<span class="m">1</span>
+
+<span class="c1"># 用iam用户登陆</span>
+$ mongo --quiet mongodb://iam:<span class="s1">&#39;iam59!z$&#39;</span>@127.0.0.1:27017/iam_analytics?authSource<span class="o">=</span>iam_analytics
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装和配置-iam-系统">安装和配置 IAM 系统</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/05/ae/05de7498aaba1fddd1ae6ec3cb5b2fae.jpg?wh=2778*1741"
+        data-srcset="https://static001.geekbang.org/resource/image/05/ae/05de7498aaba1fddd1ae6ec3cb5b2fae.jpg?wh=2778*1741, https://static001.geekbang.org/resource/image/05/ae/05de7498aaba1fddd1ae6ec3cb5b2fae.jpg?wh=2778*1741 1.5x, https://static001.geekbang.org/resource/image/05/ae/05de7498aaba1fddd1ae6ec3cb5b2fae.jpg?wh=2778*1741 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/05/ae/05de7498aaba1fddd1ae6ec3cb5b2fae.jpg?wh=2778*1741"
+        title="img" /></p>
+<p>要想完成 IAM 系统的安装，我们还需要安装和配置 iam-apiserver、iam-authz-server、iam-pump 和 iamctl。</p>
+<h4 id="准备工作">准备工作</h4>
+<p>5步：初始化 MariaDB 数据库，创建 iam 数据库。配置 scripts/install/environment.sh。创建需要的目录。创建 CA 根证书和密钥。配置 hosts。</p>
+<p>第 1 步，初始化 MariaDB 数据库，创建 iam 数据库。安装完 MariaDB 数据库之后，我们需要在 MariaDB 数据库中创建 IAM 系统需要的数据库、表和存储过程，以及创建 SQL 语句保存在 IAM 代码仓库中的 configs/iam.sql 文件中。具体的创建步骤如下。登录数据库并创建 iam 用户。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ mysql -h127.0.0.1 -P3306 -uroot -p<span class="s1">&#39;iam59!z$&#39;</span> <span class="c1"># 连接 MariaDB，-h 指定主机，-P 指定监听端口，-u 指定登录用户，-p 指定登录密码</span>
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt; grant all on iam.* TO iam@127.0.0.1 identified by <span class="s1">&#39;iam59!z$&#39;</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span>0.000 sec<span class="o">)</span>
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt; flush privileges<span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span>0.000 sec<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>用 iam 用户登录 MariaDB，执行 iam.sql 文件，创建 iam 数据库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mysql -h127.0.0.1 -P3306 -uiam -p<span class="s1">&#39;iam59!z$&#39;</span>
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt; <span class="nb">source</span> configs/iam.sql<span class="p">;</span>
+MariaDB <span class="o">[</span>iam<span class="o">]</span>&gt; show databases<span class="p">;</span>
++--------------------+
+<span class="p">|</span> Database           <span class="p">|</span>
++--------------------+
+<span class="p">|</span> iam                <span class="p">|</span>
+<span class="p">|</span> information_schema <span class="p">|</span>
++--------------------+
+<span class="m">2</span> rows in <span class="nb">set</span> <span class="o">(</span>0.000 sec<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的命令会创建 iam 数据库，并创建以下数据库资源。表：user 是用户表，用来存放用户信息；secret 是密钥表，用来存放密钥信息；policy 是策略表，用来存放授权策略信息；policy_audit 是策略历史表，被删除的策略会被转存到该表。admin 用户：在 user 表中，我们需要创建一个管理员用户，用户名是 admin，密码是 Admin@2021。存储过程：删除用户时会自动删除该用户所属的密钥和策略信息。</p>
+<p>第 2 步，配置 scripts/install/environment.sh。IAM 组件的安装配置都是通过环境变量文件 scripts/install/environment.sh 进行配置的，所以我们要先配置好 scripts/install/environment.sh 文件。这里，你可以直接使用默认值，提高你的安装效率。</p>
+<p>第 3 步，创建需要的目录。在安装和运行 IAM 系统的时候，我们需要将配置、二进制文件和数据文件存放到指定的目录。所以我们需要先创建好这些目录，创建步骤如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ sudo mkdir -p <span class="si">${</span><span class="nv">IAM_DATA_DIR</span><span class="si">}</span>/<span class="o">{</span>iam-apiserver,iam-authz-server,iam-pump<span class="o">}</span> <span class="c1"># 创建 Systemd WorkingDirectory 目录</span>
+$ sudo mkdir -p <span class="si">${</span><span class="nv">IAM_INSTALL_DIR</span><span class="si">}</span>/bin <span class="c1">#创建 IAM 系统安装目录</span>
+$ sudo mkdir -p <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert <span class="c1"># 创建 IAM 系统配置文件存放目录</span>
+$ sudo mkdir -p <span class="si">${</span><span class="nv">IAM_LOG_DIR</span><span class="si">}</span> <span class="c1"># 创建 IAM 日志文件存放目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 4 步， 创建 CA 根证书和密钥。为了确保安全，IAM 系统各组件需要使用 x509 证书对通信进行加密和认证。所以，这里我们需要先创建 CA 证书。CA 根证书是所有组件共享的，只需要创建一个 CA 证书，后续创建的所有证书都由它签名。我们可以使用 CloudFlare 的 PKI 工具集 cfssl 来创建所有的证书。安装 cfssl 工具集。我们可以直接安装 cfssl 已经编译好的二进制文件，cfssl 工具集中包含很多工具，这里我们需要安装 cfssl、cfssljson、cfssl-certinfo，功能如下。cfssl：证书签发工具。cfssljson：将 cfssl 生成的证书（json 格式）变为文件承载式证书。这两个工具的安装方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ ./scripts/install/install.sh iam::install::install_cfssl
+</code></pre></td></tr></table>
+</div>
+</div><p>创建配置文件。CA 配置文件是用来配置根证书的使用场景 (profile) 和具体参数 (usage、过期时间、服务端认证、客户端认证、加密等)，可以在签名其它证书时用来指定特定场景：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ tee ca-config.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;signing&#34;: {
+</span><span class="s">    &#34;default&#34;: {
+</span><span class="s">      &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">    },
+</span><span class="s">    &#34;profiles&#34;: {
+</span><span class="s">      &#34;iam&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">          &#34;signing&#34;,
+</span><span class="s">          &#34;key encipherment&#34;,
+</span><span class="s">          &#34;server auth&#34;,
+</span><span class="s">          &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;876000h&#34;
+</span><span class="s">      }
+</span><span class="s">    }
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的 JSON 配置中，有一些字段解释如下。signing：表示该证书可用于签名其它证书（生成的 ca.pem 证书中 CA=TRUE）。server auth：表示 client 可以用该证书对 server 提供的证书进行验证。client auth：表示 server 可以用该证书对 client 提供的证书进行验证。expiry：876000h，证书有效期设置为 100 年。</p>
+<p>创建证书签名请求文件。我们创建用来生成 CA 证书签名请求（CSR）的 JSON 配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ tee ca-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;iam-ca&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;marmotedu&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;iam&#34;
+</span><span class="s">    }
+</span><span class="s">  ],
+</span><span class="s">  &#34;ca&#34;: {
+</span><span class="s">    &#34;expiry&#34;: &#34;876000h&#34;
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的 JSON 配置中，有一些字段解释如下。C：Country，国家。ST：State，省份。L：Locality (L) or City，城市。CN：Common Name，iam-apiserver 从证书中提取该字段作为请求的用户名 (User Name) ，浏览器使用该字段验证网站是否合法。O：Organization，iam-apiserver 从证书中提取该字段作为请求用户所属的组 (Group)。OU：Company division (or Organization Unit – OU)，部门 / 单位。</p>
+<p>除此之外，还有两点需要我们<strong>注意</strong>。不同证书 csr 文件的 CN、C、ST、L、O、OU 组合必须不同，否则可能出现 PEER&rsquo;S CERTIFICATE HAS AN INVALID SIGNATURE 错误。后续创建证书的 csr 文件时，CN、OU 都不相同（C、ST、L、O 相同），以达到区分的目的。</p>
+<p>创建 CA 证书和私钥 首先，我们通过 cfssl gencert 命令来创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca
+$ ls ca*
+ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
+$ sudo mv ca* <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert <span class="c1"># 需要将证书文件拷贝到指定文件夹下（分发证书），方便各组件引用</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上述命令会创建运行 CA 所必需的文件 ca-key.pem（私钥）和 ca.pem（证书），还会生成 ca.csr（证书签名请求），用于交叉签名或重新签名。创建完之后，我们可以通过 cfssl certinfo 命名查看 cert 和 csr 信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cfssl certinfo -cert <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca.pem <span class="c1"># 查看 cert(证书信息)</span>
+$ cfssl certinfo -csr <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca.csr <span class="c1"># 查看 CSR(证书签名请求)信息</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 5 步，配置 hosts。iam 通过域名访问 API 接口，因为这些域名没有注册过，还不能在互联网上解析，所以需要配置 hosts，具体的操作如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo tee -a /etc/hosts <span class="s">&lt;&lt;EOF
+</span><span class="s">127.0.0.1 iam.api.marmotedu.com
+</span><span class="s">127.0.0.1 iam.authz.marmotedu.com
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装和配置-iam-apiserver">安装和配置 iam-apiserver</h4>
+<p>完成了准备工作之后，我们就可以安装 IAM 系统的各个组件了。首先我们通过以下 3 步来安装 iam-apiserver 服务。</p>
+<p>第 1 步，创建 iam-apiserver 证书和私钥。其它服务为了安全都是通过 HTTPS 协议访问 iam-apiserver，所以我们要先创建 iam-apiserver 证书和私钥。创建证书签名请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ tee iam-apiserver-csr.json <span class="s">&lt;&lt;EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;iam-apiserver&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;marmotedu&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;iam-apiserver&#34;
+</span><span class="s">    }
+</span><span class="s">  ],
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;127.0.0.1&#34;,
+</span><span class="s">    &#34;localhost&#34;,
+</span><span class="s">    &#34;iam.api.marmotedu.com&#34;
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码中的 hosts 字段是用来指定授权使用该证书的 IP 和域名列表，上面的 hosts 列出了 iam-apiserver 服务的 IP 和域名。</p>
+<p>生成证书和私钥：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cfssl gencert -ca<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca.pem <span class="se">\
+</span><span class="se"></span>  -ca-key<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-key.pem <span class="se">\
+</span><span class="se"></span>  -config<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-config.json <span class="se">\
+</span><span class="se"></span>  -profile<span class="o">=</span>iam iam-apiserver-csr.json <span class="p">|</span> cfssljson -bare iam-apiserver
+$ sudo mv iam-apiserver*pem <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert <span class="c1"># 将生成的证书和私钥文件拷贝到配置文件目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 2 步，安装并运行 iam-apiserver。iam-apiserver 作为 iam 系统的核心组件，需要第一个安装。安装 iam-apiserver 可执行程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ make build <span class="nv">BINS</span><span class="o">=</span>iam-apiserver
+$ sudo cp _output/platforms/linux/amd64/iam-apiserver <span class="si">${</span><span class="nv">IAM_INSTALL_DIR</span><span class="si">}</span>/bin
+
+<span class="c1"># 生成并安装 iam-apiserver 的配置文件（iam-apiserver.yaml）</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh configs/iam-apiserver.yaml &gt; iam-apiserver.yaml
+$ sudo mv iam-apiserver.yaml <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>
+<span class="c1"># 创建并安装 iam-apiserver systemd unit 文件：</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh init/iam-apiserver.service &gt; iam-apiserver.service
+$ sudo mv iam-apiserver.service /etc/systemd/system/
+<span class="c1"># 启动 iam-apiserver 服务：</span>
+$ sudo systemctl daemon-reload
+$ sudo systemctl <span class="nb">enable</span> iam-apiserver
+$ sudo systemctl restart iam-apiserver
+$ systemctl status iam-apiserver <span class="c1"># 查看 iam-apiserver 运行状态，如果输出中包含 active (running)字样说明 iam-apiserver 成功启动</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 3 步，测试 iam-apiserver 是否成功安装。测试 iam-apiserver 主要是测试 RESTful 资源的 CURD：用户 CURD、密钥 CURD、授权策略 CURD。首先，我们需要获取访问 iam-apiserver 的 Token，请求如下 API 访问：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -d<span class="s1">&#39;{&#34;username&#34;:&#34;admin&#34;,&#34;password&#34;:&#34;Admin@2021&#34;}&#39;</span> http://127.0.0.1:8080/login <span class="p">|</span> jq -r .token
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA
+</code></pre></td></tr></table>
+</div>
+</div><p>代码中下面的 HTTP 请求通过-H&rsquo;Authorization: Bearer ' 指定认证头信息，将上面请求的 Token 替换 。</p>
+<p>用户 CURD  创建用户、列出用户、获取用户详细信息、修改用户、删除单个用户、批量删除用户，请求方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建用户</span>
+$ curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;password&#34;:&#34;User@2021&#34;,&#34;metadata&#34;:{&#34;name&#34;:&#34;colin&#34;},&#34;nickname&#34;:&#34;colin&#34;,&#34;email&#34;:&#34;colin@foxmail.com&#34;,&#34;phone&#34;:&#34;1812884xxxx&#34;}&#39;</span> http://127.0.0.1:8080/v1/users
+
+<span class="c1"># 列出用户</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> <span class="s1">&#39;http://127.0.0.1:8080/v1/users?offset=0&amp;limit=10&#39;</span>
+
+<span class="c1"># 获取 colin 用户的详细信息</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/users/colin
+
+<span class="c1"># 修改 colin 用户</span>
+$ curl -s -XPUT -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;nickname&#34;:&#34;colin&#34;,&#34;email&#34;:&#34;colin_modified@foxmail.com&#34;,&#34;phone&#34;:&#34;1812884xxxx&#34;}&#39;</span> http://127.0.0.1:8080/v1/users/colin
+
+<span class="c1"># 删除 colin 用户</span>
+$ curl -s -XDELETE -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/users/colin
+
+<span class="c1"># 批量删除用户</span>
+$ curl -s -XDELETE -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> <span class="s1">&#39;http://127.0.0.1:8080/v1/users?name=colin&amp;name=mark&amp;name=john&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>密钥 CURD创建密钥、列出密钥、获取密钥详细信息、修改密钥、删除密钥请求方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建 secret0 密钥</span>
+$ curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;secret0&#34;},&#34;expires&#34;:0,&#34;description&#34;:&#34;admin secret&#34;}&#39;</span> http://127.0.0.1:8080/v1/secrets
+
+<span class="c1"># 列出所有密钥</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/secrets
+
+<span class="c1"># 获取 secret0 密钥的详细信息</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/secrets/secret0
+
+<span class="c1"># 修改 secret0 密钥</span>
+$ curl -s -XPUT -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;secret0&#34;},&#34;expires&#34;:0,&#34;description&#34;:&#34;admin secret(modified)&#34;}&#39;</span> http://127.0.0.1:8080/v1/secrets/secret0
+
+<span class="c1"># 删除 secret0 密钥</span>
+$ curl -s -XDELETE -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/secrets/secret0
+</code></pre></td></tr></table>
+</div>
+</div><p>这里我们要<strong>注意</strong>，因为密钥属于重要资源，被删除会导致所有的访问请求失败，所以密钥不支持批量删除。</p>
+<p>授权策略 CURD创建策略、列出策略、获取策略详细信息、修改策略、删除策略请求方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建策略</span>
+$ curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;policy0&#34;},&#34;policy&#34;:{&#34;description&#34;:&#34;One policy to rule them all.&#34;,&#34;subjects&#34;:[&#34;users:&lt;peter|ken&gt;&#34;,&#34;users:maria&#34;,&#34;groups:admins&#34;],&#34;actions&#34;:[&#34;delete&#34;,&#34;&lt;create|update&gt;&#34;],&#34;effect&#34;:&#34;allow&#34;,&#34;resources&#34;:[&#34;resources:articles:&lt;.*&gt;&#34;,&#34;resources:printer&#34;],&#34;conditions&#34;:{&#34;remoteIPAddress&#34;:{&#34;type&#34;:&#34;CIDRCondition&#34;,&#34;options&#34;:{&#34;cidr&#34;:&#34;192.168.0.1/16&#34;}}}}}&#39;</span> http://127.0.0.1:8080/v1/policies
+
+<span class="c1"># 列出所有策略</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/policies
+
+<span class="c1"># 获取 policy0 策略的详细信息</span>
+$ curl -s -XGET -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/policies/policy0
+
+<span class="c1"># 修改 policy0 策略</span>
+$ curl -s -XPUT -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;policy0&#34;},&#34;policy&#34;:{&#34;description&#34;:&#34;One policy to rule them all(modified).&#34;,&#34;subjects&#34;:[&#34;users:&lt;peter|ken&gt;&#34;,&#34;users:maria&#34;,&#34;groups:admins&#34;],&#34;actions&#34;:[&#34;delete&#34;,&#34;&lt;create|update&gt;&#34;],&#34;effect&#34;:&#34;allow&#34;,&#34;resources&#34;:[&#34;resources:articles:&lt;.*&gt;&#34;,&#34;resources:printer&#34;],&#34;conditions&#34;:{&#34;remoteIPAddress&#34;:{&#34;type&#34;:&#34;CIDRCondition&#34;,&#34;options&#34;:{&#34;cidr&#34;:&#34;192.168.0.1/16&#34;}}}}}&#39;</span> http://127.0.0.1:8080/v1/policies/policy0
+
+<span class="c1"># 删除 policy0 策略</span>
+$ curl -s -XDELETE -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXBpLm1hcm1vdGVkdS5jb20iLCJleHAiOjE2MTc5MjI4OTQsImlkZW50aXR5IjoiYWRtaW4iLCJpc3MiOiJpYW0tYXBpc2VydmVyIiwib3JpZ19pYXQiOjE2MTc4MzY0OTQsInN1YiI6ImFkbWluIn0.9qztVJseQ9XwqOFVUHNOtG96-KUovndz0SSr_QBsxAA&#39;</span> http://127.0.0.1:8080/v1/policies/policy0
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装-iamctl">安装 iamctl</h4>
+<p>上面，我们安装了 iam 系统的 API 服务。但是想要访问 iam 服务，我们还需要安装客户端工具 iamctl。具体来说，我们可以通过 3 步完成 iamctl 的安装和配置。</p>
+<p>第 1 步，创建 iamctl 证书和私钥。iamctl 使用 https 协议与 iam-apiserver 进行安全通信，iam-apiserver 对 iamctl 请求包含的证书进行认证和授权。iamctl 后续用于 iam 系统访问和管理，所以这里创建具有最高权限的 admin 证书。创建证书签名请求。下面创建的证书只会被 iamctl 当作 client 证书使用，所以 hosts 字段为空。代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ cat &gt; admin-csr.json <span class="s">&lt;&lt;EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;admin&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;marmotedu&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;iamctl&#34;
+</span><span class="s">    }
+</span><span class="s">  ],
+</span><span class="s">  &#34;hosts&#34;: []
+</span><span class="s">}
+</span><span class="s">EOF</span>
+<span class="c1"># 生成证书和私钥：</span>
+$ cfssl gencert -ca<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca.pem <span class="se">\
+</span><span class="se"></span>  -ca-key<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-key.pem <span class="se">\
+</span><span class="se"></span>  -config<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-config.json <span class="se">\
+</span><span class="se"></span>  -profile<span class="o">=</span>iam admin-csr.json <span class="p">|</span> cfssljson -bare admin
+$ mkdir -p <span class="k">$(</span>dirname <span class="si">${</span><span class="nv">CONFIG_USER_CLIENT_CERTIFICATE</span><span class="si">}</span><span class="k">)</span> <span class="k">$(</span>dirname <span class="si">${</span><span class="nv">CONFIG_USER_CLIENT_KEY</span><span class="si">}</span><span class="k">)</span> <span class="c1"># 创建客户端证书存放的目录</span>
+$ mv admin.pem <span class="si">${</span><span class="nv">CONFIG_USER_CLIENT_CERTIFICATE</span><span class="si">}</span> <span class="c1"># 安装 TLS 的客户端证书</span>
+$ mv admin-key.pem <span class="si">${</span><span class="nv">CONFIG_USER_CLIENT_KEY</span><span class="si">}</span> <span class="c1"># 安装 TLS 的客户端私钥文件</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 2 步，安装 iamctl。iamctl 是 IAM 系统的客户端工具，其安装位置和 iam-apiserver、iam-authz-server、iam-pump 位置不同，为了能够在 shell 下直接运行 iamctl 命令，我们需要将 iamctl 安装到$HOME/bin 下，同时将 iamctl 的配置存放在默认加载的目录下：$HOME/.iam。主要分 2 步进行。安装 iamctl 可执行程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ make build <span class="nv">BINS</span><span class="o">=</span>iamctl
+$ cp _output/platforms/linux/amd64/iamctl <span class="nv">$HOME</span>/bin
+<span class="c1"># 生成并安装 iamctl 的配置文件（iamctl.yaml）：</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh configs/iamctl.yaml&gt; iamctl.yaml
+$ mkdir -p <span class="nv">$HOME</span>/.iam
+$ mv iamctl.yaml <span class="nv">$HOME</span>/.iam
+</code></pre></td></tr></table>
+</div>
+</div><p>因为 iamctl 是一个客户端工具，可能会在多台机器上运行。为了简化部署 iamctl 工具的复杂度，我们可以把 config 配置文件中跟 CA 认证相关的 CA 文件内容用 base64 加密后，放置在 config 配置文件中。具体的思路就是把 config 文件中的配置项 client-certificate、client-key、certificate-authority 分别用如下配置项替换 client-certificate-data、client-key-data、certificate-authority-data。这些配置项的值可以通过对 CA 文件使用 base64 加密获得。假如，certificate-authority 值为/etc/iam/cert/ca.pem，则 certificate-authority-data 的值为 cat &ldquo;/etc/iam/cert/ca.pem&rdquo; | base64 | tr -d &lsquo;\r\n&rsquo;，其它-data 变量的值类似。这样当我们再部署 iamctl 工具时，只需要拷贝 iamctl 和配置文件，而不用再拷贝 CA 文件了。</p>
+<p>第 3 步，测试 iamctl 是否成功安装。执行 iamctl user list 可以列出预创建的 admin 用户，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>going@dev workspace<span class="o">]</span>$ iamctl user list
+NAME    NICKNAME   EMAIL               PHONE         CREATED               UPDATED
+admin  admin     admin@foxmail.com  1812884xxxx  2021-05-27 18:01:40  2022-07-07 16:32:18
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装和配置-iam-authz-server">安装和配置 iam-authz-server</h4>
+<p>接下来，我们需要安装另外一个核心组件：iam-authz-server，可以通过以下 3 步来安装。</p>
+<p>第 1 步，创建 iam-authz-server 证书和私钥。创建证书签名请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ tee iam-authz-server-csr.json <span class="s">&lt;&lt;EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;iam-authz-server&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;marmotedu&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;iam-authz-server&#34;
+</span><span class="s">    }
+</span><span class="s">  ],
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;127.0.0.1&#34;,
+</span><span class="s">    &#34;localhost&#34;,
+</span><span class="s">    &#34;iam.authz.marmotedu.com&#34;
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码中的 hosts 字段指定授权使用该证书的 IP 和域名列表，上面的 hosts 列出了 iam-authz-server 服务的 IP 和域名。生成证书和私钥：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cfssl gencert -ca<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca.pem <span class="se">\
+</span><span class="se"></span>  -ca-key<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-key.pem <span class="se">\
+</span><span class="se"></span>  -config<span class="o">=</span><span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert/ca-config.json <span class="se">\
+</span><span class="se"></span>  -profile<span class="o">=</span>iam iam-authz-server-csr.json <span class="p">|</span> cfssljson -bare iam-authz-server
+$ sudo mv iam-authz-server*pem <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>/cert <span class="c1"># 将生成的证书和私钥文件拷贝到配置文件目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 2 步，安装并运行 iam-authz-server。安装 iam-authz-server 步骤和安装 iam-apiserver 步骤基本一样，也需要 4 步。安装 iam-authz-server 可执行程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ make build <span class="nv">BINS</span><span class="o">=</span>iam-authz-server
+$ sudo cp _output/platforms/linux/amd64/iam-authz-server <span class="si">${</span><span class="nv">IAM_INSTALL_DIR</span><span class="si">}</span>/bin
+<span class="c1"># 生成并安装 iam-authz-server 的配置文件（iam-authz-server.yaml）：</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh configs/iam-authz-server.yaml &gt; iam-authz-server.yaml
+$ sudo mv iam-authz-server.yaml <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>
+<span class="c1"># 创建并安装 iam-authz-server systemd unit 文件：</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh init/iam-authz-server.service &gt; iam-authz-server.service
+$ sudo mv iam-authz-server.service /etc/systemd/system/
+<span class="c1"># 启动 iam-authz-server 服务：</span>
+$ sudo systemctl daemon-reload
+$ sudo systemctl <span class="nb">enable</span> iam-authz-server
+$ sudo systemctl restart iam-authz-server
+$ systemctl status iam-authz-server <span class="c1"># 查看 iam-authz-server 运行状态，如果输出中包含 active (running)字样说明 iam-authz-server 成功启动。</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第 3 步，测试 iam-authz-server 是否成功安装。重新登陆系统，并获取访问令牌</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">token</span><span class="o">=</span><span class="sb">`</span>curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -d<span class="s1">&#39;{&#34;username&#34;:&#34;admin&#34;,&#34;password&#34;:&#34;Admin@2021&#34;}&#39;</span> http://127.0.0.1:8080/login <span class="p">|</span> jq -r .token<span class="sb">`</span>
+
+<span class="c1"># 创建授权策略</span>
+$ curl -s -XPOST -H<span class="s2">&#34;Content-Type: application/json&#34;</span> -H<span class="s2">&#34;Authorization: Bearer </span><span class="nv">$token</span><span class="s2">&#34;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;authztest&#34;},&#34;policy&#34;:{&#34;description&#34;:&#34;One policy to rule them all.&#34;,&#34;subjects&#34;:[&#34;users:&lt;peter|ken&gt;&#34;,&#34;users:maria&#34;,&#34;groups:admins&#34;],&#34;actions&#34;:[&#34;delete&#34;,&#34;&lt;create|update&gt;&#34;],&#34;effect&#34;:&#34;allow&#34;,&#34;resources&#34;:[&#34;resources:articles:&lt;.*&gt;&#34;,&#34;resources:printer&#34;],&#34;conditions&#34;:{&#34;remoteIPAddress&#34;:{&#34;type&#34;:&#34;CIDRCondition&#34;,&#34;options&#34;:{&#34;cidr&#34;:&#34;192.168.0.1/16&#34;}}}}}&#39;</span> http://127.0.0.1:8080/v1/policies
+
+<span class="c1"># 创建密钥，并从命令的输出中提取 secretID 和 secretKey</span>
+$ curl -s -XPOST -H<span class="s2">&#34;Content-Type: application/json&#34;</span> -H<span class="s2">&#34;Authorization: Bearer </span><span class="nv">$token</span><span class="s2">&#34;</span> -d<span class="s1">&#39;{&#34;metadata&#34;:{&#34;name&#34;:&#34;authztest&#34;},&#34;expires&#34;:0,&#34;description&#34;:&#34;admin secret&#34;}&#39;</span> http://127.0.0.1:8080/v1/secrets
+<span class="o">{</span><span class="s2">&#34;metadata&#34;</span>:<span class="o">{</span><span class="s2">&#34;id&#34;</span>:23,<span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;authztest&#34;</span>,<span class="s2">&#34;createdAt&#34;</span>:<span class="s2">&#34;2021-04-08T07:24:50.071671422+08:00&#34;</span>,<span class="s2">&#34;updatedAt&#34;</span>:<span class="s2">&#34;2021-04-08T07:24:50.071671422+08:00&#34;</span><span class="o">}</span>,<span class="s2">&#34;username&#34;</span>:<span class="s2">&#34;admin&#34;</span>,<span class="s2">&#34;secretID&#34;</span>:<span class="s2">&#34;ZuxvXNfG08BdEMqkTaP41L2DLArlE6Jpqoox&#34;</span>,<span class="s2">&#34;secretKey&#34;</span>:<span class="s2">&#34;7Sfa5EfAPIwcTLGCfSvqLf0zZGCjF3l8&#34;</span>,<span class="s2">&#34;expires&#34;</span>:0,<span class="s2">&#34;description&#34;</span>:<span class="s2">&#34;admin secret&#34;</span><span class="o">}</span>
+
+<span class="c1"># 生成访问 iam-authz-server 的 token  iamctl 提供了 jwt sigin 命令，可以根据 secretID 和 secretKey 签发 Token，方便你使用。</span>
+$ iamctl jwt sign ZuxvXNfG08BdEMqkTaP41L2DLArlE6Jpqoox 7Sfa5EfAPIwcTLGCfSvqLf0zZGCjF3l8 <span class="c1"># iamctl jwt sign $secretID $secretKey</span>
+eyJhbGciOiJIUzI1NiIsImtpZCI6Ilp1eHZYTmZHMDhCZEVNcWtUYVA0MUwyRExBcmxFNkpwcW9veCIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXV0aHoubWFybW90ZWR1LmNvbSIsImV4cCI6MTYxNzg0NTE5NSwiaWF0IjoxNjE3ODM3OTk1LCJpc3MiOiJpYW1jdGwiLCJuYmYiOjE2MTc4Mzc5OTV9.za9yLM7lHVabPAlVQLCqXEaf8sTU6sodAsMXnmpXjMQ
+
+<span class="c1"># 如果你的开发过程中有些重复性的操作，为了方便使用，也可以将这些操作以 iamctl 子命令的方式集成到 iamctl 命令行中。</span>
+
+<span class="c1"># 测试资源授权是否通过我们可以通过请求 /v1/authz 来完成资源授权：如果授权通过会返回：{&#34;allowed&#34;:true} 。</span>
+$ curl -s -XPOST -H<span class="s1">&#39;Content-Type: application/json&#39;</span> -H<span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6Ilp1eHZYTmZHMDhCZEVNcWtUYVA0MUwyRExBcmxFNkpwcW9veCIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJpYW0uYXV0aHoubWFybW90ZWR1LmNvbSIsImV4cCI6MTYxNzg0NTE5NSwiaWF0IjoxNjE3ODM3OTk1LCJpc3MiOiJpYW1jdGwiLCJuYmYiOjE2MTc4Mzc5OTV9.za9yLM7lHVabPAlVQLCqXEaf8sTU6sodAsMXnmpXjMQ&#39;</span> -d<span class="s1">&#39;{&#34;subject&#34;:&#34;users:maria&#34;,&#34;action&#34;:&#34;delete&#34;,&#34;resource&#34;:&#34;resources:articles:ladon-introduction&#34;,&#34;context&#34;:{&#34;remoteIPAddress&#34;:&#34;192.168.0.5&#34;}}&#39;</span> http://127.0.0.1:9090/v1/authz
+<span class="o">{</span><span class="s2">&#34;allowed&#34;</span>:true<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装和配置-iam-pump">安装和配置 iam-pump</h4>
+<p>安装 iam-pump 步骤和安装 iam-apiserver、iam-authz-server 步骤基本一样，具体步骤如下。第 1 步，安装 iam-pump 可执行程序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ <span class="nb">source</span> scripts/install/environment.sh
+$ make build <span class="nv">BINS</span><span class="o">=</span>iam-pump
+$ sudo cp _output/platforms/linux/amd64/iam-pump <span class="si">${</span><span class="nv">IAM_INSTALL_DIR</span><span class="si">}</span>/bin
+
+<span class="c1"># 生成并安装 iam-pump 的配置文件（iam-pump.yaml）。</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh configs/iam-pump.yaml &gt; iam-pump.yaml
+$ sudo mv iam-pump.yaml <span class="si">${</span><span class="nv">IAM_CONFIG_DIR</span><span class="si">}</span>
+
+<span class="c1"># 创建并安装 iam-pump systemd unit 文件。</span>
+$ ./scripts/genconfig.sh scripts/install/environment.sh init/iam-pump.service &gt; iam-pump.service
+$ sudo mv iam-pump.service /etc/systemd/system/
+
+<span class="c1"># 启动 iam-pump 服务。</span>
+$ sudo systemctl daemon-reload
+$ sudo systemctl <span class="nb">enable</span> iam-pump
+$ sudo systemctl restart iam-pump
+$ systemctl status iam-pump <span class="c1"># 查看 iam-pump 运行状态，如果输出中包含 active (running)字样说明 iam-pump 成功启动。</span>
+
+<span class="c1"># 测试 iam-pump 是否成功安装。</span>
+$ curl http://127.0.0.1:7070/healthz
+<span class="o">{</span><span class="s2">&#34;status&#34;</span>: <span class="s2">&#34;ok&#34;</span><span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装-man-文件">安装 man 文件</h4>
+<p>IAM 系统通过组合调用包：github.com/cpuguy83/go-md2man/v2/md2man 和 github.com/spf13/cobra 的相关函数生成了各个组件的 man1 文件，主要分 3 步实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 第 1 步，生成各个组件的 man1 文件。</span>
+$ <span class="nb">cd</span> <span class="nv">$IAM_ROOT</span>
+$ ./scripts/update-generated-docs.sh
+<span class="c1"># 第 2 步，安装生成的 man1 文件。</span>
+$ sudo cp docs/man/man1/* /usr/share/man/man1/
+<span class="c1"># 第 3 步，检查是否成功安装 man1 文件。</span>
+$ man iam-apiserver
+</code></pre></td></tr></table>
+</div>
+</div><p>执行 man iam-apiserver 命令后，会弹出 man 文档界面</p>
+<p>IAM 系统所有组件都已经安装成功了，你可以通过 iamctl version 查看客户端和服务端版本，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ iamctl version -o yaml
+clientVersion:
+  buildDate: <span class="s2">&#34;2021-04-08T01:56:20Z&#34;</span>
+  compiler: gc
+  gitCommit: 1d682b0317396347b568a3ef366c1c54b3b0186b
+  gitTreeState: dirty
+  gitVersion: v0.6.1-5-g1d682b0
+  goVersion: go1.16.2
+  platform: linux/amd64
+serverVersion:
+  buildDate: <span class="s2">&#34;2021-04-07T22:30:53Z&#34;</span>
+  compiler: gc
+  gitCommit: bde163964b8c004ebb20ca4abd8a2ac0cd1f71ad
+  gitTreeState: dirty
+  gitVersion: bde1639
+  goVersion: go1.16.2
+  platform: linux/amd64
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-07-07 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/iam_before_class/" data-title="iam_before_class" data-hashtags="iam"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/iam_before_class/" data-hashtag="iam"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/iam_before_class/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/iam_before_class/" data-title="iam_before_class"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/iam_before_class/" data-title="iam_before_class"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/iam_before_class/" data-title="iam_before_class"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/iam/">iam</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/iam_intro/" class="prev" rel="prev" title="iam_intro"><i class="fas fa-angle-left fa-fw"></i>iam_intro</a>
+            <a href="/iam_standard_design/" class="next" rel="next" title="iam_standard_design">iam_standard_design<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql_base_12 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="Mysql_base_12" />
+<meta property="og:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 数据查询优化 在建表和建索引的时候，要更有意识地为将来的查询优化做综合考虑，比如确" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/mysql_base_12/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-09T11:28:51+08:00" />
+<meta property="article:modified_time" content="2021-11-15T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Mysql_base_12"/>
+<meta name="twitter:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 数据查询优化 在建表和建索引的时候，要更有意识地为将来的查询优化做综合考虑，比如确"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/mysql_base_12/" /><link rel="prev" href="https://qizhengzou.github.io/mysql_base_11/" /><link rel="next" href="https://qizhengzou.github.io/mysql_base_13/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_12",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/mysql_base_12\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "mysql","wordcount":  1659 ,
+        "url": "https:\/\/qizhengzou.github.io\/mysql_base_12\/","datePublished": "2021-11-09T11:28:51+08:00","dateModified": "2021-11-15T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mysql_base_12</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-09 11:28:51">2021-11-09 11:28:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1659 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要及什么是查询优化">为什么要及什么是查询优化?</a></li>
+    <li><a href="#查询优化的基本思路">查询优化的基本思路</a></li>
+    <li><a href="#逻辑查询优化">逻辑查询优化</a></li>
+    <li><a href="#物理查询优化">物理查询优化</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫</p>
+</blockquote>
+<h1 id="数据查询优化">数据查询优化</h1>
+<p>在建表和建索引的时候，要更有意识地为将来的查询优化做综合考虑，比如确定是否使用递增主键、主键的列怎样选择，等等。</p>
+<h2 id="为什么要及什么是查询优化">为什么要及什么是查询优化?</h2>
+<ul>
+<li>为什么需要查询优化:
+<ul>
+<li>关系数据库的执行效率问题
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122516.png" /></li>
+<li>关系代数操作执行次序对效率的影响
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115122720.png" /></li>
+</ul>
+</li>
+<li>什么是查询优化
+<ul>
+<li>“如何使数据库查询的执行时间最短？”</li>
+<li>三个层面进行优化：
+<ul>
+<li>语义优化：利用模型的语义及完整性规则，优化查询。</li>
+<li>语法优化&mdash;逻辑层优化：利用语法结构，优化操作执行顺序；</li>
+<li>执行优化&mdash;物理层优化：存取路径和执行算法的选择与执行次序优化；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="查询优化的基本思路">查询优化的基本思路</h2>
+<ul>
+<li>查询优化的总体思路
+<ul>
+<li>语义优化&mdash;内容等价性</li>
+<li>语法优化(逻辑层优化)&mdash;语法等价性：基本思想：改变关系代数的操作次序：尽可能早做选择和投影运算</li>
+<li>执行优化(物理层优化)</li>
+<li>在DBMS中的位置
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115123812.png" /></li>
+<li>简要回顾
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115124047.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="逻辑查询优化">逻辑查询优化</h2>
+<p>一个待优化的示例背景：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205559.png" />
+用语法树表达关系代数表达式:<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115205716.png" />
+逻辑层优化策略:</p>
+<ul>
+<li>(1)尽可能地早做选择和投影：可使中间结果变小，节省几个数量级的执行时间。</li>
+<li>(2)把选择与投影串接起来：一元运算序列可一起执行，只需对整个关系扫描一遍。</li>
+<li>(3)把投影与其前或后的二元运算结合起来：在第一次用关系时去掉一些无关属性，可以避免多次扫描整个关系。</li>
+<li>(4)把某些选择与其前的笛卡尔积合并成一个连接：当R×S前有选择运算且其中有条件是R、S属性间比较的运算时，可将其转化为连接运算可节省时间。</li>
+<li>(5)执行连接运算前对关系做适当预处理：文件排序、建立临时索引等，可使两关系公共值高效联接。</li>
+<li>(6)找出表达式里的公共子表达式：若公共子表达式结果不大，则预先计算，以后可读入此结果，节时多，尤当视图情况下有用。</li>
+</ul>
+<p>关系代数操作次序交换的等价性:</p>
+<ul>
+<li>“哪些关系代数操作能够交换次序”</li>
+<li>什么是关系操作次序交换的等价性?
+<ul>
+<li>[定义] 设E1, E2是两个关系操作表达式。若E1, E2表示相同的映射，即当E1, E2的同名变量代入相同关系后产生相同的结果(映像集合)，则说E1, E2是等价的，记为E1 = E2</li>
+</ul>
+</li>
+<li>哪些关系操作次序可以交换?
+<ul>
+<li>定理L1：连接与连接，积与积的交换律<br>
+设E1, E2是关系代数表达式， F是E1, E2中属性的附加限制条件，则有：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210330.png" /></li>
+<li>定理L2：连接与连接、积和积的结合律若E1, E2, E3是关系代数表达式，F1，F2是条件，则有：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210443.png" /></li>
+<li>定理L3：投影串接律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210534.png" /></li>
+<li>定理L4：选择串接律<br>
+若E是关系代数表达式，F1, F2是条件，则有：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210629.png" /></li>
+<li>定理L5：选择和投影交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210709.png" /></li>
+<li>定理L6：选择和积的交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210802.png" /></li>
+<li>定理L7：投影和积的交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210844.png" /></li>
+<li>定理L8：选择和并的交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115210926.png" /></li>
+<li>定理L9：选择和差的交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211004.png" /></li>
+<li>L10：投影和并的交换律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211052.png" /></li>
+</ul>
+</li>
+<li>基于关系代数的查询优化算法及示例<br>
+略</li>
+</ul>
+<h2 id="物理查询优化">物理查询优化</h2>
+<ul>
+<li>为什么要物理查询优化？
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211243.png" /></li>
+<li>物理查询优化—总体思路
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211721.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115211848.png" /></li>
+<li>如何衡量一个物理查询计划的好与坏?
+<ul>
+<li>DBMS如何衡量物理查询计划的优劣呢？</li>
+<li>衡量I/O访问次数 衡量CPU的占用时间</li>
+<li>内存使用代价(与缓冲区数目与大小的匹配)</li>
+<li>中间结果存储代价</li>
+<li>计算量(如搜索记录、合并记录、排序记录、字段值的计算等) 网络通信量
+……</li>
+</ul>
+</li>
+<li>依据什么信息判断物理查询计划的好与坏
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212250.png" /></li>
+<li>如何收集这些信息?
+<ul>
+<li>当一个表装入内存和创建索引的时候，统计信息不是被自动收集的，必须由DBA使用特定的命令来完成信息统计，这些命令就是收集统计信息并把其存入系统目录中的实用程序</li>
+<li>随着表的更新操作，统计信息可能会过时，过时的统计信息会使DBMS确定方案时决策错误，因此要求DBA定期的对有频繁更新操作的Table进行统计</li>
+<li>DBA要熟悉统计信息收集命令的使用，并定期执行</li>
+<li>IBM DB2使用Runstats收集统计信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">RUNSTATS ON TABLE username.tablename
+[ WITH DISTRIBUTION [ AND DETAILED ]
+{ INDEXES ALL | INDEX indexname ];
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>例如，收集SCT数据库的Student表的统计信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Runstats on table SCT.student;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Oracle使用Analyze命令收集统计信息并将其放入系统表中</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ANALYZE { INDEX | TABLE | CLUSTER }{ indexname | tablename | clustername }
+COMPUTE STATISTICS
+{ FOR TABLE | FOR ALL [ INDEXED ] COLUMNS [SIZE n] };
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>例如，收集SCT数据库的Student表的统计信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Analyze table student compute statistics for table ;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>代价估算
+<ul>
+<li>什么是代价估算?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212831.png" /></li>
+<li>投影运算的代价估算?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115212949.png" /></li>
+<li>不同选择运算的代价估算?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213055.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213145.png" /></li>
+<li>代价估计简要结论
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115213321.png" /></li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-15 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/mysql_base_12/" data-title="Mysql_base_12" data-hashtags="mysql"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/mysql_base_12/" data-hashtag="mysql"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/mysql_base_12/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/mysql_base_12/" data-title="Mysql_base_12"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/mysql_base_12/" data-title="Mysql_base_12"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/mysql_base_12/" data-title="Mysql_base_12"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql_base_11/" class="prev" rel="prev" title="Mysql_base_11"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_11</a>
+            <a href="/mysql_base_13/" class="next" rel="next" title="Mysql_base_13">Mysql_base_13<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

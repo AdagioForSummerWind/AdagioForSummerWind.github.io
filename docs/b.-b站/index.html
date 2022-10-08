@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="【Golang开发面经】B站（两轮技术面） 写在前面 面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/b.-b%E7%AB%99/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="【Golang开发面经】B站（两轮技术面） 写在前面 面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="prev" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="next" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/b.-b%E7%AB%99\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5415 ,
+        "url": "https:\/\/jefofrank.xyz\/b.-b%E7%AB%99\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5415 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#go的gmp模型">Go的GMP模型</a></li>
+    <li><a href="#go的gc">GO的GC</a></li>
+    <li><a href="#go的map底层是怎么实现的">Go的map底层是怎么实现的？</a></li>
+    <li><a href="#遍历map是有序的吗为什么">遍历map是有序的吗？为什么？</a></li>
+    <li><a href="#map作为函数是什么传递">map作为函数是什么传递?</a></li>
+    <li><a href="#在函数里面修改map会影响原来的吗">在函数里面修改map会影响原来的吗？</a></li>
+    <li><a href="#那数组呢">那数组呢？</a></li>
+    <li><a href="#切片呢">切片呢？</a></li>
+    <li><a href="#linux有用过是吧如何查看一个服务是否在运行">linux有用过是吧？如何查看一个服务是否在运行？</a></li>
+    <li><a href="#我只知道这个文件名能找到这个文件在哪里吗">我只知道这个文件名，能找到这个文件在哪里吗？</a></li>
+    <li><a href="#用过mysql是吧mysql-索引说一下">用过mysql是吧？mysql 索引说一下？</a></li>
+    <li><a href="#死锁是怎么产生的">死锁是怎么产生的</a></li>
+    <li><a href="#了解分布式锁吗讲讲红锁">了解分布式锁吗？讲讲红锁？</a></li>
+    <li><a href="#算法反转链表这写不出来的话就说不过去了">算法：反转链表。这写不出来的话，就说不过去了。</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#tcp和udp区别">TCP和UDP区别？</a></li>
+    <li><a href="#tcp是可靠传输为什么还有丢包的情况">TCP是可靠传输，为什么还有丢包的情况？</a></li>
+    <li><a href="#udp能实现可靠传输吗怎么实现">UDP能实现可靠传输吗？怎么实现？</a></li>
+    <li><a href="#tcp和ip的区别是什么">TCP和IP的区别是什么？</a></li>
+    <li><a href="#四次挥手的细节">四次挥手的细节？</a></li>
+    <li><a href="#为什么-time_wait-是2mls">为什么 time_wait 是2MLS?</a></li>
+    <li><a href="#大量处于-close-wait-的是什么场景-如何解决">大量处于 close wait 的是什么场景？ 如何解决？</a></li>
+    <li><a href="#cookie和session有什么区别">cookie和session有什么区别？</a></li>
+    <li><a href="#你是用go的是吧chan用过吧那说说对一个关闭的chan做读写会发生什么操作为什么">你是用go的是吧？chan用过吧？那说说对一个关闭的chan做读写会发生什么操作？为什么？</a></li>
+    <li><a href="#map-的底层说一下">map 的底层说一下？</a></li>
+    <li><a href="#如果你这个项目我突然有一个时间段多了很多流量要怎么处理">如果你这个项目，我突然有一个时间段，多了很多流量，要怎么处理?</a></li>
+    <li><a href="#算法连续子序列的最大和">算法：连续子序列的最大和</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="golang开发面经b站两轮技术面">【Golang开发面经】B站（两轮技术面）</h1>
+<h1 id="写在前面">写在前面</h1>
+<blockquote>
+<p>面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是不招人啊。。</p>
+</blockquote>
+<h1 id="笔试">笔试</h1>
+<p>略</p>
+<h1 id="一面">一面</h1>
+<h2 id="go的gmp模型">Go的GMP模型</h2>
+<p>G：表示goroutine，存储了goroutine的执行stack信息、goroutine状态以及goroutine的任务函数等；另外G对象是<code>可以重用</code>的。
+P：表示逻辑processor，P 的数量决定了系统内最大可并行的 G 的数量（前提：系统的物理cpu核数 &gt;= P的数量）；P的最大作用还是其拥有的各种G对象队列、链表、一些cache和状态。
+M：M 代表着真正的执行计算资源，物理 Processor。</p>
+<blockquote>
+<p>G 如果想运行起来必须依赖 P，因为 P 是它的<code>逻辑处理单元</code>，但是 P 要想真正的运行，他也需要与 M 绑定，这样才能真正的运行起来，<code>P 和 M 的这种关系就相当于 Linux 系统中的用户层面的线程和内核的线程是一样的</code>。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        data-srcset="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 1.5x, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="go的gc">GO的GC</h2>
+<p>Go是采用三色标记法来进行垃圾回收的，是传统 Mark-Sweep 的一个改进，它是一个并发的 GC 算法。<code>on-the-fly</code></p>
+<p><strong>原理如下</strong></p>
+<ol>
+<li>整个进程空间里申请每个对象占据的内存可以视为一个图， 初始状态下每个内存对象都是白色标记。</li>
+<li>先<code>stop the world</code>，将扫描任务作为多个并发的goroutine立即入队给调度器，进而被CPU处理，第一轮先扫描所有可达的内存对象，标记为灰色放入队列</li>
+<li>第二轮可以恢复start the world，将第一步队列中的对象引用的对象置为灰色加入队列，一个对象引用的所有对象都置灰并加入队列后，这个对象才能置为黑色并从队列之中取出。循环往复，最后队列为空时，整个图剩下的白色内存空间即不可到达的对象，即没有被引用的对象；</li>
+<li>第三轮再次<code>stop the world</code>，将第二轮过程中新增对象申请的内存进行标记（灰色），这里使用了<code>writebarrier</code>（写屏障）去记录这些内存的身份；</li>
+</ol>
+<p>这个算法可以实现 <code>on-the-fly</code>，也就是在程序执行的同时进行收集，并不需要暂停整个程序。</p>
+<p>简化步骤如下：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/387e757a88654aa3bec0a90740c64bc5.gif"
+        data-srcset="https://img-blog.csdnimg.cn/387e757a88654aa3bec0a90740c64bc5.gif, https://img-blog.csdnimg.cn/387e757a88654aa3bec0a90740c64bc5.gif 1.5x, https://img-blog.csdnimg.cn/387e757a88654aa3bec0a90740c64bc5.gif 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/387e757a88654aa3bec0a90740c64bc5.gif"
+        title="请添加图片描述" />
+1、首先创建三个集合：白、灰、黑。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/b1e1b72701004e88868da33acebbdc46.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/b1e1b72701004e88868da33acebbdc46.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/b1e1b72701004e88868da33acebbdc46.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/b1e1b72701004e88868da33acebbdc46.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/b1e1b72701004e88868da33acebbdc46.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" />
+2、将所有对象放入白色集合中。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/3dd813d617ce4c628475efde31d41e7f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/3dd813d617ce4c628475efde31d41e7f.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/3dd813d617ce4c628475efde31d41e7f.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/3dd813d617ce4c628475efde31d41e7f.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/3dd813d617ce4c628475efde31d41e7f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" />
+3、然后从根节点开始遍历所有对象（<strong>注意这里并不递归遍历</strong>），把遍历到的对象从<code>白色</code>集合放入<code>灰色</code>集合。</p>
+<p>因为root set 指向了A、F，所以从根结点开始遍历的是<code>A、F</code>，所以是把A、F放到灰色集合中。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/66e995e308544a06b757e707d75b5cc6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/66e995e308544a06b757e707d75b5cc6.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/66e995e308544a06b757e707d75b5cc6.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/66e995e308544a06b757e707d75b5cc6.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/66e995e308544a06b757e707d75b5cc6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" /></p>
+<p>4、之后遍历灰色集合，将<code>灰色对象引用的对象</code>从<code>白色集合</code>放入<code>灰色集合</code>，之后将此灰色对象放入黑色集合
+我们可以发现这个A指向了B，C，D所以也就是把BCD放到灰色中，把A放到黑色中，而F没有指任何的对象，所以直接放到黑色中。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/8f6f3614c523493299a3bd9d0b349b11.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/8f6f3614c523493299a3bd9d0b349b11.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/8f6f3614c523493299a3bd9d0b349b11.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/8f6f3614c523493299a3bd9d0b349b11.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/8f6f3614c523493299a3bd9d0b349b11.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" />
+5、重复 4 直到灰色中无任何对象</p>
+<p>因为D指向了A所以D也放到了黑色中，而B和C能放到黑色集合中的道理和F一样，已经没有了可指向的对象了。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/34c8f1a7c4b74c34bb1ff5daa271ea62.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/34c8f1a7c4b74c34bb1ff5daa271ea62.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/34c8f1a7c4b74c34bb1ff5daa271ea62.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/34c8f1a7c4b74c34bb1ff5daa271ea62.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/34c8f1a7c4b74c34bb1ff5daa271ea62.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" />
+6、通过<code>write-barrier</code>检测对象有无变化，重复以上操作</p>
+<p>由于这个EGH并没有和RootSet有直接或是间接的关系，所以就会被清除。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/ac2dc287901f4caa93293926b5224404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/ac2dc287901f4caa93293926b5224404.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/ac2dc287901f4caa93293926b5224404.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/ac2dc287901f4caa93293926b5224404.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/ac2dc287901f4caa93293926b5224404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" />
+7、收集所有白色对象（垃圾）
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/fc228a16fbd94dc2a271c603d2b65715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        data-srcset="https://img-blog.csdnimg.cn/fc228a16fbd94dc2a271c603d2b65715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/fc228a16fbd94dc2a271c603d2b65715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/fc228a16fbd94dc2a271c603d2b65715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/fc228a16fbd94dc2a271c603d2b65715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTMwNDUwMw==,size_16,color_FFFFFF,t_70"
+        title="在这里插入图片描述" /></p>
+<p>所以我们可以看出这里的情况，只要是和root set根集合<code>直接相关</code>的对象或是<code>间接相关</code>的对象都不会被清楚。只有不相关的才会被回收。</p>
+<h2 id="go的map底层是怎么实现的">Go的map底层是怎么实现的？</h2>
+<p>map 的底层是一个结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go map 的底层结构体表示
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">hmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">count</span>     <span class="kt">int</span>    <span class="c1">// map中键值对的个数，使用len()可以获取 
+</span><span class="c1"></span>	<span class="nx">flags</span>     <span class="kt">uint8</span>
+	<span class="nx">B</span>         <span class="kt">uint8</span>  <span class="c1">// 哈希桶的数量的log2，比如有8个桶，那么B=3
+</span><span class="c1"></span>	<span class="nx">noverflow</span> <span class="kt">uint16</span> <span class="c1">// 溢出桶的数量
+</span><span class="c1"></span>	<span class="nx">hash0</span>     <span class="kt">uint32</span> <span class="c1">// 哈希种子
+</span><span class="c1"></span>
+	<span class="nx">buckets</span>    <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 指向哈希桶数组的指针，数量为 2^B 
+</span><span class="c1"></span>	<span class="nx">oldbuckets</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 扩容时指向旧桶的指针，当扩容时不为nil 
+</span><span class="c1"></span>	<span class="nx">nevacuate</span>  <span class="kt">uintptr</span>        
+
+	<span class="nx">extra</span> <span class="o">*</span><span class="nx">mapextra</span>  <span class="c1">// 可选字段
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+	<span class="nx">bucketCntBits</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">bucketCnt</span>     <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">bucketCntBits</span>     <span class="c1">// 桶数量 1 &lt;&lt; 3 = 8
+</span><span class="c1"></span><span class="p">)</span>
+
+<span class="c1">// Go map 的一个哈希桶，一个桶最多存放8个键值对
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">bmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// tophash存放了哈希值的最高字节
+</span><span class="c1"></span>	<span class="nx">tophash</span> <span class="p">[</span><span class="nx">bucketCnt</span><span class="p">]</span><span class="kt">uint8</span>
+    
+    <span class="c1">// 在这里有几个其它的字段没有显示出来，因为k-v的数量类型是不确定的，编译的时候才会确定
+</span><span class="c1"></span>    <span class="c1">// keys: 是一个数组，大小为bucketCnt=8，存放Key
+</span><span class="c1"></span>    <span class="c1">// elems: 是一个数组，大小为bucketCnt=8，存放Value
+</span><span class="c1"></span>    <span class="c1">// 你可能会想到为什么不用空接口，空接口可以保存任意类型。但是空接口底层也是个结构体，中间隔了一层。因此在这里没有使用空接口。
+</span><span class="c1"></span>    <span class="c1">// 注意：之所以将所有key存放在一个数组，将value存放在一个数组，而不是键值对的形式，是为了消除例如map[int64]所需的填充整数8（内存对齐）
+</span><span class="c1"></span>    
+    <span class="c1">// overflow: 是一个指针，指向溢出桶，当该桶不够用时，就会使用溢出桶
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        data-srcset="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 1.5x, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        title="在这里插入图片描述" />
+当向 map 中存储一个 kv 时，通过<code> k 的 hash 值与 buckets 长度取余</code>，定位到 key 在哪一个bucket中，<strong>hash 值的高8位存储在 bucket 的 tophash[i] 中</strong>，用来快速判断 key是否存在。<strong>当一个 bucket 满时，通过 overflow 指针链接到下一个 bucket。</strong></p>
+<h2 id="遍历map是有序的吗为什么">遍历map是有序的吗？为什么？</h2>
+<p>不是有序的，使用 range 多次遍历 map 时输出的 key 和 value 的顺序可能不同，map在遍历时，并不是从固定的0号bucket开始遍历的，每次遍历，都会从一个<code>随机值序号</code>的bucket，再从其中<code>随机的 cell </code>开始遍历。map 遍历时，是<code>按序遍历 bucket</code>，同时按需遍历 bucket 和其 overflow bucket 中 的 cell。</p>
+<p>但是 map 在<code>扩容</code>后，会发生 key 的搬迁，这造成原来落在一个 bucket 中的 key，搬迁后，有可能<strong>会落到其他 bucket 中了</strong>，从这个角度看，遍历 map 的结果就不可能是按照原来的顺序了。</p>
+<h2 id="map作为函数是什么传递">map作为函数是什么传递?</h2>
+<p>map 传的是地址值</p>
+<h2 id="在函数里面修改map会影响原来的吗">在函数里面修改map会影响原来的吗？</h2>
+<p>会的，因为传递的map的地址，会对原来的map进行修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestMap</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nf">changeMap</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">changeMap</span><span class="p">(</span><span class="nx">b</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果如下
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/708922b901334c82af2f1a687022ab0c.png"
+        data-srcset="https://img-blog.csdnimg.cn/708922b901334c82af2f1a687022ab0c.png, https://img-blog.csdnimg.cn/708922b901334c82af2f1a687022ab0c.png 1.5x, https://img-blog.csdnimg.cn/708922b901334c82af2f1a687022ab0c.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/708922b901334c82af2f1a687022ab0c.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="那数组呢">那数组呢？</h2>
+<p>数组不会，数组不是引用类型，传的值传递，并不是应用传递。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestArray</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nf">changeArray</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">changeArray</span><span class="p">(</span><span class="nx">a</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/188c02090ed24f30b37c1f81cb6ac05b.png"
+        data-srcset="https://img-blog.csdnimg.cn/188c02090ed24f30b37c1f81cb6ac05b.png, https://img-blog.csdnimg.cn/188c02090ed24f30b37c1f81cb6ac05b.png 1.5x, https://img-blog.csdnimg.cn/188c02090ed24f30b37c1f81cb6ac05b.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/188c02090ed24f30b37c1f81cb6ac05b.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="切片呢">切片呢？</h2>
+<p>会，和 map 一样，都是引用类型。传递的是地址。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestSlice</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nf">changeSlice</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">changeSlice</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">4</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/dc831ad7cd204be8911d9901e62c538d.png"
+        data-srcset="https://img-blog.csdnimg.cn/dc831ad7cd204be8911d9901e62c538d.png, https://img-blog.csdnimg.cn/dc831ad7cd204be8911d9901e62c538d.png 1.5x, https://img-blog.csdnimg.cn/dc831ad7cd204be8911d9901e62c538d.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/dc831ad7cd204be8911d9901e62c538d.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="linux有用过是吧如何查看一个服务是否在运行">linux有用过是吧？如何查看一个服务是否在运行？</h2>
+<ol>
+<li>如果我们知道服务名，我们可以使用 ps 命令：
+<code>ps -ef | grep 服务名 或 ps aux |grep 服务名</code></li>
+<li>如果知道端口号，我们可以使用 lsof 命令：<code>lsof -i:端口号</code></li>
+<li>或者也可以用这个：<code>systemctl status 服务名 或 service 服务名 status</code></li>
+<li>如果是基于 tcp 的连接，还可以使用 <code>netstat</code> 查看端口和进程等相关内容。<code>netstat -tnlp </code></li>
+</ol>
+<h2 id="我只知道这个文件名能找到这个文件在哪里吗">我只知道这个文件名，能找到这个文件在哪里吗？</h2>
+<p>可以使用 find 命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">find / -name <span class="s2">&#34;main.go&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="用过mysql是吧mysql-索引说一下">用过mysql是吧？mysql 索引说一下？</h2>
+<p>mysql 的索引包括** 基于InnoDB的聚集索引、基于MyISAM的非聚集索引、primary key 主键索引、secondary key 次要索引**</p>
+<ul>
+<li>
+<p>基于InnoDB的聚集索引：主键索引(聚集索引)的<code>叶子结点会存储数据行</code>，也就是说<code>数据和索引在一起</code>，辅助索引只会存储主键值</p>
+</li>
+<li>
+<p>基于MyISAM的非聚集索引：B+树叶子结点只会存储数据行（数据文件）的指针，简单来说就是<code>数据和索引不在一起</code>，非聚集索引包含 主键索引 和 辅助索引 到会存储指针的值。</p>
+</li>
+<li>
+<p>primary key 主键索引：InnoDB要求表必须有主键(<code>MyISAM可以没有</code>)，如果没有，MySQL系统会自动选择一个<code>唯一标识数据记录的列作为主键</code>。</p>
+</li>
+<li>
+<p>secondary key 次要索引：结构和主键搜索引没有任何区别，<code>同样用 B+Tree，data域存储相应记录主键的值而不是地址</code>。</p>
+</li>
+</ul>
+<h2 id="死锁是怎么产生的">死锁是怎么产生的</h2>
+<p>产生死锁就有四个必要条件：互斥条件、请求和保持条件、不剥夺条件、环路等待条件。</p>
+<h2 id="了解分布式锁吗讲讲红锁">了解分布式锁吗？讲讲红锁？</h2>
+<p>只磕磕绊绊讲了一些分布式锁，红锁就不太记得了（</p>
+<p>可以看看这篇博客 <a href="https://www.aisoutu.com/a/435487" target="_blank" rel="noopener noreffer">基于Go语言的分布式红锁</a></p>
+<h2 id="算法反转链表这写不出来的话就说不过去了">算法：反转链表。这写不出来的话，就说不过去了。</h2>
+<h1 id="二面">二面</h1>
+<h2 id="tcp和udp区别">TCP和UDP区别？</h2>
+<p>TCP 是可靠传输，面向连接，基于流，占用资源多，效率低。</p>
+<p>UDP是尽最大努力交付，基于无连接，基于报文，UDP 占用系统资源较少，效率高。</p>
+<h2 id="tcp是可靠传输为什么还有丢包的情况">TCP是可靠传输，为什么还有丢包的情况？</h2>
+<p>丢包是网络问题，TCP的可靠是可靠在如果发生丢包，那么会立即重传报文段。</p>
+<h2 id="udp能实现可靠传输吗怎么实现">UDP能实现可靠传输吗？怎么实现？</h2>
+<p>可以的，我们只需要仿照TCP的可靠传输机制就可以了，比如说设置ACK确认机制，一旦没有收到，或是收到三次上一个报文的ACK，我们就立即重传丢失的报文。再比如说设置滑动窗口来保证数据传输的安全性等等&hellip;</p>
+<h2 id="tcp和ip的区别是什么">TCP和IP的区别是什么？</h2>
+<p>TCP 是传输控制协议（Transmission Control Protocal），是基于IP的传输层协议，是传输层的，IP 是因特网协议（Internet Protocol）在网络层的。</p>
+<h2 id="四次挥手的细节">四次挥手的细节？</h2>
+<p>数据传输完毕之后，通信的双方都可释放连接。现在A和B都处于<code>ESTABLISHED</code>状态。</p>
+<ol>
+<li>A的应用进程先向TCP发出连接释放报文段，并停止再发送数据，主动关闭TCP连接。A把链接释放报文段首部的终止控制位<code>FIN</code>置为<code>1</code>，其序号为<code>seq=u</code>，它等于前面以传送过的数据的最后一个字节的序号加<code>1</code>.这时候A进入了<code>FIN-WAIT-1(终止等待1)</code>状态，等待B的确认。</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：TCP规定，FIN报文段即使不携带数据，他也消耗掉一个序号！！</p>
+</blockquote>
+<ol start="2">
+<li>B 收到链接释放报文段后即发出确认，确认号是<code>ack = u + 1</code>，而这个报文段自己的序号是<code>v</code>，等于B前面已传送过的数据的<code>最后一个字节的序号加1</code>.然后B就进入<code>CLOSE-WAIT(关闭等待)</code>状态。TCP服务器进程这时应通知高层应用进程，因而从A到B这个方向的链接就释放了，这时的TCP链接处于半关闭状态，即A已经没有数据要发送了，但B若发送数据，A仍要接收，也就是说，从B到A这个方向的连接并未关闭。这个状态可能要维持一段时间。</li>
+<li>A收到来自B的确认后，就进入了<code>FIN-WAIT-2(终止等待2)</code>状态满等待B发出的连接释放报文段。若B已经没有要向A发送的数据，其应用进程就通知TCP释放连接，这时B发出的连接释放报文段必须使<code>FIN = 1</code>，现假定B的序号为<code>w</code>(在半关闭状态B可能又发送了一些数据)。B还必须重复上次已发送过的确认号<code>ack = u + 1</code>.这时B就进入<code>LAST-ACK(最后确认)</code>状态，等待A的确认。</li>
+<li>A在收到了B的链接释放报文段后，必须对此发出确认。在确认报文段中把<code>ACK置1</code>，确认号<code>ack=w+1</code>，而自己的序号是<code>seq=u+1</code>(根据TCP标准，前面发送过的FIN报文段要消耗一个序号)。然后进入到<code>TIME-WAIT</code>(时间等待)状态。<strong>注意：</strong> 现在TCP连接<code>还没有还没有释放掉</code>。必须经过时间等待计时器设置的时间<code>2MSL</code>后，A才能进入CLOSED状态。</li>
+</ol>
+<blockquote>
+<p>时间MSL叫做最长报文段寿命，RFC793建议设在两分钟。但是在现在工程来看两分钟太长了，所以TCP允许不同的实现可以根据具体情况使用更小的MSL值。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/9d86b663dcdd48189549110bf9845bb4.png"
+        data-srcset="https://img-blog.csdnimg.cn/9d86b663dcdd48189549110bf9845bb4.png, https://img-blog.csdnimg.cn/9d86b663dcdd48189549110bf9845bb4.png 1.5x, https://img-blog.csdnimg.cn/9d86b663dcdd48189549110bf9845bb4.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/9d86b663dcdd48189549110bf9845bb4.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="为什么-time_wait-是2mls">为什么 time_wait 是2MLS?</h2>
+<ol>
+<li><strong>为了保证A发送的最后一个ACK报文段能够到达B。</strong> 这个ACK报文段有可能丢失，因而使处于在 LAST-ASK 状态的B收不到对己发送的 FIN-ACK 报文段的确认。<code>B会超时重传这个FIN+ACK报文段，而A就能在 2MSL 时间内收到这个重传的FIN+ACK报文段</code>。而A就能在2MSL时间内收到这个重传的FIN+ACK报文段。接着A重传一次确认，重新启动2MSL计时器。最后的A和B都正常进入CLOSED状态。<code>如果A在TIME-WAIT状态不等待一段时间，而实发送完ACK报文段后立即释放连接，那么就无法收到B重传的FIN+ACK报文段，因而也不会再发送一次确认报文段</code>。</li>
+<li><strong>防止了“已失效的连接请求报文段”。</strong> A在发送完最后一个ACK报文段后，在经过时间2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失，这样就可以使下一个连接中不会出现这种旧的连接请求报文段。<code>B只要收到了A发出的确认，就进入CLOSED状态</code>。同样，B在撤销相应的传输控制块TCB后，就结束了这次的TCP连接。</li>
+</ol>
+<h2 id="大量处于-close-wait-的是什么场景-如何解决">大量处于 close wait 的是什么场景？ 如何解决？</h2>
+<p>通常出现大量的CLOSE_WAIT，说明Server端没有发起close()操作，这基本上是用户server 端程序的问题了；</p>
+<p>通常情况下，Server都是等待Client访问，如果Client退出请求关闭连接，server端自觉close()对应的连接。</p>
+<p><strong>一般是程序 Bug，或者关闭 socket 不及时。服务端接口耗时较长，客户端主动断开了连接，此时，服务端就会出现 close_wait。</strong></p>
+<p><strong><code>这个我们就只能检查自己代码了，用netstat或是其他工具，检测代码为啥耗时长。</code></strong></p>
+<h2 id="cookie和session有什么区别">cookie和session有什么区别？</h2>
+<p>cookie和session的共同之处在于：cookie和session都是用来跟踪浏览器用户身份的会话方式。cookie数据保存在客户端，session数据保存在服务器端。</p>
+<h2 id="你是用go的是吧chan用过吧那说说对一个关闭的chan做读写会发生什么操作为什么">你是用go的是吧？chan用过吧？那说说对一个关闭的chan做读写会发生什么操作？为什么？</h2>
+<ol>
+<li>读已经关闭的 chan 能一直读到东西，但是读到的内容根据通道内关闭前是否有元素而不同。<strong><code>如果有元素，就继续读剩下的元素，如果没有就是这个chan类型的零值，比如整型是 int，字符串是 &quot;&quot;</code></strong>。</li>
+<li>写已经关闭的 chan 会 panic。因为源码上面就是这样写的，可以看<code>src/runtime/chan.go</code></li>
+</ol>
+<h2 id="map-的底层说一下">map 的底层说一下？</h2>
+<p>看上面</p>
+<h2 id="如果你这个项目我突然有一个时间段多了很多流量要怎么处理">如果你这个项目，我突然有一个时间段，多了很多流量，要怎么处理?</h2>
+<ol>
+<li>我们要延长一些 token，cookie的设置时间，或是设置这些过期时间不一样，防止缓存雪崩的情况。</li>
+<li>设置布隆过滤器，防止缓冲击穿情况。</li>
+<li>使用 nginx 进行 http/https 的流量分发。使用轮询，随机，哈希，一致性哈希等等进行负载均衡等等&hellip;</li>
+<li>提高服务自身性能，比如sql的索引，语法层面的调参等等&hellip;</li>
+<li>引入CDN进行加速。</li>
+<li>提高服务器配置。</li>
+<li>&hellip;</li>
+</ol>
+<h2 id="算法连续子序列的最大和">算法：连续子序列的最大和</h2>
+<h1 id="参考资料">参考资料</h1>
+<p>[1] <a href="https://blog.csdn.net/Peerless__/article/details/125458742" target="_blank" rel="noopener noreffer">https://blog.csdn.net/Peerless__/article/details/125458742</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/c.-%E7%99%BE%E5%BA%A6/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

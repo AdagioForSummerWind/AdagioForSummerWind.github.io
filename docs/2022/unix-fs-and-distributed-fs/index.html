@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DistributedSystem_HongweiDu_11 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/information-security-management/" /><link rel="next" href="https://qizhengzou.github.io/2022/transaction-processing-systems/" /><link rel="canonical" href="https://qizhengzou.github.io/2022/unix-fs-and-distributed-fs/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_11"/>
+<meta name="twitter:description" content="Unix File Systems文件系统 File Systems： File system provides the most fundamental service for building any information systems. file storage, management and retrieve service. We look at two file operations: fp = open (“cs4274/exam”, r, 0); r = read (fp,"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_11",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2022\/unix-fs-and-distributed-fs\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "distributed_system","wordcount":  2578 ,
+        "url": "https:\/\/qizhengzou.github.io\/2022\/unix-fs-and-distributed-fs\/","datePublished": "2022-01-01T15:21:34\u002b08:00","dateModified": "2022-01-01T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">DistributedSystem_HongweiDu_11</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2022-01-01>2022-01-01</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2578 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#unix-file-systems文件系统">Unix File Systems文件系统</a></li>
+    <li><a href="#distributed-file-systems">Distributed File Systems</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#unix-file-systems文件系统">Unix File Systems文件系统</a></li>
+    <li><a href="#distributed-file-systems">Distributed File Systems</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><a class="post-dummy-target" id="unix-file-systems文件系统"></a><h2>Unix File Systems文件系统</h2>
+<p>File Systems：</p>
+<ul>
+<li>File system provides the most fundamental service for building any information systems.
+<ul>
+<li>file storage, management and retrieve service.</li>
+</ul>
+</li>
+<li>We look at two file operations:
+<ul>
+<li>fp = open (“cs4274/exam”, r, 0);</li>
+<li>r = read (fp, n, buf);</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101202700.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Hard disk Structure：</p>
+<ul>
+<li>Head, cylinder, sector
+<ul>
+<li>Data stored in the same cylinder first to reduce the head movement</li>
+</ul>
+</li>
+<li>Disk operation in units of sectors</li>
+<li>An IBM hard disk configuration:
+<ul>
+<li>10 heads</li>
+<li>40 tracks-per-disk (cylinders)</li>
+<li>32 sectors-per-track</li>
+<li>512 bytes/sector</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101202947.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Data Block and Block Number：</p>
+<ul>
+<li>File system uses block as a data unit for disk operation
+<ul>
+<li>Usually a block size is 1K (&gt;=  sector size)</li>
+<li>Disk block is referenced by its block #</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101205249.png" alt="" class="lazyload"></figure></li>
+<li>Block # to Physical Address Translation
+<ul>
+<li>sectors = blk_num  (#sects-per-blk)</li>
+<li>cyld_num = sectors  (#sects-per-cyld)</li>
+<li>head_num = (sectors mod (#sects-per-cyld)) / (#sects-per-track)</li>
+<li>sect_num =  sectors mod (#sects-per-track)</li>
+</ul>
+</li>
+</ul>
+<p>Internal File Structure :</p>
+<ul>
+<li>Each file has an i-node: file attributes and data index:</li>
+<li>File attributes:
+<ul>
+<li>owner, access permissions, access times, file size</li>
+<li>12 bytes</li>
+</ul>
+</li>
+<li>Data index:
+<ul>
+<li>13 indices: 10 direct indices, 1 indirect index, 1 double indirect index, 1 triple indirect index</li>
+<li>13 * 4 =52 bytes</li>
+</ul>
+</li>
+<li>The size of an inode = 64 bytes.</li>
+<li>An inode is referenced by its inode #</li>
+</ul>
+<p>Diagram of data index in inode :</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101210530.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Unix Directory File :</p>
+<ul>
+<li>Directory files are ordinary files consisting of entries mapping names to i-node #, e.g., directory file /etc</li>
+<li>After BSD4.3, file names are of variable length (upto 255 bytes). Each entry has the entry-length, name &amp; inode #.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101210607.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Directory structure and name resolution:</p>
+<ul>
+<li>Directories are in a tree structure.</li>
+<li>Resolve pathname recursively to i-node number, component by component from the root (or relative) directory, e.g. /home/lec/jia/unix-fs.doc</li>
+<li>a) Starting from inode # 3 of “/” -&gt; load inode of “/”</li>
+<li>b) Read content of directory file “/”:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  1368 bin@             1478 lib/           233756 rpool/        2484 boot/            1486 mnt/             
+   1489 sbin/              1369 dev/         154559 net/           1494 system/       2818 devices/       
+   6 export/                 2429 platform/  5 var/                    27376 home/ ………………….
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>c) Map “home” -&gt; inode # 27376 -&gt; load inode 27376</li>
+<li>d) Read directory file “/home”:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">94171 bsft08/       93753 course/         231 lec/               94363 ms10/
+55531 bsft09/       94125 cslab/           94239 misc/         91159 ms11/ ……
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>e) Map “lec” -&gt; inode # 231 -&gt; load inode 231</li>
+<li>d) Repeat the above steps until map “unix-fs.doc” -&gt; inode #</li>
+</ul>
+<p>Disk Management (inode # -&gt; i-nodes):</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101211558.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Super block 超级块:</p>
+<ul>
+<li>Each file system has a super block which contains:
+<ul>
+<li>The size of the file system</li>
+<li>The number of free blocks in the system</li>
+<li>An array of cached free block numbers</li>
+<li>The index of the next free block number</li>
+<li>A pointer to the start of i-nodes area</li>
+<li>The number of free i-nodes in the system</li>
+<li>A list of cached free i-node numbers</li>
+<li>The index of the next free i-node numbers</li>
+</ul>
+</li>
+<li>The super block (usually one disk block) of the root file system must be loaded into memory when system is up.</li>
+</ul>
+<p>Calculate an inode address by inode number :</p>
+<ul>
+<li>blk_num = (inode_num -1) / #inodes-per-blk + st-addr-inodes</li>
+<li>byte_offset = ((inode_num -1) mod (#inodes-per-blk))*inode-size</li>
+<li>N.B. In UNIX, inode-size = 64,  #inodes-per-blk = 16</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101211936.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Summary on address translations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">pathname 	-&gt; 	inode #
+            -&gt; 	inode address (block # &amp; offset)
+            -&gt; 	inode 
+            -&gt; 	data block #
+            -&gt; 	disk address
+            -&gt; 	data 
+</code></pre></td></tr></table>
+</div>
+</div><p>Internal Structure for File Accesses :</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101212105.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Pseudo-code for open operation :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">int open (path-name, op) {
+	i = resolve(path-name);
+	if inode(i) in inode-table then
+		    inode-table(i).count++;
+	else
+		    load inode(i) into inode-table;
+	create an entry in file-table, file-entry(i);
+	file-entry(i).count = 1; file-entry(i).op = op; file-entry(i).offset = 0; 
+	file-entry(i).inode-ptr = &amp;(inode-table(i));
+	fd = get the next entry in file-descript-table, fdt;
+	fdt[fd] = &amp;(file-entry(i));
+	return fd;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Pseudo-code for read operation :</p>
+<ul>
+<li>Steps of reading a file data:</li>
+<li>read (fp, n, buf)</li>
+<li>fp -&gt;
+<ul>
+<li>pointer to the entry in file-table, getting offset</li>
+<li>pointer to the entry in inode-table</li>
+<li>get the block # of the data</li>
+<li>convert the block # to head, cylinder, sector</li>
+<li>ask disk controller to read in data and copy the n bytes into buf</li>
+</ul>
+</li>
+</ul>
+<p>Global File Organization :</p>
+<ul>
+<li>Disk Partitions
+<ul>
+<li>disk units are partitioned into sections.</li>
+<li>each section is configured into a file system.</li>
+<li>inode numbers and disk block numbers are valid within a file system.</li>
+</ul>
+</li>
+</ul>
+<p>Mount/umount operations :</p>
+<ul>
+<li>mount(dev_name, dir_name, options);   umount(dev_name)
+<ul>
+<li>e.g., mount(“/dev/dsk1”, “/usr”, 0)</li>
+</ul>
+</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101212314.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Mount table:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101212339.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Name resolution cross mount point:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">- mount /dev/dsk1  /usr
+- cd /usr/src/uts
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>When the kernel parses the path name crossing a mount point, from the inode it knows this is a mount point.</li>
+<li>It finds the mount table entry, which contains the addr of the super block and a pointer to the root inode (incore).</li>
+<li>It then accesses the root inode of the mounted file system. The rest of the name resolution is inside the mounted fs.</li>
+</ul>
+<p>Link files :</p>
+<ul>
+<li>Link system call is
+<ul>
+<li>link(sour_fname, dest_fname)</li>
+<li>e.g.  	link(“usr/src/uts/sys”, “/usr/include/sys”)</li>
+</ul>
+</li>
+<li>File system first finds the inode # of the source file.</li>
+<li>It then searches for the parent directory of the dest_fname.</li>
+<li>It adds an entry in the parent directory of the dest file), and fills in the pair of dest_fname and the inode #.</li>
+<li>Notice: link cannot cross a file system.</li>
+</ul>
+<a class="post-dummy-target" id="distributed-file-systems"></a><h2>Distributed File Systems</h2>
+<p>DFS Goals:</p>
+<ul>
+<li>Location transparency: a uniform file name space that does not contain file physical location information.</li>
+<li>Concurrency transparency: a user’s file operations will not be interfered by another user.</li>
+<li>Failure transparency: when part of the system fails, the rest of the system can still provide file services.</li>
+<li>Heterogeneity: interoperable among different operating systems and communication protocols.</li>
+<li>Scalability: the system performance will not deteriorate as the system size grows.</li>
+</ul>
+<p>Distributed File System Components :</p>
+<ul>
+<li>Flat file service: offer a simple set of general operations to access attributes and data of files, indexed by UFIDs.</li>
+<li>Directory service: map text names to UFIDs.</li>
+<li>Client module: allow access to file &amp; directory service under a single application programming interface.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101212656.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Distributed File System Interface:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101212718.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Flat file service operations:</p>
+<ul>
+<li>read(UFID,i n) -&gt; Data   If1≤i≤Length(File), read a sequence of up to n items from a file starting at item i and returns it in Data.
+<ul>
+<li>throws BadlPosition,</li>
+</ul>
+</li>
+<li>write(UFID, i, Data) If1≤i≤Length(File)+I, write a sequence of Data to a file. starting at item i.
+<ul>
+<li>throws BadPosition</li>
+</ul>
+</li>
+<li>create( &gt; UFID Create a new file with length 0 and return its UFID.</li>
+<li>delete(UFID) Remove the file from the file store.</li>
+<li>gettributes(UFID) &gt; Attr   Return attributes of the file.</li>
+<li>setlttributes(UFID, Attr)   Set file attributes.</li>
+</ul>
+<p>Directory service operations:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101213441.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Constructing a Hierarchical FS at Client Module:</p>
+<ul>
+<li>A hierarchical file naming system can be constructed by the client module by using file &amp; directory services.</li>
+<li>The root of the directory tree is a directory with a well-known UFID.</li>
+<li>A pathname resolution function is provided in the client module.</li>
+</ul>
+<p>Differences between DFS and stand-alone FS :</p>
+<ul>
+<li>Separation of file service and directory service:
+<ul>
+<li>The file service is made more general and the design of directory service can be more flexible.</li>
+<li>It off loads directory service from file server.</li>
+</ul>
+</li>
+<li>Stateless servers and emulations in the client module:
+<ul>
+<li>File server is made very light weighted, leaving most of work to the client module.</li>
+<li>Server can recover from failure efficiently, with no need to restore client’s states.</li>
+<li>Client module emulates the traditional FS interface.</li>
+</ul>
+</li>
+<li>Repeatable operations
+<ul>
+<li>File operations are idempotent, allowing the use of at-least-once RPC semantics.</li>
+<li>Operation create is exceptional (but no side-effect to users).</li>
+</ul>
+</li>
+</ul>
+<p>Capabilities and Access Control :</p>
+<ul>
+<li>Clients interacts with dir-server and file-server via RPCs. There is a security loophole, allowing unauthorized user to use other’s ID to access files illegally.</li>
+<li>Capability (in the form of a UFID) is a digital key used to identify and access file by clients in distributed FS.</li>
+<li>A capability includes information of file location (groupID), FID, and access control.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101213614.png" alt="" class="lazyload"></figure></li>
+<li>Directory server generates the capability of a file based on to client’s ID and access permission.</li>
+<li>Capabilities is used for access control to the file.</li>
+<li>A capability must have an encrypted field to prevent it from being modified or mis-used by others. The encryption key is usually shared between the directory server and file server.</li>
+</ul>
+<p>File Representation :</p>
+<ul>
+<li>An index block (similar to i-node in UNIX) is used for each file to point to data blocks (or another layer of index blocks).</li>
+<li>Locating an index block is done by using UFID. The UFIDs can be organized to B-tree structure for efficient search.
+<ul>
+<li>The mappings from UFIDs to the corresponding index-blocks are stored in disk, and the mappings can be too big to be in memory at once.</li>
+</ul>
+</li>
+<li>Server’s location (file group ID) is embedded in UFID. The client needs to know server’s location before making RPC for file access. This can be done by the following RPC to any server:
+<ul>
+<li>PortID = GetServerPort(FileGroupID)</li>
+</ul>
+</li>
+</ul>
+<p>Space Leaks:</p>
+<ul>
+<li>Some files whose directory links have been removed may remain in disk and never be accessed, due to the separation of directory servers from file servers.</li>
+<li>The problem is ignored, or prevented in most of the systems.</li>
+<li>A “life-time” method aims to solve the problem:
+<ul>
+<li>the dir-server periodically touch all files, i.e., set a life-time to all files registered with the directory-server.</li>
+<li>file-server decrements the life-time of all files at some clock rate, and each access to a file will renew its lifetime.</li>
+<li>The files with life-time 0 will be removed (they are not accessed).</li>
+</ul>
+</li>
+</ul>
+<p>Google File System (an example):</p>
+<ul>
+<li>GFS aims to provide fault-tolerant and highly concurrent accesses to huge files. It consists of GFS client, a single GFS master, and many GFS chunkservers.</li>
+<li>The client requests the master (directory server) with file-name and chunk index (translated from user’s byte-offset within a file and the fixed chunk size, 64MB).</li>
+<li>The master replies with the chunk handle and location of the replicas.</li>
+<li>The client requests one of the replicas (chunkserver, i.e., data server) with chunk handle and a byte-range within the chunk for data-access.</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101215407.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>Sun Network File System (NFS) :</p>
+<ul>
+<li>The Network File System (NFS) was developed to allow machines to mount a local directory to a remote file system as if it were on a local disk. It facilitates fast and seamless sharing of files across a network.</li>
+<li>It is an open standard with clear and simple interfaces (an industry standard for file sharing in LANs since 1980s).
+It follows the abstract file service model defined for Distributed File Systems.</li>
+</ul>
+<p>NFS server operations (RFC1813, 1995):</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101215604.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>NFS architecture:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101215629.png" alt="" class="lazyload"></figure></li>
+</ul>
+<p>NFS Structure:</p>
+<ul>
+<li>NFS client module resides in the UNIX kernel. It emulates exactly the semantics of UNIX file system.
+<ul>
+<li>application programs can run in NFS without any change.</li>
+<li>a single client module serves all user processes.</li>
+</ul>
+</li>
+<li>NFS client and server modules communicate using NFS protocol and mount protocol (through Sun RPCs).</li>
+<li>NFS server is stateless. It provides reliable file operations.</li>
+</ul>
+<p>NFS Virtual File System :</p>
+<ul>
+<li>NFS introduces a Virtual File System (VFS) layer. It maintains an entry of v-node (virtual i-node) for each file that is currently opened or mounted.</li>
+<li>v-node is a data structure maintained in OS (similar to incore inode-table in unix), not stored on disk. It indicates whether a file is local or remote.
+<ul>
+<li>For a local file, it contains i-node.</li>
+<li>For a remote file, it contains the file-handle as following:</li>
+</ul>
+</li>
+<li>FileSystem ID&mdash;-i-node number&mdash;-i-node generation number</li>
+</ul>
+<p>Mount remote file systems to client in NFS:</p>
+<ul>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20220101215932.png" alt="" class="lazyload"></figure></li>
+<li>Note: The file system mounted at /usr/students in Client is a sub-tree located at /export/people in Server 1;</li>
+<li>The file system mounted at /usr/staff in Client is the sub-tree located at /nfs/users in Server 2.</li>
+</ul>
+<p>Mount Service:</p>
+<ul>
+<li>Each NFS server runs a mount process at application level.</li>
+<li>Client module requests mount of a remote file system by specifying
+remote host name, pathname and local directory to be mounted.</li>
+<li>The mount process at the server communicates with the client by a mount protocol (RPCs), and returns the file-handle of the mounted directory to the client.</li>
+<li>The client keeps the file-handle (containing location of the server) in the v-node of the mounted directory for subsequent file accesses.</li>
+</ul>
+<p>File Sharing (export for mount): by server:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">share  [-F FSType]  [-o specific_options]   [-d description] [pathname]
+dfshares [-F FSType] [-h] [-o specific_options] [server...]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>share: export, or make a resource available for mounting, through a type specified FSType, or the first file-system-type listed in /etc/dfs/fstypes file.
+<ul>
+<li>/etc/dfs/fstypes: list of DFS utilities installed on the system. For each installed DFS type, there is a line starting with file system type (e.g., “nfs” or “autofs”), followed by descriptive text.</li>
+<li>/etc/dfs/dfstab: list of share commands to be executed at boot time</li>
+<li>/etc/dfs/sharetab: system record of shared file systems</li>
+</ul>
+</li>
+<li>dfshares: list available resources from remote or local  systems
+<ul>
+<li>For each resource, the fields are: resource server access transport</li>
+</ul>
+</li>
+</ul>
+<p>Mount Remote Files: by client:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mount [ -F nfs] [generic_options] [-o specific_options]  [-O] resource mount_point
+mountall [-F FSType] [-l | -r]  [file_system_table]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>The mount process attaches a named directory to the file system hierarchy at the pathname location mount_point.</li>
+<li>/etc/vfstab: list of default parameters for each file system.
+<ul>
+<li>Each entry consists of space-separated fields:
+<ul>
+<li>device  to  mount, device to fsck, mount point, FS type, fsck pass, mount at boot, mount  options.</li>
+</ul>
+</li>
+<li>Those file systems with the mount-at-boot field “yes” are mounted automatically at boot time by mountall</li>
+</ul>
+</li>
+<li>/etc/mnttab: a record of file systems that are currently mounted.
+<ul>
+<li>Each entry consists of TAB-separated fields:
+<ul>
+<li>special, mount_point, fstype, options, time</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Automounting:</p>
+<ul>
+<li>automount [-t duration] [-v]
+<ul>
+<li>Problem with static mounts
+<ul>
+<li>If a client has many remote resources mounted, boot-time can be excessive</li>
+</ul>
+</li>
+<li>Automount: Mount and unmount in response to client demand
+<ul>
+<li>Automounter performs mount according to configuration files (/etc/auto_master, /etc/auto_home)</li>
+<li>When an empty mount point is referenced,
+<ul>
+<li>OS sends a probe message to each server</li>
+<li>First reply wins: then uses the mount service to mount the filesystem at the first server to respond</li>
+</ul>
+</li>
+<li>Attempt to unmount every 10 minutes</li>
+</ul>
+</li>
+<li>Automounter (/usr/lib/autofs/automountd) is started at system boot-up time, and is a daemon process running at the client computer</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2022-01-01</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/distributed_system/"><i class="fas fa-tag fa-fw"></i>&nbsp;distributed_system</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/information-security-management/" class="prev" rel="prev" title="ISC_base_10"><i class="fas fa-angle-left fa-fw"></i>ISC_base_10</a>
+                <a href="https://qizhengzou.github.io/2022/transaction-processing-systems/" class="next" rel="next" title="DistributedSystem_HongweiDu_12">DistributedSystem_HongweiDu_12<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

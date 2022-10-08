@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/linux/</link>
+        <description>linux - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 15 Jul 2022 16:59:08 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Vim</title>
+    <link>https://qizhengzou.github.io/vim/</link>
+    <pubDate>Fri, 15 Jul 2022 16:59:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/vim/</guid>
+    <description><![CDATA[开篇词｜我们为什么要学 Vim？ 我特别喜欢 Larry Wall（拉里 · 沃尔）所说的程序员的三大美德：懒惰，急切，傲慢（laziness, impatience, hubris）]]></description>
+</item><item>
+    <title>Linux_base_02</title>
+    <link>https://qizhengzou.github.io/linux_base_02/</link>
+    <pubDate>Tue, 05 Jul 2022 10:39:52 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/linux_base_02/</guid>
+    <description><![CDATA[shell Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了]]></description>
+</item><item>
+    <title>Linux_base_01</title>
+    <link>https://qizhengzou.github.io/linux_base_01/</link>
+    <pubDate>Mon, 08 Nov 2021 15:34:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/linux_base_01/</guid>
+    <description><![CDATA[1. Linux 背景知识 Linux 有两种含义： 一种是 Linus 编写的开源操作系统的内核 另一种是广义的操作系统 执行环境 云主机 虚拟机（较推荐） 无数据的 PC（不推荐多系统混跑]]></description>
+</item></channel>
+</rss>

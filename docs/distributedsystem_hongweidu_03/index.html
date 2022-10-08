@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DistributedSystem_HongweiDu_03 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="DistributedSystem_HongweiDu_03" />
+<meta property="og:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Physical Time Why Timestamps in Systems? Precise performance measurements Guarantee “up-to-date” or recentness of data Temporal ordering of events produced by concurrent processes Synchronization between senders and receivers of messages Coordination of joint activities Serialization of concurrent accesses" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T14:35:44+08:00" />
+<meta property="article:modified_time" content="2021-12-10T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_03"/>
+<meta name="twitter:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Physical Time Why Timestamps in Systems? Precise performance measurements Guarantee “up-to-date” or recentness of data Temporal ordering of events produced by concurrent processes Synchronization between senders and receivers of messages Coordination of joint activities Serialization of concurrent accesses"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" /><link rel="prev" href="https://qizhengzou.github.io/distributedsystem_hongweidu_02/" /><link rel="next" href="https://qizhengzou.github.io/distributedsystem_hongweidu_04/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_03",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/distributedsystem_hongweidu_03\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "distributed system","wordcount":  1488 ,
+        "url": "https:\/\/qizhengzou.github.io\/distributedsystem_hongweidu_03\/","datePublished": "2021-12-03T14:35:44+08:00","dateModified": "2021-12-10T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DistributedSystem_HongweiDu_03</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03 14:35:44">2021-12-03 14:35:44</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1488 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2021哈工大深圳堵宏伟分布式系统课程笔记</p>
+</blockquote>
+<h1 id="physical-time">Physical Time</h1>
+<p>Why Timestamps in Systems?</p>
+<ul>
+<li>Precise performance measurements</li>
+<li>Guarantee “up-to-date” or recentness of data</li>
+<li>Temporal ordering of events produced by concurrent processes</li>
+<li>Synchronization between senders and receivers of messages</li>
+<li>Coordination of joint activities</li>
+<li>Serialization of concurrent accesses to shared objects</li>
+<li>……</li>
+</ul>
+<p>Physical time:</p>
+<ul>
+<li>Solar time
+<ul>
+<li>1 sec = 1 day / 86400</li>
+<li>Problem: days are of different lengths (due to tidal friction, etc.)</li>
+<li>mean solar second: averaged over many days</li>
+</ul>
+</li>
+<li>Greenwich Mean Time (GMT)
+<ul>
+<li>The mean solar time at Royal Observatory in Greenwich, London</li>
+<li>Greenwich located at longitude 0, the line that divides east and west</li>
+</ul>
+</li>
+</ul>
+<p>Coordinated Universal Time (UTC):</p>
+<ul>
+<li>International atomic time (TAI) 国际原子时间
+<ul>
+<li>1 sec = time for Cesium-133 atom to make 9,192,631,770  state transitions.</li>
+<li>TAI time is simply the number of Cesium-133 transitions since midnight on Jan 1, 1958.</li>
+<li>Accuracy: better than 1 second in six million years</li>
+<li>Problem: Atomic clocks do not keep in step with solar time</li>
+</ul>
+</li>
+<li>Coordinated Universal Time (UTC) 通用协调时间
+<ul>
+<li>Based on the atomic time (TAI) and introduced from 1 Jan 1972</li>
+<li>A leap second is occasionally inserted or deleted to keep in step with solar time when the difference btw a solar-day and a TAI-day is over 800ms</li>
+</ul>
+</li>
+</ul>
+<p>Computer Clocks:</p>
+<ul>
+<li>CMOS clock circuit driven by a quartz oscillator
+<ul>
+<li>battery backup to continue measuring time when power is off</li>
+</ul>
+</li>
+<li>The circuit has a counter（计数器） and a register（寄存器）. The counter decrements by 1 for each oscillation; an interrupt（中断） is generated when it reaches 0 and the number in the register is loaded to the counter. Then, it repeats…</li>
+<li>OS catches interrupt signals to maintain a computer clock
+<ul>
+<li>e.g., 60 or 100 interrupts per second</li>
+<li>Programmable Interrupt Controller (PIC)</li>
+<li>Interrupt service routine increments the “clock” by 1 for each interrupt</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142038.png" /></li>
+</ul>
+<p>Clock drift and clock skew:</p>
+<ul>
+<li>Clock Drift 时钟漂移
+<ul>
+<li>Clocks tick at different rates
+<ul>
+<li>Ordinary quartz clocks drift by ~ 1sec in 11-12 days. (10-6 secs/sec).</li>
+<li>High precision quartz clocks drift rate is ~ 10-7 or 10-8 secs/sec</li>
+</ul>
+</li>
+<li>Create ever-widening gap in perceived time</li>
+</ul>
+</li>
+<li>Clock Skew (offset)  时钟偏移
+<ul>
+<li>Difference between two clocks at one point in time</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142249.png" /></li>
+</ul>
+<p>Perfect clock:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142339.png" /></li>
+</ul>
+<p>Drift with a slow computer clock:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142418.png" /></li>
+</ul>
+<p>Drift with a fast computer clock:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142452.png" /></li>
+</ul>
+<p>Dealing with drift:</p>
+<ul>
+<li>No good to set a clock backward
+<ul>
+<li>Illusion of time moving backwards can confuse message ordering and software development environments</li>
+</ul>
+</li>
+<li>Go for gradual clock correction
+<ul>
+<li>If fast: Make clock run slower until it synchronizes</li>
+<li>If slow: Make clock run faster until it synchronizes</li>
+</ul>
+</li>
+</ul>
+<p>Linear compensating function:</p>
+<ul>
+<li>OS can do this: Change the frequency of clock interrupts
+<ul>
+<li>e.g.: if the system generates an interrupt every 17 ms but clock is too slow: generates an interrupt at (e.g.) 15 ms</li>
+</ul>
+</li>
+<li>Adjustment changes slope of system time: Linear compensating function （线性补偿函数）</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210142708.png" /></li>
+</ul>
+<p>Resynchronization:</p>
+<ul>
+<li>After synchronization period is reached
+<ul>
+<li>Resynchronize periodically, or</li>
+<li>The skew is beyond a threshold</li>
+</ul>
+</li>
+<li>Keep track of adjustments and apply continuously
+<ul>
+<li>UNIX adjtime system call:
+<ul>
+<li>int adjtime(struct  timeval  *delta,  struct  timeval  *old-delta)</li>
+</ul>
+</li>
+<li>adjusts the system&rsquo;s  notion  of  the current time, advancing or retarding it, by the amount of time specified in the struct timeval pointed to by delta. “old-delta”, output parameter, returns time left uncorrected since last call of “adjtime”</li>
+</ul>
+</li>
+</ul>
+<p>Getting UTC from Top Sources:</p>
+<ul>
+<li>Attach GPS receiver to each computer
+<ul>
+<li>± 1 ms of UTC</li>
+</ul>
+</li>
+<li>Attach WWV (<a href="http://tf.nist.gov" target="_blank" rel="noopener noreffer">http://tf.nist.gov</a>) radio receiver
+<ul>
+<li>Obtain time broadcasts from Boulder or DC</li>
+<li>± 3 ms of UTC (depending on distance)</li>
+</ul>
+</li>
+<li>Attach GOES receiver (Geostationary Operational Environmental Satellites, <a href="http://www.goes.noaa.gov/" target="_blank" rel="noopener noreffer">http://www.goes.noaa.gov/</a>)
+<ul>
+<li>± 0.1 ms of UTC</li>
+</ul>
+</li>
+<li>Not practical for every machine
+<ul>
+<li>Cost, size, convenience, environment</li>
+</ul>
+</li>
+</ul>
+<p>Getting UTC for Client Computers:</p>
+<ul>
+<li>Synchronize clock of a client to a time server that
+<ul>
+<li>with a more accurate clock, or</li>
+<li>connected to UTC time source</li>
+</ul>
+</li>
+<li>Also called external clock synchronization</li>
+</ul>
+<p>Synchronizing Clocks by using RPC:</p>
+<ul>
+<li>Simplest synchronization technique
+<ul>
+<li>Make an RPC to obtain time from the server</li>
+<li>Set the local clock to the server time</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143116.png" /></li>
+</ul>
+</li>
+<li>Does not count network or processing latency</li>
+</ul>
+<p>Cristian’s algorithm:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143221.png" /></li>
+</ul>
+<p>Cristian’s algorithm: example:</p>
+<ul>
+<li>Send request at 5:08:15.100 (T0)</li>
+<li>Receive response at 5:08:15.900 (T1)
+<ul>
+<li>Response contains 5:09:25.300 (Tserver)</li>
+</ul>
+</li>
+<li>Round-trip time is T1 − T0
+<ul>
+<li>5:08:15.900 - 5:08:15.100 = 800 ms</li>
+</ul>
+</li>
+<li>Best guess: timestamp was generated 400 ms ago</li>
+<li>Set the local time to Tserver + round-trip-time/2
+<ul>
+<li>5:09:25.300 + 400 = 5:09.25.700</li>
+</ul>
+</li>
+<li>Accuracy: ± round-trip-time/2</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143355.png" /></li>
+</ul>
+<p>Cristian’s algorithm: error bound:</p>
+<ul>
+<li>Tmin: Minimum message travel time</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143435.png" /></li>
+</ul>
+<p>Problems with Cristian’s algorithm:</p>
+<ul>
+<li>Server might fail</li>
+<li>Subject to malicious interference</li>
+</ul>
+<p>Berkeley Algorithm:</p>
+<ul>
+<li>Proposed by Gusella &amp; Zatti, 1989 and implemented in BSD version of UNIX</li>
+<li>Aim: synchronize clocks of a group of machines as close as possible (also called internal synchronization)</li>
+<li>Assumes no machine has an accurate time source (i.e., no differentiation of client and server)</li>
+<li>Obtains average from participating computers</li>
+<li>Synchronizes all clocks to average</li>
+<li>One machine is elected (or designated) as the master; others are slaves:
+<ul>
+<li>Master polls all slaves periodically, asking for their time
+<ul>
+<li>Cristian’s algorithm can be used to obtain more accurate clock values from other machines by counting network latency</li>
+</ul>
+</li>
+<li>When results are collected, compute the average
+<ul>
+<li>Including master’s time</li>
+</ul>
+</li>
+<li>Send each slave the offset that its clock need be adjusted
+<ul>
+<li>Avoids problems with network delays by sending “offset” instead of “timestamp”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Algorithm has provisions for ignoring readings from clocks whose skew is too large
+<ul>
+<li>Compute a fault-tolerant average</li>
+</ul>
+</li>
+<li>Any slave can take over the master if master fails</li>
+</ul>
+<p>Berkeley Algorithm: example:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143658.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143727.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143759.png" /></li>
+</ul>
+<p>Network Time Protocol (NTP):</p>
+<ul>
+<li>NTP is the most commonly used Internet time protocol and the one provides best accuracy (RFC 1305, <a href="http://tf.nist.gov/service/its.htm" target="_blank" rel="noopener noreffer">http://tf.nist.gov/service/its.htm</a> ).</li>
+<li>Computers often include NTP software in OS. The client software periodically gets updates from one or more servers (average them).</li>
+<li>Time servers listen to NTP requests on port 123, and reply a UDP/IP data packet in NTP format, which is a 64-bit timestamp in UTC seconds since Jan 1, 1900 with a resolution of 200 pico-s.</li>
+<li>Many NTP client software for PC only gets time from a single server (no averaging). The client is called SNTP (Simple Network Time Protocol, RFC 2030), a simple version of NTP.</li>
+</ul>
+<p>NTP synchronization subnet:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210143913.png" /></li>
+<li>1st stratum: machines connected directly to accurate time source</li>
+<li>2nd stratum: machines synchronized from 1st stratum machines</li>
+<li>…</li>
+</ul>
+<p>NTP goals:</p>
+<ul>
+<li>Enable clients across Internet to be accurately synchronized to UTC despite message delays
+<ul>
+<li>Use statistical techniques to filter data and improve quality of results</li>
+</ul>
+</li>
+<li>Provide reliable service
+<ul>
+<li>Survive lengthy losses of connectivity</li>
+<li>Redundant paths</li>
+<li>Redundant servers</li>
+</ul>
+</li>
+<li>Enable clients to synchronize frequently
+<ul>
+<li>Adjustment of clocks by using offset (for symmetric mode)</li>
+</ul>
+</li>
+<li>Provide protection against interference
+<ul>
+<li>Authenticate source of data</li>
+</ul>
+</li>
+</ul>
+<p>NTP Synchronization Modes:</p>
+<ul>
+<li>Multicast (for quick LANs, low accuracy)
+<ul>
+<li>server periodically multicasts its time to its clients in the subnet</li>
+</ul>
+</li>
+<li>Remote Procedure Call (medium accuracy)
+<ul>
+<li>server responds to client requests with its actual timestamp</li>
+<li>like Cristian’s algorithm</li>
+</ul>
+</li>
+<li>Symmetric mode (high accuracy)
+<ul>
+<li>used to synchronize between the time servers (peer-peer)</li>
+</ul>
+</li>
+<li>All messages delivered unreliably with UDP</li>
+</ul>
+<p>Symmetric mode:</p>
+<ul>
+<li>The delay between the arrival of a request (at server B) and the dispatch of the reply is NOT negligible:</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144218.png" /></li>
+</ul>
+<p>Symmetric mode (another expression):</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144256.png" /></li>
+</ul>
+<p>Symmetric NTP example:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211210144452.png" /></li>
+</ul>
+<p>Improving accuracy:</p>
+<ul>
+<li>Data filtering from a single source
+<ul>
+<li>Retain the multiple most recent pairs &lt; oi, di &gt;</li>
+<li>Filter dispersion: choose oj corresponding to the smallest dj</li>
+</ul>
+</li>
+<li>Peer-selection: synchronize with lower stratum servers
+<ul>
+<li>lower stratum numbers, lower synchronization dispersion</li>
+</ul>
+</li>
+<li>The stratum of a server is dynamically changing, depending on which server it synchronize with</li>
+</ul>
+<p>Simple Network Time Protocol (SNTP) RFC 2030:</p>
+<ul>
+<li>Targeted for machines that have no need of full NTP implementation, particularly for machines at the end of synchronization subnet (client nodes)</li>
+<li>SNTP operate in one of the following modes:
+<ul>
+<li>Unicast mode, the client sends a request to a designated server</li>
+<li>Multicast mode, the server periodically broadcast/multicast its time to the subnet and does not serve any requests from clients</li>
+<li>Anycast mode, the client broadcast/multicast a request to the local subnet and takes the first response for time synchronization</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-10 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" data-title="DistributedSystem_HongweiDu_03" data-hashtags="distributed system"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" data-hashtag="distributed system"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" data-title="DistributedSystem_HongweiDu_03"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" data-title="DistributedSystem_HongweiDu_03"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_03/" data-title="DistributedSystem_HongweiDu_03"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/distributed-system/">distributed system</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/distributedsystem_hongweidu_02/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_02"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_02</a>
+            <a href="/distributedsystem_hongweidu_04/" class="next" rel="next" title="DistributedSystem_HongweiDu_04">DistributedSystem_HongweiDu_04<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
