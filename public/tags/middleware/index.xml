@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>middleware - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/middleware/</link>
+        <description>middleware - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 14 Jul 2022 10:04:50 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/middleware/" rel="self" type="application/rss+xml" /><item>
+    <title>Middleware</title>
+    <link>https://qizhengzou.github.io/middleware/</link>
+    <pubDate>Thu, 14 Jul 2022 10:04:50 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/middleware/</guid>
+    <description><![CDATA[中间件核心技术与实战 开篇词｜为什么中间件对分布式架构体系来说这么重要？ 你好，我是丁威。一名奋战在 IT 一线十多年的技术老兵，现任中通快递技术平台]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_base_01 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="next" href="https://qizhengzou.github.io/2021/mysql-relational-model-and-relational-operation./" /><link rel="canonical" href="https://qizhengzou.github.io/2021/mysql-conceptual-structure/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_base_01"/>
+<meta name="twitter:description" content="数据库概念结构 基本概念 32 什么是数据库及为什么要学数据库？ 现代信息社会有异于传统社会，业务工作是建立在计算机网络以及数据库的支持上的。数据库将"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/mysql-conceptual-structure\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "mysql","wordcount":  2033 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/mysql-conceptual-structure\/","datePublished": "2021-11-07T09:14:50\u002b08:00","dateModified": "2021-11-07T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_base_01</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-07>2021-11-07</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2033 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本概念">基本概念</a>
+      <ul>
+        <li><a href="#什么是数据库及为什么要学数据库">什么是数据库及为什么要学数据库？</a></li>
+        <li><a href="#数据库信息库">数据库(信息库)</a></li>
+        <li><a href="#数据库系统工作环境">数据库系统(工作环境)</a></li>
+        <li><a href="#数据库管理系统软件系统">数据库管理系统(软件系统)</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库工作者的分类及要求">数据库工作者的分类及要求</a></li>
+    <li><a href="#标准结构">标准结构</a>
+      <ul>
+        <li><a href="#dbms管理数据的三个层次外部视图全局视图内部视图">DBMS管理数据的三个层次：(外部)视图、全局视图、内部视图</a></li>
+        <li><a href="#模式的概念外模式概念模式内模式">模式的概念：外模式、(概念)模式、内模式</a></li>
+        <li><a href="#数据模型与模式">数据模型与模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#简要发展史及发展趋势">简要发展史及发展趋势</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#基本概念">基本概念</a>
+      <ul>
+        <li><a href="#什么是数据库及为什么要学数据库">什么是数据库及为什么要学数据库？</a></li>
+        <li><a href="#数据库信息库">数据库(信息库)</a></li>
+        <li><a href="#数据库系统工作环境">数据库系统(工作环境)</a></li>
+        <li><a href="#数据库管理系统软件系统">数据库管理系统(软件系统)</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库工作者的分类及要求">数据库工作者的分类及要求</a></li>
+    <li><a href="#标准结构">标准结构</a>
+      <ul>
+        <li><a href="#dbms管理数据的三个层次外部视图全局视图内部视图">DBMS管理数据的三个层次：(外部)视图、全局视图、内部视图</a></li>
+        <li><a href="#模式的概念外模式概念模式内模式">模式的概念：外模式、(概念)模式、内模式</a></li>
+        <li><a href="#数据模型与模式">数据模型与模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#简要发展史及发展趋势">简要发展史及发展趋势</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="数据库概念结构">数据库概念结构</h1>
+<a class="post-dummy-target" id="基本概念"></a><h2>基本概念</h2>
+<p>32</p>
+<a class="post-dummy-target" id="什么是数据库及为什么要学数据库"></a><h3>什么是数据库及为什么要学数据库？</h3>
+<p>现代信息社会有异于传统社会，业务工作是建立在计算机网络以及数据库的支持上的。数据库将传统纸张上记录的各种信息规范化并使之电子化,形成电子信息‘库’以便利用计算机对这些信息进行快速有效的检索、统计与管理。</p>
+<a class="post-dummy-target" id="数据库信息库"></a><h3>数据库(信息库)</h3>
+<p><a href="https://en.wikipedia.org/wiki/Edgar_F._Codd" target="_blank">E.F.Codd</a>, 基于对“表”的理解:提出了“关系”及关系模型，提出了关系数据库理论，开创了数据库的时代，是当前普遍应用的数据库管理系统的奠基者，并获得了计算机领域最高奖“图灵奖”。</p>
+<a class="post-dummy-target" id="数据库系统工作环境"></a><h3>数据库系统(工作环境)</h3>
+<p>数据库(DB): Database <br>
+数据库管理系统(DBMS): Database Management System<br>
+数据库应用(DBAP): DataBase Application<br>
+数据库管理员(DBA): DataBase Administrator
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211107100915.png" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="数据库管理系统软件系统"></a><h3>数据库管理系统(软件系统)</h3>
+<p>DBMS提供一套数据定义语言(DDL:Data Definition Language)给用户,用户使用DDL描述其所要建立表的格式,DBMS依照用户的定义，创建数据库及其中的Table。<br>
+数据操纵语言(DML:Data Manipulation Language)，用户使用DML描述其所要进行的增、删、改、查等操作，DBMS依照用户的操作描述，实际执行这些操作。<br>
+数据控制语言(DCL:Data Control Language)，用户使用DCL描述其对数据库所要实施的控制，DBMS依照用户的描述，实际进行控制。
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211107101806.png" alt="" class="lazyload"></figure></p>
+<ul>
+<li>语言翻译器：将用数据库语言书写的内容，翻译成DBMS可执行的命令。
+例如: DDL编译器, DML编译器, DCL编译器等;</li>
+<li>查询优化与查询实现(执行引擎)：提高数据库检索速度的手段；例如贯穿于数据存取各个阶段的优化程序;</li>
+<li>数据存取：提供数据在磁盘、磁带等上的高效存取手段。例如:存储管理器, 缓冲区管理器,索引/文件和记录管理器等;</li>
+<li>通信控制：提供网络环境下数据库操作的手段。
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211107102049.png" alt="" class="lazyload"></figure></li>
+</ul>
+<a class="post-dummy-target" id="数据库工作者的分类及要求"></a><h2>数据库工作者的分类及要求</h2>
+<ul>
+<li>终端用户（ End Users ）：
+无经验用户（naive Users）
+非固定用户（casual users ）&mdash;&mdash;交互式SQL</li>
+<li>应用程序程序员&mdash;&mdash;过程SQL，关于事务的概念</li>
+<li>数据库分析员和设计员&mdash;&mdash;数据建模，关于规范化的概念</li>
+<li>数据库管理员（DBA）&mdash;&mdash;数据库维护、安全性、完整性、恢复</li>
+<li>数据库管理系统的设计者和实现者&mdash;&mdash;实现以上技术</li>
+<li>专用和新型数据库管理系统技术</li>
+</ul>
+<a class="post-dummy-target" id="标准结构"></a><h2>标准结构</h2>
+<a class="post-dummy-target" id="dbms管理数据的三个层次外部视图全局视图内部视图"></a><h3>DBMS管理数据的三个层次：(外部)视图、全局视图、内部视图</h3>
+<p>External Level = User Level，某一用户能够看到与处理的数据, 全局数据中的某一部分<br>
+Conceptual Level = Logic level，从全局角度理解/管理的数据, 含相应的关联约束<br>
+Internal Level = Physical level，存储在介质上的数据，含存储路径、存储方式 、索引方式等</p>
+<a class="post-dummy-target" id="模式的概念外模式概念模式内模式"></a><h3>模式的概念：外模式、(概念)模式、内模式</h3>
+<p>数据的结构&mdash;-模式 所观察到数据的结构信息eg:学生登记表( 学号 char(8), 姓名 char(10), 性别 Char(2), 出生年月 datetime, 入学日 期 Datetime, 家庭住址 Char(40) )<br>
+展现的数据&mdash;-视图 某一种表现形式下表现出来的数据库中的数据<br>
+两层映像:<br>
+E-C Mapping：External Schema-Conceptual Schema Mapping
+&mdash;-将外模式映射为概念模式，从而支持实现数据概念视图向外部视图的转换
+&mdash;-便于用户观察和使用<br>
+C-I Mapping：Conceptual Schema-Internal Schema Mapping
+&mdash;-将概念模式映射为内模式，从而支持实现数据概念视图向内部视图的转换
+&mdash;-便于计算机进行存储和处理<br>
+两个独立性:<br>
+逻辑数据独立性:当概念模式变化时，可以不改变外部模式(只需改变E-C Mapping)，从而无需改变应用程序<br>
+物理数据独立性:当内部模式变化时，可以不改变概念模式(只需改变C-I Mapping) ，从而不改变外部模式</p>
+<a class="post-dummy-target" id="数据模型与模式"></a><h3>数据模型与模式</h3>
+<p>数据模型是对模式本身结构的抽象，模式是对数据本身结构形式的抽象。<br>
+关系模型中的所有模式都可为抽象表(Table)的形式，而每一个具体的模式都是 拥有不同列名的具体的表。<br>
+三大经典数据模型：<br>
+• 关系模型：表的形式组织数据<br>
+• 层次模型：树的形式组织数据<br>
+• 网状模型：图的形式组织数据<br>
+层次模型的优缺点：<br>
+优点： <br>
+Ø 数据结构简单清晰。<br>
+Ø 查询效率高。记录之间的联系用有向边表示，这种联系在DBMS中通常使
+用指针实现。<br>
+Ø 层次模型数据库性能优于关系数据库，不低于网状数据库。提供了良好的
+完整性支持。<br>
+缺点：<br>
+Ø 现实世界中的很多联系是非层次性的。如果结点之间具有多对多联系，不
+再适合使用层次模型表示。如果一个子女结点确实具有多个双亲结点，使
+用层次结构模型表示的时候就会出现大量的冗余，且操作复杂。<br>
+Ø 查询子女结点必须通过双亲结点。由于结构严密，层次命令趋于程序化。<br>
+网状模型的优缺点：<br>
+优点： <br>
+能够更为直接地表示现实世界。具有良好的性能，存取效率高。<br>
+缺点：<br>
+Ø 结构复杂，伴随应用环境的扩大，数据结构变得越来越复杂，不利于最终
+用户掌握。<br>
+Ø 网状模型的数据定义语言和数据管理语言复杂。<br>
+Ø 应用程序编写困难。由于记录之间的联系通过存取路径实现，应用程序在
+访问数据的时候必须选择恰当的存取路径，因此用户必须了解系统结构的
+细节，导致加重了编写应用程序的负担。</p>
+<a class="post-dummy-target" id="简要发展史及发展趋势"></a><h2>简要发展史及发展趋势</h2>
+<p>参考<a href="https://zhuanlan.zhihu.com/p/111209720" target="_blank">发展史与发展趋势</a></p>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-07</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/mysql/"><i class="fas fa-tag fa-fw"></i>&nbsp;mysql</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav">
+                <a href="https://qizhengzou.github.io/2021/mysql-relational-model-and-relational-operation./" class="next" rel="next" title="Mysql_base_02">Mysql_base_02<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

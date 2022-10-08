@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Cry_base_06 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/sequence-cipher/" /><link rel="next" href="https://qizhengzou.github.io/2021/hashmacds/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/public-key-encryption/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cry_base_06"/>
+<meta name="twitter:description" content="公钥加密（RSA，DH, ElGamal 与椭圆曲线） 公钥密码体制 非对称密码：免去密钥分发、密钥管理简单 原则 单向函数 陷门单向函数 RSA 密钥生成 选择两个大素数p,"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Cry_base_06",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/public-key-encryption\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "cryptography","wordcount":  485 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/public-key-encryption\/","datePublished": "2021-12-16T15:24:04\u002b08:00","dateModified": "2021-12-16T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Cry_base_06</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-12-16>2021-12-16</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 485 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#公钥密码体制">公钥密码体制</a></li>
+    <li><a href="#rsa">RSA</a></li>
+    <li><a href="#rsa安全性">RSA安全性</a></li>
+    <li><a href="#dh密钥交换协议">DH密钥交换协议</a></li>
+    <li><a href="#elgamal加密">ElGamal加密</a></li>
+    <li><a href="#椭圆曲线加密">椭圆曲线加密</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#公钥密码体制">公钥密码体制</a></li>
+    <li><a href="#rsa">RSA</a></li>
+    <li><a href="#rsa安全性">RSA安全性</a></li>
+    <li><a href="#dh密钥交换协议">DH密钥交换协议</a></li>
+    <li><a href="#elgamal加密">ElGamal加密</a></li>
+    <li><a href="#椭圆曲线加密">椭圆曲线加密</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="公钥加密rsadh-elgamal-与椭圆曲线">公钥加密（RSA，DH, ElGamal 与椭圆曲线）</h1>
+<a class="post-dummy-target" id="公钥密码体制"></a><h2>公钥密码体制</h2>
+<ul>
+<li>非对称密码：免去密钥分发、密钥管理简单</li>
+<li>原则
+<ul>
+<li>单向函数</li>
+<li>陷门单向函数</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="rsa"></a><h2>RSA</h2>
+<ul>
+<li>密钥生成
+<ul>
+<li>选择两个大素数p,q</li>
+<li>随机选择公钥e,$\text { sub to } 1&lt;\mathrm{e}&lt;\phi(\mathrm{n}), \operatorname{gcd}(\mathrm{e}, \phi(\mathrm{n}))=1$</li>
+</ul>
+</li>
+<li>加密：C=$m^e mod n (m &lt; n)$</li>
+<li>解密：m=$C^d mod n (C &lt; n)$</li>
+</ul>
+<a class="post-dummy-target" id="rsa安全性"></a><h2>RSA安全性</h2>
+<ul>
+<li>共模攻击</li>
+<li>低指数攻击</li>
+<li>CCA选择密文攻击（因为RSA是确定性加密算法）</li>
+</ul>
+<a class="post-dummy-target" id="dh密钥交换协议"></a><h2>DH密钥交换协议</h2>
+<ul>
+<li>目的：双方在网络中交换信息以生成双方共享的会话密钥</li>
+<li>原理
+<ul>
+<li>本原根g，双方密钥x,y</li>
+<li>公开交换$g^x,g^y$</li>
+<li>公钥$g^{xy}$</li>
+</ul>
+</li>
+<li>出现中间人攻击问题</li>
+</ul>
+<a class="post-dummy-target" id="elgamal加密"></a><h2>ElGamal加密</h2>
+<ul>
+<li>密钥生成
+<ul>
+<li>选择大素数p，本原根$e_1$，选择整数d</li>
+<li>生成$e_2 = e^d_1 mod p$</li>
+<li>作为公钥， 作为私钥</li>
+</ul>
+</li>
+<li>公钥加密
+<ul>
+<li>$ C_1 = e^r_1 mod p$</li>
+<li>$ C_2=(e^r_2*P)mod p$</li>
+</ul>
+</li>
+<li>私钥解密
+<ul>
+<li>$ P=C_2*(C^p_1)^{-1}mod p$</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="椭圆曲线加密"></a><h2>椭圆曲线加密</h2>
+<ul>
+<li>椭圆曲线定义:$E(a,b):y^2=x^3+ax+b$</li>
+<li><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211219093940.png" alt="" class="lazyload"></figure></li>
+<li>运算定义：
+<ul>
+<li>$P=(x,y) -p=(x,-y)$</li>
+<li>$R=P+Q$</li>
+<li>$P+P=2P$</li>
+<li>$P+(-P)=O$</li>
+<li>$P=(x_p,y_p),Q=(x_q,y_q)$</li>
+<li>$R=P+Q=(x_r,y_r)$</li>
+<li>$\begin{aligned}&amp;-x_{r}=\lambda^{2}+\lambda-x_{p}-x_{q}-a \&amp;-y_{r}=-\lambda\left(x_{r}-x_{p}\right)-x_{r}-y_{p}\end{aligned}$</li>
+</ul>
+</li>
+<li>可以看到，对于P，nP非常复杂，也就是说已知nP求解出P是困难的，基于此对ElGamal做改进如下:</li>
+<li>密钥生成
+<ul>
+<li>选择椭圆曲线$E_p(a,b),e_1=(x,y),d$</li>
+<li>生成$e_2=de_1$</li>
+<li>$e_2,e_1$作为公钥，d作为私钥</li>
+</ul>
+</li>
+<li>公钥加密：
+<ul>
+<li>$C_1=re_1$</li>
+<li>$C_2=p+re_2$</li>
+</ul>
+</li>
+<li>私钥解密：
+<ul>
+<li>$P=C_2-dC_1$</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-12-16</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/cryptography/"><i class="fas fa-tag fa-fw"></i>&nbsp;cryptography</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/sequence-cipher/" class="prev" rel="prev" title="Cry_base_05"><i class="fas fa-angle-left fa-fw"></i>Cry_base_05</a>
+                <a href="https://qizhengzou.github.io/2021/hashmacds/" class="next" rel="next" title="Cry_base_07">Cry_base_07<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>information_security_conspectus on Jefo</title>
+    <link>https://qizhengzou.github.io/tags/information_security_conspectus/</link>
+    <description>Recent content in information_security_conspectus on Jefo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 21 Dec 2021 19:38:13 +0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/information_security_conspectus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ISC_base_10</title>
+      <link>https://qizhengzou.github.io/2021/information-security-management/</link>
+      <pubDate>Tue, 21 Dec 2021 19:38:13 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/information-security-management/</guid>
+      <description>信息安全管理 10.1 概述 当今社会已经进入到信息化社会，其信息安全是建立在信息社会的基础设施及信息服务系统之间的互联、互通、互操作意义上的安全需求上</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_09</title>
+      <link>https://qizhengzou.github.io/2021/content-security/</link>
+      <pubDate>Tue, 21 Dec 2021 19:37:20 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/content-security/</guid>
+      <description>内容安全 9.1 概述 信息内容安全有两方面内容: 一方面是指针对合法的信息内容加以安全保护，如对合法的音像制品及软件的版权保护； 内容保护 数字水印 版权控</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_08</title>
+      <link>https://qizhengzou.github.io/2021/network-security-protocol/</link>
+      <pubDate>Sun, 21 Nov 2021 11:36:15 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/network-security-protocol/</guid>
+      <description>网络安全协议 8.1 概述 许多网络攻击都是由网络协议（如TCP/IP）的固有漏洞引起的，因此，为了保证网络传输和应用的安全，各种类型的网络安全协议不</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_07</title>
+      <link>https://qizhengzou.github.io/2021/network-defense/</link>
+      <pubDate>Sun, 21 Nov 2021 11:36:12 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/network-defense/</guid>
+      <description>网络防御 7.1 概述 网络防御是一个综合性的安全工程，不是几个网络安全产品能够完成的任务。 防御需要解决多层面的问题，除了安全技术之外，安全管理也十分</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_06</title>
+      <link>https://qizhengzou.github.io/2021/cyber-threats/</link>
+      <pubDate>Sun, 21 Nov 2021 11:36:09 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/cyber-threats/</guid>
+      <description>网络威胁 6.1 概述 威胁：用威力逼迫恫吓使人屈服。 网络威胁：是网络安全受到威胁、存在着危险。 随着互联网的不断发展，网络安全威胁也呈现了一种新的趋势</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_05</title>
+      <link>https://qizhengzou.github.io/2021/access-control/</link>
+      <pubDate>Sun, 21 Nov 2021 11:36:04 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/access-control/</guid>
+      <description>访问控制 5.1 概述 身份认证：识别“用户是谁”的问题。 访问控制：管理用户对资源的访问。 主体对于客体的每一次访问，访问控制系统均要审核该次访问操作是</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_04</title>
+      <link>https://qizhengzou.github.io/2021/identity-authentication/</link>
+      <pubDate>Sun, 21 Nov 2021 11:35:58 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/identity-authentication/</guid>
+      <description>身份认证 4.1 概述 问题的提出：什么是身份认证？ 身份认证是证实用户的真实身份与其所声称的身份是否相符的过程。 身份认证的依据应包含只有该用户所特有的</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_03</title>
+      <link>https://qizhengzou.github.io/2021/physical-security/</link>
+      <pubDate>Sun, 21 Nov 2021 11:35:55 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/physical-security/</guid>
+      <description>物理安全 概述 物理安全技术包括: 防盗、防火、防静电、防雷击、防信息泄漏、物理隔离； 基于物理环境的容灾技术和物理隔离技术也属于物理安全技术范畴。</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_02</title>
+      <link>https://qizhengzou.github.io/2021/foundations-of-cryptography/</link>
+      <pubDate>Sun, 21 Nov 2021 11:35:51 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/foundations-of-cryptography/</guid>
+      <description>密码学基础 解决数据的机密性、完整性、不可否认性以及身份识别等问题均需要以密码为基础密码技术是保障信息安全的核心基础。 密码学(Cryptogr</description>
+    </item>
+    
+    <item>
+      <title>ISC_base_01</title>
+      <link>https://qizhengzou.github.io/2021/course-overview/</link>
+      <pubDate>Sun, 21 Nov 2021 10:13:37 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/course-overview/</guid>
+      <description>信息安全课程概述 教学目的、目标与内容 课程定位：信息安全领域基础课程 《密码学基础》与《网络安全》等课程的先修课程。 课程目的： 对信息安全领域知识</description>
+    </item>
+    
+  </channel>
+</rss>

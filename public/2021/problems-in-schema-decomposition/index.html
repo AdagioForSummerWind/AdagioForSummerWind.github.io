@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_base_08 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/functional-dependence-and-its-axiom-theorem/" /><link rel="next" href="https://qizhengzou.github.io/2021/database-physical-storage/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/problems-in-schema-decomposition/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_base_08"/>
+<meta name="twitter:description" content="模式分解存在的问题 模式分解存在什么问题 模式分解需要关注： R与p在数据内容方面是否等价：分解的无损连接性； R与p在数据依赖方面是否等价：分解的"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_08",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/problems-in-schema-decomposition\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "mysql","wordcount":  466 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/problems-in-schema-decomposition\/","datePublished": "2021-11-09T11:28:20\u002b08:00","dateModified": "2021-11-13T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_base_08</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-09>2021-11-09</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 466 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#模式分解存在什么问题">模式分解存在什么问题</a></li>
+    <li><a href="#无损连接分解及其检验算法">无损连接分解及其检验算法</a></li>
+    <li><a href="#保持依赖分解及其检验算法">保持依赖分解及其检验算法</a></li>
+    <li><a href="#关系模式无损连接或保持依赖的分解算法">关系模式无损连接或保持依赖的分解算法</a></li>
+    <li><a href="#数据库设计需要知道的">数据库设计需要知道的</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#模式分解存在什么问题">模式分解存在什么问题</a></li>
+    <li><a href="#无损连接分解及其检验算法">无损连接分解及其检验算法</a></li>
+    <li><a href="#保持依赖分解及其检验算法">保持依赖分解及其检验算法</a></li>
+    <li><a href="#关系模式无损连接或保持依赖的分解算法">关系模式无损连接或保持依赖的分解算法</a></li>
+    <li><a href="#数据库设计需要知道的">数据库设计需要知道的</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="模式分解存在的问题">模式分解存在的问题</h1>
+<a class="post-dummy-target" id="模式分解存在什么问题"></a><h2>模式分解存在什么问题</h2>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113100944.png" alt="" class="lazyload"></figure>
+模式分解需要关注：</p>
+<ul>
+<li>R与p在数据内容方面是否等价：分解的无损连接性；</li>
+<li>R与p在数据依赖方面是否等价：分解的保持依赖性。</li>
+</ul>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101137.png" alt="" class="lazyload"></figure></p>
+<ul>
+<li>数据约束的等价性,分解后是否有约束丢失了?</li>
+<li>当模式不符合关系范式时，进行模式分解时，分解后的关系的连接与分解前关系的等价性? 分解前的约束，在分解后是否还存在?</li>
+</ul>
+<a class="post-dummy-target" id="无损连接分解及其检验算法"></a><h2>无损连接分解及其检验算法</h2>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101525.png" alt="" class="lazyload"></figure>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101600.png" alt="" class="lazyload"></figure>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101714.png" alt="" class="lazyload"></figure>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101742.png" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="保持依赖分解及其检验算法"></a><h2>保持依赖分解及其检验算法</h2>
+<p>保持依赖分解：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113101841.png" alt="" class="lazyload"></figure>
+保持依赖性检验算法：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113105344.png" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="关系模式无损连接或保持依赖的分解算法"></a><h2>关系模式无损连接或保持依赖的分解算法</h2>
+<p>无损连接分解成BCNF的算法：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113105507.png" alt="" class="lazyload"></figure>
+保持依赖分解成3NF的算法：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113105712.png" alt="" class="lazyload"></figure>
+无损连接分解成4NF：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113110538.png" alt="" class="lazyload"></figure>
+连接依赖：<br>
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113110804.png" alt="" class="lazyload"></figure>
+5NF:
+<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113110849.png" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="数据库设计需要知道的"></a><h2>数据库设计需要知道的</h2>
+<p>数据库设计理论要解决的根本问题：</p>
+<ul>
+<li>哪些属性被组织成一个关系?</li>
+<li>是一个大关系模式呢，还是若干小关系模式?</li>
+<li>大关系模式存在什么问题?</li>
+</ul>
+<p>关系模式设计的折中：</p>
+<ul>
+<li>关系模式设计需要折中</li>
+<li>遵循关系范式原则，则需要将一个关系模式，拆解成两个或多个小的模式；而查询时，需要将这两个或多个小的模式联结成一个模式；</li>
+<li>遵循关系范式原则避免了冗余、插入异常、删除异常等问题，但由于联结运算的低效率，使得查询速度很慢。因此需要折中。</li>
+</ul>
+<a class="post-dummy-target" id="总结"></a><h2>总结</h2>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211113111108.png" alt="" class="lazyload"></figure></p>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-13</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/mysql/"><i class="fas fa-tag fa-fw"></i>&nbsp;mysql</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/functional-dependence-and-its-axiom-theorem/" class="prev" rel="prev" title="Mysql_base_07"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_07</a>
+                <a href="https://qizhengzou.github.io/2021/database-physical-storage/" class="next" rel="next" title="Mysql_base_09">Mysql_base_09<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>operating system - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/operating-system/</link>
+        <description>operating system - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Dec 2021 11:22:00 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/operating-system/" rel="self" type="application/rss+xml" /><item>
+    <title>OperatingSystem_advanced_02</title>
+    <link>https://qizhengzou.github.io/operatingsystem_advanced_02/</link>
+    <pubDate>Wed, 01 Dec 2021 11:22:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_advanced_02/</guid>
+    <description><![CDATA[程序运行过程 实现一个简单内核 程序编译过程 使用 GCC 相关的工具链。那么使用命令：gcc HelloWorld.c -o HelloWorld 或者 gcc ./HelloWorld.c -o ./HelloWorld ，就可以编译这段代码。其实，GCC 只是完成]]></description>
+</item><item>
+    <title>OperatingSystem_advanced_01</title>
+    <link>https://qizhengzou.github.io/operatingsystem_advanced_01/</link>
+    <pubDate>Wed, 01 Dec 2021 11:08:12 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_advanced_01/</guid>
+    <description><![CDATA[自己实现一个操作系统呗 1.学习过程 从了解计算机的资源开始，如 CPU、MMU、内存和 Cache。其次要为这个操作系统设计基本法，即各种同步机制]]></description>
+</item><item>
+    <title>OperatingSystem_base_05</title>
+    <link>https://qizhengzou.github.io/operatingsystem_base_05/</link>
+    <pubDate>Tue, 30 Nov 2021 18:26:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_base_05/</guid>
+    <description><![CDATA[王道考研操作系统笔记 设备管理 I/O 管理概述 I/O设备的分类与管理的任务 I/O设备的分类 (1)按设备的使用特性分类：按设备的使用特性可以将设备分为]]></description>
+</item><item>
+    <title>OperatingSystem_base_04</title>
+    <link>https://qizhengzou.github.io/operatingsystem_base_04/</link>
+    <pubDate>Tue, 30 Nov 2021 18:26:50 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_base_04/</guid>
+    <description><![CDATA[王道考研操作系统笔记 文件管理 文件系统基础 文件的概念 文件的概念 数据处理是计算机的主要功能之一， 与数据处理相关的数据管理和数据保存是必不可少的，]]></description>
+</item><item>
+    <title>OperatingSystem_base_03</title>
+    <link>https://qizhengzou.github.io/operatingsystem_base_03/</link>
+    <pubDate>Wed, 10 Nov 2021 13:14:39 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_base_03/</guid>
+    <description><![CDATA[王道考研操作系统笔记 内存管理 内存管理基础 内存管理概念：程序装入与链接、逻辑地址与物理地址空间、内存保护。 存储器是计算机系统的重要组成部分，是]]></description>
+</item><item>
+    <title>OperatingSystem_base_02</title>
+    <link>https://qizhengzou.github.io/operatingsystem_base_02/</link>
+    <pubDate>Wed, 10 Nov 2021 13:14:32 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_base_02/</guid>
+    <description><![CDATA[王道考研操作系统笔记 进程管理 进程与线程 进程概念 进程引入 在计算机操作系统中，进程是资源分配的基本单位（与线程的主要区别），也是独立运行的基本单]]></description>
+</item><item>
+    <title>OperatingSystem_base_01</title>
+    <link>https://qizhengzou.github.io/operatingsystem_base_01/</link>
+    <pubDate>Wed, 10 Nov 2021 13:14:26 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_base_01/</guid>
+    <description><![CDATA[王道考研操作系统笔记 绪论 操作系统(Operating System, OS)的概念、特征、功能和提供的服务 引入操作系统的目的是： 提供一个计算机用户与计算机硬]]></description>
+</item><item>
+    <title>OperatingSystem_catalogue</title>
+    <link>https://qizhengzou.github.io/operatingsystem_catalogue/</link>
+    <pubDate>Mon, 08 Nov 2021 16:44:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/operatingsystem_catalogue/</guid>
+    <description><![CDATA[base来自王道考研操作系统 base_01（绪论） 操作系统(Operating System, OS)的概念、特征、功能和提供的服务 操作系统的发展与分类 单道]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>School courses - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/school-courses/</link>
+        <description>School courses - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 25 Nov 2021 08:44:33 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/school-courses/" rel="self" type="application/rss+xml" /><item>
+    <title>SEK_base_07</title>
+    <link>https://jefofrank.xyz/sek_base_07/</link>
+    <pubDate>Thu, 25 Nov 2021 08:44:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/sek_base_07/</guid>
+    <description><![CDATA[2022春JOANNA老师的软件体系结构 topics 1.Introduction to Software Architecture Why is Software Architecture Important? The Many Contexts of Software Architecture 2.Architecture modelling and representation: Architectural structures and views 3.Quality attributes :Understanding quality attributes and availability Availability Quality attributes: interoperability and modifiability Interoperability Quality attributes: Modifiability Quality attributes: Performance, Security Quality attributes: Security Patterns and]]></description>
+</item><item>
+    <title>DistributedSystem_base_02</title>
+    <link>https://jefofrank.xyz/distributedsystem_base_02/</link>
+    <pubDate>Wed, 17 Nov 2021 08:45:55 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/distributedsystem_base_02/</guid>
+    <description><![CDATA[系统模型 简介 物理模型是描述系统的-个最显式的方法，它从计算机(和其他设备，例如移动电话)及其互联的网络方面考虑系统的硬件组成。 体系结构模型从]]></description>
+</item><item>
+    <title>DistributedSystem_base_01</title>
+    <link>https://jefofrank.xyz/distributedsystem_base_01/</link>
+    <pubDate>Wed, 10 Nov 2021 10:24:24 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/distributedsystem_base_01/</guid>
+    <description><![CDATA[分布式系统的特征 简介 我们把分布式系统定义成一个其硬件或软件组件分布在联网的计算机上，组件之间通过传递消息进行通信和动作协调的系统。 我们定义的]]></description>
+</item></channel>
+</rss>

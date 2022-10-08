@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Linux_base_01 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/big-data/" /><link rel="next" href="https://qizhengzou.github.io/2021/mysql_catalogue/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/linux/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux_base_01"/>
+<meta name="twitter:description" content="1. Linux 背景知识 Linux 有两种含义： 一种是 Linus 编写的开源操作系统的内核 另一种是广义的操作系统 执行环境 云主机 虚拟机（较推荐） 无数据的 PC（不推荐多系统混跑"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Linux_base_01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/linux\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "linux","wordcount":  2322 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/linux\/","datePublished": "2021-11-08T15:34:58\u002b08:00","dateModified": "2021-11-08T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Linux_base_01</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-08>2021-11-08</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2322 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/advanced-learning/">Advanced learning</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-linux-背景知识">1. Linux 背景知识</a></li>
+    <li><a href="#2-系统操作">2. 系统操作</a>
+      <ul>
+        <li><a href="#帮助命令man-help-info">帮助命令man help info</a></li>
+        <li><a href="#linux文件管理">linux文件管理</a>
+          <ul>
+            <li><a href="#文件查看">文件查看</a></li>
+            <li><a href="#目录文件的创建和删除">目录文件的创建和删除</a></li>
+            <li><a href="#通配符通用的匹配符号">通配符（通用的匹配符号）</a></li>
+            <li><a href="#文件操作">文件操作</a></li>
+            <li><a href="#文本内容查看">文本内容查看</a></li>
+            <li><a href="#打包压缩解压">打包压缩解压</a></li>
+            <li><a href="#vim的四种模式">vim的四种模式</a>
+              <ul>
+                <li><a href="#正常模式">正常模式</a></li>
+                <li><a href="#命令模式">命令模式</a></li>
+                <li><a href="#可视模式">可视模式</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-服务管理">3. 服务管理</a></li>
+    <li><a href="#4-shell">4. Shell</a></li>
+    <li><a href="#5-文本操作">5. 文本操作</a></li>
+    <li><a href="#6-服务篇">6. 服务篇</a></li>
+    <li><a href="#7-实战">7. 实战</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#1-linux-背景知识">1. Linux 背景知识</a></li>
+    <li><a href="#2-系统操作">2. 系统操作</a>
+      <ul>
+        <li><a href="#帮助命令man-help-info">帮助命令man help info</a></li>
+        <li><a href="#linux文件管理">linux文件管理</a>
+          <ul>
+            <li><a href="#文件查看">文件查看</a></li>
+            <li><a href="#目录文件的创建和删除">目录文件的创建和删除</a></li>
+            <li><a href="#通配符通用的匹配符号">通配符（通用的匹配符号）</a></li>
+            <li><a href="#文件操作">文件操作</a></li>
+            <li><a href="#文本内容查看">文本内容查看</a></li>
+            <li><a href="#打包压缩解压">打包压缩解压</a></li>
+            <li><a href="#vim的四种模式">vim的四种模式</a>
+              <ul>
+                <li><a href="#正常模式">正常模式</a></li>
+                <li><a href="#命令模式">命令模式</a></li>
+                <li><a href="#可视模式">可视模式</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-服务管理">3. 服务管理</a></li>
+    <li><a href="#4-shell">4. Shell</a></li>
+    <li><a href="#5-文本操作">5. 文本操作</a></li>
+    <li><a href="#6-服务篇">6. 服务篇</a></li>
+    <li><a href="#7-实战">7. 实战</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><a class="post-dummy-target" id="1-linux-背景知识"></a><h2>1. Linux 背景知识</h2>
+<p>Linux 有两种含义：</p>
+<ul>
+<li>一种是 Linus 编写的开源操作系统的内核</li>
+<li>另一种是广义的操作系统</li>
+</ul>
+<p>执行环境</p>
+<ul>
+<li>云主机</li>
+<li>虚拟机（较推荐）</li>
+<li>无数据的 PC（不推荐多系统混跑）</li>
+</ul>
+<p>linux版本：</p>
+<ul>
+<li>
+<p>内核版本</p>
+<ul>
+<li>内核版本分为三个部分
+<ul>
+<li>主版本号、次版本号、末版本号</li>
+</ul>
+</li>
+<li>次版本号是奇数为开发版，偶数为稳定版</li>
+</ul>
+</li>
+<li>
+<p>发行版本（因为linux是开源的）5种</p>
+<ul>
+<li>Redhat Enterprise Linux:RedHat公司发行，软件经过专业人员的测试，非常稳定，但是需要付费。</li>
+<li>Fedora发行版本，也是RadHat发行，组建一个社区免费提供这个操作系统，软件较新，但未经过RedHat的专业测试，稳定性较差。</li>
+<li>centos，是基于Enterprise Linux 的源代码经行编译的，把RedHad的商标和字样去掉了，故免费。</li>
+<li>Debian和Ubuntu 不是字符桌面，有图形界面。</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="2-系统操作"></a><h2>2. 系统操作</h2>
+<a class="post-dummy-target" id="帮助命令man-help-info"></a><h3>帮助命令man help info</h3>
+<ul>
+<li>manual: man ls;man 章节号 man；man -a passwd</li>
+<li>help: 内部命令(命令解释器shell自带的命令 type cd查看cd命令类型)：help cd 外部命令：ls &ndash;help</li>
+<li>info：比help 更详细，可以作为help的补充，全英文。</li>
+</ul>
+<a class="post-dummy-target" id="linux文件管理"></a><h3>linux文件管理</h3>
+<p>一切皆文件
+windows里有注册表，资源管理器等组件，控制linux自身的统统都是文件，linux文件管理非常重要</p>
+<a class="post-dummy-target" id="文件查看"></a><h4>文件查看</h4>
+<p>tab可以进行目录补全</p>
+<ul>
+<li>pwd</li>
+<li>cd
+<ul>
+<li>cd - 回到上次目录</li>
+<li>cd ..(/)回到上一级目录</li>
+<li>cd /path/to/…. 绝对路径</li>
+<li>cd ./path/to/… 相对路径（./可以省略）</li>
+</ul>
+</li>
+<li>ls
+<ul>
+<li>-l长格式显示（显示大小单位为Mb时可用-lh）</li>
+<li>-a显示隐藏文件</li>
+<li>-r逆序显示</li>
+<li>-t时间顺序显示</li>
+<li>-R递归显示</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="目录文件的创建和删除"></a><h4>目录文件的创建和删除</h4>
+<p>只列出了少量命令</p>
+<ul>
+<li>mkdir
+<ul>
+<li>mkdir a b c</li>
+<li>mkdir /a/b /a目录已存在</li>
+<li>mkdir -p /a/b/c/d 无需a b c等目录存在</li>
+<li>mkdir a b c -p  忽略已存在a b c 的报错</li>
+</ul>
+</li>
+<li>rmdir 删除空目录，目录下有空目录也不行，体现了“一切皆文件”</li>
+<li>rm
+<ul>
+<li>-r -f（/rf） 可以删除非空目录，不去进行提示删除目录，具有一定危险性 eg: rm -r -f / a 不小心在/a之间加空格会导致删除所有目录且不提示</li>
+<li>-i 删除前逐一询问确认</li>
+<li>-f 即使原档案属性设为唯读，亦直接删除，无需逐一确认</li>
+<li>-r 将目录及以下之档案亦逐一删除</li>
+</ul>
+</li>
+<li>cp
+<ul>
+<li>-r 复制⽬录</li>
+<li>-p 保留访问权限、修改时间</li>
+<li>-a 等同于 -dpR（保留权限、属组、修改时间）</li>
+<li>-v 显示复制过程</li>
+</ul>
+</li>
+<li>mv
+<ul>
+<li>mv /a /b将a改名为b（可与移动同时进行），在linux底层操作即进行了一个移动</li>
+</ul>
+</li>
+<li>更多命令见<a href="https://www.runoob.com/linux/linux-command-manual.html" target="_blank">命令大全</a></li>
+</ul>
+<a class="post-dummy-target" id="通配符通用的匹配符号"></a><h4>通配符（通用的匹配符号）</h4>
+<p>是shell内建的符号，用于多个相似的文件进行操作</p>
+<ul>
+<li>*匹配任何字符串</li>
+<li>？匹配单个字符</li>
+<li>[abc]匹配abc任意一个字符</li>
+<li>[a-z]匹配一个范围</li>
+<li>[!xyz]或[^xyz] 不匹配</li>
+</ul>
+<a class="post-dummy-target" id="文件操作"></a><h4>文件操作</h4>
+<a class="post-dummy-target" id="文本内容查看"></a><h4>文本内容查看</h4>
+<ul>
+<li>cat ⽂本内容显示到终端</li>
+<li>head 查看⽂件开头（默认10行，-5可显示5行）</li>
+<li>tail 查看⽂件结尾（行数同head）(-f可进行跟踪)</li>
+<li>常⽤参数 -f ⽂件内容更新后，显示信息同步更新</li>
+<li>wc 统计⽂件内容信息（-l查看行数）</li>
+<li>more 分行显示 （空格继续显示）</li>
+<li>less</li>
+</ul>
+<p>more和less:
+less:由于more不能后退，就取more的反义词less加上后退功能
+所以Linux里流传着这样一句话：&ldquo;less is more&rdquo;.
+总结下more 和 less的区别:</p>
+<ul>
+<li>less可以按键盘上下方向键显示上下内容,more不能这样</li>
+<li>less不必读整个文件，加载速度会比more更快</li>
+<li>less退出后shell不会留下刚显示的内容,而more退出后会在shell上留下刚显示的内容</li>
+</ul>
+<a class="post-dummy-target" id="打包压缩解压"></a><h4>打包压缩解压</h4>
+<ul>
+<li>最早的 Linux 备份介质是磁带，使⽤的命令是 tar</li>
+<li>可以打包后的磁带⽂件进⾏压缩储存，压缩的命令是 gzip 和 bzip2</li>
+<li>经常使⽤的扩展名是 .tar.gz .tar.bz2 .tgz</li>
+<li>tar 打包命令
+<ul>
+<li>c 打包(cf  .tar)</li>
+<li>x 解包</li>
+<li>f 指定操作类型为⽂件</li>
+<li>可以使⽤ gzip 和 bzip2 命令单独操作通常和 tar 命令配合操作</li>
+<li>-z gzip 格式压缩和解压缩(czf  .tar.gz)</li>
+<li>-j bzip2 格式压缩和解压缩(cjf  .tar.bz2)，压缩比例更高，执行时间更慢。</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="vim的四种模式"></a><h4>vim的四种模式</h4>
+<p>vim是一个vi向上兼容的文本编辑器</p>
+<a class="post-dummy-target" id="正常模式"></a><h5>正常模式</h5>
+<p>正常模式下输入：</p>
+<ul>
+<li>i:进入插入模式光标位置不动</li>
+<li>I:进入插入模式光标移到行首</li>
+<li>a:进入插入模式光标移到下一位</li>
+<li>A:进入插入模式光标移到行末</li>
+<li>o:进入插入模式光标在原来那一行的下一行，另起一行</li>
+<li>O:进入插入模式光标在原来那一行的上一行，另起一行</li>
+<li>::进入命令模式</li>
+<li>hjkl:正常模式下光标上下左右移动</li>
+<li>复制剪切粘贴输入错误进行重做</li>
+<li>y:
+<ul>
+<li>yy:光标在某一行输入n(不输入时默认为1，作为从当前行开始要复制的行数) yy，粘贴用p</li>
+<li>y$:复制当前字符到行末的字符</li>
+</ul>
+</li>
+<li>d:剪切
+<ul>
+<li>dd</li>
+<li>d$</li>
+</ul>
+</li>
+<li>u:撤销</li>
+<li>ctrl+r:重做</li>
+<li>x:单个字符删除</li>
+<li>r:替换当前字符</li>
+<li>n(你要移动光标到哪一行)+G</li>
+<li>g到第一行</li>
+<li>G到最后一行</li>
+<li>^到当前行的开头</li>
+<li>$到当前行的结尾</li>
+</ul>
+<a class="post-dummy-target" id="命令模式"></a><h5>命令模式</h5>
+<p>文件的保存、退出、查找、替换，在正常模式下输入：</p>
+<ul>
+<li>w /test.txt 将文本保存到新文件，w直接保存到原始文件</li>
+<li>wq保存并推出</li>
+<li>q!不保存退出</li>
+<li>！执行linux命令，有时候在打开vim的同时需要临时执行一条命令，eg:!ifconfig(查看ip地址)</li>
+<li>/查找eg:/x+enter光标自动移到第一个x,按n可以移动到下一个x，按N可以移到上一个x</li>
+<li>s/old/new 在光标所在行，将第一个旧的字符替换成新的字符</li>
+<li>%s/old/new 所有行，将第一个旧的字符替换成新的字符</li>
+<li>%s/old/new/g 所有行，将所有旧的字符替换成新的字符、</li>
+<li>n,m+前三个命令是在[n,m]行进行替换，左闭右闭</li>
+<li>set nohlsearch去除高亮显示</li>
+<li>set nu:显示行数</li>
+<li>set nonu:不显示行数
+修改vim配置在/etc/vimrc文件里操作<br>
+比如在最后一行添加set nu则以后每次打开文件都会显示行号</li>
+</ul>
+<a class="post-dummy-target" id="可视模式"></a><h5>可视模式</h5>
+<p>用于对文件进行重复的大量操作可以一次性执行完成</p>
+<ul>
+<li>v字符可视模式</li>
+<li>V行可视模式</li>
+<li>ctrl+v块可视模式</li>
+<li>配合d和I可以进行块的便利操作
+<ul>
+<li>eg:进入块可视模式，用hjkl选择一个块，I可以在块头插入比如abc再按两次esc可见每行都被插入了abc；选中一个块，按d直接删除块</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="3-服务管理"></a><h2>3. 服务管理</h2>
+<a class="post-dummy-target" id="4-shell"></a><h2>4. Shell</h2>
+<a class="post-dummy-target" id="5-文本操作"></a><h2>5. 文本操作</h2>
+<a class="post-dummy-target" id="6-服务篇"></a><h2>6. 服务篇</h2>
+<a class="post-dummy-target" id="7-实战"></a><h2>7. 实战</h2>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-08</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/linux/"><i class="fas fa-tag fa-fw"></i>&nbsp;linux</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/big-data/" class="prev" rel="prev" title="BigData_base_01"><i class="fas fa-angle-left fa-fw"></i>BigData_base_01</a>
+                <a href="https://qizhengzou.github.io/2021/mysql_catalogue/" class="next" rel="next" title="Mysql_catalogue">Mysql_catalogue<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

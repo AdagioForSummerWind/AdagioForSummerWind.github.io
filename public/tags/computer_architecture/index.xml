@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>computer_architecture on Jefo</title>
+    <link>https://qizhengzou.github.io/tags/computer_architecture/</link>
+    <description>Recent content in computer_architecture on Jefo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 29 Nov 2021 14:19:01 +0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/computer_architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CA_base_01</title>
+      <link>https://qizhengzou.github.io/2021/ca-intro/</link>
+      <pubDate>Mon, 29 Nov 2021 14:19:01 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/ca-intro/</guid>
+      <description>1 内容来源：计算机体系结构基础（第三版）胡伟武等 引言 造计算机： 硬件方面：计算机组成原理和计算机体系结构 软件方面：操作系统和编译原理 由CPU和</description>
+    </item>
+    
+  </channel>
+</rss>

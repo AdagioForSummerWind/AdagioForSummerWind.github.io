@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>cryptography - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/cryptography/</link>
+        <description>cryptography - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 16 Dec 2021 15:27:36 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/cryptography/" rel="self" type="application/rss+xml" /><item>
+    <title>Cry_catalogue</title>
+    <link>https://qizhengzou.github.io/cry_catalogue/</link>
+    <pubDate>Thu, 16 Dec 2021 15:27:36 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_catalogue/</guid>
+    <description><![CDATA[base来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 base_01 课程简介 base_02 古典密码学 代换密码 置换密码 小结 base_03 分组密码 对称加密分类 分组密码设计准则 分]]></description>
+</item><item>
+    <title>Cry_base_07</title>
+    <link>https://qizhengzou.github.io/cry_base_07/</link>
+    <pubDate>Thu, 16 Dec 2021 15:24:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_07/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 Hash,MAC,DS 哈希函数应用 消息验证 完整性 口令验证 MAC（与加密配合） 数字签名（与加密配合） 两个简易]]></description>
+</item><item>
+    <title>Cry_base_06</title>
+    <link>https://qizhengzou.github.io/cry_base_06/</link>
+    <pubDate>Thu, 16 Dec 2021 15:24:04 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_06/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 公钥加密（RSA，DH, ElGamal 与椭圆曲线） 公钥密码体制 非对称密码：免去密钥分发、密钥管理简]]></description>
+</item><item>
+    <title>Cry_base_05</title>
+    <link>https://qizhengzou.github.io/cry_base_05/</link>
+    <pubDate>Thu, 16 Dec 2021 15:24:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_05/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 序列密码 概述 序列密码，也称流密码，是对称密码中的一种 序列密码的因一次一密应运而生的 思想]]></description>
+</item><item>
+    <title>Cry_base_04</title>
+    <link>https://qizhengzou.github.io/cry_base_04/</link>
+    <pubDate>Thu, 16 Dec 2021 15:23:56 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_04/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 数学原理 模运算 费马小定理 拓展欧几里得算法 中国剩余定理 群环域 $Z_n$ 伽罗瓦域Galois FIeld GF(p) 多]]></description>
+</item><item>
+    <title>Cry_base_03</title>
+    <link>https://qizhengzou.github.io/cry_base_03/</link>
+    <pubDate>Thu, 16 Dec 2021 15:23:53 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_03/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 分组密码 对称加密分类 分组密码/块密码（Block Cipher） 一次加密一个分组（Pla]]></description>
+</item><item>
+    <title>Cry_base_02</title>
+    <link>https://qizhengzou.github.io/cry_base_02/</link>
+    <pubDate>Thu, 16 Dec 2021 15:23:51 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_02/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 古典密码学 代换密码 将明文中的每个字符代换成密文中的另一个字符，代换后的各字符位置不变。]]></description>
+</item><item>
+    <title>Cry_base_01</title>
+    <link>https://qizhengzou.github.io/cry_base_01/</link>
+    <pubDate>Thu, 16 Dec 2021 14:32:42 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cry_base_01/</guid>
+    <description><![CDATA[笔记来自2021年秋哈工大深圳密码学基础授课老师：蒋琳 课程简介 不包含内容 计算机安全，例如病毒 网络安全，例如网络攻击 安全网络协议，例如安全传输]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Message queue - 分类 - Jefo</title>
+        <link>https://qizhengzou.github.io/categories/message-queue/</link>
+        <description>Message queue - 分类 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jul 2022 16:26:15 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/categories/message-queue/" rel="self" type="application/rss+xml" /><item>
+    <title>Kafka_source_code</title>
+    <link>https://qizhengzou.github.io/kafka_source_code/</link>
+    <pubDate>Sun, 17 Jul 2022 16:26:15 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/kafka_source_code/</guid>
+    <description><![CDATA[kafka核心源码解读 胡夕 2020-04-13 日志 01 | 日志段：保存消息文件的对象是怎么实现的？ 总结 今天，我们对 Kafka 日志段源码进行了重点的分析，包括日志段的 append 方法]]></description>
+</item><item>
+    <title>Kafka_practice</title>
+    <link>https://qizhengzou.github.io/kafka_practice/</link>
+    <pubDate>Sun, 17 Jul 2022 16:26:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/kafka_practice/</guid>
+    <description><![CDATA[Kafka 核心技术与实战 开篇词 | 为什么要学习Kafka？ 胡夕 2019-06-03 01 | 消息引擎系统ABC Kafka 是什么呢？用一句话概括一下：Apache Kafka 是一款开源的消息引擎]]></description>
+</item><item>
+    <title>mq_base</title>
+    <link>https://qizhengzou.github.io/mq_base/</link>
+    <pubDate>Sun, 17 Jul 2022 16:25:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/mq_base/</guid>
+    <description><![CDATA[消息队列高手课 李玥 2019-07 开篇词 | 优秀的程序员，你的技术栈中不能只有“增删改查” 消息队列几乎是每个后端程序员都会用到的中间件，它在你的技术栈中重要]]></description>
+</item></channel>
+</rss>

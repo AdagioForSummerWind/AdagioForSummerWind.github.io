@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>mongodb - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/mongodb/</link>
+        <description>mongodb - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Jul 2022 10:19:41 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/mongodb/" rel="self" type="application/rss+xml" /><item>
+    <title>Mongodb_base_01</title>
+    <link>https://qizhengzou.github.io/mongodb_base_01/</link>
+    <pubDate>Tue, 05 Jul 2022 10:19:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/mongodb_base_01/</guid>
+    <description><![CDATA[mongodb 介绍 MongoDB是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。 MongoDB是]]></description>
+</item></channel>
+</rss>

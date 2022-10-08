@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="关于RabbitMQ的一些面试题 0. 什么是RabbitMQ RabbitMQ采用AMQP高级新消息队列协议的一种消息队列技术，最大的特点是消费并" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="关于RabbitMQ的一些面试题 0. 什么是RabbitMQ RabbitMQ采用AMQP高级新消息队列协议的一种消息队列技术，最大的特点是消费并"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" /><link rel="prev" href="https://jefofrank.xyz/h.-%E5%88%86%E5%B8%83%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" /><link rel="next" href="https://jefofrank.xyz/f.-%E6%B7%B1%E4%BF%A1%E6%9C%8D/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2693 ,
+        "url": "https:\/\/jefofrank.xyz\/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2693 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#51-发送方确认模式">5.1 发送方确认模式</a></li>
+    <li><a href="#52-接收方确认机制">5.2 接收方确认机制</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#101-生产者丢失消息">10.1 生产者丢失消息</a></li>
+    <li><a href="#102-rabbitmq自己丢了数据">10.2 RabbitMQ自己丢了数据</a></li>
+    <li><a href="#103-消费者弄丢了数据">10.3 消费者弄丢了数据</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#121-削峰">12.1 削峰</a></li>
+    <li><a href="#122-异步">12.2 异步</a></li>
+    <li><a href="#123-解耦">12.3 解耦</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="关于rabbitmq的一些面试题">关于RabbitMQ的一些面试题</h1>
+<h1 id="0-什么是rabbitmq">0. 什么是RabbitMQ</h1>
+<p>RabbitMQ采用AMQP高级新消息队列协议的一种消息队列技术，最大的特点是消费并不需要确保提供方实现，实现了服务之间的高度解耦</p>
+<h1 id="1-延时队列底层实现">1. 延时队列底层实现</h1>
+<p>延迟队列存储的对象肯定是对应的延迟消息，所谓”延迟消息”是指当消息被发送以后，并不想让消费者立即拿到消息，而是等待指定时间后，消费者才拿到这个消息进行消费</p>
+<ul>
+<li>订单时间</li>
+<li>定时任务</li>
+</ul>
+<p><strong>TTL（Time To Live）</strong>
+RabbitMQ可以针对Queue和Message设置 x-message-tt，来控制消息的生存时间，如果超时，则消息变为dead letter</p>
+<p>RabbitMQ针对队列中的消息过期时间有两种方法可以设置。</p>
+<p>A: 通过队列属性设置，队列中所有消息都有相同的过期时间。
+B: 对消息进行单独设置，每条消息TTL可以不同。</p>
+<p>给对列设置过期时间，将消息加入对列，过期时间之后消息自动进入死信队列，监听死信队列，进行消费操作可以实现延迟队列</p>
+<h1 id="2-使用rabbitmq需要注意什么">2. 使用RabbitMQ需要注意什么</h1>
+<p>消息丢失，消息重复消费等等</p>
+<h1 id="3-rabbitmq效率">3. RabbitMQ效率</h1>
+<h1 id="4-插入延时队列的过期时间是单调的麻">4. 插入延时队列的过期时间是单调的麻？</h1>
+<h1 id="5-如何确保消息正确地发送至rabbitmq-如何确保消息接收方消费了消息">5. 如何确保消息正确地发送至RabbitMQ？ 如何确保消息接收方消费了消息？</h1>
+<h2 id="51-发送方确认模式">5.1 发送方确认模式</h2>
+<p>将信道设置成<code>confirm模式（发送方确认模式）</code>，则所有在信道上发布的消息都会被指派一个唯一ID。一旦消息被投递到目的队列后，或者消息被写入磁盘后，信道会发送一个确认给生产者（包括消息的ID）。</p>
+<p>如果RabbitMQ发生内部错误从而导致消息丢失，会发送一条nack消息。</p>
+<p>发送方确认模式是<strong>异步</strong>的，生产者应用程序在等待确认的同时，可以继续发送消息。</p>
+<p>当确认消息到达生产者应用程序，生产者应用的回调方法就会被触发来处理确认消息。</p>
+<h2 id="52-接收方确认机制">5.2 接收方确认机制</h2>
+<p>消费者接受每一条消息后都必须进行确认，只要有消费者确认了消息，MQ才能安全的把消息从队列中删除。</p>
+<p>这里并没有用到<strong>超时机制</strong>，MQ仅通过Consumer的连接中断来确认是否需要重新发送消息。也就是说，只要连接不中断，RabbitMQ给了Consumer足够长的时间来处理消息。保证了数据的最终一致性。</p>
+<p>还有几种情况：</p>
+<ul>
+<li>如果消费者接受到消息，在确认之前断开了连接或取消订阅，RabbitMQ会认为消息没有被分发，然后重新分发给下一个订阅的消费者。（可能存在消费重复的隐患，需要去重）</li>
+<li>如果消费者接受到消息却没有确认消息，连接也未断开，则RabbitMQ认为该消费者繁忙。则不会给该消费者分发更多的消息。</li>
+</ul>
+<h1 id="6-如何避免消息重复投递或重复消费">6. 如何避免消息重复投递或重复消费？</h1>
+<p>在消息生产时，MQ内部针对每条生产者发送的消息生成一个inner-msg-id，作为去重的依据（消息投递失败并重传），避免重复的消息进入队列，在消息消费时，要求消息体中 <strong><code>必须要有一个bizID（对于同一个业务全局唯一）</code></strong> 作为去重的依据，避免同一条消息被重复消费。</p>
+<h1 id="7-消息基于什么传输">7. 消息基于什么传输？</h1>
+<p>由于 TCP 连接的<code>创建和销毁开销较大</code>，且并发数受系统资源限制，会造成性能瓶颈。RabbitMQ 使用<strong>信道</strong>的方式来传输数据。信道是建立在真实的 TCP 连接内的虚拟连接，且每条 TCP 连接上的信道数量<code>没有限制</code>。</p>
+<h1 id="8消息如何分发">8、消息如何分发？</h1>
+<ul>
+<li>一个生产者，多个消费者</li>
+<li>多个消费者时，是轮询机制，依次分发给消费者(每个消费者按顺序依次消费)</li>
+</ul>
+<p><strong><code>no_act</code>设置是否确认消息处理完？</strong></p>
+<ul>
+<li>no_act = True , 消费者不发送确认信息，RabbitMQ从发送消息队列后，不管消费者是否处理完，删除queue</li>
+<li>设置no_act=False，RabbitMQ等待消费者的callback处理完，发送确认信息，如果此时消费者down了，则RabbitMQ把消息轮询发送给下一个消费者，等待确认才会删除queue</li>
+<li>去掉no_act=True，需要在回调函数中新增代码，手动向RabbitMQ发送确认信息</li>
+</ul>
+<h1 id="9消息怎么路由">9、消息怎么路由？</h1>
+<ul>
+<li>
+<p>Direct：直连模式</p>
+</li>
+<li>
+<p>Topic： 转发模式
+<code>Topic 模式</code>下可以使用统配符表示<code>bingKey</code>：'*&lsquo;表示匹配一个单词， &lsquo;#&lsquo;则表示匹配没有或者多个单词。由此可以实现一个<code>queue</code>接收多个路由的消息。</p>
+</li>
+<li>
+<p>Fanout ：广播模式
+广播模式下，不用理会<code>routing key</code>。<strong>Fanout Exchange 会将消息传递到 exchange 绑定好的 queue list 上去。</strong></p>
+</li>
+</ul>
+<h1 id="10如何确保消息不丢失">10、如何确保消息不丢失？</h1>
+<h2 id="101-生产者丢失消息">10.1 生产者丢失消息</h2>
+<p>可以选择使用 RabbitMQ 提供事务功能，就是生产者在<strong>发送数据之前开启事务</strong>，然后发送消息，如果消息没有成功被RabbitMQ接收到，那么生产者会受到异常报错，这时就可以回滚事物，然后尝试重新发送；如果收到了消息，那么就可以提交事物。</p>
+<p><strong>缺点：</strong> RabbitMQ 事务已开启，就会变为同步阻塞操作，生产者会阻塞等待是否发送成功，太耗性能会造成吞吐量的下降。</p>
+<p>还有就是上面的第五点</p>
+<h2 id="102-rabbitmq自己丢了数据">10.2 RabbitMQ自己丢了数据</h2>
+<p>持久化</p>
+<h2 id="103-消费者弄丢了数据">10.3 消费者弄丢了数据</h2>
+<p>使用 RabbitMQ 提供的 ACK 机制，首先关闭 RabbitMQ 的自动ACK，然后每次在确保处理完这个消息之后，在代码里手动调用 ACK。这样就可以避免消息还没有处理完就ACK。</p>
+<h1 id="11rabbitmq的集群">11、RabbitMQ的集群</h1>
+<h1 id="12使用rabbitmq有什么好处">12、使用RabbitMQ有什么好处？</h1>
+<h2 id="121-削峰">12.1 削峰</h2>
+<p>把消息压入RabbitMQ中可以缓冲系统压力。比如现在系统只能接受2000请求，但是一下子有10000个请求过来，那么这个请求就会压在RabbitMQ中，那么就可以慢慢进行消费了。</p>
+<h2 id="122-异步">12.2 异步</h2>
+<p>以前是先去发短信，再去发邮件。引入RabbitMQ之后，我们就可以进行在发短信的同时再去发邮箱。</p>
+<h2 id="123-解耦">12.3 解耦</h2>
+<p>当多个系统耦合在一起的时候，系统的消息会发送给连在一起的系统，但是这个消息有些系统可能是不需要的。所以引入了之后，很方便将这个系统进行解耦，每个系统需要的就在消息队列解耦。</p>
+<h1 id="13mq-的缺点">13、MQ 的缺点</h1>
+<p>虽然能提供削峰，异步，解耦，但是这个还是有很多要考虑的问题，消息丢失，重复消费。</p>
+<h1 id="14介绍rabbitmq的手动ack和自动ack">14、介绍Rabbitmq的手动ACK和自动ACK</h1>
+<p>当消息一旦被消费者接收，队列中的消息就会被删除。<strong>那么问题来了：RabbitMQ怎么知道消息被接收了呢？</strong></p>
+<p>这就要通过消息<code>确认机制（Acknowlege）</code>来实现了。当消费者获取消息后，会向RabbitMQ发送回执<code>ACK</code>，告知消息已经被接收。不过这种回执ACK分两种情况：</p>
+<ul>
+<li>自动ACK：消息一旦被接收，消费者自动发送ACK</li>
+<li>手动ACK：消息接收后，不会发送ACK，需要手动调用</li>
+</ul>
+<p>这两ACK要怎么选择呢？这需要看消息的重要性：</p>
+<ul>
+<li>如果消息不太重要，丢失也没有影响，那么自动ACK会比较方便</li>
+<li>如果消息非常重要，不容丢失。<strong>那么最好在消费完成后手动ACK，否则接收消息后就自动ACK，RabbitMQ就会把消息从队列中删除。如果此时消费者宕机，那么消息就丢失了。</strong></li>
+</ul>
+<h1 id="参考连接">参考连接</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/275891953" target="_blank" rel="noopener noreffer">分布式消息中间件-RabbitMQ面试题（必问）</a>
+<a href="https://www.cnblogs.com/wffzk/p/13467105.html" target="_blank" rel="noopener noreffer">RabbitMQ-解耦、异步、削峰</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/h.-%E5%88%86%E5%B8%83%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/f.-%E6%B7%B1%E4%BF%A1%E6%9C%8D/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

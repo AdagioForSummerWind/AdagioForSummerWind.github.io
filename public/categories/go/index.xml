@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/go/</link>
+        <description>Go - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/go/" rel="self" type="application/rss+xml" /><item>
+    <title>Effective_go</title>
+    <link>https://jefofrank.xyz/effective_go/</link>
+    <pubDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/effective_go/</guid>
+    <description><![CDATA[https://go.dev/doc/effective_go 引言 Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性，使得用 Go 编程在本质上就不同于其它语言。将现有的 C++ 或 Java 程序直]]></description>
+</item><item>
+    <title>Go_base_09</title>
+    <link>https://jefofrank.xyz/go_base_09/</link>
+    <pubDate>Wed, 12 Jan 2022 22:17:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_09/</guid>
+    <description><![CDATA[常用标准库 前言 包复用 package: 基本复⽤模块单元：以⾸字⺟⼤写来表明可被包外代码访问 代码的 package 可以和所在的⽬录不⼀致 同⼀⽬录⾥的 Go 代码的 package 要保持⼀致 依赖]]></description>
+</item><item>
+    <title>Go_base_01</title>
+    <link>https://jefofrank.xyz/go_base_01/</link>
+    <pubDate>Thu, 06 Jan 2022 20:55:59 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_01/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 前言 计算机里的数据都是以字节形式进行存储和处理，从而需要编码来表达信息。ASCI]]></description>
+</item><item>
+    <title>Go_grammar_catalogue</title>
+    <link>https://jefofrank.xyz/go_grammar_catalogue/</link>
+    <pubDate>Thu, 06 Jan 2022 09:17:19 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_grammar_catalogue/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 go_base_01 go起源 环境相关 主要特征 内置类型与函数 init &amp; main以及Go包的初始化顺序 go命]]></description>
+</item><item>
+    <title>Go_base_07</title>
+    <link>https://jefofrank.xyz/go_base_07/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:49 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_07/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 并发编程 并发介绍 进程和线程 进程是程序在操作系统中的一次执行过程，系统进行资源分配]]></description>
+</item><item>
+    <title>Go_base_06</title>
+    <link>https://jefofrank.xyz/go_base_06/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_06/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 网络编程 互联网协议介绍 互联网的核心是一系列协议，总称为”互联网协议”（Inter]]></description>
+</item><item>
+    <title>Go_base_05</title>
+    <link>https://jefofrank.xyz/go_base_05/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_05/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 面向对象 Is Go an object-oriented language? Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interf]]></description>
+</item><item>
+    <title>Go_base_04</title>
+    <link>https://jefofrank.xyz/go_base_04/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:37 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_04/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 方法 方法本质 一个以方法的 receiver 参数作为第一个参数的普通函数。 1 2 3 4 5 6 7 8 9 10 11 12]]></description>
+</item><item>
+    <title>Go_base_03</title>
+    <link>https://jefofrank.xyz/go_base_03/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:34 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_03/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 函数 函数定义 go的函数特点： 无需声明原型。 支持不定参、变参。 支持多返回值。 支持命]]></description>
+</item><item>
+    <title>Go_base_02</title>
+    <link>https://jefofrank.xyz/go_base_02/</link>
+    <pubDate>Thu, 06 Jan 2022 09:16:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/go_base_02/</guid>
+    <description><![CDATA[参考学习go语言中文网、C语言中文网、golang官方文档等 流程控制 if Go 编程语言中 if 语句的语法如下： 1 2 3 4 5 6 7 8 可省略条件表达式括号。 持]]></description>
+</item></channel>
+</rss>
