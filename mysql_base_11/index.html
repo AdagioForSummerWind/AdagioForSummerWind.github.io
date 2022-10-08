@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql_base_11 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="Mysql_base_11" />
+<meta property="og:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 数据库查询实现算法 数据库查询实现算法-I 数据库查询实现算法概述 查询实现&amp;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/mysql_base_11/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-09T11:28:46+08:00" />
+<meta property="article:modified_time" content="2021-11-15T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Mysql_base_11"/>
+<meta name="twitter:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 数据库查询实现算法 数据库查询实现算法-I 数据库查询实现算法概述 查询实现&amp;"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/mysql_base_11/" /><link rel="prev" href="https://qizhengzou.github.io/mysql_base_10/" /><link rel="next" href="https://qizhengzou.github.io/mysql_base_12/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_11",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/mysql_base_11\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "mysql","wordcount":  2110 ,
+        "url": "https:\/\/qizhengzou.github.io\/mysql_base_11\/","datePublished": "2021-11-09T11:28:46+08:00","dateModified": "2021-11-15T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mysql_base_11</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-09 11:28:46">2021-11-09 11:28:46</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2110 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据库查询实现算法-i">数据库查询实现算法-I</a>
+      <ul>
+        <li><a href="#数据库查询实现算法概述">数据库查询实现算法概述</a></li>
+        <li><a href="#以连接操作为例看逻辑实现算法与物理实现算法">以连接操作为例看逻辑实现算法与物理实现算法</a></li>
+        <li><a href="#利用迭代器构造查询实现算法">利用迭代器构造查询实现算法</a></li>
+        <li><a href="#几个关系操作的一趟扫描算法">几个关系操作的一趟扫描算法</a></li>
+        <li><a href="#基于索引的算法">基于索引的算法</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库查询实现算法-ii">数据库查询实现算法-II</a>
+      <ul>
+        <li><a href="#为什么需要两趟算法">为什么需要两趟算法?</a></li>
+        <li><a href="#两阶段多路归并排序tpmms">两阶段多路归并排序TPMMS</a></li>
+        <li><a href="#基于排序的两趟扫描算法">基于排序的两趟扫描算法</a></li>
+        <li><a href="#基于散列的两趟扫描算法">基于散列的两趟扫描算法</a></li>
+        <li><a href="#总结-1">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫</p>
+</blockquote>
+<h1 id="数据库查询实现算法">数据库查询实现算法</h1>
+<h2 id="数据库查询实现算法-i">数据库查询实现算法-I</h2>
+<h3 id="数据库查询实现算法概述">数据库查询实现算法概述</h3>
+<p>查询实现&amp;查询优化：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162053.png" />
+查询实现算法总览：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162151.png" /></p>
+<h3 id="以连接操作为例看逻辑实现算法与物理实现算法">以连接操作为例看逻辑实现算法与物理实现算法</h3>
+<p>连接操作的逻辑实现算法：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162320.png" />
+物理算法需要考虑：关系是存储在磁盘上的，磁盘是以磁盘块为操作单位，首先要被装载进内存(I/O操作)，然后再进行元组的处理</p>
+<p>连接操作的基本实现算法：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162715.png" />
+连接操作的全主存实现算法：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113162906.png" />
+连接操作的半主存实现算法：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163002.png" />
+连接操作的大关系实现算法：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211113163055.png" /></p>
+<p>连接操作的其他物理实现算法：</p>
+<ul>
+<li>表空间扫描法
+<ul>
+<li>基本实现算法P1
+<ul>
+<li>适用于任何情况：3块内存即可，但算法复杂性高: BR + BR * BS</li>
+</ul>
+</li>
+<li>全主存实现算法P2
+<ul>
+<li>要求内存能够完全装载两个关系。算法复杂性低：BR + BS</li>
+</ul>
+</li>
+<li>半主存实现算法P3
+<ul>
+<li>要求内存能够完全装载一个关系。算法复杂性低：BR + BS</li>
+</ul>
+</li>
+<li>大关系实现算法P4
+<ul>
+<li>适用于任何情况，尤其是大关系情况下比算法P1好。</li>
+<li>算法复杂性低：BR(BS/(M-2)) + BS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>归并排序(Sort-Merge)连接算法P5</li>
+<li>散列连接(Hash连接)算法P6</li>
+<li>索引连接算法P7</li>
+</ul>
+<h3 id="利用迭代器构造查询实现算法">利用迭代器构造查询实现算法</h3>
+<p>例如：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102441.png" />
+迭代器算法流水线计算策略：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114102549.png" />
+迭代器：迭代的读取一个集合中的每一个元素，而封装其读取细节</p>
+<p>有一个抽象类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class iterator { void Open(); tuple GetNext();
+void Close();
+iterator &amp;inputs[];
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>所有关系操作可继承此迭代器进行构造。不同操作，可以构造不同的Open(),GetNext(), Close()函数</p>
+<p>迭代器的构造,迭代器示例：</p>
+<ul>
+<li>表空间扫描法— 读取关系&ndash;R:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Open() {
+b := R的第一块；
+t := b的第一个元组；
+}
+GetNext() {
+IF ( t 已超过块b的最后一个元组 ）
+{ 将b前进到下一块
+IF (没有下一块)
+RETURN NotFound;
+ELSE /* b是一个新块 */
+t := b的第一个元组；
+}
+oldt := t;
+将t前进到b的下一元组； RETURN t；
+}
+Close() {
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>SELECTION(R):</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Open() {
+R.Open();
+}
+GetNext() {
+Cont:
+t:=R.GetNext();
+IF (t&lt;&gt; NotFound)
+IF F(t) == TRUE
+RETURN t;
+ELSE GOTO Cont;
+ELSE RETURN NotFound;
+}
+Close() {
+R.Close();
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211114103220.png" />
+PROJECTION(SELECTION(R)):</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Open() {
+SELECTION.Open();
+}
+GetNext() {
+t:= SELECTION.GetNext();
+IF (t&lt;&gt; NotFound) {
+p := PROJECTION(t, )
+RETURN p;
+}
+ELSE RETURN NotFound;
+}
+Close() {
+SELECTION.Close();
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>R Join S:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Open() {
+R.Open(); S.Open();
+r:= R.GetNext();
+}
+GetNext() {
+REPEAT{
+s:= S.GetNext();
+IF ( s == NotFound ）
+{ S.Close();
+r: = R.GetNext();
+IF (r == NotFound)
+RETURN NotFound;
+ELSE { S.Open();
+s := S.GetNext(); }
+} }
+UNTIL (r与s能够连接);
+RETURN r和s的连接；
+}
+Close() {
+R.Close(); S.Close();
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="几个关系操作的一趟扫描算法">几个关系操作的一趟扫描算法</h3>
+<ul>
+<li>关系/表数据的读取&mdash;完整地读取一个关系（B(R)是R的存储块数目 T(R)是R的元组数目）
+<ul>
+<li>聚簇关系—关系的元组集中存放(一个块中仅是一个关系中的元组):
+<ul>
+<li>TableScan(R) &mdash;表空间扫描算法
+<ul>
+<li>扫描结果未排序: B(R)</li>
+</ul>
+</li>
+<li>SortTableScan(R)
+<ul>
+<li>扫描结果排序: 3B(R)</li>
+</ul>
+</li>
+<li>IndexScan(R)&mdash;索引扫描算法
+<ul>
+<li>扫描结果未排序: B(R)</li>
+</ul>
+</li>
+<li>SortIndexScan(R)
+<ul>
+<li>扫描结果排序: B(R) or 3B</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非聚簇关系—关系的元组不一定集中存放(一个块中不仅是一个关系中的元组):
+<ul>
+<li>扫描结果未排序: T(R)</li>
+<li>扫描结果排序: T(R) + 2B(R</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>整个关系的一元操作实现算法
+<ul>
+<li>去重复：&amp;(R)
+<ul>
+<li>需要在内存中保存已处理过的元组</li>
+<li>当新元组到达时，需与之前处理过的元组进行比较</li>
+<li>建立不同的内存数据结构，来保存之前处理过的数据，以便快速处理整个关系上的操作</li>
+<li>算法复杂性：B(R)</li>
+<li>应用条件：B(&amp;(R))&lt;=M-2</li>
+</ul>
+</li>
+<li>分组聚集Y L(R)
+<ul>
+<li>需要在内存中保存所有的分组</li>
+<li>保存每个分组上的聚集信息</li>
+<li>建立不同的内存数据结构(建立内存数据结构，以快速定位一个元组，如排序结构/散列结构/B+树等)，来保存之前处理过的数据，以便快速处理整个关系上的操作</li>
+<li>算法复杂性：B(R)</li>
+<li>应用条件：所有分组的数量应能在内存中完整保存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>整个关系的二元操作实现算法
+<ul>
+<li>集合上的操作(并交差)
+<ul>
+<li>扫描一个关系，然后再扫描另一个关系</li>
+<li>集合的操作需要去重复</li>
+<li>算法复杂性：B(R)+B(S)</li>
+<li>应用条件：min(B(R), B(S))&lt;=M-2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于索引的算法">基于索引的算法</h3>
+<ul>
+<li>基于索引的选择算法
+<ul>
+<li>选择条件中有涉及到索引属性时，可以使用索引，辅助快速检索；</li>
+<li>在某些属性上存在着索引，可能在多个属性上都存在着索引；</li>
+<li>聚簇和非聚簇索引，使用时其效率是不一样的。</li>
+<li>如何通过索引来判断范围性的条件？</li>
+<li>索引应用分析示例
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103611.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103722.png" /></li>
+</ul>
+</li>
+<li>基于有序索引的连接算法&ndash;Zig-Zag连接算法<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115103949.png" /></li>
+</ul>
+<h3 id="总结">总结</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115125.png" /></p>
+<h2 id="数据库查询实现算法-ii">数据库查询实现算法-II</h2>
+<h3 id="为什么需要两趟算法">为什么需要两趟算法?</h3>
+<ul>
+<li>整个关系操作存在的问题?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104438.png" /></li>
+<li>两趟算法的基本思路?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115104538.png" /></li>
+</ul>
+<h3 id="两阶段多路归并排序tpmms">两阶段多路归并排序TPMMS</h3>
+<ul>
+<li>内排序和外排序问题
+<ul>
+<li>内排序问题: 待排序的数据可一次性地装入内存中，即排序者可以完整地看到和操纵所有数据。内存中数据的排序算法：插入排序算法、选择排序算法、冒泡排序算法…。</li>
+<li>外排序问题: 待排序的数据不能一次性装入内存，即排序者不能一次完整地看到和操纵所有数据，需要将数据分批装入内存分批处理的排序问题；</li>
+</ul>
+</li>
+<li>外排序问题分析
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113454.png" /></li>
+<li>算法基本思想
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113626.png" /></li>
+</ul>
+<h3 id="基于排序的两趟扫描算法">基于排序的两趟扫描算法</h3>
+<ul>
+<li>去重复操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113809.png" /></li>
+<li>分组聚集操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113853.png" /></li>
+<li>基于排序的并、交和差
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115113952.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114054.png" />
+对于集合差：R - S，当且仅当t出现在R中但不出现在S中时输出</li>
+<li>基于排序的连接运算
+<ul>
+<li>第一趟：划分R和S的子表并进行子表排序，排序均基于Y属性排序。</li>
+<li>第二趟：归并时注意是R的输入还是S的输入。R和S的两路输入之间进行连接检查并连接后输出。</li>
+<li>“排序-连接”算法，“归并-连接”算法，“排序-归并-连接”算法</li>
+<li>SORT-JOIN， MERGE-JOIN， SORT-MERGE-JOIN</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于散列的两趟扫描算法">基于散列的两趟扫描算法</h3>
+<ul>
+<li>基本思想
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114512.png" /></li>
+<li>去重复操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114623.png" /></li>
+<li>分组聚集操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114811.png" /></li>
+<li>基于散列的并、交和差操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114912.png" /></li>
+<li>基于散列的连接操作
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115114947.png" /></li>
+</ul>
+<h3 id="总结-1">总结</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211115115033.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-15 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/mysql_base_11/" data-title="Mysql_base_11" data-hashtags="mysql"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/mysql_base_11/" data-hashtag="mysql"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/mysql_base_11/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/mysql_base_11/" data-title="Mysql_base_11"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/mysql_base_11/" data-title="Mysql_base_11"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/mysql_base_11/" data-title="Mysql_base_11"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql_base_10/" class="prev" rel="prev" title="Mysql_base_10"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_10</a>
+            <a href="/mysql_base_12/" class="next" rel="next" title="Mysql_base_12">Mysql_base_12<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

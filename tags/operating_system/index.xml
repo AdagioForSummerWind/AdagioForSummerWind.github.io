@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>operating_system on Jefo</title>
+    <link>https://qizhengzou.github.io/tags/operating_system/</link>
+    <description>Recent content in operating_system on Jefo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 01 Dec 2021 11:22:00 +0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/operating_system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OperatingSystem_advanced_02</title>
+      <link>https://qizhengzou.github.io/2021/from-code-to-machine-running-program/</link>
+      <pubDate>Wed, 01 Dec 2021 11:22:00 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/from-code-to-machine-running-program/</guid>
+      <description>1 极客时间操作系统学习笔记 程序运行过程 实现一个简单内核 程序编译过程 使用 GCC 相关的工具链。那么使用命令：gcc HelloWorld.c -o HelloWorld 或者 gcc ./HelloWorld.c -o ./HelloWorld ，就可以编译这段</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_advanced_01</title>
+      <link>https://qizhengzou.github.io/2021/why-os/</link>
+      <pubDate>Wed, 01 Dec 2021 11:08:12 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/why-os/</guid>
+      <description>1 极客时间操作系统学习笔记 为什么要把操作系统学好？ 内存为什么会泄漏、服务进程为什么会 dang 掉、文件为什么打不开等一系列“基础”问题 MySQL 的 I/O 性能还能</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_base_05</title>
+      <link>https://qizhengzou.github.io/2021/equipmet-management/</link>
+      <pubDate>Tue, 30 Nov 2021 18:26:58 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/equipmet-management/</guid>
+      <description>设备管理 I/O 管理概述 I/O设备的分类与管理的任务 I/O设备的分类 (1)按设备的使用特性分类：按设备的使用特性可以将设备分为存储设备、人机交互设</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_base_04</title>
+      <link>https://qizhengzou.github.io/2021/file-management/</link>
+      <pubDate>Tue, 30 Nov 2021 18:26:50 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/file-management/</guid>
+      <description>文件管理 文件系统基础 文件的概念 文件的概念 数据处理是计算机的主要功能之一， 与数据处理相关的数据管理和数据保存是必不可少的，甚至是较为重要的环节</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_base_03</title>
+      <link>https://qizhengzou.github.io/2021/memory-management/</link>
+      <pubDate>Wed, 10 Nov 2021 13:14:39 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/memory-management/</guid>
+      <description>内存管理 内存管理基础 内存管理概念：程序装入与链接、逻辑地址与物理地址空间、内存保护。 存储器是计算机系统的重要组成部分，是计算机系统中的一种 宝</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_base_02</title>
+      <link>https://qizhengzou.github.io/2021/process-management/</link>
+      <pubDate>Wed, 10 Nov 2021 13:14:32 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/process-management/</guid>
+      <description>进程管理 进程与线程 进程概念 进程引入 在计算机操作系统中，进程是资源分配的基本单位（与线程的主要区别），也是独立运行的基本单位。 程序的顺序执行：</description>
+    </item>
+    
+    <item>
+      <title>OperatingSystem_base_01</title>
+      <link>https://qizhengzou.github.io/2021/operating-system-intro/</link>
+      <pubDate>Wed, 10 Nov 2021 13:14:26 +0800</pubDate>
+      
+      <guid>https://qizhengzou.github.io/2021/operating-system-intro/</guid>
+      <description>绪论 操作系统(Operating System, OS)的概念、特征、功能和提供的服务 引入操作系统的目的是： 提供一个计算机用户与计算机硬件系统之间的接口，使</description>
+    </item>
+    
+  </channel>
+</rss>

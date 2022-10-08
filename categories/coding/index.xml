@@ -1,0 +1,71 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Coding - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/coding/</link>
+        <description>Coding - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 31 Jul 2022 14:17:48 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/coding/" rel="self" type="application/rss+xml" /><item>
+    <title>Patterns_principles</title>
+    <link>https://jefofrank.xyz/patterns_principles/</link>
+    <pubDate>Sun, 31 Jul 2022 14:17:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/patterns_principles/</guid>
+    <description><![CDATA[https://github.com/geekhall/gof/blob/main/README.md?plain=1 1. 软件设计的七大原则 也叫solid原则 迪米特与合成/复用是后加的 Principle 1 : 开闭原则（Open Close Principle, OCP） 内容：对扩展开放，对修改关闭 实现方式：]]></description>
+</item><item>
+    <title>Algorithm_find</title>
+    <link>https://jefofrank.xyz/algorithm_find/</link>
+    <pubDate>Sun, 20 Feb 2022 19:52:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/algorithm_find/</guid>
+    <description><![CDATA[查找算法 散列查找：也称哈希查找，有拉链法查找，也有线性探测法查找，拉链法使用数组链表结构，线性探测法使用数组。 树查找：有搜索二叉树，平衡查找]]></description>
+</item><item>
+    <title>Algorithm_sort</title>
+    <link>https://jefofrank.xyz/algorithm_sort/</link>
+    <pubDate>Sun, 20 Feb 2022 19:52:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/algorithm_sort/</guid>
+    <description><![CDATA[排序算法 稳定性概念 定义：能保证两个相等的数，经过排序之后，其在序列的前后位置顺序不变。（A1=A2，排序前A1在A2前面，排序后A1还在A2]]></description>
+</item><item>
+    <title>Structural_type</title>
+    <link>https://jefofrank.xyz/structural_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:21:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/structural_type/</guid>
+    <description><![CDATA[结构型设计模式 常用的有：代理模式、桥接模式、装饰者模式、适配器模式。不常用的有：门面模式、组合模式、享元模式。 代理模式：代理模式在不改变原始]]></description>
+</item><item>
+    <title>Behavioral_type</title>
+    <link>https://jefofrank.xyz/behavioral_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:20:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/behavioral_type/</guid>
+    <description><![CDATA[行为型设计模式 常用的有：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式。 不常用的有：命令模式、备忘录模式、解释器模式、访问]]></description>
+</item><item>
+    <title>Create_type</title>
+    <link>https://jefofrank.xyz/create_type/</link>
+    <pubDate>Sat, 22 Jan 2022 09:19:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/create_type/</guid>
+    <description><![CDATA[创建型设计模式 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。 创建型模式主要解决对象的创建问题，封装复]]></description>
+</item><item>
+    <title>Algorithm_array</title>
+    <link>https://jefofrank.xyz/algorithm_array/</link>
+    <pubDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/algorithm_array/</guid>
+    <description><![CDATA[学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素]]></description>
+</item><item>
+    <title>Performance_analysis</title>
+    <link>https://jefofrank.xyz/performance_analysis/</link>
+    <pubDate>Sun, 02 Jan 2022 19:28:23 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/performance_analysis/</guid>
+    <description><![CDATA[算法性能分析 03 | 复杂度分析（上）：如何分析、统计算法的执行效率和资源消耗？ 复杂度分析是整个算法学习的精髓，只要掌握了它，数据结构和算法的内容]]></description>
+</item><item>
+    <title>Programming_literacy</title>
+    <link>https://jefofrank.xyz/programming_literacy/</link>
+    <pubDate>Sun, 02 Jan 2022 18:57:57 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/programming_literacy/</guid>
+    <description><![CDATA[编程相关 代码风格与规范 go其实没有什么要说的。。 变量命名 主要以团队风格为主； 主流有如下三种变量规则： 小驼峰、大驼峰(帕斯卡命名法)命名法（j]]></description>
+</item></channel>
+</rss>

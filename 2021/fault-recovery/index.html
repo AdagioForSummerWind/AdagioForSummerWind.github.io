@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_base_14 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/course-overview/" /><link rel="next" href="https://qizhengzou.github.io/2021/foundations-of-cryptography/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/fault-recovery/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_base_14"/>
+<meta name="twitter:description" content="故障恢复 数据库的故障类型及其影响 DBMS的运行方式： DBMS利用内存(主存)和外存(辅存)这样的存储体系来进行数据库管理 在内存中, 又将其分为"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_14",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/fault-recovery\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "mysql","wordcount":  3998 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/fault-recovery\/","datePublished": "2021-11-21T10:18:45\u002b08:00","dateModified": "2021-11-21T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_base_14</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-21>2021-11-21</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 3998 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据库的故障类型及其影响">数据库的故障类型及其影响</a></li>
+    <li><a href="#数据库故障恢复的宏观思路">数据库故障恢复的宏观思路</a></li>
+    <li><a href="#什么是日志">什么是日志</a></li>
+    <li><a href="#undo型日志及其故障恢复">Undo型日志及其故障恢复</a></li>
+    <li><a href="#redo型日志及其故障恢复">Redo型日志及其故障恢复</a></li>
+    <li><a href="#undoredo结合型日志及其故障恢复">Undo/Redo结合型日志及其故障恢复</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#数据库的故障类型及其影响">数据库的故障类型及其影响</a></li>
+    <li><a href="#数据库故障恢复的宏观思路">数据库故障恢复的宏观思路</a></li>
+    <li><a href="#什么是日志">什么是日志</a></li>
+    <li><a href="#undo型日志及其故障恢复">Undo型日志及其故障恢复</a></li>
+    <li><a href="#redo型日志及其故障恢复">Redo型日志及其故障恢复</a></li>
+    <li><a href="#undoredo结合型日志及其故障恢复">Undo/Redo结合型日志及其故障恢复</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="故障恢复">故障恢复</h1>
+<a class="post-dummy-target" id="数据库的故障类型及其影响"></a><h2>数据库的故障类型及其影响</h2>
+<p>DBMS的运行方式：</p>
+<ul>
+<li>DBMS利用内存(主存)和外存(辅存)这样的存储体系来进行数据库管理</li>
+<li>在内存中, 又将其分为程序数据(事务数据)和系统数据</li>
+</ul>
+<p>事务：</p>
+<ul>
+<li>事务是DBMS对数据库进行控制的基本逻辑单元。</li>
+<li>事务：宏观上是由程序员设置的一条或多条SQL语句的一次执行；微观上是对数据元素的一系列基本操作，如读写等。需要提交和撤销。</li>
+<li>数据元素：
+<ul>
+<li>通常1数据元素 = 1磁盘块/内存页</li>
+<li>也可以更小(=1 记录)或更大(=1 关系)</li>
+</ul>
+</li>
+<li>事务具有四个特性：ACID特性
+<ul>
+<li>原子性Atomicity</li>
+<li>一致性Consistency</li>
+<li>隔离性Isolation</li>
+<li>持久性Durability</li>
+</ul>
+</li>
+<li>故障恢复涉及到如何保证原子性和持久性</li>
+</ul>
+<p>数据库的故障及其影响</p>
+<ul>
+<li>事务故障
+<ul>
+<li>某一个程序(事务)自身运行错误所引起的故障</li>
+<li>影响该程序(事务)本身</li>
+</ul>
+</li>
+<li>系统故障
+<ul>
+<li>由于掉电、非正常关机等所引起的故障</li>
+<li>影响正在运行的事务以及数据库缓冲区, 数据库缓冲区将涉及正在运行和已经运行的事务</li>
+</ul>
+</li>
+<li>介质故障
+<ul>
+<li>由于介质损坏等所引起的故障</li>
+<li>影响是全面的，既影响内存中的数据, 又影响介质中存储的数据</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="数据库故障恢复的宏观思路"></a><h2>数据库故障恢复的宏观思路</h2>
+<p>数据库故障恢复</p>
+<ul>
+<li>把DB由当前不正确状态恢复到已知为正确的某一状态。</li>
+<li>需要保证事务的：
+<ul>
+<li>原子性：事务的所有操作，要么全都执行，要么全都不执行。</li>
+<li>持久性：已提交的事务对数据库产生的影响是持久的，未提交的事务对数据库不应有影响。</li>
+</ul>
+</li>
+</ul>
+<p>事务故障的恢复</p>
+<ul>
+<li>事务故障可通过重做事务(Redo)和撤消事务(Undo)来恢复。重做事务可保证已提交事务的持久性，而撤销事务则消除未提交事务的影响</li>
+</ul>
+<p>系统故障恢复</p>
+<ul>
+<li>运行日志(System Log)
+<ul>
+<li>运行日志是DBMS维护的一个文件，该文件以流水方式记录了每一个事务对数据库的每一次操作及操作顺序</li>
+<li>运行日志直接写入介质存储上，会保持正确性</li>
+<li>当事务对数据库进行操作时：先写运行日志；写成功后，再与数据库缓冲区进行信息交换</li>
+</ul>
+</li>
+<li>系统故障可通过运行日志来恢复
+<ul>
+<li>按照运行日志记录的事务操作顺序重做事务(当事务在发生故障时已正确结束) 或撤消事务(当事务在发生故障时未结束)</li>
+</ul>
+</li>
+<li>但故障恢复是需要时间的
+<ul>
+<li>运行日志保留了若干天的记录，当发生系统故障时应从哪一个点开始恢复呢？</li>
+</ul>
+</li>
+<li>DBMS在运行日志中定期的设置和更新检查点(checkpoint)
+<ul>
+<li>检查点是这样的时刻: 在该时刻, DBMS强制使内存DB Buffer中的内容与介质DB中的内容保持一致，即将DB Buffer更新的所有内容写回DB中</li>
+<li>检查点表征了：在检查点之前内存中数据与介质中数据是保持一致的</li>
+</ul>
+</li>
+<li>系统故障的恢复
+<ul>
+<li>检查点之前结束的事务不需要恢复(已经写回DB)</li>
+<li>检查点之后结束或发生的事务需 要依据运行日志进行恢复(不能确定是否写回DB): 故障点前结束的重做, 故障点时刻未结束的撤消</li>
+</ul>
+</li>
+</ul>
+<p>介质故障恢复</p>
+<ul>
+<li>副本(Copy)
+<ul>
+<li>在某一时刻，对数据库在其他介质存储上产生的另一份等同记录</li>
+<li>用副本替换被损坏的数据库</li>
+</ul>
+</li>
+<li>介质故障的恢复
+<ul>
+<li>用副本替换被破坏的数据库</li>
+<li>由于介质故障影响全面, 在用副本恢复后还需要依据运行日志进行恢复</li>
+</ul>
+</li>
+<li>如何确定备份的时刻: 转储点
+<ul>
+<li>过频，影响系统工作效率；过疏，会造成运行日志过大，也影响系统运行性能</li>
+<li>备份转储周期与运行日志的大小密切相关，应注意防止衔接不畅而引起的漏洞</li>
+</ul>
+</li>
+</ul>
+<p>小结：</p>
+<ul>
+<li>三种类型故障：事务故障、系统故障和介质故障</li>
+<li>三种恢复手段: 事务的撤消与重做, 运行日志和备份</li>
+<li>两个重要时刻：检查点和转储点</li>
+</ul>
+<a class="post-dummy-target" id="什么是日志"></a><h2>什么是日志</h2>
+<p>事务涉及到的：</p>
+<ul>
+<li>数据库通常由元素构成
+<ul>
+<li>通常，1 元素 = 1 磁盘块 = 1 内存页/块</li>
+<li>可以更小，= 1 记录 或更大 = 1 关系</li>
+</ul>
+</li>
+<li>每个事务都会读/写某些元素
+<ul>
+<li>READ(X,t)：将元素X读到事务的局部变量t中</li>
+<li>WRITE(X,t)：将事务局部变量t写回元素X</li>
+<li>INPUT(X)：将元素X从磁盘读入到内存缓冲区中</li>
+<li>OUTPUT(X)：将元素X写回到磁盘中</li>
+</ul>
+</li>
+<li>每个事务都以提交或者撤销结束
+<ul>
+<li>COMMIT：事务提交</li>
+<li>ABORT：事务撤销</li>
+</ul>
+</li>
+<li>DBMS需要保证事务的：
+<ul>
+<li>持久性：已提交的事务对数据库产生的影响是持久的，未提交的事务对数据库不应有影响。</li>
+<li>原子性：事务的所有操作，要么全都执行，要么全都不执行</li>
+</ul>
+</li>
+</ul>
+<p>不同的缓冲区策略会影响事务的持久性：</p>
+<ul>
+<li>Force：内存中的数据最晚在commit的时候写入磁盘。</li>
+<li>No steal：不允许在事务commit之前把内存中的数据写入磁盘。</li>
+<li>No force：内存中的数据可以一直保留，在commit之后过一段时间再写入磁盘。(此时在系统崩溃的时候可能还没写入到磁盘，需要Redo)。&ndash; 灵活</li>
+<li>Steal：允许在事务commit之前把内存中的数据写入磁盘。(此时若系统在commit之前崩溃时，已经有数据写入到磁盘了，要恢复到崩溃前的状态，需要Undo)。&ndash;灵活</li>
+</ul>
+<p>事务故障会影响事务的原子性</p>
+<p>怎样记录日志：</p>
+<ul>
+<li>日志：
+<ul>
+<li>一个包含日志记录的只能追加的顺序文件, 不同事务的日志记录交错存储，按发生时间存储</li>
+<li>发生系统故障时，使用日志进行恢复:
+<ul>
+<li>故障时已提交的事务，重做(Redo)</li>
+<li>故障时未提交的事务，撤销(Undo)</li>
+</ul>
+</li>
+<li>日志记录的信息
+<ul>
+<li>&lt; Start T&gt;，表示事务T已经开始</li>
+<li>&lt; Commit T&gt;，表示事务T成功完成</li>
+<li>&lt; Abort T&gt;，事务T未成功，被中止</li>
+<li>&lt; T, X, v1&gt; 或者 &lt; T, X, v2&gt; 或者 &lt; T, X, v1,v2&gt;表示事务T改变了数据库元素X，X原来的值为v1(X的旧值)，X新的值为v2</li>
+</ul>
+</li>
+<li>三种日志: Undo型日志，Redo型日志，Undo/Redo型日志</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="undo型日志及其故障恢复"></a><h2>Undo型日志及其故障恢复</h2>
+<p>Undo型日志</p>
+<ul>
+<li>对于任一事务T，按下列顺序向磁盘输出T的日志信息：
+<ul>
+<li>首先，&lt; T, X, v&gt;被写到日志中</li>
+<li>其次，OUTPUT(X)</li>
+<li>最后，&lt; COMMIT T&gt;或&lt; ABORT T&gt;被写到日志中</li>
+</ul>
+</li>
+<li>注意：Undo型日志仅保留旧值。&lt; T, X, v&gt;，v为X原来的值(X的旧值)</li>
+<li>Undo型日志：“将事务改变的所有数据写到磁盘前不能提交该事务</li>
+</ul>
+<p>利用undo型日志进行恢复</p>
+<ul>
+<li>首先，确定每一个事务是否已完成?
+<ul>
+<li>&lt; START T&gt;….&lt; COMMIT T&gt;…. = yes</li>
+<li>&lt; START T&gt;….&lt; ABORT T&gt;……. = no(已结束，但未完成)</li>
+<li>&lt; START T&gt;……………………… = no</li>
+</ul>
+</li>
+<li>然后，从日志的尾部开始按日志记录的反序，处理每一日志记录，撤销未完成事务的所有修改
+<ul>
+<li>&lt; COMMIT T&gt;:标记T已完成</li>
+<li>&lt; ABORT T&gt;: 标记T已结束但未完成</li>
+<li>&lt; T,X,v&gt;: 如果T未完成，则将X=v写回磁盘；否则跳过；</li>
+<li>&lt; START T&gt;: 跳过</li>
+</ul>
+</li>
+</ul>
+<p>检查点</p>
+<ul>
+<li>静止检查点：周期性地对日志设置检查点
+<ul>
+<li>停止接受新的事务, 等到所有当前活跃事务提交或终止，并在日志中写入了COMMIT或ABORT记录后</li>
+<li>将日志刷新到磁盘，写入日志记录&lt; CKPT&gt;，并再次刷新日志</li>
+</ul>
+</li>
+<li>非静止检查点
+<ul>
+<li>在设置检查点时不必关闭系统，允许新事务进入</li>
+<li>写入一条&lt; START CKPT(T1,…,Tk)&gt;其中T1,…,Tk 是所有活跃的未结束的事务</li>
+<li>继续正常的操作，直到T1,…,Tk都完成时，写入&lt; END CKPT</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="redo型日志及其故障恢复"></a><h2>Redo型日志及其故障恢复</h2>
+<p>Redo型日志</p>
+<ul>
+<li>Undo型日志的问题“将事务改变的所有数据写到磁盘前不能
+提交该事务”—如何解决?</li>
+<li>对于任一事务T，按下列顺序向磁盘输出T的日志信息：
+<ul>
+<li>首先，&lt; T, X, v&gt;被写到日志中</li>
+<li>其次，&lt; COMMIT T&gt;被写到日志中</li>
+<li>最后，OUTPUT(X)</li>
+</ul>
+</li>
+<li>注意：redo型日志保留新值。&lt; T, X, v&gt;，v为X更新后的值(X的新值)</li>
+<li>注意：与undo型的差别，在后两步，先写提交记录后输出，还是先输
+出，再写提交记录。</li>
+</ul>
+<p>利用redo日志进行恢复</p>
+<ul>
+<li>确定每一个事务是否已完成?
+<ul>
+<li>&lt; START T&gt;….&lt; COMMIT T&gt;…. = yes</li>
+<li>&lt; START T&gt;….&lt; ABORT T&gt;…….= no(已结束，但未完成)</li>
+<li>&lt; START T&gt;………………………= no</li>
+</ul>
+</li>
+<li>从日志的起始位置开始按日志记录的正序处理每一日志记录，重做已提交事务的所有修改：
+<ul>
+<li>&lt; COMMIT T&gt;:标记T已完成</li>
+<li>&lt; ABORT T&gt;:标记T已结束但未完成</li>
+<li>&lt; T,X,v&gt;: 如果T已完成，则将X=v写回磁盘；否则跳过；</li>
+<li>&lt; START T&gt;: 跳过</li>
+</ul>
+</li>
+</ul>
+<p>检查点</p>
+<ul>
+<li>非静止检查点
+<ul>
+<li>在进行检查点设置时不必关闭系统，允许新事务进入</li>
+<li>写入一条&lt; START CKPT(T1,…,Tk)&gt;其中T1,…,Tk 是所有活跃的未结束的事务</li>
+<li>将所有已提交的事务写回磁盘，</li>
+<li>继续正常的操作，直到T1,…,Tk都完成时，写入&lt; END CKPT&gt;</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="undoredo结合型日志及其故障恢复"></a><h2>Undo/Redo结合型日志及其故障恢复</h2>
+<p>Redo型日志与Undo型日志的比较:</p>
+<ul>
+<li>Undo型日志:
+<ul>
+<li>OUTPUT必须先做。</li>
+<li>如果&lt; COMMIT T&gt;可见, T确定地已将所有其数据写回磁盘，因此不必重做 –&ndash; 但可能引起性能下降(因可能频繁地写磁盘)</li>
+</ul>
+</li>
+<li>Redo型日志：
+<ul>
+<li>OUTPUT必须后做。</li>
+<li>如果&lt; COMMIT T&gt;不可见, T确定地没有将其任何数据写回到磁盘，因此无需撤销 –&ndash; 但灵活性差(数据必须在Commit后才可见)</li>
+</ul>
+</li>
+<li>如更喜欢灵活性 &ndash; Undo/Redo型日志</li>
+</ul>
+<p>Undo/Redo型日志</p>
+<ul>
+<li>对于任一事务T，按下列顺序向磁盘输出T的日志信息：
+<ul>
+<li>第(1)步，&lt; T, X, u, v&gt;被写到日志中</li>
+<li>第(2)or(3)步，&lt; COMMIT T&gt;被写到日志中</li>
+<li>第(3)or(2)步，OUTPUT(X)</li>
+</ul>
+</li>
+<li>注意：undo/redo型日志既保留新值v，也保留旧值u。</li>
+<li>注意：与undo型和redo型的差别，在后两步。Redo型是先写提交记录 后输出；undo型是先输出，再写提交记录；undo/redo型则无所谓谁先谁 后，只要保证&lt; T,X,u,v&gt;被先于OUTPUT写完即可。</li>
+</ul>
+<p>利用undo/Redo型日志进行恢复</p>
+<ul>
+<li>首先，确定每一个事务是否已完成?
+<ul>
+<li>&lt; START T&gt;….&lt; COMMIT T&gt;…. = yes</li>
+<li>&lt; START T&gt;….&lt; ABORT T&gt;……. = no(已结束，但未完成)</li>
+<li>&lt; START T&gt;……………………… = no</li>
+</ul>
+</li>
+<li>自前向后地，按日志记录的正序，重做所有已提交的事务；自 后向前，按日志记录的反序，撤销所有未完成事务的所有修改。
+<ul>
+<li>&lt; COMMIT T&gt;:标记T已完成</li>
+<li>&lt; ABORT T&gt;:标记T已结束但未完成</li>
+<li>&lt; T,X,u,v&gt;:如果T未完成，则将X=u写回磁盘；否则将x=v写回磁盘；</li>
+<li>&lt; START T&gt;:跳过</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-21</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/mysql/"><i class="fas fa-tag fa-fw"></i>&nbsp;mysql</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/course-overview/" class="prev" rel="prev" title="ISC_base_01"><i class="fas fa-angle-left fa-fw"></i>ISC_base_01</a>
+                <a href="https://qizhengzou.github.io/2021/foundations-of-cryptography/" class="next" rel="next" title="ISC_base_02">ISC_base_02<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>BigData_base_01 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/mysql-relational-model-and-relational-operation./" /><link rel="next" href="https://qizhengzou.github.io/2021/linux/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/big-data/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BigData_base_01"/>
+<meta name="twitter:description" content="先修课程 高等数学、代数与几何、概率论与数理统计、高级语言程序设计 从该课程你能学到什么? 如何在实际应用中设计和实现大数据项目 ➢ 大数据项目作为一"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "BigData_base_01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/big-data\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "big_data","wordcount":  1316 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/big-data\/","datePublished": "2021-11-08T09:23:24\u002b08:00","dateModified": "2021-11-08T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">BigData_base_01</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-08>2021-11-08</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 1316 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#先修课程">先修课程</a></li>
+        <li><a href="#从该课程你能学到什么">从该课程你能学到什么?</a></li>
+        <li><a href="#大数据的历史背景">大数据的历史背景</a></li>
+        <li><a href="#大数据的应用领域">大数据的应用领域</a></li>
+        <li><a href="#数据的定义及其类型">数据的定义及其类型</a></li>
+        <li><a href="#大数据技术概况">大数据技术概况</a></li>
+        <li><a href="#数据的来源及其获取方法简介">数据的来源及其获取方法简介</a></li>
+        <li><a href="#大数据领域的学习资源">大数据领域的学习资源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#先修课程">先修课程</a></li>
+        <li><a href="#从该课程你能学到什么">从该课程你能学到什么?</a></li>
+        <li><a href="#大数据的历史背景">大数据的历史背景</a></li>
+        <li><a href="#大数据的应用领域">大数据的应用领域</a></li>
+        <li><a href="#数据的定义及其类型">数据的定义及其类型</a></li>
+        <li><a href="#大数据技术概况">大数据技术概况</a></li>
+        <li><a href="#数据的来源及其获取方法简介">数据的来源及其获取方法简介</a></li>
+        <li><a href="#大数据领域的学习资源">大数据领域的学习资源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><a class="post-dummy-target" id="先修课程"></a><h3>先修课程</h3>
+<p>高等数学、代数与几何、概率论与数理统计、高级语言程序设计</p>
+<a class="post-dummy-target" id="从该课程你能学到什么"></a><h3>从该课程你能学到什么?</h3>
+<ul>
+<li>如何在实际应用中设计和实现大数据项目<br>
+➢ 大数据项目作为一个过程或工作流的思想（process or workflow）</li>
+<li>经典大数据算法<br>
+➢ 包括数据挖掘的经典算法</li>
+<li>大数据软件工具<br>
+➢ 开源工具、软件产品</li>
+</ul>
+<a class="post-dummy-target" id="大数据的历史背景"></a><h3>大数据的历史背景</h3>
+<p>大数据是什么？<br>
+大数据是指利用常用软件工具捕获、管理和处理数据所耗时间超过可容忍时间的数据集。&mdash;&mdash;来自维基百科 <br>
+2007 年 1 月，图灵奖得主JimGray 指出：科学的发展正在进入“数据密集型科学发
+现范式”——科学史上的“第四范式” <br>
+目前最成功的人工智能应用领域： 大数据智能、大数据机器学习！</p>
+<a class="post-dummy-target" id="大数据的应用领域"></a><h3>大数据的应用领域</h3>
+<ol>
+<li>商业智能应用：决策支持
+<ul>
+<li>市场分析与管理：精准营销、客户关系管理(CRM)、购物篮分析、交叉销售、市场细分</li>
+<li>风险分析与管理：预测（人、财、物）、客户维系、质量控制、竞争分析</li>
+<li>诈骗检测与异常模式发现</li>
+</ul>
+</li>
+<li>商业智能应用：推荐系统
+<ul>
+<li>应用领域：电商、信息推荐、电影、音乐等</li>
+<li>目的：预测用户对商品是否喜欢、喜欢程度、个性化服务</li>
+</ul>
+</li>
+<li>体育应用：篮球针对性训练
+<ul>
+<li>对运动员成长轨迹进行深度挖掘、建模</li>
+<li>找出运动员的”短板“与”长版“</li>
+<li>加强对特长点和薄弱点的训练</li>
+</ul>
+</li>
+<li>政治应用：美国总统大选
+<ul>
+<li>在总统候选人的第一次辩论之后，他们分析出哪些选民将倒戈，为每位选民找出一个最能说服他的理由</li>
+<li>通过一些复杂的模型来精准定位不同选民，购买了一些冷门节目的广告时段，而没有采用在本地新闻时段购买广告的传统做法，广告效率相比2008年提高了14%</li>
+<li>向奥巴马推荐，竞选后期应当在什么地方展开活动——那里有很多争取对象</li>
+<li>借助模型帮助奥巴马筹集到创记录的10亿美元</li>
+</ul>
+</li>
+<li>交通应用：拥堵预测
+<ul>
+<li>建立历史交通数据库
+<ul>
+<li>道路信息：从GIS数据库中导出北京市路网数据，包括道路的起点终点，中轴线经纬度，道路等级，车道数目等等。</li>
+<li>车辆信息：数据来源是北京市6万辆出租车每天的GPS数据，出租车每50s生成一条GPS信息。</li>
+</ul>
+</li>
+<li>未来时间段车速预测
+<ul>
+<li>影响交通因素：天气状况，车辆数量，交通事故等，但车速可以包含以上信息。</li>
+<li>根据历史数据中最相似的情况，从而进行预测，最相似的车速曲线，未来时刻的变化也可能相似。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<a class="post-dummy-target" id="数据的定义及其类型"></a><h3>数据的定义及其类型</h3>
+<p>数据的基本概念：数据是对客观事物的观测（测量）或描述而得到的符号或数字集合。<br>
+数据对象的概念：原始数据通常是一个包含多个数据对象（data object）的集合，每个数据对象通常对应于一个具有完整语义信息的事物，是分析事物的基本单位。<br>
+数据类型：</p>
+<ul>
+<li>记录数据：关系表数据，事务数据</li>
+<li>多媒体数据：声、图、文</li>
+<li>时空数据：空间、时间数据</li>
+<li>关系图数据：网页链接图、社交网络、文献引用图</li>
+</ul>
+<a class="post-dummy-target" id="大数据技术概况"></a><h3>大数据技术概况</h3>
+<p>技术体系：数据采集、数据存储、数据处理、统计分析、智能挖掘、可视化<figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211108171948.png" alt="" class="lazyload"></figure>
+主要技术挑战：海量数据的检索性能！ <br>
+什么是数据挖掘：<br>
+从大量数据中提取有趣的（非平凡的，隐含的，以前未知的和潜在有用的）模式（pattern）或知识，即从数据中发现知识。 <br>
+推荐系统：协同过滤。<br>
+推荐系统的成功应用案例：今日头条根据浏览历史推荐新闻</p>
+<a class="post-dummy-target" id="数据的来源及其获取方法简介"></a><h3>数据的来源及其获取方法简介</h3>
+<p>数据来源于内部数据和外部数据（互联网开放的数据：开放的数据平台、爬虫、与合作机构的数据交换、网络上直接下载）</p>
+<a class="post-dummy-target" id="大数据领域的学习资源"></a><h3>大数据领域的学习资源</h3>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://raw.githubusercontent.com/QizhengZou/Drawing_bed/main/20211108172723.png" alt="" class="lazyload"></figure></p>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-08</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/big_data/"><i class="fas fa-tag fa-fw"></i>&nbsp;big_data</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/mysql-relational-model-and-relational-operation./" class="prev" rel="prev" title="Mysql_base_02"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_02</a>
+                <a href="https://qizhengzou.github.io/2021/linux/" class="next" rel="next" title="Linux_base_01">Linux_base_01<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

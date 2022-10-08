@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_catalogue | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/linux/" /><link rel="next" href="https://qizhengzou.github.io/2021/os_catalogue/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/mysql_catalogue/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_catalogue"/>
+<meta name="twitter:description" content="base_01（数据库概念结构） 基本概念 什么是数据库及为什么要学数据库？ 数据库(信息库) 数据库系统(工作环境) 数据库管理系统(软件系统) 数据"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_catalogue",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/mysql_catalogue\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "catalogue","wordcount":  1478 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/mysql_catalogue\/","datePublished": "2021-11-08T16:43:15\u002b08:00","dateModified": "2021-11-09T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_catalogue</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-08>2021-11-08</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 1478 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses-list/">School courses&#39; list</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
+                </details>
+            </div><div class="post-content"><ul>
+<li>base_01（数据库概念结构）
+<ul>
+<li>基本概念
+<ul>
+<li>什么是数据库及为什么要学数据库？</li>
+<li>数据库(信息库)</li>
+<li>数据库系统(工作环境)</li>
+<li>数据库管理系统(软件系统)</li>
+</ul>
+</li>
+<li>数据库工作者的分类及要求</li>
+<li>标准结构
+<ul>
+<li>DBMS管理数据的三个层次：(外部)视图、全局视图、内部视图</li>
+<li>模式的概念：外模式、(概念)模式、内模式</li>
+<li>数据模型与模式</li>
+</ul>
+</li>
+<li>简要发展史及发展趋势</li>
+</ul>
+</li>
+<li>base_02（关系模型与关系运算）
+<ul>
+<li>关系模型与关系运算简述
+<ul>
+<li>关系模型的提出与作用</li>
+<li>关系模型与关系运算概览</li>
+</ul>
+</li>
+<li>关系与关系模型
+<ul>
+<li>关系</li>
+<li>关系模型</li>
+</ul>
+</li>
+<li>关系代数运算</li>
+</ul>
+</li>
+<li>base_03（sql语言）
+<ul>
+<li>SQL语言概述
+<ul>
+<li>SQL语言提出和发展</li>
+<li>SQL语言概览</li>
+</ul>
+</li>
+<li>简单的SQL-DDL/DML: 创建数据库</li>
+<li>SQL-DML之查询Select
+<ul>
+<li>基本的检索操作</li>
+<li>多表联合检索</li>
+<li>子查询</li>
+<li>结果计算与聚集函数</li>
+<li>分组查询与分组过滤</li>
+<li>并、交、差的处理</li>
+<li>空值处理</li>
+<li>内连接、外连接</li>
+<li>SQL的完整语法</li>
+</ul>
+</li>
+<li>SQL-DML之更新Insert/Update/Delete</li>
+<li>SQL-视图及DDL的进一步介绍
+<ul>
+<li>视图的定义与使用</li>
+<li>视图更新问题</li>
+<li>SQL-DDL的进一步介绍: 撤消语句的使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>base_04（数据库管理与维护）
+<ul>
+<li>数据库完整性与安全性控制
+<ul>
+<li>数据库完整性的概念及分类</li>
+<li>SQL-DDL中关于完整性的命令</li>
+<li>数据库安全性的概念</li>
+<li>MySQL 有关权限的表都有哪几个？</li>
+<li>SQL-DCL中关于安全性的命令</li>
+<li>数据字典/系统目录和模式</li>
+</ul>
+</li>
+<li>小结</li>
+</ul>
+</li>
+<li>base_05（数据库建模思想与方法）
+<ul>
+<li>为什么要数据建模和数据库设计?</li>
+<li>E-R模型&ndash;数据建模之基本思想</li>
+<li>E-R模型的两种图示化表达方法</li>
+</ul>
+</li>
+<li>base_06（数据库设计）
+<ul>
+<li>强弱实体的个人理解</li>
+<li>数据库设计过程概述</li>
+<li>数据库设计过程之需求分析</li>
+<li>数据库设计过程之概念数据库设计</li>
+<li>数据库设计过程之逻辑数据库设计
+<ul>
+<li>E-R图向关系模式的转换</li>
+</ul>
+</li>
+<li>数据库设计过程之物理数据库设计</li>
+</ul>
+</li>
+<li>base_07（函数依赖及其公理定理）
+<ul>
+<li>函数依赖</li>
+<li>完全函数依赖与传递函数依赖</li>
+<li>关于函数依赖的公理和定理</li>
+<li>函数依赖集的最小覆盖</li>
+<li>关系模式设计之规范形式
+<ul>
+<li>关系的第1NF和第2NF</li>
+<li>关系的第3NF和Boyce-Codd NF</li>
+<li>多值依赖及其公理定理</li>
+<li>关系的第4NF</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>base_08（模式分解存在的问题）
+<ul>
+<li>模式分解存在什么问题</li>
+<li>无损连接分解及其检验算法</li>
+<li>保持依赖分解及其检验算法</li>
+<li>关系模式无损连接或保持依赖的分解算法</li>
+<li>数据库设计需要知道的</li>
+<li>总结</li>
+</ul>
+</li>
+<li>base_09（数据库物理存储）
+<ul>
+<li>基础回顾-计算机系统的存储体系
+<ul>
+<li>数据库的存储与检索问题</li>
+<li>什么是存储体系</li>
+<li>不同层次存储的访问时间上的差异</li>
+<li>操作系统如何管理磁盘和数据</li>
+<li>操作系统对内存-缓冲区的管理</li>
+</ul>
+</li>
+<li>磁盘的结构与特性</li>
+<li>DBMS数据存储与查询实现的基本思想</li>
+<li>数据库之表和记录与磁盘块的映射</li>
+<li>数据库之文件组织方法</li>
+<li>Oracle数据库的数据组织</li>
+</ul>
+</li>
+<li>base_10（数据库索引）
+<ul>
+<li>为什么需要索引与什么是索引</li>
+<li>索引的简单分类</li>
+<li>B+树索引</li>
+<li>散列索引</li>
+</ul>
+</li>
+<li>base_11（数据库查询实现算法）
+<ul>
+<li>数据库查询实现算法-I
+<ul>
+<li>数据库查询实现算法概述</li>
+<li>以连接操作为例看逻辑实现算法与物理实现算法</li>
+<li>利用迭代器构造查询实现算法</li>
+<li>几个关系操作的一趟扫描算法</li>
+<li>基于索引的算法</li>
+<li>总结</li>
+</ul>
+</li>
+<li>数据库查询实现算法-II
+<ul>
+<li>为什么需要两趟算法?</li>
+<li>两阶段多路归并排序TPMMS</li>
+<li>基于排序的两趟扫描算法</li>
+<li>基于散列的两趟扫描算法</li>
+<li>总结</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>base_12（数据库查询优化）
+<ul>
+<li>为什么要及什么是查询优化?</li>
+<li>查询优化的基本思路</li>
+<li>逻辑查询优化</li>
+<li>物理查询优化</li>
+</ul>
+</li>
+<li>base_13（事务处理）
+<ul>
+<li>为什么需要并发控制</li>
+<li>事务调度及可串行性</li>
+<li>基于封锁的并发控制方法</li>
+<li>基于时间戳的并发控制方法</li>
+<li>基于有效性确认的并发控制方法</li>
+<li>总结</li>
+</ul>
+</li>
+<li>base_14（故障恢复）
+<ul>
+<li>数据库的故障类型及其影响</li>
+<li>数据库故障恢复的宏观思路</li>
+<li>什么是日志</li>
+<li>Undo型日志及其故障恢复</li>
+<li>Redo型日志及其故障恢复</li>
+<li>Undo/Redo结合型日志及其故障恢复</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-09</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/catalogue/"><i class="fas fa-tag fa-fw"></i>&nbsp;catalogue</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/linux/" class="prev" rel="prev" title="Linux_base_01"><i class="fas fa-angle-left fa-fw"></i>Linux_base_01</a>
+                <a href="https://qizhengzou.github.io/2021/os_catalogue/" class="next" rel="next" title="OperatingSystem_catalogue">OperatingSystem_catalogue<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

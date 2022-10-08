@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DistributedSystem_HongweiDu_06 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="DistributedSystem_HongweiDu_06" />
+<meta property="og:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Socket Communication套接字通信（直接通信) Clients and Servers： A distributed system can be generally modeled by clients and servers (processes). Clients and" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T14:35:58+08:00" />
+<meta property="article:modified_time" content="2021-12-22T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_06"/>
+<meta name="twitter:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Socket Communication套接字通信（直接通信) Clients and Servers： A distributed system can be generally modeled by clients and servers (processes). Clients and"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" /><link rel="prev" href="https://qizhengzou.github.io/distributedsystem_hongweidu_05/" /><link rel="next" href="https://qizhengzou.github.io/distributedsystem_hongweidu_07/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_06",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/distributedsystem_hongweidu_06\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "distributed system","wordcount":  1917 ,
+        "url": "https:\/\/qizhengzou.github.io\/distributedsystem_hongweidu_06\/","datePublished": "2021-12-03T14:35:58+08:00","dateModified": "2021-12-22T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DistributedSystem_HongweiDu_06</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03 14:35:58">2021-12-03 14:35:58</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1917 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#socket-communication套接字通信直接通信">Socket Communication套接字通信（直接通信)</a></li>
+    <li><a href="#rpc远程过程调用">RPC远程过程调用</a>
+      <ul>
+        <li><a href="#steps-in-s-rpc">Steps in s RPC</a></li>
+        <li><a href="#writing-the-programs">Writing the programs</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2021哈工大深圳堵宏伟分布式系统课程笔记</p>
+</blockquote>
+<h2 id="socket-communication套接字通信直接通信">Socket Communication套接字通信（直接通信)</h2>
+<p>Clients and Servers：</p>
+<ul>
+<li>A distributed system can be generally modeled by clients and servers (processes).</li>
+<li>Clients and servers are usually on different machines and they interact with each other via message passing.</li>
+<li>To offer a service, a server must get a transport address for a particular service
+<ul>
+<li>well-defined location</li>
+</ul>
+</li>
+</ul>
+<p>Transport Address:</p>
+<ul>
+<li>A server (process) is associated with a transport address so that clients can communicate with it.
+<ul>
+<li>IP addresses identify machines
+<ul>
+<li>Not able to identify sending or receiving process</li>
+</ul>
+</li>
+<li>Transport layer uses port number to identify process
+<ul>
+<li>machine address (IP address)  -&gt;   building address</li>
+<li>transport address (port number) -&gt;   apartment number</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A client obtains the transport address via either:
+<ul>
+<li>hard coded</li>
+<li>database (/etc/services, directory server)</li>
+</ul>
+</li>
+</ul>
+<p>Transport Layer Protocols:</p>
+<ul>
+<li>Transport Layer supports communications between processes.</li>
+<li>Two categories of protocols:
+<ul>
+<li>connection-oriented protocols</li>
+<li>connectionless protocols</li>
+</ul>
+</li>
+</ul>
+<p>Connection-oriented Protocols:</p>
+<ol>
+<li>establish connection</li>
+<li>[negotiate protocol]</li>
+<li>exchange data</li>
+<li>terminate connection</li>
+</ol>
+<ul>
+<li>virtual circuit (stream) service
+<ul>
+<li>provides illusion of having a dedicated circuit</li>
+<li>messages guaranteed to arrive in-order</li>
+<li>applications use connection ID, instead of address in each message</li>
+<li>e.g., TCP – Transport Control Protocol</li>
+</ul>
+</li>
+</ul>
+<p>Connectionless Protocols:</p>
+<ol>
+<li>no call setup</li>
+<li>send/receive data
+(each packet addressed)</li>
+<li>no termination</li>
+</ol>
+<ul>
+<li>Datagram service
+<ul>
+<li>client is not sure if messages are received by destination</li>
+<li>no state has to be maintained at client or server</li>
+<li>cheaper but less reliable than virtual circuit service</li>
+<li>e.g., UDP – User Datagram Protocol</li>
+</ul>
+</li>
+</ul>
+<p>Sockets: Transport Layer Communication:</p>
+<ul>
+<li>A popular abstraction for transport layer communication
+<ul>
+<li>Developed at Berkeley in 1982</li>
+</ul>
+</li>
+<li>Goals:
+<ul>
+<li>Communication between processes should not depend on whether they are on the same machine
+<ul>
+<li>Uniform all data exchanges (accesses) as file accesses</li>
+</ul>
+</li>
+<li>Application can select particular style of communication
+<ul>
+<li>Virtual circuit, datagram, message-based, in-order delivery</li>
+</ul>
+</li>
+<li>Support different protocols and naming conventions (not just for TCP/IP or UDP/IP)</li>
+</ul>
+</li>
+</ul>
+<p>Programming operations:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222084547.png" /></p>
+<p>Socket Operations:</p>
+<ul>
+<li>List of socket operations:</li>
+</ul>
+<ol>
+<li>socket</li>
+<li>bind</li>
+<li>listen, accept, connect</li>
+<li>read/write, send/recv, sendto/recvfrom, sendmsg/recvmsg</li>
+<li>close/shutdown</li>
+</ol>
+<p>Creat a socket:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    socket system call:
+			int s = socket(domain, type, protocol);
+	parameters:
+	domain: identifies address family 
+			AF_INET: IPC on the Internet,
+			AF_UNIX: IPC within a computer 
+			AF_NS: IPC on Xeroxs Network Systems
+	type: 	type of service required by application
+			SOCK_STREAM: virtual circuit
+			SOCK_DGRAM:	datagram
+			SOCK_RAW:	raw IP access
+	protocol: 	specify a protocol. To support user self defined protocols.
+			Default value is 0, i.e., system defined protocol.	
+return: an integer as the socket number (file descriptor)
+</code></pre></td></tr></table>
+</div>
+</div><p>Bind socket to an address:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    bind system call:
+			int error = bind(s, addr, addrlen);
+	parameters:
+	s: 	socket descriptor returned by socket()
+	addr: 	address structure (struct sockaddr *)
+	addrlen:	length of address structure
+
+	return: error code
+</code></pre></td></tr></table>
+</div>
+</div><p>Binding a file name to a UNIX socket(intra-machine communication):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">un</span><span class="p">.</span><span class="n">h</span>
+<span class="k">struct</span>  <span class="n">sockaddr_un</span> <span class="p">{</span>
+        <span class="n">sa_family_t</span>	  <span class="n">sun_family</span><span class="p">;</span>             <span class="cm">/* AF_UNIX */</span>
+        <span class="kt">char</span>                <span class="n">sun_path</span><span class="p">[</span><span class="mi">108</span><span class="p">];</span>       <span class="cm">/* path name */</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sockaddr_un</span> <span class="n">addr</span><span class="p">;</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">addr</span><span class="p">.</span><span class="n">sun_path</span><span class="p">,</span> <span class="err">“</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">foo</span><span class="err">”</span><span class="p">);</span>
+<span class="n">addr</span><span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_UNIX</span><span class="p">;</span>
+<span class="n">bind</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">addr</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">addr</span><span class="p">.</span><span class="n">sun_path</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span> <span class="n">addr</span><span class="p">.</span><span class="n">sun_family</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Demo of UNIX Stream Sockets:</p>
+<ul>
+<li>www/C/socket/unix/receiver.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">;</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[];</span> <span class="p">{</span>
+   <span class="k">struct</span>  <span class="n">sockaddr_un</span> <span class="n">myname</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">new_s</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="n">rdata</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+   <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_UNIX</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+   <span class="n">myname</span><span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_UNIX</span><span class="p">;</span>
+   <span class="n">strcpy</span><span class="p">(</span><span class="n">myname</span><span class="p">.</span><span class="n">sun_path</span><span class="p">,</span> <span class="s">&#34;/tmp/123&#34;</span><span class="p">);</span>
+   <span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">myname</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">myname</span><span class="p">.</span><span class="n">sun_path</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="k">sizeof</span><span class="p">(</span><span class="n">myname</span><span class="p">.</span><span class="n">sun_family</span><span class="p">))</span> 
+   <span class="n">listen</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+   <span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+   <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">read</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+       <span class="n">strcpy</span><span class="p">(</span><span class="n">rdata</span><span class="p">,</span> <span class="err">“</span><span class="n">Echoed</span> <span class="nl">msg</span><span class="p">:</span> <span class="s">&#34;);  </span>
+       <span class="n">strcat</span><span class="p">(</span><span class="n">rdata</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+	<span class="n">write</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">rdata</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">rdata</span><span class="p">))</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>www/C/socket/unix/sender.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">;</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[];</span> <span class="p">{</span>
+    <span class="k">struct</span>  <span class="n">sockaddr_un</span> <span class="n">hisname</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_UNIX</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">hisname</span><span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_UNIX</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">hisname</span><span class="p">.</span><span class="n">sun_path</span><span class="p">,</span> <span class="s">&#34;/tmp/123&#34;</span><span class="p">);</span>
+    
+    <span class="n">connect</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hisname</span><span class="p">,</span> <span class="n">trlen</span><span class="p">(</span><span class="n">hisname</span><span class="p">.</span><span class="n">sun_path</span><span class="p">)</span><span class="o">+</span> 
+	                          <span class="k">sizeof</span> <span class="p">(</span><span class="n">hisname</span><span class="p">.</span><span class="n">sun_family</span><span class="p">));</span>
+     <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span> 
+     <span class="k">while</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+	    <span class="n">read</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">))</span>
+	    <span class="n">printf</span> <span class="p">(</span><span class="s">&#34;Received reply: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+	    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+       <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Binding an Internet address to a socket(Internet communication)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">netinet</span><span class="o">/</span><span class="n">in</span><span class="p">.</span><span class="n">h</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span>    <span class="p">{</span>
+       <span class="kt">short</span>	  <span class="n">sin_family</span><span class="p">;</span>
+       <span class="n">u_short</span>	  <span class="n">sin_port</span><span class="p">;</span>
+       <span class="k">struct</span> <span class="n">in_addr</span>  <span class="n">sin_addr</span><span class="p">;</span>
+       <span class="kt">char</span>	      	  <span class="n">sin_zero</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sockaddr_in</span>      <span class="n">addr</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">ip_addr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">144</span><span class="p">,</span> <span class="mi">214</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">114</span><span class="p">};</span>
+<span class="n">addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+<span class="n">addr</span><span class="p">.</span><span class="n">sin_port</span>   <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+<span class="n">bcopy</span><span class="p">(</span><span class="n">ip_addr</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">addr</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Server: set socket for listening:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="n">listen</span> <span class="n">system</span> <span class="nl">call</span><span class="p">:</span>
+			<span class="kt">int</span> <span class="n">error</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">backlog</span><span class="p">);</span>
+	<span class="nl">parameters</span><span class="p">:</span>
+	<span class="nl">s</span><span class="p">:</span> 	<span class="n">socket</span> <span class="n">descriptor</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">socket</span><span class="p">()</span>
+	<span class="nl">backlog</span><span class="p">:</span> 	<span class="n">queue</span> <span class="n">length</span> <span class="k">for</span> <span class="n">pending</span> <span class="n">connections</span>
+	
+	<span class="k">return</span><span class="o">:</span> <span class="n">error</span> <span class="n">code</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Server: accept connections:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="n">accept</span> <span class="n">system</span> <span class="nl">call</span><span class="p">:</span>
+			<span class="kt">int</span> <span class="n">snew</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">clntaddr</span><span class="p">,</span> <span class="n">addrlen</span><span class="p">);</span>
+	<span class="nl">parameters</span><span class="p">:</span>
+	<span class="nl">s</span><span class="p">:</span> 	<span class="n">socket</span> <span class="n">descriptor</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">socket</span><span class="p">()</span>
+	<span class="nl">clntaddr</span><span class="p">:</span>  <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span> <span class="n">contain</span> <span class="n">returned</span> <span class="n">client</span> <span class="n">addr</span>
+	<span class="nl">addrlen</span><span class="p">:</span> 	<span class="kt">int</span> <span class="o">*</span> <span class="n">contain</span> <span class="n">length</span> <span class="n">of</span> <span class="n">client</span> <span class="n">addr</span>
+
+	<span class="k">return</span><span class="o">:</span> <span class="n">a</span> <span class="n">new</span> <span class="n">socket</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span> <span class="n">this</span> <span class="n">communication</span> <span class="n">session</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Client: connect:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="n">connect</span> <span class="n">system</span> <span class="nl">call</span><span class="p">:</span>
+			<span class="kt">int</span> <span class="n">error</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">svraddr</span><span class="p">,</span> <span class="n">addrlen</span><span class="p">);</span>
+	<span class="nl">parameters</span><span class="p">:</span>
+	<span class="nl">s</span><span class="p">:</span> 	<span class="n">socket</span> <span class="n">descriptor</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">socket</span><span class="p">()</span>
+	<span class="nl">svraddr</span><span class="p">:</span> 	<span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span> <span class="n">contains</span> <span class="n">server</span> <span class="n">address</span>
+	<span class="nl">addrlen</span><span class="p">:</span> 	<span class="n">length</span> <span class="n">of</span> <span class="n">server</span> <span class="n">address</span>
+
+	<span class="k">return</span><span class="o">:</span> <span class="n">error</span> <span class="n">code</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Exchange data and close sockets:</p>
+<ul>
+<li>Exchanging data via sockets is the same as file access:
+<ul>
+<li>read(s, buf, length);</li>
+<li>write(s, buf, length);</li>
+</ul>
+</li>
+<li>Close a socket by:
+<ul>
+<li>close(s); or</li>
+<li>shutdown(int s, int how);</li>
+<li>s: 	socket</li>
+<li>how: 	0: further receives disallowed
+<ul>
+<li>1: further sends disallowed</li>
+<li>2: further sends and receives disallowed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Client-Server Synchronization:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090117.png" /></p>
+<p>Demo of Internet Sockets:</p>
+<ul>
+<li>www/C/socket/inet/receiver.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">new_s</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+	
+	<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>	
+	<span class="n">bind</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">server</span><span class="p">));</span>
+	<span class="n">listen</span><span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+           <span class="n">tmp_len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">remote_addr</span><span class="p">);</span>
+           <span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remote_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp_len</span><span class="p">);</span>
+           <span class="k">while</span> <span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">write</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                  <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>www/C/socket/inet/sender.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">s</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">remote_addr</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">remote_ent</span><span class="p">;</span> <span class="c1">// def in netdb.h
+</span><span class="c1"></span>	<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">remote_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">remote_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+	<span class="n">remote_ent</span> <span class="o">=</span> <span class="n">gethostbyname</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+	<span class="n">bcopy</span><span class="p">(</span><span class="n">remote_ent</span><span class="o">-&gt;</span><span class="n">h_addr_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            	<span class="o">&amp;</span><span class="n">remote_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">,</span> 
+		<span class="n">remote_ent</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+	<span class="n">connect</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remote_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">remote_addr</span><span class="p">));</span>
+	<span class="k">while</span> <span class="p">((</span><span class="n">ch</span><span class="o">=</span><span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">’</span><span class="p">)</span> <span class="p">{</span>
+	         <span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="n">read</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Data Structure for Socket Operations:</p>
+<ul>
+<li>Client only sends data to {machine, port}</li>
+<li>How to keep track of simultaneous sessions to the same server process (e.g., HTTP server)?</li>
+<li>OS maintains a structure called the Protocol Control Block (PCB) 协议控制模块</li>
+</ul>
+<p>Protocol Control Block:</p>
+<ul>
+<li>Each entry of PCB contains:
+<ul>
+<li>Local address</li>
+<li>Local port</li>
+<li>Foreign address</li>
+<li>Foreign port</li>
+<li>Is the socket used for listening?</li>
+<li>Reference to the socket (file descriptor)</li>
+</ul>
+</li>
+</ul>
+<p>socket(): Allocate a new empty entry in PCB table:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090357.png" /></p>
+<p>bind(): Assign local address, port:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090430.png" /></p>
+<p>listen(): Set socket for receiving connections:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090451.png" /></p>
+<p>connect(): Send a connect request to server:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090519.png" /></p>
+<p>accept(): Send an acknowledgement to client:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090546.png" /></p>
+<p>Message Exchanges via Sockets:</p>
+<ul>
+<li>Each message from client is tagged as either data or control mesg (e.g. connect).</li>
+<li>If data – search through table where foreign addr and foreign port match incoming message and listen is not set.</li>
+<li>If control – search through table where the local port matches the dest port in the message and listen is set.</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222090627.png" /></li>
+</ul>
+<p>Datagram Sockets:</p>
+<ul>
+<li>Create sockets, bind addresses, close sockets are the same as stream sockets, but no listen, accept and connect operations.</li>
+<li>Data exchange via:
+<ul>
+<li>sendto/recvfrom
+<ul>
+<li>int sendto(int s, void *msg, int len, int flags, struct sockaddr *to, int tolen)</li>
+<li>int recvfrom(int s, void *buf, int len, int flags, struct sockaddr *from, int *fromlen)
+<ul>
+<li>flags is usually set to 0. It’s for out-of-band data if it’s non-zero.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sendmsg/recvmsg
+<ul>
+<li>int sendmsg(int s, struct msghdr *msg, int flags)</li>
+<li>int recvmsg(int s, struct msghdr *msg, int flags)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Demo of Datagram sockets:</p>
+<ul>
+<li>www/C/socket/inet/recvfrom.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">name</span><span class="p">;</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">name</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+  <span class="n">name</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="mi">12000</span><span class="p">;</span>	
+  <span class="n">bind</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">name</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">recvfrom</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> 
+		<span class="o">&amp;</span><span class="n">from</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len_from</span><span class="p">);</span>
+	<span class="n">strcpy</span><span class="p">(</span><span class="n">rdata</span><span class="p">,</span> <span class="s">&#34;echoed string: &#34;</span><span class="p">);</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">rdata</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+	<span class="n">sendto</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rdata</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">rdata</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> 
+		<span class="o">&amp;</span><span class="n">from</span><span class="p">,</span> <span class="n">from_len</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>www/C/socket/inet/sendto.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">recv</span><span class="p">;</span>
+	<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">hp</span> <span class="o">=</span> <span class="n">gethostbyname</span><span class="p">(</span><span class="n">argv</span> <span class="p">[</span> <span class="mi">1</span><span class="p">]);</span>
+	<span class="n">bcopy</span> <span class="p">(</span><span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_addr_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+		<span class="o">&amp;</span><span class="n">recv</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">,</span> <span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+	<span class="n">recv</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">12000</span><span class="p">);</span>  
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="p">{</span>
+	   <span class="n">sendto</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> 
+		<span class="o">&amp;</span><span class="n">recv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">recv</span><span class="p">));</span>
+	   <span class="n">recvfrom</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+	  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Received Reply: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+  	  <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="rpc远程过程调用">RPC远程过程调用</h2>
+<p>An Example of Local Procedure Call：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* save a string to file msg.dat */</span>
+<span class="n">savemsg</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;msg.dat&#34;</span><span class="p">,</span> <span class="s">&#34;w+&#34;</span><span class="p">);</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+        <span class="n">fclose</span> <span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&#34;This is an example of LPC.&#34;</span><span class="p">;</span>
+        <span class="n">savemsg</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Moving the local procedure to a remote machine:</p>
+<ul>
+<li>server:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">savemsg_1</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">argp</span><span class="p">;</span> <span class="k">struct</span> <span class="n">svc_req</span> <span class="o">*</span><span class="n">rqstp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;msg.dat&#34;</span><span class="p">,</span> <span class="s">&#34;w+&#34;</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">argp</span><span class="p">);</span>
+    <span class="n">fclose</span> <span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>client:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&#34;This is an example of RPC.&#34;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">remote_host</span> <span class="o">=</span> <span class="s">&#34;sus1.cs.cityu.edu.hk&#34;</span><span class="p">;</span>
+    <span class="n">CLIENT</span> <span class="o">*</span><span class="n">clnt</span><span class="p">;</span>
+    <span class="n">clnt</span> <span class="o">=</span> <span class="n">clnt_create</span><span class="p">(</span><span class="n">remote_host</span><span class="p">,</span> <span class="n">MSGPROG</span><span class="p">,</span> <span class="n">MSGVER</span><span class="p">,</span> <span class="s">&#34;netpath&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">clnt</span> <span class="o">==</span> <span class="p">(</span><span class="n">CLIENT</span> <span class="o">*</span><span class="p">)</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">clnt_pcreateerror</span><span class="p">(</span><span class="n">host</span><span class="p">);</span> <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="n">savemsg_1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">str</span><span class="p">,</span> <span class="n">clnt</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Remote Procedure Call:</p>
+<ul>
+<li>1984: Birrell &amp; Nelson
+<ul>
+<li>Mechanism to call procedures on other machines</li>
+<li>Process on machine A can call a procedure on machine B
+<ul>
+<li>A is suspended</li>
+<li>Execution continues on B</li>
+<li>When B returns, control passed back to A</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Goal: Make a remote procedure call looking the same as a local call to programmers.</li>
+</ul>
+<p>RPC implementation:</p>
+<ul>
+<li>The RPC compiler auto-generates stub/skeleton routines to make an RPC to the user as if it is a local call. What stub routines do:</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091547.png" /></li>
+<li>marshalling / unmarshalling parameters and return values</li>
+<li>handling different data formats between different machines</li>
+<li>detecting and handling failures of client/server processes and the networks</li>
+</ul>
+<p>Compilation in SUN RPC:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222091707.png" /></p>
+<p>Demo of RPC:</p>
+<ul>
+<li>Interface file msg.x:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">program</span> <span class="n">MSGPROG</span> <span class="p">{</span>
+        <span class="n">version</span> <span class="n">MSGVER</span><span class="p">{</span>
+               	<span class="kt">int</span> <span class="n">SAVEMSG</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+          	<span class="n">string</span> <span class="nf">READMSG</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span> 
+        <span class="p">}</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">=</span> <span class="mi">345678</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Generate stub routines by:
+<ul>
+<li>rpcgen –a msg.x</li>
+</ul>
+</li>
+<li>Compile program by:
+<ul>
+<li>cc –o object xxx.c</li>
+</ul>
+</li>
+</ul>
+<h3 id="steps-in-s-rpc">Steps in s RPC</h3>
+<ol>
+<li>Client calls stub (push parameters onto stack)
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222094410.png" /></li>
+</ul>
+</li>
+<li>Clnt_stub marshals parameters to message &amp; makes an OS call (client blocked)
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095851.png" /></li>
+</ul>
+</li>
+<li>Network message sent to server
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095921.png" /></li>
+</ul>
+</li>
+<li>Deliver message to server stub &amp; unblock server
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222095950.png" /></li>
+</ul>
+</li>
+<li>Svr-stub unmarshals parameters &amp; calls service routine (local call)
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100023.png" /></li>
+</ul>
+</li>
+<li>Return to the stub from service routine
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100050.png" /></li>
+</ul>
+</li>
+<li>Svr_stub marshals return-value &amp; requests OS to send out message
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100127.png" /></li>
+</ul>
+</li>
+<li>Transfer message over network
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100259.png" /></li>
+</ul>
+</li>
+<li>Deliver message to client (unblock client)
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100328.png" /></li>
+</ul>
+</li>
+<li>Clnt_stub unmarshals return-value &amp; returns to client program…
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png"
+        data-srcset="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png 1.5x, https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png"
+        title="https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20211222100356.png" /></li>
+</ul>
+</li>
+</ol>
+<h3 id="writing-the-programs">Writing the programs</h3>
+<p>Programmers need to write two pieces of programs:</p>
+<ul>
+<li>Client program
+<ul>
+<li>Specify server’s location</li>
+<li>Parameters and return value of RPC are pointers</li>
+</ul>
+</li>
+<li>Service routines
+<ul>
+<li>Generally the same as local procedures, except the parameters and parameter types</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-22 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" data-title="DistributedSystem_HongweiDu_06" data-hashtags="distributed system"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" data-hashtag="distributed system"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" data-title="DistributedSystem_HongweiDu_06"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" data-title="DistributedSystem_HongweiDu_06"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/distributedsystem_hongweidu_06/" data-title="DistributedSystem_HongweiDu_06"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/distributed-system/">distributed system</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/distributedsystem_hongweidu_05/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_05"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_05</a>
+            <a href="/distributedsystem_hongweidu_07/" class="next" rel="next" title="DistributedSystem_HongweiDu_07">DistributedSystem_HongweiDu_07<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

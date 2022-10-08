@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>NIPS16_TRMF - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="NIPS16_TRMF" />
+<meta property="og:description" content="Hsiang-Fu Yu, Nikhil Rao, Inderjit S. Dhillon, 2016. Temporal regularized matrix factorization for high-dimensional time series prediction. 笔记中部分公式未渲染出来，文末截图可见 Temporal Regularized Matrix Factorization(TRMF) for High-dimensional Time Series Prediction 摘要 现代应用程序需要具有高度可扩展性的方法，并且可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/nips16_trmf/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-13T09:33:30+08:00" />
+<meta property="article:modified_time" content="2022-08-12T16:26:20+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="NIPS16_TRMF"/>
+<meta name="twitter:description" content="Hsiang-Fu Yu, Nikhil Rao, Inderjit S. Dhillon, 2016. Temporal regularized matrix factorization for high-dimensional time series prediction. 笔记中部分公式未渲染出来，文末截图可见 Temporal Regularized Matrix Factorization(TRMF) for High-dimensional Time Series Prediction 摘要 现代应用程序需要具有高度可扩展性的方法，并且可"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/nips16_trmf/" /><link rel="prev" href="https://jefofrank.xyz/sameonlychinese/" /><link rel="next" href="https://jefofrank.xyz/interview/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NIPS16_TRMF",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/nips16_trmf\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "papers","wordcount":  4184 ,
+        "url": "https:\/\/jefofrank.xyz\/nips16_trmf\/","datePublished": "2022-05-13T09:33:30+08:00","dateModified": "2022-08-12T16:26:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">NIPS16_TRMF</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/graduation-project/"><i class="far fa-folder fa-fw"></i>Graduation project</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-13 09:33:30">2022-05-13 09:33:30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4184 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#摘要">摘要</a></li>
+    <li><a href="#1-介绍">1. 介绍</a></li>
+    <li><a href="#2-具有时间依赖性的数据的现有矩阵分解方法">2. 具有时间依赖性的数据的现有矩阵分解方法</a>
+      <ul>
+        <li><a href="#时间依赖性的图正则化">时间依赖性的图正则化</a></li>
+        <li><a href="#学习时间依赖性的挑战">学习时间依赖性的挑战</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-trmf">3. TRMF</a>
+      <ul>
+        <li><a href="#trmf中数据驱动的时间依赖性学习">TRMF中数据驱动的时间依赖性学习</a></li>
+        <li><a href="#trmf时间序列分析">TRMF时间序列分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-一种新的自回归时间正则化算法">4. 一种新的自回归时间正则化算法</a>
+      <ul>
+        <li><a href="#不同时间序列之间的关联性">不同时间序列之间的关联性</a></li>
+        <li><a href="#滞后集l的选择">滞后集L的选择</a></li>
+        <li><a href="#参数优化">参数优化</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-实验结果">5. 实验结果</a>
+      <ul>
+        <li><a href="#数据集">数据集</a></li>
+        <li><a href="#实验结果">实验结果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>Hsiang-Fu Yu, Nikhil Rao, Inderjit S. Dhillon, 2016. Temporal regularized matrix factorization for high-dimensional time series prediction.</p>
+</blockquote>
+<blockquote>
+<p>笔记中部分公式未渲染出来，文末截图可见</p>
+</blockquote>
+<h1 id="temporal-regularized-matrix-factorizationtrmf-for-high-dimensional-time-series-prediction">Temporal Regularized Matrix Factorization(TRMF) for High-dimensional Time Series Prediction</h1>
+<h2 id="摘要">摘要</h2>
+<p>现代应用程序需要具有高度可扩展性的方法，并且可以处理有噪声的或有缺失值的数据。
+本文提出了一个支持数据驱动的时态学习和预测的时态正则化矩阵分解（TRMF）框架。我们在学习自回归模型中的依赖关系的背景下，与图正则化方法建立了有趣的联系框架。
+实验结果表明：TRMF在维数为50000的问题上比其他方法快两个数量级，并能对现实世界的数据集（如沃尔玛电子商务数据集）生成更好的预测。</p>
+<h2 id="1-介绍">1. 介绍</h2>
+<p>现代时间序列应用程序给从业者带来了两个挑战：处理大n（数字）和T（时间帧）的可伸缩性，以及处理缺失值的灵活性。</p>
+<p>AR和DLM侧重于低维时间序列数据，而没有处理上述两个问题。</p>
+<p>对高维时间序列数据建模的一种自然方式是以矩阵的形式，行对应于每个一维时间序列，列对应于时间点。</p>
+<p>鉴于n个时间序列通常高度相关，有人尝试应用低秩矩阵分解（MF）或矩阵完成（MC）技术来分析高维时间序列[2,14,16,23,26]。与上面的AR和DLM模型不同，最先进的MF方法以n为单位线性扩展，因此可以处理大型数据集。</p>
+<p>在MF中，观测到的n维时间序列数据被组织在矩阵 $\mathcal{Y} \in \mathbb{R}^{n \times T}$ 中，矩阵 y 由维度特性矩阵 $W \in \mathbb{R}^{n \times r}$ 与时间特性矩阵 $X \in \mathbb{R}^{r \times T}$ 的组合进行低秩逼近，从而修补缺失数据。
+$$
+\mathcal{Y} \approx W X
+$$</p>
+<p>使用最小二乘法、梯度下降等方法求解下述最小化问题，从而对矩阵 W 与矩阵 X 进行逼近：
+$$
+\min <em>{W X} \sum</em>{(i, t) \in \Omega}\left(\mathcal{Y}<em>{i t}-w</em>{i}^{T} x_{t}\right)^{2}+\lambda_{w} \mathcal{R}<em>{w}(W)+\lambda</em>{x} \mathcal{R}_{x}(X)
+$$</p>
+<p>其中， $\Omega$ 是原矩阵 $\mathcal{Y} \in \mathbb{R}^{n \times T}$ 中非零元所处位置的集合； $\sum_{(i, t) \in \Omega}\left(\mathcal{Y}<em>{i t}-w</em>{i}^{T} x_{t}\right)^{2}$ 为残差矩阵F范数的平方，用来描述 W X 矩阵 与原矩阵 Y 的差异；$R_w$ 与 $R_x$ 分别是 W 与 X 的正则项，用来防止过拟合。
+$$
+\mathcal{R}<em>{w}(W)=|W|</em>{F}^{2}=\sum_{i=1}^{n}\left|\boldsymbol{w}<em>{i}\right|^{2}=\sum</em>{i=1}^{n} w_{i}^{T} w_{i}
+$$</p>
+<p>$$
+\mathcal{R}<em>{x}(X)=|X|</em>{F}^{2}=\sum_{t=1}^{T}\left|\boldsymbol{x}<em>{t}\right|^{2}=\sum</em>{t=1}^{T} x_{t}^{T} x_{t}
+$$</p>
+<p>大多数现有的MF方法采用基于图（这个图指的是同一个特征的时序关系拼接成图，也就是X矩阵的一行）的方法来处理时间依赖性。具体来说，依赖关系由加权相似图描述，并通过拉普拉斯正则项进行约束。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513145708.png" />
+图1：多重时间序列的矩阵分解模型。F捕捉矩阵Y中每个时间序列的特征，X捕捉潜在和时变变量</p>
+<p>MF方法可以对缺失数据进行修复，但是对于预测问题则无能为力。此外，由于MF方法并没有考虑数据的时序特性，对上述的交通与天气数据的修复效果并不理想。</p>
+<p>本文提出了一个新的时间正则化矩阵分解框架(TRMF)用于高维时间序列分析。</p>
+<p>在TRMF中，我们考虑了一种原则性的方法来描述潜在时间嵌入之间的时间依赖性结构{$x_t$}，并设计了一个时间正则化器来将这种时间依赖性结构纳入标准MF公式。</p>
+<p>与大多数现有的MF方法不同，我们的TRMF方法支持数据驱动的时间依赖性学习，并为矩阵分解方法带来预测未来值的能力。此外，TRMF方法继承了MF方法的属性，即使在存在许多缺失值的情况下，TRMF也可以轻松处理高维时间序列数据。</p>
+<p>作为一个具体的例子，我们展示了一种新的自回归时间正则化器，它鼓励时间嵌入{$x_t$}之间的AR（autoregressive）结构。</p>
+<p>我们还将提出的正则化框架与基于图的方法联系起来，其中甚至可以解释负相关。</p>
+<p>这种连接不仅有助于更好地理解我们的框架所包含的依赖结构，而且还有助于使用现成的高效求解器(如GRALS)直接求解TRMF。</p>
+<h2 id="2-具有时间依赖性的数据的现有矩阵分解方法">2. 具有时间依赖性的数据的现有矩阵分解方法</h2>
+<p>标准MF公式对列的排列保持不变（列不管怎么变，权重矩阵保持不变），这不适用于具有时间依赖性的数据。</p>
+<p>因此，对于时间依赖性{$x_t$}，大多数现有的时间MF方法都转向基于图的正则化框架，并用图编码时间依赖性。</p>
+<h3 id="时间依赖性的图正则化">时间依赖性的图正则化</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513152011.png" /></p>
+<p>图2：时态依赖的基于图的正则化。</p>
+<p>令G是一个时间依赖性{$x_t$}的图，$G_{ts}$是第t个点和第s个点之间的边权重。一种常见的正则化方式如下公式：
+$$
+\mathcal{R}<em>{x}(X)=\mathcal{G}(X \mid G, \eta):=\frac{1}{2} \sum</em>{t \sim s} G_{t s}\left|\boldsymbol{x}<em>{t}-\boldsymbol{x}</em>{s}\right|^{2}+\frac{\eta}{2} \sum_{t}\left|\boldsymbol{x}_{t}\right|^{2}(2)
+$$</p>
+<p>其中t~s代表了第t个点和第s个点之间的边；第二个正则化项是用来保证强凸性</p>
+<p>一个很大的$G_{ts}$可以保证$x_t$和$x_s$在欧几里得距离上很接近</p>
+<p>为了保证$\mathcal{G}(X \mid G, \eta)$的凸性，我们让$G_{ts}$≥0</p>
+<p>为了将基于图的正则化应用于时间依赖关系上，我们需要通过滞后集L和权值向量w重复地指定各个点之间的依赖模式，以便距离L的所有边t ~ s共享相同的权值</p>
+<p>于是上面的公式可以改写成：
+$$
+\mathcal{G}(X \mid G, \eta)=\frac{1}{2} \sum_{l \in \mathcal{L}} \sum_{t: t&gt;l} w_{l}\left(\boldsymbol{x}<em>{t}-\boldsymbol{x}</em>{t-l}\right)^{2}+\frac{\eta}{2} \sum_{t}\left|\boldsymbol{x}_{t}\right|^{2}(3)
+$$
+这种直接使用基于图的方法虽然很直观，但有两个问题:</p>
+<ul>
+<li>两个时间点之间可能存在负相关依赖关系;</li>
+<li>显式的时态依赖结构通常不可用，必须使用者进行推断。</li>
+</ul>
+<p>于是，很多现有的这种正则化的模型只能考虑很简单的时间依赖关系（比如滞后集L很小，L={1}），和统一的权重（比如不管两个点之间距离是多少，权重统一设置为1）</p>
+<p>这导致现有MF方法对大规模时间序列的预测能力较差。</p>
+<h3 id="学习时间依赖性的挑战">学习时间依赖性的挑战</h3>
+<p>也许有人会想：那我权重参数w让机器自己学不就好了吗？</p>
+<p>在这种假设下，我们有了以下的优化方程：
+$$
+\min <em>{F, X, \boldsymbol{w} \geq \mathbf{0}} \sum</em>{(i, t) \in \Omega}\left(Y_{i t}-\boldsymbol{f}<em>{i}^{\top} \boldsymbol{x}</em>{t}\right)^{2}+\lambda_{f} \mathcal{R}<em>{f}(F)+\frac{\lambda</em>{x}}{2} \sum_{l \in \mathcal{L}} \sum_{t: t-l&gt;0} w_{l}\left(\boldsymbol{x}<em>{t}-\boldsymbol{x}</em>{t-l}\right)^{2}+\frac{\lambda_{x} \eta}{2} \sum_{t}\left|\boldsymbol{x}_{t}\right|^{2}
+(4)$$</p>
+<p>我们不难发现，<strong>最终的优化结果，是所有的w都是0</strong>，意为没有空间依赖关系的时候，目标函数达到最小值。</p>
+<p>为了避免让所有的w都是0，有人想到可以给w的和加上一个限制，比如$\sum_{l \in \mathcal{L}} w_{l}=1$</p>
+<p>同样地，我们不难发现，最终的优化结果是$l^{<em>}=\arg \min <em>{l \in \mathcal{L}} \sum</em>{t: t&gt;l}\left|\boldsymbol{x}<em>{t}-\boldsymbol{x}</em>{t-l}\right|^{2}$，对应的wl</em>是1，其他的w是0</p>
+<p>因此，通过简单地在MF公式中插入正则化器来自动学习权重并不是一个可行的选择。</p>
+<h2 id="3-trmf">3. TRMF</h2>
+<p>为了解决前面提到的限制，本文提出了时间正则化矩阵分解(TRMF)框架，这是一种将时间依赖性纳入矩阵分解模型的新方法。</p>
+<p>与前面提到的基于图的方法不同，我们建议使用经过充分研究的时间序列模型来明确地描述{$x_t$}之间的时间依赖性。</p>
+<p>$$\boldsymbol{x}<em>{t}=M</em>{\Theta}\left(\left{\boldsymbol{x}<em>{t-l}: l \in \mathcal{L}\right}\right)+\boldsymbol{\epsilon}</em>{t}   (5)$$</p>
+<ul>
+<li>$\boldsymbol{\epsilon}_{t}$是一个高斯噪声向量</li>
+<li>$M_{\Theta}$是一个时间序列模型，参数是Θ和滞后集L</li>
+<li>L是一个包含滞后指标L的集合，表示t和t-l时间点之间的相关性</li>
+<li>Θ捕捉时间相关性的权重信息(如AR模型中的转移矩阵)</li>
+</ul>
+<p>基于此，我们提出了一个新的正则化项$\mathcal{T}<em>{\mathrm{M}}(X \mid \Theta)$，这可以鼓励模型依照时间序列$M</em>{\Theta}$。</p>
+<p>我们令：
+$$
+\mathcal{T}<em>{\mathrm{M}}(X \mid \Theta)=-\log \mathbb{P}\left(\boldsymbol{x}</em>{1}, \ldots, \boldsymbol{x}_{T} \mid \Theta\right)   (6)
+$$</p>
+<p>当θ给定的时候，我们令$\mathcal{T}_{\mathrm{M}}(X \mid \Theta)$为矩阵分解的一个正则化项；当θ未知的时候，我们令θ为另外一部分参数，并且设计$R_θ$以作为另一个正则化项。</p>
+<p>$$
+\min <em>{F, X, \Theta} \sum</em>{(i, t) \in \Omega}\left(Y_{i t}-\boldsymbol{f}<em>{i}^{\top} \boldsymbol{x}</em>{t}\right)^{2}+\lambda_{f} \mathcal{R}<em>{f}(F)+\lambda</em>{x} \mathcal{T}<em>{\mathrm{M}}(X \mid \Theta)+\lambda</em>{\theta} \mathcal{R}_{\theta}(\Theta)   (7)
+$$</p>
+<p>通过交替地优化更新F,X,Θ，可以解决上面的优化方程。</p>
+<h3 id="trmf中数据驱动的时间依赖性学习">TRMF中数据驱动的时间依赖性学习</h3>
+<p>在TRMF中，当F和X是固定的时候，式（7）可以简化为：
+$$
+\min <em>{\Theta} \lambda</em>{x} \mathcal{T}<em>{M}(X \mid \Theta)+\lambda</em>{\theta} \mathcal{R}_{\theta}(\Theta)
+(8)$$
+其中第一项可以看成：$\min _{\Theta} -\log{P}(X_1,&hellip;X_T \mid \Theta)$，即$\max _{\Theta}{P}(X_1,&hellip;X_T \mid \Theta)$</p>
+<p>也就是说，后一项可以看成最大后验概率</p>
+<h3 id="trmf时间序列分析">TRMF时间序列分析</h3>
+<p>我们可以看到，TRMF可以无缝地处理在分析具有时间依赖性的数据时经常遇到的各种任务:</p>
+<ul>
+<li>时间序列预测
+<ul>
+<li>一旦我们有了潜在的嵌入{$x_t:1,&hellip;T$}的$M_{\Theta}$，我们可以预测未来的嵌入{$x_t:t&gt;T$}，然后使用来预测结果</li>
+</ul>
+</li>
+<li>缺失值补全
+<ul>
+<li>我们可以使用$\boldsymbol{f}<em>{i}^{\top} \boldsymbol{x}</em>{t}$来对这些缺失的条目进行插补，就像标准矩阵补全，在推荐系统和传感器网络中很有用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-一种新的自回归时间正则化算法">4. 一种新的自回归时间正则化算法</h2>
+<p>在小节3中，我们大致介绍了TRMF的框架：正则项$\mathcal{T}<em>{M}(X \mid \Theta)$（有时间序列模型$M</em>{\Theta}$确定）</p>
+<p>在这一小节中，我们将介绍一种TRMF框架：自回归模型，参数为滞后集L和权重</p>
+<p>我们令xt是以下形式:
+$$
+\boldsymbol{x}<em>{t}=\sum</em>{l \in \mathcal{L}} W^{(l)} \boldsymbol{x}<em>{t-l}+\boldsymbol{\epsilon}</em>{t}
+$$</p>
+<p>$\boldsymbol{\epsilon}_{t}$是一个高斯噪声向量。</p>
+<p>为了简化，假设$\boldsymbol{\epsilon}<em>{t} \sim \mathcal{N}\left(0, \sigma^{2} I</em>{k}\right)$</p>
+<p>于是，时间正则化项$\mathcal{T}_{M}(X \mid \Theta)$可以写成：</p>
+<p>$$
+\mathcal{T}<em>{\mathrm{AR}}(X \mid \mathcal{L}, \mathcal{W}, \eta):=\frac{1}{2} \sum</em>{t=m}^{T}\left|\boldsymbol{x}<em>{t}-\sum</em>{l \in \mathcal{L}} W^{(l)} \boldsymbol{x}<em>{t-l}\right|^{2}+\frac{\eta}{2} \sum</em>{t}\left|\boldsymbol{x}_{t}\right|^{2}
+(9)$$</p>
+<p>其中：$m := 1 + L, L := max(L)$, and $\eta &gt; 0$</p>
+<p>由于每个$W^{(l)} \in R^{k*k}$所以我们有$|\mathcal{L}| k^{2}$个参数要学习，这可能导致过拟合</p>
+<p>为了避免过拟合，同时为了生成更可解释的结果，我们人为定义$W^{(l)} \in R^{k*k}$为对角矩阵，这可以使得参数量减少至$|\mathcal{L}| k$</p>
+<p>出于简化的考虑，我们使用W来表示这个k×L的矩阵，其中第l列表示$W^{(l)} \in R^{k*k}$ 的对角线元素</p>
+<p>简化后：
+$$
+\mathcal{T}<em>{\mathrm{AR}}(\overline{\boldsymbol{x}} \mid \mathcal{L}, \overline{\boldsymbol{w}}, \eta)=\frac{1}{2} \sum</em>{t=m}^{T}\left(x_{t}-\sum_{l \in \mathcal{L}} w_{l} x_{t-l}\right)^{2}+\frac{\eta}{2}|\overline{\boldsymbol{x}}|^{2}
+(10)$$</p>
+<p>$x_t$表示时刻t的向量。</p>
+<p>将式10代入式7，得到式12：
+$$
+\min <em>{F, X, \mathcal{W}} \sum</em>{(i, t) \in \Omega}\left(Y_{i t}-\boldsymbol{f}<em>{i}^{\top} \boldsymbol{x}</em>{t}\right)^{2}+\lambda_{f} \mathcal{R}<em>{f}(F)+\sum</em>{r=1}^{k} \lambda_{x} \mathcal{T}<em>{\mathrm{AR}}\left(\overline{\boldsymbol{x}}</em>{r} \mid \mathcal{L}, \overline{\boldsymbol{w}}<em>{r}, \eta\right)+\lambda</em>{w} \mathcal{R}_{w}(\mathcal{W})
+(12)$$</p>
+<p>我们将式（12）命名为TRMF-AR.</p>
+<h3 id="不同时间序列之间的关联性">不同时间序列之间的关联性</h3>
+<p>尽管$W^{(l)} \in R^{k*k}$是对角阵，但是TRMF还是可以建模不同时间序列（X矩阵不同行之间）的关联性。这个关联性在特征矩阵F中体现。</p>
+<h3 id="滞后集l的选择">滞后集L的选择</h3>
+<p>TRMF中L的选择更加灵活。因此，TRMF可以提供重要的优势:</p>
+<p>首先，因为不需要指定权重参数W，可以选择更大的L来考虑长期依赖性，这也可以产生更准确和稳健的预测。</p>
+<p>其次，L中的时延不需要是连续的，这样就可以很容易地嵌入关于周期性或季节性的领域知识。例如，对于具有一年季节性的每周数据，可以考虑L ={1, 2, 3, 51, 52, 53}。</p>
+<h3 id="参数优化">参数优化</h3>
+<p>式10和式12</p>
+<h2 id="5-实验结果">5. 实验结果</h2>
+<h3 id="数据集">数据集</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513164853.png" /></p>
+<p>对于synthetic数据集，我们先随机生成一个$F \in R^{16*4}$，，生成{$x_t$}，它满足AR过程，且滞后集L={1,8}。然后Y通过$\boldsymbol{y}<em>{t}=F \boldsymbol{x}</em>{t}+\boldsymbol{\epsilon}<em>{t}$ 且 $\boldsymbol{\epsilon}</em>{t} \sim \mathcal{N}(\mathbf{0}, 0.1 I)$生成</p>
+<p>电力和交通数据集从UCI存储库获得，而Walmart -1和Walmart -2是来自Walmart电子商务的两个专有数据集，其中包含每周的销售信息。由于缺货等原因，missing rate分别为55.3%和49.3%。为了评价预测性能，我们考虑了归一化偏差(ND)和归一化均方根(NRMSE)。</p>
+<h3 id="实验结果">实验结果</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220513165317.png" />
+表3：缺失值插补结果：每种方法的ND/NRMSE。请<strong>注意</strong>，TRMF
+在几乎所有情况下都优于所有竞争方法</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220515165114.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-08-12 16:26:20&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/20d54f0085413858f19265a1ccbc66d129dc4ee3" target="_blank" title="commit by JF-011101(2838264218@qq.com) 20d54f0085413858f19265a1ccbc66d129dc4ee3: init">
+                                    <i class="fas fa-hashtag fa-fw"></i>20d54f0</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/nips16_trmf/" data-title="NIPS16_TRMF" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/nips16_trmf/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/nips16_trmf/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/nips16_trmf/" data-title="NIPS16_TRMF"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/nips16_trmf/" data-title="NIPS16_TRMF"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/nips16_trmf/" data-title="NIPS16_TRMF"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/papers/">papers</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sameonlychinese/" class="prev" rel="prev" title="图神经网络的多元时间序列插补"><i class="fas fa-angle-left fa-fw"></i>图神经网络的多元时间序列插补</a>
+            <a href="/interview/" class="next" rel="next" title="interview">interview<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

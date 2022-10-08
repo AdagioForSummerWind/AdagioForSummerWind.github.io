@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>mysql - 标签 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/tags/mysql/</link>
+        <description>mysql - 标签 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Dec 2021 21:31:10 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/mysql/" rel="self" type="application/rss+xml" /><item>
+    <title>Mysql_advanced_01</title>
+    <link>https://jefofrank.xyz/mysql_advanced_01/</link>
+    <pubDate>Wed, 01 Dec 2021 21:31:10 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/mysql_advanced_01/</guid>
+    <description><![CDATA[极客时间学习笔记 MySQL基础 一条sql查询语句 1 2 sql mysql&gt; select * from T where ID=10； 一条简单的查询语句，MYSQL内部发生了什么？ 大体来说，MyS]]></description>
+</item></channel>
+</rss>

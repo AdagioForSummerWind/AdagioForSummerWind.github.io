@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mysql_base_06 | Jefo</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="Qizheng的个人博客"><link rel="prev" href="https://qizhengzou.github.io/2021/ideas-and-methods-of-data-modeling/" /><link rel="next" href="https://qizhengzou.github.io/2021/functional-dependence-and-its-axiom-theorem/" /><link rel="canonical" href="https://qizhengzou.github.io/2021/database-design/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql_base_06"/>
+<meta name="twitter:description" content="数据库设计 强弱实体的个人理解 在正文之前，我总结一下我对强弱实体的个人理解： 区别弱实体与强实体的关键在于主键，“依赖”的实质是主键之间的关系。"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_06",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/2021\/database-design\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "mysql","wordcount":  2181 ,
+        "url": "https:\/\/qizhengzou.github.io\/2021\/database-design\/","datePublished": "2021-11-09T11:28:11\u002b08:00","dateModified": "2021-11-11T00:00:00\u002b00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "qizheng",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/qizhengzou.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://qizhengzou.github.io">Jefo</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://qizhengzou.github.io">Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://qizhengzou.github.io/posts" title="">Posts</a><a class="menu-item" href="https://qizhengzou.github.io/tags" title="">Tags</a><a class="menu-item" href="https://qizhengzou.github.io/categories" title="">Categories</a><a class="menu-item" href="https://qizhengzou.github.io/about" title="">About</a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mysql_base_06</h1><div class="post-meta"><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2021-11-09>2021-11-09</time>&nbsp;
+            <i class="fas fa-pencil-alt fa-fw"></i>about 2181 words&nbsp;<span class="post-category"><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href="https://qizhengzou.github.io/categories/school-courses/">School courses</a>&nbsp;</span></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#强弱实体的个人理解">强弱实体的个人理解</a></li>
+    <li><a href="#数据库设计过程概述">数据库设计过程概述</a></li>
+    <li><a href="#数据库设计过程之需求分析">数据库设计过程之需求分析</a></li>
+    <li><a href="#数据库设计过程之概念数据库设计">数据库设计过程之概念数据库设计</a></li>
+    <li><a href="#数据库设计过程之逻辑数据库设计">数据库设计过程之逻辑数据库设计</a>
+      <ul>
+        <li><a href="#e-r图向关系模式的转换">E-R图向关系模式的转换</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库设计过程之物理数据库设计">数据库设计过程之物理数据库设计</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#强弱实体的个人理解">强弱实体的个人理解</a></li>
+    <li><a href="#数据库设计过程概述">数据库设计过程概述</a></li>
+    <li><a href="#数据库设计过程之需求分析">数据库设计过程之需求分析</a></li>
+    <li><a href="#数据库设计过程之概念数据库设计">数据库设计过程之概念数据库设计</a></li>
+    <li><a href="#数据库设计过程之逻辑数据库设计">数据库设计过程之逻辑数据库设计</a>
+      <ul>
+        <li><a href="#e-r图向关系模式的转换">E-R图向关系模式的转换</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库设计过程之物理数据库设计">数据库设计过程之物理数据库设计</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><h1 id="数据库设计">数据库设计</h1>
+<a class="post-dummy-target" id="强弱实体的个人理解"></a><h2>强弱实体的个人理解</h2>
+<p>在正文之前，我总结一下我对<strong>强弱实体</strong>的个人理解：</p>
+<ul>
+<li>区别弱实体与强实体的关键在于主键，“依赖”的实质是主键之间的关系。所以可以看作主键之间是否有关系、主键是否是组合主键的问题。</li>
+<li>弱实体与强实体可以相互转换，没有绝对意义上的强与弱。既然区别弱实体与强实体的关键在于主键，那么一个同样意义的表，当我给它一个编号作为主键，那么它就不是弱实体，而如果我令它的主键是组合主键，它就是弱实体。</li>
+<li>弱实体也可以依赖于弱实体。</li>
+<li>弱实体与它所依赖的实体之间的关系只能是1：1或n：1。也就是说，一个弱实体实例不可能依赖于同一实体的多个实例。这个其实很好理解，因为如果弱实体实例A依赖于实例B，那么A的主键要包括B的主键，所以A当然不可以依赖于很多个B。</li>
+</ul>
+<a class="post-dummy-target" id="数据库设计过程概述"></a><h2>数据库设计过程概述</h2>
+<ul>
+<li>需求分析</li>
+<li>概念数据库设计</li>
+<li>逻辑数据库设计</li>
+<li>物理数据库设计</li>
+</ul>
+<a class="post-dummy-target" id="数据库设计过程之需求分析"></a><h2>数据库设计过程之需求分析</h2>
+<ul>
+<li>目标：理解企业、理解企业业务过程与数据处理流程、理解数据处理的性能需求</li>
+<li>提交物：需求分析报告</li>
+<li>使以下内容清楚：
+<ul>
+<li>企业的部门-岗位划分：不同岗位负责的各种日常管理信息表/报表</li>
+<li>形成各种报表的基础数据表</li>
+<li>各种数据表之间的处理关系(What&ndash;How)</li>
+<li>围绕数据表的业务处理关系(Who—When&ndash;Where)</li>
+<li>尚未实施但未来可能实施的需求</li>
+</ul>
+</li>
+<li>形成数据库设计的“源”清单和“属性”清单，及详细描述，尤其注意业务规则与属性处理规则</li>
+<li>注意收集和理解:
+<ul>
+<li>业务规则及其在表的处理方面的体现</li>
+<li>不仅报表、单据是源，企业的查询需求与管理需求等也是源</li>
+</ul>
+</li>
+<li>注意命名:
+<ul>
+<li>命名要规范，并且要含义明确</li>
+<li>尤其要注意类似于“数量”这样的多含义属性，比如“计划数量”“采购数量”“到货数量”等</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="数据库设计过程之概念数据库设计"></a><h2>数据库设计过程之概念数据库设计</h2>
+<ul>
+<li>目标：进一步深入理解企业，对信息源进行抽象，发现信息(属性)之间的内在本质联系，这些本质联系可能隐藏于需求分析得到的信息源中。</li>
+<li>提交物：概念数据库设计报告</li>
+<li>使以下内容清楚：
+<ul>
+<li>各种实体的发现、划分和定义</li>
+<li>各种实体属性的发现、分析和定义</li>
+<li>各种实体联系的发现、分析和定义</li>
+<li>外部视图(模式)和概念视图(模式)的定义</li>
+</ul>
+</li>
+<li>用统一的表达方法，如E-R模型给出描述；不仅绘制出来，而且绘制正确；</li>
+<li>消除冲突
+<ul>
+<li>属性冲突
+<ul>
+<li>属性域的冲突：属性的类型、取值范围不同
+<ul>
+<li>如不同学校的学号编码方式不同</li>
+</ul>
+</li>
+<li>属性取值单位冲突
+<ul>
+<li>如重量分别采用磅、千克</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>结构冲突
+<ul>
+<li>同一对象在不同应用中的抽象不同
+*如职工在某应用中是实体，在另一应用中则抽象为属性</li>
+<li>同一实体在不同E-R图中属性组成不同</li>
+<li>实体之间的联系在不同E-R图中呈现不同的类型</li>
+</ul>
+</li>
+<li>命名冲突
+<ul>
+<li>同名异义：不同意义的对象具有相同的名字</li>
+<li>异名同义：同一意义的对象具有不同的名字</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="数据库设计过程之逻辑数据库设计"></a><h2>数据库设计过程之逻辑数据库设计</h2>
+<ul>
+<li>目标：用指定DBMS要求的模式描述方法，给出概念数据库的逻辑模式描述。</li>
+<li>提交物：逻辑数据库设计报告</li>
+<li>使以下内容清楚：
+<ul>
+<li>将E-R转换成逻辑模式</li>
+<li>遵循关系范式的设计原则</li>
+<li>也要注意折中，但折中时需要提示应用开发者或使用者可能存在的问题</li>
+<li>外模式和概念模式的定义</li>
+</ul>
+</li>
+<li>用关系模型规定的模式描述方法进行描述</li>
+</ul>
+<a class="post-dummy-target" id="e-r图向关系模式的转换"></a><h3>E-R图向关系模式的转换</h3>
+<p>基本转换规则：</p>
+<ul>
+<li>实体-属性-关键字的转换
+<ul>
+<li>E-R图的实体转换为关系</li>
+<li>E-R图的属性转换为关系的属性</li>
+<li>E-R图的关键字转换为关系的关键字</li>
+</ul>
+</li>
+<li>复合属性的转化
+<ul>
+<li>将每个分量属性作为复合属性所在实体的属性</li>
+<li>或者，将复合属性本身作为所在实体的属性</li>
+</ul>
+</li>
+<li>多值属性的转换
+<ul>
+<li>将多值属性与所在实体的关键字一起组成一个新的关系</li>
+</ul>
+</li>
+<li>联系的转换
+<ul>
+<li>一对一联系：
+<ul>
+<li>若联系双方均部分参与(0..1)，则将联系定义为一个新的关系，属性为参与双方的关键字属性</li>
+<li>若联系一方全部参与(1..1) ，则将其关键字作为另一方属性，不需要联系集</li>
+</ul>
+</li>
+<li>一对多联系：
+<ul>
+<li>将单方参与实体的关键字，作为多方参与实体对应关系的属性</li>
+</ul>
+</li>
+<li>多对多联系：
+<ul>
+<li>将联系定义为新的关系，属性为参与双方实体的关键字</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>弱实体的转换
+<ul>
+<li>所对应关系的关键字由弱实体本身的区分属性再加上所依赖的强实体的关键字构成</li>
+<li>弱实体集(从属实体)与强实体集(独立实体)之间的联系已经在弱实体集所对应的关系中表示出来了</li>
+</ul>
+</li>
+<li>多元联系的转换
+<ul>
+<li>多元联系可以通过继承参与联系的各个实体的关键字而形成新的关系</li>
+<li>这些继承过来的关键字可作为新关系的关键字</li>
+<li>也可以新增一个区分属性作为关键字</li>
+<li>注意这两种转换的差异</li>
+<li>多元联系更需注意分析参与联系的实体的最小基数和最大基数</li>
+<li>如是否允许参与联系的多实体中有一个或多个实体不参与？</li>
+<li>多元联系可以转换为多个二元联系进行处理
+<ul>
+<li>1型转换：供应(工程项目号，供货商号，零件号，数量)</li>
+<li>2型转换：供应(条目号,工程项目号，供货商号，零件号，数量）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>不正确设计数据库会导致：冗余（受控冗余，非受控冗余（如table中的外键））、插入异常、删除异常</p>
+<a class="post-dummy-target" id="数据库设计过程之物理数据库设计"></a><h2>数据库设计过程之物理数据库设计</h2>
+<ul>
+<li>目标：结合指定DBMS物理数据库管理方法，给出概
+念数据库的物理模式描述。</li>
+<li>提交物：物理数据库设计报告</li>
+<li>使以下内容清楚：
+<ul>
+<li>DBMS选型</li>
+<li>确定数据库的存储结构，文件类型：如定长文件、不定长文件；堆文件、散列文件或B-Tree文件等</li>
+<li>用Triggers, 设计一些完整性控制约束</li>
+<li>确定数据库的高效访问方式(索引访问，直接访问… …)</li>
+<li>评估和设置磁盘空间需求</li>
+<li>设计用户视图及访问控制规则，以进行安全性控制</li>
+<li>建立索引</li>
+<li>设计使数据库运行达到最佳效率的一些措施</li>
+<li>设计备份Backup和恢复Recovery的步骤</li>
+</ul>
+</li>
+<li>理解Oracle、Sybase或其他DBMS的物理数据库管理 方式，这是数据库管理员(DBA)的基本责任</li>
+</ul>
+</div><div class="post-copyright" id="post-footer">          
+            <p class="copyright-item">
+                <span>Author:&nbsp;</span>
+                <span>qizheng</span>
+            </p>
+
+            <p class="copyright-item">
+                <span>Updated on:&nbsp;</span>
+                <span>2021-11-11</span>
+            </p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+
+            <p class="copyright-item"></p>
+        </div>
+        <br>
+
+        <div class="post-info-more">
+            <section><span class="tag">
+                            <a href="https://qizhengzou.github.io/tags/mysql/"><i class="fas fa-tag fa-fw"></i>&nbsp;mysql</a>&nbsp;
+                        </span></section>
+            <section>
+                <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://qizhengzou.github.io">Home</a></span>
+            </section>
+        </div>
+        
+        <div class="post-nav"><a href="https://qizhengzou.github.io/2021/ideas-and-methods-of-data-modeling/" class="prev" rel="prev" title="Mysql_base_05"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_05</a>
+                <a href="https://qizhengzou.github.io/2021/functional-dependence-and-its-axiom-theorem/" class="next" rel="next" title="Mysql_base_07">Mysql_base_07<i class="fas fa-angle-right fa-fw"></i></a></div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://qizhengzou.github.io/about/" target="_blank">qizheng</a> | </span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> & <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt</a></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><link rel="stylesheet" href="/css/lib/katex/katex.min.css"><script src="/js/lib/katex/katex.min.js"></script><script defer src="/js/lib/katex/auto-render.min.js"></script><link rel="stylesheet" href="/css/lib/katex/copy-tex.min.css"><script defer src="/js/lib/katex/copy-tex.min.js"></script><script defer src="/js/lib/katex/mhchem.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },{ left: "$", right: "$", display: false },]
+            });
+        });
+    </script><script src="/js/blog.min.js"></script></body>
+</html>

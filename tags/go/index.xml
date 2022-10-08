@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>go - 标签 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/tags/go/</link>
+        <description>go - 标签 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>Effective_go</title>
+    <link>https://jefofrank.xyz/effective_go/</link>
+    <pubDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/effective_go/</guid>
+    <description><![CDATA[https://go.dev/doc/effective_go 引言 Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性，使得用 Go 编程在本质上就不同于其它语言。将现有的 C++ 或 Java 程序直]]></description>
+</item></channel>
+</rss>

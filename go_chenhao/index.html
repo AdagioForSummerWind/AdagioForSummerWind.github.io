@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="title: &ldquo;Go_chenhao&rdquo; date: 2022-09-30T07:39:09&#43;08:00 lastmod: tags: [] categories: [] slug: draft: true 08 | Go语言，Docker和新技术 陈皓 2017-10-26 我想写这篇文章，并从两个方面来论述一下我的观点和看法。一个方面，为什么 Go 语言" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/go_chenhao/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="title: &ldquo;Go_chenhao&rdquo; date: 2022-09-30T07:39:09&#43;08:00 lastmod: tags: [] categories: [] slug: draft: true 08 | Go语言，Docker和新技术 陈皓 2017-10-26 我想写这篇文章，并从两个方面来论述一下我的观点和看法。一个方面，为什么 Go 语言"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/go_chenhao/" /><link rel="prev" href="https://jefofrank.xyz/dytt/" /><link rel="next" href="https://jefofrank.xyz/raft_algo/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/go_chenhao\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5066 ,
+        "url": "https:\/\/jefofrank.xyz\/go_chenhao\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5066 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#draft-true">title: &ldquo;Go_chenhao&rdquo;
+date: 2022-09-30T07:39:09+08:00
+lastmod:
+tags: []
+categories: []
+slug:
+draft: true</a></li>
+    <li><a href="#08--go语言docker和新技术">08 | Go语言，Docker和新技术</a></li>
+    <li><a href="#27--洞悉paas平台的本质">27 | 洞悉PaaS平台的本质</a>
+      <ul>
+        <li><a href="#第一提高服务的-sla">第一，提高服务的 SLA。</a></li>
+        <li><a href="#第二能力和资源重用或复用">第二，能力和资源重用或复用。</a></li>
+        <li><a href="#第三过程的自动化">第三，过程的自动化。</a></li>
+        <li><a href="#paas-平台的本质">PaaS 平台的本质</a></li>
+        <li><a href="#paas-平台的总体架构">PaaS 平台的总体架构</a></li>
+        <li><a href="#paas-平台的生产和运维">PaaS 平台的生产和运维</a></li>
+      </ul>
+    </li>
+    <li><a href="#107--go编程模式切片接口时间和性能">107 | Go编程模式：切片、接口、时间和性能</a>
+      <ul>
+        <li><a href="#深度比较">深度比较</a></li>
+        <li><a href="#接口编程">接口编程</a></li>
+        <li><a href="#接口完整性检查">接口完整性检查</a></li>
+        <li><a href="#时间">时间</a></li>
+        <li><a href="#性能小提示">性能小提示</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<h2 id="draft-true">title: &ldquo;Go_chenhao&rdquo;
+date: 2022-09-30T07:39:09+08:00
+lastmod:
+tags: []
+categories: []
+slug:
+draft: true</h2>
+<h2 id="08--go语言docker和新技术">08 | Go语言，Docker和新技术</h2>
+<p>陈皓 2017-10-26</p>
+<p>我想写这篇文章，并从两个方面来论述一下我的观点和看法。一个方面，为什么 Go 语言和 Docker 会是新一代的云计算技术。另一个方面，作为技术人员，我们如何识别什么样的新技术会是未来的趋势。</p>
+<p>我对 Go 语言有如下几点体会。
+第一，语言简单，上手快。Go 语言的语法特性简直是太简单了，简单到你几乎玩不出什么花招，直来直去的，学习难度很低，容易上手。
+第二，并行和异步编程几乎无痛点。Go 语言的 Goroutine 和 Channel 这两个神器简直就是并发和异步编程的巨大福音。像 C、C++、Java、Python 和 JavaScript 这些语言的并发和异步的编程方式控制起来就比较复杂了，并且容易出错，但 Go 语言却用非常优雅和流畅的方式解决了这个问题。这对于编程多年受尽并发和异步折磨的我来说，完全就是眼前一亮的感觉。
+第三，Go 语言的 lib 库“麻雀虽小，五脏俱全”。Go 语言的 lib 库中基本上有绝大多数常用的库，虽然有些库还不是很好，但我觉得这都不是主要问题，因为随着技术的发展和成熟，这些问题肯定也都会随之解决。
+第四，C 语言的理念和 Python 的姿态。C 语言的理念是信任程序员，保持语言的小巧，不屏蔽底层且对底层友好，关注语言的执行效率和性能。而 Python 的姿态是用尽量少的代码完成尽量多的事。于是我能够感觉到，Go 语言是想要把 C 和 Python 统一起来，这是多棒的一件事。</p>
+<p>即便 Go 语言存在诸多的问题，比如垃圾回收、异常处理、泛型编程等，但相较于上面这几个优势，我认为这些问题都是些小问题。（那都是几年前的事了）</p>
+<p>一个技术能不能发展起来，关键还要看三点。
+有没有一个比较好的社区。像 C、C++、Java、Python 和 JavaScript 的生态圈都是非常丰富和火爆的。尤其是有很多商业机构参与的社区那就更是人气爆棚了，比如 Linux 社区。
+有没有一个工业化的标准。像 C、C++、Java 这些编程语言都是有标准化组织的。尤其是 Java，它在架构上还搞出了像 J2EE 这样的企业级标准。
+有没有一个或多个杀手级应用。C、C++ 和 Java 的杀手级应用不用多说了，就算是对于 PHP 这样还不能算是一个优秀的编程语言来说，因为是 Linux 时代的第一个杀手级解决方案 LAMP 中的关键技术，所以，也发展起来了。</p>
+<p>Go 语言容易上手；Go 语言解决了并发编程和底层应用开发效率的痛点；Go 语言有 Google 这个世界一流的技术公司在后面；Go 语言的杀手级应用是 Docker 容器，而容器的生态圈这几年可谓是发展繁荣，也是热点领域。</p>
+<p>Go 语言所吞食的项目应该主要是中间层的项目，既不是非常底层也不会是业务层。</p>
+<p>Go 语言不会吞食底层到 C 和 C++ 那个级别的，也不会吞食到上层如 Java 业务层的项目。<strong>Go 语言能吞食的一定是 PaaS 上的项目，比如一些消息缓存中间件、服务发现、服务代理、控制系统、Agent、日志收集</strong>等等，他们没有复杂的业务场景，也到不了特别底层（如操作系统）的软件项目或工具。而 C 和 C++ 会被打到更底层，Java 会被打到更上层的业务层。这是我的一个判断。</p>
+<p>Docker 容易上手。Docker 解决了运维中的环境问题以及服务调度的痛点。Docker 的生态圈中有大公司在后面助力，比如 Google。Docker 产出了工业界标准 OCI。Docker 的社区和生态圈已经出现像 Java 和 Linux 那样的态势。……</p>
+<p>Kubernetes 作为服务和容器调度的关键技术一定会是最后的赢家。</p>
+<p>关于 Docker 我还想多说几句，这是云计算中 PaaS 的关键技术。虽然，这世上在出现 Docker 之前，几乎所有的要玩公有 PaaS 的公司和产品都玩不起来，比如：Google 的 GAE，国内的各种 XAE，如淘宝的 TAE，新浪的 SAE 等。但我还是想说，PaaS 是一个被世界或是被产业界严重低估的平台。PaaS 层是承上启下的关键技术，任何一个不重视 PaaS 的公司，其技术架构都不可能让这家公司成长为一个大型的公司。因为 PaaS 层的技术主要能解决下面这些问题。</p>
+<p>软件生产线的问题。持续集成和持续发布，以及 DevOps 中的技术必须通过 PaaS。
+分布式服务化的问题。分布式服务化的服务高可用、服务编排、服务调度、服务发现、服务路由，以及分布式服务化的支撑技术完全是 PaaS 的菜。
+提高服务的可用性 SLA。提高服务可用性 SLA 所需要的分布式、高可用的技术架构和运维工具，也是 PaaS 层提供的。
+软件能力的复用。软件工程中的核心就是软件能力的复用，这一点也完美地体现在 PaaS 平台的技术上。</p>
+<h2 id="27--洞悉paas平台的本质">27 | 洞悉PaaS平台的本质</h2>
+<p>陈皓，杨爽 2018-01-02</p>
+<p>请先允许我来谈谈软件工程的本质。我认为，一家商业公司的软件工程能力主要体现在三个地方。</p>
+<h3 id="第一提高服务的-sla">第一，提高服务的 SLA。</h3>
+<p>所谓服务的 SLA，也就是我们能提供多少个 9 的系统可用性，而每提高一个 9 的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的 SLA 主要表现在两个方面：高可用的系统；自动化的运维。</p>
+<p>你可以看一下我在 CoolShell 上写的《关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的 SLA。</p>
+<h3 id="第二能力和资源重用或复用">第二，能力和资源重用或复用。</h3>
+<p>软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：软件模块的重用；软件运行环境和资源的重用。</p>
+<p>为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。</p>
+<h3 id="第三过程的自动化">第三，过程的自动化。</h3>
+<p>编程本来就是把一个重复工作自动化的过程，所以，软件工程的第三个本质就是把软件生产和运维的过程自动化起来。也就是下面这两个方面：</p>
+<p>软件生产流水线；软件运维自动化。</p>
+<p>为此，我们除了需要 CI/CD 的 DevOps 式的自动化之外，也需要能够对正在运行的生产环境中的软件进行自动化运维。通过了解软件工程的这三个本质，你会发现，我们上面所说的那些分布式的技术点是高度一致的，也就是下面这三个方面的能力。（是的，世界就是这样的。当参透了本质之后，你会发现世界是大同的。）</p>
+<p>分布式多层的系统架构。服务化的能力供应。自动化的运维能力。</p>
+<p>只有做到了这些，我们才能够真正拥有云计算的威力。这就是所谓的 Cloud Native。而这些目标都完美地体现在 PaaS 平台上。前面讲述的分布式系统关键技术和软件工程的本质，都可以在 PaaS 平台上得到完全体现。所以，需要一个 PaaS 平台把那么多的东西给串联起来。这里，我结合自己的认知给你讲一下 PaaS 相关的东西，并把前面讲过的所有东西做一个总结。</p>
+<h3 id="paas-平台的本质">PaaS 平台的本质</h3>
+<p>一个好的 PaaS 平台应该具有分布式、服务化、自动化部署、高可用、敏捷以及分层开放的特征，并可与 IaaS 实现良好的联动。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323"
+        data-srcset="https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323, https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323 1.5x, https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323"
+        title="https://static001.geekbang.org/resource/image/a0/83/a0a0ae2213fcea58978d8a214412ee83.jpg?wh=1323x1323" /></p>
+<p>下面这三件事是 PaaS 跟传统中间件最大的差别。
+服务化是 PaaS 的本质。软件模块重用，服务治理，对外提供能力是 PaaS 的本质。
+分布式是 PaaS 的根本特性。多租户隔离、高可用、服务编排是 PaaS 的基本特性。
+自动化是 PaaS 的灵魂。自动化部署安装运维，自动化伸缩调度是 PaaS 的关键。</p>
+<h3 id="paas-平台的总体架构">PaaS 平台的总体架构</h3>
+<p>从下面的图中可以看到，我用了 Docker+Kubernetes 层来做了一个“技术缓冲层”。也就是说，如果没有 Docker 和 Kubernetes，构建 PaaS 将会复杂很多。当然，如果你正在开发一个类似 PaaS 的平台，那么你会发现自己开发出来的东西会跟 Docker 和 Kubernetes 非常像。相信我，最终你还是会放弃自己的轮子而采用 Docker+Kubernetes 的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582"
+        data-srcset="https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582, https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582 1.5x, https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582"
+        title="https://static001.geekbang.org/resource/image/f6/68/f65ccf66daf8d01d59fa8948c8136c68.png?wh=865*582" /></p>
+<p>在 Docker+Kubernetes 层之上，我们看到了两个相关的 PaaS 层。一个是 PaaS 调度层，很多人将其称为 iPaaS；另一个是 PaaS 能力层，通常被称为 aPaaS。没有 PaaS 调度层，PaaS 能力层很难被管理和运维，而没有 PaaS 能力层，PaaS 就失去了提供实际能力的业务价值。而本文更多的是在讲 PaaS 调度层上的东西。</p>
+<p>在两个相关的 PaaS 层之上，有一个流量调度的接入模块，这也是 PaaS 中非常关键的东西。流控、路由、降级、灰度、聚合、串联等等都在这里，包括最新的 AWS Lambda Service 的小函数等也可以放在这里。这个模块应该是像 CDN 那样来部署的。</p>
+<p>然后，在这个图的两边分别是与运营和运维相关的。运营这边主要是管理一些软件资源方面的东西（类似 Docker Hub 和 CMDB），以及外部接入和开放平台上的东西，这主要是对外提供能力的相关组件；而运维这边主要是对内的相关东西，主要就是 DevOps。</p>
+<p>总结一下，一个完整的 PaaS 平台会包括以下几部分。PaaS 调度层 – 主要是 PaaS 的自动化和分布式对于高可用高性能的管理。PaaS 能力服务层 – 主要是 PaaS 真正提供给用户的服务和能力。PaaS 的流量调度 – 主要是与流量调度相关的东西，包括对高并发的管理。PaaS 的运营管理 – 软件资源库、软件接入、认证和开放平台门户。PaaS 的运维管理 – 主要是 DevOps 相关的东西。</p>
+<h3 id="paas-平台的生产和运维">PaaS 平台的生产和运维</h3>
+<p>下面的图我给出了一个大概的软件生产、运维和服务接入的流程，它把之前的东西都串起来了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416"
+        data-srcset="https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416, https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416 1.5x, https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416"
+        title="https://static001.geekbang.org/resource/image/97/38/9740e0fe4225f5a3d7843e46582d3938.png?wh=3132x1416" /></p>
+<p>从左上开始软件构建，进入软件资产库（Docker Registry+ 一些软件的定义），然后走 DevOps 的流程，通过整体架构控制器进入生产环境，生产环境通过控制器操作 Docker+Kubernetes 集群进行软件部署和生产变更。其中，同步服务的运行状态，并通过生命周期管理来拟合状态，如图右侧部分所示。服务运行时的数据会进入到相关应用监控，应用监控中的一些监控事件会同步到生命周期管理中，再由生命周期管理器来做出决定，通过控制器来调度服务运行。当应用监控中心发现流量变化，要进行强制性伸缩时，它通过生命周期管理来通知控制系统进行伸缩。左下是服务接入的相关组件，主要是网关服务，以及 API 聚合编排和流程处理。这对应于之前说过的流量调度和 API Gateway 的相关功能。</p>
+<h2 id="107--go编程模式切片接口时间和性能">107 | Go编程模式：切片、接口、时间和性能</h2>
+<p>陈皓 2021-01-14</p>
+<h3 id="深度比较">深度比较</h3>
+<p>（如果是不同的类型，即使是底层类型相同，相应的值也相同，那么两者也不是“深度”相等。）</p>
+<p>当我们复制一个对象时，这个对象可以是内建数据类型、数组、结构体、Map……在复制结构体的时候，如果我们需要比较两个结构体中的数据是否相同，就要使用深度比较，而不只是简单地做浅度比较。这里需要使用到反射 reflect.DeepEqual() ，下面是几个示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;reflect&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">v1</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">{}</span>
+    <span class="nx">v2</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">{}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;v1 == v2:&#34;</span><span class="p">,</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">DeepEqual</span><span class="p">(</span><span class="nx">v1</span><span class="p">,</span><span class="nx">v2</span><span class="p">))</span>
+    <span class="c1">//prints: v1 == v2: true
+</span><span class="c1"></span>
+    <span class="nx">m1</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;one&#34;</span><span class="p">:</span> <span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;two&#34;</span><span class="p">:</span> <span class="s">&#34;b&#34;</span><span class="p">}</span>
+    <span class="nx">m2</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;two&#34;</span><span class="p">:</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;one&#34;</span><span class="p">:</span> <span class="s">&#34;a&#34;</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;m1 == m2:&#34;</span><span class="p">,</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">DeepEqual</span><span class="p">(</span><span class="nx">m1</span><span class="p">,</span> <span class="nx">m2</span><span class="p">))</span>
+    <span class="c1">//prints: m1 == m2: true
+</span><span class="c1"></span>
+    <span class="nx">s1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+    <span class="nx">s2</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s1 == s2:&#34;</span><span class="p">,</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">DeepEqual</span><span class="p">(</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span><span class="p">))</span>
+    <span class="c1">//prints: s1 == s2: true
+</span><span class="c1"></span><span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">深度相等情形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">相同索引处的元素“深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">Struct</td>
+<td style="text-align:left">相应字段，包含导出和不导出，“深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">Func</td>
+<td style="text-align:left">只有两者都是 nil 时</td>
+</tr>
+<tr>
+<td style="text-align:left">Interface</td>
+<td style="text-align:left">两者存储的具体值“深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">Map</td>
+<td style="text-align:left">1、都为 nil；2、非空、长度相等，指向同一个 map 实体对象，或者相应的 key 指向的 value “深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">Pointer</td>
+<td style="text-align:left">1、使用 == 比较的结果相等；2、指向的实体“深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">Slice</td>
+<td style="text-align:left">1、都为 nil；2、非空、长度相等，首元素指向同一个底层数组的相同元素，即 &amp;x[0] == &amp;y[0] 或者 相同索引处的元素“深度”相等</td>
+</tr>
+<tr>
+<td style="text-align:left">numbers, bools, strings, and channels</td>
+<td style="text-align:left">使用 == 比较的结果为真</td>
+</tr>
+</tbody>
+</table>
+<h3 id="接口编程">接口编程</h3>
+<p>面向对象编程方法的黄金法则——“Program to an interface not an implementation”</p>
+<h3 id="接口完整性检查">接口完整性检查</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">type</span> <span class="nx">A</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nf">AA</span><span class="p">()</span>
+	<span class="nf">BB</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">B</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">l</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">B</span><span class="p">)</span> <span class="nf">AA</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">B</span><span class="p">)</span> <span class="nf">BB</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;2&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">_</span> <span class="nx">A</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">B</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello world!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="时间">时间</h3>
+<p>在 Go 语言中，你一定要使用 time.Time 和 time.Duration  这两个类型。</p>
+<p>在命令行上，flag 通过 time.ParseDuration 支持了 time.Duration。
+JSON 中的 encoding/json 中也可以把time.Time 编码成 RFC 3339 的格式。
+数据库使用的 database/sql 也支持把 DATATIME 或 TIMESTAMP 类型转成 time.Time。
+YAML 也可以使用 gopkg.in/yaml.v2 支持 time.Time 、time.Duration 和 RFC 3339 格式。</p>
+<p>如果你要和第三方交互，实在没有办法，也请使用 RFC 3339 的格式。最后，如果你要做全球化跨时区的应用，一定要把所有服务器和时间全部使用 UTC 时间。</p>
+<h3 id="性能小提示">性能小提示</h3>
+<p>如果需要把数字转换成字符串，使用 strconv.Itoa() 比 fmt.Sprintf() 要快一倍左右。</p>
+<p>尽可能避免把String转成[]Byte ，这个转换会导致性能下降。</p>
+<p>如果在 for-loop 里对某个 Slice 使用 append()，请先把 Slice 的容量扩充到位，这样可以避免内存重新分配以及系统自动按 2 的 N 次方幂进行扩展但又用不到的情况，从而避免浪费内存。</p>
+<p>使用StringBuffer 或是StringBuild 来拼接字符串，性能会比使用 + 或 +=高三到四个数量级。</p>
+<p>尽可能使用并发的 goroutine，然后使用 sync.WaitGroup 来同步分片操作。</p>
+<p>避免在热代码中进行内存分配，这样会导致 gc 很忙。尽可能使用  sync.Pool 来重用对象。</p>
+<p>使用 lock-free 的操作，避免使用 mutex，尽可能使用 sync/Atomic包（关于无锁编程的相关话题，可参看《无锁队列实现》或《无锁 Hashmap 实现》）。</p>
+<p>使用 I/O 缓冲，I/O 是个非常非常慢的操作，使用 bufio.NewWrite() 和 bufio.NewReader() 可以带来更高的性能。</p>
+<p>对于在 for-loop 里的固定的正则表达式，一定要使用 regexp.Compile() 编译正则表达式。性能会提升两个数量级。</p>
+<p>如果你需要更高性能的协议，就要考虑使用 protobuf 或 msgp 而不是 JSON，因为 JSON 的序列化和反序列化里使用了反射。</p>
+<p>你在使用 Map 的时候，使用整型的 key 会比字符串的要快，因为整型比较比字符串比较要快。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/go_chenhao/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/go_chenhao/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/go_chenhao/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/go_chenhao/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/go_chenhao/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/go_chenhao/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/dytt/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/raft_algo/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

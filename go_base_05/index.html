@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Go_base_05 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Go_base_05" />
+<meta property="og:description" content="参考学习go语言中文网、C语言中文网、golang官方文档等 面向对象 Is Go an object-oriented language? Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interf" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/go_base_05/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-06T09:16:40+08:00" />
+<meta property="article:modified_time" content="2022-08-12T16:26:20+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Go_base_05"/>
+<meta name="twitter:description" content="参考学习go语言中文网、C语言中文网、golang官方文档等 面向对象 Is Go an object-oriented language? Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interf"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/go_base_05/" /><link rel="prev" href="https://jefofrank.xyz/go_base_04/" /><link rel="next" href="https://jefofrank.xyz/go_base_06/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go_base_05",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/go_base_05\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go grammar","wordcount":  5393 ,
+        "url": "https:\/\/jefofrank.xyz\/go_base_05\/","datePublished": "2022-01-06T09:16:40+08:00","dateModified": "2022-08-12T16:26:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Go_base_05</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 09:16:40">2022-01-06 09:16:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5393 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#匿名字段">匿名字段</a></li>
+    <li><a href="#接口">接口</a>
+      <ul>
+        <li><a href="#接口-1">接口</a>
+          <ul>
+            <li><a href="#接口类型">接口类型</a></li>
+            <li><a href="#为什么要使用接口">为什么要使用接口</a></li>
+            <li><a href="#实现接口的条件">实现接口的条件</a></li>
+            <li><a href="#接口类型变量">接口类型变量</a></li>
+            <li><a href="#指针接收者实现接口">指针接收者实现接口</a></li>
+            <li><a href="#用接口实现多态">用接口实现多态</a></li>
+            <li><a href="#接口的最佳实践">接口的最佳实践</a></li>
+            <li><a href="#下面的代码是一个比较好的面试题">下面的代码是一个比较好的面试题</a></li>
+          </ul>
+        </li>
+        <li><a href="#类型与接口的关系">类型与接口的关系</a>
+          <ul>
+            <li><a href="#一个类型实现多个接口">一个类型实现多个接口</a></li>
+            <li><a href="#多个类型实现同一接口">多个类型实现同一接口</a></li>
+            <li><a href="#接口嵌套">接口嵌套</a></li>
+          </ul>
+        </li>
+        <li><a href="#空接口">空接口</a>
+          <ul>
+            <li><a href="#空接口的定义">空接口的定义</a></li>
+          </ul>
+        </li>
+        <li><a href="#空接口的应用">空接口的应用</a>
+          <ul>
+            <li><a href="#空接口作为函数的参数">空接口作为函数的参数</a></li>
+            <li><a href="#空接口作为map的值">空接口作为map的值</a></li>
+          </ul>
+        </li>
+        <li><a href="#类型断言">类型断言</a>
+          <ul>
+            <li><a href="#接口值">接口值</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>参考学习go语言中文网、C语言中文网、golang官方文档等</p>
+</blockquote>
+<h1 id="面向对象">面向对象</h1>
+<p>Is Go an object-oriented language?
+Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. <strong>The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general.</strong> Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.</p>
+<p>个人认为官网的大致意思就是go算是面向对象语言，没有继承，但有更通用的“接口”，没有继承也使对象比某些语言更轻量。</p>
+<h2 id="匿名字段">匿名字段</h2>
+<p>go支持只提供类型而不写字段名的方式，也就是匿名字段，也称为嵌入字段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//-    go支持只提供类型而不写字段名的方式，也就是匿名字段，也称为嵌入字段
+</span><span class="c1"></span>
+<span class="c1">//人
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">sex</span>  <span class="kt">string</span>
+    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Person</span>
+    <span class="nx">id</span>   <span class="kt">int</span>
+    <span class="nx">addr</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 初始化
+</span><span class="c1"></span>    <span class="nx">s1</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">Person</span><span class="p">{</span><span class="s">&#34;5lmh&#34;</span><span class="p">,</span> <span class="s">&#34;man&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;bj&#34;</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>
+
+    <span class="nx">s2</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">Person</span><span class="p">:</span> <span class="nx">Person</span><span class="p">{</span><span class="s">&#34;5lmh&#34;</span><span class="p">,</span> <span class="s">&#34;man&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">}</span> <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span>
+
+    <span class="nx">s3</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">Person</span><span class="p">:</span> <span class="nx">Person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;5lmh&#34;</span><span class="p">}</span> <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s3</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">output</span><span class="err">：</span>
+
+    <span class="p">{</span> <span class="p">{</span><span class="mi">5</span><span class="nx">lmh</span> <span class="nx">man</span> <span class="mi">20</span><span class="p">}</span> <span class="mi">1</span> <span class="nx">bj</span><span class="p">}</span>
+    <span class="p">{</span> <span class="p">{</span><span class="mi">5</span><span class="nx">lmh</span> <span class="nx">man</span> <span class="mi">20</span><span class="p">}</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="p">{</span> <span class="p">{</span><span class="mi">5</span><span class="nx">lmh</span>  <span class="mi">0</span><span class="p">}</span> <span class="mi">0</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>同名字段的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//人
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">sex</span>  <span class="kt">string</span>
+    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Person</span>
+    <span class="nx">id</span>   <span class="kt">int</span>
+    <span class="nx">addr</span> <span class="kt">string</span>
+    <span class="c1">//同名字段
+</span><span class="c1"></span>    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="nx">Student</span>
+    <span class="c1">// 给自己字段赋值了
+</span><span class="c1"></span>    <span class="nx">s</span><span class="p">.</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;5lmh&#34;</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+
+    <span class="c1">// 若给父类同名字段赋值，如下
+</span><span class="c1"></span>    <span class="nx">s</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;枯藤&#34;</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">output</span><span class="err">：</span>
+    <span class="p">{</span> <span class="p">{</span>  <span class="mi">0</span><span class="p">}</span> <span class="mi">0</span>  <span class="mi">5</span><span class="nx">lmh</span><span class="p">}</span>
+    <span class="p">{</span> <span class="p">{</span><span class="nx">枯藤</span>  <span class="mi">0</span><span class="p">}</span> <span class="mi">0</span>  <span class="mi">5</span><span class="nx">lmh</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所有的内置类型和自定义类型都是可以作为匿名字段去使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//人
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">sex</span>  <span class="kt">string</span>
+    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c1">// 自定义类型
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">mystr</span> <span class="kt">string</span>
+
+<span class="c1">// 学生
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Person</span>
+    <span class="kt">int</span>
+    <span class="nx">mystr</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">s1</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">Person</span><span class="p">{</span><span class="s">&#34;5lmh&#34;</span><span class="p">,</span> <span class="s">&#34;man&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;bj&#34;</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">output</span><span class="err">：</span>
+    <span class="p">{</span> <span class="p">{</span><span class="mi">5</span><span class="nx">lmh</span> <span class="nx">man</span> <span class="mi">18</span><span class="p">}</span> <span class="mi">1</span> <span class="nx">bj</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>指针类型匿名字段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//人
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">sex</span>  <span class="kt">string</span>
+    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c1">// 学生
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="o">*</span><span class="nx">Person</span>
+    <span class="nx">id</span>   <span class="kt">int</span>
+    <span class="nx">addr</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">s1</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="s">&#34;5lmh&#34;</span><span class="p">,</span> <span class="s">&#34;man&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;bj&#34;</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s1</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s1</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">output</span><span class="err">：</span>
+    <span class="p">{</span><span class="mh">0xc00006a360</span> <span class="mi">1</span> <span class="nx">bj</span><span class="p">}</span>
+    <span class="mi">5</span><span class="nx">lmh</span>
+    <span class="mi">5</span><span class="nx">lmh</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="接口">接口</h2>
+<p>接口（interface）定义了一个对象的行为规范，只定义规范不实现，由具体的对象来实现规范的细节。（也可以说是定义对象之间交互的协议的）</p>
+<h3 id="接口-1">接口</h3>
+<h4 id="接口类型">接口类型</h4>
+<p>在Go语言中接口（interface）是一种类型，一种抽象的类型。</p>
+<p>interface是一组method的集合，是duck-type programming的一种体现。接口做的事情就像是定义一个协议（规则），只要一台机器有洗衣服和甩干的功能，我就称它为洗衣机。不关心属性（数据），只关心行为（方法）。</p>
+<h4 id="为什么要使用接口">为什么要使用接口</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cat</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">Cat</span><span class="p">)</span> <span class="nf">Say</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;喵喵喵&#34;</span> <span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Dog</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">Dog</span><span class="p">)</span> <span class="nf">Say</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;汪汪汪&#34;</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Cat</span><span class="p">{}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;猫:&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Say</span><span class="p">())</span>
+    <span class="nx">d</span> <span class="o">:=</span> <span class="nx">Dog</span><span class="p">{}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;狗:&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nf">Say</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码中定义了猫和狗，然后它们都会叫，你会发现main函数中明显有重复的代码，如果我们后续再加上猪、青蛙等动物的话，我们的代码还会一直重复下去。那我们能不能把它们当成“能叫的动物”来处理呢？</p>
+<p>像类似的例子在我们编程过程中会经常遇到：</p>
+<p>比如一个网上商城可能使用支付宝、微信、银联等方式去在线支付，我们能不能把它们当成“支付方式”来处理呢？</p>
+<p>比如三角形，四边形，圆形都能计算周长和面积，我们能不能把它们当成“图形”来处理呢？</p>
+<p>比如销售、行政、程序员都能计算月薪，我们能不能把他们当成“员工”来处理呢？</p>
+<p>Go语言中为了解决类似上面的问题，就设计了接口这个概念。接口区别于我们之前所有的具体类型，接口是一种抽象的类型。当你看到一个接口类型的值时，你不知道它是什么，唯一知道的是通过它的方法能做什么。</p>
+<p>接口的定义：
+（<strong>Go语言提倡面向接口编程。</strong>）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    接口是一个或多个方法签名的集合。
+    任何类型的方法集中只要拥有该接口&#39;对应的全部方法&#39;签名。
+    就表示它 &#34;实现&#34; 了该接口，无须在该类型上显式声明实现了哪个接口。
+    这称为Structural Typing。
+    所谓对应方法，是指有相同名称、参数列表 (不包括参数名) 以及返回值。
+    当然，该类型还可以有其他方法。
+
+    接口只有方法声明，没有实现，没有数据字段。
+    接口可以匿名嵌入其他接口，或嵌入到结构中。
+    对象赋值给接口时，会发生拷贝，而接口内部存储的是指向这个复制品的指针，既无法修改复制品的状态，也无法获取指针。
+    只有当接口存储的类型和对象都为nil时，接口才等于nil。
+    接口调用不会做receiver的自动转换。
+    接口同样支持匿名字段方法。
+    接口也可实现类似OOP中的多态。
+    空接口可以作为任何类型数据的容器。
+    一个类型可实现多个接口。
+    接口命名习惯以 er 结尾。 
+</code></pre></td></tr></table>
+</div>
+</div><p>每个接口由数个方法组成，接口的定义格式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go">    <span class="kd">type</span> <span class="nx">接口类型名</span> <span class="kd">interface</span><span class="p">{</span>
+        <span class="nx">方法名1</span><span class="p">(</span> <span class="nx">参数列表1</span> <span class="p">)</span> <span class="nx">返回值列表1</span>
+        <span class="nx">方法名2</span><span class="p">(</span> <span class="nx">参数列表2</span> <span class="p">)</span> <span class="nx">返回值列表2</span>
+        <span class="err">…</span>
+    <span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>其中：</p>
+<ol>
+<li>接口名：使用type将接口定义为自定义的类型名。Go语言的接口在命名时，一般会在单词后面添加er，如有写操作的接口叫Writer，有字符串功能的接口叫Stringer等。接口名最好要能突出该接口的类型含义。</li>
+<li>方法名：当方法名首字母是大写且这个接口类型名首字母也是大写时，这个方法可以被接口所在的包（package）之外的代码访问。</li>
+<li>参数列表、返回值列表：参数列表和返回值列表中的参数变量名可以省略。<br>
+举个例子：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">writer</span> <span class="kd">interface</span><span class="p">{</span>
+    <span class="nf">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>当你看到这个接口类型的值时，你不知道它是什么，唯一知道的就是可以通过它的Write方法来做一些事情。</p>
+<h4 id="实现接口的条件">实现接口的条件</h4>
+<p>一个对象只要全部实现了接口中的方法，那么就实现了这个接口。换句话说，接口就是一个需要实现的方法列表。</p>
+<p>我们来定义一个Sayer接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Sayer 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Sayer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">say</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>定义dog和cat两个结构体：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">dog</span> <span class="kd">struct</span> <span class="p">{}</span>
+
+<span class="kd">type</span> <span class="nx">cat</span> <span class="kd">struct</span> <span class="p">{}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>因为Sayer接口里只有一个say方法，所以我们只需要给dog和cat 分别实现say方法就可以实现Sayer接口了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// dog实现了Sayer接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dog</span><span class="p">)</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;汪汪汪&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// cat实现了Sayer接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">cat</span><span class="p">)</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;喵喵喵&#34;</span><span class="p">)</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>接口的实现就是这么简单，只要实现了接口中的所有方法，就实现了这个接口。</p>
+<h4 id="接口类型变量">接口类型变量</h4>
+<p>那实现了接口有什么用呢？</p>
+<p>接口类型变量能够存储所有实现了该接口的实例。 例如上面的示例中，Sayer类型的变量能够存储dog和cat类型的变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">Sayer</span> <span class="c1">// 声明一个Sayer类型的变量x
+</span><span class="c1"></span>    <span class="nx">a</span> <span class="o">:=</span> <span class="nx">cat</span><span class="p">{}</span>  <span class="c1">// 实例化一个cat
+</span><span class="c1"></span>    <span class="nx">b</span> <span class="o">:=</span> <span class="nx">dog</span><span class="p">{}</span>  <span class="c1">// 实例化一个dog
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">a</span>       <span class="c1">// 可以把cat实例直接赋值给x
+</span><span class="c1"></span>    <span class="nx">x</span><span class="p">.</span><span class="nf">say</span><span class="p">()</span>     <span class="c1">// 喵喵喵
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">b</span>       <span class="c1">// 可以把dog实例直接赋值给x
+</span><span class="c1"></span>    <span class="nx">x</span><span class="p">.</span><span class="nf">say</span><span class="p">()</span>     <span class="c1">// 汪汪汪
+</span><span class="c1"></span><span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>值接收者和指针接收者实现接口的区别
+使用值接收者实现接口和使用指针接收者实现接口有什么区别呢？接下来我们通过一个例子看一下其中的区别。</p>
+<p>我们有一个Mover接口和一个dog结构体。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Mover</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">dog</span> <span class="kd">struct</span> <span class="p">{}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>值接收者实现接口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dog</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;狗会动&#34;</span><span class="p">)</span>
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>此时实现接口的是dog类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">Mover</span>
+    <span class="kd">var</span> <span class="nx">wangcai</span> <span class="p">=</span> <span class="nx">dog</span><span class="p">{}</span> <span class="c1">// 旺财是dog类型
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">wangcai</span>         <span class="c1">// x可以接收dog类型
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">fugui</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">dog</span><span class="p">{}</span>  <span class="c1">// 富贵是*dog类型
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">fugui</span>           <span class="c1">// x可以接收*dog类型
+</span><span class="c1"></span>    <span class="nx">x</span><span class="p">.</span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>从上面的代码中我们可以发现，使用值接收者实现接口之后，不管是dog结构体还是结构体指针*dog类型的变量都可以赋值给该接口变量。因为Go语言中有对指针类型变量求值的语法糖，dog指针fugui内部会自动求值*fugui。</p>
+<h4 id="指针接收者实现接口">指针接收者实现接口</h4>
+<p>同样的代码我们再来测试一下使用指针接收者有什么区别：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">dog</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;狗会动&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">Mover</span>
+    <span class="kd">var</span> <span class="nx">wangcai</span> <span class="p">=</span> <span class="nx">dog</span><span class="p">{}</span> <span class="c1">// 旺财是dog类型
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">wangcai</span>         <span class="c1">// x不可以接收dog类型
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">fugui</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">dog</span><span class="p">{}</span>  <span class="c1">// 富贵是*dog类型
+</span><span class="c1"></span>    <span class="nx">x</span> <span class="p">=</span> <span class="nx">fugui</span>           <span class="c1">// x可以接收*dog类型
+</span><span class="c1"></span><span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>此时实现Mover接口的是*dog类型，所以不能给x传入dog类型的wangcai，此时x只能存储*dog类型的值。</p>
+<h4 id="用接口实现多态">用接口实现多态</h4>
+<h4 id="接口的最佳实践">接口的最佳实践</h4>
+<p>倾向于使⽤⼩的接⼝定义，很多接⼝只包含⼀个⽅法</p>
+<p>较⼤的接⼝定义，可以由多个⼩接⼝定义组合⽽成</p>
+<p>只依赖于必要功能的最小接口，这样方法的复用性更强。</p>
+<h4 id="下面的代码是一个比较好的面试题">下面的代码是一个比较好的面试题</h4>
+<p>请问下面的代码是否能通过编译？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">People</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">Speak</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">stu</span> <span class="o">*</span><span class="nx">Student</span><span class="p">)</span> <span class="nf">Speak</span><span class="p">(</span><span class="nx">think</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">talk</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">think</span> <span class="o">==</span> <span class="s">&#34;sb&#34;</span> <span class="p">{</span>
+        <span class="nx">talk</span> <span class="p">=</span> <span class="s">&#34;你是个大帅比&#34;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">talk</span> <span class="p">=</span> <span class="s">&#34;您好&#34;</span>
+    <span class="p">}</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">peo</span> <span class="nx">People</span> <span class="p">=</span> <span class="nx">Student</span><span class="p">{}</span>
+    <span class="nx">think</span> <span class="o">:=</span> <span class="s">&#34;bitch&#34;</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">peo</span><span class="p">.</span><span class="nf">Speak</span><span class="p">(</span><span class="nx">think</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="类型与接口的关系">类型与接口的关系</h3>
+<h4 id="一个类型实现多个接口">一个类型实现多个接口</h4>
+<p>一个类型可以同时实现多个接口，而接口间彼此独立，不知道对方的实现。 例如，狗可以叫，也可以动。我们就分别定义Sayer接口和Mover接口，如下： Mover接口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Sayer 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Sayer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Mover 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Mover</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>dog既可以实现Sayer接口，也可以实现Mover接口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">dog</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// 实现Sayer接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dog</span><span class="p">)</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s会叫汪汪汪\n&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 实现Mover接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dog</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s会动\n&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">Sayer</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="nx">Mover</span>
+
+    <span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="nx">dog</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;旺财&#34;</span><span class="p">}</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">a</span>
+    <span class="nx">y</span> <span class="p">=</span> <span class="nx">a</span>
+    <span class="nx">x</span><span class="p">.</span><span class="nf">say</span><span class="p">()</span>
+    <span class="nx">y</span><span class="p">.</span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="多个类型实现同一接口">多个类型实现同一接口</h4>
+<p>Go语言中不同的类型还可以实现同一接口 首先我们定义一个Mover接口，它要求必须由一个move方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Mover 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Mover</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>例如狗可以动，汽车也可以动，可以使用如下代码实现这个关系：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">dog</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">car</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">brand</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// dog类型实现Mover接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dog</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s会跑\n&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// car类型实现Mover接口
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">car</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s速度70迈\n&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">brand</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个时候我们在代码中就可以把狗和汽车当成一个会动的物体来处理了，不再需要关注它们具体是什么，只需要调用它们的move方法就可以了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">Mover</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="nx">dog</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;旺财&#34;</span><span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="p">=</span> <span class="nx">car</span><span class="p">{</span><span class="nx">brand</span><span class="p">:</span> <span class="s">&#34;保时捷&#34;</span><span class="p">}</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">a</span>
+    <span class="nx">x</span><span class="p">.</span><span class="nf">move</span><span class="p">()</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">b</span>
+    <span class="nx">x</span><span class="p">.</span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码执行结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    旺财会跑
+    保时捷速度70迈 
+</code></pre></td></tr></table>
+</div>
+</div><p>并且一个接口的方法，不一定需要由一个类型完全实现，接口的方法可以通过在类型中嵌入其他类型或者结构体来实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WashingMachine 洗衣机
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">WashingMachine</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">wash</span><span class="p">()</span>
+    <span class="nf">dry</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 甩干器
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">dryer</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="c1">// 实现WashingMachine接口的dry()方法
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dryer</span><span class="p">)</span> <span class="nf">dry</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;甩一甩&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 海尔洗衣机
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">haier</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">dryer</span> <span class="c1">//嵌入甩干器
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 实现WashingMachine接口的wash()方法
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="nx">haier</span><span class="p">)</span> <span class="nf">wash</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;洗刷刷&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="接口嵌套">接口嵌套</h4>
+<p>接口与接口间可以通过嵌套创造出新的接口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Sayer 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Sayer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Mover 接口
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Mover</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 接口嵌套
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">animal</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Sayer</span>
+    <span class="nx">Mover</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>嵌套得到的接口的使用与普通接口一样，这里我们让cat实现animal接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">cat</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">cat</span><span class="p">)</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;喵喵喵&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">cat</span><span class="p">)</span> <span class="nf">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;猫会动&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="nx">animal</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">cat</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;花花&#34;</span><span class="p">}</span>
+    <span class="nx">x</span><span class="p">.</span><span class="nf">move</span><span class="p">()</span>
+    <span class="nx">x</span><span class="p">.</span><span class="nf">say</span><span class="p">()</span>
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="空接口">空接口</h3>
+<h4 id="空接口的定义">空接口的定义</h4>
+<p>空接口是指没有定义任何方法的接口。因此任何类型都实现了空接口。</p>
+<p>空接口类型的变量可以存储任意类型的变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 定义一个空接口x
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">x</span> <span class="kd">interface</span><span class="p">{}</span>
+    <span class="nx">s</span> <span class="o">:=</span> <span class="s">&#34;pprof.cn&#34;</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">s</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;type:%T value:%v\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+    <span class="nx">i</span> <span class="o">:=</span> <span class="mi">100</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">i</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;type:%T value:%v\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="kc">true</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="nx">b</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;type:%T value:%v\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="空接口的应用">空接口的应用</h3>
+<h4 id="空接口作为函数的参数">空接口作为函数的参数</h4>
+<p>使用空接口实现可以接收任意类型的函数参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 空接口作为函数参数
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;type:%T value:%v\n&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="空接口作为map的值">空接口作为map的值</h4>
+<p>使用空接口实现可以保存任意值的字典。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 空接口作为map值
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">studentInfo</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nx">studentInfo</span><span class="p">[</span><span class="s">&#34;name&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&#34;李白&#34;</span>
+    <span class="nx">studentInfo</span><span class="p">[</span><span class="s">&#34;age&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">18</span>
+    <span class="nx">studentInfo</span><span class="p">[</span><span class="s">&#34;married&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">studentInfo</span><span class="p">)</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="类型断言">类型断言</h3>
+<p>空接口可以存储任意类型的值，那我们如何获取其存储的具体数据呢？</p>
+<h4 id="接口值">接口值</h4>
+<p>一个接口的值（简称接口值）是由一个具体类型和具体类型的值两部分组成的。这两部分分别称为接口的动态类型和动态值。</p>
+<p>我们来看一个具体的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">w</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span>
+<span class="nx">w</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span>
+<span class="nx">w</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">)</span>
+<span class="nx">w</span> <span class="p">=</span> <span class="kc">nil</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>请看下图分解（来自go中文文档）：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220113164832.png" /></p>
+<p>想要判断空接口中的值这个时候就可以使用类型断言，其语法格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    x.(T) 
+</code></pre></td></tr></table>
+</div>
+</div><p>其中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    x：表示类型为interface{}的变量
+    T：表示断言x可能是的类型。
+</code></pre></td></tr></table>
+</div>
+</div><p>该语法返回两个参数，第一个参数是x转化为T类型后的变量，第二个值是一个布尔值，若为true则表示断言成功，为false则表示断言失败。</p>
+<p>举个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="kd">interface</span><span class="p">{}</span>
+    <span class="nx">x</span> <span class="p">=</span> <span class="s">&#34;pprof.cn&#34;</span>
+    <span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.(</span><span class="kt">string</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;类型断言失败&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的示例中如果要断言多次就需要写多个if判断，这个时候我们可以使用switch语句来实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">justifyType</span><span class="p">(</span><span class="nx">x</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;x is a string，value is %v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;x is a int is %v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="k">case</span> <span class="kt">bool</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;x is a bool is %v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;unsupport type！&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>因为空接口可以存储任意类型值的特点，所以空接口在Go语言中的使用十分广泛。</p>
+<p>关于接口需要<strong>注意</strong>的是，只有当有两个或两个以上的具体类型必须以相同的方式进行处理时才需要定义接口。不要为了接口而写接口，那样只会增加不必要的抽象，导致不必要的运行时损耗。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-08-12 16:26:20&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/20d54f0085413858f19265a1ccbc66d129dc4ee3" target="_blank" title="commit by JF-011101(2838264218@qq.com) 20d54f0085413858f19265a1ccbc66d129dc4ee3: init">
+                                    <i class="fas fa-hashtag fa-fw"></i>20d54f0</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/go_base_05/" data-title="Go_base_05" data-hashtags="go grammar"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/go_base_05/" data-hashtag="go grammar"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/go_base_05/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/go_base_05/" data-title="Go_base_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/go_base_05/" data-title="Go_base_05"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/go_base_05/" data-title="Go_base_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-grammar/">go grammar</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/go_base_04/" class="prev" rel="prev" title="Go_base_04"><i class="fas fa-angle-left fa-fw"></i>Go_base_04</a>
+            <a href="/go_base_06/" class="next" rel="next" title="Go_base_06">Go_base_06<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

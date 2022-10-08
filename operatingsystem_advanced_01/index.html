@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>OperatingSystem_advanced_01 - Jefo</title><meta name="Description" content="Jefo"><meta property="og:title" content="OperatingSystem_advanced_01" />
+<meta property="og:description" content="自己实现一个操作系统呗 1.学习过程 从了解计算机的资源开始，如 CPU、MMU、内存和 Cache。其次要为这个操作系统设计基本法，即各种同步机制" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qizhengzou.github.io/operatingsystem_advanced_01/" /><meta property="og:image" content="https://qizhengzou.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-01T11:08:12+08:00" />
+<meta property="article:modified_time" content="2021-12-01T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://qizhengzou.github.io/logo.png"/>
+
+<meta name="twitter:title" content="OperatingSystem_advanced_01"/>
+<meta name="twitter:description" content="自己实现一个操作系统呗 1.学习过程 从了解计算机的资源开始，如 CPU、MMU、内存和 Cache。其次要为这个操作系统设计基本法，即各种同步机制"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qizhengzou.github.io/operatingsystem_advanced_01/" /><link rel="prev" href="https://qizhengzou.github.io/operatingsystem_base_05/" /><link rel="next" href="https://qizhengzou.github.io/operatingsystem_advanced_02/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "OperatingSystem_advanced_01",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/qizhengzou.github.io\/operatingsystem_advanced_01\/"
+        },"image": ["https:\/\/qizhengzou.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "operating system","wordcount":  969 ,
+        "url": "https:\/\/qizhengzou.github.io\/operatingsystem_advanced_01\/","datePublished": "2021-12-01T11:08:12+08:00","dateModified": "2021-12-01T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/qizhengzou.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jefo"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Jefo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/qizhengzou" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">OperatingSystem_advanced_01</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/advanced-learning/"><i class="far fa-folder fa-fw"></i>Advanced learning</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-01 11:08:12">2021-12-01 11:08:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 969 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1学习过程">1.学习过程</a></li>
+    <li><a href="#2基础之程序的运行过程">2.基础之程序的运行过程</a></li>
+    <li><a href="#3实现一个最简单的内核">3.实现一个最简单的内核</a></li>
+    <li><a href="#4内核结构与设计">4.内核结构与设计</a></li>
+    <li><a href="#5linux内核架构">5.Linux内核架构？！</a></li>
+    <li><a href="#6cpu工作模式">6.CPU工作模式</a></li>
+    <li><a href="#7程序中的地址转化">7.程序中的地址转化</a></li>
+    <li><a href="#8程序放在cache还是内存">8.程序放在cache还是内存？</a></li>
+    <li><a href="#9并发如何解决数据同步">9.并发如何解决数据同步</a></li>
+    <li><a href="#10linux自旋锁信号量">10.Linux自旋锁、信号量</a></li>
+    <li><a href="#11设置工作模式与环境">11.设置工作模式与环境</a></li>
+    <li><a href="#12第一个c函数如何实现板级初始化">12.第一个c函数：如何实现板级初始化</a></li>
+    <li><a href="#13linux初始化">13.Linux初始化</a></li>
+    <li><a href="#14内存的划分初始化分配释放">14.内存的划分、初始化、分配、释放</a></li>
+    <li><a href="#15管理内存对象">15.管理内存对象</a></li>
+    <li><a href="#16虚拟内存如何表示分配释放">16.虚拟内存如何表示、分配、释放</a></li>
+    <li><a href="#17linux伙伴系统和slab如何分配内存">17.Linux伙伴系统和SLAB如何分配内存</a></li>
+    <li><a href="#18什么是进程">18.什么是进程？</a></li>
+    <li><a href="#19进程调度等待与唤醒">19.进程调度、等待与唤醒</a></li>
+    <li><a href="#20linux如何实现的进程及其调度">20.Linux如何实现的进程及其调度</a></li>
+    <li><a href="#21表示设备类型与设备驱动">21.表示设备类型与设备驱动</a></li>
+    <li><a href="#22在内核中注册设备">22.在内核中注册设备</a></li>
+    <li><a href="#23设备如何处理内核io包">23.设备如何处理内核I/O包</a></li>
+    <li><a href="#24linux是如何获取设备信息的">24.Linux是如何获取设备信息的？</a></li>
+    <li><a href="#25文件组织">25.文件组织</a></li>
+    <li><a href="#26fs的格式化操作">26.FS的格式化操作</a></li>
+    <li><a href="#27文件的6大操作">27.文件的6大操作</a></li>
+    <li><a href="#28linux虚拟文件系统如何管理文件">28.Linux虚拟文件系统如何管理文件</a></li>
+    <li><a href="#29如何全局观察网络数据流动">29.如何全局观察网络数据流动</a></li>
+    <li><a href="#30网络数据在内核中如何流转">30.网络数据在内核中如何流转</a></li>
+    <li><a href="#31操作系统的宏观网络架构">31.操作系统的宏观网络架构</a></li>
+    <li><a href="#32linux的socket实现与网络编程接口">32.Linux的socket实现与网络编程接口</a></li>
+    <li><a href="#33linux详解socket的接口实现">33.Linux详解socket的接口实现</a></li>
+    <li><a href="#34服务接口">34.服务接口</a></li>
+    <li><a href="#35linux如何实现系统api">35.Linux如何实现系统API</a></li>
+    <li><a href="#36kvm是啥">36.KVM是啥</a></li>
+    <li><a href="#37容器的实现">37.容器的实现</a></li>
+    <li><a href="#38arm新宠苹果m1芯片">38.ARM新宠：苹果M1芯片</a></li>
+    <li><a href="#39arm最新编程架构模型剖析">39.ARM最新编程架构模型剖析</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="自己实现一个操作系统呗">自己实现一个操作系统呗</h1>
+<h2 id="1学习过程">1.学习过程</h2>
+<ul>
+<li>从了解计算机的资源开始，如 CPU、MMU、内存和 Cache。其次要为这个操作系统设计基本法，即各种同步机制，如信号量与自旋锁。</li>
+<li>接着进行授权，从固件程序的手中抢过计算机并进行初始化，其中包含初始化 CPU、内存、中断、显示等。</li>
+<li>然后，开始建设中枢的各级部门，它们分别是内存管理部门、进程管理部门、I/O 管理部门、文件管理部门、通信管理部门。</li>
+<li>最后将这些部门组合在一起，就形成了计算机操作系统。</li>
+<li>最终实现一个基于 x86 平台的 64 位多进程的操作系统——Cosmos。</li>
+</ul>
+<p>认知(2、3)-&gt;设计(4、5)-&gt;硬件(6、7、8)-&gt;同步原语(9、10)-&gt;启动初始化(11、12、13)-&gt;内存(14、15、16、17)-&gt;进程(18、19、20)-&gt;IO(21、22、23、24)-&gt;FS(25、26、27、28)-&gt;网络(29、30、31、32、33)-&gt;接口(34、35)-&gt;番外(36、37、38、39)</p>
+<h2 id="2基础之程序的运行过程">2.基础之程序的运行过程</h2>
+<h2 id="3实现一个最简单的内核">3.实现一个最简单的内核</h2>
+<h2 id="4内核结构与设计">4.内核结构与设计</h2>
+<h2 id="5linux内核架构">5.Linux内核架构？！</h2>
+<h2 id="6cpu工作模式">6.CPU工作模式</h2>
+<h2 id="7程序中的地址转化">7.程序中的地址转化</h2>
+<h2 id="8程序放在cache还是内存">8.程序放在cache还是内存？</h2>
+<h2 id="9并发如何解决数据同步">9.并发如何解决数据同步</h2>
+<h2 id="10linux自旋锁信号量">10.Linux自旋锁、信号量</h2>
+<h2 id="11设置工作模式与环境">11.设置工作模式与环境</h2>
+<h2 id="12第一个c函数如何实现板级初始化">12.第一个c函数：如何实现板级初始化</h2>
+<h2 id="13linux初始化">13.Linux初始化</h2>
+<h2 id="14内存的划分初始化分配释放">14.内存的划分、初始化、分配、释放</h2>
+<h2 id="15管理内存对象">15.管理内存对象</h2>
+<h2 id="16虚拟内存如何表示分配释放">16.虚拟内存如何表示、分配、释放</h2>
+<h2 id="17linux伙伴系统和slab如何分配内存">17.Linux伙伴系统和SLAB如何分配内存</h2>
+<h2 id="18什么是进程">18.什么是进程？</h2>
+<h2 id="19进程调度等待与唤醒">19.进程调度、等待与唤醒</h2>
+<h2 id="20linux如何实现的进程及其调度">20.Linux如何实现的进程及其调度</h2>
+<h2 id="21表示设备类型与设备驱动">21.表示设备类型与设备驱动</h2>
+<h2 id="22在内核中注册设备">22.在内核中注册设备</h2>
+<h2 id="23设备如何处理内核io包">23.设备如何处理内核I/O包</h2>
+<h2 id="24linux是如何获取设备信息的">24.Linux是如何获取设备信息的？</h2>
+<h2 id="25文件组织">25.文件组织</h2>
+<h2 id="26fs的格式化操作">26.FS的格式化操作</h2>
+<h2 id="27文件的6大操作">27.文件的6大操作</h2>
+<h2 id="28linux虚拟文件系统如何管理文件">28.Linux虚拟文件系统如何管理文件</h2>
+<h2 id="29如何全局观察网络数据流动">29.如何全局观察网络数据流动</h2>
+<h2 id="30网络数据在内核中如何流转">30.网络数据在内核中如何流转</h2>
+<h2 id="31操作系统的宏观网络架构">31.操作系统的宏观网络架构</h2>
+<h2 id="32linux的socket实现与网络编程接口">32.Linux的socket实现与网络编程接口</h2>
+<h2 id="33linux详解socket的接口实现">33.Linux详解socket的接口实现</h2>
+<h2 id="34服务接口">34.服务接口</h2>
+<h2 id="35linux如何实现系统api">35.Linux如何实现系统API</h2>
+<h2 id="36kvm是啥">36.KVM是啥</h2>
+<h2 id="37容器的实现">37.容器的实现</h2>
+<h2 id="38arm新宠苹果m1芯片">38.ARM新宠：苹果M1芯片</h2>
+<h2 id="39arm最新编程架构模型剖析">39.ARM最新编程架构模型剖析</h2>
+<p><a href="https://time.geekbang.org/column/intro/100078401?tab=catalog" target="_blank" rel="noopener noreffer">参考</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/" data-title="OperatingSystem_advanced_01" data-hashtags="operating system"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/" data-hashtag="operating system"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/" data-title="OperatingSystem_advanced_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/" data-title="OperatingSystem_advanced_01"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://qizhengzou.github.io/operatingsystem_advanced_01/" data-title="OperatingSystem_advanced_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/operating-system/">operating system</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/operatingsystem_base_05/" class="prev" rel="prev" title="OperatingSystem_base_05"><i class="fas fa-angle-left fa-fw"></i>OperatingSystem_base_05</a>
+            <a href="/operatingsystem_advanced_02/" class="next" rel="next" title="OperatingSystem_advanced_02">OperatingSystem_advanced_02<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

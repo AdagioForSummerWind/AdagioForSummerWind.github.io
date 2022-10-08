@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>compilation principle - 标签 - Jefo</title>
+        <link>https://qizhengzou.github.io/tags/compilation-principle/</link>
+        <description>compilation principle - 标签 - Jefo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Jul 2022 23:55:56 &#43;0800</lastBuildDate><atom:link href="https://qizhengzou.github.io/tags/compilation-principle/" rel="self" type="application/rss+xml" /><item>
+    <title>Cp_practice</title>
+    <link>https://qizhengzou.github.io/cp_practice/</link>
+    <pubDate>Mon, 18 Jul 2022 23:55:56 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cp_practice/</guid>
+    <description><![CDATA[编译原理实战课 开篇词 | 在真实世界的编译器中游历 宫文学 2020-06-01 你好，我是宫文学，一名技术创业者，现在是北京物演科技的 CEO，很高兴在这里跟你见面。我]]></description>
+</item><item>
+    <title>Cp_base</title>
+    <link>https://qizhengzou.github.io/cp_base/</link>
+    <pubDate>Mon, 18 Jul 2022 23:55:09 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://qizhengzou.github.io/cp_base/</guid>
+    <description><![CDATA[编译原理之美 开篇词 | 为什么你要学习编译原理？ 宫文学 2019-08-14 我会通过具体的案例带你理解抽象的原理。比如语义分析阶段有个 I 属性和 S 属性，传统课本里只专]]></description>
+</item></channel>
+</rss>
