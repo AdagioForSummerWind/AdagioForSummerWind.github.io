@@ -1,0 +1,57 @@
+# Gb_20100923
+
+# Go并发模式：超时，继续
+
+安德鲁·杰朗  
+2010 年 9 月 23 日
+
+并发编程有它自己的习语。一个很好的例子是超时。虽然 Go 的通道不直接支持它们，但它们很容易实现。假设我们想从 channel 接收`ch`，但希望最多等待一秒钟以使值到达。我们将首先创建一个信号通道并启动一个在通道上发送之前休眠的 goroutine：
+
+```
+timeout := make(chan bool, 1)
+go func() {
+    time.Sleep(1 * time.Second)
+    timeout <- true
+}()
+```
+
+然后我们可以使用一个`select`语句来接收来自`ch`或`timeout`。如果一秒钟后没有任何内容到达`ch`，则选择超时情况并放弃从 ch 读取的尝试。
+
+```
+select {
+case <-ch:
+    // a read from ch has occurred
+case <-timeout:
+    // the read from ch has timed out
+}
+```
+
+通道缓冲了 1 个值的`timeout`空间，允许超时 goroutine 发送到通道然后退出。goroutine 不知道（或关心）该值是否被接收。`ch`这意味着如果接收发生在超时之前，goroutine 将不会永远挂起。该`timeout`通道最终将被垃圾收集器释放。
+
+（在这个例子中，我们用来`time.Sleep`演示 goroutine 和通道的机制。在实际程序中，你应该使用 `[time.After](/pkg/time/#After)`一个函数，它返回一个通道并在指定的持续时间后在该通道上发送。）
+
+让我们看一下这种模式的另一种变体。在这个例子中，我们有一个同时从多个复制数据库中读取的程序。程序只需要一个答案，它应该接受最先到达的答案。
+
+该函数`Query`接受一个数据库连接切片和一个`query`字符串。它并行查询每个数据库并返回它收到的第一个响应：
+
+```
+func Query(conns []Conn, query string) Result {
+    ch := make(chan Result)
+    for _, conn := range conns {
+        go func(c Conn) {
+            select {
+            case ch <- c.DoQuery(query):
+            default:
+            }
+        }(conn)
+    }
+    return <-ch
+}
+```
+
+在此示例中，闭包执行非阻塞发送，它通过使用`select`带有`default`case 的语句中的发送操作来实现。如果发送不能立即通过，将选择默认情况。使发送非阻塞保证循环中启动的任何 goroutine 都不会挂起。但是，如果结果在主函数接收之前到达，则发送可能会失败，因为没有人准备好。
+
+这个问题是所谓的[竞态条件](https://en.wikipedia.org/wiki/Race_condition)的教科书示例，但修复是微不足道的。我们只是确保缓冲通道`ch`（通过添加缓冲区长度作为[make](https://go.dev/pkg/builtin/#make)的第二个参数），确保第一次发送有放置值的位置。这确保了发送将始终成功，并且无论执行顺序如何，都会检索到第一个到达的值。
+
+这两个示例展示了 Go 可以简单地表达 goroutine 之间的复杂交互。
+

@@ -1,0 +1,17 @@
+# Gb_20100512
+
+# 即将举行的 Google I/O Go 活动
+
+安德鲁·杰朗  
+2010 年 5 月 12 日
+
+[Google I/O 2010](https://googleblog.blogspot.com/2010/01/google-io-2010-now-open-for.html) 将于下周在旧金山的 Moscone 中心举行。那些有票的人将能够在 I/O 和 Bootcamp 上赶上一些 Go 团队。按时间倒序排列：
+
+Rob Pike 和 Russ Cox 将于 周四上午 10 点 15 分进行[围棋编程演讲。](https://www.youtube.com/watch?v=jgVhBThJdXc)本节将详细介绍 Go 在实际意义上与其他语言的不同之处。通过一系列示例，他们将展示 Go 的各种特性以及它们影响程序设计的方式。
+
+围棋团队的几名成员将在周三中午 12 点至下午 2 点 30 分之间的办公时间在围棋立方体。快来让专家回答您的围棋问题。
+
+周二下午 4.15 在 Bootcamp 上，Andrew Gerrand 将做一个关于围棋的介绍性演讲。本次会议将概述促使我们构建新语言的问题，以及 Go 解决这些问题的方式。
+
+如果您来参加 I/O，我们期待与您相见！
+

@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>2022 - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/2022/</link>
+        <description>2022 - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 08 May 2022 20:51:03 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/2022/" rel="self" type="application/rss+xml" /><item>
+    <title>Gb_20110125</title>
+    <link>https://jefofrank.xyz/gb_20110125/</link>
+    <pubDate>Sun, 08 May 2022 20:51:03 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20110125/</guid>
+    <description><![CDATA[JSON 和 Go 安德鲁·杰朗 2011 年 1 月 25 日 介绍 JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上它类似于 JavaScript 的对象和列表]]></description>
+</item><item>
+    <title>Gb_20110105</title>
+    <link>https://jefofrank.xyz/gb_20110105/</link>
+    <pubDate>Sun, 08 May 2022 20:50:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20110105/</guid>
+    <description><![CDATA[Go Slices：用法和内部结构 安德鲁·杰朗 2011 年 1 月 5 日 介绍 Go 的 slice 类型提供了一种处理类型化数据序列的便捷有效的方法。切片类似于其他语言中的数组]]></description>
+</item><item>
+    <title>Gb_20101110</title>
+    <link>https://jefofrank.xyz/gb_20101110/</link>
+    <pubDate>Sun, 08 May 2022 20:50:12 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20101110/</guid>
+    <description><![CDATA[去：一年前的今天 安德鲁·杰朗 2010 年 11 月 10 日 2009 年 11 月 10 日，我们启动了 Go 项目：一种专注于简单性和效率的开源编程语言。在过去的一年里，Go 项目本身及]]></description>
+</item><item>
+    <title>Gb_20101102</title>
+    <link>https://jefofrank.xyz/gb_20101102/</link>
+    <pubDate>Sun, 08 May 2022 20:49:57 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20101102/</guid>
+    <description><![CDATA[调试 Go 代码（状态报告） Luuk van Dijk 2010 年 11 月 2 日 在调试方面，没有什么比使用一些策略性的打印语句来检查变量或放置得当的恐慌来获得堆栈跟踪更好的了。但是]]></description>
+</item><item>
+    <title>Gb_20101019</title>
+    <link>https://jefofrank.xyz/gb_20101019/</link>
+    <pubDate>Sun, 08 May 2022 20:49:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20101019/</guid>
+    <description><![CDATA[真正的围棋项目：SmartTwitter 和 web.go 迈克尔·霍伊西 2010 年 10 月 19 日 本周的文章由 Michael Hoisie 撰写。 他是旧金山的一名程序员，是 Go 的早期采用者之一，也]]></description>
+</item><item>
+    <title>Gb_20100923</title>
+    <link>https://jefofrank.xyz/gb_20100923/</link>
+    <pubDate>Sun, 08 May 2022 20:49:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20100923/</guid>
+    <description><![CDATA[Go并发模式：超时，继续 安德鲁·杰朗 2010 年 9 月 23 日 并发编程有它自己的习语。一个很好的例子是超时。虽然 Go 的通道不直接支持它们，但它们很容易实现。]]></description>
+</item><item>
+    <title>Gb_20100915</title>
+    <link>https://jefofrank.xyz/gb_20100915/</link>
+    <pubDate>Sun, 08 May 2022 20:49:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20100915/</guid>
+    <description><![CDATA[介绍围棋游乐场 安德鲁·杰朗 2010 年 9 月 15 日 如果您今天访问golang.org，您会看到我们的新面貌。我们为该网站涂上了一层新的油漆，并重新组织了]]></description>
+</item><item>
+    <title>Gb_20100906</title>
+    <link>https://jefofrank.xyz/gb_20100906/</link>
+    <pubDate>Sun, 08 May 2022 20:49:13 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20100906/</guid>
+    <description><![CDATA[Go 荣获 2010 年 Bossie 奖 安德鲁·杰兰德 2010 年 9 月 6 日 Go 项目获得了 “最佳开源应用程序开发软件”的Bossie 奖。自2007 年以来， InfoWorld 每年都会颁发 Bossie 奖， 以表]]></description>
+</item><item>
+    <title>Gb_20100804</title>
+    <link>https://jefofrank.xyz/gb_20100804/</link>
+    <pubDate>Sun, 08 May 2022 20:49:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20100804/</guid>
+    <description><![CDATA[推迟、恐慌和恢复 安德鲁·杰朗 2010 年 8 月 4 日 Go 具有通常的控制流机制：if、for、switch、goto。它还具有在单独的 goroutine 中运行代码的 go 语句。]]></description>
+</item><item>
+    <title>Gb_20100713</title>
+    <link>https://jefofrank.xyz/gb_20100713/</link>
+    <pubDate>Sun, 08 May 2022 20:48:53 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/gb_20100713/</guid>
+    <description><![CDATA[通过交流分享记忆 安德鲁·杰朗 2010 年 7 月 13 日 传统的线程模型（例如，通常在编写 Java、C++ 和 Python 程序时使用）要求程序员使用共享内存在线程之间进行]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20110125 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20110125" />
+<meta property="og:description" content="JSON 和 Go 安德鲁·杰朗 2011 年 1 月 25 日 介绍 JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上它类似于 JavaScript 的对象和列表" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20110125/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-08T20:51:03+08:00" />
+<meta property="article:modified_time" content="2022-05-08T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20110125"/>
+<meta name="twitter:description" content="JSON 和 Go 安德鲁·杰朗 2011 年 1 月 25 日 介绍 JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上它类似于 JavaScript 的对象和列表"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20110125/" /><link rel="prev" href="https://jefofrank.xyz/gb_20110105/" /><link rel="next" href="https://jefofrank.xyz/sameonlychinese/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20110125",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20110125\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  2638 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20110125\/","datePublished": "2022-05-08T20:51:03+08:00","dateModified": "2022-05-08T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20110125</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-08 20:51:03">2022-05-08 20:51:03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2638 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#介绍">介绍</a></li>
+    <li><a href="#编码">编码</a></li>
+    <li><a href="#解码">解码</a></li>
+    <li><a href="#带接口的通用-json">带接口的通用 JSON</a></li>
+    <li><a href="#解码任意数据">解码任意数据</a></li>
+    <li><a href="#参考类型">参考类型</a></li>
+    <li><a href="#流式编码器和解码器">流式编码器和解码器</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="json-和-go">JSON 和 Go</h1>
+<p>安德鲁·杰朗<br>
+2011 年 1 月 25 日</p>
+<h2 id="介绍">介绍</h2>
+<p>JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上它类似于 JavaScript 的对象和列表。它最常用于 Web 后端和在浏览器中运行的 JavaScript 程序之间的通信，但它也用于许多其他地方。它的主页<a href="http://json.org/" target="_blank" rel="noopener noreffer">json.org</a>提供了一个非常清晰和简洁的标准定义。</p>
+<p>使用<a href="https://go.dev/pkg/encoding/json/" target="_blank" rel="noopener noreffer">json 包</a>，可以轻松地从 Go 程序中读取和写入 JSON 数据。</p>
+<h2 id="编码">编码</h2>
+<p>为了编码 JSON 数据，我们使用该<a href="https://go.dev/pkg/encoding/json/#Marshal" target="_blank" rel="noopener noreffer"><code>Marshal</code></a>函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Marshal(v interface{}) ([]byte, error)
+</code></pre></td></tr></table>
+</div>
+</div><p>给定 Go 数据结构<code>Message</code>，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Message struct {
+    Name string
+    Body string
+    Time int64
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>和一个实例<code>Message</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">m := Message{&#34;Alice&#34;, &#34;Hello&#34;, 1294706395881547000}
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以使用以下方法编组 m 的 JSON 编码版本<code>json.Marshal</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">b, err := json.Marshal(m)
+</code></pre></td></tr></table>
+</div>
+</div><p>如果一切顺利，<code>err</code>将是<code>nil</code>并且<code>b</code>将是<code>[]byte</code>包含此 JSON 数据的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">b == []byte(`{&#34;Name&#34;:&#34;Alice&#34;,&#34;Body&#34;:&#34;Hello&#34;,&#34;Time&#34;:1294706395881547000}`)
+</code></pre></td></tr></table>
+</div>
+</div><p>只有可以表示为有效 JSON 的数据结构才会被编码：</p>
+<ul>
+<li>
+<p>JSON 对象只支持字符串作为键；要对 Go 地图类型进行编码，它必须采用以下形式<code>map[string]T</code>（<code>T</code> json 包支持的任何 Go 类型在哪里）。</p>
+</li>
+<li>
+<p>通道、复杂和函数类型无法编码。</p>
+</li>
+<li>
+<p>不支持循环数据结构；它们将导致<code>Marshal</code>进入无限循环。</p>
+</li>
+<li>
+<p>指针将被编码为它们指向的值（如果指针为 ，则为“空” <code>nil</code>）。</p>
+</li>
+</ul>
+<p>json 包仅访问结构类型的导出字段（以大写字母开头的字段）。因此，只有结构的导出字段才会出现在 JSON 输出中。</p>
+<h2 id="解码">解码</h2>
+<p>为了解码 JSON 数据，我们使用该<a href="https://go.dev/pkg/encoding/json/#Unmarshal" target="_blank" rel="noopener noreffer"><code>Unmarshal</code></a>函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Unmarshal(data []byte, v interface{}) error
+</code></pre></td></tr></table>
+</div>
+</div><p>我们必须首先创建一个存储解码数据的地方</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var m Message
+</code></pre></td></tr></table>
+</div>
+</div><p>并调用<code>json.Unmarshal</code>，传递一个<code>[]byte</code>JSON 数据和一个指向<code>m</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">err := json.Unmarshal(b, &amp;m)
+</code></pre></td></tr></table>
+</div>
+</div><p>如果<code>b</code>包含适合的有效 JSON，<code>m</code>则在调用之后，并且来自的数据<code>err</code>将存储在 struct中，就好像通过如下赋值：<code>nil``b``m</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">m = Message{
+    Name: &#34;Alice&#34;,
+    Body: &#34;Hello&#34;,
+    Time: 1294706395881547000,
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>如何<code>Unmarshal</code>识别存储解码数据的字段？对于给定的 JSON key <code>&quot;Foo&quot;</code>， <code>Unmarshal</code>将查看目标结构的字段以查找（按优先顺序）：</p>
+<ul>
+<li>
+<p>带有标签的导出字段（ 有关结构标签的更多信息，<code>&quot;Foo&quot;</code>请参见<a href="https://go.dev/ref/spec#Struct_types" target="_blank" rel="noopener noreffer">Go 规范），</a></p>
+</li>
+<li>
+<p>一个名为 的导出字段<code>&quot;Foo&quot;</code>，或</p>
+</li>
+<li>
+<p><code>&quot;FOO&quot;</code>一个名为or<code>&quot;FoO&quot;</code>或其他不区分大小写的匹配项的导出字段<code>&quot;Foo&quot;</code>。</p>
+</li>
+</ul>
+<p>当 JSON 数据的结构与 Go 类型不完全匹配时会发生什么？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">b := []byte(`{&#34;Name&#34;:&#34;Bob&#34;,&#34;Food&#34;:&#34;Pickle&#34;}`)
+var m Message
+err := json.Unmarshal(b, &amp;m)
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Unmarshal</code>将仅解码它可以在目标类型中找到的字段。在这种情况下，只会填充 m 的 Name 字段，而忽略 Food 字段。当您希望从大型 JSON blob 中仅选择几个特定字段时，此行为特别有用。这也意味着目标结构中任何未导出的字段将不受<code>Unmarshal</code>.</p>
+<p>但是，如果您事先不知道 JSON 数据的结构怎么办？</p>
+<h2 id="带接口的通用-json">带接口的通用 JSON</h2>
+<p>( <code>interface{}</code>empty interface) 类型描述了具有零个方法的接口。每个 Go 类型至少实现零个方法，因此满足空接口。</p>
+<p>空接口用作通用容器类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var i interface{}
+i = &#34;a string&#34;
+i = 2011
+i = 2.777
+</code></pre></td></tr></table>
+</div>
+</div><p>类型断言访问底层的具体类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">r := i.(float64)
+fmt.Println(&#34;the circle&#39;s area&#34;, math.Pi*r*r)
+</code></pre></td></tr></table>
+</div>
+</div><p>或者，如果底层类型未知，则类型开关确定类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">switch v := i.(type) {
+case int:
+    fmt.Println(&#34;twice i is&#34;, v*2)
+case float64:
+    fmt.Println(&#34;the reciprocal of i is&#34;, 1/v)
+case string:
+    h := len(v) / 2
+    fmt.Println(&#34;i swapped by halves is&#34;, v[h:]+v[:h])
+default:
+    // i isn&#39;t one of the types above
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>json 包使用<code>map[string]interface{}</code>和 <code>[]interface{}</code>值来存储任意 JSON 对象和数组；它会很高兴地将任何有效的 JSON blob 解组为纯 <code>interface{}</code>值。默认的具体 Go 类型是：</p>
+<ul>
+<li>
+<p><code>bool</code>对于 JSON 布尔值，</p>
+</li>
+<li>
+<p><code>float64</code>对于 JSON 数字，</p>
+</li>
+<li>
+<p><code>string</code>对于 JSON 字符串，以及</p>
+</li>
+<li>
+<p><code>nil</code>对于 JSON 空。</p>
+</li>
+</ul>
+<h2 id="解码任意数据">解码任意数据</h2>
+<p>考虑存储在变量中的 JSON 数据<code>b</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">b := []byte(`{&#34;Name&#34;:&#34;Wednesday&#34;,&#34;Age&#34;:6,&#34;Parents&#34;:[&#34;Gomez&#34;,&#34;Morticia&#34;]}`)
+</code></pre></td></tr></table>
+</div>
+</div><p>在不知道该数据结构的情况下，我们可以将其解码为一个<code>interface{}</code>值<code>Unmarshal</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var f interface{}
+err := json.Unmarshal(b, &amp;f)
+</code></pre></td></tr></table>
+</div>
+</div><p>此时的 Go 值<code>f</code>将是一个映射，其键是字符串，其值本身存储为空接口值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">f = map[string]interface{}{
+    &#34;Name&#34;: &#34;Wednesday&#34;,
+    &#34;Age&#34;:  6,
+    &#34;Parents&#34;: []interface{}{
+        &#34;Gomez&#34;,
+        &#34;Morticia&#34;,
+    },
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>要访问这些数据，我们可以使用类型断言来访问<code>f</code>底层<code>map[string]interface{}</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">m := f.(map[string]interface{})
+</code></pre></td></tr></table>
+</div>
+</div><p>然后我们可以使用 range 语句遍历 map 并使用类型开关来访问其值作为它们的具体类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">for k, v := range m {
+    switch vv := v.(type) {
+    case string:
+        fmt.Println(k, &#34;is string&#34;, vv)
+    case float64:
+        fmt.Println(k, &#34;is float64&#34;, vv)
+    case []interface{}:
+        fmt.Println(k, &#34;is an array:&#34;)
+        for i, u := range vv {
+            fmt.Println(i, u)
+        }
+    default:
+        fmt.Println(k, &#34;is of a type I don&#39;t know how to handle&#34;)
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>通过这种方式，您可以处理未知的 JSON 数据，同时仍然享受类型安全的好处。</p>
+<h2 id="参考类型">参考类型</h2>
+<p>让我们定义一个 Go 类型来包含上一个示例中的数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type FamilyMember struct {
+    Name    string
+    Age     int
+    Parents []string
+}
+
+var m FamilyMember
+err := json.Unmarshal(b, &amp;m)
+</code></pre></td></tr></table>
+</div>
+</div><p>将该数据解组为一个<code>FamilyMember</code>值按预期工作，但如果我们仔细观察，我们会发现发生了一件了不起的事情。使用 var 语句，我们分配了一个<code>FamilyMember</code>结构，然后提供了一个指向该值的指针<code>Unmarshal</code>，但当时该<code>Parents</code>字段是一个<code>nil</code>切片值。为了填充该<code>Parents</code>字段，<code>Unmarshal</code>在幕后分配了一个新切片。这是<code>Unmarshal</code>支持的引用类型（指针、切片和映射）的典型工作方式。</p>
+<p>考虑解组到这个数据结构中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Foo struct {
+    Bar *Bar
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>如果 JSON 对象中有一个<code>Bar</code>字段， <code>Unmarshal</code>将分配一个新字段<code>Bar</code>并填充它。如果没有，<code>Bar</code>将作为<code>nil</code>指针留下。</p>
+<p>由此产生了一个有用的模式：如果您有一个接收几种不同消息类型的应用程序，您可以定义“接收器”结构，如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type IncomingMessage struct {
+    Cmd *Command
+    Msg *Message
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>并且发送方可以填充顶级 JSON 对象 的<code>Cmd</code>字段和/或字段，具体取决于他们想要传达的消息类型。，在将 JSON 解码为结构时，只会分配 JSON 数据中存在的数据结构。要知道要处理哪些消息，程序员只需测试or 或is not 。<code>Msg``Unmarshal``IncomingMessage``Cmd``Msg``nil</code></p>
+<h2 id="流式编码器和解码器">流式编码器和解码器</h2>
+<p>json 包提供<code>Decoder</code>和<code>Encoder</code>类型来支持读取和写入 JSON 数据流的常见操作。<code>NewDecoder</code>and<code>NewEncoder</code>函数包装了and<a href="https://go.dev/pkg/io/#Reader" target="_blank" rel="noopener noreffer"><code>io.Reader</code></a> 接口<a href="https://go.dev/pkg/io/#Writer" target="_blank" rel="noopener noreffer"><code>io.Writer</code></a>类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func NewDecoder(r io.Reader) *Decoder
+func NewEncoder(w io.Writer) *Encoder
+</code></pre></td></tr></table>
+</div>
+</div><p>这是一个示例程序，它从标准输入读取一系列 JSON 对象，<code>Name</code>从每个对象中删除除字段之外的所有对象，然后将对象写入标准输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;encoding/json&#34;</span>
+    <span class="s">&#34;log&#34;</span>
+    <span class="s">&#34;os&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">dec</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewDecoder</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+    <span class="nx">enc</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewEncoder</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">dec</span><span class="p">.</span><span class="nf">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">v</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">v</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">k</span> <span class="o">!=</span> <span class="s">&#34;Name&#34;</span> <span class="p">{</span>
+                <span class="nb">delete</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">enc</span><span class="p">.</span><span class="nf">Encode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">v</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于 Readers 和 Writers 无处不在，这些<code>Encoder</code>和<code>Decoder</code>类型可用于广泛的场景，例如读取和写入 HTTP 连接、WebSocket 或文件。</p>
+<h2 id="参考">参考</h2>
+<p>有关更多信息，请参阅<a href="https://go.dev/pkg/encoding/json/" target="_blank" rel="noopener noreffer">json 包文档</a>。有关 json 的示例用法，请参见<a href="https://go.dev/pkg/net/rpc/jsonrpc/" target="_blank" rel="noopener noreffer">jsonrpc 包</a>的源文件。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-05-08 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20110125/" data-title="Gb_20110125" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20110125/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20110125/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20110125/" data-title="Gb_20110125"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20110125/" data-title="Gb_20110125"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20110125/" data-title="Gb_20110125"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20110105/" class="prev" rel="prev" title="Gb_20110105"><i class="fas fa-angle-left fa-fw"></i>Gb_20110105</a>
+            <a href="/sameonlychinese/" class="next" rel="next" title="图神经网络的多元时间序列插补">图神经网络的多元时间序列插补<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
