@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 整体面试下来，感觉其实字节对于语言本身并没有很多的涉及，更加注重基础，比如数据结构与算" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 整体面试下来，感觉其实字节对于语言本身并没有很多的涉及，更加注重基础，比如数据结构与算"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="prev" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="next" href="https://jefofrank.xyz/dytt/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5051 ,
+        "url": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5051 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#epollselectpoll-区别">epoll、select、poll 区别</a></li>
+    <li><a href="#epoll-的水平触发和边缘触发的区别">epoll 的水平触发和边缘触发的区别</a></li>
+    <li><a href="#tcp-的流量控制">TCP 的流量控制</a></li>
+    <li><a href="#为什么有了流量控制还要有拥塞控制">为什么有了流量控制还要有拥塞控制?</a></li>
+    <li><a href="#tcp-不是可靠传输吗为什么会丢包呢">TCP 不是可靠传输吗？为什么会丢包呢？</a></li>
+    <li><a href="#那你介绍一下拥塞控制的算法">那你介绍一下拥塞控制的算法？</a></li>
+    <li><a href="#进程线程的区别">进程、线程的区别</a></li>
+    <li><a href="#go里面gmp模型是怎么样的">Go里面GMP模型是怎么样的？</a></li>
+    <li><a href="#算法旋转矩阵牛客上写过easy秒">算法：旋转矩阵，牛客上写过，easy，秒</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#如何用栈实现队列">如何用栈实现队列</a></li>
+    <li><a href="#如何判断一个链表有没有环">如何判断一个链表有没有环？</a></li>
+    <li><a href="#那为什么快慢指针一定能够相遇">那为什么快慢指针一定能够相遇？</a></li>
+    <li><a href="#你用的是-mysql-是吧那-b树-和-b树-的区别是">你用的是 mysql 是吧，那 B树 和 B+树 的区别是？</a></li>
+    <li><a href="#介绍一下死锁产生的必要条件">介绍一下死锁产生的必要条件</a></li>
+    <li><a href="#如何实现互斥锁">如何实现互斥锁？</a></li>
+    <li><a href="#如何实现自旋锁">如何实现自旋锁？</a></li>
+    <li><a href="#算法三数之和秒">算法：三数之和。秒</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#kafka-和-其他消息队列比如-rocketmqrabbitmq-有什么优势">kafka 和 其他消息队列，比如 rocketmq，rabbitmq ，有什么优势？</a></li>
+    <li><a href="#kafka如何保证消息不丢失">kafka如何保证消息不丢失？</a></li>
+    <li><a href="#https为什么是安全的">https为什么是安全的？</a></li>
+    <li><a href="#ssltls-是怎么保证安全的经过几次握手">ssl/tls 是怎么保证安全的？经过几次握手？</a></li>
+    <li><a href="#事务的四大特性">事务的四大特性？</a></li>
+    <li><a href="#用过哪些排序">用过哪些排序？</a></li>
+    <li><a href="#快排一定最快吗">快排一定最快吗？</a></li>
+    <li><a href="#场景题如果我有100g文件但是只有-500-m-的内存这些文件存着一行行的数字如何获取最小的10个">场景题：如果我有100G文件，但是只有 500 M 的内存，这些文件存着一行行的数字，如何获取最小的10个？</a></li>
+    <li><a href="#算法最长有序括号常见题秒">算法：最长有序括号，常见题，秒</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="golang开发面经字节跳动三轮技术面">【Golang开发面经】字节跳动（三轮技术面）</h1>
+<h1 id="写在前面">写在前面</h1>
+<blockquote>
+<p>整体面试下来，<strong><code>感觉其实字节对于语言本身并没有很多的涉及</code></strong>，更加注重基础，<strong>比如数据结构与算法，计算机网络，组成原理，操作系统，数据库等等</strong>，语言本身并没有涉及太多。</p>
+</blockquote>
+<p>这里就省去了一些我简历上的问题，也就是深挖项目。</p>
+<h1 id="笔试">笔试</h1>
+<p>略</p>
+<h1 id="一面">一面</h1>
+<h2 id="epollselectpoll-区别">epoll、select、poll 区别</h2>
+<p>select 机制刚开始的时候，需要把 fd_set 从<code>用户空间拷贝到内核空间</code>，并且检测的 fd 数是有限制的，由 <code>FD_SETSIZE</code> 设置，一般是1024。<code>数组实现</code>。</p>
+<p>poll 的实现和 select 非常相似，只是描述 fd集合 的方式不同，poll使用 <code>pollfd结构 </code>而不是 select的 fd_set 结构，其他的都差不多。<code>链表实现</code>。</p>
+<p>epol l引入了 <code>epoll_ctl系统调用</code>，将高频调用的 epoll_wait 和低频的 epoll_ctl 隔离开。epoll_ctl 通过(EPOLL_CTL_ADD、EPOLL_CTL_MOD、EPOLL_CTL_DEL)三个操作来分散对需要监控的fds集合的修改，做到了有变化才变更，<strong>将select或poll高频、大块内存拷贝(集中处理)变成epoll_ctl的低频、小块内存的拷贝(分散处理)，避免了大量的内存拷贝。</strong> epoll使用 <code>红黑树</code> 来组织监控的fds集合</p>
+<h2 id="epoll-的水平触发和边缘触发的区别">epoll 的水平触发和边缘触发的区别</h2>
+<p>Edge Triggered (ET) 边沿触发：</p>
+<ol>
+<li><strong>socket 的接收缓冲区状态变化时触发读事件，即空的接收缓冲区刚接收到数据时触发读事件。</strong></li>
+<li><strong>socket 的发送缓冲区状态变化时触发写事件，即满的缓冲区刚空出空间时触发读事件。</strong></li>
+<li><strong>仅在缓冲区状态变化时触发事件。</strong></li>
+</ol>
+<p>Level Triggered (LT) 水平触发：</p>
+<ol>
+<li><strong>socket 接收缓冲区<code>不为空</code>，有数据可读，则读事件一直触发。</strong></li>
+<li><strong>socket 发送缓冲区<code>不满可以继续写入数据</code>，则写事件一直触发。</strong></li>
+</ol>
+<h2 id="tcp-的流量控制">TCP 的流量控制</h2>
+<p>因为我们总希望数据传输的更快一些。但如果<code>发送方把数据发得过快</code>，接收方就可能<code>来不及接收</code>，这就会造成数据的丢失。流量控制（flow control）就是<strong>让发送方的发送速率不要太快，要让接收方来得及接收。</strong></p>
+<p>利用<code>滑动窗口机制</code>可以很方便地在 TCP连接上实现<strong>发送方流量控制</strong>。通过接收方的<strong>确认报文中的窗口字段</strong>，发送方能够<code>准确地控制发送字节数。</code></p>
+<h2 id="为什么有了流量控制还要有拥塞控制">为什么有了流量控制还要有拥塞控制?</h2>
+<p>流量控制是避免发送方的数据填满接收方的缓存，但并不知道网络中发生了什么。</p>
+<p>计算机网络是处在一个<strong>共享</strong>的环境中。因此也有可能会发生网络的拥堵。在网络出现拥堵时，如果继续发送大量的数据包，可能会导致数据包<code>时延</code>、<code>丢失</code>，这时 TCP 就会<code>重传数据</code>，但是⼀重传就会导致网络的负担更重，于是会导致<code>更大的延迟以及更多的丢包</code>。</p>
+<p>控制的目的就是<strong>避免发送方的数据填满整个网络</strong>。为了在发送方调节所要发送数据的数据量，定义了⼀个叫做「拥塞窗口」的概念。<strong>拥塞窗口 cwnd 是发送方维护的⼀个的状态变量，它会根据网络的拥塞程度动态变化的。</strong></p>
+<h2 id="tcp-不是可靠传输吗为什么会丢包呢">TCP 不是可靠传输吗？为什么会丢包呢？</h2>
+<p>TCP的可靠传输是会在丢包的时候进行重传，来形成可靠的传输，丢包这是网络的问题，而不是TCP机制的问题。</p>
+<h2 id="那你介绍一下拥塞控制的算法">那你介绍一下拥塞控制的算法？</h2>
+<p>拥塞控制一共有四个算法：</p>
+<ol>
+<li>慢启动：TCP 在刚建立连接完成后，首先是有个慢启动的过程，这个慢启动的意思就是⼀点⼀点的提高发送数据包的数量。慢启动的算法规则：当<code>发送方每收到⼀个 ACK，拥塞窗⼝ cwnd 的大小就会加 1</code>。</li>
+<li>拥塞避免：当拥塞窗口 cwnd「超过」<code>慢启动门限 ssthresh </code>就会进⼊拥塞避免算法。那么进⼊拥塞避免算法后，它的规则是：<strong>每当收到⼀个 ACK 时，cwnd 增加 1/cwnd</strong>。</li>
+<li>快重传：当接收方发现丢了⼀个中间包的时候，<code>发送三次前⼀个包的ACK</code>，<strong>于是发送端就会快速地重传，不必等待超时再重传。</strong></li>
+<li>快恢复：快重传和快恢复⼀般同时s使用，快速恢复算法是认为，你还能<code>收到 3 个重复的 ACK </code>说明网络也不那么糟糕，所以没有必要像 RTO 超时那么强烈。<strong>进⼊快速恢复之前， cwnd 和 ssthresh 已被更新了：cwnd = cwnd/2 ，也就是设置为原来的⼀半; ssthresh = cwnd 。</strong></li>
+</ol>
+<h2 id="进程线程的区别">进程、线程的区别</h2>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统中正在运行的一个应用程序</td>
+<td>系统分配处理器时间资源的基本单元</td>
+</tr>
+<tr>
+<td>程序一旦运行就是进程</td>
+<td>进程之内独立执行的一个单元执行流</td>
+</tr>
+<tr>
+<td>资源分配的最小单位</td>
+<td>程序执行的最小单位</td>
+</tr>
+</tbody>
+</table>
+<p>进程有<code>独立的地址空间</code>，一个进程崩溃后，在<code>保护模式下不会对其它进程产生影响</code>，而线程只是一个进程中的不同执行路径。</p>
+<p>线程有自己的<strong>堆栈和局部变量</strong>，但线程<code>没有单独的地址空间</code>，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮，但在<code>进程切换</code>时，耗费资源较大，效率要差一些。但对于一些 <strong><code>要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程</code></strong></p>
+<h2 id="go里面gmp模型是怎么样的">Go里面GMP模型是怎么样的？</h2>
+<p>G：表示goroutine，存储了goroutine的执行stack信息、goroutine状态以及goroutine的任务函数等；另外G对象是<code>可以重用</code>的。
+P：表示逻辑processor，P 的数量决定了系统内最大可并行的 G 的数量（前提：系统的物理cpu核数 &gt;= P的数量）；P的最大作用还是其拥有的各种G对象队列、链表、一些cache和状态。
+M：M 代表着真正的执行计算资源，物理 Processor。</p>
+<blockquote>
+<p>G 如果想运行起来必须依赖 P，因为 P 是它的<code>逻辑处理单元</code>，但是 P 要想真正的运行，他也需要与 M 绑定，这样才能真正的运行起来，<code>P 和 M 的这种关系就相当于 Linux 系统中的用户层面的线程和内核的线程是一样的</code>。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        data-srcset="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 1.5x, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="算法旋转矩阵牛客上写过easy秒">算法：旋转矩阵，牛客上写过，easy，秒</h2>
+<h1 id="二面">二面</h1>
+<blockquote>
+<p>上来就一个算法，结束又一个算法，难受。。</p>
+</blockquote>
+<h2 id="如何用栈实现队列">如何用栈实现队列</h2>
+<p>我们可以通过切片来模拟出队列。
+只需要完成简单的 push，pop，再判断是否为空即可！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">test_queue</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;testing&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//结构体，包含两个一维切片
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">GoQueue</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">stack</span> <span class="p">[]</span><span class="kt">int</span>
+	<span class="nx">back</span>  <span class="p">[]</span><span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c1">//初始化，
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">NewQueue</span><span class="p">()</span> <span class="nx">GoQueue</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">GoQueue</span><span class="p">{</span>
+		<span class="nx">stack</span><span class="p">:</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+		<span class="nx">back</span><span class="p">:</span>  <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">q</span> <span class="o">*</span><span class="nx">GoQueue</span><span class="p">)</span> <span class="nf">Push</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">q</span><span class="p">.</span><span class="nx">stack</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">q</span> <span class="o">*</span><span class="nx">GoQueue</span><span class="p">)</span> <span class="nf">Pop</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+			<span class="nx">val</span> <span class="o">:=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+			<span class="nx">q</span><span class="p">.</span><span class="nx">stack</span> <span class="p">=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">//切片，更新栈
+</span><span class="c1"></span>			<span class="nx">q</span><span class="p">.</span><span class="nx">back</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">val</span> <span class="o">:=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+	<span class="nx">q</span><span class="p">.</span><span class="nx">back</span> <span class="p">=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+	<span class="k">return</span> <span class="nx">val</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">q</span> <span class="o">*</span><span class="nx">GoQueue</span><span class="p">)</span> <span class="nf">Empty</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">back</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">TestQueue</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">q</span> <span class="o">:=</span> <span class="nf">NewQueue</span><span class="p">()</span>
+	<span class="nx">q</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="nx">q</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+	<span class="nx">q</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+	<span class="k">for</span> <span class="p">!</span><span class="nx">q</span><span class="p">.</span><span class="nf">Empty</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nf">Pop</span><span class="p">())</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="如何判断一个链表有没有环">如何判断一个链表有没有环？</h2>
+<ol>
+<li>用hash来判断是否存在相同的值，也就是环。</li>
+<li>快慢指针：快指针走两步，慢指针走一步，最终会相遇。</li>
+</ol>
+<h2 id="那为什么快慢指针一定能够相遇">那为什么快慢指针一定能够相遇？</h2>
+<p>因为当<code>快指针出现在慢指针后面</code>之后，每一次<code>快指针往前走两步、慢指针往前走一步</code>，相当于快指针和慢指针之间的相对距离减少1步。当快指针刚刚绕到慢指针后面时，快指针离慢指针有 n 步。那么，对于接下来的每一次<code>快指针往前走两步、慢指针往前走一步</code>，快指针和慢指针之间的距离由 n 步变成 n-1 步、由 n-1 步变成 n-2 步、……、由 3 步变成 2 步、由 2 步变成 1 步、由 1 步变成 0 步。最终相遇。</p>
+<ul>
+<li>快慢指针第一次相遇的时候，慢指针少走了多少？</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/464b3d54739240f0bff276901e184949.png"
+        data-srcset="https://img-blog.csdnimg.cn/464b3d54739240f0bff276901e184949.png, https://img-blog.csdnimg.cn/464b3d54739240f0bff276901e184949.png 1.5x, https://img-blog.csdnimg.cn/464b3d54739240f0bff276901e184949.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/464b3d54739240f0bff276901e184949.png"
+        title="在这里插入图片描述" /></p>
+<p>我们设从起点到 X 点的距离是 x，因此当在第一次相遇的时候，在n点，慢指针的路程是 x+n ，而因为快指针的速度是慢指针的一倍，它们从头开始，运动时间就是完全一致的，因此当二者发生相遇的时候，有如下几点值得注意：</p>
+<ol>
+<li>当二者发生相遇时，慢指针一定已经进入了环中；</li>
+<li>快指针一定先于慢指针进入环中；</li>
+<li>快指针移动过的路程累计是慢指针的1倍，也就是<code>2 * ( x + n )</code>，其中早在路程为x时，快指针已经进入了环，它在环中运动了 <code>x+2n</code> 的路程。</li>
+</ol>
+<p>在 n 点时，慢指针的路程是<code> x+n</code>，快指针的路程是<code>2*(x+n)</code>，说明此时快指针比慢指针多走了 <code>x+n</code>，这同时也说明，从 n 处开始，继续往后推移 x+n 个距离，可以再次回到Z点，因此 x+n 的距离至少是环巡距离的一倍。<strong>慢指针和快指针在环中第一次相遇时的路程差值，是环路程的倍数。</strong>
+<strong><code>所以慢指针少走了环巡距离的一倍。</code></strong></p>
+<h2 id="你用的是-mysql-是吧那-b树-和-b树-的区别是">你用的是 mysql 是吧，那 B树 和 B+树 的区别是？</h2>
+<p>B 树
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/18911f76492343649aa8b5d6237b22f1.png"
+        data-srcset="https://img-blog.csdnimg.cn/18911f76492343649aa8b5d6237b22f1.png, https://img-blog.csdnimg.cn/18911f76492343649aa8b5d6237b22f1.png 1.5x, https://img-blog.csdnimg.cn/18911f76492343649aa8b5d6237b22f1.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/18911f76492343649aa8b5d6237b22f1.png"
+        title="在这里插入图片描述" />
+B+树</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/bba2570e0feb442eaa082ad4644e56be.png"
+        data-srcset="https://img-blog.csdnimg.cn/bba2570e0feb442eaa082ad4644e56be.png, https://img-blog.csdnimg.cn/bba2570e0feb442eaa082ad4644e56be.png 1.5x, https://img-blog.csdnimg.cn/bba2570e0feb442eaa082ad4644e56be.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/bba2570e0feb442eaa082ad4644e56be.png"
+        title="在这里插入图片描述" /></p>
+<ol>
+<li>B+ 树内节点不存储数据，所有 data 存储在叶节点导致查询时间复杂度固定为<code>log (n)</code>。而 B-树 查询时间复杂度不固定，与 key 在树中的位置有关，最好为 <code>O(1)</code>。</li>
+<li>B+ 树叶节点两两相连可大大增加区间访问性，可使用在范围查询等，而 B- 树 每个节点 key 和 data 在一起，则无法区间查找。同时我们访问某数据后，可以将<code>相近的数据预读进内存</code>，这是利用了<code>空间局部性</code>。</li>
+<li>B+ 树更适合<code>外部存储</code>。由于内节点无 data 域，每个节点能索引的范围更大更精确。</li>
+</ol>
+<h2 id="介绍一下死锁产生的必要条件">介绍一下死锁产生的必要条件</h2>
+<p>互斥条件，请求和保持条件，不剥夺条件，环路等待条件。</p>
+<h2 id="如何实现互斥锁">如何实现互斥锁？</h2>
+<p>一个互斥锁需要<code>有阻塞和唤醒功能</code>，所以需要一下几个情况。</p>
+<ol>
+<li>需要有一个标记锁状态的 state 变量。</li>
+<li>需要记录哪个线程持有了锁。</li>
+<li>需要有一个队列维护所有的线程。</li>
+</ol>
+<h2 id="如何实现自旋锁">如何实现自旋锁？</h2>
+<blockquote>
+<p>当时真不会，只磕磕绊绊说了一些自旋锁的东西。。</p>
+</blockquote>
+<p>大家可以看这篇博客 <a href="https://blog.csdn.net/weixin_44228698/article/details/108561517" target="_blank" rel="noopener noreffer">自旋锁C++实现方式</a></p>
+<h2 id="算法三数之和秒">算法：三数之和。秒</h2>
+<h1 id="三面">三面</h1>
+<h2 id="kafka-和-其他消息队列比如-rocketmqrabbitmq-有什么优势">kafka 和 其他消息队列，比如 rocketmq，rabbitmq ，有什么优势？</h2>
+<p>kafka 具备非常高可靠的分布式架构，功能简单，只支持一些主要的MQ功能，像一些消息查询，消息回溯等功能没有提供。时效是在ms级别以内的。</p>
+<h2 id="kafka如何保证消息不丢失">kafka如何保证消息不丢失？</h2>
+<p>那我们可以从两个方面也就是生产者，消费者以及 broker ，来说说</p>
+<ol>
+<li>生产者：生产者(Producer) 调用<code> send 方法</code>发送消息之后，消息可能因为<code>网络问题并没有发送过去</code>。Kafka提供了<code>同步发送消息方法</code>，会返回一个<code>Future对象</code>，调用<code>get()</code>方法进行阻塞等待，就可以知道消息是否发送成功。如果消息发送失败的话，可以通过<code> Producer 的 retries（重试次数）</code>参数进行设置，当出现网络问题之后能够<code>自动重试消息发送，避免消息丢失</code>。另外，建议还要设置<code>重试间隔</code>，因为间隔太小的话重试的效果就不明显。</li>
+<li>消费者：消息在被追加到 Partition(分区) 的时候都会分配一个特定的偏移量（offset）。<strong>偏移量（offset)表示 Consumer 当前消费到的 Partition(分区)的所在的位置。</strong> Kafka 通过偏移量（offset）可以保证消息在分区内的顺序性。<code>当消费者拉取到了分区的某个消息之后，消费者会自动提交了 offset</code>。自动提交的话会有一个问题，试想一下，<strong>当消费者刚拿到这个消息准备进行真正消费的时候，突然挂掉了，消息实际上并没有被消费，但是 offset 却被自动提交了。</strong> 可以通过<code>enable.auto.commit设置为false</code>，关闭<code>自动提交 offset </code>，每次在真正消费完消息之后之后再自己<code>手动提交 offset </code>。</li>
+<li>broker：当消息发送到了分区的leader副本，leader 副本所在的 broker 突然挂掉，那么就要从 follower 副本重新选出一个 leader ，但是 leader 的数据还有一些没有被 follower 副本的同步的话，就会造成消息丢失。解决办法就是 <code>将producer设置 acks = all </code>。</li>
+</ol>
+<h2 id="https为什么是安全的">https为什么是安全的？</h2>
+<p>因为 https 是基于 ssl 和 tls 加密而成的，https 的 s 就代表 ssl 和 tls。</p>
+<h2 id="ssltls-是怎么保证安全的经过几次握手">ssl/tls 是怎么保证安全的？经过几次握手？</h2>
+<p>经过四次握手，客户端向服务器端索要并验证公钥，双方协商生成&quot;对话密钥&quot;，双方采用&quot;对话密钥&quot;进行加密通信。
+四次握手主要是交换以下信息：</p>
+<ol>
+<li>数字证书：该证书包含了公钥等信息，一般是由服务器发给客户端，接收方通过验证这个证书是不是由信赖的CA签发，或者与本地的证书相对比，来判断证书是否可信；假如需要双向验证，则服务器和客户端都需要发送数字证书给对方验证；</li>
+<li>三个随机数：这三个随机数构成了后续通信过程中用来对数据进行对称加密解密的“对话密钥”。</li>
+</ol>
+<blockquote>
+<p>首先客户端先发第一个随机数N1，然后服务器回了第二个随机数N2（这个过程同时把之前<code>提到的证书发给客户端</code>），这两个随机数都是明文的；而第三个随机数N3，客户端用<code>数字证书的公钥进行非对称加密</code>，发给服务器；
+而服务器用只有自己知道的私钥来解密，获取第三个随机数。
+这样，服务端和客户端都有了三个随机数N1+N2+N3，然后两端就使用这三个随机数来生成“对话密钥”，<code>在此之后的通信都是使用这个“对话密钥”来进行对称加密解密</code>。
+因为这个过程中，服务端的私钥只用来解密第三个随机数，从来没有在网络中传输过，这样的话，只要<code>私钥没有被泄露</code>，那么数据就是安全的。</p>
+</blockquote>
+<ol start="3">
+<li>加密通信协议：就是双方商量使用哪一种加密方式，假如两者支持的加密方式不匹配，则无法进行通信；</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/155fe83484794257898c79e18d31b583.png"
+        data-srcset="https://img-blog.csdnimg.cn/155fe83484794257898c79e18d31b583.png, https://img-blog.csdnimg.cn/155fe83484794257898c79e18d31b583.png 1.5x, https://img-blog.csdnimg.cn/155fe83484794257898c79e18d31b583.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/155fe83484794257898c79e18d31b583.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="事务的四大特性">事务的四大特性？</h2>
+<p>原子性、隔离性、一致性、持久性</p>
+<h2 id="用过哪些排序">用过哪些排序？</h2>
+<p>快排，堆排，归并比较常用。</p>
+<h2 id="快排一定最快吗">快排一定最快吗？</h2>
+<p>不一定，当待排序的序列已经有序，不管是升序还是降序。此时快速排序最慢，一般当数据量很大的时候，用快速排序比较好，为了避免原来的序列有序。</p>
+<h2 id="场景题如果我有100g文件但是只有-500-m-的内存这些文件存着一行行的数字如何获取最小的10个">场景题：如果我有100G文件，但是只有 500 M 的内存，这些文件存着一行行的数字，如何获取最小的10个？</h2>
+<p>这是经典的 Top K 问题，分治+堆排，我们可以先进行一个将文件进行分治，将100G的文件的分成一个个的 500 M，以此放到内存中每个500M的文件取出进行最小堆的排序，取出前10个写到新文件中。再对着一个个的新文件进行合并成 500 M 再进行最小堆的排序，最终获取最小的10个数字。</p>
+<h2 id="算法最长有序括号常见题秒">算法：最长有序括号，常见题，秒</h2>
+<h2 id="参考链接">参考链接</h2>
+<p>[1] <a href="https://blog.csdn.net/weixin_35973945/article/details/124245495" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_35973945/article/details/124245495</a>
+[2] <a href="https://www.cnblogs.com/yaochunhui/p/14128777.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/yaochunhui/p/14128777.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/b.-b%E7%AB%99/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/dytt/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="【Golang开发面经】米哈游（一轮游。。） 写在前面 米哈游 面试下来感觉还行吧，挺注重基础的，面试官水平也很高。但是感觉不是在招人的样子，我有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="【Golang开发面经】米哈游（一轮游。。） 写在前面 米哈游 面试下来感觉还行吧，挺注重基础的，面试官水平也很高。但是感觉不是在招人的样子，我有"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" /><link rel="prev" href="https://jefofrank.xyz/f.-%E6%B7%B1%E4%BF%A1%E6%9C%8D/" /><link rel="next" href="https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/e.-%E7%B1%B3%E5%93%88%E6%B8%B8\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3125 ,
+        "url": "https:\/\/jefofrank.xyz\/e.-%E7%B1%B3%E5%93%88%E6%B8%B8\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3125 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#线程和协程有什么区别各自有什么优缺点">线程和协程有什么区别？各自有什么优缺点？</a></li>
+    <li><a href="#进程之间如何进行通信">进程之间如何进行通信？</a></li>
+    <li><a href="#什么是信号信号量是如何实现的">什么是信号，信号量是如何实现的？</a></li>
+    <li><a href="#讲讲go里面的gmp模型">讲讲Go里面的GMP模型？</a></li>
+    <li><a href="#go的gmp模型">Go的GMP模型</a></li>
+    <li><a href="#map用过吧怎么对map进行排序">map用过吧？怎么对map进行排序？</a></li>
+    <li><a href="#讲讲map底层为什么是无序的">讲讲map底层？为什么是无序的？</a></li>
+    <li><a href="#知道tcp连接吧三次握手的目的是什么">知道TCP连接吧？三次握手的目的是什么？</a></li>
+    <li><a href="#那四次挥手有了解过吗为什么是四次">那四次挥手有了解过吗？为什么是四次？</a></li>
+    <li><a href="#什么是粘包和拆包为什么会出现">什么是粘包和拆包？为什么会出现？</a></li>
+    <li><a href="#怎么解决">怎么解决？</a></li>
+    <li><a href="#什么是事务">什么是事务？</a></li>
+    <li><a href="#那-redis-支持事务吗">那 redis 支持事务吗？</a></li>
+    <li><a href="#算法手撕链表要求递归实现">算法：手撕链表，要求递归实现。</a></li>
+    <li><a href="#算法忘记了好像是中等题反正不难也不简单">算法：忘记了。。好像是中等题，反正不难，也不简单。</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="golang开发面经米哈游一轮游">【Golang开发面经】米哈游（一轮游。。）</h1>
+<h1 id="写在前面">写在前面</h1>
+<blockquote>
+<p>米哈游 面试下来感觉还行吧，挺注重基础的，面试官水平也很高。但是感觉不是在招人的样子，我有好多同学都是简历挂（</p>
+</blockquote>
+<h1 id="笔试">笔试</h1>
+<p>无笔试，很奇怪（</p>
+<h1 id="一面">一面</h1>
+<h2 id="线程和协程有什么区别各自有什么优缺点">线程和协程有什么区别？各自有什么优缺点？</h2>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统中正在运行的一个应用程序</td>
+<td>系统分配处理器时间资源的基本单元</td>
+</tr>
+<tr>
+<td>程序一旦运行就是进程</td>
+<td>进程之内独立执行的一个单元执行流</td>
+</tr>
+<tr>
+<td>资源分配的最小单位</td>
+<td>程序执行的最小单位</td>
+</tr>
+</tbody>
+</table>
+<p>进程有<code>独立的地址空间</code>，一个进程崩溃后，在<code>保护模式下不会对其它进程产生影响</code>，而线程只是一个进程中的不同执行路径。</p>
+<p>线程有自己的<strong>堆栈和局部变量</strong>，但线程<code>没有单独的地址空间</code>，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮，但在<code>进程切换</code>时，耗费资源较大，效率要差一些。但对于一些 <strong><code>要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程</code></strong></p>
+<h2 id="进程之间如何进行通信">进程之间如何进行通信？</h2>
+<p>管道、消息队列、共享内存、信号量、信号、socket</p>
+<h2 id="什么是信号信号量是如何实现的">什么是信号，信号量是如何实现的？</h2>
+<p><strong>信号：</strong>
+在Linux中，为了响应各种事件，提供了几十种信号，可以通过<code>kill -l</code>命令查看。</p>
+<p>如果是运行在 shell终端 的进程，可以通过键盘组合键来给进程发送信号，例如使用Ctrl+C 产生<code> SIGINT 信号</code>，表示终止进程。</p>
+<p>如果是运行在后台的进程，可以通过命令来给进程发送信号，例如使用<code>kill -9 PID</code> 产生<code>SIGKILL</code>信号，表示立即结束进程。</p>
+<p><strong>信号量：</strong></p>
+<p>当使用共享内存的通信方式，如果有多个进程同时往共享内存写入数据，有可能先写的进程的内容被其他进程覆盖了。</p>
+<p>因此需要一种保护机制，信号量本质上是一个整型的计数器，用于实现<code>进程间的互斥和同步</code>。</p>
+<p>信号量代表着资源的数量，操作信号量的方式有两种：</p>
+<ul>
+<li><strong>P操作：这个操作会将信号量减一，相减后信号量如果小于0，则表示资源已经被占用了，进程需要阻塞等待；如果大于等于0，则说明还有资源可用，进程可以正常执行。</strong></li>
+<li><strong>V操作：这个操作会将信号量加一，相加后信号量如果小于等于0，则表明当前有进程阻塞，于是会将该进程唤醒；如果大于0，则表示当前没有阻塞的进程。</strong></li>
+</ul>
+<h2 id="讲讲go里面的gmp模型">讲讲Go里面的GMP模型？</h2>
+<h2 id="go的gmp模型">Go的GMP模型</h2>
+<p>G：表示goroutine，存储了goroutine的执行stack信息、goroutine状态以及goroutine的任务函数等；另外G对象是<code>可以重用</code>的。
+P：表示逻辑processor，P 的数量决定了系统内最大可并行的 G 的数量（前提：系统的物理cpu核数 &gt;= P的数量）；P的最大作用还是其拥有的各种G对象队列、链表、一些cache和状态。
+M：M 代表着真正的执行计算资源，物理 Processor。</p>
+<blockquote>
+<p>G 如果想运行起来必须依赖 P，因为 P 是它的<code>逻辑处理单元</code>，但是 P 要想真正的运行，他也需要与 M 绑定，这样才能真正的运行起来，<code>P 和 M 的这种关系就相当于 Linux 系统中的用户层面的线程和内核的线程是一样的</code>。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        data-srcset="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 1.5x, https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/ced7c30900e94e9db88417483971df45.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="map用过吧怎么对map进行排序">map用过吧？怎么对map进行排序？</h2>
+<p><strong><code>go的map不保证有序性，所以按key排序需要取出key，对key排序，再遍历输出value</code></strong></p>
+<h2 id="讲讲map底层为什么是无序的">讲讲map底层？为什么是无序的？</h2>
+<p>map 的底层是一个结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go map 的底层结构体表示
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">hmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">count</span>     <span class="kt">int</span>    <span class="c1">// map中键值对的个数，使用len()可以获取 
+</span><span class="c1"></span>	<span class="nx">flags</span>     <span class="kt">uint8</span>
+	<span class="nx">B</span>         <span class="kt">uint8</span>  <span class="c1">// 哈希桶的数量的log2，比如有8个桶，那么B=3
+</span><span class="c1"></span>	<span class="nx">noverflow</span> <span class="kt">uint16</span> <span class="c1">// 溢出桶的数量
+</span><span class="c1"></span>	<span class="nx">hash0</span>     <span class="kt">uint32</span> <span class="c1">// 哈希种子
+</span><span class="c1"></span>
+	<span class="nx">buckets</span>    <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 指向哈希桶数组的指针，数量为 2^B 
+</span><span class="c1"></span>	<span class="nx">oldbuckets</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 扩容时指向旧桶的指针，当扩容时不为nil 
+</span><span class="c1"></span>	<span class="nx">nevacuate</span>  <span class="kt">uintptr</span>        
+
+	<span class="nx">extra</span> <span class="o">*</span><span class="nx">mapextra</span>  <span class="c1">// 可选字段
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+	<span class="nx">bucketCntBits</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">bucketCnt</span>     <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">bucketCntBits</span>     <span class="c1">// 桶数量 1 &lt;&lt; 3 = 8
+</span><span class="c1"></span><span class="p">)</span>
+
+<span class="c1">// Go map 的一个哈希桶，一个桶最多存放8个键值对
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">bmap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// tophash存放了哈希值的最高字节
+</span><span class="c1"></span>	<span class="nx">tophash</span> <span class="p">[</span><span class="nx">bucketCnt</span><span class="p">]</span><span class="kt">uint8</span>
+    
+    <span class="c1">// 在这里有几个其它的字段没有显示出来，因为k-v的数量类型是不确定的，编译的时候才会确定
+</span><span class="c1"></span>    <span class="c1">// keys: 是一个数组，大小为bucketCnt=8，存放Key
+</span><span class="c1"></span>    <span class="c1">// elems: 是一个数组，大小为bucketCnt=8，存放Value
+</span><span class="c1"></span>    <span class="c1">// 你可能会想到为什么不用空接口，空接口可以保存任意类型。但是空接口底层也是个结构体，中间隔了一层。因此在这里没有使用空接口。
+</span><span class="c1"></span>    <span class="c1">// 注意：之所以将所有key存放在一个数组，将value存放在一个数组，而不是键值对的形式，是为了消除例如map[int64]所需的填充整数8（内存对齐）
+</span><span class="c1"></span>    
+    <span class="c1">// overflow: 是一个指针，指向溢出桶，当该桶不够用时，就会使用溢出桶
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        data-srcset="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 1.5x, https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/4398d5a6281b4d82b42776897aa66980.png"
+        title="在这里插入图片描述" />
+当向 map 中存储一个 kv 时，通过<code> k 的 hash 值与 buckets 长度取余</code>，定位到 key 在哪一个bucket中，<strong>hash 值的高8位存储在 bucket 的 tophash[i] 中</strong>，用来快速判断 key是否存在。<strong>当一个 bucket 满时，通过 overflow 指针链接到下一个 bucket。</strong></p>
+<p>在源码<code>runtime.mapiterinit</code>中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">mapiterinit</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">maptype</span><span class="p">,</span> <span class="nx">h</span> <span class="o">*</span><span class="nx">hmap</span><span class="p">,</span> <span class="nx">it</span> <span class="o">*</span><span class="nx">hiter</span><span class="p">)</span> <span class="p">{</span>
+	<span class="o">...</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">t</span> <span class="p">=</span> <span class="nx">t</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">h</span> <span class="p">=</span> <span class="nx">h</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">B</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">B</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">buckets</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">buckets</span>
+	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">kind</span><span class="o">&amp;</span><span class="nx">kindNoPointers</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="nx">h</span><span class="p">.</span><span class="nf">createOverflow</span><span class="p">()</span>
+		<span class="nx">it</span><span class="p">.</span><span class="nx">overflow</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">extra</span><span class="p">.</span><span class="nx">overflow</span>
+		<span class="nx">it</span><span class="p">.</span><span class="nx">oldoverflow</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">extra</span><span class="p">.</span><span class="nx">oldoverflow</span>
+	<span class="p">}</span>
+
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">uintptr</span><span class="p">(</span><span class="nf">fastrand</span><span class="p">())</span>
+	<span class="k">if</span> <span class="nx">h</span><span class="p">.</span><span class="nx">B</span> <span class="p">&gt;</span> <span class="mi">31</span><span class="o">-</span><span class="nx">bucketCntBits</span> <span class="p">{</span>
+		<span class="nx">r</span> <span class="o">+=</span> <span class="nb">uintptr</span><span class="p">(</span><span class="nf">fastrand</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span>
+	<span class="p">}</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">startBucket</span> <span class="p">=</span> <span class="nx">r</span> <span class="o">&amp;</span> <span class="nf">bucketMask</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">offset</span> <span class="p">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="nx">r</span> <span class="o">&gt;&gt;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">B</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">bucketCnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+	<span class="nx">it</span><span class="p">.</span><span class="nx">bucket</span> <span class="p">=</span> <span class="nx">it</span><span class="p">.</span><span class="nx">startBucket</span>
+    <span class="o">...</span>
+
+	<span class="nf">mapiternext</span><span class="p">(</span><span class="nx">it</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过对<code> mapiterinit 方法</code>阅读，可得知其主要用途是在 map 进行遍历迭代时进行初始化动作。共有三个形参，用于读取当前<code>哈希表的类型信息、当前哈希表的存储信息和当前遍历迭代的数据</code></p>
+<p>源码中 <code>fastrand</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="o">...</span>
+<span class="c1">// decide where to start
+</span><span class="c1"></span><span class="nx">r</span> <span class="o">:=</span> <span class="nb">uintptr</span><span class="p">(</span><span class="nf">fastrand</span><span class="p">())</span>
+<span class="k">if</span> <span class="nx">h</span><span class="p">.</span><span class="nx">B</span> <span class="p">&gt;</span> <span class="mi">31</span><span class="o">-</span><span class="nx">bucketCntBits</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">+=</span> <span class="nb">uintptr</span><span class="p">(</span><span class="nf">fastrand</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span>
+<span class="p">}</span>
+<span class="nx">it</span><span class="p">.</span><span class="nx">startBucket</span> <span class="p">=</span> <span class="nx">r</span> <span class="o">&amp;</span> <span class="nf">bucketMask</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span>
+<span class="nx">it</span><span class="p">.</span><span class="nx">offset</span> <span class="p">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="nx">r</span> <span class="o">&gt;&gt;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">B</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">bucketCnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">// iterator state
+</span><span class="c1"></span><span class="nx">it</span><span class="p">.</span><span class="nx">bucket</span> <span class="p">=</span> <span class="nx">it</span><span class="p">.</span><span class="nx">startBucket</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在这段代码中，它生成了随机数。用于决定从哪里开始循环迭代。更具体的话就是<code>根据随机数，选择一个桶位置作为起始点进行遍历迭代。</code></p>
+<p>因此每次重新<code> for range map</code>，你见到的结果都是不一样的。<strong>那是因为它的起始位置根本就不固定！</strong></p>
+<h2 id="知道tcp连接吧三次握手的目的是什么">知道TCP连接吧？三次握手的目的是什么？</h2>
+<p>因为通信的前提是确保双方都是<code>接收和发送信息是正常</code>的。
+三次握手是为了<strong>建立可靠的数据传输通道</strong>，
+第一次握手就是<code>让 接收方 知道 发送方 有发送信息的能力</code>
+第二次握手就是<code>让 发送方 知道 接收方 有发送和接受信息的能力</code>
+第三次握手就是<code>让 接收方 知道 发送方 有接受信息的能力</code></p>
+<h2 id="那四次挥手有了解过吗为什么是四次">那四次挥手有了解过吗？为什么是四次？</h2>
+<p>四次挥手则是为了保证等数据完成的被接收完再关闭连接。</p>
+<p>既然提到需要保证数据完整的传输完，那就需要保证双方 <strong><code>都达到关闭连接的条件才能断开。</code></strong></p>
+<p>第一次挥手：客户端<code>发起关闭连接</code>的请求给服务端；</p>
+<p>第二次挥手：服务端收到关闭请求的时候可能这个时候数据还没发送完，所以服务端会先回复一个<code>确认报文</code>，表示<code>自己知道客户端想要关闭连接了</code>，但是因为数据还没传输完，所以还需要等待；</p>
+<p>第三次挥手：当数据传输完了，服务端会主动发送一个<code> FIN 报文</code>，告诉客户端，表示数据<code>已经发送完了</code>，服务端这边<code>准备关闭连接了</code>。</p>
+<p>第四次挥手：当客户端收到服务端的 FIN 报文过后，会回复一个<code> ACK 报文</code>，告诉服务端自己知道了，再等待一会就关闭连接。</p>
+<h2 id="什么是粘包和拆包为什么会出现">什么是粘包和拆包？为什么会出现？</h2>
+<p>粘包就是两个或者多个以上的包粘在一起，拆包就是为什么解决粘包问题。</p>
+<p>出现粘包原因有两个，一个是发送方发送不及时，导致多个包在发送端粘黏。另一个是接收方接受不及时，导致包在接收端堆叠导致。</p>
+<h2 id="怎么解决">怎么解决？</h2>
+<p><code>设计一个带包头的应用层报文结构就能解决</code>。包头定长，以特定标志开头，里带着负载长度，这样接收侧只要以定长尝试读取包头，再按照包头里的负载长度读取负载就行了，多出来的数据都留在缓冲区里即可。其实ip报文和tcp报文都是这么干的。</p>
+<h2 id="什么是事务">什么是事务？</h2>
+<p>事务具有<code>原子性、一致性、隔离性、持久性</code>特性，并且 <strong>指将一系列数据操作捆绑成为一个整体进行统一管理，如果某一事务执行成功，则在该事物中进行的所有数据更改均会提交，成为数据库中的永久组成部分。</strong></p>
+<h2 id="那-redis-支持事务吗">那 redis 支持事务吗？</h2>
+<p>redis 是不支持事务的，因为 他不支持原子性，但是支持一致性，是最终一致性。</p>
+<h2 id="算法手撕链表要求递归实现">算法：手撕链表，要求递归实现。</h2>
+<h2 id="算法忘记了好像是中等题反正不难也不简单">算法：忘记了。。好像是中等题，反正不难，也不简单。</h2>
+<h1 id="二面">二面</h1>
+<blockquote>
+<p>我以为过了简历，免了笔试，一面算法写出来，八股也能吹了，应该有二面，但还是挂了（</p>
+</blockquote>
+<p>真的是 <strong>海量 hc</strong> 吗。。。</p>
+<p>后面问了一下，原来基本不招本科生&hellip;</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/f.-%E6%B7%B1%E4%BF%A1%E6%9C%8D/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/d.-%E6%BB%B4%E6%BB%B4/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
