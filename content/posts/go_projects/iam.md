@@ -31,6 +31,7 @@ draft: true
     - [依赖安装和配置](#依赖安装和配置)
     - [Go 编译环境安装和配置](#go-编译环境安装和配置)
       - [ProtoBuf 编译环境安装](#protobuf-编译环境安装)
+        - [windows](#windows)
     - [Go 开发 IDE 安装和配置](#go-开发-ide-安装和配置)
   - [3 | 快速部署](#3--快速部署)
     - [安装和配置数据库](#安装和配置数据库)
@@ -958,12 +959,12 @@ cd $WORKSPACE # 登录系统，默认进入 workspace 目录
 ### 依赖安装和配置
 在 Linux 系统上安装 IAM 系统会依赖一些 RPM 包和工具，有些是直接依赖，有些是间接依赖。为了避免后续的操作出现依赖错误，例如，因为包不存在而导致的编译、命令执行错误等，我们先统一依赖安装和配置。安装和配置步骤如下。
 
-第一步，安装依赖。首先，我们在 CentOS 系统上通过 yum 命令来安装所需工具的依赖，安装命令如下：
+**第一步，安装依赖**。首先，我们在 CentOS 系统上通过 yum 命令来安装所需工具的依赖，安装命令如下：
 
 ```bash
 sudo yum -y install make autoconf automake cmake perl-CPAN libcurl-devel libtool gcc gcc-c++ glibc-headers zlib-devel git-lfs telnet ctags lrzsz jq expat-devel openssl-devel
 ```
-第二步，安装 Git。因为安装 IAM 系统、执行 go get 命令、安装 protobuf 工具等都是通过 Git 来操作的，所以接下来我们还需要安装 Git。由于低版本的 Git 不支持--unshallow 参数，而 go get 在安装 Go 包时会用到 git fetch --unshallow 命令，因此我们要确保安装一个高版本的 Git，具体的安装方法如下：
+**第二步，安装 Git**。因为安装 IAM 系统、执行 go get 命令、安装 protobuf 工具等都是通过 Git 来操作的，所以接下来我们还需要安装 Git。由于低版本的 Git 不支持--unshallow 参数，而 go get 在安装 Go 包时会用到 git fetch --unshallow 命令，因此我们要确保安装一个高版本的 Git，具体的安装方法如下：
 
 ```bash
 cd /tmp
@@ -1058,10 +1059,27 @@ libprotoc 3.15.6
 # 第二步：安装 protoc-gen-go
 $ go get -u github.com/golang/protobuf/protoc-gen-go
 ```
-win:
+##### windows
 
 https://www.cnblogs.com/cxt618/p/15467428.html
 
+protoc-gen-go 会失败，使用命令
+```
+//https://blog.csdn.net/m0_52649917/article/details/121599809
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+// gen
+protoc -I. --go_out=D:/gopath/src --go-grpc_out=:D:/gopath/src ./idl/*.proto
+```
+其中 --go_out对应插件protoc-gen-go
+--go-grpc_out对应插件protoc-gen-go-grpc
+
+执行这个命令会生成两个文件（），看起来是把之前 .pb.go 文件中的跟 client 和 server 相关的代码提出来放到了 _grpc.pb.go 这个文件中。另外一个变化是：HelloWorldServer 这个接口中多了一个叫 mustEmbedUnimplementedHelloWorldServer() 的方法。只需要在需要实现rpc接口的结构体中组合一个p*p.
+
+
+
+https://cloud.tencent.com/developer/article/1911788
+https://blog.csdn.net/HYZX_9987/article/details/124972708
 
 
 
@@ -1107,6 +1125,13 @@ tar -xvzf marmotVim.tar.gz
 cd marmotVim
 ./marmotVimCtl install
 ```
+
+[中文官网步骤](https://spacevim.org/cn/quick-start-guide/#linux-%E6%88%96-macos)
+```
+curl -sLf https://spacevim.org/cn/install.sh | bash
+```
+
+
 SpaceVim 配置文件为：$HOME/.SpaceVim.d/init.toml 和$HOME/.SpaceVim.d/autoload/custom_init.vim，你可自行配置（配置文件中有配置说明）：init.toml：SpaceVim 的配置文件custom_init.vim：兼容 vimrc，用户自定义的配置文件SpaceVim Go IDE 常用操作的按键映射如下表所示：
 
 ![img](https://static001.geekbang.org/resource/image/f1/d9/f1ec06569a411be4369byy7b8c7469d9.jpeg?wh=1920*1080)
@@ -1119,6 +1144,9 @@ wget https://marmotedu-1254073058.cos.ap-beijing.myqcloud.com/tools/gotools-for-
 mkdir -p $GOPATH/bin
 tar -xvzf gotools-for-spacevim.tgz -C $GOPATH/bin
 ```
+
+[使用文档](https://spacevim.org/cn/documentation/)
+
 ## 3 | 快速部署
 总的来说，我把部署过程分成 2 大步。安装和配置数据库：我们需要安装和配置 MariaDB、Redis 和 MongoDB。安装和配置 IAM 服务：我们需要安装和配置 iam-apiserver、iam-authz-server、iam-pump、iamctl 和 man 文件。
 

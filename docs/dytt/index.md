@@ -81,3 +81,22 @@ DYTT 是我做的一个基于 Gin 和 gRPC 开发的抖音后端项目，包括 
 ## 项目部署
 
 
+
+## protobuff 的坑
+
+在本地执行
+```
+protoc -I. --go_out=plugins=grpc:$GOPATH/src ./idl/*.proto
+```
+时报错
+```
+--go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC
+```
+[原因](https://github.com/golang/protobuf/issues/1070)
+
+The google.golang.org/protobuf/cmd/protoc-gen-go program doesn't include gRPC support. Instead, that support will soon be provided by a google.golang.org/grpc/cmd/protoc-gen-go-grpc program. That program is In code review now, but not quite yet available.
+
+The github.com/golang/protobuf/protoc-gen-go program supports gRPC as always, and will continue to do so. Versions v1.4 and newer of that program support the new protobuf reflection features. (Right now, the newest release is v1.4.0-rc.4.)
+
+
+

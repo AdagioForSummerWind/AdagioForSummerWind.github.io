@@ -1896,6 +1896,10 @@ func TestEmbeddedJson(t *testing.T) {
 - 见ch43
 
 
+## go embed
+go1.1推出的能将静态资源嵌入程序的指令。
+https://zhuanlan.zhihu.com/p/351931501
+
 ## go项目的标准布局演进
 官方并没有给标准布局，但社区还是有的。随着go版本的不断更新，Go源码比例不断增大，Go 1.0时还占比32%的C语言现在也只不过占比不到1%。而项目布局一直保持了下来。
 

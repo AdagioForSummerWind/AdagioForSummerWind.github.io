@@ -606,7 +606,7 @@ ls -al ~/.ssh
 
 生成秘钥
 
-ssh-keygen -t rsa -C ‘xxx’
+ssh-keygen -t rsa -C ‘2838264218@qq.com’
 -t 指定密钥类型，默认是 rsa ，可以省略。
 -C 设置注释文字，比如邮箱。
 -f 指定密钥文件存储文件名。

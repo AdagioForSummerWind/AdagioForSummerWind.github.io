@@ -4,7 +4,15 @@
         <link>https://jefofrank.xyz/posts/</link>
         <description>所有文章 | 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 31 Jul 2022 14:17:48 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>slidev</title>
+    <link>https://jefofrank.xyz/slidev/</link>
+    <pubDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/slidev/</guid>
+    <description><![CDATA[ https://juejin.cn/post/7062979350651469831#comment
+ ]]></description>
+</item><item>
     <title>Patterns_principles</title>
     <link>https://jefofrank.xyz/patterns_principles/</link>
     <pubDate>Sun, 31 Jul 2022 14:17:48 &#43;0800</pubDate>
@@ -67,12 +75,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/gb_20101019/</guid>
     <description><![CDATA[真正的围棋项目：SmartTwitter 和 web.go 迈克尔·霍伊西 2010 年 10 月 19 日 本周的文章由 Michael Hoisie 撰写。 他是旧金山的一名程序员，是 Go 的早期采用者之一，也]]></description>
-</item><item>
-    <title>Gb_20100923</title>
-    <link>https://jefofrank.xyz/gb_20100923/</link>
-    <pubDate>Sun, 08 May 2022 20:49:30 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20100923/</guid>
-    <description><![CDATA[Go并发模式：超时，继续 安德鲁·杰朗 2010 年 9 月 23 日 并发编程有它自己的习语。一个很好的例子是超时。虽然 Go 的通道不直接支持它们，但它们很容易实现。]]></description>
 </item></channel>
 </rss>

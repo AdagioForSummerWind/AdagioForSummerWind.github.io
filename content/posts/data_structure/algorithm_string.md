@@ -13,7 +13,13 @@ draft: true
 
 ## 输入输出
 1. 单独读一行：先用bufio.NewReader(os.Stdin)从标准输入中读取缓冲，再调用ReadLine()读取一行，有三个返回值，第二个是指是否是前缀，也就是说缓冲区可能装不下整行字符串。
-2. 多行：bufio.NewScanner(os.Stdin)从缓冲区中读取多行，每次调用 input.Scan()，即 读入下一行 ，并移除行末的换行符。读取的内容可以调用 input.Text() 得到。Scan函数在读到一行时返回true，不再有输入时返回false。
+2. 多行：bufio.NewScanner(os.Stdin)从缓冲区中读取多行，每次调用 input.Scan()，即 读入下一行 ，并移除行末的换行符。读取的内容可以调用 input.Text() 得到。Scan函数在读到一行时返回true，不再有输入时返回false。如果读入一行text为多个以空格相隔的字符串可以调用 strings.Split() 进行分割返回字符串切片 eg:
+```
+……
+s:=input.Text()
+li:=strings.Split(s," ")
+```
+
 
 fmt.Scan()
 Scan 从标准输入扫描文本，读取由空白符分隔的值保存到传递给本函数的参数中，换行符视为空白符。本函数返回成功扫描的数据个数和遇到的任何错误。如果读取的数据个数比提供的参数少，会返回一个错误报告原因。

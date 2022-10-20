@@ -20,7 +20,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/dytt/" /><link rel="prev" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="next" href="https://jefofrank.xyz/go_chenhao/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/dytt/" /><link rel="prev" href="https://jefofrank.xyz/refer/" /><link rel="next" href="https://jefofrank.xyz/go_chenhao/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/dytt\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2284 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2378 ,
         "url": "https:\/\/jefofrank.xyz\/dytt\/","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2284 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2378 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -142,6 +142,7 @@ draft: true</a></li>
     <li><a href="#项目开发">项目开发</a></li>
     <li><a href="#项目测试">项目测试</a></li>
     <li><a href="#项目部署">项目部署</a></li>
+    <li><a href="#protobuff-的坑">protobuff 的坑</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><hr>
@@ -212,6 +213,28 @@ http服务主要就是使用 http.Server 的 Shutdown 方法结合 signal.Notify
 <h2 id="项目开发">项目开发</h2>
 <h2 id="项目测试">项目测试</h2>
 <h2 id="项目部署">项目部署</h2>
+<h2 id="protobuff-的坑">protobuff 的坑</h2>
+<p>在本地执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">protoc -I. --go_out=plugins=grpc:$GOPATH/src ./idl/*.proto
+</code></pre></td></tr></table>
+</div>
+</div><p>时报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">--go_out: protoc-gen-go: plugins are not supported; use &#39;protoc --go-grpc_out=...&#39; to generate gRPC
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/golang/protobuf/issues/1070" target="_blank" rel="noopener noreffer">原因</a></p>
+<p>The google.golang.org/protobuf/cmd/protoc-gen-go program doesn&rsquo;t include gRPC support. Instead, that support will soon be provided by a google.golang.org/grpc/cmd/protoc-gen-go-grpc program. That program is In code review now, but not quite yet available.</p>
+<p>The github.com/golang/protobuf/protoc-gen-go program supports gRPC as always, and will continue to do so. Versions v1.4 and newer of that program support the new protobuf reflection features. (Right now, the newest release is v1.4.0-rc.4.)</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -236,7 +259,7 @@ http服务主要就是使用 http.Server 的 Shutdown 方法结合 signal.Notify
         </section>
     </div>
 
-    <div class="post-nav"><a href="/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+    <div class="post-nav"><a href="/refer/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
             <a href="/go_chenhao/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>

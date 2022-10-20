@@ -4,7 +4,15 @@
         <link>https://jefofrank.xyz/categories/2022/</link>
         <description>2022 - 分类 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 08 May 2022 20:51:03 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/2022/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/2022/" rel="self" type="application/rss+xml" /><item>
+    <title>slidev</title>
+    <link>https://jefofrank.xyz/slidev/</link>
+    <pubDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/slidev/</guid>
+    <description><![CDATA[ https://juejin.cn/post/7062979350651469831#comment
+ ]]></description>
+</item><item>
     <title>Gb_20110125</title>
     <link>https://jefofrank.xyz/gb_20110125/</link>
     <pubDate>Sun, 08 May 2022 20:51:03 &#43;0800</pubDate>
@@ -67,12 +75,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/gb_20100804/</guid>
     <description><![CDATA[推迟、恐慌和恢复 安德鲁·杰朗 2010 年 8 月 4 日 Go 具有通常的控制流机制：if、for、switch、goto。它还具有在单独的 goroutine 中运行代码的 go 语句。]]></description>
-</item><item>
-    <title>Gb_20100713</title>
-    <link>https://jefofrank.xyz/gb_20100713/</link>
-    <pubDate>Sun, 08 May 2022 20:48:53 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20100713/</guid>
-    <description><![CDATA[通过交流分享记忆 安德鲁·杰朗 2010 年 7 月 13 日 传统的线程模型（例如，通常在编写 Java、C++ 和 Python 程序时使用）要求程序员使用共享内存在线程之间进行]]></description>
 </item></channel>
 </rss>

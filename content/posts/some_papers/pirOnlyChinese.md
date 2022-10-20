@@ -86,7 +86,7 @@ Google 当前的 SCT 审计解决方案提供了 𝑘- 匿名性而非完整的�
 
 Chor、Goldreich、Kushilevitz 和苏丹 [26] 在多服务器设置中引入了 PIR，Kushilevitz 和 Ostrovsky [53] 首次构建了单服务器 PIR。 他们的方案使用线性同态加密方案，将ℓ位明文扩展为ℓ·𝐹位密文。 我们称𝐹为加密方案的扩展因子。 然后，在 N 位和任何维度参数的数据库上 𝑑 ∈ {1, 2, 3, . . . }，他们的 PIR 结构大致有通信 $𝑁^{1/𝑑}𝐹^{𝑑−1}$ 。 服务器在回答客户端查询的过程中必须执行大致$𝑁𝐹^{𝑑−1}$ 同态操作。
 
-Damgård-Jurik [32] 密码系统具有扩展因子 𝐹 ≈ 1，它产生了非常有效的通信 PIR 方案 [60]。 从一系列密码学假设 [20, 23, 36] 可以构建具有相似通信效率的 PIR。 然而，这些方案在计算上都是昂贵的：对于数据库的每一位，服务器必须在安全参数中执行工作多项式。
+Damgård-Jurik [32] 密码系统具有扩展因子 𝐹 ≈ 1，它产生了非常有效的通信 PIR 方案 [60]。 从一系列密码学假设 [20, 23, 36] 可以构建具有相似通信效率的 PIR。 然而，**这些方案在计算上都是昂贵的：对于数据库的每一位，服务器必须在安全参数中执行多项式工作。**
 
 ![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220917110251.png)
 
@@ -98,7 +98,7 @@ Damgård-Jurik [32] 密码系统具有扩展因子 𝐹 ≈ 1，它产生了非�
 
 基于格的 PIR。
 
-为了降低这种计算成本，最近的 PIR 方案使用基于环学习错误问题（“环 LWE”）[63] 的加密方案来实例化 Kushilevitz-Ostrovsky 结构。 在这些方案中，对于数据库的每一位，服务器在安全参数中执行多项式工作，而不是多项式。 然而，这些计算上的节省是以更大的扩展因子 (𝐹 ≈ 10) 为代价的，这增加了通信，因为维度参数 𝑑 不能太大。 例如，XPIR[5]取𝑑=2。另外，Kushilevitz-Ostrovsky方案中的客户端必须上传𝑁1/𝑑密文，每个环-LWE密文的大小至少为数千字节。 这会带来很大的绝对通信成本（例如，对于数百 MB 的数据库，每次查询数十 MB）。
+为了降低这种计算成本，最近的 PIR 方案使用基于环学习错误问题（“环 LWE”）[63] 的加密方案来实例化 Kushilevitz-Ostrovsky 结构。 在这些方案中，对于数据库的每一位，服务器在安全参数中执行多对数工作，而不是多项式。 然而，这些计算上的节省是以更大的扩展因子 (𝐹 ≈ 10) 为代价的，这增加了通信，因为维度参数 𝑑 不能太大。 例如，XPIR[5]取𝑑=2。另外，Kushilevitz-Ostrovsky方案中的客户端必须上传𝑁1/𝑑密文，每个环-LWE密文的大小至少为数千字节。 这会带来很大的绝对通信成本（例如，对于数百 MB 的数据库，每次查询数十 MB）。
 
 
 SealPIR [9] 表明客户端可以在上传之前以 XPIR 样式的方案压缩密文。 然后服务器可以使用同态操作扩展这些密文。 （FastPIR [6] 使用类似的想法来压缩响应。）这种优化将通信成本降低了几个数量级，尽管它需要服务器存储一些每个客户端的信息（“密钥切换提示”）——本质上，加密 客户端的秘密解密密钥——大小为兆字节，客户端在进行任何查询之前必须上传到服务器。
@@ -135,7 +135,7 @@ PIR 的硬件加速。
 ### 3.1 Learning with errors (LWE)
 
 
-我们的 PIR 方案的安全性依赖于错误学习假设的决策版本 [76]。 该假设由 LWE 秘密的维度 𝑛 ∈ N、样本数量 𝑚 ∈ N、整数模 𝑞 ≥ 2 以及 Z 上的误差分布 𝜒 参数化。LWE 假设随后断言对于矩阵 $A ←^R Z^{𝑚×𝑛}_𝑞$ 、秘密 $s ←^R Z^𝑛_𝑞$ 、误差向量 $e ←^R 𝜒^𝑚$ 和随机向量 $r ←^R Z^𝑚_𝑞$ ，以下分布在计算上无法区分：
+我们的 PIR 方案的安全性依赖于错误学习假设的决策版本 [76]。 该假设由 LWE 秘密的维度 𝑛 ∈ N、样本数量 𝑚 ∈ N、整数模 𝑞 ≥ 2 以及 Z 上的误差分布 𝜒 参数化。LWE 假设随后断言对于矩阵 $A ←^R Z^{𝑚×𝑛}_𝑞$ 、秘密 $s ←^R Z^𝑛_𝑞$ 、误差向量   $e←^R𝜒^𝑚$ 和随机向量 $r ←^R Z^𝑚_𝑞$ ，以下分布在计算上无法区分：
 
 $$
 \{(\mathbf{A}, \mathbf{A s}+\mathbf{e})\} \stackrel{c}{\approx}\{(\mathbf{A}, \mathbf{r})\}
@@ -591,7 +591,176 @@ SimplePIR 和 DoublePIR 分别实现了 6.5 GB/s 和 5.2 GB/s 的吞吐量，这
 致谢。我们感谢 Martin Albrecht 回答有关 LWE 硬度估计的问题，感谢 Vadim Lyubashevsky 就离散高斯采样提供建议，感谢 Adam Belay 和 Jinyuan Ruan 讨论 AVX 性能。我们感谢 Anish Athalye 和 Derek Leung 审阅了这项工作的草稿，并感谢 Dima Kogan、David Wu、Jean-Philippe Bossuat 和 Samir Menon 的有益对话和反馈。我们感谢 Sebastian Angel 对本工作早期版本中恶意安全性的讨论提出建设性意见，并就如何改进演示文稿提出建议。这项工作得到了美国国家科学基金会（CNS2054869 奖）、谷歌的礼物、Facebook 研究奖和麻省理工学院的 Fintech@CSAIL 倡议的部分支持。 Alexandra Henzinger 得到了美国国家科学基金会研究生研究奖学金的支持，资助号为 2141064 和 EECS 伟大的教育者奖学金。 Matthew M. Hong 由 NIH R01 HG010959 资助。 Vinod Vaikuntanathan 得到了 DARPA 根据协议号 HR00112020023、NSF CNS2154149、MIT-IBM Watson AI、Analog Devices、Microsoft 值得信赖的 AI 资助和 Thornton 家庭教师研究创新奖学金的支持。本材料中表达的任何意见、调查结果和结论或建议均为作者的观点，不一定反映美国政府或 DARPA 的观点。
 
 
+## refrence
+[1] Code for SimplePIR and DoublePIR. https://github. com/ahenzinger/simplepir.
 
+[2] Merkle town. https://merkle.town/.
+
+[3] Mozilla Telemetry Portal, Measurement Dashboard. https://telemetry.mozilla.org/newpipeline/dist.html#!cumulative=0&end_date= 2022-07-17&include_spill=0&keys=none!__ none__!none&max_channel_version=nightly% 252F104&measure=HTTP_TRANSACTION_IS_SSL&min_ channel_version=nightly%252F104&processType= *&product=Firefox&sanitize=1&sort_by_value= 0&sort_keys=submissions&start_date=2022-06- 27&table=1&trim=1&use_submission_date=0. Accessed 19 July 2022.
+
+[4] Might I Get Pwned: A second generation compromised credential checking service. In USENIX Security Symposium, 2022.
+
+[5] Carlos Aguilar-Melchor, Joris Barrier, Laurent Fousse, and Marc-Olivier Killijian. XPIR: Private information retrieval for everyone. PoPETs, 2016.
+
+[6] Ishtiyaque Ahmad, Yuntian Yang, Divyakant Agrawal, Amr El Abbadi, and Trinabh Gupta. Addra: Metadata private voice communication over fully untrusted infrastructure. In OSDI, 2021.
+
+[7] Martin Albrecht, Rachel Player, and Sam Scott. On the concrete hardness of learning with errors. In Journal of Mathematical Cryptology, 2015.
+
+[8] Asra Ali, Tancrède Lepoint, Sarvar Patel, Mariana Raykova, Phillipp Schoppmann, Karn Seth, and Kevin Yeo. Communication–Computation trade-offs in PIR. In USENIX Security Symposium, 2021.
+
+[9] Sebastian Angel, Hao Chen, Kim Laine, and Srinath Setty. PIR with compressed queries and amortized query processing. In Symposium on Security and Privacy, 2018.
+
+[10] Sebastian Angel and Srinath Setty. Unobservable communication over fully untrusted infrastructure. In OSDI,
+
+[11] W. Banaszczyk. Inequalities for convex bodies and polar reciprocal lattices in R𝑛. Discrete & computational geometry, 1995.
+
+[12] Amos Beimel, Yuval Ishai, and Tal Malkin. Reducing the servers’ computation in private information retrieval: PIR with preprocessing. J. Cryptol., 2004.
+
+[13] Mihir Bellare and Phillip Rogaway. Random oracles are practical: A paradigm for designing efficient protocols. In CCS, 1993.
+
+[14] Burton H Bloom. Space/time trade-offs in hash coding with allowable errors. Communications of the ACM,
+
+[15] Elette Boyle, Niv Gilboa, and Yuval Ishai. Function secret sharing: Improvements and extensions. In CCS,
+
+[16] Elette Boyle, Yuval Ishai, Rafael Pass, and Mary Wootters. Can we access a database both locally and privately? In TCC, 2017.
+
+[17] Elette Boyle, Lisa Kohl, and Peter Scholl. Homomorphic secret sharing from lattices without fhe. In EUROCRYPT,
+
+[18] Zvika Brakerski. Fully homomorphic encryption without modulus switching from classical GapSVP. In CRYPTO,
+
+[19] Zvika Brakerski, Nico Döttling, Sanjam Garg, and Giulio Malavolta. Leveraging linear decryption: Rate-1 fullyhomomorphic encryption and time-lock puzzles. In TCC,
+
+[20] Christian Cachin, Silvio Micali, and Markus Stadler. Computationally private information retrieval with polylogarithmic communication. In EUROCRYPT, 1999.
+
+[21] Ran Canetti, Justin Holmgren, and Silas Richelson. Towards doubly efficient private information retrieval. In TCC, 2017.
+
+[22] Yan-Cheng Chang. Single database private information retrieval with logarithmic communication. In ACISP,
+
+[23] Melissa Chase, Sanjam Garg, Mohammad Hajiabadi, Jialin Li, and Peihan Miao. Amortizing rate-1 OT and applications to PIR and PSI. In TCC, 2021.
+
+[24] Massimo Chenal and Qiang Tang. On key recovery attacks against existing somewhat homomorphic encryption schemes. Cryptology ePrint Archive, Report 2014/535, 1.https://ia.cr/2014/535.
+
+[25] Benny Chor, Niv Gilboa, and Moni Naor. Private information retrieval by keywords. Cryptology ePrint Archive, Report 1998/003, 1998. https://ia.cr/1998/003.
+
+[26] Benny Chor, Oded Goldreich, Eyal Kushilevitz, and Madhu Sudan. Private information retrieval. In FOCS,
+
+[27] David Clayton, Christopher Patton, and Thomas Shrimpton. Probabilistic data structures in adversarial environments. In CCS, 2019.
+
+[28] Don Coppersmith and Shmuel Winograd. Matrix multiplication via arithmetic progressions. In STOC, 1987.
+
+[29] Henry Corrigan-Gibbs, Alexandra Henzinger, and Dmitry Kogan. Single-server private information retrieval with sublinear amortized time. In EUROCRYPT, 2022.
+
+[30] Henry Corrigan-Gibbs and Dmitry Kogan. Private information retrieval with sublinear online time. In EUROCRYPT, 2020.
+
+[31] Rasmus Dahlberg, Tobias Pulls, Tom Ritter, and Paul Syverson. Privacy-preserving and incrementallydeployable support for Certificate Transparency in Tor. PoPETS, 2021.
+
+[32] Ivan Damgård and Mads Jurik. A generalisation, a simplification and some applications of Paillier’s probabilistic public-key system. In PKC, 2001.
+
+[33] Joe DeBlasio. Opt-out SCT auditing in Chrome. https://docs.google.com/document/d/16GQ7iN3kB46GSW5b-sfH5MO3nKSYyEb77YsM7TMZGE/edit.
+
+[34] Roger Dingledine, Nick Mathewson, and Paul Syverson. Tor: The Second-Generation onion router. In USENIX Security Symposium, 2004.
+
+[35] Yevgeniy Dodis, Shai Halevi, Ron D. Rothblum, and Daniel Wichs. Spooky encryption and its applications. In CRYPTO, 2016.
+
+[36] Nico Döttling, Sanjam Garg, Yuval Ishai, Giulio Malavolta, Tamer Mour, and Rafail Ostrovsky. Trapdoor hash functions and their applications. In CRYPTO, 2019.
+
+[37] Taher ElGamal. A public key cryptosystem and a signature scheme based on discrete logarithms. IEEE transactions on information theory, 1985.
+
+[38] Junfeng Fan and Frederik Vercauteren. Somewhat practical fully homomorphic encryption. IACR Cryptol. ePrint Arch., 2012.
+
+[39] Prastudy Fauzi, Martha Norberg Hovd, and Håvard Raddum. A practical adaptive key recovery attack on the lgm (gsw-like) cryptosystem. In PQCrypto, 2021.
+
+[40] Prastudy Fauzi, Martha Norberg Hovd, and Håvard Raddum. On the IND-CCA1 security of FHE schemes. Cryptography, 2022.
+
+[41] Michael J. Freedman, Kobbi Nissim, and Benny Pinkas. Efficient private matching and set intersection. In EUROCRYPT, 2004.
+
+[42] Craig Gentry. Fully homomorphic encryption using ideal lattices. In STOC, 2009.
+
+[43] Craig Gentry and Shai Halevi. Compressible FHE with applications to PIR. In TCC, 2019.
+
+[44] Craig Gentry and Zulfikar Ramzan. Single-database private information retrieval with constant communication rate. In ICALP, 2005.
+
+[45] Niv Gilboa and Yuval Ishai. Distributed point functions and their applications. In EUROCRYPT, 2014.
+
+[46] Shafi Goldwasser and Silvio Micali. Probabilistic encryption. Journal of Computer and System Sciences,
+
+[47] Google. Safe Browsing APIs (v4). https://developers. google.com/safe-browsing/v4.
+
+[48] Trinabh Gupta, Natacha Crooks, Whitney Mulhern, Srinath Setty, Lorenzo Alvisi, and Michael Walfish. Scalable and private media consumption with Popcorn. In NSDI,
+
+[49] Daniel Günther, Maurice Heymann, Benny Pinkas, and Thomas Schneider. GPU-accelerated PIR with ClientIndependent preprocessing for Large-Scale applications. In Usenix Security, 2022.
+
+[50] Yuval Ishai, Eyal Kushilevitz, Rafail Ostrovsky, and Amit Sahai. Batch codes and their applications. In STOC, 2004.
+
+[51] Daniel Kales, Olamide Omolola, and Sebastian Ramacher. Revisiting user privacy for certificate transparency. In EuroS&P, 2019.
+
+[52] Dmitry Kogan and Henry Corrigan-Gibbs. Private blocklist lookups with Checklist. In USENIX Security 21,
+
+[53] Eyal Kushilevitz and Rafail Ostrovsky. Replication is not needed: Single database, computationally-private information retrieval. In FOCS, 1997.
+
+[54] Ben Laurie. Certificate transparency. Communications of the ACM, 2014.
+
+[55] Ben Laurie, Adam Langley, and Emilia Kasper. Certificate transparency. RFC 6962, 2013.
+
+[56] François Le Gall. Faster algorithms for rectangular matrix multiplication. In FOCS, 2012.
+
+[57] Lucy Li, Bijeeta Pal, Junade Ali, Nick Sullivan, Rahul Chatterjee, and Thomas Ristenpart. Protocols for checking compromised credentials. In CCS, 2019.
+
+[58] Jilan Lin, Ling Liang, Zheng Qu, Ishtiyaque Ahmad, Liu Liu, Fengbin Tu, Trinabh Gupta, Yufei Ding, and Yuan Xie. INSPIRE: In-storage private information retrieval via protocol and architecture co-design. In ISCA, 2022.
+
+[59] Richard Lindner and Chris Peikert. Better key sizes (and attacks) for LWE-based encryption. In Topics in Cryptology – CT-RSA 2011, 2011.
+
+[60] Helger Lipmaa. An oblivious transfer protocol with logsquared communication. In International Conference on Information Security, 2005.
+
+[61] Jake Loftus, Alexander May, Nigel P. Smart, and Frederik Vercauteren. On CCA-secure somewhat homomorphic encryption. In Ali Miri and Serge Vaudenay, editors, Selected Areas in Cryptography, 2012.
+
+[62] Wouter Lueks and Ian Goldberg. Sublinear scaling for multi-client private information retrieval. In International Conference on Financial Cryptography and Data Security, 2015.
+
+[63] Vadim Lyubashevsky, Chris Peikert, and Oded Regev. On ideal lattices and learning with errors over rings. Journal of the ACM, 2013.
+
+[64] Yiping Ma, Ke Zhong, Tal Rabin, and Sebastian Angel. Incremental offline/online PIR. In USENIX Security,
+
+[65] Sarah Meiklejohn, Joe DeBlasio, Devon O’Brien, Chris Thompson, Kevin Yeo, and Emily Stark. SoK: SCT auditing in Certificate Transparency. In PETS, 2022.
+
+[66] Samir Jordan Menon and David J. Wu. Spiral: Fast, high-rate single-server PIR via FHE composition. In IEEE S&P, 2022.
+
+[67] Muhammad Haris Mughees, Hao Chen, and Ling Ren. OnionPIR: Response efficient single-server PIR. In CCS,
+
+[68] Moni Naor and Eylon Yogev. Bloom filters in adversarial environments. In CRYPTO, 2015.
+
+[69] Tatsuaki Okamoto and Shigenori Uchiyama. A new public-key cryptosystem as secure as factoring. In EUROCRYPT, 1998.
+
+[70] Rafail Ostrovsky and William E Skeith. A survey of single-database private information retrieval: Techniques and applications. In PKC, 2007.
+
+[71] Pascal Paillier. Public-key cryptosystems based on composite degree residuosity classes. In EUROCRYPT, 1999.
+
+[72] Bijeeta Pal, Mazharul Islam, Thomas Ristenpart, and Rahul Chatterjee. Might I Get Pwned: A second generation password breach alerting service. In USENIX Security, 2022.
+
+[73] Chris Peikert, Vinod Vaikuntanathan, and Brent Waters. A framework for efficient and composable oblivious transfer. In CRYPTO, 2008.
+
+[74] Giuseppe Persiano and Kevin Yeo. Limits of preprocessing for single-server PIR. In SODA, 2022.
+
+[75] Joel Reardon, Jeffrey Pound, and Ian Goldberg. Relational-complete private information retrieval. Technical report, University of Waterloo, CACR, 2007.
+
+[76] Oded Regev. On lattices, learning with errors, random linear codes, and cryptography. Journal of the ACM,
+
+[77] Elaine Shi, Waqar Aqeel, Balakrishnan Chandrasekaran, and Bruce Maggs. Puncturable pseudorandom sets and private information retrieval with near-optimal online bandwidth and time. In CRYPTO, 2021.
+
+[78] Emily Stark and Chris Thompson. Opt-in SCT auditing, 2020. https://docs.google.com/document/d/ 1G1Jy8LJgSqJ-B673GnTYIG4b7XRw2ZLtvvSlrqFcl4A/ edit.
+
+[79] Volker Strassen. Gaussian elimination is not optimal. Numerische mathematik, 1969.
+
+[80] Kurt Thomas, Jennifer Pullman, Kevin Yeo, Ananth Raghunathan, Patrick Gage Kelley, Luca Invernizzi, Borbala Benko, Tadek Pietraszek, Sarvar Patel, Dan Boneh, and Elie Bursztein. Protecting accounts from credential stuffing with password breach alerting. In USENIX Security, 2019.
+
+[81] Frank Wang, Catherine Yun, Shafi Goldwasser, Vinod Vaikuntanathan, and Matei Zaharia. Splinter: Practical private queries on public data. In NSDI, 2017.
+
+[82] Ke Coby Wang and Michael K Reiter. Detecting stuffing of a user’s credentials at her own accounts. In USENIX Security 20, 2020.
+
+[83] Virginia Vassilevska Williams. Multiplying matrices faster than Coppersmith-Winograd. In STOC, 2012.
+
+[84] Zhenfei Zhang, Thomas Plantard, and Willy Susilo. On the CCA-1 security of somewhat homomorphic encryption over the integers. In Mark D. Ryan, Ben Smyth, and Guilin Wang, editors, Information Security Practice and Experience, 2012.
+
+[85] Mingxun Zhou, Wei-Kai Lin, Yiannis Tselekounis, and Elaine Shi. Optimal single-server private information retrieval. Cryptology ePrint Archive, Paper 2022/609,https://eprint.iacr.org/2022/609.
 
 
 
