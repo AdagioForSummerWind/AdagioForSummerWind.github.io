@@ -1,11 +1,3 @@
-<!--
- * @Author: JF-011101 2838264218@qq.com
- * @Date: 2022-09-30 07:39:02
- * @LastEditors: JF-011101 2838264218@qq.com
- * @LastEditTime: 2022-09-30 09:21:17
- * @FilePath: \posts\go_grammar\go_chenhao.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 ---
 title: "Go_chenhao"
 date: 2022-09-30T07:39:09+08:00

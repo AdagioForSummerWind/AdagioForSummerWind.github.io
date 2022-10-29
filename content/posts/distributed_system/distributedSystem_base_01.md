@@ -5,7 +5,7 @@ lastmod: 2021-11-10
 tags: [distributed system]
 categories: [School courses]
 slug: Characteristics of distributed system
-draft: false
+draft: true
 ---
 # 分布式系统的特征
 ## 简介

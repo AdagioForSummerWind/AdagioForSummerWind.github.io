@@ -5,7 +5,7 @@ lastmod: 2022-07-31
 tags: [compilation principle]
 categories: [School courses]
 slug: cp practice
-draft: true
+draft: false
 ---
 # 编译原理实战课
 

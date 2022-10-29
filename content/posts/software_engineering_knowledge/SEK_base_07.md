@@ -5,7 +5,7 @@ lastmod: 2021-11-25
 tags: [software engineering knowledge]
 categories: [School courses]
 slug: Software architecture
-draft: false
+draft: true
 ---
 >2022春JOANNA老师的软件体系结构
 

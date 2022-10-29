@@ -4,12 +4,26 @@
         <link>https://jefofrank.xyz/categories/advanced-learning/</link>
         <description>Advanced learning - 分类 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Dec 2021 21:31:10 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/advanced-learning/" rel="self" type="application/rss+xml" /><item>
-    <title>Mysql_advanced_01</title>
-    <link>https://jefofrank.xyz/mysql_advanced_01/</link>
-    <pubDate>Wed, 01 Dec 2021 21:31:10 &#43;0800</pubDate>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/advanced-learning/" rel="self" type="application/rss+xml" /><item>
+    <title>Interesting talk about Linux operating system</title>
+    <link>https://jefofrank.xyz/interesting_talk_linux/</link>
+    <pubDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/mysql_advanced_01/</guid>
-    <description><![CDATA[极客时间学习笔记 MySQL基础 一条sql查询语句 1 2 sql mysql&gt; select * from T where ID=10； 一条简单的查询语句，MYSQL内部发生了什么？ 大体来说，MyS]]></description>
+    <guid>https://jefofrank.xyz/interesting_talk_linux/</guid>
+    <description><![CDATA[趣谈Linux操作系统 入门准备 开篇词 | 为什么要学习Linux操作系统？ 刘超 2019-03-25 我们大学里上过操作系统的课，而且每天都在用操作系统，为什么还要专]]></description>
+</item><item>
+    <title>CN_proto</title>
+    <link>https://jefofrank.xyz/cn_proto/</link>
+    <pubDate>Sun, 17 Jul 2022 10:05:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/cn_proto/</guid>
+    <description><![CDATA[趣谈网络协议 刘超 2018-05-14 开篇词 | 想成为技术牛人？先搞定网络协议！ 工作 15 年，我在 EMC 做过类似 GFS 的分布式存储开发，做过基于 Lucene 的搜索引擎，做过 Hadoop 的运维；在]]></description>
+</item><item>
+    <title>CN_HTTP</title>
+    <link>https://jefofrank.xyz/cn_http/</link>
+    <pubDate>Mon, 24 Jan 2022 20:52:12 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/cn_http/</guid>
+    <description><![CDATA[HTTP 用 Nginx 搭建 Web 服务器，照着网上的文章配好了，但里面那么多的指令，什么 keepalive、rewrite、proxy_pass 都是怎么回事？为什]]></description>
 </item></channel>
 </rss>

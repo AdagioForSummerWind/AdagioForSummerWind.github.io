@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20200325 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20200325" />
+<meta property="og:description" content="Go, the Go Community, and the Pandemic Carmen Andoh, Russ Cox, and Steve Francia
+25 March 2020
+Go always comes second to more basic concerns like personal and family health and safety. Around the world, the past couple months have been terrible, and we are still at the start of this awful pandemic. There are days when it seems like working on anything related to Go should be considered a serious priority inversion." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20200325/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T19:59:29+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20200325"/>
+<meta name="twitter:description" content="Go, the Go Community, and the Pandemic Carmen Andoh, Russ Cox, and Steve Francia
+25 March 2020
+Go always comes second to more basic concerns like personal and family health and safety. Around the world, the past couple months have been terrible, and we are still at the start of this awful pandemic. There are days when it seems like working on anything related to Go should be considered a serious priority inversion."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20200325/" /><link rel="prev" href="https://jefofrank.xyz/gb_20200302/" /><link rel="next" href="https://jefofrank.xyz/gb_20200420/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20200325",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20200325\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1094 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20200325\/","datePublished": "2022-10-29T19:59:29+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20200325</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 19:59:29">2022-10-29 19:59:29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1094 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#conferences-and-meetups">Conferences and Meetups</a></li>
+    <li><a href="#online-training">Online Training</a></li>
+    <li><a href="#job-postings">Job Postings</a></li>
+    <li><a href="#foss-responders">FOSS Responders</a></li>
+    <li><a href="#covid-19-open-source-help-desk">COVID-19 Open-Source Help Desk</a></li>
+    <li><a href="#us-digital-response">U.S. Digital Response</a></li>
+    <li><a href="#plans-for-go">Plans for Go</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-the-go-community-and-the-pandemic">Go, the Go Community, and the Pandemic</h1>
+<p>Carmen Andoh, Russ Cox, and Steve Francia<br>
+25 March 2020</p>
+<p>Go always comes second to more basic concerns like personal and family health and safety. Around the world, the past couple months have been terrible, and we are still at the start of this awful pandemic. There are days when it seems like working on anything related to Go should be considered a serious priority inversion.</p>
+<p>But after we’ve done all we can to prepare ourselves and our families for whatever is coming, getting back to some approximation of a familiar routine and normal work is a helpful coping mechanism. In that spirit, we intend to keep working on Go and trying to help the Go community as much as we can.</p>
+<p>In this post we want to share a few important notes about how the pandemic is affecting the Go community, a few things we’re doing to help, what you can do to help, and our plans for Go itself.</p>
+<h2 id="conferences-and-meetups">Conferences and Meetups</h2>
+<p>The Go community thrives on in-person conferences and meetups. We had anticipated 35 conferences this year and thousands of meetups, nearly all of which have now changed, been postponed, or been canceled. We’ll keep the <a href="https://github.com/golang/go/wiki/Conferences" target="_blank" rel="noopener noreffer">conferences wiki page</a> updated as plans change.</p>
+<p>We want to do everything we can to help support impacted Go conferences. We also want to support efforts to explore new ways for gophers to connect in the time of social distancing. In addition to honoring Google’s existing sponsorships, we are interested to offer support to people planning virtual conference alternatives through the rest of the year. If you are organizing a Go conference and have been impacted, or if you are considering holding a virtual alternative, please reach out to Carmen Andoh at <em>candoh@google.com</em>.</p>
+<p>For conference organizers, the <a href="https://gophers.slack.com/" target="_blank" rel="noopener noreffer">Gophers slack</a> <a href="https://app.slack.com/client/T029RQSE6/C97B0NCVD" target="_blank" rel="noopener noreffer">#conf-organizers</a> channel is a place to discuss contingency plans, best practices, cancellation, and postponement support. It’s also a place to share idea for virtual events, to continue to connect and support the Go community.</p>
+<p>For meetup organizers, the <a href="https://www.meetup.com/pro/go" target="_blank" rel="noopener noreffer">Go Developer Network</a> can provide Zoom for Education licensing to meetups that want to start holding virtual meetings. If you host a meetup, or you’d like to, we encourage you to use this opportunity to get speakers from outside your region to present to your group. For more information, and to get involved, please join the <a href="https://gophers.slack.com/" target="_blank" rel="noopener noreffer">Gophers slack</a> <a href="https://app.slack.com/client/T029RQSE6/C152YB9UZ" target="_blank" rel="noopener noreffer">#remotemeetup</a> channel.</p>
+<h2 id="online-training">Online Training</h2>
+<p>The Go trainers you meet at conferences also travel the globe doing <a href="https://learn.go.dev/" target="_blank" rel="noopener noreffer">in-person training</a> for companies that want help adopting Go. That in-person teaching is crucial to bringing new gophers into the community; we’re incredibly grateful to the trainers for the work they do. Unfortunately, on-site training contracts have all been canceled for the next few months, and the trainers in our community have lost their primary (or sole) source of income. We encourage companies to consider virtual training and workshops during this difficult time. Most trainers are being flexible with pricing, scheduling, and class structure.</p>
+<h2 id="job-postings">Job Postings</h2>
+<p>We know that the current downturn means that some gophers are looking for new jobs. The Go community has built a number of Go-specific job-posting sites, including <a href="https://golang.cafe/" target="_blank" rel="noopener noreffer">Golang Cafe</a>, <a href="https://www.golangprojects.com/" target="_blank" rel="noopener noreffer">Golang Projects</a>, and <a href="https://www.welovegolang.com/" target="_blank" rel="noopener noreffer">We Love Go</a>. The <a href="https://gophers.slack.com/" target="_blank" rel="noopener noreffer">Gophers slack</a> also has many job-hunting channels: search for “job” in the channel list. We encourage employers with any new openings to post in as many appropriate places as possible.</p>
+<h2 id="foss-responders">FOSS Responders</h2>
+<p>We are proud that Go is part of the broader open-source ecosystem. <a href="https://fossresponders.com/" target="_blank" rel="noopener noreffer">FOSS Responders</a> is one effort to help the open-source ecosystem deal with the impacts of the pandemic. If you want to do something to help affected open-source communities, they are coordinating efforts and also have links to other efforts. And if you know of other open-source communities that need help, let them know about FOSS Responders.</p>
+<h2 id="covid-19-open-source-help-desk">COVID-19 Open-Source Help Desk</h2>
+<p>The <a href="https://covid-oss-help.org/" target="_blank" rel="noopener noreffer">COVID-19 Open-Source Help Desk</a> aims to help virologists, epidemiologists, and other domain experts find quick answers to any problems they are having with open-source scientific computing software, from experts in that software, so they can focus their time on what they know best. If you are a developer or a scientific computing expert willing to help by answering the posts of the domain experts, visit the site to learn how to help.</p>
+<h2 id="us-digital-response">U.S. Digital Response</h2>
+<p>For our gophers in the United States, the <a href="https://www.usdigitalresponse.org/" target="_blank" rel="noopener noreffer">U.S. Digital Response</a> is working to connect qualified volunteers to state and local governments that need digital help during this crisis. Quoting the web page, “If you have relevant experience (healthcare, data, engineering &amp; product development, general management, operations, supply chain/procurement and more), can work autonomously through ambiguity, and are ready to jump into a high-intensity environment,” see the site for how to volunteer.</p>
+<h2 id="plans-for-go">Plans for Go</h2>
+<p>Here on the Go team at Google, we recognize that the world around us is changing rapidly and that plans beyond the next couple weeks are not much more than hopeful guesses. That said, right now we are working on what we think are the most important projects for 2020. Like all of you, we’re at reduced capacity, so the work continues slower than planned.</p>
+<p>Our analysis of the Go 2019 user survey is almost complete, and we hope to post it soon.</p>
+<p>At least for now, we intend to keep to our timeline for Go 1.15, with the understanding that it will probably have fewer new features and improvements than we originally planned. We continue to do code reviews, issue triage, and <a href="https://go.dev/s/proposal-minutes" target="_blank" rel="noopener noreffer">proposal review</a>.</p>
+<p><a href="https://go.googlesource.com/tools/&#43;/refs/heads/master/gopls/README.md" target="_blank" rel="noopener noreffer">Gopls</a> is the language-aware backend supporting most Go editors today, and we continue to work toward its 1.0 release.</p>
+<p>The new Go package and module site <a href="https://pkg.go.dev/" target="_blank" rel="noopener noreffer">pkg.go.dev</a> keeps getting better. We’ve been working on usability improvements and new features to better help users find and evaluate Go packages. We’ve also expanded the set of recognized licenses and improved the license detector, with more improvements to come.</p>
+<p>Our <a href="https://go.dev/conduct#values" target="_blank" rel="noopener noreffer">Gopher values</a> are what ground us, now more than ever. We are working extra hard to be friendly, welcoming, patient, thoughtful, respectful, and charitable. We hope everyone in the Go community will try to do the same.</p>
+<p>We’ll continue to use this blog to let you know about important news for the Go ecosystem. In those moments when you’ve taken care of the much more important things going on in your life, we hope you’ll check in and see what we’ve been up to.</p>
+<p>Thank you, as always, for using Go and being part of the Go community. We wish you all the best in these difficult times.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20200325/" data-title="Gb_20200325" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20200325/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20200325/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20200325/" data-title="Gb_20200325"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20200325/" data-title="Gb_20200325"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20200325/" data-title="Gb_20200325"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20200302/" class="prev" rel="prev" title="Gb_20200302"><i class="fas fa-angle-left fa-fw"></i>Gb_20200302</a>
+            <a href="/gb_20200420/" class="next" rel="next" title="Gb_20200420">Gb_20200420<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

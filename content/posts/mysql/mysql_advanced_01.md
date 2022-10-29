@@ -5,7 +5,7 @@ lastmod: 2021-12-01
 tags: [mysql]
 categories: [Advanced learning]
 slug: A query sentence
-draft: false
+draft: true
 ---
 >极客时间学习笔记
 

@@ -1,7 +1,7 @@
 ---
 title: "BigData_base_03"
 date: 2021-11-08T19:28:38+08:00
-lastmod:
+lastmod: 2021-11-08
 tags: [big_data]
 categories: [School courses]
 slug: hdfs

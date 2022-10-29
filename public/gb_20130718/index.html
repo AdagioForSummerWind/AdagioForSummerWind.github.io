@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20130718 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20130718" />
+<meta property="og:description" content="The first Go program Andrew Gerrand
+18 July 2013
+Brad Fitzpatrick and I (Andrew Gerrand) recently started restructuring godoc, and it occurred to me that it is one of the oldest Go programs. Robert Griesemer started writing it back in early 2009, and we’re still using it today.
+When I tweeted about this, Dave Cheney replied with an interesting question: what is the oldest Go program? Rob Pike dug into his mail and found it in an old message to Robert and Ken Thompson." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20130718/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T08:57:20+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20130718"/>
+<meta name="twitter:description" content="The first Go program Andrew Gerrand
+18 July 2013
+Brad Fitzpatrick and I (Andrew Gerrand) recently started restructuring godoc, and it occurred to me that it is one of the oldest Go programs. Robert Griesemer started writing it back in early 2009, and we’re still using it today.
+When I tweeted about this, Dave Cheney replied with an interesting question: what is the oldest Go program? Rob Pike dug into his mail and found it in an old message to Robert and Ken Thompson."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20130718/" /><link rel="prev" href="https://jefofrank.xyz/gb_20130626/" /><link rel="next" href="https://jefofrank.xyz/gb_20130926/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20130718",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20130718\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1736 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20130718\/","datePublished": "2022-10-24T08:57:20+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20130718</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 08:57:20">2022-10-24 08:57:20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1736 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="the-first-go-program">The first Go program</h1>
+<p>Andrew Gerrand<br>
+18 July 2013</p>
+<p>Brad Fitzpatrick and I (Andrew Gerrand) recently started restructuring <a href="https://go.dev/cmd/godoc/" target="_blank" rel="noopener noreffer">godoc</a>, and it occurred to me that it is one of the oldest Go programs. Robert Griesemer started writing it back in early 2009, and we’re still using it today.</p>
+<p>When I <a href="https://twitter.com/enneff/status/357403054632484865" target="_blank" rel="noopener noreffer">tweeted</a> about this, Dave Cheney replied with an <a href="https://twitter.com/davecheney/status/357406479415914497" target="_blank" rel="noopener noreffer">interesting question</a>: what is the oldest Go program? Rob Pike dug into his mail and found it in an old message to Robert and Ken Thompson.</p>
+<p>What follows is the first Go program. It was written by Rob in February 2008, when the team was just Rob, Robert, and Ken. They had a solid feature list (mentioned in <a href="https://commandcenter.blogspot.com.au/2012/06/less-is-exponentially-more.html" target="_blank" rel="noopener noreffer">this blog post</a>) and a rough language specfication. Ken had just finished the first working version of a Go compiler (it didn’t produce native code, but rather transliterated Go code to C for fast prototyping) and it was time to try writing a program with it.</p>
+<p>Rob sent mail to the “Go team”:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">From: Rob &#39;Commander&#39; Pike
+Date: Wed, Feb 6, 2008 at 3:42 PM
+To: Ken Thompson, Robert Griesemer
+Subject: slist
+
+it works now.
+
+roro=% a.out
+(defn foo (add 12 34))
+return: icounter = 4440
+roro=%
+
+here&#39;s the code.
+some ugly hackery to get around the lack of strings.
+</code></pre></td></tr></table>
+</div>
+</div><p>(The <code>icounter</code> line in the program output is the number of executed statements, printed for debugging.)</p>
+<p>// +build OMIT</p>
+<p>package main</p>
+<p>// fake stuff
+type char uint8;</p>
+<p>// const char TESTSTRING[] = &ldquo;(defn foo (add &lsquo;a &lsquo;b))\n&rdquo;;</p>
+<p>type Atom struct {
+string  *[100]char;
+integer int;
+next    *Slist;  /* in hash bucket */
+}</p>
+<p>type List struct {
+car     *Slist;
+cdr     *Slist;
+}</p>
+<p>type Slist struct {
+isatom          bool;
+isstring        bool;
+//union {
+atom    Atom;
+list    List;
+//} u;</p>
+<pre><code>    Free method();
+    Print method();
+    PrintOne method(doparen bool);
+    String method(\*char &lt;-);
+    Integer method(int &lt;-);
+    Car method(\*Slist &lt;-);
+    Cdr method(\*Slist &lt;-);
+</code></pre>
+<p>}</p>
+<p>method (this *Slist) Car(*Slist &lt;-) {
+return this.list.car;
+}</p>
+<p>method (this *Slist) Cdr(*Slist &lt;-) {
+return this.list.cdr;
+}</p>
+<p>method (this *Slist) String(*[100]char &lt;-) {
+return this.atom.string;
+}</p>
+<p>method (this *Slist) Integer(int &lt;-) {
+return this.atom.integer;
+}</p>
+<p>function OpenFile();
+function Parse(*Slist &lt;-);</p>
+<p>//Slist* atom(char *s, int i);</p>
+<p>var token int;
+var peekc int = -1;
+var lineno int32 = 1;</p>
+<p>var input [100*1000]char;
+var inputindex int = 0;
+var tokenbuf [100]char;</p>
+<p>var EOF int = -1;  // BUG should be const</p>
+<p>function main(int32 &lt;-) {
+var list *Slist;</p>
+<pre><code>    OpenFile();
+    for ;; {
+            list = Parse();
+            if list == nil {
+                    break;
+            }
+            list.Print();
+            list.Free();
+            break;
+    }
+
+    return 0;
+</code></pre>
+<p>}</p>
+<p>method (slist *Slist) Free(&lt;-) {
+if slist == nil {
+return;
+}
+if slist.isatom {
+//              free(slist.String());
+} else {
+slist.Car().Free();
+slist.Cdr().Free();
+}
+//      free(slist);
+}</p>
+<p>method (slist *Slist) PrintOne(&lt;- doparen bool) {
+if slist == nil {
+return;
+}
+if slist.isatom {
+if slist.isstring {
+print(slist.String());
+} else {
+print(slist.Integer());
+}
+} else {
+if doparen {
+print(&quot;(&quot;);
+}
+slist.Car().PrintOne(true);
+if slist.Cdr() != nil {
+print(&quot; &ldquo;);
+slist.Cdr().PrintOne(false);
+}
+if doparen {
+print(&quot;)&quot;);
+}
+}
+}</p>
+<p>method (slist *Slist) Print() {
+slist.PrintOne(true);
+print &ldquo;\n&rdquo;;
+}</p>
+<p>function Get(int &lt;-) {
+var c int;</p>
+<pre><code>    if peekc &gt;= 0 {
+            c = peekc;
+            peekc = -1;
+    } else {
+            c = convert(int, input\[inputindex\]);
+            inputindex = inputindex + 1; // BUG should be incr one expr
+            if c == '\\n' {
+                    lineno = lineno + 1;
+            }
+            if c == '\\0' {
+                    inputindex = inputindex - 1;
+                    c = EOF;
+            }
+    }
+    return c;
+</code></pre>
+<p>}</p>
+<p>function WhiteSpace(bool &lt;- c int) {
+return c == ' ' || c == &lsquo;\t&rsquo; || c == &lsquo;\r&rsquo; || c == &lsquo;\n&rsquo;;
+}</p>
+<p>function NextToken() {
+var i, c int;
+var backslash bool;</p>
+<pre><code>    tokenbuf\[0\] = '\\0';     // clear previous token
+    c = Get();
+    while WhiteSpace(c)  {
+            c = Get();
+    }
+    switch c {
+            case EOF:
+                    token = EOF;
+            case '(':
+            case ')':
+                    token = c;
+                    break;
+            case:
+                    for i = 0; i &lt; 100 - 1; {  // sizeof tokenbuf - 1
+                            tokenbuf\[i\] = convert(char, c);
+                            i = i + 1;
+                            c = Get();
+                            if c == EOF {
+                                    break;
+                            }
+                            if WhiteSpace(c) || c == ')' {
+                                    peekc = c;
+                                    break;
+                            }
+                    }
+                    if i &gt;= 100 - 1 {  // sizeof tokenbuf - 1
+                            panic &quot;atom too long\\n&quot;;
+                    }
+                    tokenbuf\[i\] = '\\0';
+                    if '0' &lt;= tokenbuf\[0\] &amp;&amp; tokenbuf\[0\] &lt;= '9' {
+                            token = '0';
+                    } else {
+                            token = 'A';
+                    }
+    }
+</code></pre>
+<p>}</p>
+<p>function Expect(&lt;- c int) {
+if token != c {
+print &ldquo;parse error: expected &ldquo;, c, &ldquo;\n&rdquo;;
+panic &ldquo;parse&rdquo;;
+}
+NextToken();
+}</p>
+<p>// Parse a non-parenthesized list up to a closing paren or EOF
+function ParseList(*Slist &lt;-) {
+var slist, retval *Slist;</p>
+<pre><code>    slist = new(Slist);
+    slist.list.car = nil;
+    slist.list.cdr = nil;
+    slist.isatom = false;
+    slist.isstring = false;
+
+    retval = slist;
+    for ;; {
+            slist.list.car = Parse();
+            if token == ')' {       // empty cdr
+                    break;
+            }
+            if token == EOF {       // empty cdr  BUG SHOULD USE ||
+                    break;
+            }
+            slist.list.cdr = new(Slist);
+            slist = slist.list.cdr;
+    }
+    return retval;
+</code></pre>
+<p>}</p>
+<p>function atom(*Slist &lt;- i int) {  // BUG: uses tokenbuf; should take argument
+var h, length int;
+var slist, tail *Slist;</p>
+<pre><code>    slist = new(Slist);
+    if token == '0' {
+            slist.atom.integer = i;
+            slist.isstring = false;
+    } else {
+            slist.atom.string = new(\[100\]char);
+            var i int;
+            for i = 0; ; i = i + 1 {
+                    (\*slist.atom.string)\[i\] = tokenbuf\[i\];
+                    if tokenbuf\[i\] == '\\0' {
+                            break;
+                    }
+            }
+            //slist.atom.string = &quot;hello&quot;; // BUG! s; //= strdup(s);
+            slist.isstring = true;
+    }
+    slist.isatom = true;
+    return slist;
+</code></pre>
+<p>}</p>
+<p>function atoi(int &lt;-) {  // BUG: uses tokenbuf; should take argument
+var v int = 0;
+for i := 0; &lsquo;0&rsquo; &lt;= tokenbuf[i] &amp;&amp; tokenbuf[i] &lt;= &lsquo;9&rsquo;; i = i + 1 {
+v = 10 * v + convert(int, tokenbuf[i] - &lsquo;0&rsquo;);
+}
+return v;
+}</p>
+<p>function Parse(*Slist &lt;-) {
+var slist *Slist;</p>
+<pre><code>    if token == EOF || token == ')' {
+            return nil;
+    }
+    if token == '(' {
+            NextToken();
+            slist = ParseList();
+            Expect(')');
+            return slist;
+    } else {
+            // Atom
+            switch token {
+                    case EOF:
+                            return nil;
+                    case '0':
+                            slist = atom(atoi());
+                    case '&quot;':
+                    case 'A':
+                            slist = atom(0);
+                    case:
+                            slist = nil;
+                            print &quot;unknown token&quot;; //, token, tokenbuf;
+            }
+            NextToken();
+            return slist;
+    }
+    return nil;
+</code></pre>
+<p>}</p>
+<p>function OpenFile() {
+//strcpy(input, TESTSTRING);
+//inputindex = 0;
+// (defn foo (add 12 34))\n
+inputindex = 0;
+peekc = -1;  // BUG
+EOF = -1;  // BUG
+i := 0;
+input[i] = &lsquo;('; i = i + 1;
+input[i] = &rsquo;d&rsquo;; i = i + 1;
+input[i] = &lsquo;e&rsquo;; i = i + 1;
+input[i] = &lsquo;f&rsquo;; i = i + 1;
+input[i] = &lsquo;n&rsquo;; i = i + 1;
+input[i] = ' &lsquo;; i = i + 1;
+input[i] = &lsquo;f&rsquo;; i = i + 1;
+input[i] = &lsquo;o&rsquo;; i = i + 1;
+input[i] = &lsquo;o&rsquo;; i = i + 1;
+input[i] = ' &lsquo;; i = i + 1;
+input[i] = &lsquo;('; i = i + 1;
+input[i] = &lsquo;a&rsquo;; i = i + 1;
+input[i] = &rsquo;d&rsquo;; i = i + 1;
+input[i] = &rsquo;d&rsquo;; i = i + 1;
+input[i] = ' &lsquo;; i = i + 1;
+input[i] = &lsquo;1&rsquo;; i = i + 1;
+input[i] = &lsquo;2&rsquo;; i = i + 1;
+input[i] = ' &lsquo;; i = i + 1;
+input[i] = &lsquo;3&rsquo;; i = i + 1;
+input[i] = &lsquo;4&rsquo;; i = i + 1;
+input[i] = &lsquo;)'; i = i + 1;
+input[i] = &lsquo;)'; i = i + 1;
+input[i] = &lsquo;\n&rsquo;; i = i + 1;
+NextToken();
+}</p>
+<p>The program parses and prints an <a href="https://en.wikipedia.org/wiki/S-expression" target="_blank" rel="noopener noreffer">S-expression</a>. It takes no user input and has no imports, relying only on the built-in <code>print</code> facility for output. It was written literally the first day there was a <a href="https://go.dev/change/8b8615138da3" target="_blank" rel="noopener noreffer">working but rudimentary compiler</a>. Much of the language wasn’t implemented and some of it wasn’t even specified.</p>
+<p>Still, the basic flavor of the language today is recognizable in this program. Type and variable declarations, control flow, and package statements haven’t changed much.</p>
+<p>But there are many differences and absences. Most significant are the lack of concurrency and interfaces—both considered essential since day 1 but not yet designed.</p>
+<p>A <code>func</code> was a <code>function</code>, and its signature specified return values <em>before</em> arguments, separating them with <code>&lt;-</code>, which we now use as the channel send/receive operator. For example, the <code>WhiteSpace</code> function takes the integer <code>c</code> and returns a boolean.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">function WhiteSpace(bool &lt;- c int)
+</code></pre></td></tr></table>
+</div>
+</div><p>This arrow was a stop-gap measure until a better syntax arose for declaring multiple return values.</p>
+<p>Methods were distinct from functions and had their own keyword.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">method (this *Slist) Car(*Slist &lt;-) {
+    return this.list.car;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>And methods were pre-declared in the struct definition, although that changed soon.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Slist struct {
+    ...
+    Car method(*Slist &lt;-);
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>There were no strings, although they were in the spec. To work around this, Rob had to build the input string as an <code>uint8</code> array with a clumsy construction. (Arrays were rudimentary and slices hadn’t been designed yet, let alone implemented, although there was the unimplemented concept of an “open array”.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">input[i] = &#39;(&#39;; i = i + 1;
+input[i] = &#39;d&#39;; i = i + 1;
+input[i] = &#39;e&#39;; i = i + 1;
+input[i] = &#39;f&#39;; i = i + 1;
+input[i] = &#39;n&#39;; i = i + 1;
+input[i] = &#39; &#39;; i = i + 1;
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>Both <code>panic</code> and <code>print</code> were built-in keywords, not pre-declared functions.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">print &#34;parse error: expected &#34;, c, &#34;\n&#34;;
+panic &#34;parse&#34;;
+</code></pre></td></tr></table>
+</div>
+</div><p>And there are many other little differences; see if you can identify some others.</p>
+<p>Less than two years after this program was written, Go was released as an open source project. Looking back, it is striking how much the language has grown and matured. (The last thing to change between this proto-Go and the Go we know today was the elimination of semicolons.)</p>
+<p>But even more striking is how much we have learned about <em>writing</em> Go code. For instance, Rob called his method receivers <code>this</code>, but now we use shorter context-specific names. There are hundreds of more significant examples and to this day we’re still discovering better ways to write Go code. (Check out the <a href="https://github.com/golang/glog" target="_blank" rel="noopener noreffer">glog package</a>’s clever trick for <a href="https://github.com/golang/glog/blob/c6f9652c7179652e2fd8ed7002330db089f4c9db/glog.go#L893" target="_blank" rel="noopener noreffer">handling verbosity levels</a>.)</p>
+<p>I wonder what we’ll learn tomorrow.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20130718/" data-title="Gb_20130718" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20130718/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20130718/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20130718/" data-title="Gb_20130718"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20130718/" data-title="Gb_20130718"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20130718/" data-title="Gb_20130718"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20130626/" class="prev" rel="prev" title="Gb_20130626"><i class="fas fa-angle-left fa-fw"></i>Gb_20130626</a>
+            <a href="/gb_20130926/" class="next" rel="next" title="Gb_20130926">Gb_20130926<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

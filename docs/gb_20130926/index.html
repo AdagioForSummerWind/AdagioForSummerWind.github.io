@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20130926 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20130926" />
+<meta property="og:description" content="Arrays, slices (and strings): The mechanics of &lsquo;append&rsquo; Rob Pike
+26 September 2013
+Introduction One of the most common features of procedural programming languages is the concept of an array. Arrays seem like simple things but there are many questions that must be answered when adding them to a language, such as:
+ fixed-size or variable-size? is the size part of the type? what do multidimensional arrays look like? does the empty array have meaning?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20130926/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T08:57:59+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20130926"/>
+<meta name="twitter:description" content="Arrays, slices (and strings): The mechanics of &lsquo;append&rsquo; Rob Pike
+26 September 2013
+Introduction One of the most common features of procedural programming languages is the concept of an array. Arrays seem like simple things but there are many questions that must be answered when adding them to a language, such as:
+ fixed-size or variable-size? is the size part of the type? what do multidimensional arrays look like? does the empty array have meaning?"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20130926/" /><link rel="prev" href="https://jefofrank.xyz/gb_20130718/" /><link rel="next" href="https://jefofrank.xyz/gb_20131023/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20130926",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20130926\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  5461 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20130926\/","datePublished": "2022-10-24T08:57:59+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20130926</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 08:57:59">2022-10-24 08:57:59</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5461 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 26 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#arrays">Arrays</a></li>
+    <li><a href="#slices-the-slice-header">Slices: The slice header</a></li>
+    <li><a href="#passing-slices-to-functions">Passing slices to functions</a></li>
+    <li><a href="#pointers-to-slices-method-receivers">Pointers to slices: Method receivers</a></li>
+    <li><a href="#capacity">Capacity</a></li>
+    <li><a href="#make">Make</a></li>
+    <li><a href="#copy">Copy</a></li>
+    <li><a href="#append-an-example">Append: An example</a></li>
+    <li><a href="#append-the-built-in-function">Append: The built-in function</a></li>
+    <li><a href="#nil">Nil</a></li>
+    <li><a href="#strings">Strings</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#more-reading">More reading</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="arrays-slices-and-strings-the-mechanics-of-append">Arrays, slices (and strings): The mechanics of &lsquo;append&rsquo;</h1>
+<p>Rob Pike<br>
+26 September 2013</p>
+<h2 id="introduction">Introduction</h2>
+<p>One of the most common features of procedural programming languages is the concept of an array. Arrays seem like simple things but there are many questions that must be answered when adding them to a language, such as:</p>
+<ul>
+<li>fixed-size or variable-size?</li>
+<li>is the size part of the type?</li>
+<li>what do multidimensional arrays look like?</li>
+<li>does the empty array have meaning?</li>
+</ul>
+<p>The answers to these questions affect whether arrays are just a feature of the language or a core part of its design.</p>
+<p>In the early development of Go, it took about a year to decide the answers to these questions before the design felt right. The key step was the introduction of <em>slices</em>, which built on fixed-size <em>arrays</em> to give a flexible, extensible data structure. To this day, however, programmers new to Go often stumble over the way slices work, perhaps because experience from other languages has colored their thinking.</p>
+<p>In this post we’ll attempt to clear up the confusion. We’ll do so by building up the pieces to explain how the <code>append</code> built-in function works, and why it works the way it does.</p>
+<h2 id="arrays">Arrays</h2>
+<p>Arrays are an important building block in Go, but like the foundation of a building they are often hidden below more visible components. We must talk about them briefly before we move on to the more interesting, powerful, and prominent idea of slices.</p>
+<p>Arrays are not often seen in Go programs because the size of an array is part of its type, which limits its expressive power.</p>
+<p>The declaration</p>
+<p>var buffer [256]byte</p>
+<p>declares the variable <code>buffer</code>, which holds 256 bytes. The type of <code>buffer</code> includes its size, <code>[256]byte</code>. An array with 512 bytes would be of the distinct type <code>[512]byte</code>.</p>
+<p>The data associated with an array is just that: an array of elements. Schematically, our buffer looks like this in memory,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">buffer: byte byte byte ... 256 times ... byte byte byte
+</code></pre></td></tr></table>
+</div>
+</div><p>That is, the variable holds 256 bytes of data and nothing else. We can access its elements with the familiar indexing syntax, <code>buffer[0]</code>, <code>buffer[1]</code>, and so on through <code>buffer[255]</code>. (The index range 0 through 255 covers 256 elements.) Attempting to index <code>buffer</code> with a value outside this range will crash the program.</p>
+<p>There is a built-in function called <code>len</code> that returns the number of elements of an array or slice and also of a few other data types. For arrays, it’s obvious what <code>len</code> returns. In our example, <code>len(buffer)</code> returns the fixed value 256.</p>
+<p>Arrays have their place—they are a good representation of a transformation matrix for instance—but their most common purpose in Go is to hold storage for a slice.</p>
+<h2 id="slices-the-slice-header">Slices: The slice header</h2>
+<p>Slices are where the action is, but to use them well one must understand exactly what they are and what they do.</p>
+<p>A slice is a data structure describing a contiguous section of an array stored separately from the slice variable itself. <em>A slice is not an array</em>. A slice <em>describes</em> a piece of an array.</p>
+<p>Given our <code>buffer</code> array variable from the previous section, we could create a slice that describes elements 100 through 150 (to be precise, 100 through 149, inclusive) by <em>slicing</em> the array:</p>
+<p>var slice []byte = buffer[100:150]</p>
+<p>In that snippet we used the full variable declaration to be explicit. The variable <code>slice</code> has type <code>[]byte</code>, pronounced “slice of bytes”, and is initialized from the array, called <code>buffer</code>, by slicing elements 100 (inclusive) through 150 (exclusive). The more idiomatic syntax would drop the type, which is set by the initializing expression:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var slice = buffer[100:150]
+</code></pre></td></tr></table>
+</div>
+</div><p>Inside a function we could use the short declaration form,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice := buffer[100:150]
+</code></pre></td></tr></table>
+</div>
+</div><p>What exactly is this slice variable? It’s not quite the full story, but for now think of a slice as a little data structure with two elements: a length and a pointer to an element of an array. You can think of it as being built like this behind the scenes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type sliceHeader struct {
+    Length        int
+    ZerothElement *byte
+}
+
+slice := sliceHeader{
+    Length:        50,
+    ZerothElement: &amp;buffer[100],
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Of course, this is just an illustration. Despite what this snippet says that <code>sliceHeader</code> struct is not visible to the programmer, and the type of the element pointer depends on the type of the elements, but this gives the general idea of the mechanics.</p>
+<p>So far we’ve used a slice operation on an array, but we can also slice a slice, like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice2 := slice[5:10]
+</code></pre></td></tr></table>
+</div>
+</div><p>Just as before, this operation creates a new slice, in this case with elements 5 through 9 (inclusive) of the original slice, which means elements 105 through 109 of the original array. The underlying <code>sliceHeader</code> struct for the <code>slice2</code> variable looks like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice2 := sliceHeader{
+    Length:        5,
+    ZerothElement: &amp;buffer[105],
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Notice that this header still points to the same underlying array, stored in the <code>buffer</code> variable.</p>
+<p>We can also <em>reslice</em>, which is to say slice a slice and store the result back in the original slice structure. After</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice = slice[5:10]
+</code></pre></td></tr></table>
+</div>
+</div><p>the <code>sliceHeader</code> structure for the <code>slice</code> variable looks just like it did for the <code>slice2</code> variable. You’ll see reslicing used often, for example to truncate a slice. This statement drops the first and last elements of our slice:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice = slice[1:len(slice)-1]
+</code></pre></td></tr></table>
+</div>
+</div><p>[Exercise: Write out what the <code>sliceHeader</code> struct looks like after this assignment.]</p>
+<p>You’ll often hear experienced Go programmers talk about the “slice header” because that really is what’s stored in a slice variable. For instance, when you call a function that takes a slice as an argument, such as <a href="https://go.dev/pkg/bytes/#IndexRune" target="_blank" rel="noopener noreffer">bytes.IndexRune</a>, that header is what gets passed to the function. In this call,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slashPos := bytes.IndexRune(slice, &#39;/&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><p>the <code>slice</code> argument that is passed to the <code>IndexRune</code> function is, in fact, a “slice header”.</p>
+<p>There’s one more data item in the slice header, which we talk about below, but first let’s see what the existence of the slice header means when you program with slices.</p>
+<h2 id="passing-slices-to-functions">Passing slices to functions</h2>
+<p>It’s important to understand that even though a slice contains a pointer, it is itself a value. Under the covers, it is a struct value holding a pointer and a length. It is <em>not</em> a pointer to a struct.</p>
+<p>This matters.</p>
+<p>When we called <code>IndexRune</code> in the previous example, it was passed a <em>copy</em> of the slice header. That behavior has important ramifications.</p>
+<p>Consider this simple function:</p>
+<p>func AddOneToEachElement(slice []byte) {
+for i := range slice {
+slice[i]++
+}
+}</p>
+<p>It does just what its name implies, iterating over the indices of a slice (using a <code>for</code> <code>range</code> loop), incrementing its elements.</p>
+<p>Try it:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>var buffer [256]byte
+var slice []byte = buffer[100:150]</p>
+<p>func AddOneToEachElement(slice []byte) {
+for i := range slice {
+slice[i]++
+}
+}</p>
+<p>func main() {
+slice := buffer[10:20]
+for i := 0; i &lt; len(slice); i++ {
+slice[i] = byte(i)
+}
+fmt.Println(&ldquo;before&rdquo;, slice)
+AddOneToEachElement(slice)
+fmt.Println(&ldquo;after&rdquo;, slice)
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>(You can edit and re-execute these runnable snippets if you want to explore.)</p>
+<p>Even though the slice <em>header</em> is passed by value, the header includes a pointer to elements of an array, so both the original slice header and the copy of the header passed to the function describe the same array. Therefore, when the function returns, the modified elements can be seen through the original slice variable.</p>
+<p>The argument to the function really is a copy, as this example shows:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>var buffer [256]byte
+var slice []byte = buffer[100:150]</p>
+<p>func SubtractOneFromLength(slice []byte) []byte {
+slice = slice[0 : len(slice)-1]
+return slice
+}</p>
+<p>func main() {
+fmt.Println(&ldquo;Before: len(slice) =&rdquo;, len(slice))
+newSlice := SubtractOneFromLength(slice)
+fmt.Println(&ldquo;After:  len(slice) =&rdquo;, len(slice))
+fmt.Println(&ldquo;After:  len(newSlice) =&rdquo;, len(newSlice))
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>Here we see that the <em>contents</em> of a slice argument can be modified by a function, but its <em>header</em> cannot. The length stored in the <code>slice</code> variable is not modified by the call to the function, since the function is passed a copy of the slice header, not the original. Thus if we want to write a function that modifies the header, we must return it as a result parameter, just as we have done here. The <code>slice</code> variable is unchanged but the returned value has the new length, which is then stored in <code>newSlice</code>,</p>
+<h2 id="pointers-to-slices-method-receivers">Pointers to slices: Method receivers</h2>
+<p>Another way to have a function modify the slice header is to pass a pointer to it. Here’s a variant of our previous example that does this:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>var buffer [256]byte
+var slice []byte = buffer[100:150]</p>
+<p>func PtrSubtractOneFromLength(slicePtr *[]byte) {
+slice := *slicePtr
+*slicePtr = slice[0 : len(slice)-1]
+}</p>
+<p>func main() {
+fmt.Println(&ldquo;Before: len(slice) =&rdquo;, len(slice))
+PtrSubtractOneFromLength(&amp;slice)
+fmt.Println(&ldquo;After:  len(slice) =&rdquo;, len(slice))
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>It seems clumsy in that example, especially dealing with the extra level of indirection (a temporary variable helps), but there is one common case where you see pointers to slices. It is idiomatic to use a pointer receiver for a method that modifies a slice.</p>
+<p>Let’s say we wanted to have a method on a slice that truncates it at the final slash. We could write it like this:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;bytes&rdquo;
+&ldquo;fmt&rdquo;
+)</p>
+<p>type path []byte</p>
+<p>func (p *path) TruncateAtFinalSlash() {
+i := bytes.LastIndex(*p, []byte(&quot;/&quot;))
+if i &gt;= 0 {
+*p = (*p)[0:i]
+}
+}</p>
+<p>func main() {
+pathName := path(&quot;/usr/bin/tso&quot;) // Conversion from string to path.
+pathName.TruncateAtFinalSlash()
+fmt.Printf(&quot;%s\n&quot;, pathName)
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>If you run this example you’ll see that it works properly, updating the slice in the caller.</p>
+<p>[Exercise: Change the type of the receiver to be a value rather than a pointer and run it again. Explain what happens.]</p>
+<p>On the other hand, if we wanted to write a method for <code>path</code> that upper-cases the ASCII letters in the path (parochially ignoring non-English names), the method could be a value because the value receiver will still point to the same underlying array.</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>type path []byte</p>
+<p>func (p path) ToUpper() {
+for i, b := range p {
+if &lsquo;a&rsquo; &lt;= b &amp;&amp; b &lt;= &lsquo;z&rsquo; {
+p[i] = b + &lsquo;A&rsquo; - &lsquo;a&rsquo;
+}
+}
+}</p>
+<p>func main() {
+pathName := path(&quot;/usr/bin/tso&quot;)
+pathName.ToUpper()
+fmt.Printf(&quot;%s\n&quot;, pathName)
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>Here the <code>ToUpper</code> method uses two variables in the <code>for</code> <code>range</code> construct to capture the index and slice element. This form of loop avoids writing <code>p[i]</code> multiple times in the body.</p>
+<p>[Exercise: Convert the <code>ToUpper</code> method to use a pointer receiver and see if its behavior changes.]</p>
+<p>[Advanced exercise: Convert the <code>ToUpper</code> method to handle Unicode letters, not just ASCII.]</p>
+<h2 id="capacity">Capacity</h2>
+<p>Look at the following function that extends its argument slice of <code>ints</code> by one element:</p>
+<p>func Extend(slice []int, element int) []int {
+n := len(slice)
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>(Why does it need to return the modified slice?) Now run it:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func Extend(slice []int, element int) []int {
+n := len(slice)
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>func main() {
+var iBuffer [10]int
+slice := iBuffer[0:0]
+for i := 0; i &lt; 20; i++ {
+slice = Extend(slice, i)
+fmt.Println(slice)
+}
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>See how the slice grows until… it doesn’t.</p>
+<p>It’s time to talk about the third component of the slice header: its <em>capacity</em>. Besides the array pointer and length, the slice header also stores its capacity:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type sliceHeader struct {
+    Length        int
+    Capacity      int
+    ZerothElement *byte
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Capacity</code> field records how much space the underlying array actually has; it is the maximum value the <code>Length</code> can reach. Trying to grow the slice beyond its capacity will step beyond the limits of the array and will trigger a panic.</p>
+<p>After our example slice is created by</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice := iBuffer[0:0]
+</code></pre></td></tr></table>
+</div>
+</div><p>its header looks like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice := sliceHeader{
+    Length:        0,
+    Capacity:      10,
+    ZerothElement: &amp;iBuffer[0],
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Capacity</code> field is equal to the length of the underlying array, minus the index in the array of the first element of the slice (zero in this case). If you want to inquire what the capacity is for a slice, use the built-in function <code>cap</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if cap(slice) == len(slice) {
+    fmt.Println(&#34;slice is full!&#34;)
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="make">Make</h2>
+<p>What if we want to grow the slice beyond its capacity? You can’t! By definition, the capacity is the limit to growth. But you can achieve an equivalent result by allocating a new array, copying the data over, and modifying the slice to describe the new array.</p>
+<p>Let’s start with allocation. We could use the <code>new</code> built-in function to allocate a bigger array and then slice the result, but it is simpler to use the <code>make</code> built-in function instead. It allocates a new array and creates a slice header to describe it, all at once. The <code>make</code> function takes three arguments: the type of the slice, its initial length, and its capacity, which is the length of the array that <code>make</code> allocates to hold the slice data. This call creates a slice of length 10 with room for 5 more (15-10), as you can see by running it:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func main() {</p>
+<pre><code>slice := make(\[\]int, 10, 15)
+fmt.Printf(&quot;len: %d, cap: %d\\n&quot;, len(slice), cap(slice))
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>This snippet doubles the capacity of our <code>int</code> slice but keeps its length the same:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func main() {</p>
+<pre><code>slice := make(\[\]int, 10, 15)
+fmt.Printf(&quot;len: %d, cap: %d\\n&quot;, len(slice), cap(slice))
+newSlice := make(\[\]int, len(slice), 2\*cap(slice))
+for i := range slice {
+    newSlice\[i\] = slice\[i\]
+}
+slice = newSlice
+fmt.Printf(&quot;len: %d, cap: %d\\n&quot;, len(slice), cap(slice))
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>After running this code the slice has much more room to grow before needing another reallocation.</p>
+<p>When creating slices, it’s often true that the length and capacity will be same. The <code>make</code> built-in has a shorthand for this common case. The length argument defaults to the capacity, so you can leave it out to set them both to the same value. After</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gophers := make([]Gopher, 10)
+</code></pre></td></tr></table>
+</div>
+</div><p>the <code>gophers</code> slice has both its length and capacity set to 10.</p>
+<h2 id="copy">Copy</h2>
+<p>When we doubled the capacity of our slice in the previous section, we wrote a loop to copy the old data to the new slice. Go has a built-in function, <code>copy</code>, to make this easier. Its arguments are two slices, and it copies the data from the right-hand argument to the left-hand argument. Here’s our example rewritten to use <code>copy</code>:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func main() {
+slice := make([]int, 10, 15)
+fmt.Printf(&ldquo;len: %d, cap: %d\n&rdquo;, len(slice), cap(slice))</p>
+<pre><code>newSlice := make(\[\]int, len(slice), 2\*cap(slice))
+copy(newSlice, slice)
+</code></pre>
+<p>slice = newSlice
+fmt.Printf(&ldquo;len: %d, cap: %d\n&rdquo;, len(slice), cap(slice))
+}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>The <code>copy</code> function is smart. It only copies what it can, paying attention to the lengths of both arguments. In other words, the number of elements it copies is the minimum of the lengths of the two slices. This can save a little bookkeeping. Also, <code>copy</code> returns an integer value, the number of elements it copied, although it’s not always worth checking.</p>
+<p>The <code>copy</code> function also gets things right when source and destination overlap, which means it can be used to shift items around in a single slice. Here’s how to use <code>copy</code> to insert a value into the middle of a slice.</p>
+<p>// Insert inserts the value into the slice at the specified index,
+// which must be in range.
+// The slice must have room for the new element.
+func Insert(slice []int, index, value int) []int {
+// Grow the slice by one element.
+slice = slice[0 : len(slice)+1]
+// Use copy to move the upper part of the slice out of the way and open a hole.
+copy(slice[index+1:], slice[index:])
+// Store the new value.
+slice[index] = value
+// Return the result.
+return slice
+}</p>
+<p>There are a couple of things to notice in this function. First, of course, it must return the updated slice because its length has changed. Second, it uses a convenient shorthand. The expression</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice[i:]
+</code></pre></td></tr></table>
+</div>
+</div><p>means exactly the same as</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice[i:len(slice)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Also, although we haven’t used the trick yet, we can leave out the first element of a slice expression too; it defaults to zero. Thus</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice[:]
+</code></pre></td></tr></table>
+</div>
+</div><p>just means the slice itself, which is useful when slicing an array. This expression is the shortest way to say “a slice describing all the elements of the array”:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">array[:]
+</code></pre></td></tr></table>
+</div>
+</div><p>Now that’s out of the way, let’s run our <code>Insert</code> function.</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>// Insert inserts the value into the slice at the specified index,
+// which must be in range.
+// The slice must have room for the new element.
+func Insert(slice []int, index, value int) []int {
+// Grow the slice by one element.
+slice = slice[0 : len(slice)+1]
+// Use copy to move the upper part of the slice out of the way and open a hole.
+copy(slice[index+1:], slice[index:])
+// Store the new value.
+slice[index] = value
+// Return the result.
+return slice
+}</p>
+<p>func main() {</p>
+<pre><code>slice := make(\[\]int, 10, 20) // Note capacity &gt; length: room to add element.
+for i := range slice {
+    slice\[i\] = i
+}
+fmt.Println(slice)
+slice = Insert(slice, 5, 99)
+fmt.Println(slice)
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<h2 id="append-an-example">Append: An example</h2>
+<p>A few sections back, we wrote an <code>Extend</code> function that extends a slice by one element. It was buggy, though, because if the slice’s capacity was too small, the function would crash. (Our <code>Insert</code> example has the same problem.) Now we have the pieces in place to fix that, so let’s write a robust implementation of <code>Extend</code> for integer slices.</p>
+<p>func Extend(slice []int, element int) []int {
+n := len(slice)
+if n == cap(slice) {
+// Slice is full; must grow.
+// We double its size and add 1, so if the size is zero we still grow.
+newSlice := make([]int, len(slice), 2*len(slice)+1)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>In this case it’s especially important to return the slice, since when it reallocates the resulting slice describes a completely different array. Here’s a little snippet to demonstrate what happens as the slice fills up:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>// Extend extends the slice by adding the element to the end.
+func Extend(slice []int, element int) []int {
+n := len(slice)
+if n == cap(slice) {
+// Slice is full; must grow.
+// We double its size and add 1, so if the size is zero we still grow.
+newSlice := make([]int, len(slice), 2*len(slice)+1)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>func main() {</p>
+<pre><code>slice := make(\[\]int, 0, 5)
+for i := 0; i &lt; 10; i++ {
+    slice = Extend(slice, i)
+    fmt.Printf(&quot;len=%d cap=%d slice=%v\\n&quot;, len(slice), cap(slice), slice)
+    fmt.Println(&quot;address of 0th element:&quot;, &amp;slice\[0\])
+}
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>Notice the reallocation when the initial array of size 5 is filled up. Both the capacity and the address of the zeroth element change when the new array is allocated.</p>
+<p>With the robust <code>Extend</code> function as a guide we can write an even nicer function that lets us extend the slice by multiple elements. To do this, we use Go’s ability to turn a list of function arguments into a slice when the function is called. That is, we use Go’s variadic function facility.</p>
+<p>Let’s call the function <code>Append</code>. For the first version, we can just call <code>Extend</code> repeatedly so the mechanism of the variadic function is clear. The signature of <code>Append</code> is this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Append(slice []int, items ...int) []int
+</code></pre></td></tr></table>
+</div>
+</div><p>What that says is that <code>Append</code> takes one argument, a slice, followed by zero or more <code>int</code> arguments. Those arguments are exactly a slice of <code>int</code> as far as the implementation of <code>Append</code> is concerned, as you can see:</p>
+<p>// Append appends the items to the slice.
+// First version: just loop calling Extend.
+func Append(slice []int, items &hellip;int) []int {
+for _, item := range items {
+slice = Extend(slice, item)
+}
+return slice
+}</p>
+<p>Notice the <code>for</code> <code>range</code> loop iterating over the elements of the <code>items</code> argument, which has implied type <code>[]int</code>. Also notice the use of the blank identifier <code>_</code> to discard the index in the loop, which we don’t need in this case.</p>
+<p>Try it:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>// Extend extends the slice by adding the element to the end.
+func Extend(slice []int, element int) []int {
+n := len(slice)
+if n == cap(slice) {
+// Slice is full; must grow.
+// We double its size and add 1, so if the size is zero we still grow.
+newSlice := make([]int, len(slice), 2*len(slice)+1)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>// Append appends the items to the slice.
+// First version: just loop calling Extend.
+func Append(slice []int, items &hellip;int) []int {
+for _, item := range items {
+slice = Extend(slice, item)
+}
+return slice
+}</p>
+<p>func main() {</p>
+<pre><code>slice := \[\]int{0, 1, 2, 3, 4}
+fmt.Println(slice)
+slice = Append(slice, 5, 6, 7, 8)
+fmt.Println(slice)
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>Another new technique in this example is that we initialize the slice by writing a composite literal, which consists of the type of the slice followed by its elements in braces:</p>
+<pre><code>slice := \[\]int{0, 1, 2, 3, 4}
+</code></pre>
+<p>The <code>Append</code> function is interesting for another reason. Not only can we append elements, we can append a whole second slice by “exploding” the slice into arguments using the <code>...</code> notation at the call site:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>// Extend extends the slice by adding the element to the end.
+func Extend(slice []int, element int) []int {
+n := len(slice)
+if n == cap(slice) {
+// Slice is full; must grow.
+// We double its size and add 1, so if the size is zero we still grow.
+newSlice := make([]int, len(slice), 2*len(slice)+1)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[0 : n+1]
+slice[n] = element
+return slice
+}</p>
+<p>// Append appends the items to the slice.
+// First version: just loop calling Extend.
+func Append(slice []int, items &hellip;int) []int {
+for _, item := range items {
+slice = Extend(slice, item)
+}
+return slice
+}</p>
+<p>func main() {</p>
+<pre><code>slice1 := \[\]int{0, 1, 2, 3, 4}
+slice2 := \[\]int{55, 66, 77}
+fmt.Println(slice1)
+slice1 = Append(slice1, slice2...) // The '...' is essential!
+fmt.Println(slice1)
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>Of course, we can make <code>Append</code> more efficient by allocating no more than once, building on the innards of <code>Extend</code>:</p>
+<p>// Append appends the elements to the slice.
+// Efficient version.
+func Append(slice []int, elements &hellip;int) []int {
+n := len(slice)
+total := len(slice) + len(elements)
+if total &gt; cap(slice) {
+// Reallocate. Grow to 1.5 times the new size, so we can still grow.
+newSize := total*3/2 + 1
+newSlice := make([]int, total, newSize)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[:total]
+copy(slice[n:], elements)
+return slice
+}</p>
+<p>Here, notice how we use <code>copy</code> twice, once to move the slice data to the newly allocated memory, and then to copy the appending items to the end of the old data.</p>
+<p>Try it; the behavior is the same as before:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>// Append appends the elements to the slice.
+// Efficient version.
+func Append(slice []int, elements &hellip;int) []int {
+n := len(slice)
+total := len(slice) + len(elements)
+if total &gt; cap(slice) {
+// Reallocate. Grow to 1.5 times the new size, so we can still grow.
+newSize := total*3/2 + 1
+newSlice := make([]int, total, newSize)
+copy(newSlice, slice)
+slice = newSlice
+}
+slice = slice[:total]
+copy(slice[n:], elements)
+return slice
+}</p>
+<p>func main() {</p>
+<pre><code>slice1 := \[\]int{0, 1, 2, 3, 4}
+slice2 := \[\]int{55, 66, 77}
+fmt.Println(slice1)
+slice1 = Append(slice1, slice2...) // The '...' is essential!
+fmt.Println(slice1)
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<h2 id="append-the-built-in-function">Append: The built-in function</h2>
+<p>And so we arrive at the motivation for the design of the <code>append</code> built-in function. It does exactly what our <code>Append</code> example does, with equivalent efficiency, but it works for any slice type.</p>
+<p>A weakness of Go is that any generic-type operations must be provided by the run-time. Some day that may change, but for now, to make working with slices easier, Go provides a built-in generic <code>append</code> function. It works the same as our <code>int</code> slice version, but for <em>any</em> slice type.</p>
+<p>Remember, since the slice header is always updated by a call to <code>append</code>, you need to save the returned slice after the call. In fact, the compiler won’t let you call append without saving the result.</p>
+<p>Here are some one-liners intermingled with print statements. Try them, edit them and explore:</p>
+<p>// +build OMIT</p>
+<p>// Copyright 2013 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.</p>
+<p>package main</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func main() {</p>
+<pre><code>// Create a couple of starter slices.
+slice := \[\]int{1, 2, 3}
+slice2 := \[\]int{55, 66, 77}
+fmt.Println(&quot;Start slice: &quot;, slice)
+fmt.Println(&quot;Start slice2:&quot;, slice2)
+
+// Add an item to a slice.
+slice = append(slice, 4)
+fmt.Println(&quot;Add one item:&quot;, slice)
+
+// Add one slice to another.
+slice = append(slice, slice2...)
+fmt.Println(&quot;Add one slice:&quot;, slice)
+
+// Make a copy of a slice (of int).
+slice3 := append(\[\]int(nil), slice...)
+fmt.Println(&quot;Copy a slice:&quot;, slice3)
+
+// Copy a slice to the end of itself.
+fmt.Println(&quot;Before append to self:&quot;, slice)
+slice = append(slice, slice...)
+fmt.Println(&quot;After append to self:&quot;, slice)
+</code></pre>
+<p>}</p>
+<p>Run</p>
+<p>RunKillClose</p>
+<p>It’s worth taking a moment to think about the final one-liner of that example in detail to understand how the design of slices makes it possible for this simple call to work correctly.</p>
+<p>There are lots more examples of <code>append</code>, <code>copy</code>, and other ways to use slices on the community-built <a href="https://go.dev/wiki/SliceTricks" target="_blank" rel="noopener noreffer">“Slice Tricks” Wiki page</a>.</p>
+<h2 id="nil">Nil</h2>
+<p>As an aside, with our newfound knowledge we can see what the representation of a <code>nil</code> slice is. Naturally, it is the zero value of the slice header:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sliceHeader{
+    Length:        0,
+    Capacity:      0,
+    ZerothElement: nil,
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>or just</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sliceHeader{}
+</code></pre></td></tr></table>
+</div>
+</div><p>The key detail is that the element pointer is <code>nil</code> too. The slice created by</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">array[0:0]
+</code></pre></td></tr></table>
+</div>
+</div><p>has length zero (and maybe even capacity zero) but its pointer is not <code>nil</code>, so it is not a nil slice.</p>
+<p>As should be clear, an empty slice can grow (assuming it has non-zero capacity), but a <code>nil</code> slice has no array to put values in and can never grow to hold even one element.</p>
+<p>That said, a <code>nil</code> slice is functionally equivalent to a zero-length slice, even though it points to nothing. It has length zero and can be appended to, with allocation. As an example, look at the one-liner above that copies a slice by appending to a <code>nil</code> slice.</p>
+<h2 id="strings">Strings</h2>
+<p>Now a brief section about strings in Go in the context of slices.</p>
+<p>Strings are actually very simple: they are just read-only slices of bytes with a bit of extra syntactic support from the language.</p>
+<p>Because they are read-only, there is no need for a capacity (you can’t grow them), but otherwise for most purposes you can treat them just like read-only slices of bytes.</p>
+<p>For starters, we can index them to access individual bytes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slash := &#34;/usr/ken&#34;[0] // yields the byte value &#39;/&#39;.
+</code></pre></td></tr></table>
+</div>
+</div><p>We can slice a string to grab a substring:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">usr := &#34;/usr/ken&#34;[0:4] // yields the string &#34;/usr&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>It should be obvious now what’s going on behind the scenes when we slice a string.</p>
+<p>We can also take a normal slice of bytes and create a string from it with the simple conversion:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">str := string(slice)
+</code></pre></td></tr></table>
+</div>
+</div><p>and go in the reverse direction as well:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">slice := []byte(usr)
+</code></pre></td></tr></table>
+</div>
+</div><p>The array underlying a string is hidden from view; there is no way to access its contents except through the string. That means that when we do either of these conversions, a copy of the array must be made. Go takes care of this, of course, so you don’t have to. After either of these conversions, modifications to the array underlying the byte slice don’t affect the corresponding string.</p>
+<p>An important consequence of this slice-like design for strings is that creating a substring is very efficient. All that needs to happen is the creation of a two-word string header. Since the string is read-only, the original string and the string resulting from the slice operation can share the same array safely.</p>
+<p>A historical note: The earliest implementation of strings always allocated, but when slices were added to the language, they provided a model for efficient string handling. Some of the benchmarks saw huge speedups as a result.</p>
+<p>There’s much more to strings, of course, and a <a href="https://blog.golang.org/strings" target="_blank" rel="noopener noreffer">separate blog post</a> covers them in greater depth.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>To understand how slices work, it helps to understand how they are implemented. There is a little data structure, the slice header, that is the item associated with the slice variable, and that header describes a section of a separately allocated array. When we pass slice values around, the header gets copied but the array it points to is always shared.</p>
+<p>Once you appreciate how they work, slices become not only easy to use, but powerful and expressive, especially with the help of the <code>copy</code> and <code>append</code> built-in functions.</p>
+<h2 id="more-reading">More reading</h2>
+<p>There’s lots to find around the intertubes about slices in Go. As mentioned earlier, the <a href="https://go.dev/wiki/SliceTricks" target="_blank" rel="noopener noreffer">“Slice Tricks” Wiki page</a> has many examples. The <a href="https://blog.golang.org/go-slices-usage-and-internals" target="_blank" rel="noopener noreffer">Go Slices</a> blog post describes the memory layout details with clear diagrams. Russ Cox’s <a href="https://research.swtch.com/godata" target="_blank" rel="noopener noreffer">Go Data Structures</a> article includes a discussion of slices along with some of Go’s other internal data structures.</p>
+<p>There is much more material available, but the best way to learn about slices is to use them.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20130926/" data-title="Gb_20130926" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20130926/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20130926/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20130926/" data-title="Gb_20130926"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20130926/" data-title="Gb_20130926"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20130926/" data-title="Gb_20130926"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20130718/" class="prev" rel="prev" title="Gb_20130718"><i class="fas fa-angle-left fa-fw"></i>Gb_20130718</a>
+            <a href="/gb_20131023/" class="next" rel="next" title="Gb_20131023">Gb_20131023<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

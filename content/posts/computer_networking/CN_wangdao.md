@@ -1,11 +1,11 @@
 ---
 title: "CN_wangdao"
 date: 2022-06-03T10:46:24+08:00
-lastmod:
-tags: []
-categories: []
-slug:
-draft: true
+lastmod: 2022-06-03
+tags: [computer network]
+categories: [School courses]
+slug: CN-wangdao
+draft: false
 ---
 ## 第1章计算机网络体系结构
 ### 1.1计算机网络概述

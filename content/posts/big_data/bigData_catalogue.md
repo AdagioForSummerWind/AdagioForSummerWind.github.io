@@ -1,7 +1,7 @@
 ---
 title: "BidData_catalogue"
 date: 2021-11-08T16:39:35+08:00
-lastmod:
+lastmod: 2021-11-08
 tags: [catalogue]
 categories: [Catalogue]
 slug: BigData_catalogue

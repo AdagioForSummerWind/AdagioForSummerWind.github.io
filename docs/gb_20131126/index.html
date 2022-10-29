@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20131126 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20131126" />
+<meta property="og:description" content="Text normalization in Go Marcel van Lohuizen
+26 November 2013
+Introduction An earlier post talked about strings, bytes and characters in Go. I’ve been working on various packages for multilingual text processing for the go.text repository. Several of these packages deserve a separate blog post, but today I want to focus on go.text/unicode/norm, which handles normalization, a topic touched in the strings article and the subject of this post. Normalization works at a higher level of abstraction than raw bytes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20131126/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T09:04:20+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20131126"/>
+<meta name="twitter:description" content="Text normalization in Go Marcel van Lohuizen
+26 November 2013
+Introduction An earlier post talked about strings, bytes and characters in Go. I’ve been working on various packages for multilingual text processing for the go.text repository. Several of these packages deserve a separate blog post, but today I want to focus on go.text/unicode/norm, which handles normalization, a topic touched in the strings article and the subject of this post. Normalization works at a higher level of abstraction than raw bytes."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20131126/" /><link rel="prev" href="https://jefofrank.xyz/gb_20131110/" /><link rel="next" href="https://jefofrank.xyz/gb_20131201/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20131126",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20131126\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  2069 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20131126\/","datePublished": "2022-10-24T09:04:20+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20131126</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 09:04:20">2022-10-24 09:04:20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2069 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#what-is-normalization">What is normalization?</a></li>
+    <li><a href="#gos-approach-to-normalization">Go’s approach to normalization</a></li>
+    <li><a href="#why-bother">Why bother?</a></li>
+    <li><a href="#what-is-a-character">What is a character?</a></li>
+    <li><a href="#writing-in-normal-form">Writing in normal form</a></li>
+    <li><a href="#catching-look-alikes">Catching look-alikes</a></li>
+    <li><a href="#correct-text-modifications">Correct text modifications</a></li>
+    <li><a href="#iteration">Iteration</a></li>
+    <li><a href="#performing-magic">Performing magic</a></li>
+    <li><a href="#normalization-info">Normalization info</a></li>
+    <li><a href="#performance">Performance</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="text-normalization-in-go">Text normalization in Go</h1>
+<p>Marcel van Lohuizen<br>
+26 November 2013</p>
+<h2 id="introduction">Introduction</h2>
+<p>An earlier <a href="https://blog.golang.org/strings" target="_blank" rel="noopener noreffer">post</a> talked about strings, bytes and characters in Go. I’ve been working on various packages for multilingual text processing for the go.text repository. Several of these packages deserve a separate blog post, but today I want to focus on <a href="https://pkg.go.dev/golang.org/x/text/unicode/norm" target="_blank" rel="noopener noreffer">go.text/unicode/norm</a>, which handles normalization, a topic touched in the <a href="https://blog.golang.org/strings" target="_blank" rel="noopener noreffer">strings article</a> and the subject of this post. Normalization works at a higher level of abstraction than raw bytes.</p>
+<p>To learn pretty much everything you ever wanted to know about normalization (and then some), <a href="http://unicode.org/reports/tr15/" target="_blank" rel="noopener noreffer">Annex 15 of the Unicode Standard</a> is a good read. A more approachable article is the corresponding <a href="http://en.wikipedia.org/wiki/Unicode_equivalence" target="_blank" rel="noopener noreffer">Wikipedia page</a>. Here we focus on how normalization relates to Go.</p>
+<h2 id="what-is-normalization">What is normalization?</h2>
+<p>There are often several ways to represent the same string. For example, an é (e-acute) can be represented in a string as a single rune (&quot;\u00e9&quot;) or an ‘e’ followed by an acute accent (“e\u0301”). According to the Unicode standard, these two are “canonically equivalent” and should be treated as equal.</p>
+<p>Using a byte-to-byte comparison to determine equality would clearly not give the right result for these two strings. Unicode defines a set of normal forms such that if two strings are canonically equivalent and are normalized to the same normal form, their byte representations are the same.</p>
+<p>Unicode also defines a “compatibility equivalence” to equate characters that represent the same characters, but may have a different visual appearance. For example, the superscript digit ‘⁹’ and the regular digit ‘9’ are equivalent in this form.</p>
+<p>For each of these two equivalence forms, Unicode defines a composing and decomposing form. The former replaces runes that can combine into a single rune with this single rune. The latter breaks runes apart into their components. This table shows the names, all starting with NF, by which the Unicode Consortium identifies these forms:</p>
+<p>.padtable td, .padtable th { padding-right: 10px; }</p>
+<p> </p>
+<p>Composing</p>
+<p>Decomposing</p>
+<p>Canonical equivalence</p>
+<p>NFC</p>
+<p>NFD</p>
+<p>Compatibility equivalence</p>
+<p>NFKC</p>
+<p>NFKD</p>
+<h2 id="gos-approach-to-normalization">Go’s approach to normalization</h2>
+<p>As mentioned in the strings blog post, Go does not guarantee that characters in a string are normalized. However, the go.text packages can compensate. For example, the <a href="https://pkg.go.dev/golang.org/x/text/collate" target="_blank" rel="noopener noreffer">collate</a> package, which can sort strings in a language-specific way, works correctly even with unnormalized strings. The packages in go.text do not always require normalized input, but in general normalization may be necessary for consistent results.</p>
+<p>Normalization isn’t free but it is fast, particularly for collation and searching or if a string is either in NFD or in NFC and can be converted to NFD by decomposing without reordering its bytes. In practice, <a href="http://www.macchiato.com/unicode/nfc-faq#TOC-How-much-text-is-already-NFC-" target="_blank" rel="noopener noreffer">99.98%</a> of the web’s HTML page content is in NFC form (not counting markup, in which case it would be more). By far most NFC can be decomposed to NFD without the need for reordering (which requires allocation). Also, it is efficient to detect when reordering is necessary, so we can save time by doing it only for the rare segments that need it.</p>
+<p>To make things even better, the collation package typically does not use the norm package directly, but instead uses the norm package to interleave normalization information with its own tables. Interleaving the two problems allows for reordering and normalization on the fly with almost no impact on performance. The cost of on-the-fly normalization is compensated by not having to normalize text beforehand and ensuring that the normal form is maintained upon edits. The latter can be tricky. For instance, the result of concatenating two NFC-normalized strings is not guaranteed to be in NFC.</p>
+<p>Of course, we can also avoid the overhead outright if we know in advance that a string is already normalized, which is often the case.</p>
+<h2 id="why-bother">Why bother?</h2>
+<p>After all this discussion about avoiding normalization, you might ask why it’s worth worrying about at all. The reason is that there are cases where normalization is required and it is important to understand what those are, and in turn how to do it correctly.</p>
+<p>Before discussing those, we must first clarify the concept of ‘character’.</p>
+<h2 id="what-is-a-character">What is a character?</h2>
+<p>As was mentioned in the strings blog post, characters can span multiple runes. For example, an ‘e’ and ‘◌́’ (acute “\u0301”) can combine to form ‘é’ (“e\u0301” in NFD).  Together these two runes are one character. The definition of a character may vary depending on the application. For normalization we will define it as a sequence of runes that starts with a starter, a rune that does not modify or combine backwards with any other rune, followed by possibly empty sequence of non-starters, that is, runes that do (typically accents). The normalization algorithm processes one character at a time.</p>
+<p>Theoretically, there is no bound to the number of runes that can make up a Unicode character. In fact, there are no restrictions on the number of modifiers that can follow a character and a modifier may be repeated, or stacked. Ever seen an ‘e’ with three acutes? Here you go: ‘é́́’. That is a perfectly valid 4-rune character according to the standard.</p>
+<p>As a consequence, even at the lowest level, text needs to be processed in increments of unbounded chunk sizes. This is especially awkward with a streaming approach to text processing, as used by Go’s standard Reader and Writer interfaces, as that model potentially requires any intermediate buffers to have unbounded size as well. Also, a straightforward implementation of normalization will have a O(n²) running time.</p>
+<p>There are really no meaningful interpretations for such large sequences of modifiers for practical applications. Unicode defines a Stream-Safe Text format, which allows capping the number of modifiers (non-starters) to at most 30, more than enough for any practical purpose. Subsequent modifiers will be placed after a freshly inserted Combining Grapheme Joiner (CGJ or U+034F). Go adopts this approach for all normalization algorithms. This decision gives up a little conformance but gains a little safety.</p>
+<h2 id="writing-in-normal-form">Writing in normal form</h2>
+<p>Even if you don’t need to normalize text within your Go code, you might still want to do so when communicating to the outside world. For example, normalizing to NFC might compact your text, making it cheaper to send down a wire. For some languages, like Korean, the savings can be substantial. Also, some external APIs might expect text in a certain normal form. Or you might just want to fit in and output your text as NFC like the rest of the world.</p>
+<p>To write your text as NFC, use the <a href="https://pkg.go.dev/golang.org/x/text/unicode/norm" target="_blank" rel="noopener noreffer">unicode/norm</a> package to wrap your <code>io.Writer</code> of choice:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">wc := norm.NFC.Writer(w)
+defer wc.Close()
+// write as before...
+</code></pre></td></tr></table>
+</div>
+</div><p>If you have a small string and want to do a quick conversion, you can use this simpler form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">norm.NFC.Bytes(b)
+</code></pre></td></tr></table>
+</div>
+</div><p>Package norm provides various other methods for normalizing text. Pick the one that suits your needs best.</p>
+<h2 id="catching-look-alikes">Catching look-alikes</h2>
+<p>Can you tell the difference between ‘K’ (&quot;\u004B&quot;) and ‘K’ (Kelvin sign “\u212A”) or ‘Ω’ (&quot;\u03a9&quot;) and ‘Ω’ (Ohm sign “\u2126”)? It is easy to overlook the sometimes minute differences between variants of the same underlying character. It is generally a good idea to disallow such variants in identifiers or anything where deceiving users with such look-alikes can pose a security hazard.</p>
+<p>The compatibility normal forms, NFKC and NFKD, will map many visually nearly identical forms to a single value. Note that it will not do so when two symbols look alike, but are really from two different alphabets. For example the Latin ‘o’, Greek ‘ο’, and Cyrillic ‘о’ are still different characters as defined by these forms.</p>
+<h2 id="correct-text-modifications">Correct text modifications</h2>
+<p>The norm package might also come to the rescue when one needs to modify text. Consider a case where you want to search and replace the word “cafe” with its plural form “cafes”.  A code snippet could look like this.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">s := &#34;We went to eat at multiple cafe&#34;
+cafe := &#34;cafe&#34;
+if p := strings.Index(s, cafe); p != -1 {
+    p += len(cafe)
+    s = s[:p] + &#34;s&#34; + s[p:]
+}
+fmt.Println(s)
+</code></pre></td></tr></table>
+</div>
+</div><p>This prints “We went to eat at multiple cafes” as desired and expected. Now consider our text contains the French spelling “café” in NFD form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">s := &#34;We went to eat at multiple cafe\u0301&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>Using the same code from above, the plural “s” would still be inserted after the ‘e’, but before the acute, resulting in  “We went to eat at multiple cafeś”.  This behavior is undesirable.</p>
+<p>The problem is that the code does not respect the boundaries between multi-rune characters and inserts a rune in the middle of a character.  Using the norm package, we can rewrite this piece of code as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">s := &#34;We went to eat at multiple cafe\u0301&#34;
+cafe := &#34;cafe&#34;
+if p := strings.Index(s, cafe); p != -1 {
+    p += len(cafe)
+    if bp := norm.FirstBoundary(s[p:]); bp &gt; 0 {
+        p += bp
+    }
+    s = s[:p] + &#34;s&#34; + s[p:]
+}
+fmt.Println(s)
+</code></pre></td></tr></table>
+</div>
+</div><p>This may be a contrived example, but the gist should be clear. Be mindful of the fact that characters can span multiple runes. Generally these kinds of problems can be avoided by using search functionality that respects character boundaries (such as the planned go.text/search package.)</p>
+<h2 id="iteration">Iteration</h2>
+<p>Another tool provided by the norm package that may help dealing with character boundaries is its iterator, <a href="https://pkg.go.dev/golang.org/x/text/unicode/norm#Iter" target="_blank" rel="noopener noreffer"><code>norm.Iter</code></a>. It iterates over characters one at a time in the normal form of choice.</p>
+<h2 id="performing-magic">Performing magic</h2>
+<p>As mentioned earlier, most text is in NFC form, where base characters and modifiers are combined into a single rune whenever possible.  For the purpose of analyzing characters, it is often easier to handle runes after decomposition into their smallest components. This is where the NFD form comes in handy. For example, the following piece of code creates a <code>transform.Transformer</code> that decomposes text into its smallest parts, removes all accents, and then recomposes the text into NFC:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">import (
+    &#34;unicode&#34;
+
+    &#34;golang.org/x/text/transform&#34;
+    &#34;golang.org/x/text/unicode/norm&#34;
+)
+
+isMn := func(r rune) bool {
+    return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
+}
+t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
+</code></pre></td></tr></table>
+</div>
+</div><p>The resulting <code>Transformer</code> can be used to remove accents from an <code>io.Reader</code> of choice as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">r = transform.NewReader(r, t)
+// read as before ...
+</code></pre></td></tr></table>
+</div>
+</div><p>This will, for example, convert any mention of “cafés” in the text to “cafes”, regardless of the normal form in which the original text was encoded.</p>
+<h2 id="normalization-info">Normalization info</h2>
+<p>As mentioned earlier, some packages precompute normalizations into their tables to minimize the need for normalization at run time. The type <code>norm.Properties</code> provides access to the per-rune information needed by these packages, most notably the Canonical Combining Class and decomposition information. Read the <a href="https://pkg.go.dev/golang.org/x/text/unicode/norm#Properties" target="_blank" rel="noopener noreffer">documentation</a> for this type if you want to dig deeper.</p>
+<h2 id="performance">Performance</h2>
+<p>To give an idea of the performance of normalization, we compare it against the performance of strings.ToLower. The sample in the first row is both lowercase and NFC and can in every case be returned as is. The second sample is neither and requires writing a new version.</p>
+<p>Input</p>
+<p>ToLower</p>
+<p>NFC Append</p>
+<p>NFC Transform</p>
+<p>NFC Iter</p>
+<p>nörmalization</p>
+<p>199 ns</p>
+<p>137 ns</p>
+<p>133 ns</p>
+<p>251 ns (621 ns)</p>
+<p>No\u0308rmalization</p>
+<p>427 ns</p>
+<p>836 ns</p>
+<p>845 ns</p>
+<p>573 ns (948 ns)</p>
+<p>The column with the results for the iterator shows both the measurement with and without initialization of the iterator, which contain buffers that don’t need to be reinitialized upon reuse.</p>
+<p>As you can see, detecting whether a string is normalized can be quite efficient. A lot of the cost of normalizing in the second row is for the initialization of buffers, the cost of which is amortized when one is processing larger strings. As it turns out, these buffers are rarely needed, so we may change the implementation at some point to speed up the common case for small strings even further.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>If you’re dealing with text inside Go, you generally do not have to use the unicode/norm package to normalize your text. The package may still be useful for things like ensuring that strings are normalized before sending them out or to do advanced text manipulation.</p>
+<p>This article briefly mentioned the existence of other go.text packages as well as multilingual text processing and it may have raised more questions than it has given answers. The discussion of these topics, however, will have to wait until another day.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20131126/" data-title="Gb_20131126" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20131126/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20131126/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20131126/" data-title="Gb_20131126"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20131126/" data-title="Gb_20131126"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20131126/" data-title="Gb_20131126"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20131110/" class="prev" rel="prev" title="Gb_20131110"><i class="fas fa-angle-left fa-fw"></i>Gb_20131110</a>
+            <a href="/gb_20131201/" class="next" rel="next" title="Gb_20131201">Gb_20131201<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

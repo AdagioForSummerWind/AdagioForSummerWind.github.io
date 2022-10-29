@@ -1,11 +1,11 @@
 ---
-title: "Interesting_talk_linux"
+title: "Interesting talk about Linux operating system"
 date: 2022-08-05T22:05:00+08:00
-lastmod:
-tags: []
-categories: []
-slug:
-draft: true
+lastmod: 2022-08-08
+tags: [linux]
+categories: [Advanced learning]
+slug: Interesting talk about Linux
+draft: false
 ---
 
 # 趣谈Linux操作系统

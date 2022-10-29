@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DistributedSystem_HongweiDu_13 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="DistributedSystem_HongweiDu_13" />
+<meta property="og:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Web Searching Technologies Some helpful web sites： A history of search engines: http://www.wiley.com/legacy/compbooks/sonnenreich/webdev/history.html Open source search engines written in Java: http://java-source.net/open-source/search-engines Robots: http://www.robotstxt.org/wc/robots.html Search Engines Architecture： Spiders (Web Craw" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/distributedsystem_hongweidu_13/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-01T15:21:48+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_13"/>
+<meta name="twitter:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Web Searching Technologies Some helpful web sites： A history of search engines: http://www.wiley.com/legacy/compbooks/sonnenreich/webdev/history.html Open source search engines written in Java: http://java-source.net/open-source/search-engines Robots: http://www.robotstxt.org/wc/robots.html Search Engines Architecture： Spiders (Web Craw"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/distributedsystem_hongweidu_13/" /><link rel="prev" href="https://jefofrank.xyz/distributedsystem_hongweidu_12/" /><link rel="next" href="https://jefofrank.xyz/distributedsystem_hongweidu_catalogue/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_13",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/distributedsystem_hongweidu_13\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "distributed system","wordcount":  2096 ,
+        "url": "https:\/\/jefofrank.xyz\/distributedsystem_hongweidu_13\/","datePublished": "2022-01-01T15:21:48+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DistributedSystem_HongweiDu_13</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-01 15:21:48">2022-01-01 15:21:48</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2096 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2021哈工大深圳堵宏伟分布式系统课程笔记</p>
+</blockquote>
+<h1 id="web-searching-technologies">Web Searching Technologies</h1>
+<p>Some helpful web sites：</p>
+<ul>
+<li>A history of search engines:
+<ul>
+<li><a href="http://www.wiley.com/legacy/compbooks/sonnenreich/webdev/history.html" target="_blank" rel="noopener noreffer">http://www.wiley.com/legacy/compbooks/sonnenreich/webdev/history.html</a></li>
+</ul>
+</li>
+<li>Open source search engines written in Java:
+<ul>
+<li><a href="http://java-source.net/open-source/search-engines" target="_blank" rel="noopener noreffer">http://java-source.net/open-source/search-engines</a></li>
+</ul>
+</li>
+<li>Robots:
+<ul>
+<li><a href="http://www.robotstxt.org/wc/robots.html" target="_blank" rel="noopener noreffer">http://www.robotstxt.org/wc/robots.html</a></li>
+</ul>
+</li>
+</ul>
+<p>Search Engines Architecture：</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101224649.png" /></li>
+</ul>
+<p>Spiders (Web Crawler)：</p>
+<ul>
+<li>Automatically Retrieve web pages
+<ul>
+<li>Start with an URL, retrieving the web page</li>
+<li>Find all URLs on the web page and recursively retrieve not-yet searched URLs</li>
+</ul>
+</li>
+<li>Algorithmic Issues
+<ul>
+<li>Efficiency and Quality: how to quickly gather as many useful web pages as possible?</li>
+<li>How to choose the next URL?</li>
+<li>How to avoid overloaded sub-networks?</li>
+</ul>
+</li>
+</ul>
+<p>Indexer：</p>
+<ul>
+<li>Select terms (keywords) to index a document
+<ul>
+<li>need co-operation from authors of webpage through Meta tags (next to Title tag in html files) to indicate specific terms to index
+<ul>
+<li>
+<META  name="keywords" content=“retrieval, sensor net, cloudcomp”>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Algorithmic issues:
+<ul>
+<li>How to choose terms/phrases to index documents, such that user queries can be returned accurately and efficiently</li>
+<li>How to index documents encoded in different types (multimedia data retrieval)</li>
+</ul>
+</li>
+</ul>
+<p>Database：</p>
+<ul>
+<li>Structured data (see Bigtable for Google)
+<ul>
+<li>Bigtable: A Distributed Storage System for Structured Data, CACM, Jun 2008</li>
+</ul>
+</li>
+<li>Parallel search and distributed storage</li>
+<li>Algorithmic issues:
+<ul>
+<li>Data partitioning and distributed storage: store petabytes of data across thousands of servers</li>
+<li>Real-time data retrieval and update (short latency)</li>
+<li>Fault-tolerance (data redundancy)</li>
+</ul>
+</li>
+</ul>
+<p>Search Engine：</p>
+<ul>
+<li>Return the most relevant documents for queries</li>
+<li>Algorithmic Issues:
+<ul>
+<li>Parallel search (e.g., map-reduce techniques)</li>
+<li>Relevance analysis</li>
+</ul>
+</li>
+</ul>
+<p>Major Products of Search Engines：</p>
+<ul>
+<li>Alta vista</li>
+<li>Google</li>
+<li>Goto</li>
+<li>Lycos</li>
+<li>Yahoo</li>
+<li>…</li>
+</ul>
+<p>Search Engine Sizes (Dec 11, 2001)：</p>
+<ul>
+<li>Estimated total web pages ~ 2 billion</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225045.png" /></li>
+<li>Shaded area for GG and INKTOMI are pages indexed but not visited</li>
+</ul>
+<p>Difficulties for Internet Information Retrieval：</p>
+<ul>
+<li>Diversified Users (from layman to computer nerds).
+<ul>
+<li>Can we develop an evolving system that adapts to user?</li>
+</ul>
+</li>
+<li>Ambiguity of language expression
+<ul>
+<li>This is an important issue due to varieties of data on the Internet</li>
+<li>How do we collect and apply user profiling techniques to resolve it?</li>
+</ul>
+</li>
+<li>False Information
+<ul>
+<li>Phising, Spam, Misleading Advertisement</li>
+</ul>
+</li>
+</ul>
+<p>Spider Architecture：</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225159.png" /></li>
+</ul>
+<p>Spider Programming: start with HTTP…：</p>
+<ul>
+<li>Spiders use HTTP protocol to retrieve data…</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">java
+public class HttpClientGet {
+    public static void main(String[] args) throws Exception {
+        String serverUrl = &#34;www.cs.cityu.edu.hk&#34;;
+        Socket s = new Socket(serverUrl, 80);
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        PrintStream out = new PrintStream(s.getOutputStream());
+        out.println(&#34;GET /~jia/index.html HTTP/1.0&#34;);
+	 out.println(); // “GET” must be followed by a blank line.
+        String line;
+        while ((line = in.readLine()) != null) {
+            System.out.println(&#34;&gt; &#34; + line);
+        }
+        s.close();
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>A Simple HTTP Server:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">java
+public class HttpServer {
+    public static void main(String argv[]) throws Exception {
+	 ServerSocket serverSock = new ServerSocket(8632); // open server socket at port
+        while (true) {
+		Socket new_s = serverSock.accept();
+                	serveRequest(new_s);
+		client.close(); }
+    }
+    public static void serveRequest(Socket s) throws Exception {
+        PrintStream out = new PrintStream(s.getOutputStream());
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        String httpCmd = in.readLine(); // The HTTP Request is httpCmd;
+        String[] httpArgs = httpCmd.split(&#34; &#34;);
+        if (httpArgs.length &lt; 2 || !httpArgs[0].equalsIgnoreCase(&#34;GET&#34;)) {
+            out.println(&#34;400 Bad Request.&#34;);  return; }
+        String fContent = readFileContent(httpArgs[1]);
+        if (fContent == null) out.println(&#34;404 File Not Found&#34;);
+        	else out.println(fContent);
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p>Spider in Action!:</p>
+<ul>
+<li>Initialize the queue with URLs of known pages</li>
+<li>Repeat doing:
+<ul>
+<li>Take an URL from queue</li>
+<li>Fetch the web page and store/index the relevant information in the page</li>
+<li>Extract URLs from the page and add them to the queue</li>
+</ul>
+</li>
+<li>Assumption: The web is well linked.</li>
+</ul>
+<p>A Simple Spider:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">java
+public class SimpleSpider {
+        private Queue linkQueue=new LinkedList();
+        private LinkExtractor extractor=new LinkExtractor(); 
+        protected boolean processLink(String link) throws IOException{
+	         System.out.println(link);
+                extractor.parse((new URL(link)).openStream()); // parse the page content…..
+                Iterator it=extractor.getExtLinkIterator();  // extract all URL links in this page
+                while (it.hasNext()) 
+                        linkQueue.add(it.next()); // add next link to the queue
+	 }
+        public void work(String iLink){
+	         linkQueue.add(iLink); // add this link to the queue
+                for (int i = 0; i &lt;20; ++i){  // limit max # of webpages to visit
+                        String link=(String) linkQueue.poll(); // get a link from the queue
+                        if (link==null) break; // no more links
+                        processLink(link); }
+        }
+        public static void main(String[] args){
+                SimpleSpider spider=new SimpleSpider();
+                spider.work(&#34;http://www.cs.cityu.edu.hk&#34;); // start from this link
+	}
+
+</code></pre></td></tr></table>
+</div>
+</div><p>A Simple Spider (cont’d):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">java
+public class LinkExtractor {
+    private HtmlHrefParser refParser = new HtmlHrefParser(); // HtmlHrefParser is system defined
+    public void parse(InputStream stream) throws IOException {
+        if (stream==null) throw new IllegalArgumentException(&#34;Illegal Argument&#34;);
+        refParser.reset();
+        ParserDelegator pd = new ParserDelegator();
+	 pd.parse(new InputStreamReader(stream), refParser, true);
+    }
+
+    public Iterator getExtLinkIterator() {
+        return refParser.extLinks.iterator();  // return list of ext URL links
+    }
+
+    public Iterator getLocalLinkIterator() {
+        return refParser.localLinks.iterator();
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Cautions about using spiders :</p>
+<ul>
+<li>It may add unexpected amount of traffic if poorly designed</li>
+<li>Be responsible for your actions</li>
+<li>Test it locally before running it over the Internet</li>
+<li>Follow the standard guidelines
+<ul>
+<li><a href="http://www.robotstxt.org/wc/guidelines.html" target="_blank" rel="noopener noreffer">www.robotstxt.org/wc/guidelines.html</a></li>
+</ul>
+</li>
+</ul>
+<p>Web Data Mining: Digraph:</p>
+<ul>
+<li>Nodes: web pages (its address is URL)</li>
+<li>Directed Edges: hyperlinks from one web page to another</li>
+<li>Content of a node: the content of the corresponding web page</li>
+<li>Dynamic nature of the digraph:
+<ul>
+<li>For some nodes, there are outgoing edges we don’t know yet.
+<ul>
+<li>Nodes not yet processed (don’t know its content)</li>
+<li>New edges (hyperlinks) may have added to some nodes</li>
+</ul>
+</li>
+<li>For all the nodes, there are some incoming edges we don’t yet know.</li>
+</ul>
+</li>
+</ul>
+<p>Construct Web Digraph:</p>
+<ul>
+<li>To construct the web digraph, one needs
+<ul>
+<li>a spider to automatically collect URLs</li>
+<li>a graph class to store information for nodes (URLs) and edges (hyperlinks)</li>
+</ul>
+</li>
+<li>The whole digraph (URLs, HyperLinks) is huge:
+<ul>
+<li>162,128,493 hosts (2002 Jul data)</li>
+<li>1,173,109,925 users
+<ul>
+<li><a href="http://www.internetworldstats.com/stats.htm" target="_blank" rel="noopener noreffer">http://www.internetworldstats.com/stats.htm</a></li>
+</ul>
+</li>
+<li>One may need graph algorithms with secondary memories</li>
+<li>Google uses thousands of workstations.</li>
+</ul>
+</li>
+</ul>
+<p>An Example Digraph:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225703.png" /></li>
+<li>An ordinary digraph H with 7 vertices and 12 edges</li>
+</ul>
+<p>Partial Map of Web Digraph:</p>
+<ul>
+<li>Partial map may be sufficient for some purposes
+<ul>
+<li>e.g., we are often interested in a small portion of the whole Internet</li>
+</ul>
+</li>
+<li>A partial map may be constructed within the memory space for an ordinary PC, which allows fast performance.</li>
+<li>With partial map, we may not be able to have all necessary information for our purpose
+<ul>
+<li>e.g., back links to a URL</li>
+</ul>
+</li>
+</ul>
+<p>An Example of a Partial Digraph:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101225801.png" /></li>
+<li>A partial digraph H: node v5 is not yet explored. We don’t know that it has outgoing edges from v5 though we know its existence (by its URL).</li>
+</ul>
+<p>Unknown and Dynamic Factors of Web Structure:</p>
+<ul>
+<li>There is no central control of the hyperlinks and each search engine can only map a fraction of the whole web space</li>
+<li>Hyperlinks are dynamically added and deleted by individual web page authors</li>
+<li>No web page knows its incoming hyperlinks</li>
+<li>Some web pages are not documented by any search engine</li>
+</ul>
+<p>Some Useful Functions on Digraph:</p>
+<ul>
+<li>
+<p>Back_Link (the_url):</p>
+<ul>
+<li>find out all the urls that point to the_url</li>
+</ul>
+</li>
+<li>
+<p>Shortest_Path (url1, url2):</p>
+<ul>
+<li>return the shortest path from url1 to url2</li>
+</ul>
+</li>
+<li>
+<p>Maximal_Clique (url):</p>
+<ul>
+<li>return a maximal clique that contains url</li>
+</ul>
+</li>
+<li>
+<p>In-Degree( url )</p>
+<ul>
+<li>return the number of links that point to the url.</li>
+<li>represents, to some extent, its popularity. The more a web page is pointed to by web pages, the more web authors are interested in</li>
+</ul>
+</li>
+<li>
+<p>Related data structures, algorithms and websites</p>
+<ul>
+<li><a href="http://webla.sourceforge.net/javadocs/pt/tumba/links/WebGraph.html" target="_blank" rel="noopener noreffer">http://webla.sourceforge.net/javadocs/pt/tumba/links/WebGraph.html</a></li>
+<li><a href="http://www.cs.princeton.edu/introcs/45graph/Digraph.java.html" target="_blank" rel="noopener noreffer">http://www.cs.princeton.edu/introcs/45graph/Digraph.java.html</a></li>
+<li><a href="http://www.quadcap.com/products/qed/docs/source/_di_graph_8java-source.html" target="_blank" rel="noopener noreffer">http://www.quadcap.com/products/qed/docs/source/_di_graph_8java-source.html</a></li>
+<li><a href="http://www.cs.ucsb.edu/~kris/Research/agl/doc/agl2/Digraph.html" target="_blank" rel="noopener noreffer">http://www.cs.ucsb.edu/~kris/Research/agl/doc/agl2/Digraph.html</a></li>
+</ul>
+</li>
+</ul>
+<p>Back Links of Digraph:</p>
+<ul>
+<li>Hyperlinks on the web are forward-pointing. Web pages do not know the hyperlinks pointing back to them
+<ul>
+<li>authors of web pages can freely link to other documents in the cyberspace without consent from their authors</li>
+</ul>
+</li>
+<li>Back link information is important
+<ul>
+<li>in scientific literature, SCI (Scientific Citation Index) is an important index for judgment of academic value of one academic article</li>
+</ul>
+</li>
+<li>It is not easy to find all the back links</li>
+</ul>
+<p>Collect Back Link Information Via HTTP:</p>
+<ul>
+<li>Section 10. Header field definition of Http1.0</li>
+<li>subsection 10.13 Referer:
+<ul>
+<li>Referer field (in request-header) allows the client (browser) to specify the source address (URI) from which the Request-URI was obtained.</li>
+<li>This allows a server to generate lists of back-links to resources for interest, logging, optimized caching, etc.</li>
+<li>The Referer field is empty if the request is NOT from a webpage, e.g., from the URI field in browser (i.e., the source  does not have an URI).</li>
+<li>For details, see
+<ul>
+<li><a href="http://www.ietf.org/rfc/rfc1945.txt" target="_blank" rel="noopener noreffer">http://www.ietf.org/rfc/rfc1945.txt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>An Application of BackLink: FAN:</p>
+<ul>
+<li>Fans of a web page has a link pointing to the web page.</li>
+<li>A user would add a link to a webpage after he accessed and viewed the content of the page.</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230139.png" /></li>
+</ul>
+<p>FAN: An Indicator of Popularity:</p>
+<ul>
+<li>The more fans a web page has, the more popular it is.</li>
+<li>SCI (Scientific Citation Index), for example, is a well known method to rate the importance of a research paper.</li>
+<li>However, some very popular web pages are so well known that people don’t need to put them in their web pages, such as google.com, yahoo.com, etc.</li>
+<li>Another controversial argument about backlink popularity:
+<ul>
+<li>a page pointed by some important web pages, compared with another pointed by many un-important pages?</li>
+</ul>
+</li>
+</ul>
+<p>WebPage Ranking:</p>
+<ul>
+<li>Two factors for ranking a web page:
+<ul>
+<li>The rank of web pages pointing to it
+<ul>
+<li>The high the better</li>
+</ul>
+</li>
+<li>The number of outgoing links in the web pages pointing to it
+<ul>
+<li>The less the better</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Page Rank of page A, PR(A), is calculated as follows:
+<ul>
+<li>Suppose page A has pages T1&hellip;Tn that point to it (i.e., back links).</li>
+<li>d is a factor between 0 and 1 (usually set to 0.85).</li>
+<li>C(T) is the number of outgoing links of page T.</li>
+</ul>
+</li>
+<li>$PR_{(A)}=(1-d)+d \times\left(\frac{PR_{\left(T_{1}\right)} }{C_{\left(T_{1}\right)} }+\ldots+\frac{PR_{\left(T_{n}\right)} }{C_{\left(T_{n}\right)} }\right)$</li>
+</ul>
+<p>Page Rank Calculation :</p>
+<ul>
+<li>The definition of PR(A) is cyclic, i.e., the rank of a page depends on the ranks of other pages. However, page ranks can be computed by a simple iterative algorithm.</li>
+<li>Page ranks can be efficiently calculated by using web digraph. Page ranks for 26 million pages can be computed in a few hours on a medium size workstation.</li>
+<li>Page ranks help search engine to rank the search results according to their popularity or importance (no consideration of relevance of search results here).</li>
+</ul>
+<p>Inverted File: indexing for search:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230443.png" /></li>
+</ul>
+<p>Term-Document indexing:</p>
+<ol>
+<li>Map the file names (documents) to file IDs</li>
+</ol>
+<ul>
+<li>Consider the following Original Documents</li>
+<li>d1:The Department of Computer Science was established in 1984.</li>
+<li>d2:The Department launched its first BSc(Hons) in Computer Studies in 1987.</li>
+<li>d3:followed by the MSc in Computer Science which was started in 1991.</li>
+<li>d4:The Department also produced its first PhD graduate in 1994. .</li>
+<li>d5:Our staff have contributed intellectually and professionally to the
+advancements in these fields.</li>
+</ul>
+<p>Remove Stop Words:
+2. Remove stop words (“in”, “the”, “in”, ….) that are not meaningful for search</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230637.png" /></li>
+</ul>
+<p>Terms and Documents:
+3. Make lowercase (option), delete numbers (option) , insert both singular and plural forms of nouns, different tenses of verbs, adjective &amp; adverb of the same word, for search.</p>
+<ul>
+<li>d1:department computer science established</li>
+<li>d2:department launch bsc hons computer studies ,</li>
+<li>d3:follow msc computer science start</li>
+<li>d4:department produce phd graduates ,</li>
+<li>d5:staff contribute intellectually professionally advancement fields</li>
+</ul>
+<p>Build Inverted File:</p>
+<ul>
+<li>
+<ol start="4">
+<li>Build Inverted File</li>
+</ol>
+<ul>
+<li>Build the inverted file mapping from words to document IDs. You may insert information about the number of times a word appears in a document or the position it appears for more accurate search.</li>
+<li>Sort the keywords for quick search.</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220101230754.png" /></li>
+</ul>
+<p>Searching Inverted File:</p>
+<ul>
+<li>Binary Search
+<ul>
+<li>Using in the small scale</li>
+</ul>
+</li>
+<li>Create thesaurus and combining techniques such as:
+<ul>
+<li>Hashing</li>
+<li>B+tree</li>
+<li>Pointer to the address in the indexed file</li>
+</ul>
+</li>
+</ul>
+<p>Boolean Model for Search:</p>
+<ul>
+<li>Document representation: full text or a set of key-words (contained in the text or not)</li>
+<li>Query representation: logic operators, query terms, query expressions, e.g.,
+<ul>
+<li>A &amp;&amp; B &amp;&amp; (C || D)</li>
+</ul>
+</li>
+<li>Searching: using inverted file and set operations to construct the result set</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/" data-title="DistributedSystem_HongweiDu_13" data-hashtags="distributed system"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/" data-hashtag="distributed system"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/" data-title="DistributedSystem_HongweiDu_13"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/" data-title="DistributedSystem_HongweiDu_13"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_13/" data-title="DistributedSystem_HongweiDu_13"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/distributed-system/">distributed system</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/distributedsystem_hongweidu_12/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_12"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_12</a>
+            <a href="/distributedsystem_hongweidu_catalogue/" class="next" rel="next" title="DistributedSystem_HongweiDu_catalogue">DistributedSystem_HongweiDu_catalogue<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

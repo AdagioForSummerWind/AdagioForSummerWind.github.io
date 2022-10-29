@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20220419 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20220419" />
+<meta property="og:description" content="Go Developer Survey 2021 Results Alice Merrick
+19 April 2022
+A huge thank you to the community for the amazing response! In 2021, we ran the Go Developer Survey from Oct 26th to Nov 16th and had 11,840 responses—the largest turnout so far in the 6 years we’ve been running the survey! Thank you for putting in the time to provide the community with these insights on your experiences using Go." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20220419/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T20:26:47+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20220419"/>
+<meta name="twitter:description" content="Go Developer Survey 2021 Results Alice Merrick
+19 April 2022
+A huge thank you to the community for the amazing response! In 2021, we ran the Go Developer Survey from Oct 26th to Nov 16th and had 11,840 responses—the largest turnout so far in the 6 years we’ve been running the survey! Thank you for putting in the time to provide the community with these insights on your experiences using Go."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20220419/" /><link rel="prev" href="https://jefofrank.xyz/gb_20220412/" /><link rel="next" href="https://jefofrank.xyz/gb_20220601/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20220419",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20220419\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  2250 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20220419\/","datePublished": "2022-10-29T20:26:47+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20220419</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 20:26:47">2022-10-29 20:26:47</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2250 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-huge-thank-you-to-the-community-for-the-amazing-response">A huge thank you to the community for the amazing response!</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#who-did-we-hear-from">Who did we hear from?</a>
+      <ul>
+        <li><a href="#gender-identity">Gender identity</a></li>
+        <li><a href="#assistive-technology">Assistive technology</a></li>
+      </ul>
+    </li>
+    <li><a href="#a-closer-look-at-challenges-to-go-adoption">A closer look at challenges to Go adoption</a></li>
+    <li><a href="#go-satisfaction-and-prioritization">Go satisfaction and prioritization</a>
+      <ul>
+        <li><a href="#prioritization">Prioritization</a></li>
+        <li><a href="#challenges-when-working-with-modules">Challenges when working with modules</a></li>
+      </ul>
+    </li>
+    <li><a href="#learning-go">Learning Go</a>
+      <ul>
+        <li><a href="#in-which-areas-should-we-invest-in-best-practice-docs">In which areas should we invest in best practice docs?</a></li>
+        <li><a href="#how-do-developers-learn-a-new-language">How do developers learn a new language?</a></li>
+      </ul>
+    </li>
+    <li><a href="#developer-tools-and-practices">Developer tools and practices</a>
+      <ul>
+        <li><a href="#targeted-platforms">Targeted platforms</a></li>
+        <li><a href="#fuzzing">Fuzzing</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloud-computing">Cloud computing</a></li>
+    <li><a href="#changes-this-year">Changes this year</a>
+      <ul>
+        <li><a href="#more-new-gophers">More new Gophers</a></li>
+        <li><a href="#more-vs-code-users">More VS Code users</a></li>
+        <li><a href="#different-resources">Different resources</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-developer-survey-2021-results">Go Developer Survey 2021 Results</h1>
+<p>Alice Merrick<br>
+19 April 2022</p>
+<h2 id="a-huge-thank-you-to-the-community-for-the-amazing-response">A huge thank you to the community for the amazing response!</h2>
+<p>In 2021, we ran the Go Developer Survey from Oct 26th to Nov 16th and had 11,840 responses—the largest turnout so far in the 6 years we’ve been running the survey! Thank you for putting in the time to provide the community with these insights on your experiences using Go.</p>
+<h2 id="highlights">Highlights</h2>
+<ul>
+<li>Most responses were consistent with prior years. For example, <a href="https://go.dev/blog/survey2021-results#satisfaction" target="_blank" rel="noopener noreffer">satisfaction with Go is still very high at 92%</a> and 75% of respondents use Go at work.</li>
+<li>This year we <a href="https://go.dev/blog/survey2021-results#changes" target="_blank" rel="noopener noreffer">randomly sampled</a> some participants using the Go VS Code plugin, which resulted in some shifts in who responded to the survey.</li>
+<li>Missing critical libraries, language features and infrastructure were the most <a href="https://go.dev/blog/survey2021-results#adoption" target="_blank" rel="noopener noreffer">common barriers to using Go</a>. (note: this survey ran prior to the release of Go 1.18 with generics, the #1 most reported missing feature)</li>
+<li>Respondents want to <a href="https://go.dev/blog/survey2021-results#prioritization" target="_blank" rel="noopener noreffer">prioritize improvements</a> to debugging and dependency management.</li>
+<li>The <a href="https://go.dev/blog/survey2021-results#modules" target="_blank" rel="noopener noreffer">biggest challenges when using modules</a> concerned versioning, using private repos and multi-module workflows. (note: this survey was run prior to Go 1.18 which introduced workspaces addressing many of these concerns).</li>
+<li>81% of respondents are <a href="https://go.dev/blog/survey2021-results#satisfaction" target="_blank" rel="noopener noreffer">confident in the long term direction of the Go project</a>.</li>
+</ul>
+<h2 id="who-did-we-hear-from">Who did we hear from?</h2>
+<p>Our demographics have been pretty stable year over year (<a href="https://go.dev/blog/survey2020-results" target="_blank" rel="noopener noreffer">See 2020 results</a>). Consistent with previous years, Go is primarily used in the tech industry. 70% of respondents were software developers, with a few in IT or DevOps and 76% of respondents said they program in Go at work. <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/industry_yoy.svg"
+        data-srcset="survey2021/industry_yoy.svg, survey2021/industry_yoy.svg 1.5x, survey2021/industry_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/industry_yoy.svg"
+        title="Bar chart of industries where respondents work" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/where_yoy.svg"
+        data-srcset="survey2021/where_yoy.svg, survey2021/where_yoy.svg 1.5x, survey2021/where_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/where_yoy.svg"
+        title="Bar chart showing Go used more at work than outide of work" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/app_yoy.svg"
+        data-srcset="survey2021/app_yoy.svg, survey2021/app_yoy.svg 1.5x, survey2021/app_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/app_yoy.svg"
+        title="Bar chart of uses for Go where API/RPC services and CLI apps are most common" /></p>
+<p>Some new demographics from 2021:</p>
+<ul>
+<li>Most respondents describe their organization as an enterprise or small to medium business, with about a quarter describing their organization as a startup. Consultancies and public institutions were much less common.</li>
+<li>The vast majority of respondents work on teams of less than ten people.</li>
+<li>Over half (55%) of respondents use Go at work on a daily basis. Respondents use Go less frequently outside of work.</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/orgtype.svg"
+        data-srcset="survey2021/orgtype.svg, survey2021/orgtype.svg 1.5x, survey2021/orgtype.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/orgtype.svg"
+        title="Bar chart of organization type where enterprise is the most common response" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/teamsize.svg"
+        data-srcset="survey2021/teamsize.svg, survey2021/teamsize.svg 1.5x, survey2021/teamsize.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/teamsize.svg"
+        title="Bar chart of team size where 2 to 5 is the most common size" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/gofreq_comparison.svg"
+        data-srcset="survey2021/gofreq_comparison.svg, survey2021/gofreq_comparison.svg 1.5x, survey2021/gofreq_comparison.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/gofreq_comparison.svg"
+        title="Frequency of using Go at work versus outside of work where using Go at work is most often on a daily basis and outside of work is less common and most often on a weekly basis" /></p>
+<h3 id="gender-identity">Gender identity</h3>
+<p>We ask about gender identity on the survey because it gives us an idea of who is being represented in the results and adds another dimension to measure the inclusivity of the community. The Go team values diversity and inclusion, not only because it’s the right thing to do, but because diverse voices help us make better decisions. This year we rephrased the gender identity question to be more inclusive of other gender identities. About the same proportion identified as women as previous years (2%). This was true in the <a href="https://go.dev/blog/survey2021-results#changes" target="_blank" rel="noopener noreffer">randomly sampled group</a> as well, suggesting this is not just due to sampling. <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/gender.svg"
+        data-srcset="survey2021/gender.svg, survey2021/gender.svg 1.5x, survey2021/gender.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/gender.svg"
+        title="Bar chart showing gender identity of respondents where 92% of respondents identify as male" /></p>
+<h3 id="assistive-technology">Assistive technology</h3>
+<p>This year we again found that about 8% of respondents are using some form of assistive technology. Most challenges concerned a need for higher contrast themes and increased font sizes on Go-related websites or in their code editors; we’re planning to act on the website feedback later this year. These accessibility needs are something we should all keep in mind when contributing to the Go ecosystem.</p>
+<h2 id="a-closer-look-at-challenges-to-go-adoption">A closer look at challenges to Go adoption</h2>
+<p>This year we revised our questions to target actual cases where Go wasn’t adopted and why. First, we asked whether or not respondents had evaluated using another language against Go in the last year. 43% of respondents said they had either evaluated switching to Go, from Go, or adopting Go when there wasn’t a previously established language. 80% of these evaluations were primarily for business reasons.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/evaluated.svg"
+        data-srcset="survey2021/evaluated.svg, survey2021/evaluated.svg 1.5x, survey2021/evaluated.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/evaluated.svg"
+        title="Chart showing proportion of respondents who evaluated Go against another language in the last year" /></p>
+<p>We expected the most common use cases for Go would be the most common intended uses for those evaluating Go. API/RPC services was by far the most common use, but surprisingly, data processing was the second most common intended use case.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/intended_app.svg"
+        data-srcset="survey2021/intended_app.svg, survey2021/intended_app.svg 1.5x, survey2021/intended_app.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/intended_app.svg"
+        title="Chart showing the kind application they considered using Go" /></p>
+<p>Of those respondents who evaluated Go, 75% ended up using Go. (Of course, since nearly all survey respondents report using Go, we likely are not hearing from developers who evaluated Go and decided against using it.)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/adopted.svg"
+        data-srcset="survey2021/adopted.svg, survey2021/adopted.svg 1.5x, survey2021/adopted.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/adopted.svg"
+        title="Chart showing proportion who used Go compared to those who stayed with the current language or chose another language" /></p>
+<p>To those who evaluated Go and didn’t use it, we then asked what challenges prevented them from using Go and which of those was the primary barrier. <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/blockers.svg"
+        data-srcset="survey2021/blockers.svg, survey2021/blockers.svg 1.5x, survey2021/blockers.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/blockers.svg"
+        title="Chart showing barriers to using Go" /></p>
+<p>The picture we get from these results supports previous findings that missing features and lack of ecosystem / library support are the most significant technical barriers to Go adoption.</p>
+<p>We asked for more details on what features or libraries respondents were missing and found that generics was the most common critical missing feature—we expect this to be a less significant barrier after the introduction of generics in Go 1.18. The next most common missing features had to do with Go’s type system. We would like to see how introducing generics may influence or resolve underlying needs around Go’s type system before making additional changes. For now, we will gather more information on the contexts for these needs and may in the future explore different ways to meet those needs such as through tooling, libraries or changes to the type system.</p>
+<p>As for missing libraries, there was no clear consensus on what addition would unblock the largest proportion of those wanting to adopt Go. That will require additional exploration.</p>
+<p>So what did respondents use instead when they didn’t choose Go?</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/lang_instead.svg"
+        data-srcset="survey2021/lang_instead.svg, survey2021/lang_instead.svg 1.5x, survey2021/lang_instead.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/lang_instead.svg"
+        title="Chart of which languages respondents used instead of Go" /></p>
+<p>Rust, Python, and Java are the most common choices. <a href="https://thenewstack.io/rust-vs-go-why-theyre-better-together/" target="_blank" rel="noopener noreffer">Rust and Go have complementary feature sets</a>, so Rust may be a good option for when Go doesn’t meet feature needs for a project. The primary reasons for using Python were missing libraries and existing infrastructure support, so Python’s large package ecosystem may make it difficult to switch to Go. Similarly, the most common reason for using Java instead was because of Go’s missing features, which may be alleviated by the introduction of generics in the 1.18 release.</p>
+<h2 id="go-satisfaction-and-prioritization">Go satisfaction and prioritization</h2>
+<p>Let’s look at areas where Go is doing well and where things can be improved.</p>
+<p>Consistent with last year, 92% of respondents said they were very or somewhat satisfied using Go during the past year.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/csat.svg"
+        data-srcset="survey2021/csat.svg, survey2021/csat.svg 1.5x, survey2021/csat.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/csat.svg"
+        title="Overall satisfaction on a 5 points scale from very dissatisfied to very satisfied" /></p>
+<p>Year over year trends in community attitudes have seen minor fluctuations. Those using Go for less than 3 months tend to be less likely to agree with these statements. Respondents are increasingly finding Go critical for their company’s success.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/attitudes_yoy.svg"
+        data-srcset="survey2021/attitudes_yoy.svg, survey2021/attitudes_yoy.svg 1.5x, survey2021/attitudes_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/attitudes_yoy.svg"
+        title="Attitudes around using Go at work" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/attitudes_community_yoy.svg"
+        data-srcset="survey2021/attitudes_community_yoy.svg, survey2021/attitudes_community_yoy.svg 1.5x, survey2021/attitudes_community_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/attitudes_community_yoy.svg"
+        title="Community attitudes around welcomeness and confidence in direction of the Go project" /></p>
+<h3 id="prioritization">Prioritization</h3>
+<p>The last few years we’ve asked respondents to rate specific areas on how satisfied they are and how important those areas are to them; we use this information to identify areas that are important to respondents, but with which they are unsatisfied. However, most of these areas have shown only minor differences in both importance and satisfaction.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/imp_vs_sat2.svg"
+        data-srcset="survey2021/imp_vs_sat2.svg, survey2021/imp_vs_sat2.svg 1.5x, survey2021/imp_vs_sat2.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/imp_vs_sat2.svg"
+        title="Scatter plot of importance compared to satisfaction showing most areas have high satisfaction and where binary size is less important than other areas" /></p>
+<p>This year we introduced a new question to explore alternative ways to prioritize work on specific areas. “Let’s say you have 10 GopherCoins to spend on improving the following aspects of working with Go. How would you distribute your coins?” Two areas that stood out as receiving significantly more GopherCoins were dependency management (using modules) and diagnosing bugs, areas that we’ll be dedicating resources during 2022.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/improvements_sums.svg"
+        data-srcset="survey2021/improvements_sums.svg, survey2021/improvements_sums.svg 1.5x, survey2021/improvements_sums.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/improvements_sums.svg"
+        title="Overall sum of coins spent on each area for improvement" /></p>
+<h3 id="challenges-when-working-with-modules">Challenges when working with modules</h3>
+<p>The most common module-related challenge was working across multiple modules (19% of respondents), followed by comments about versioning (including trepidation around committing to a stable v1 API). Related to versioning, 9% of responses discussed version management or updating dependencies. Rounding out the top 5 were challenges around private repos (including authentication with GitLab in particular) and remembering the different <code>go mod</code> commands plus understanding their error messages.</p>
+<h2 id="learning-go">Learning Go</h2>
+<p>This year we adopted a new construct to explore relative productivity among different levels of experience with Go. The vast majority of respondents (88%) agree that they regularly reach a high level of productivity and 85% agree they’re often able to achieve a flow state when writing in Go. The proportion of agreement increases as experience with Go increases.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/productivity.svg"
+        data-srcset="survey2021/productivity.svg, survey2021/productivity.svg 1.5x, survey2021/productivity.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/productivity.svg"
+        title="Charts showing proportion of respondents who agree they feel productive using Go and can achieve a state of flow while writing in Go" /></p>
+<h3 id="in-which-areas-should-we-invest-in-best-practice-docs">In which areas should we invest in best practice docs?</h3>
+<p>Half of respondents wanted more guidance on best practices on performance optimization and project directory structure. Unsurprisingly, new Gophers (using Go for less than 1 year) need more guidance than more experienced Gophers, though the top areas were consistent across both groups. Notably, new Gophers asked for more guidance in concurrency than more experienced Gophers.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/best_practices.svg"
+        data-srcset="survey2021/best_practices.svg, survey2021/best_practices.svg 1.5x, survey2021/best_practices.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/best_practices.svg"
+        title="Chart showing which areas respondents want more guidance on best practices" /></p>
+<h3 id="how-do-developers-learn-a-new-language">How do developers learn a new language?</h3>
+<p>About half of respondents learned a new language at work, but almost as many (45%) learn outside of school or work. Respondents most often (90%) reported learning alone. Of those who said they learned at work, where there may be opportunities to learn as a group, 84% learned alone rather than as a group.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/learn_where.svg"
+        data-srcset="survey2021/learn_where.svg, survey2021/learn_where.svg 1.5x, survey2021/learn_where.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/learn_where.svg"
+        title="Chart showing half of respondents learned a new language at work while 45% learned a new language outside of school or work" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/learn_with.svg"
+        data-srcset="survey2021/learn_with.svg, survey2021/learn_with.svg 1.5x, survey2021/learn_with.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/learn_with.svg"
+        title="Chart showing 90% of respondents learned their last new language alone" /></p>
+<p>Many of the top resources highlight the importance of good documentation, but live instruction stands out as a particularly useful resource for language learning as well.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/learning_resources.svg"
+        data-srcset="survey2021/learning_resources.svg, survey2021/learning_resources.svg 1.5x, survey2021/learning_resources.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/learning_resources.svg"
+        title="Chart showing which resources are most helpful for learning a new programming language where reading reference docs and written tutorials are most useful" /></p>
+<h2 id="developer-tools-and-practices">Developer tools and practices</h2>
+<p>As in prior years, the vast majority of survey respondents reported working with Go on Linux (63%) and macOS (55%) systems. The proportion of respondents who primarily develop on Linux appears to be slightly trending down over time.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/os_yoy.svg"
+        data-srcset="survey2021/os_yoy.svg, survey2021/os_yoy.svg 1.5x, survey2021/os_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/os_yoy.svg"
+        title="Primary operating system from 2019 to 2021" /></p>
+<h3 id="targeted-platforms">Targeted platforms</h3>
+<p>Over 90% of respondents target Linux! Even though more respondents develop on macOS than Windows, they more often deploy to Windows than macOS.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/os_deploy.svg"
+        data-srcset="survey2021/os_deploy.svg, survey2021/os_deploy.svg 1.5x, survey2021/os_deploy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/os_deploy.svg"
+        title="Chart showing which platforms respondents deploy their Go code on " /></p>
+<h3 id="fuzzing">Fuzzing</h3>
+<p>Most respondents are unfamiliar with fuzzing or still consider themselves new to fuzzing. Based on this finding, we plan to 1) ensure Go’s fuzzing documentation explains fuzzing concepts in addition to the specifics of fuzzing in Go, and 2) design output and error messages to be actionable, so as to help developers who are new to fuzzing apply it successfully.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/fuzz.svg"
+        data-srcset="survey2021/fuzz.svg, survey2021/fuzz.svg 1.5x, survey2021/fuzz.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/fuzz.svg"
+        title="Chart showing proportion of respondents who have used fuzzing" /></p>
+<h2 id="cloud-computing">Cloud computing</h2>
+<p>Go was designed with modern distributed computing in mind, and we want to continue to improve the developer experience of building cloud services with Go. The proportion of respondents deploying Go programs to three largest global cloud providers (Amazon Web Services, Google Cloud Platform, and Microsoft Azure) remained about the same this year and on-prem deployments to self-owned or company-owned servers continue to decrease.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/cloud_yoy.svg"
+        data-srcset="survey2021/cloud_yoy.svg, survey2021/cloud_yoy.svg 1.5x, survey2021/cloud_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/cloud_yoy.svg"
+        title="Bar chart of cloud providers used to deploy Go programs where AWS is the most common at 44%" /></p>
+<p>Respondents deploying to AWS saw increases in deploying to a managed Kubernetes platform, now at 35% of those who deploy to any of the three largest cloud providers. All of these cloud providers saw a drop in the proportion of users deploying Go programs to VMs.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/cloud_services_yoy.svg"
+        data-srcset="survey2021/cloud_services_yoy.svg, survey2021/cloud_services_yoy.svg 1.5x, survey2021/cloud_services_yoy.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/cloud_services_yoy.svg"
+        title="Bar charts of proportion of services being used with each provider" /></p>
+<h2 id="changes-this-year">Changes this year</h2>
+<p>Last year we introduced a <a href="https://go.dev/blog/survey2020-results" target="_blank" rel="noopener noreffer">modular survey design</a> so that we could ask more questions without lengthening the survey. We continued the modular design this year, although some questions were discontinued and others were added or modified. No respondents saw all the questions on the survey. Additionally, some questions may have much smaller sample sizes because they were asked selectively based on a previous question.</p>
+<p>The most significant change to the survey this year was in how we recruited participants. In previous years, we announced the survey through the Go Blog, where it was picked up on various social channels like Twitter, Reddit, or Hacker News. This year, in addition to the traditional channels, we used the VS Code Go plugin to randomly select users to be shown a prompt asking if they’d like to participate in the survey. This created a random sample that we used to compare the self-selected respondents from our traditional channels and helped identify potential effects of <a href="https://en.wikipedia.org/wiki/Self-selection_bias" target="_blank" rel="noopener noreffer">self-selection bias</a>.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/rsamp.svg"
+        data-srcset="survey2021/rsamp.svg, survey2021/rsamp.svg 1.5x, survey2021/rsamp.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/rsamp.svg"
+        title="Proportion of respondents from each source" /></p>
+<p>Almost a third of our respondents were sourced this way so their responses had the potential to significantly impact the responses we saw this year. Some of the key differences we see between these two groups are:</p>
+<h3 id="more-new-gophers">More new Gophers</h3>
+<p>The randomly selected sample had a higher proportion of new Gophers (those using Go for less than a year). It could be that new Gophers are less plugged into the Go ecosystem or the social channels, so they were more likely to see the survey advertised in their IDE than find it through other means. Regardless of the reason, it’s great to hear from a wider slice of the Go community.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/goex_s.svg"
+        data-srcset="survey2021/goex_s.svg, survey2021/goex_s.svg 1.5x, survey2021/goex_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/goex_s.svg"
+        title="Comparison of proportion of respondents with each level of experience for randomly sampled versus self-selected groups" /></p>
+<h3 id="more-vs-code-users">More VS Code users</h3>
+<p>It’s unsurprising 91% of respondents who came to the survey from the VS Code plugin prefer to use VS Code when using Go. As a result, we saw much higher editor preferences for VS Code this year. When we exclude the random sample, the results are not statistically different from last year, so we know this is the result of the change in our sample and not overall preference. Similarly, VS Code users are also more likely to develop on Windows than other respondents so we see a slight increase in the preference for Windows this year. We also saw slight shifts in the usage of certain developer techniques that are common with VS Code editor usage.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/editor_s.svg"
+        data-srcset="survey2021/editor_s.svg, survey2021/editor_s.svg 1.5x, survey2021/editor_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/editor_s.svg"
+        title="Grouped bar chart of which editor respondents prefer from each sample group" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/os_s.svg"
+        data-srcset="survey2021/os_s.svg, survey2021/os_s.svg 1.5x, survey2021/os_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/os_s.svg"
+        title="Grouped bar chart of primary operating system respondents use to develop go on" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/devtech_s.svg"
+        data-srcset="survey2021/devtech_s.svg, survey2021/devtech_s.svg 1.5x, survey2021/devtech_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/devtech_s.svg"
+        title="Grouped bar chart showing which techniques respondents use when writing in Go" /></p>
+<h3 id="different-resources">Different resources</h3>
+<p>The randomly selected sample was less likely to rate social channels like the Go Blog as among their top resources for answering Go-related questions, so they may have been less likely to see the survey advertised on those channels.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2021/resources_s.svg"
+        data-srcset="survey2021/resources_s.svg, survey2021/resources_s.svg 1.5x, survey2021/resources_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2021/resources_s.svg"
+        title="Grouped bar chart showing the top resources respondents use when writing in Go" /></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Thank you for joining us in reviewing the results of our 2021 developer survey! To reiterate, some key takeaways:</p>
+<ul>
+<li>Most of our year over year metrics remained stable with most changes owing to our change in sample.</li>
+<li>Satisfaction with Go remains high!</li>
+<li>Three-quarters of respondents use Go at work and many use Go on a daily basis so helping you get work done is a top priority.</li>
+<li>We will prioritize improvements to debugging and dependency management workflows.</li>
+<li>We will continue to work towards making Go an inclusive community for all kinds of Gophers.</li>
+</ul>
+<p>Understanding developers’ experiences and challenges helps us measure our progress and directs the future of Go. Thanks again to everyone who contributed to this survey—we couldn’t have done it without you. We hope to see you next year!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20220419/" data-title="Gb_20220419" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20220419/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20220419/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20220419/" data-title="Gb_20220419"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20220419/" data-title="Gb_20220419"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20220419/" data-title="Gb_20220419"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20220412/" class="prev" rel="prev" title="Gb_20220412"><i class="fas fa-angle-left fa-fw"></i>Gb_20220412</a>
+            <a href="/gb_20220601/" class="next" rel="next" title="Gb_20220601">Gb_20220601<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

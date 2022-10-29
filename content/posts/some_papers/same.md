@@ -1033,7 +1033,54 @@ Figure 5: The plot shows graphically the results in Tab. 10.
 
 
 
+## 参考论文
+## 1 最近邻插补算法：关键评估。
+https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-016-0318-z
+[5]Lorenzo Beretta and Alessandro Santaniello. Nearest neighbor imputation algorithms: a critical evaluation. BMC medical informatics and decision making, 16(3):197–208, 2016.
 
+出身背景
+最近邻（NN）插补算法是填充缺失数据的有效方法，其中一些记录上的每个缺失值都被从整个记录集中的相关案例中获得的值替换。除了能够用尽可能接近真实值的合理值替换缺失数据外，插补算法还应保持原始数据结构，避免扭曲插补变量的分布。尽管NN算法效率很高，但人们对这些方法对数据结构的影响知之甚少。
+方法
+对具有不同模式和丢失程度的合成数据集进行仿真，以评估在不同学习框架下，单邻（1NN）和k邻无（kNN）或加权（wkN）的NN的性能：普通集、ReliefF滤波后的约简集、打包、属性的随机选择、，打包与属性的随机选择相结合（类似于随机森林的方法）。
+后果
+无论采用何种框架，就插补精度和减少推断统计误差而言，kNN通常优于1NN，但1NN是唯一能够保留数据结构的方法，即使考虑k个邻域的小值，数据也会失真；重采样模式的失真更严重。
+结论
+结合ReliefF使用三个邻居似乎可以在插补错误和数据结构保存之间取得最佳平衡。在完全随机引入缺失数据后，对单质子发射计算机断层扫描（SPECTF）心脏数据集进行插补实验时，可以得出相同的结论。
+
+
+## 2 缺失数据：神经网络和期望最大化技术的比较
+
+https://www.jstor.org/stable/24099079#metadata_info_tab_contents
+[39]Fulufhelo V Nelwamondo, Shakir Mohamed, and Tshilidzi Marwala. Missing data: A comparison of neural network and expectation maximization techniques. Current Science, pp. 1514–1521, 2007.
+
+最近的文献中出现了两种技术作为缺失数据插补问题的候选解决方案。 这些是期望最大化（EM）算法和自联想神经网络和遗传算法（GA）的组合。 这两种技术都已单独讨论过，并且在现有文献中详细讨论了它们的优点。 但是，它们尚未相互比较。 本文使用工业发电厂、工业缠绕过程和 HIV 血清流行率调查数据的数据集对这两种技术进行了比较。 结果表明，EM算法更适用于输入变量之间几乎没有或没有相互依赖的情况，而自联想神经网络和GA组合适用于某些给定变量之间存在固有非线性关系的情况。 .
+
+## 3 通过状态空间方法进行时间序列分析
+https://books.google.com.hk/books?hl=zh-CN&lr=&id=lGyshsfkLrIC&oi=fnd&pg=PP1&dq=Time+series+analysis+by+state+space+methods&ots=WP4NWftwhp&sig=is-tbib2NZ7zzrtpTfvxy3VaGxI&redir_esc=y#v=onepage&q=Time%20series%20analysis%20by%20state%20space%20methods&f=false
+[16]James Durbin and Siem Jan Koopman. Time series analysis by state space methods. Oxford university press, 2012.
+
+
+
+## 4 用于大规模非负矩阵和张量分解的快速局部算法
+https://d.wanfangdata.com.cn/periodical/91669bdffdc7025f9faab9d298aeaa39
+
+[13]Andrzej Cichocki and Anh-Huy Phan. Fast local algorithms for large scale nonnegative matrix and tensor factorizations. IEICE transactions on fundamentals of electronics, communications and computer sciences, 92(3):708–721, 2009.
+
+非负矩阵分解 (NMF) 及其扩展如非负张量分解 (NTF) 已成为盲源分离 (BSS)、图像数据库分析、数据挖掘和其他信息检索和聚类应用的重要技术。在本文中，我们提出了一系列有效的 NMF/NTF 算法，以及稀疏非负编码和表示，在计算神经科学、多感官处理、压缩感知和多维数据分析中具有许多潜在的应用。我们开发了一类优化的局部算法，称为分层交替最小二乘 (HALS) 算法。出于这些目的，我们对一组平方欧几里得距离执行了顺序约束最小化。然后，我们将这种方法扩展到使用 alpha 和 beta 散度的稳健成本函数，并得出灵活的更新规则。我们的算法是局部稳定的，并且适用于基于 NMF 的盲源分离 (BSS)，不仅适用于超定情况，而且适用于欠定（过完备）情况（即，对于传感器数量少于来源）如果数据足够稀疏。 NMF 学习规则针对 N 阶非负张量分解 (NTF) 进行了扩展和推广。此外，这些算法可以通过调整单个参数来调整到不同的噪声统计数据。广泛的实验结果证实了所开发算法的准确性和计算性能，特别是在使用多层分层 NMF 方法时。
+
+
+
+## 5 
+
+
+[9]Wei Cao, Dong Wang, Jian Li, Hao Zhou, Yitan Li, and Lei Li. Brits: bidirectional recurrent imputation for time series. In Proceedings of the 32nd International Conference on Neural Information Processing Systems, pp. 6776–6786, 2018.
+
+
+## 6 具有缺失值的多元时间序列的递归神经网络
+
+
+[10]Zhengping Che, Sanjay Purushotham, Kyunghyun Cho, David Sontag, and Yan Liu. Recurrent neural networks for multivariate time series with missing values. Scientific reports, 8(1):1–12,2018
+实际应用中的多变量时间序列数据，如医疗保健、地球科学和生物学，具有多种缺失值的特点。在时间序列预测和其他相关任务中，已经注意到缺失值及其缺失模式通常与目标标签相关，即信息缺失。在利用缺失模式进行有效插补和提高预测性能方面的工作非常有限。在本文中，我们开发了新颖的深度学习模型，即 GRU-D，作为早期尝试之一。 GRU-D 基于门控循环单元 (GRU)，这是一种最先进的循环神经网络。它采用两种缺失模式的表示，即掩码和时间间隔，并将它们有效地结合到一个深度模型架构中，这样它不仅可以捕获时间序列中的长期时间依赖性，还可以利用缺失的模式来实现更好的预测结果。在真实世界临床数据集（MIMIC-III、PhysioNet）和合成数据集上的时间序列分类任务实验表明，我们的模型实现了最先进的性能，并为更好地理解和利用时间序列中的缺失值提供了有用的见解分析。
 
 
 

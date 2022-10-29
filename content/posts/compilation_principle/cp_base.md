@@ -5,7 +5,7 @@ lastmod: 2022-07-31
 tags: [compilation principle]
 categories: [School courses]
 slug: beauty of cp
-draft: true
+draft: false
 ---
 
 # 编译原理之美

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20191017 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20191017" />
+<meta property="og:description" content="Working with Errors in Go 1.13 Damien Neil and Jonathan Amsterdam
+17 October 2019
+Introduction Go’s treatment of errors as values has served us well over the last decade. Although the standard library’s support for errors has been minimal—just the errors.New and fmt.Errorf functions, which produce errors that contain only a message—the built-in error interface allows Go programmers to add whatever information they desire. All it requires is a type that implements an Error method:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20191017/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T19:51:25+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20191017"/>
+<meta name="twitter:description" content="Working with Errors in Go 1.13 Damien Neil and Jonathan Amsterdam
+17 October 2019
+Introduction Go’s treatment of errors as values has served us well over the last decade. Although the standard library’s support for errors has been minimal—just the errors.New and fmt.Errorf functions, which produce errors that contain only a message—the built-in error interface allows Go programmers to add whatever information they desire. All it requires is a type that implements an Error method:"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20191017/" /><link rel="prev" href="https://jefofrank.xyz/gb_20190926/" /><link rel="next" href="https://jefofrank.xyz/gb_20191107/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20191017",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20191017\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  2254 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20191017\/","datePublished": "2022-10-29T19:51:25+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20191017</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 19:51:25">2022-10-29 19:51:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2254 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#errors-before-go-113">Errors before Go 1.13</a>
+      <ul>
+        <li><a href="#examining-errors">Examining errors</a></li>
+        <li><a href="#adding-information">Adding information</a></li>
+      </ul>
+    </li>
+    <li><a href="#errors-in-go-113">Errors in Go 1.13</a>
+      <ul>
+        <li><a href="#the-unwrap-method">The Unwrap method</a></li>
+        <li><a href="#examining-errors-with-is-and-as">Examining errors with Is and As</a></li>
+        <li><a href="#wrapping-errors-with-w">Wrapping errors with %w</a></li>
+        <li><a href="#whether-to-wrap">Whether to Wrap</a></li>
+      </ul>
+    </li>
+    <li><a href="#customizing-error-tests-with-is-and-as-methods">Customizing error tests with Is and As methods</a></li>
+    <li><a href="#errors-and-package-apis">Errors and package APIs</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="working-with-errors-in-go-113">Working with Errors in Go 1.13</h1>
+<p>Damien Neil and Jonathan Amsterdam<br>
+17 October 2019</p>
+<h2 id="introduction">Introduction</h2>
+<p>Go’s treatment of <a href="https://blog.golang.org/errors-are-values" target="_blank" rel="noopener noreffer">errors as values</a> has served us well over the last decade. Although the standard library’s support for errors has been minimal—just the <code>errors.New</code> and <code>fmt.Errorf</code> functions, which produce errors that contain only a message—the built-in <code>error</code> interface allows Go programmers to add whatever information they desire. All it requires is a type that implements an <code>Error</code> method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type QueryError struct {
+    Query string
+    Err   error
+}
+
+func (e *QueryError) Error() string { return e.Query + &#34;: &#34; + e.Err.Error() }
+</code></pre></td></tr></table>
+</div>
+</div><p>Error types like this one are ubiquitous, and the information they store varies widely, from timestamps to filenames to server addresses. Often, that information includes another, lower-level error to provide additional context.</p>
+<p>The pattern of one error containing another is so pervasive in Go code that, after <a href="https://go.dev/issue/29934" target="_blank" rel="noopener noreffer">extensive discussion</a>, Go 1.13 added explicit support for it. This post describes the additions to the standard library that provide that support: three new functions in the <code>errors</code> package, and a new formatting verb for <code>fmt.Errorf</code>.</p>
+<p>Before describing the changes in detail, let’s review how errors are examined and constructed in previous versions of the language.</p>
+<h2 id="errors-before-go-113">Errors before Go 1.13</h2>
+<h3 id="examining-errors">Examining errors</h3>
+<p>Go errors are values. Programs make decisions based on those values in a few ways. The most common is to compare an error to <code>nil</code> to see if an operation failed.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if err != nil {
+    // something went wrong
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Sometimes we compare an error to a known <em>sentinel</em> value, to see if a specific error has occurred.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var ErrNotFound = errors.New(&#34;not found&#34;)
+
+if err == ErrNotFound {
+    // something wasn&#39;t found
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>An error value may be of any type which satisfies the language-defined <code>error</code> interface. A program can use a type assertion or type switch to view an error value as a more specific type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type NotFoundError struct {
+    Name string
+}
+
+func (e *NotFoundError) Error() string { return e.Name + &#34;: not found&#34; }
+
+if e, ok := err.(*NotFoundError); ok {
+    // e.Name wasn&#39;t found
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="adding-information">Adding information</h3>
+<p>Frequently a function passes an error up the call stack while adding information to it, like a brief description of what was happening when the error occurred. A simple way to do this is to construct a new error that includes the text of the previous one:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if err != nil {
+    return fmt.Errorf(&#34;decompress %v: %v&#34;, name, err)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Creating a new error with <code>fmt.Errorf</code> discards everything from the original error except the text. As we saw above with <code>QueryError</code>, we may sometimes want to define a new error type that contains the underlying error, preserving it for inspection by code. Here is <code>QueryError</code> again:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type QueryError struct {
+    Query string
+    Err   error
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Programs can look inside a <code>*QueryError</code> value to make decisions based on the underlying error. You’ll sometimes see this referred to as “unwrapping” the error.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if e, ok := err.(*QueryError); ok &amp;&amp; e.Err == ErrPermission {
+    // query failed because of a permission problem
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>os.PathError</code> type in the standard library is another example of one error which contains another.</p>
+<h2 id="errors-in-go-113">Errors in Go 1.13</h2>
+<h3 id="the-unwrap-method">The Unwrap method</h3>
+<p>Go 1.13 introduces new features to the <code>errors</code> and <code>fmt</code> standard library packages to simplify working with errors that contain other errors. The most significant of these is a convention rather than a change: an error which contains another may implement an <code>Unwrap</code> method returning the underlying error. If <code>e1.Unwrap()</code> returns <code>e2</code>, then we say that <code>e1</code> <em>wraps</em> <code>e2</code>, and that you can <em>unwrap</em> <code>e1</code> to get <code>e2</code>.</p>
+<p>Following this convention, we can give the <code>QueryError</code> type above an <code>Unwrap</code> method that returns its contained error:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func (e *QueryError) Unwrap() error { return e.Err }
+</code></pre></td></tr></table>
+</div>
+</div><p>The result of unwrapping an error may itself have an <code>Unwrap</code> method; we call the sequence of errors produced by repeated unwrapping the <em>error chain</em>.</p>
+<h3 id="examining-errors-with-is-and-as">Examining errors with Is and As</h3>
+<p>The Go 1.13 <code>errors</code> package includes two new functions for examining errors: <code>Is</code> and <code>As</code>.</p>
+<p>The <code>errors.Is</code> function compares an error to a value.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// Similar to:
+//   if err == ErrNotFound { … }
+if errors.Is(err, ErrNotFound) {
+    // something wasn&#39;t found
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>As</code> function tests whether an error is a specific type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// Similar to:
+//   if e, ok := err.(*QueryError); ok { … }
+var e *QueryError
+// Note: *QueryError is the type of the error.
+if errors.As(err, &amp;e) {
+    // err is a *QueryError, and e is set to the error&#39;s value
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>In the simplest case, the <code>errors.Is</code> function behaves like a comparison to a sentinel error, and the <code>errors.As</code> function behaves like a type assertion. When operating on wrapped errors, however, these functions consider all the errors in a chain. Let’s look again at the example from above of unwrapping a <code>QueryError</code> to examine the underlying error:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if e, ok := err.(*QueryError); ok &amp;&amp; e.Err == ErrPermission {
+    // query failed because of a permission problem
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Using the <code>errors.Is</code> function, we can write this as:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if errors.Is(err, ErrPermission) {
+    // err, or some error that it wraps, is a permission problem
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>errors</code> package also includes a new <code>Unwrap</code> function which returns the result of calling an error’s <code>Unwrap</code> method, or <code>nil</code> when the error has no <code>Unwrap</code> method. It is usually better to use <code>errors.Is</code> or <code>errors.As</code>, however, since these functions will examine the entire chain in a single call.</p>
+<p>Note: although it may feel odd to take a pointer to a pointer, in this case it is correct. Think of it instead as taking a pointer to a value of the error type; it so happens in this case that the returned error is a pointer type.</p>
+<h3 id="wrapping-errors-with-w">Wrapping errors with %w</h3>
+<p>As mentioned earlier, it is common to use the <code>fmt.Errorf</code> function to add additional information to an error.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if err != nil {
+    return fmt.Errorf(&#34;decompress %v: %v&#34;, name, err)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>In Go 1.13, the <code>fmt.Errorf</code> function supports a new <code>%w</code> verb. When this verb is present, the error returned by <code>fmt.Errorf</code> will have an <code>Unwrap</code> method returning the argument of <code>%w</code>, which must be an error. In all other ways, <code>%w</code> is identical to <code>%v</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if err != nil {
+    // Return an error which unwraps to err.
+    return fmt.Errorf(&#34;decompress %v: %w&#34;, name, err)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Wrapping an error with <code>%w</code> makes it available to <code>errors.Is</code> and <code>errors.As</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">err := fmt.Errorf(&#34;access denied: %w&#34;, ErrPermission)
+...
+if errors.Is(err, ErrPermission) ...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="whether-to-wrap">Whether to Wrap</h3>
+<p>When adding additional context to an error, either with <code>fmt.Errorf</code> or by implementing a custom type, you need to decide whether the new error should wrap the original. There is no single answer to this question; it depends on the context in which the new error is created. Wrap an error to expose it to callers. Do not wrap an error when doing so would expose implementation details.</p>
+<p>As one example, imagine a <code>Parse</code> function which reads a complex data structure from an <code>io.Reader</code>. If an error occurs, we wish to report the line and column number at which it occurred. If the error occurs while reading from the <code>io.Reader</code>, we will want to wrap that error to allow inspection of the underlying problem. Since the caller provided the <code>io.Reader</code> to the function, it makes sense to expose the error produced by it.</p>
+<p>In contrast, a function which makes several calls to a database probably should not return an error which unwraps to the result of one of those calls. If the database used by the function is an implementation detail, then exposing these errors is a violation of abstraction. For example, if the <code>LookupUser</code> function of your package <code>pkg</code> uses Go’s <code>database/sql</code> package, then it may encounter a <code>sql.ErrNoRows</code> error. If you return that error with <code>fmt.Errorf(&quot;accessing DB: %v&quot;, err)</code> then a caller cannot look inside to find the <code>sql.ErrNoRows</code>. But if the function instead returns <code>fmt.Errorf(&quot;accessing DB: %w&quot;, err)</code>, then a caller could reasonably write</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">err := pkg.LookupUser(...)
+if errors.Is(err, sql.ErrNoRows) …
+</code></pre></td></tr></table>
+</div>
+</div><p>At that point, the function must always return <code>sql.ErrNoRows</code> if you don’t want to break your clients, even if you switch to a different database package. In other words, wrapping an error makes that error part of your API. If you don’t want to commit to supporting that error as part of your API in the future, you shouldn’t wrap the error.</p>
+<p>It’s important to remember that whether you wrap or not, the error text will be the same. A <em>person</em> trying to understand the error will have the same information either way; the choice to wrap is about whether to give <em>programs</em> additional information so they can make more informed decisions, or to withhold that information to preserve an abstraction layer.</p>
+<h2 id="customizing-error-tests-with-is-and-as-methods">Customizing error tests with Is and As methods</h2>
+<p>The <code>errors.Is</code> function examines each error in a chain for a match with a target value. By default, an error matches the target if the two are <a href="https://go.dev/ref/spec#Comparison_operators" target="_blank" rel="noopener noreffer">equal</a>. In addition, an error in the chain may declare that it matches a target by implementing an <code>Is</code> <em>method</em>.</p>
+<p>As an example, consider this error inspired by the <a href="https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html" target="_blank" rel="noopener noreffer">Upspin error package</a> which compares an error against a template, considering only fields which are non-zero in the template:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Error struct {
+    Path string
+    User string
+}
+
+func (e *Error) Is(target error) bool {
+    t, ok := target.(*Error)
+    if !ok {
+        return false
+    }
+    return (e.Path == t.Path || t.Path == &#34;&#34;) &amp;&amp;
+           (e.User == t.User || t.User == &#34;&#34;)
+}
+
+if errors.Is(err, &amp;Error{User: &#34;someuser&#34;}) {
+    // err&#39;s User field is &#34;someuser&#34;.
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>errors.As</code> function similarly consults an <code>As</code> method when present.</p>
+<h2 id="errors-and-package-apis">Errors and package APIs</h2>
+<p>A package which returns errors (and most do) should describe what properties of those errors programmers may rely on. A well-designed package will also avoid returning errors with properties that should not be relied upon.</p>
+<p>The simplest specification is to say that operations either succeed or fail, returning a nil or non-nil error value respectively. In many cases, no further information is needed.</p>
+<p>If we wish a function to return an identifiable error condition, such as “item not found,” we might return an error wrapping a sentinel.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var ErrNotFound = errors.New(&#34;not found&#34;)
+
+// FetchItem returns the named item.
+//
+// If no item with the name exists, FetchItem returns an error
+// wrapping ErrNotFound.
+func FetchItem(name string) (*Item, error) {
+    if itemNotFound(name) {
+        return nil, fmt.Errorf(&#34;%q: %w&#34;, name, ErrNotFound)
+    }
+    // ...
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>There are other existing patterns for providing errors which can be semantically examined by the caller, such as directly returning a sentinel value, a specific type, or a value which can be examined with a predicate function.</p>
+<p>In all cases, care should be taken not to expose internal details to the user. As we touched on in “Whether to Wrap” above, when you return an error from another package you should convert the error to a form that does not expose the underlying error, unless you are willing to commit to returning that specific error in the future.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="c1">// The *os.PathError returned by os.Open is an internal detail.
+</span><span class="c1"></span>    <span class="c1">// To avoid exposing it to the caller, repackage it as a new
+</span><span class="c1"></span>    <span class="c1">// error with the same text. We use the %v formatting verb, since
+</span><span class="c1"></span>    <span class="c1">// %w would permit the caller to unwrap the original *os.PathError.
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If a function is defined as returning an error wrapping some sentinel or type, do not return the underlying error directly.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var ErrPermission = errors.New(&#34;permission denied&#34;)
+
+// DoSomething returns an error wrapping ErrPermission if the user
+// does not have permission to do something.
+func DoSomething() error {
+    if !userHasPermission() {
+        // If we return ErrPermission directly, callers might come
+        // to depend on the exact error value, writing code like this:
+        //
+        //     if err := pkg.DoSomething(); err == pkg.ErrPermission { … }
+        //
+        // This will cause problems if we want to add additional
+        // context to the error in the future. To avoid this, we
+        // return an error wrapping the sentinel so that users must
+        // always unwrap it:
+        //
+        //     if err := pkg.DoSomething(); errors.Is(err, pkg.ErrPermission) { ... }
+        return fmt.Errorf(&#34;%w&#34;, ErrPermission)
+    }
+    // ...
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="conclusion">Conclusion</h2>
+<p>Although the changes we’ve discussed amount to just three functions and a formatting verb, we hope they will go a long way toward improving how errors are handled in Go programs. We expect that wrapping to provide additional context will become commonplace, helping programs to make better decisions and helping programmers to find bugs more quickly.</p>
+<p>As Russ Cox said in his <a href="https://blog.golang.org/experiment" target="_blank" rel="noopener noreffer">GopherCon 2019 keynote</a>, on the path to Go 2 we experiment, simplify and ship. Now that we’ve shipped these changes, we look forward to the experiments that will follow.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20191017/" data-title="Gb_20191017" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20191017/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20191017/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20191017/" data-title="Gb_20191017"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20191017/" data-title="Gb_20191017"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20191017/" data-title="Gb_20191017"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20190926/" class="prev" rel="prev" title="Gb_20190926"><i class="fas fa-angle-left fa-fw"></i>Gb_20190926</a>
+            <a href="/gb_20191107/" class="next" rel="next" title="Gb_20191107">Gb_20191107<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

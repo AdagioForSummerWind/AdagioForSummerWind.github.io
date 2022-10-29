@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20210218 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20210218" />
+<meta property="og:description" content="New module changes in Go 1.16 Jay Conrod
+18 February 2021
+We hope you’re enjoying Go 1.16! This release has a lot of new features, especially for modules. The release notes describe these changes briefly, but let’s explore a few of them in depth.
+Modules on by default The go command now builds packages in module-aware mode by default, even when no go.mod is present. This is a big step toward using modules in all projects." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20210218/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T20:16:03+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20210218"/>
+<meta name="twitter:description" content="New module changes in Go 1.16 Jay Conrod
+18 February 2021
+We hope you’re enjoying Go 1.16! This release has a lot of new features, especially for modules. The release notes describe these changes briefly, but let’s explore a few of them in depth.
+Modules on by default The go command now builds packages in module-aware mode by default, even when no go.mod is present. This is a big step toward using modules in all projects."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20210218/" /><link rel="prev" href="https://jefofrank.xyz/gb_20210216/" /><link rel="next" href="https://jefofrank.xyz/gb_20210224/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20210218",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20210218\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1282 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20210218\/","datePublished": "2022-10-29T20:16:03+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20210218</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 20:16:03">2022-10-29 20:16:03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1282 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#modules-on-by-default">Modules on by default</a></li>
+    <li><a href="#no-automatic-changes-to-gomod-and-gosum">No automatic changes to go.mod and go.sum</a></li>
+    <li><a href="#installing-an-executable-at-a-specific-version">Installing an executable at a specific version</a></li>
+    <li><a href="#module-retraction">Module retraction</a></li>
+    <li><a href="#controlling-version-control-tools-with-govcs">Controlling version control tools with GOVCS</a></li>
+    <li><a href="#whats-next">What’s next?</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="new-module-changes-in-go-116">New module changes in Go 1.16</h1>
+<p>Jay Conrod<br>
+18 February 2021</p>
+<p>We hope you’re enjoying Go 1.16! This release has a lot of new features, especially for modules. The <a href="https://go.dev/doc/go1.16" target="_blank" rel="noopener noreffer">release notes</a> describe these changes briefly, but let’s explore a few of them in depth.</p>
+<h2 id="modules-on-by-default">Modules on by default</h2>
+<p>The <code>go</code> command now builds packages in module-aware mode by default, even when no <code>go.mod</code> is present. This is a big step toward using modules in all projects.</p>
+<p>It’s still possible to build packages in GOPATH mode by setting the <code>GO111MODULE</code> environment variable to <code>off</code>. You can also set <code>GO111MODULE</code> to <code>auto</code> to enable module-aware mode only when a go.mod file is present in the current directory or any parent directory. This was previously the default. Note that you can set <code>GO111MODULE</code> and other variables permanently with <code>go env -w</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go env -w GO111MODULE=auto
+</code></pre></td></tr></table>
+</div>
+</div><p>We plan to drop support for GOPATH mode in Go 1.17. In other words, Go 1.17 will ignore <code>GO111MODULE</code>. If you have projects that do not build in module-aware mode, now is the time to migrate. If there is a problem preventing you from migrating, please consider filing an <a href="https://github.com/golang/go/issues/new" target="_blank" rel="noopener noreffer">issue</a> or an <a href="https://github.com/golang/go/wiki/ExperienceReports" target="_blank" rel="noopener noreffer">experience report</a>.</p>
+<h2 id="no-automatic-changes-to-gomod-and-gosum">No automatic changes to go.mod and go.sum</h2>
+<p>Previously, when the <code>go</code> command found a problem with <code>go.mod</code> or <code>go.sum</code> like a missing <code>require</code> directive or a missing sum, it would attempt to fix the problem automatically. We received a lot of feedback that this behavior was surprising, especially for commands like <code>go list</code> that don’t normally have side effects. The automatic fixes weren’t always desirable: if an imported package wasn’t provided by any required module, the <code>go</code> command would add a new dependency, possibly triggering upgrades of common dependencies. Even a misspelled import path would result in a (failed) network lookup.</p>
+<p>In Go 1.16, module-aware commands report an error after discovering a problem in <code>go.mod</code> or <code>go.sum</code> instead of attempting to fix the problem automatically. In most cases, the error message recommends a command to fix the problem.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="k">go</span> <span class="nx">build</span>
+<span class="nx">example</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span> <span class="nx">no</span> <span class="nx">required</span> <span class="nx">module</span> <span class="nx">provides</span> <span class="kn">package</span> <span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">net</span><span class="o">/</span><span class="nx">html</span><span class="p">;</span> <span class="nx">to</span> <span class="nx">add</span> <span class="nx">it</span><span class="p">:</span>
+    <span class="k">go</span> <span class="nx">get</span> <span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">net</span><span class="o">/</span><span class="nx">html</span>
+<span class="err">$</span> <span class="k">go</span> <span class="nx">get</span> <span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">net</span><span class="o">/</span><span class="nx">html</span>
+<span class="err">$</span> <span class="k">go</span> <span class="nx">build</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As before, the <code>go</code> command may use the <code>vendor</code> directory if it’s present (see <a href="https://go.dev/ref/mod#vendoring" target="_blank" rel="noopener noreffer">Vendoring</a> for details). Commands like <code>go get</code> and <code>go mod tidy</code> still modify <code>go.mod</code> and <code>go.sum</code>, since their main purpose is to manage dependencies.</p>
+<h2 id="installing-an-executable-at-a-specific-version">Installing an executable at a specific version</h2>
+<p>The <code>go install</code> command can now install an executable at a specific version by specifying an <code>@version</code> suffix.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go install golang.org/x/tools/gopls@v0.6.5
+</code></pre></td></tr></table>
+</div>
+</div><p>When using this syntax, <code>go install</code> installs the command from that exact module version, ignoring any <code>go.mod</code> files in the current directory and parent directories. (Without the <code>@version</code> suffix, <code>go install</code> continues to operate as it always has, building the program using the version requirements and replacements listed in the current module’s <code>go.mod</code>.)</p>
+<p>We used to recommend <code>go get -u program</code> to install an executable, but this use caused too much confusion with the meaning of <code>go get</code> for adding or changing module version requirements in <code>go.mod</code>. And to avoid accidentally modifying <code>go.mod</code>, people started suggesting more complex commands like:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd $HOME; GO111MODULE=on go get program@latest
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can all use <code>go install program@latest</code> instead. See <a href="https://go.dev/ref/mod#go-install" target="_blank" rel="noopener noreffer"><code>go install</code></a> for details.</p>
+<p>In order to eliminate ambiguity about which versions are used, there are several restrictions on what directives may be present in the program’s <code>go.mod</code> file when using this install syntax. In particular, <code>replace</code> and <code>exclude</code> directives are not allowed, at least for now. In the long term, once the new <code>go install program@version</code> is working well for enough use cases, we plan to make <code>go get</code> stop installing command binaries. See <a href="https://go.dev/issue/43684" target="_blank" rel="noopener noreffer">issue 43684</a> for details.</p>
+<h2 id="module-retraction">Module retraction</h2>
+<p>Have you ever accidentally published a module version before it was ready? Or have you discovered a problem right after a version was published that needed to be fixed quickly? Mistakes in published versions are difficult to correct. To keep module builds deterministic, a version cannot be modified after it is published. Even if you delete or change a version tag, <a href="https://proxy.golang.org/" target="_blank" rel="noopener noreffer"><code>proxy.golang.org</code></a> and other proxies probably already have the original cached.</p>
+<p>Module authors can now <em>retract</em> module versions using the <code>retract</code> directive in <code>go.mod</code>. A retracted version still exists and can be downloaded (so builds that depend on it won’t break), but the <code>go</code> command won’t select it automatically when resolving versions like <code>@latest</code>. <code>go get</code> and <code>go list -m -u</code> will print warnings about existing uses.</p>
+<p>For example, suppose the author of a popular library <code>example.com/lib</code> releases <code>v1.0.5</code>, then discovers a new security issue. They can add a directive to their <code>go.mod</code> file like the one below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Remote-triggered crash in package foo. See CVE-2021-01234.
+</span><span class="c1"></span><span class="nx">retract</span> <span class="nx">v1</span><span class="mf">.0.5</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Next, the author can tag and push version <code>v1.0.6</code>, the new highest version. After this, users that already depend on <code>v1.0.5</code> will be notified of the retraction when they check for updates or when they upgrade a dependent package. The notification message may include text from the comment above the <code>retract</code> directive.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="k">go</span> <span class="nx">list</span> <span class="o">-</span><span class="nx">m</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">all</span>
+<span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">lib</span> <span class="nx">v1</span><span class="mf">.0.0</span> <span class="p">(</span><span class="nx">retracted</span><span class="p">)</span>
+<span class="err">$</span> <span class="k">go</span> <span class="nx">get</span> <span class="p">.</span>
+<span class="k">go</span><span class="p">:</span> <span class="nx">warning</span><span class="p">:</span> <span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">lib</span><span class="err">@</span><span class="nx">v1</span><span class="mf">.0.5</span><span class="p">:</span> <span class="nx">retracted</span> <span class="nx">by</span> <span class="nx">module</span> <span class="nx">author</span><span class="p">:</span>
+    <span class="nx">Remote</span><span class="o">-</span><span class="nx">triggered</span> <span class="nx">crash</span> <span class="nx">in</span> <span class="kn">package</span> <span class="nx">foo</span><span class="p">.</span> <span class="nx">See</span> <span class="nx">CVE</span><span class="o">-</span><span class="mi">2021</span><span class="o">-</span><span class="mf">01234.</span>
+<span class="k">go</span><span class="p">:</span> <span class="nx">to</span> <span class="k">switch</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">latest</span> <span class="nx">unretracted</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">run</span><span class="p">:</span>
+    <span class="k">go</span> <span class="nx">get</span> <span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">lib</span><span class="err">@</span><span class="nx">latest</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>For an interactive, browser-based guide, check out <a href="https://play-with-go.dev/retract-module-versions_go116_en/" target="_blank" rel="noopener noreffer">Retract Module Versions</a> on <a href="https://play-with-go.dev/" target="_blank" rel="noopener noreffer">play-with-go.dev</a>. See the <a href="https://go.dev/ref/mod#go-mod-file-retract" target="_blank" rel="noopener noreffer"><code>retract</code> directive docs</a> for syntax details.</p>
+<h2 id="controlling-version-control-tools-with-govcs">Controlling version control tools with GOVCS</h2>
+<p>The <code>go</code> command can download module source code from a mirror like <a href="https://proxy.golang.org/" target="_blank" rel="noopener noreffer">proxy.golang.org</a> or directly from a version control repository using <code>git</code>, <code>hg</code>, <code>svn</code>, <code>bzr</code>, or <code>fossil</code>. Direct version control access is important, especially for private modules that aren’t available on proxies, but it’s also potentially a security problem: a bug in a version control tool may be exploited by a malicious server to run unintended code.</p>
+<p>Go 1.16 introduces a new configuration variable, <code>GOVCS</code>, which lets the user specify which modules are allowed to use specific version control tools. <code>GOVCS</code> accepts a comma-separated list of <code>pattern:vcslist</code> rules. The <code>pattern</code> is a <a href="https://go.dev/pkg/path#Match" target="_blank" rel="noopener noreffer"><code>path.Match</code></a> pattern matching one or more leading elements of a module path. The special patterns <code>public</code> and <code>private</code> match public and private modules (<code>private</code> is defined as modules matched by patterns in <code>GOPRIVATE</code>; <code>public</code> is everything else). The <code>vcslist</code> is a pipe-separated list of allowed version control commands or the keyword <code>all</code> or <code>off</code>.</p>
+<p>For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GOVCS=github.com:git,evil.com:off,*:git|hg
+</code></pre></td></tr></table>
+</div>
+</div><p>With this setting, modules with paths on <code>github.com</code> can be downloaded using <code>git</code>; paths on <code>evil.com</code> cannot be downloaded using any version control command, and all other paths (<code>*</code> matches everything) can be downloaded using <code>git</code> or <code>hg</code>.</p>
+<p>If <code>GOVCS</code> is not set, or if a module does not match any pattern, the <code>go</code> command uses this default: <code>git</code> and <code>hg</code> are allowed for public modules, and all tools are allowed for private modules. The rationale behind allowing only Git and Mercurial is that these two systems have had the most attention to issues of being run as clients of untrusted servers. In contrast, Bazaar, Fossil, and Subversion have primarily been used in trusted, authenticated environments and are not as well scrutinized as attack surfaces. That is, the default setting is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GOVCS=public:git|hg,private:all
+</code></pre></td></tr></table>
+</div>
+</div><p>See <a href="https://go.dev/ref/mod#vcs-govcs" target="_blank" rel="noopener noreffer">Controlling version control tools with <code>GOVCS</code></a> for more details.</p>
+<h2 id="whats-next">What’s next?</h2>
+<p>We hope you find these features useful. We’re already hard at work on the next set of module features for Go 1.17, particularly <a href="https://github.com/golang/go/issues/36460" target="_blank" rel="noopener noreffer">lazy module loading</a>, which should make the module loading process faster and more stable. As always, if you run into new bugs, please let us know on the <a href="https://github.com/golang/go/issues" target="_blank" rel="noopener noreffer">issue tracker</a>. Happy coding!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20210218/" data-title="Gb_20210218" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20210218/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20210218/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20210218/" data-title="Gb_20210218"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20210218/" data-title="Gb_20210218"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20210218/" data-title="Gb_20210218"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20210216/" class="prev" rel="prev" title="Gb_20210216"><i class="fas fa-angle-left fa-fw"></i>Gb_20210216</a>
+            <a href="/gb_20210224/" class="next" rel="next" title="Gb_20210224">Gb_20210224<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

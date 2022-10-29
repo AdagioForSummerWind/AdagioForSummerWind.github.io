@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20170306 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20170306" />
+<meta property="og:description" content="Go 2016 Survey Results https://go.dev/blog/survey2016-results Steve Francia, for the Go team
+6 March 2017
+Thank you This post summarizes the result of our December 2016 user survey along with our commentary and insights. We are grateful to everyone who provided their feedback through the survey to help shape the future of Go.
+Programming background Of the 3,595 survey respondents, 89% said they program in Go at work or outside of work, with 39% using Go both at home and at work, 27% using Go only at home, and 23% using Go only at work." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20170306/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T12:57:31+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20170306"/>
+<meta name="twitter:description" content="Go 2016 Survey Results https://go.dev/blog/survey2016-results Steve Francia, for the Go team
+6 March 2017
+Thank you This post summarizes the result of our December 2016 user survey along with our commentary and insights. We are grateful to everyone who provided their feedback through the survey to help shape the future of Go.
+Programming background Of the 3,595 survey respondents, 89% said they program in Go at work or outside of work, with 39% using Go both at home and at work, 27% using Go only at home, and 23% using Go only at work."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20170306/" /><link rel="prev" href="https://jefofrank.xyz/gb_20170216/" /><link rel="next" href="https://jefofrank.xyz/gb_20170324/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20170306",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20170306\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  6214 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20170306\/","datePublished": "2022-10-24T12:57:31+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20170306</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 12:57:31">2022-10-24 12:57:31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6214 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 30 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#thank-you">Thank you</a></li>
+    <li><a href="#programming-background">Programming background</a></li>
+    <li><a href="#go-usage">Go usage</a></li>
+    <li><a href="#development-and-deployment">Development and deployment</a></li>
+    <li><a href="#working-effectively">Working Effectively</a></li>
+    <li><a href="#the-go-project">The Go Project</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-2016-survey-results">Go 2016 Survey Results</h1>
+<p><a href="https://go.dev/blog/survey2016-results" target="_blank" rel="noopener noreffer">https://go.dev/blog/survey2016-results</a>
+Steve Francia, for the Go team<br>
+6 March 2017</p>
+<h2 id="thank-you">Thank you</h2>
+<p>This post summarizes the result of our December 2016 user survey along with our commentary and insights. We are grateful to everyone who provided their feedback through the survey to help shape the future of Go.</p>
+<h2 id="programming-background">Programming background</h2>
+<p>Of the 3,595 survey respondents, 89% said they program in Go at work or outside of work, with 39% using Go both at home and at work, 27% using Go only at home, and 23% using Go only at work.</p>
+<p>We asked about the areas in which people work. 63% said they work in web development, but only 9% listed web development alone. In fact, 77% chose two or more areas, and 53% chose three or more.</p>
+<p>We also asked about the kinds of programs people write in Go. 63% of respondents write command-line programs, 60% write API or RPC services, and 52% write web services. Like in the previous question, most made multiple choices, with 85% choosing two or more and 72% choosing three or more.</p>
+<p>We asked about people’s expertise and preference among programming languages. Unsurprisingly, Go ranked highest among respondents’ first choices in both expertise (26%) and preference (62%). With Go excluded, the top five first choices for language expertise were Python (18%), Java (17%), JavaScript (13%), C (11%), and PHP (8%); and the top five first choices for language preference were Python (22%), JavaScript (10%), C (9%), Java (9%), and Ruby (7%). Go is clearly attracting many programmers from dynamic languages.</p>
+<p>p.note { font-size: 0.80em; font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ }</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } The following apply to me: (multiple choice) 2,386 (66%) I program in Go outside of work 2,235 (62%) I program at work in Go 2,004 (56%) I program at work in another language 618 (17%) I manage a programming team 337  (9%) I am a student 78  (2%) Other 10  (0%) No response</p>
+<p><em>Reading the data</em>: This question was “multiple choice,” so the percentages add up to well over 100%. All graphs in this post show both the total count and the corresponding percentage of the 3,595 surveys completed.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I work in the following areas: (multiple choice) 2,272 (63%) Web development 1,359 (38%) Systems programming 1,251 (35%) DevOps 1,169 (33%) Network programming 1,006 (28%) Databases 533 (15%) Mobile 490 (14%) Desktop/GUI applications 457 (13%) Security 435 (12%) Data Science 417 (12%) Finance/Commerce 394 (11%) Embedded devices/Internet of Things 379 (11%) Academic/Scientific/Numeric 228  (6%) Gaming 238  (7%) Other 74  (2%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I&rsquo;ve used Go for: (single choice) 432 (12%) Less than 3 months 1,009 (28%) 3 - 12 months 829 (23%) 13 - 24 months 903 (25%) 2 - 4 years 321  (9%) 4+ years 77  (2%) I&rsquo;ve never used Go 24  (1%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I write the following in Go: (multiple choice) 2,247 (63%) A runnable/interactive program (CLI) 2,174 (60%) API/RPC services (returning non-HTML) 1,886 (52%) Web services (returning HTML) 1,583 (44%) Agents and daemons (e.g, monitoring) 1,417 (39%) Libraries or Frameworks 1,209 (34%) Data processing (pipeline, aggregation) 1,120 (31%) Automation/scripts (e.g, deployment, configuration management) 107  (3%) I don&rsquo;t write in Go 137  (4%) Other 45  (1%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I write in Go: (single choice) 1,567 (44%) As part of my daily routine 1,054 (29%) Weekly 486 (14%) Infrequently 368 (10%) Monthly 77  (2%) I&rsquo;ve never written in Go 43  (1%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Rank the following languages in terms of your expertise: (ordered choice, up to 5) 3,111 (26, 26, 19, 10, 5%) Go 2,048 (8, 15, 14, 11, 8%) JavaScript 1,896 (12, 12, 10, 10, 7%) Python 1,618 (13, 8, 8, 8, 8%) Java 1,512 (8, 8, 9, 9, 7%) C 1,064 (2, 4, 7, 8, 8%) Bash 1,039 (5, 5, 7, 6, 6%) C++ 830 (6, 4, 4, 5, 4%) PHP 668 (5, 4, 3, 4, 3%) Ruby 622 (5, 3, 3, 4, 3%) C# 294 (2, 1, 2, 2, 2%) Perl 184 (1, 1, 1, 1, 1%) Scala 156 (0, 0, 1, 1, 2%) Rust 142 (0, 0, 1, 1, 1%) Lua 136 (0, 0, 0, 1, 2%) Haskell 94 (0, 0, 0, 1, 1%) R 93 (0, 0, 0, 1, 1%) Clojure 72 (0, 0, 0, 0, 1%) Erlang 18 (0, 0, 0, 0, 0%) Julia 499 (2, 3, 3, 3, 3%) Other 134 (3.7%) No response</p>
+<p><em>Reading the data</em>: This question was “ordered choice.” The first, second, third, fourth, and fifth choices are displayed as progressively lighter sections of the bars. The total count shown next to the bar is for all choices; the percentage list shows how the choices are divided.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Rank the following languages in terms of your preference: (ordered choice, up to 5) 3,248 (62, 19, 6, 2, 1%) Go 1,796 (7, 17, 12, 9, 5%) Python 1,482 (3, 9, 13, 10, 8%) JavaScript 1,235 (2, 8, 9, 9, 6%) C 1,167 (3, 7, 8, 7, 7%) Java 809 (2, 4, 6, 6, 5%) C++ 647 (1, 3, 5, 5, 5%) Bash 563 (3, 5, 4, 3, 2%) Ruby 557 (2, 4, 4, 3, 2%) C# 475 (2, 4, 3, 3, 2%) Rust 449 (1, 2, 3, 3, 3%) PHP 278 (1, 2, 2, 2, 1%) Haskell 215 (1, 1, 1, 1, 1%) Perl 214 (1, 1, 1, 1, 1%) Scala 178 (0, 1, 2, 2, 1%) Lua 168 (0, 1, 1, 1, 1%) Erlang 156 (1, 1, 1, 1, 1%) Clojure 79 (0, 0, 0, 1, 1%) R 43 (0, 0, 0, 0, 0%) Julia 507 (3, 4, 4, 2, 1%) Other 166 (4.6%) No response</p>
+<h2 id="go-usage">Go usage</h2>
+<p>Users are overwhelmingly happy with Go: they agree that they would recommend Go to others by a ratio of 19:1, that they’d prefer to use Go for their next project (14:1), and that Go is working well for their teams (18:1). Fewer users agree that Go is critical to their company’s success (2.5:1).</p>
+<p>When asked what they like most about Go, users most commonly mentioned Go’s simplicity, ease of use, concurrency features, and performance. When asked what changes would most improve Go, users most commonly mentioned generics, package versioning, and dependency management. Other popular responses were GUIs, debugging, and error handling.</p>
+<p>When asked about the biggest challenges to their own personal use of Go, users mentioned many of the technical changes suggested in the previous question. The most common themes in the non-technical challenges were convincing others to use Go and communicating the value of Go to others, including management. Another common theme was learning Go or helping others learn, including finding documentation like getting-started walkthroughs, tutorials, examples, and best practices.</p>
+<p>Some representative common feedback, paraphrased for confidentiality:</p>
+<blockquote>
+<p>“The documentation is not clear enough for beginners. It needs more examples and often assumes experience with other languages and various computer science topics.”</p>
+<p>“I want to use Go at work but struggle to convince my team to even try Go.”</p>
+<p>“I can’t get management approval to use Go; they don’t see its value and worry about adoption and finding developers.”</p>
+</blockquote>
+<p>We appreciate the feedback given to identify these challenges faced by our users and community. In 2017 we are focusing on addressing these issues and hope to make as many significant improvements as we can. We welcome suggestions and contributions from the community in making these challenges into strengths for Go.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } To what extent do you agree or disagree with the following statements: (strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, strongly agree) 3,250 (2, 1, 1, 2, 5, 21, 57%) I would recommend using Go to others (19:1) 3,219 (3, 1, 2, 4, 8, 19, 52%) I would prefer to use Go for my next new project (14:1) 2,325 (1, 1, 1, 7, 8, 25, 22%) Go is working well for my team. (18:1) 2,336 (4, 7, 3, 14, 12, 12, 12%) Go is critical to my company&rsquo;s success. (2.5:1)</p>
+<p><em>Reading the data</em>: This question asked how strongly the respondent agreed or disagreed with the statement. The responses for each statement are displayed as sections of a single bar, from “strongly disagree” in deep red on the left end to “strongly agree” in deep blue on the right end. The bars use the same scale as the rest of the graphs, so they can (and do, especially later in the survey) vary in overall length due to lack of responses. The ratio after the text compares the number of respondents who agreed (including “somewhat agree” and “strongly agree”) to those who disagreed (including “somewhat disagree” and “strongly disagree”). For example, the ratio of respondents agreeing that they would recommend Go to respondents disagreeing was 19 to 1.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What do you like most about Go? 595 (17%) simplicity 543 (15%) easy 523 (15%) concurrency 495 (14%) simple 454 (13%) fast 293  (8%) syntax 287  (8%) standard library 286  (8%) tooling 270  (8%) static 266  (7%) performance 235  (7%) speed 202  (6%) interfaces 184  (5%) channels 183  (5%) community 180  (5%) good 177  (5%) compilation 177  (5%) goroutines 167  (5%) binary 156  (4%) great 148  (4%) tools 146  (4%) compiled 137  (4%) compile 127  (4%) type 124  (3%) small 118  (3%) c 114  (3%) gofmt 114  (3%) libraries 88  (2%) clean 87  (2%) easy to learn 82  (2%) deployment 78  (2%) memory 78  (2%) strong 76  (2%) concise 76  (2%) single binary 73  (2%) low 73  (2%) static typing 71  (2%) build 68  (2%) easy to read 63  (2%) fast compilation 56  (2%) simple syntax 55  (2%) type system 54  (2%) simple language 51  (1%) easy concurrency 47  (1%) static binaries 46  (1%) go fmt 45  (1%) fast compile 43  (1%) small language 41  (1%) error handling 39  (1%) concurrency model 39  (1%) go routines 38  (1%) easy to use 38  (1%) statically typed 36  (1%) cross platform 35  (1%) concurrency primitives 35  (1%) goroutines channels 33  (1%) easy to write 27  (1%) great standard library 23  (1%) ease of use 940 (26%) No response</p>
+<p><em>Reading the data</em>: This question asked for write-in responses. The bars above show the fraction of surveys mentioning common words or phrases. Only words or phrases that appeared in twenty or more surveys are listed, and meaningless common words or phrases like “the” or “to be” are omitted. The displayed results do overlap: for example, the 287 responses that mentioned “standard library” do include the 27 listed separately that mentioned “great standard library.” However, nearly or completely redundant shorter entries are omitted: there are not twenty or more surveys that listed “standard” without mentioning “standard library,” so there is no separate entry for “standard.”</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What changes would improve Go most? 572 (16%) generics 451 (13%) management 330  (9%) dependency 314  (9%) package 266  (7%) dependency management 164  (5%) library 159  (4%) gui 134  (4%) package management 134  (4%) vendoring 128  (4%) debugger 126  (4%) libraries 122  (3%) standard 117  (3%) type 109  (3%) error 94  (3%) system 89  (2%) types 88  (2%) official 85  (2%) tools 84  (2%) c 82  (2%) gopath 78  (2%) performance 70  (2%) error handling 70  (2%) ide 69  (2%) package manager 66  (2%) documentation 66  (2%) faster 64  (2%) good 63  (2%) simple 63  (2%) tool 62  (2%) mobile 60  (2%) debugging 57  (2%) build 56  (2%) packages 55  (2%) easier 55  (2%) standard library 55  (2%) tooling 54  (2%) interface 51  (1%) dependencies 51  (1%) generic 48  (1%) programming 48  (1%) versioning 47  (1%) syntax 45  (1%) compile 45  (1%) solution 44  (1%) framework 43  (1%) examples 43  (1%) gc 43  (1%) type system 42  (1%) gui library 41  (1%) templates 40  (1%) android 40  (1%) community 40  (1%) function 40  (1%) native 40  (1%) ui 40  (1%) web 39  (1%) functions 21  (1%) cross platform 1,215 (34%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What is the biggest challenge you personally face using Go today? 249 (6.9%) lack 206 (5.7%) management 146 (4.1%) libraries 129 (3.6%) generics 127 (3.5%) dependency management 84 (2.3%) work 78 (2.2%) package 76 (2.1%) hard 68 (1.9%) time 67 (1.9%) good 67 (1.9%) java 66 (1.8%) gui 61 (1.7%) web 60 (1.7%) c 60 (1.7%) debugging 59 (1.6%) vendoring 58 (1.6%) projects 56 (1.6%) lack of generics 56 (1.6%) library 51 (1.4%) type 51 (1.4%) write 50 (1.4%) finding 49 (1.4%) ide 49 (1.4%) packages 48 (1.3%) dependencies 46 (1.3%) package management 45 (1.3%) debugger 44 (1.2%) adoption 42 (1.2%) people 41 (1.1%) learning 41 (1.1%) team 40 (1.1%) convincing 40 (1.1%) tools 39 (1.1%) error handling 39 (1.1%) interfaces 39 (1.1%) other languages 39 (1.1%) writing 38 (1.1%) interface 38 (1.1%) others 37 (1.0%) python 35 (1.0%) find 35 (1.0%) gopath 35 (1.0%) programming 34 (0.9%) can&rsquo;t 34 (0.9%) standard 33 (0.9%) build 33 (0.9%) tooling 32 (0.9%) generic 31 (0.9%) boilerplate 30 (0.8%) applications 30 (0.8%) developers 30 (0.8%) having 30 (0.8%) types 30 (0.8%) working 26 (0.7%) at work 26 (0.7%) using go 22 (0.6%) no generics 20 (0.6%) not enough 1,581 (44.0%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } If it were not for the following reasons I would use Go more: (ordered choice, up to 3) 1,485 (24, 14, 4%) I work on an existing project written in another language 1,160 (16, 12, 4%) My project / team / TL prefers another language 841 (11, 8, 5%) Go isn’t an appropriate fit for what I’m working on (eg. iOS, JS) 596 (6, 6, 4%) Go lacks critical libraries 412 (6, 3, 2%) Go lacks critical features 319 (3, 3, 3%) Not enough education or support resources for Go 121 (1, 1, 1%) Go lacks critical performance 374 (4, 3, 3%) Other 1,042 (29%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } If you desire, please elaborate on your reasons above. 58 (1.6%) c 58 (1.6%) java 58 (1.6%) libraries 50 (1.4%) python 47 (1.3%) web 45 (1.3%) generics 45 (1.3%) work 40 (1.1%) projects 34 (0.9%) languages 33 (0.9%) hard 32 (0.9%) lack 32 (0.9%) team 31 (0.9%) library 31 (0.9%) people 29 (0.8%) gui 25 (0.7%) good 25 (0.7%) performance 24 (0.7%) mobile 24 (0.7%) written 23 (0.6%) programming 23 (0.6%) time 22 (0.6%) golang 20 (0.6%) company 20 (0.6%) existing 20 (0.6%) great 20 (0.6%) php 20 (0.6%) tools 3,033 (84.4%) No response</p>
+<h2 id="development-and-deployment">Development and deployment</h2>
+<p>When asked which operating systems they develop Go on, 63% of respondents say they use Linux, 44% use MacOS, and 19% use Windows, with multiple choices allowed and 49% of respondents developing on multiple systems. The 51% of responses choosing a single system split into 29% on Linux, 17% on MacOS, 5% on Windows, and 0.2% on other systems.</p>
+<p>Go deployment is roughly evenly split between privately managed servers and hosted cloud servers.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I primarily develop Go on: (multiple choice) 2,263 (63%) Linux 1,592 (44%) MacOS 682 (19%) Windows 82  (2%) Other 434 (12%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } My preferred code editor: (ordered choice, up to 2) 1,359 (25, 13%) Vim 814 (14, 9%) VSCode 676 (10, 9%) Atom 687 (13, 6%) IntelliJ 655 (10, 8%) Sublime Text 305 (6, 2%) Emacs 137 (2, 2%) Visual Studio 153 (3, 2%) LiteIDE 99 (1, 2%) Eclipse 37 (1, 1%) Acme 238 (4, 3%) Other 425 (12%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } How satisfied are you with Go support in your preferred editor: (single choice) 69 (1.9%) Very Dissatisfied 52 (1.4%) Dissatisfied 164 (4.6%) Somewhat Dissatisfied 134 (3.7%) Neither Satisfied or Unsatisfied 609 (16.9%) Somewhat Satisfied 1,258 (35.0%) Satisfied 838 (23.3%) Very Satisfied 471 (13.1%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What one addition would make the biggest improvement to Go editing in your preferred editor? 180 (5.0%) debugging 136 (3.8%) debugger 116 (3.2%) refactoring 79 (2.2%) integration 72 (2.0%) tools 68 (1.9%) completion 58 (1.6%) editor 46 (1.3%) debug 43 (1.2%) code completion 43 (1.2%) work 41 (1.1%) vim 40 (1.1%) autocomplete 40 (1.1%) vscode 37 (1.0%) package 37 (1.0%) plugin 36 (1.0%) definition 36 (1.0%) easier 36 (1.0%) good 36 (1.0%) ide 36 (1.0%) intellij 35 (1.0%) faster 35 (1.0%) function 34 (0.9%) atom 34 (0.9%) interface 33 (0.9%) vim-go 32 (0.9%) gopath 31 (0.9%) integrated 30 (0.8%) working 29 (0.8%) auto 28 (0.8%) refactoring support 27 (0.8%) delve 27 (0.8%) type 26 (0.7%) guru 26 (0.7%) syntax 25 (0.7%) error 25 (0.7%) method 25 (0.7%) packages 25 (0.7%) plugins 24 (0.7%) compile 24 (0.7%) jump 23 (0.6%) features 23 (0.6%) find 23 (0.6%) goimports 23 (0.6%) navigation 23 (0.6%) performance 23 (0.6%) refactoring tools 23 (0.6%) works 22 (0.6%) autocompletion 22 (0.6%) debugging support 22 (0.6%) errors 22 (0.6%) gofmt 22 (0.6%) run 21 (0.6%) highlighting 21 (0.6%) save 21 (0.6%) setup 21 (0.6%) visual 20 (0.6%) documentation 20 (0.6%) great 2,291 (63.7%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } My team deploys Go/non-Go programs to: (multiple choice) 1,489 (41%) Self/Company Owned Servers (Go) 1,714 (48%) (non-Go) 928 (26%) AWS EC2 1,122 (31%) 503 (14%) None 249  (7%) 412 (11%) Digital Ocean 360 (10%) 292  (8%) AWS Container 343 (10%) 221  (6%) Google Compute Engine 186  (5%) 188  (5%) Google App Engine 94  (3%) 161  (4%) Google Container Engine (GKE) 115  (3%) 121  (3%) Heroku 185  (5%) 114  (3%) Microsoft Azure 210  (6%) 104  (3%) Linode 100  (3%) 94  (3%) AWS Lambda 233  (6%) 301  (8%) Other 297  (8%) 639 (18%) No response 660 (18%)</p>
+<h2 id="working-effectively">Working Effectively</h2>
+<p>We asked how strongly people agreed or disagreed with various statements about Go. Users most agreed that Go’s performance meets their needs (57:1 ratio agree versus disagree), that they are able to quickly find answers to their questions (20:1), and that they are able to effectively use Go’s concurrency features (14:1). On the other hand, users least agreed that they are able to effectively debug uses of Go’s concurrency features (2.7:1).</p>
+<p>Users mostly agreed that they were able to quickly find libraries they need (7.5:1). When asked what libraries are still missing, the most common request by far was a library for writing GUIs. Another popular topic was requests around data processing, analytics, and numerical and scientific computing.</p>
+<p>Of the 30% of users who suggested ways to improve Go’s documentation, the most common suggestion by far was more examples.</p>
+<p>The primary sources for Go news are the Go blog, Reddit’s /r/golang and Twitter; there may be some bias here since these are also how the survey was announced.</p>
+<p>The primary sources for finding answers to Go questions are the Go web site, Stack Overflow, and reading source code directly.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } To what extent do you agree or disagree with the following statements: (strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, strongly agree) 3,094 (1, 2, 5, 6, 27, 32, 12%) I have a good understanding of Go best practices. (9.6:1) 3,083 (0, 1, 3, 4, 17, 41, 20%) I am able to quickly find answers to my questions. (20:1) 3,053 (0, 0, 1, 2, 7, 32, 42%) Go&rsquo;s performance meets my needs. (57:1) 2,523 (1, 3, 5, 14, 15, 26, 8%) Go&rsquo;s support for language interoperability meets my needs. (6.0:1) 3,049 (1, 2, 6, 7, 24, 34, 11%) I am able to quickly find libraries that I need. (7.5:1) 3,083 (1, 2, 4, 5, 18, 37, 20%) Go language, library, and tool documentation meet my needs. (11:1)</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What Go libraries do you need that aren&rsquo;t available today? 208 (5.8%) gui 144 (4.0%) library 121 (3.4%) libraries 63 (1.8%) native 60 (1.7%) ui 53 (1.5%) good 33 (0.9%) orm 33 (0.9%) standard 33 (0.9%) web 32 (0.9%) framework 32 (0.9%) gui library 31 (0.9%) mobile 28 (0.8%) android 28 (0.8%) database 28 (0.8%) desktop 28 (0.8%) libs 28 (0.8%) sql 26 (0.7%) cross platform 25 (0.7%) processing 25 (0.7%) xml 24 (0.7%) api 24 (0.7%) machine learning 24 (0.7%) official 24 (0.7%) windows 23 (0.6%) soap 22 (0.6%) toolkit 21 (0.6%) pdf 21 (0.6%) python 20 (0.6%) bindings 20 (0.6%) graphics 20 (0.6%) package 2,498 (69.5%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What changes would most improve the Go documentation? 512 (14%) examples 300  (8%) more examples 134  (4%) documentation 69  (2%) example 62  (2%) docs 49  (1%) godoc 34  (1%) usage 32  (1%) functions 32  (1%) package 31  (1%) good 29  (1%) function 29  (1%) great 29  (1%) packages 29  (1%) search 28  (1%) cases 26  (1%) best practices 26  (1%) libraries 23  (1%) doc 23  (1%) more example 22  (1%) code examples 21  (1%) syntax 20  (1%) interface 2,532 (70%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } To what extent do you agree or disagree with the following statements: (strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, strongly agree) 3,002 (1, 2, 6, 7, 23, 34, 11%) I am able to effectively diagnose bugs in my Go programs. (7.2:1) 2,725 (1, 2, 6, 13, 22, 24, 7%) I am able to effectively diagnose performance issues in my Go programs. (5.8:1) 2,932 (1, 2, 3, 5, 17, 33, 22%) I am able to effectively use Go&rsquo;s concurrency features (goroutines, channels, select). (14:1) 2,801 (2, 5, 11, 14, 23, 18, 5%) I am able to effectively debug uses of Go&rsquo;s concurrency features (goroutines, channels, select). (2.7:1)</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Rank the following in terms of where you get Go answers from: (ordered choice, up to 5) 2,226 (23, 18, 12, 7, 3%) Stack Overflow 2,101 (30, 15, 8, 4, 1%) golang.org 1,814 (13, 17, 12, 7, 2%) Reading source code (e.g., standard library, open-source packages) 1,200 (3, 8, 12, 7, 4%) GitHub 854 (3, 7, 7, 5, 3%) golang-nuts mailing list (groups.google.com/d/forum/golang-nuts) 682 (2, 3, 5, 5, 3%) Reddit (r/golang) 630 (3, 4, 5, 3, 2%) Coworkers 334 (2, 2, 2, 2, 2%) Gopher Slack (invite.slack.golangbridge.org) 214 (1, 1, 2, 1, 1%) Friends 161 (0, 0, 1, 1, 1%) Twitter 156 (1, 1, 1, 1, 0%) IRC 126 (0, 1, 1, 1, 1%) Go Forum (forum.golangbridge.org) 262 (2, 2, 1, 1, 1%) Other 643 (18%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Rank the following in terms of where you get Go news from: (ordered choice, up to 5) 1,659 (17, 14, 9, 4, 2%) blog.Golang.org 1,153 (17, 8, 4, 2, 1%) Reddit (r/golang) 1,053 (14, 8, 4, 3, 1%) Twitter 903 (6, 8, 6, 3, 1%) Hacker News 777 (9, 6, 4, 2, 0%) Golangweekly.com 633 (2, 6, 5, 4, 1%) Community Blogs 430 (2, 3, 4, 2, 1%) GitHub 418 (3, 3, 3, 2, 1%) golang-nuts mailing list (groups.google.com/d/forum/golang-nuts) 394 (3, 3, 3, 1, 1%) Coworkers 212 (1, 1, 2, 1, 1%) Gopher Slack (invite.slack.golangbridge.org) 203 (1, 2, 1, 1, 1%) Golangnews.com 199 (1, 2, 1, 1, 1%) golang-announce (groups.google.com/d/forum/golang-announce) 176 (1, 1, 1, 1, 1%) Go Time podcast 65 (0, 0, 0, 1, 0%) Go Forum (forum.golangbridge.org) 42 (0, 0, 0, 0, 0%) Facebook 160 (1, 1, 1, 0, 0%) Other 747 (21%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I have attended: (multiple choice) 1,315 (37%) None 879 (24%) A Go meetup 523 (15%) A Go themed conference (GopherCon, GothamGo, etc) 276  (8%) A Go remote meetup / online event 186  (5%) Go training 165  (5%) A technical conference for it&rsquo;s Go content 43  (1%) A GoBridge event 37  (1%) A Women Who Go event 65  (2%) Other 993 (28%) No response</p>
+<h2 id="the-go-project">The Go Project</h2>
+<p>55% of respondents expressed interest in contributing in some way to the Go community and projects. Unfortunately, relatively few agreed that they felt welcome to do so (3.3:1) and even fewer felt that the process was clear (1.3:1). In 2017, we intend to work on improving the contribution process and to continue to work to make all contributors feel welcome.</p>
+<p>Respondents agree that they are confident in the leadership of the Go project (9:1), but they agree much less that the project leadership understands their needs (2.6:1), and they agree even less that they feel comfortable approaching project leadership with questions and feedback (2.2:1). In fact, these were the only questions in the survey for which more than half of respondents did not mark “somewhat agree”, “agree”, or “strongly agree” (many were neutral or did not answer).</p>
+<p>We hope that the survey and this blog post convey to those of you who aren’t comfortable reaching out that the Go project leadership is listening. Throughout 2017 we will be exploring new ways to engage with users to better understand their needs.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I contribute to open source projects written in Go: (single choice) 1,227 (34%) Infrequently 890 (25%) Never 345 (10%) Monthly 295  (8%) Weekly 234  (7%) As part of my daily routine 604 (17%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } I have contributed or am interested in contributing in the following ways to the Go community and Projects: (multiple choice) 892 (25%) Standard library 663 (18%) Tools (go guru, go vet, go doc, etc) 602 (17%) Tutorials 560 (16%) Documentation 557 (15%) Community support via Stack Overflow, Slack, mailing list, etc 472 (13%) Community involvement (workgroups, meetup attendance) 440 (12%) Being a technical mentor 374 (10%) Toolchain (compiler, linker, etc) 275  (8%) Go Project maintenance (issue triage) 246  (7%) Event planning (meetup, conference, etc) 236  (7%) Language translation 165  (5%) General UX &amp; Design contributions 154  (4%) golang.org website (code, UX, IA, content, etc) 92  (3%) Other 1,621 (45%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } To what extent do you agree or disagree with the following statements: (strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, strongly agree) 2,091 (1, 3, 5, 19, 10, 14, 6%) I feel welcome to contribute to Go (compiler, standard library, documentation, website) (3.3:1) 2,168 (3, 7, 9, 16, 10, 11, 4%) The process of contributing to the Go project is clear to me (1.3:1) 1,900 (1, 2, 5, 22, 8, 11, 3%) The Go project leadership understands my needs (2.6:1) 2,114 (2, 4, 6, 18, 10, 14, 5%) I feel comfortable approaching the Go project leadership with questions and feedback (2.2:1) 2,374 (1, 1, 3, 12, 9, 24, 15%) I am confident in the leadership of Go (9.0:1)</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What is the biggest challenge facing the Go project today? 71 (2.0%) community 68 (1.9%) google 63 (1.8%) generics 62 (1.7%) management 49 (1.4%) adoption 45 (1.3%) lack 43 (1.2%) features 43 (1.2%) people 40 (1.1%) dependency management 37 (1.0%) java 32 (0.9%) languages 31 (0.9%) keeping 29 (0.8%) c 27 (0.8%) developers 27 (0.8%) leadership 24 (0.7%) good 24 (0.7%) libraries 24 (0.7%) package 23 (0.6%) simple 21 (0.6%) core 21 (0.6%) feature 20 (0.6%) programming 20 (0.6%) team 2,771 (77.1%) No response</p>
+<h2 id="community">Community</h2>
+<p>At the end of the survey, we asked some demographic questions. The country distribution of responses roughly matches the country distribution of site visits to golang.org, but the responses under-represent some Asian countries. In particular, India, China, and Japan each accounted for about 5% of the site visits to golang.org in 2016 but only 3%, 2%, and 1% of survey responses.</p>
+<p>An important part of a community is making everyone feel welcome, especially people from under-represented demographics. We asked an optional question about identification across a few diversity groups. 37% of respondents left the question blank and 12% of respondents chose “I prefer not to answer”, so we cannot make many broad conclusions from the data. However, one comparison stands out: the 9% who identified as underrepresented agreed with the statement “I feel welcome in the Go community” by a ratio of 7.5:1, compared with 15:1 in the survey as a whole. We aim to make the Go community even more welcoming. We support and are encouraged by the efforts of organizations like GoBridge and Women Who Go.</p>
+<p>The final question on the survey was just for fun: what’s your favorite Go keyword? Perhaps unsurprisingly, the most popular response was <code>go</code>, followed by <code>defer</code>, <code>func</code>, <code>interface</code>, and <code>select</code>.</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } To what extent do you agree or disagree with the following statements: (strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, strongly agree) 2,701 (1, 1, 2, 11, 10, 31, 19%) I feel welcome in the Go community. (15:1)</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } What changes would make the Go community more welcoming? 115 (3.2%) community 52 (1.4%) people 32 (0.9%) r/golang 31 (0.9%) go community 30 (0.8%) google 30 (0.8%) reddit 24 (0.7%) welcoming 23 (0.6%) official 23 (0.6%) open 22 (0.6%) code of conduct 21 (0.6%) golang 21 (0.6%) team 3,017 (83.9%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } In which country do you currently reside? (single choice) 928 (26%) United States of America 253  (7%) Germany 168  (5%) United Kingdom 148  (4%) Russia 119  (3%) France 112  (3%) Canada 91  (3%) India 73  (2%) China 72  (2%) Australia 55  (2%) Netherlands 54  (2%) Spain 45  (1%) Sweden 43  (1%) Poland 40  (1%) Italy 36  (1%) Brazil 36  (1%) Switzerland 35  (1%) Ukraine 27  (1%) Japan 24  (1%) Czech Republic 23  (1%) Belgium 441 (12%) Other 772 (21%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } We want the Go community to be inclusive; we want to see how we&rsquo;re doing and how to improve. Please select the groups you identify with: (multiple choice) 1,499 (42%) I do not identify as part of an underrepresented group 438 (12%) I prefer not to answer 101  (3%) I identify as LGBTQIA 95  (3%) I identify as ethnically or racially underrepresented 77  (2%) I identify as neurodiverse or as having a disability 49  (1%) I identify as a woman 47  (1%) Write-in: objection to the question. 38  (1%) I identify as part of an underrepresented group, but I prefer not to specify 34  (1%) I identify with an underrepresented group not listed. 1,332 (37%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Just for fun: What is your favorite Go keyword? 854 (24%) go 455 (13%) defer 253  (7%) func 240  (7%) select 227  (6%) interface 145  (4%) struct 139  (4%) chan 129  (4%) range 67  (2%) fallthrough 56  (2%) switch 53  (1%) for 48  (1%) type 47  (1%) map 44  (1%) goto 36  (1%) import 22  (1%) if 20  (1%) package 19  (1%) var 17  (0%) const 14  (0%) continue 13  (0%) return 12  (0%) break 3  (0%) else 2  (0%) case 2  (0%) default 678 (19%) No response</p>
+<p>svg { font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; /* Helvetica on Mac aka sans-serif has broken U+2007 */ } tspan.size { font-size: 0.80em; } tspan.head { font-weight: bold; } tspan.paren { font-weight: normal !important; } Is there anything else you would like to share with us? 95 (2.6%) thanks 94 (2.6%) great 86 (2.4%) thank you 47 (1.3%) keep up the good work 47 (1.3%) programming 43 (1.2%) community 39 (1.1%) c 37 (1.0%) awesome 33 (0.9%) i love 31 (0.9%) people 29 (0.8%) golang 27 (0.8%) great work 27 (0.8%) java 27 (0.8%) languages 26 (0.7%) fun 26 (0.7%) job 26 (0.7%) time 25 (0.7%) love go 24 (0.7%) generics 24 (0.7%) team 23 (0.6%) projects 22 (0.6%) best 22 (0.6%) wish 22 (0.6%) years 21 (0.6%) simple 2,886 (80.3%) No response</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20170306/" data-title="Gb_20170306" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20170306/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20170306/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20170306/" data-title="Gb_20170306"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20170306/" data-title="Gb_20170306"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20170306/" data-title="Gb_20170306"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20170216/" class="prev" rel="prev" title="Gb_20170216"><i class="fas fa-angle-left fa-fw"></i>Gb_20170216</a>
+            <a href="/gb_20170324/" class="next" rel="next" title="Gb_20170324">Gb_20170324<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

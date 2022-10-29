@@ -5,7 +5,7 @@ lastmod: 2022-05-31
 tags: [git]
 categories: [tools]
 slug: git
-draft: true
+draft: false
 ---
 
 

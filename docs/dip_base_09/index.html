@@ -1,0 +1,3244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DIP_base_09 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="DIP_base_09" />
+<meta property="og:description" content="Image Processing: Introduction &amp; Fundamentals General Information The purposes of this course: Understand the basic concepts, principles, and methods of DIP To solve the problems in DIP To deep research the methodology of DIP and some relative subjects, such as: Computer Vision Graphics Image Retrieval Biometric … General Information Prerequisites: Knowledge of at least two of the following: linear algebra, probability theory, signals and systems Test &amp; Project: Final exam" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/dip_base_09/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-25T09:19:34+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="DIP_base_09"/>
+<meta name="twitter:description" content="Image Processing: Introduction &amp; Fundamentals General Information The purposes of this course: Understand the basic concepts, principles, and methods of DIP To solve the problems in DIP To deep research the methodology of DIP and some relative subjects, such as: Computer Vision Graphics Image Retrieval Biometric … General Information Prerequisites: Knowledge of at least two of the following: linear algebra, probability theory, signals and systems Test &amp; Project: Final exam"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/dip_base_09/" /><link rel="prev" href="https://jefofrank.xyz/dip_base_08/" /><link rel="next" href="https://jefofrank.xyz/dip_catalogue/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DIP_base_09",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/dip_base_09\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  16402 ,
+        "url": "https:\/\/jefofrank.xyz\/dip_base_09\/","datePublished": "2022-02-25T09:19:34+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DIP_base_09</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-25 09:19:34">2022-02-25 09:19:34</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 16402 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 33 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction--fundamentals">Introduction &amp; Fundamentals</a></li>
+    <li><a href="#image-enhancementpoint-processing">Image Enhancement:(Point Processing)</a></li>
+    <li><a href="#image-enhancement-spatial-filtering空间滤波">Image Enhancement :(Spatial Filtering空间滤波)</a></li>
+    <li><a href="#image-enhancement-filtering-in-the-frequency-domain">Image Enhancement: Filtering in the Frequency Domain</a></li>
+    <li><a href="#image-restoration">Image Restoration</a></li>
+    <li><a href="#morphological-image-processing">Morphological Image Processing</a></li>
+    <li><a href="#morphological-image-processing--new">Morphological Image Processing&ndash;new</a></li>
+    <li><a href="#image-segmentation1">Image Segmentation1</a></li>
+    <li><a href="#image-segmentation2">Image Segmentation2</a></li>
+    <li><a href="#color-image-processing1">Color Image Processing1</a></li>
+    <li><a href="#color-image-processing2">Color Image Processing2</a></li>
+    <li><a href="#representation--descriptionfeature-extraction">Representation &amp; Description(Feature Extraction)</a></li>
+    <li><a href="#representation2">Representation2</a></li>
+    <li><a href="#object-recognition">Object-Recognition</a></li>
+    <li><a href="#image-compression">Image Compression</a></li>
+    <li><a href="#image-compression2">Image Compression2</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="image-processing">Image Processing:</h1>
+<h2 id="introduction--fundamentals">Introduction &amp; Fundamentals</h2>
+<p>General Information
+The purposes of this course:</p>
+<ul>
+<li>Understand the basic concepts, principles, and methods of DIP</li>
+<li>To solve the problems in DIP</li>
+<li>To deep research the methodology of DIP and some relative subjects, such as:</li>
+<li>Computer Vision</li>
+<li>Graphics</li>
+<li>Image Retrieval</li>
+<li>Biometric</li>
+<li>…
+General Information
+Prerequisites:</li>
+<li>Knowledge of at least two of the following: linear algebra, probability theory, signals and systems</li>
+</ul>
+<p>Test &amp; Project:</p>
+<ul>
+<li>Final exam (70%)</li>
+<li>2 assignments (10%+20%)</li>
+</ul>
+<p>Contents of this course</p>
+<ul>
+<li>Introduction &amp; Fundamentals</li>
+<li>Image Enhancement（时间多一点）</li>
+<li>Morphological Image Processing</li>
+<li>Image Segmentation</li>
+<li>Image Restoration</li>
+<li>Color image processing</li>
+<li>Representation &amp; Description</li>
+<li>Object Recognition</li>
+<li>Image Compression
+Contents of Introduction &amp; Fundamentals
+This lecture will cover:</li>
+<li>What is digital image processing?</li>
+<li>Human vision system</li>
+<li>Image acquisition</li>
+<li>Sampling and Quantization</li>
+<li>Resolution</li>
+<li>Basic Relationships Between Pixels</li>
+<li>Key stages in digital image processing</li>
+</ul>
+<p><strong>What is a Image?</strong>
+An image may be defined as a two-dimensional function, f(x,y), where x and y are spatial coordinates, and the amplitude of f at any pair of coordinates (x,y) is called the intensity强度 or gray level灰度级 of the image at that point.</p>
+<ul>
+<li>The description of a <strong>digital image</strong>, when <em>x, y</em> and the amplitude values of <em>f</em> are:
+<ul>
+<li>Finite值域有限</li>
+<li>discrete quantities离散</li>
+</ul>
+</li>
+<li>Each of element having a particular location and values, these elements are called: Pixels像素</li>
+</ul>
+<p>What is a Digital Image?</p>
+<ul>
+<li>Another definition: digital image is referring to the image which is stored in digital format.</li>
+<li>Most of the photos, advertisement, poster that we see in living are simulant images.</li>
+<li>We can digitize them by using scanner, digital camera, or digital video recorder.</li>
+</ul>
+<p>What is a Digital Image?</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/image-20220605143045071.png"
+        data-srcset="/image-20220605143045071.png, /image-20220605143045071.png 1.5x, /image-20220605143045071.png 2x"
+        data-sizes="auto"
+        alt="/image-20220605143045071.png"
+        title="image-20220605143045071" /></p>
+<p>Pixel values typically represent gray levels, colors, opacities, etc
+Remember digitization implies that a digital image is an approximation of a real scene</p>
+<p>What is a Digital Image?
+Common image formats include:</p>
+<ul>
+<li>1 sample per point (B&amp;W or Grayscale)</li>
+<li>3 samples per point (Red, Green, and Blue)</li>
+<li>4 samples per point (Red, Green, Blue, and “Alpha”, a.k.a. Opacity)
+For most of this course we will focus on grey-scale images.</li>
+</ul>
+<p>What is Digital Image Processing?
+Digital image processing:</p>
+<ul>
+<li>processing digital images by means of a digital computer
+Digital image processing focuses on two major tasks</li>
+<li>Improvement of image quality for human interpretation</li>
+<li>Processing of image data for storage, transmission, display and representation for automatic machine perception</li>
+</ul>
+<p>What is DIP? (cont…)</p>
+<ul>
+<li>Some argument about where image processing ends and fields such as image analysis and computer vision start.</li>
+<li>The continuum from image processing to computer vision can be broken up into low-, mid- and high-level processes.</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/image-20220605143433906.png"
+        data-srcset="/image-20220605143433906.png, /image-20220605143433906.png 1.5x, /image-20220605143433906.png 2x"
+        data-sizes="auto"
+        alt="/image-20220605143433906.png"
+        title="image-20220605143433906" /></p>
+<p>What is DIP? (cont…)
+Remarks:</p>
+<ul>
+<li>
+<p>DIP: human is the final explainer.</p>
+</li>
+<li>
+<p>Computer vision: computer is the final explainer.</p>
+</li>
+<li>
+<p>Computer vision system needs the support of DIP.</p>
+</li>
+<li>
+<p>DIP to computer vision is a process from low level to high level processing.</p>
+</li>
+</ul>
+<p>Human Visual System</p>
+<ul>
+<li>
+<p>The best vision model we have!</p>
+</li>
+<li>
+<p>Knowledge of how images form in the eye can help us with processing digital images.</p>
+</li>
+<li>
+<p>We will take just a brief tour of the human visual system.</p>
+</li>
+</ul>
+<p>Structure of the Human Eye
+Structure of the Human Eye
+Blind-Spot Experiment
+Draw an image similar to that below on a piece of paper (the dot and cross are about 15cm apart)</p>
+<p>Close your right eye and focus on the cross with your left eye
+Hold the image about 50cm away from your face and move it slowly towards you
+The dot should disappear!
+Light and the Electromagnetic Spectrum
+Light and the Electromagnetic Spectrum
+Light and the Electromagnetic Spectrum</p>
+<ul>
+<li>Visible light: 0.43~0.79um</li>
+<li>The electromagnetic spectrum is split up according to the wavelengths of different forms of energy</li>
+</ul>
+<p>Where c is the speed of the light, v is the frequency, and h is the Planck’s constant</p>
+<p>c=2.998<em>108 m/s
+h=6.626</em>10-34 J.s or h=4.136*10-15 eV.s</p>
+<p>Light and the Electromagnetic Spectrum</p>
+<p>Light and the Electromagnetic Spectrum</p>
+<ul>
+<li>The colours that we perceive are determined by the nature of the light reflected from an object</li>
+<li>For example, if white
+light is shone onto a
+green object most
+wavelengths are
+absorbed, while green
+light is reflected from
+the object
+Light reflectance properties
+A body that reflects light and is relatively balanced in all visible wavelengths</li>
+<li>Appears white to the observer
+A body that favors reflectance in a limited range of the visible spectrum</li>
+<li>Exhibits some shades of color
+Achromatic or monochromatic light:</li>
+<li>The only attribute is intensity&ndash;Gray-level</li>
+<li>Black to Gray to White
+Chromatic light
+Three basic quantities to describe the quality of a chromatic彩色 light source:
+Radiance (Watts: W)（辐射或发光强度）</li>
+<li>The total amount of energy that flows from the light source.
+Luminance (lumen: lm)(光通量）</li>
+<li>A  measure of the amount of energy an observer perceives from a light source.</li>
+<li>Example: Far Infrared Region.
+Brightness</li>
+<li>Subjective descriptor of light perception that is practically impossible to measure.
+Light and the Electromagnetic Spectrum
+Other EM Spectrum:
+Short-wavelength End
+Gamma rays</li>
+<li>Medical Imaging</li>
+<li>Astronomical Imaging
+Hard X Rays</li>
+<li>Industrial Applications
+Soft X Rays</li>
+<li>Chest X-Ray (shorter  wavelength end)</li>
+<li>Dental X-Ray (lower energy end)
+Ultraviolet</li>
+<li>Microscopy Imaging
+Visible spectrum</li>
+<li>Too many applications around us
+Infrared region:</li>
+<li>Near-infrared</li>
+<li>Far-Infrared
+Microwave</li>
+<li>Microwave Ovens, Communication, Radar
+Radio wave</li>
+<li>AM, FM, TV, and Medical imaging</li>
+</ul>
+<p>Visible Imaging</p>
+<p>Image Acquisition
+Imaging Sensors
+Single Sensor Imaging
+Sensor Strip Imaging
+Sensor Array Imaging
+Image Sampling and Quantization</p>
+<ul>
+<li>Incoming energy lands on a sensor material responsive to that type of energy and this generates a continuous voltage.
+Image Sampling and Quantization
+Image Sampling and Quantization
+Representation
+Representation
+Representation
+Representation
+Spatial &amp; Intensity Level Resolution</li>
+<li>The spatial resolution of an image is determined by how sampling was carried out.</li>
+<li>Spatial resolution simply refers to the smallest discernable detail in an image.</li>
+<li>Image size: e.g. 640*480</li>
+<li>dpi: dots per inch, Newspaper 75dpi, Magazine 133dpi, Poster 175dpi
+Spatial &amp; Intensity Level Resolution
+Spatial &amp; Intensity Level Resolution
+Intensity level resolution refers to the number of intensity levels used to represent the image</li>
+<li>The more intensity levels used, the finer the level of detail discernable in an image</li>
+<li>Intensity level resolution is usually given in terms of the number of bits used to store each intensity level
+Spatial &amp; Intensity Level Resolution
+Spatial &amp; Intensity Level Resolution
+Spatial &amp; Intensity Level Resolution
+Spatial &amp; Intensity Level Resolution
+Spatial resolution: M*N
+Gray level resolution：L</li>
+</ul>
+<p>How many samples and gray levels are required for a good approximation?</p>
+<ul>
+<li>Resolution (the degree of discernible detail) of an image depends on sample number and gray level number.</li>
+<li>i.e. the more these parameters are increased, the closer the digitized array approximates the original image.</li>
+<li>But: storage &amp; processing requirements increase rapidly as a function of N, M, and k
+Spatial &amp; Intensity Level Resolution
+The big question with resolution is always: “how much is enough?”</li>
+<li>This all depends on what is in the image and what you would like to do with it</li>
+<li>Key questions include</li>
+<li>Does the image look aesthetically pleasing?</li>
+<li>Can you see what you need to see within the image?
+Spatial &amp; Intensity Level Resolution
+The picture on the right is fine for counting the number of cars, but not for reading the number plate</li>
+</ul>
+<p>Zooming and Shrinking Digital Images
+Zooming:</p>
+<ul>
+<li>The creation of new pixel locations</li>
+<li>The assignment of gray levels to those new locations</li>
+<li>Nearest neighbor interpolation (NN)</li>
+<li>Pixel replication: a special case of NN</li>
+<li>NN produces checkerboard effect
+Zooming and Shrinking Digital Images
+Zooming:</li>
+<li>Bilinear interpolation</li>
+<li>Using the four NNs of a point.</li>
+<li>g(A), g(B), g(C), g(D) are the
+gray levels of pint A, B, C, D.</li>
+</ul>
+<p>Zooming and Shrinking Digital Images
+Shrinking: Similar manner as just described for zooming.</p>
+<ul>
+<li>Delete</li>
+<li>Expand the grid:</li>
+<li>Nearest Neighbor interpolation</li>
+<li>Bilinear interpolation
+Basic Relationships Between Pixels
+A pixel p at (x,y) has 2 horizontal and 2 vertical neighbors:</li>
+<li>(x+1,y), (x-1,y), (x,y+1), (x,y-1)</li>
+<li>This set of pixels is called the 4-neighbors of p: N4(p)</li>
+</ul>
+<p>Basic Relationships Between Pixels
+Connectivity
+Connectivity(连通性) between pixels is important:</p>
+<ul>
+<li>
+<p>Because it is used in establishing boundaries of objects and components of regions in an image
+Adjacency
+We consider three types of adjacency:</p>
+</li>
+<li>
+<p>4-adjacency: two pixels p and q with values from V are 4-adjacent if q is in the set N4(p)</p>
+</li>
+<li>
+<p>8-adjacency : two pixels p and q with values from V are 8-adjacent if q is in the set N8(p)</p>
+</li>
+<li>
+<p>m-adjacency: p &amp; q with values from V are    m-adjacent if</p>
+</li>
+<li>
+<p>q is in N4(p) or</p>
+</li>
+<li>
+<p>q is in ND(p) and the set N4(p)N4(q) has no pixels with values from V
+Adjacency
+Mixed adjacency is a modification of 8-adjacency and is used to eliminate the multiple path connections that often arise when 8-adjacency is used.
+Path
+Path
+Connected Set and Region
+Distance Measures
+For pixels p,q,z with coordinates (x,y), (s,t), (u,v), D is a distance function or metric if:</p>
+</li>
+<li>
+<p>D(p,q) ≥ 0 	(D(p,q)=0 if p=q)</p>
+</li>
+<li>
+<p>D(p,q) = D(q,p)  and</p>
+</li>
+<li>
+<p>D(p,z) ≤ D(p,q) + D(q,z)
+Distance Measures
+Euclidean distance(p(x,y), q(s,t)):</p>
+</li>
+<li>
+<p>De(p,q) = [(x-s)2 + (y-t)2]1/2</p>
+</li>
+<li>
+<p>Points (pixels) having a distance less than or equal to r from (x,y) are contained in a disk of radius r centered at (x,y).
+Distance Measures
+D4 distance (city-block distance):</p>
+</li>
+<li>
+<p>D4(p,q) = |x-s| + |y-t|</p>
+</li>
+<li>
+<p>forms a diamond centered at (x,y)</p>
+</li>
+<li>
+<p>e.g. pixels with D4≤2 from p</p>
+</li>
+</ul>
+<p>Distance Measures
+D8 distance (chessboard distance):</p>
+<ul>
+<li>D8(p,q) = max(|x-s|,|y-t|)</li>
+<li>Forms a square centered at p</li>
+<li>e.g. pixels with D8≤2 from p
+Common Distance Definitions
+Key Stages in Digital Image Processing
+Key Stages in Digital Image Processing:
+Image Acquisition
+Key Stages in Digital Image Processing:
+Image Enhancement
+Key Stages in Digital Image Processing:
+Image Restoration
+Key Stages in Digital Image Processing:
+Morphological Processing
+Key Stages in Digital Image Processing:
+Segmentation
+Key Stages in Digital Image Processing:
+Object Recognition
+Key Stages in Digital Image Processing:
+Representation &amp; Description
+Key Stages in Digital Image Processing:
+Image Compression
+Key Stages in Digital Image Processing:
+Colour Image Processing
+Summary
+We have looked at:</li>
+<li>What is digital image processing?</li>
+<li>Human vision system</li>
+<li>Image acquisition</li>
+<li>Sampling and Quantization</li>
+<li>Resolution</li>
+<li>Basic Relationships Between Pixels</li>
+<li>Key stages in digital image processing</li>
+</ul>
+<h2 id="image-enhancementpoint-processing">Image Enhancement:(Point Processing)</h2>
+<p>What Is Image Enhancement?
+Image enhancement is the process of making images more useful
+The reasons for doing this include:</p>
+<ul>
+<li>Highlighting interesting detail in images</li>
+<li>Removing noise from images</li>
+<li>Making images more visually appealing
+Image Enhancement Examples
+Image Enhancement Examples (cont…)
+Image Enhancement Examples (cont…)
+A Note About Grey Levels
+So far when we have spoken about image grey level values we have said they are in the range [0, 255]</li>
+<li>Where 0 is black and 255 is white
+For many of the image processing operations in this lecture grey levels are assumed to  be given in the range [0.0, 1.0]
+Spatial &amp; Frequency Domains
+There are two broad categories of image enhancement techniques</li>
+<li>Spatial domain techniques</li>
+<li>Direct manipulation操作 of image pixels</li>
+<li>Point processing</li>
+<li>Neighbourhood operations</li>
+<li>Frequency domain techniques</li>
+<li>Manipulation of Fourier transform傅里叶变换 or wavelet transform小波变换 of an image
+For the moment we will concentrate on techniques that operate in the spatial domain
+Basic Spatial Domain Image Enhancement
+Most spatial domain enhancement operations can be reduced to the form
+g (x, y) = T[ f (x, y)]
+where f (x, y) is the
+input image, g (x, y) is
+the processed image
+and T is some
+operator defined over
+some neighbourhood
+of (x, y)
+Basic Spatial Domain Image Enhancement
+The simplest spatial domain operations occur when the neighbourhood is simply the pixel itself: Point Processing.
+In this case T is referred to as a grey level transformation function or a point processing operation.
+Point processing operations take the form:
+s = T ( r )
+where s refers to the processed image pixel value and r refers to the original image pixel value.
+Basic Spatial Domain Image Enhancement</li>
+<li>Point processing</li>
+<li>The neighborhood is of size 1×1</li>
+<li>Gray-level transformation</li>
+<li>Mask processing or filtering</li>
+<li>The neighborhood is defined as a mask, filter, or window.</li>
+<li>Filtering</li>
+</ul>
+<p>Point Processing
+In this lecture we will look at image enhancement point processing techniques:</p>
+<ul>
+<li>Thresholding</li>
+<li>Logarithmic transformation</li>
+<li>Power law transforms</li>
+<li>Grey level slicing</li>
+<li>Bit plane slicing</li>
+<li>Image subtraction</li>
+<li>Image averaging
+Thresholding
+Thresholding
+Logarithmic Transformations
+The general form of the log transformation is
+s = c * log(1 + r)
+Log functions are particularly useful when the input grey level values may have an extremely large range of values.</li>
+</ul>
+<p>In Fourier transform, we usually encounter spectrum values that ranges from 0 to 106 or higher. But image display system cannot reproduce such a wide range of intensity values.</p>
+<p>Logarithmic Transformations (cont…)
+In the following example the Fourier transform of an image is put through a log transform to reveal more detail.</p>
+<p>Power Law Transformations幂律转化
+Power law transformations have the following form:
+s = c * r γ      r ∈ [0.0, 1.0]
+Map a narrow range
+of dark input values
+into a wider range of
+output values or vice
+versa.
+Varying γ gives a whole
+family of curves.
+Power Law Example (cont…)</p>
+<ul>
+<li>
+<p>The images to the right show a magnetic resonance (MR) image of a fractured human spine.</p>
+</li>
+<li>
+<p>Different curves highlight different detail.
+Power Law Transformations (cont…)</p>
+</li>
+<li>
+<p>An aerial photo of a runway is shown.</p>
+</li>
+<li>
+<p>This time power law transforms are used to darken the image.
+Gamma Correction灰度矫正
+Many of you might be familiar with gamma correction of computer monitors.
+Problem is that display devices, print devices do not respond linearly to different intensities, and they respond according to a power law:</p>
+</li>
+</ul>
+<p>For CRT display, γ =1.8~2.5.
+Can be corrected using a nth root transform:
+Gamma Correction
+Gamma Correction
+Gamma Correction</p>
+<ul>
+<li>Prior Knowledge about gamma correction</li>
+<li>Varying the value of gamma correction changes not only the brightness, but also the ratio of red to green to blue.</li>
+<li>Applications</li>
+<li>Internet</li>
+<li>Millions of people and millions of monitors</li>
+<li>Gamma represents an “average ”of the types of monitors and computer systems</li>
+<li>Scanners, Printers have different values of gamma
+Gray Level Slicing
+Highlights a specific range of grey levels</li>
+<li>Similar to thresholding</li>
+<li>Other levels can be suppressed or maintained</li>
+<li>Useful for highlighting features in an image
+Gray Level Slicing
+Gray Level Slicing
+Bit Plane Slicing
+Often by isolating particular bits of the pixel values in an image we can highlight interesting aspects of that image:</li>
+<li>Higher-order bits usually contain most of the significant visual information.</li>
+<li>Lower-order bits contain
+subtle details.
+Bit Plane Slicing (cont…)
+Image Subtraction
+Image Subtraction</li>
+</ul>
+<p>Image Subtraction
+Image Subtraction
+Examples: Change Detection
+Image Averaging
+A noisy image:
+Image Averaging
+As M increases, the variability of the pixel values at each location decreases.</p>
+<ul>
+<li>This means that g(x,y) approaches f(x,y) as the number of noisy images used in the averaging process increases.</li>
+</ul>
+<p>Image Averaging
+Image Histograms图像直方图
+The histogram of a digital image with gray levels from 0 to L-1 is a discrete function:</p>
+<ul>
+<li>rk is the kth gray level</li>
+<li>nk is the pixels in the image with that gray level</li>
+<li>k = 0, 1, 2, …, L-1
+Normalized histogram: p(rk)=nk/n</li>
+<li>n is the total number of pixels in the image</li>
+<li>sum of all components is 1</li>
+</ul>
+<p>Image Histograms
+Image Histograms
+Histogram Examples
+A selection of images and
+their histograms.
+Notice the relationships
+between the images and
+their histograms.
+Note that the high contrast
+image has the most
+evenly spaced histogram.
+Histogram Equalization
+Histogram equalization</p>
+<ul>
+<li>Basic idea: find a map T(r) such that the histogram of the modified (equalized) image is flat (uniform).</li>
+</ul>
+<p>Histogram Equalization
+Steps:</p>
+<ul>
+<li>
+<p>Find probability of the input image.</p>
+</li>
+<li>
+<p>Find the cumulative distribution based on the probability  and round the results to obtain sk.</p>
+</li>
+<li>
+<p>Map the original gay-level value to the resulting value obtained in Step 3.</p>
+</li>
+</ul>
+<p>Equalisation Transformation Function
+Equalisation Transformation Functions
+Histogram Equalization
+Summary
+We have looked at:</p>
+<ul>
+<li>Different kinds of point processing image enhancement</li>
+<li>Histogram processing</li>
+</ul>
+<h2 id="image-enhancement-spatial-filtering空间滤波">Image Enhancement :(Spatial Filtering空间滤波)</h2>
+<p>Contents
+In this lecture we will look at spatial filtering techniques:</p>
+<ul>
+<li>
+<p>Basic of spatial filtering</p>
+</li>
+<li>
+<p>Smoothing spatial filters</p>
+</li>
+<li>
+<p>Smoothing linear filters</p>
+</li>
+<li>
+<p>Order-statistics filters</p>
+</li>
+<li>
+<p>Sharpening spatial filters</p>
+</li>
+<li>
+<p>1st derivative filters</p>
+</li>
+<li>
+<p>2nd derivative filters
+Basic of spatial filtering</p>
+</li>
+<li>
+<p>Neighbourhood operations simply operate on a larger neighbourhood of pixels than point operations.</p>
+</li>
+<li>
+<p>Neighbourhoods are
+mostly a rectangle
+around a central pixel.</p>
+</li>
+<li>
+<p>Any size rectangle
+and any shape filter
+are possible.
+Basic of spatial filtering
+Use of spatial masks for image processing (spatial filters)</p>
+</li>
+<li>
+<p>Correlation</p>
+</li>
+<li>
+<p>Convolution</p>
+</li>
+</ul>
+<p>Basic of spatial filtering
+Basic of spatial filtering
+Basic of spatial filtering
+Basic of spatial filtering
+Basic of spatial filtering
+Basic of spatial filtering
+Strange Things Happen At The Edges!
+Strange Things Happen At The Edges! (cont…)
+There are a few approaches to dealing with missing edge pixels:</p>
+<ul>
+<li>Omit missing pixels</li>
+<li>Can add extra code and slow down processing</li>
+<li>Pad the image</li>
+<li>Typically with either all white or all black pixels</li>
+<li>Replicate border pixels</li>
+<li>Truncate the image</li>
+</ul>
+<p>Spatial smoothing filtering
+Used for noise reduction and blurring (removal of small details prior to large object extraction, bridging small gaps in lines).</p>
+<ul>
+<li>Smoothing linear filters</li>
+<li>Order-statistics filters
+Smoothing linear Filters
+Also called averaging filter</li>
+<li>Simply average all of the pixels in a neighbourhood around a central value</li>
+<li>Especially useful
+in removing noise
+from images</li>
+<li>Also useful for
+highlighting gross
+features
+Smoothing linear Filters</li>
+</ul>
+<p>Smoothing linear Filters
+More effective smoothing filters can be generated by allowing different pixels in the neighbourhood different weights in the averaging function:</p>
+<ul>
+<li>Pixels closer to the
+central pixel are more
+important</li>
+<li>Often referred to as a
+weighted averaging
+Smoothing linear Filters</li>
+<li>This process results in an image with reduced sharp transitions in gray levels.</li>
+<li>Because random noise typically consists of sharp transitions in gray levels, the most obvious application of smoothing is noise reduction.</li>
+<li>Averaging filters have the undesirable side effect that they blur edges.</li>
+<li>A major use of averaging filters is in the reduction of “irrelevant” detail in an image.
+Smoothing linear Filters
+The image at the top left
+is an original image of
+size 500*500 pixels.
+The subsequent images
+show the image after
+filtering with an averaging
+filter of increasing sizes:</li>
+<li>3, 5, 9, 15 and 35.
+Notice how detail begins
+to disappear.
+Smoothing linear Filters
+Smoothing linear Filters
+By smoothing the original image we get rid of lots of the finer detail which leaves only the gross features for thresholding.
+Order-statistics filters
+Order statistics filters are nonlinear spatial filters whose response is based on ordering the pixels in the area of filter.
+Some typical operations include:</li>
+<li>Min: Set the pixel value to the minimum in the neighbourhood</li>
+<li>Max: Set the pixel value to the maximum in the neighbourhood</li>
+<li>Median: The median value of a set of numbers is the midpoint value in that set (e.g. for a 3*3 neighbourhood, with grey level (10,20,20,20,15,20,20,25,100), then we can order them in (10,15,20,20,20,20,20,25,100),20 is the median. Sometimes the median works better than the average
+Order-statistics filters</li>
+</ul>
+<p>Order-statistics filters</p>
+<ul>
+<li>Filtering is often used to remove noise from images.</li>
+<li>Sometimes a median filter works better than an averaging filter.</li>
+<li>Median filter are particularly effective in the presence of impulse noise, also called salt-and-pepper noise.
+Max and Min Filter
+Max Filter:</li>
+</ul>
+<p>Min Filter:</p>
+<p>Max filter is good for pepper noise and min is good for salt noise.
+Noise Removal Examples (cont…)
+Noise Removal Examples (cont…)</p>
+<ul>
+<li>For max filter, it will remove pepper noise, but it also removed some dark pixels from the borders of dark objects.</li>
+<li>The same as min filter, it will remove some white points around the border of light objects.</li>
+</ul>
+<p>Adaptive Filters
+The filters discussed so far are applied to an entire image without any regard for how image characteristics vary from one point to another.
+The behaviour of adaptive filters changes depending on the characteristics of the image inside the filter region.</p>
+<p>An increase in filter complexity.
+We will take a look at the adaptive median filter.
+Adaptive Median Filtering</p>
+<ul>
+<li>The median filter performs relatively well on impulse noise as long as the spatial density of the impulse noise is not large (Pa and Pb are less than 0.2).</li>
+<li>The adaptive median filter can handle much more spatially dense impulse noise, and also performs some smoothing for non-impulse noise.</li>
+<li>An additional benefit of the adaptive median filter is that it seeks to preserve detail while smoothing non-impulse noise.</li>
+<li>The key insight in the adaptive median filter is that the filter size changes depending on the characteristics of the image.
+Adaptive Median Filtering (cont…)
+Remember that filtering looks at each original pixel image in turn and generates a new filtered pixel.
+First examine the following notation:</li>
+<li>zmin 	= minimum grey level in Sxy</li>
+<li>zmax 	= maximum grey level in Sxy</li>
+<li>zmed 	= median of grey levels in Sxy</li>
+<li>zxy 	= grey level at coordinates (x, y)</li>
+<li>Smax 	= maximum allowed size of Sxy
+Adaptive Median Filtering (cont…)
+The key to understanding the algorithm is to remember that the adaptive median filter has three purposes:</li>
+<li>Remove impulse noise</li>
+<li>Provide smoothing of other noise</li>
+<li>Reduce distortion, by not changing these intermediate-level points. (excessive thinning or thickening of object boundaries)
+Adaptive Median Filtering (cont…)
+Level A:	A1 = zmed - zmin
+A2 = zmed - zmax
+If A1 &gt; 0 and A2 &lt; 0, Go to level B
+Else increase the window size
+If window size ≤ Smax repeat level A
+Else output zmed
+Level B:	B1 = zxy - zmin
+B2 = zxy - zmax
+If B1 &gt; 0 and B2 &lt; 0, output zxy
+Else output zmed
+Adaptive Filtering Example
+Sharpening Spatial Filters
+Previously we have looked at smoothing filters which remove fine detail.
+Sharpening spatial filters seek to highlight fine detail:</li>
+<li>Remove blurring from images</li>
+<li>Highlight edges
+Averaging is analogous to integration and causes blurring, so differentiation is expected to have opposite results and sharpen an image.</li>
+<li>smoothing ~ integration</li>
+<li>sharpening ~ differentiation</li>
+</ul>
+<p>1st Derivative
+The formula for the 1st derivative of a function is as follows:</p>
+<p>It’s just the difference between subsequent values and measures the rate of change of the function.
+Spatial Differentiation
+Differentiation measures the rate of change of a function.
+Let’s consider a simple one dimensional example.
+1st Derivative (cont…)
+2nd Derivative
+The formula for the 2nd derivative of a function is as follows:</p>
+<p>Simply takes into account the values both before and after the current value.
+2nd Derivative (cont…)
+1st &amp; 2st Derivative (cont…)
+Using Second Derivatives For Image Enhancement
+The 2nd derivative is more useful for image enhancement than the 1st derivative</p>
+<ul>
+<li>Stronger response to fine detail</li>
+<li>Simpler implementation</li>
+<li>We will come back to the 1st order derivative later on
+The first sharpening filter we will look at is the Laplacian</li>
+<li>Isotropic</li>
+<li>One of the simplest sharpening filters</li>
+<li>We will look at a digital implementation
+The Laplacian
+The Laplacian is defined as follows:</li>
+</ul>
+<p>where the partial 1st order derivative in the x direction is defined as follows:</p>
+<p>and in the y direction as follows:
+The Laplacian (cont…)
+So, the Laplacian can be given as follows:</p>
+<p>We can easily build a filter based on this
+The Laplacian (cont…)
+Applying the Laplacian to an image we get a new image that highlights edges and other discontinuities
+But That Is Not Very Enhanced!</p>
+<ul>
+<li>The result of a Laplacian filtering is not an enhanced image.</li>
+<li>We have to do more work in order to get our final image.</li>
+<li>Subtract the Laplacian result from the original image to generate our final sharpened enhanced image.
+Laplacian Image Enhancement
+In the final sharpened image edges and fine detail are much more obvious.
+Simplified Image Enhancement
+The entire enhancement can be combined into a single filtering operation:
+Simplified Image Enhancement (cont…)
+This gives us a new filter which does the whole job for us in one step.
+Variants On The Simple Laplacian
+There are lots of slightly different versions of the Laplacian that can be used:
+Variants On The Simple Laplacian
+Variants On The Simple Laplacian
+Two definitions of Laplacian: one is the negative of the other
+Accordingly, to recover background features:</li>
+</ul>
+<p>I: if the center of the mask is negative
+II: if the center of the mask is positive
+High Boost Filtering
+High boost filtering:</p>
+<p>I: if the center of the mask is negative
+II: if the center of the mask is positive</p>
+<p>When A=1, it is the standard Laplacian filtering, as the value of A increase past 1, the contribution of the sharpening process becomes less and less important.</p>
+<p>High Boost Filtering
+High Boost Filtering
+1st Derivative Filtering
+Implementing 1st derivative filters is difficult in practice.
+For a function f(x, y) the gradient of f at coordinates (x, y) is given as the column vector:
+1st Derivative Filtering (cont…)
+The magnitude of this vector is given by:</p>
+<p>For practical reasons this can be simplified as:</p>
+<p>1st Derivative Filtering (cont…)
+The simplest 1st Derivative Filtering:</p>
+<p>Approximation:</p>
+<p>1st Derivative Filtering (cont…)
+Roberts uses:</p>
+<p>Approximation (Roberts Cross-Gradient Operators):</p>
+<p>1st Derivative Filtering (cont…)
+There is some debate as to how best to calculate these gradients but we will use:</p>
+<p>which is based on these coordinates</p>
+<p>Sobel Operators
+Based on the previous equations we can derive the Sobel Operators.</p>
+<p>To filter an image it is filtered using both operators the results of which are added together.
+Sobel Example</p>
+<p>Sobel filters are typically used for edge detection
+Sobel Example
+Combining Spatial Enhancement Methods</p>
+<ul>
+<li>Successful image enhancement is typically not achieved using a single operation.</li>
+<li>Rather we combine a range of techniques in order to achieve a final result.</li>
+<li>This example will focus on enhancing the bone scan to the right.
+Combining Spatial Enhancement Methods (cont…)
+Combining Spatial Enhancement Methods (cont…)
+Combining Spatial Enhancement Methods (cont…)
+Compare the original and final images
+Summary
+In this lecture we have looked at the idea of spatial filtering and in particular:</li>
+<li>Basic of spatial filtering</li>
+<li>Smoothing spatial filters</li>
+<li>Smoothing linear filters</li>
+<li>Order-statistics filters</li>
+<li>Sharpening spatial filters</li>
+<li>1st derivative filters</li>
+<li>2nd derivative filters
+Next time we will looking at other image enhancement methods in frequency domain.</li>
+</ul>
+<h2 id="image-enhancement-filtering-in-the-frequency-domain">Image Enhancement: Filtering in the Frequency Domain</h2>
+<p>Contents
+In this lecture we will look at image enhancement in the frequency domain:</p>
+<ul>
+<li>The Fourier series &amp; the Fourier transform</li>
+<li>DFT Properties</li>
+<li>Steps of Filtering in the Frequency Domain</li>
+<li>Some Basic Frequency Domain Filters</li>
+<li>Image smoothing</li>
+<li>Image sharpening
+The Big Idea</li>
+</ul>
+<p>Introduction to
+Fourier Transform</p>
+<p>f(x): continuous function of a real variable x.
+Fourier transform of f(x):</p>
+<p>The Discrete Fourier Transform (DFT)
+How to calculate the DFT:</p>
+<ul>
+<li>Step1: Let u=0, summing for all value of x.</li>
+<li>Step2: Substitute u=u+1, and repeat the summation over all value of x.</li>
+<li>Step 3: If u=N-1, terminate, otherwise, return to step 2.</li>
+</ul>
+<p>The Discrete Fourier Transform (DFT)</p>
+<ul>
+<li>The values of F(u) for each u are composed of the sum of all values of function f(x).</li>
+<li>The values of f(x) are multiplied by sines and cosines of various frequencies.</li>
+<li>Similar computation procedure in the inverse Fourier transform.</li>
+<li>The domain (values of u) over which the values of F(u) range is appropriately called the frequency domain.</li>
+<li>Each of the N terms of F(u) is called a frequency component of the transform.
+The Discrete Fourier Transform (DFT)
+Glass prism</li>
+<li>Separates light into various color components.</li>
+<li>Each depending on its wavelength (or frequency) content.
+Fourier transform</li>
+<li>Separates a function into various components.</li>
+<li>Each depending on its frequency content.</li>
+</ul>
+<p>The Discrete Fourier Transform (DFT)
+The Discrete Fourier Transform of f(x, y), for x = 0, 1, 2…M-1 and y = 0,1,2…N-1, denoted by F(u, v), is given by the equation:</p>
+<p>for u = 0, 1, 2…M-1 and v = 0, 1, 2…N-1.</p>
+<p>Image DFT Example</p>
+<p>DFT Properties
+DFT Properties
+DFT Properties
+DFT Properties
+DFT Properties
+DFT Properties
+The DFT of a two dimensional image can be visualised by showing the spectrum of the images component frequencies.
+DFT Properties
+DFT Properties</p>
+<ul>
+<li>Features from an image can even sometimes be seen in the Fourier spectrum of the image.</li>
+<li>The frequency component (u=v=0) corresponds to the average gray level of an image.</li>
+<li>The low frequency correspond to the slowly varying components of an image.</li>
+<li>An image of one room: smooth gray-level variations on the walls and floor.</li>
+<li>The higher frequencies begin to correspond to faster and faster gray level changes in the image.</li>
+<li>Edges, noise.
+Steps of Filtering in the Frequency Domain
+Steps:</li>
+<li>Multiply the input image by (-1)x+y to center the transform.</li>
+<li>Compute F(u,v) the DFT of the image in (1).</li>
+<li>Multiply F(u,v) by a filter function H(u,v).</li>
+<li>Compute the inverse DFT of the result.</li>
+<li>Obtain the real part of the result in (4).</li>
+<li>Multiply the result in (5) with (-1)x+y .
+Steps of Filtering in the Frequency Domain
+Filter H (u, v)</li>
+<li>Suppresses certain frequencies</li>
+<li>Leaving others unchanged</li>
+<li>G (u, v)=H( u, v) F (u, v)</li>
+<li>The first element of H multiplies the first element of F,…
+Zero-phase-shift filter</li>
+<li>The value of H are always real</li>
+<li>Each component of H multiplies both the real and the imaginary parts of F</li>
+<li>Do not change the phase of the transform
+Steps of Filtering in the Frequency Domain
+The filtered image is obtained simply by taking the inverse Fourier transform of G(u,v):</li>
+</ul>
+<p>The final image is obtained by:
+1.Taking the real part of this result.
+2.Multiplying by (-1)x+y to cancel the multiplication of the input image by this quantity.
+Note: When the input image and the filter function are real, the imaginary components of the inverse transform should all be zero. In practice, the inverse DFT generally has parasitic imaginary components due to computational round-off errors. There component can be ignored.
+Steps of Filtering in the Frequency Domain
+Other steps include:</p>
+<ul>
+<li>Cropping of the input image to its closest even dimensions.</li>
+<li>Gray level scaling.</li>
+<li>Conversion to floating point on input.</li>
+<li>Conversion to an 8 bit integer format on the output.</li>
+<li>Multiple filtering stages and other pre- and post-processing functions are possible.</li>
+<li>There are numerous variations of above basic theme.
+Some Basic Frequency Domain Filters
+Some Basic Frequency Domain Filters
+Some Basic Frequency Domain Filters
+Filters Based on Gaussian Functions</li>
+<li>Shapes are easily specified.</li>
+<li>Forward and inverse Fourier transforms of a Gaussian function are real Gaussian functions.</li>
+</ul>
+<p>Filters Based on Gaussian Functions
+Fourier transform pair</p>
+<ul>
+<li>Both components of which are Gaussian and real.</li>
+<li>The narrower the frequency domain filter:</li>
+<li>The more it will attenuate the low frequencies</li>
+<li>Resulting in increased blurring</li>
+<li>In the spatial domain:</li>
+<li>Implies a larger mask
+Filters Based on Gaussian Functions
+Smoothing Frequency Domain Filters</li>
+<li>Smoothing is achieved in the frequency domain by dropping out the high frequency components.</li>
+<li>The basic model for filtering is:
+G(u,v) = H(u,v)F(u,v)
+where F(u,v) is the Fourier transform of the image being filtered and H(u,v) is the filter transform function.</li>
+<li>Low pass filters - only pass the low frequencies, drop the high ones.
+Smoothing Frequency Domain Filters
+Three main smoothing frequency domain filters:</li>
+<li>Ideal lowpass filter</li>
+<li>Butterworth filter</li>
+<li>Gaussian filter</li>
+</ul>
+<p>These three filters cover the range from very sharp (ideal) to very smooth (Gaussian) filter functions.
+Ideal Low Pass Filter
+Simply cut off all high frequency components that are a specified distance D0 from the origin of the transform.</p>
+<p>Changing the distance changes the behaviour of the filter. D0 is also called cutoff frequency.
+Ideal Low Pass Filter (cont…)
+The transfer function for the ideal low pass filter can be given as:</p>
+<p>It is called 2D ideal low pass filter (ILPF)
+where D(u,v) is given as:</p>
+<p>Ideal Low Pass Filter (cont…)
+Ideal Low Pass Filter (cont…)
+Above we show an image, it’s Fourier spectrum and a series of ideal low pass filters of radius 5, 15, 30, 80 and 230 superimposed on top of it.
+These circles enclose a percent of the image power, for a=92.0, 94.6, 96.4, 98, and 99.5%, respectively.
+Ideal Low Pass Filter (cont…)
+Ideal Low Pass Filter (cont…)
+Ideal Low Pass Filter (cont…)
+Butterworth Lowpass Filters
+The transfer function of a Butterworth lowpass filter of order n with cutoff frequency at distance D0 from the origin is defined as:
+Butterworth Lowpass Filter (cont…)
+Butterworth Lowpass Filter (cont…)
+Butterworth Lowpass Filter (cont…)
+Butterworth Lowpass Filter (cont…)
+Gaussian Lowpass Filters
+The transfer function of a Gaussian lowpass filter is defined as:
+Gaussian Lowpass Filters (cont…)
+Lowpass Filters Compared
+Lowpass Filtering Examples
+A low pass Gaussian filter is used to connect broken text: D0=80.
+Lowpass Filtering Examples (cont…)
+Different lowpass Gaussian filters used to remove blemishes in a photograph.
+Sharpening in the Frequency Domain</p>
+<ul>
+<li>
+<p>Edges and fine detail in images are associated with high frequency components.</p>
+</li>
+<li>
+<p>High pass filters - only pass the high frequencies, drop the low ones.</p>
+</li>
+<li>
+<p>High pass frequencies are precisely the reverse of low pass filters, so:</p>
+<p>Hhp(u, v) = 1 - Hlp(u, v)</p>
+</li>
+</ul>
+<p>Sharpening in the Frequency Domain
+Sharpening in the Frequency Domain
+Ideal High Pass Filters
+The ideal high pass filter is given as:</p>
+<p>where D0 is the cut off distance as before.
+Ideal High Pass Filters (cont…)
+Butterworth High Pass Filters
+The Butterworth high pass filter is given as:</p>
+<p>where n is the order and D0 is the cut off distance as before.
+Butterworth High Pass Filters
+Butterworth High Pass Filters (cont…)
+Gaussian High Pass Filters
+The Gaussian high pass filter is given as:</p>
+<p>where D0 is the cut off distance as before.
+Gaussian High Pass Filters (cont…)
+High Pass Filter Comparison
+High Pass Filter
+Summary
+In this lecture we looked at image enhancement in the frequency domain</p>
+<ul>
+<li>The Fourier series &amp; the Fourier transform</li>
+<li>DFT Properties</li>
+<li>Steps of Filtering in the Frequency Domain</li>
+<li>Some Basic Frequency Domain Filters</li>
+<li>Image smoothing</li>
+<li>Image sharpening</li>
+</ul>
+<h2 id="image-restoration">Image Restoration</h2>
+<p>Contents
+In this lecture we will look at image restoration techniques used for noise removal</p>
+<ul>
+<li>What is image restoration?</li>
+<li>Noise and images</li>
+<li>Noise models</li>
+<li>Noise removal using frequency domain filtering</li>
+<li>Estimating the degradation function</li>
+<li>Inverse filtering</li>
+<li>Weiner Filtering
+What is Image Restoration?
+Image restoration attempts to restore images that have been degraded</li>
+<li>Identify the degradation process and attempt to reverse it</li>
+<li>Similar to image enhancement, but more objective</li>
+</ul>
+<p>Enhancement vs. Restoration
+“Better” visual representation</p>
+<p>Subjective</p>
+<p>No quantitative measures</p>
+<p>Mathematical
+Model dependent</p>
+<p>Objective</p>
+<p>Quantitative measures
+Image Restoration General</p>
+<ul>
+<li>One has to have some a priori knowledge about the degragation process.</li>
+<li>Usually we need to know:</li>
+<li>The noise in the original image</li>
+<li>Model for degragation</li>
+<li>Some information from original image</li>
+</ul>
+<p>A Model of Image Degradation and Restoration
+Degradation Model
+Restoration Model
+Restoration Model</p>
+<ul>
+<li>
+<p>The objective of restoration is to obtain an estimate            of the original image f(x,y).</p>
+</li>
+<li>
+<p>Generally, the more we know about H, and    , the             will be closer to f(x,y).</p>
+</li>
+<li>
+<p>The approach used throughout most of this chapter is based on various types of image restoration filters.
+Noise and Images
+The sources of noise in digital images arise during image acquisition (digitization) and transmission</p>
+</li>
+<li>
+<p>Imaging sensors can be affected by ambient conditions</p>
+</li>
+<li>
+<p>Interference can be added
+to an image during transmission
+Noise Models
+There are many different models for the image noise term η(x, y):</p>
+</li>
+<li>
+<p>Gaussian</p>
+</li>
+<li>
+<p>Most common model</p>
+</li>
+<li>
+<p>Rayleigh</p>
+</li>
+<li>
+<p>Erlang</p>
+</li>
+<li>
+<p>Exponential</p>
+</li>
+<li>
+<p>Uniform</p>
+</li>
+<li>
+<p>Impulse</p>
+</li>
+<li>
+<p>Salt and pepper noise
+Noise Models
+Noise Models
+Noise Models
+Noise Models
+MATLAB Command</p>
+</li>
+</ul>
+<blockquote>
+<p>Y = IMNOISE(X,&lsquo;salt &amp; pepper&rsquo;,p)
+Noise Models
+Noise Example
+The test pattern to the right is ideal for demonstrating the addition of noise.
+The following slides will show the result of adding noise based on various models to this image.
+Noise Example (cont…)
+Noise Example (cont…)
+Periodic Noise
+Periodic noise in an image arises typically from electrical or electromechanical interference during image acquisition.
+Characteristics</p>
+</blockquote>
+<ul>
+<li>Spatially dependent</li>
+<li>Periodic - easy to observe in frequency domain
+Processing method</li>
+<li>Suppressing noise component in frequency domain
+Periodic Noise
+Estimation of Noise Parameters</li>
+<li>Periodic noise typically are estimated by inspection of the Fourier spectrum of the image.</li>
+<li>The parameters of noise PDFs may be known from sensor specifications.</li>
+<li>Sometimes, it is necessary to estimate them for a particular imaging device.</li>
+<li>When images generated by the sensor are available, frequently it is possible to estimate the parameters of the PDF from small patches of constant gray level.
+Estimation of Noise Parameters
+Estimation of Noise Parameters
+Estimation of Noise Parameters
+Estimation of Noise Parameters
+Restoration of Noise Only Degradation
+We can consider a noisy image to be modelled as follows:</li>
+</ul>
+<p>where f(x, y) is the original image pixel, η(x, y) is the noise term and g(x, y) is the resulting noisy pixel.
+Restoration of Noise Only Degradation</p>
+<ul>
+<li>If the noise is known, we can just subtract them from g(x,y) or G(u,v) to restore f(x,y) or F(u,v).</li>
+<li>In the case of periodic noise, it is possible to estimate N(u,v) from the spectrum of G(u,v), then N(u,v) can be subtracted from G(u,v) to obtain an estimate of the original image.</li>
+<li>Usually, the noise is unknown, so subtracting them from g(x,y) or G(u,v) is not a realistic option.</li>
+<li>When only additive noise is present, spatial filtering is a choice. In this case, enhancement and restoration become almost the same.
+Periodic Noise Reduction by Frequency Domain Filter
+Here we will look at more specialized frequency domain filters, which are efficient to reduce or remove periodic noise. They are:</li>
+<li>Bandreject filter</li>
+<li>Bandpass filter</li>
+<li>Notch filter
+Periodic Noise
+Band Reject Filters
+An ideal band reject filter is given as follows:</li>
+</ul>
+<p>W is the band width, D0 is its ring center.
+Band Reject Filters
+Butterworth bandreject filter of order n:</p>
+<p>Gaussian bandreject filter:
+Band Reject Filters (cont…)
+The ideal band reject filter is shown below, along with Butterworth and Gaussian versions of the filter
+Band Reject Filter Example
+Band Pass Filter
+Band Pass Filter Example
+Notch Filter
+Notch Filter
+Notch Filter
+Notch Filter
+Notch Filter
+Notch Filter
+Notch Filter
+Estimating the Degradation Function
+Three principal ways to estimate</p>
+<ul>
+<li>
+<p>Observation</p>
+</li>
+<li>
+<p>Experimentation</p>
+</li>
+<li>
+<p>Mathematical modeling</p>
+</li>
+<li>
+<p>Using a degradation function that has been estimated in some way to restore a image is called Blind deconvolution.</p>
+</li>
+<li>
+<p>Because the true degradation function is seldom known completely.</p>
+</li>
+</ul>
+<p>Estimation by Image Observation</p>
+<ul>
+<li>Given an image, without prior knowledge.</li>
+<li>Gather information from the image itself.</li>
+<li>Example: the image is blurred</li>
+<li>Look at a small section of the image.</li>
+<li>Look for areas of strong signal content.</li>
+<li>Construct an unblurred image of the same size and characteristics as the observed subimage.</li>
+</ul>
+<p>Estimation by Image Observation</p>
+<p>Let the observed subimage be denoted by gs(x,y).
+Let the constructed subimage be denoted by Assuming the effect of noise is negligible (strong -signal area) , then</p>
+<p>Deduce the complete function H (u, v).
+Eg. Suppose that a radial plot of Hs(u,v) turns out to have the shape of Butterworth lowpass filter. We can use that information to construct a function H(u,v) on a larger scale, but having the same shape.</p>
+<p>Estimation by Experimentation</p>
+<p>Assume:</p>
+<ul>
+<li>Equipment similar to another equipment</li>
+<li>Obtain an accurate estimate of the degradation
+Images similar to the degraded image</li>
+<li>Various system setting</li>
+<li>Until degraded as closely as possible to the image we wish to restore.</li>
+<li>Space-invariant system with impulse response</li>
+</ul>
+<p>Estimation by Experimentation</p>
+<ul>
+<li>Impulse response of the degradation</li>
+<li>Imaging an impulse using the same system settings.</li>
+<li>An impulse</li>
+<li>Is simulated by a bright dot of light.</li>
+<li>Bright enough to reduce the effect of noise.</li>
+<li>Fourier transform of an impulse is a constant.</li>
+</ul>
+<p>Estimation by Experimentation</p>
+<p>Estimation by Modeling</p>
+<p>Consider environmental conditions causing degradations</p>
+<ul>
+<li>Example: atmospheric turbulence.</li>
+<li>Hufnagel and Stanley 1964.</li>
+</ul>
+<p>Modeling:</p>
+<p>Where k is a constant, and depends on the nature of the turbulence.
+Has the same form of Gaussian lowpass filter, it is used sometimes to model mild, uniform bluring.
+Atmospheric Turbulence</p>
+<p>Estimation by Modeling</p>
+<p>Derive a mathematical model of Motion Blur</p>
+<ul>
+<li>An image blurred by uniform linear motion between Image and the sensor during image acquisition</li>
+<li>Image f(x,y) is in planar motion</li>
+<li>x0(t) and y0 (t) time varying components of motion
+Motion Blur
+Motion Blur
+Motion Blur
+Inverse Filtering
+Studying restoration of images degraded by a degradation function H, which is given or obtained by a method, such as those discussed in the previous sections.</li>
+</ul>
+<p>It tells us that even if we know the degradation function we cannot recover the undegraded image. Because N(u,v) is a random function whose Fourier transform is not known.
+Inverse Filtering
+Besides, if the degradation has zero or very small values, then the ratio N(u,v)/H(u,v) could easily dominate the estimate F(u,v). In fact, this is frequently the case.</p>
+<p>Then how to deal with this situation?</p>
+<ul>
+<li>Limit the filter frequencies to values near the origin.</li>
+<li>H(0,0):</li>
+<li>Is equal to the average value of h (x, y).</li>
+<li>Highest value of H(u,v) in the frequency domain.</li>
+<li>Reduce the probability of encountering zero values.
+Inverse Filtering
+Wiener Filtering
+Inverse filtering approach makes no explicit provision for handling noise.</li>
+</ul>
+<p>Wiener filtering incorporate the information:</p>
+<ul>
+<li>Degradation function</li>
+<li>Statistical Characteristics of noise</li>
+</ul>
+<p>Also called Minimum Mean Square Error Filtering.
+Wiener Filtering
+Consider images and noise as random processes.
+Objective is to find an estimate     of the uncorrupted image f.
+Mean square error between them is minimized:</p>
+<p>􀂄  is the expected value of the argument.</p>
+<p>Wiener Filtering
+Assumption:</p>
+<ul>
+<li>Noise and image are uncorrelated.</li>
+<li>One or the other has zero mean.</li>
+<li>The gray levels in the estimate are a linear function of the levels in the degradation image.
+Wiener Filtering
+Wiener Filtering
+Wiener Filtering</li>
+<li>Spectrally white noise, the spectrum |N(u,v)|2 is a constant.</li>
+<li>Power spectrum of the undegraded image seldom is known.</li>
+<li>When these quantities are not known or cannot be estimated, we obtain approximation:</li>
+</ul>
+<p>Wiener Filtering
+Wiener Filtering
+Wiener Filtering
+Summary
+In this lecture we looked at image restoration for noise removal</p>
+<ul>
+<li>Restoration is slightly more objective than enhancement</li>
+<li>Frequency domain techniques are particularly useful for removing periodic noise</li>
+<li>Inverse filtering</li>
+<li>Weiner Filtering</li>
+</ul>
+<h2 id="morphological-image-processing">Morphological Image Processing</h2>
+<p>Contents
+In this lecture we will consider</p>
+<ul>
+<li>What is morphology?</li>
+<li>Basic Concepts of Set Theory</li>
+<li>Dilation and Erosion</li>
+<li>Opening and Closing</li>
+<li>Hit or Miss Transform
+What Is Morphology?</li>
+<li>Presented by J. Serra in 1964.</li>
+<li>Morphological image processing (or morphology) describes a range of image processing techniques that deal with the shape (or morphology) of features in an image.</li>
+<li>The basic idea of Morphology is to use a special structuring element to measure or extract the corresponding shape or characteristics in the input images for further image analysis and object recognition.</li>
+<li>The mathematical foundation of morphology is the set theory.</li>
+<li>In this chapter, the input images are binary images.
+0, 1, Black, White?</li>
+<li>Throughout all of the following slides whether 0 and 1 refer to white or black is a little interchangeable</li>
+<li>All of the discussion that follows assumes that images are made up of 0s for background pixels and 1s for object pixels (foreground)</li>
+<li>After this it doesn’t matter if 0 is black, white, yellow, green…….</li>
+</ul>
+<p>A is a set, if a=(a1,a2) is an element of A, then,
+aA
+If not, then, aA</p>
+<p>: null (empty) set</p>
+<p>Typical set specification:
+C={w|w=-d, for d D}
+Basic Concepts of Set Theory</p>
+<ul>
+<li>A subset of B: AB</li>
+<li>Union of A and B: C=AB</li>
+<li>Intersection of A and B: D=AB</li>
+<li>Disjoint sets: AB= </li>
+<li>Complement of A: Ac={w|wA}</li>
+<li>Difference of A and B:
+A-B={w|wA, wB}=A Bc</li>
+</ul>
+<p>Structuring Element, Hit, Fit, &amp; Miss
+Fit: for each of SE pixels set to 1, the corresponding image pixel is also 1.
+Hit: at least one of SE’s pixels set to 1 the corresponding image pixel is also 1.
+Miss: no pixel in the structuring element covers an on pixel in the image.
+Fit, Hit, &amp; Miss
+Structuring Elements</p>
+<ul>
+<li>Structuring elements can be any size and make any shape.</li>
+<li>Usually, element values are 0,1 and none(x).</li>
+<li>Structural Elements have an origin.</li>
+<li>For simplicity we usually use rectangular structuring, then we can take the middle pixel as its origin.</li>
+<li>Empty spots in the Structuring Elements are don’t care’s!</li>
+</ul>
+<p>Fundamental Operations</p>
+<ul>
+<li>Fundamentally morphological image processing is very like spatial filtering.</li>
+<li>The structuring element is moved across every pixel in the original image to give a pixel in a new processed image.</li>
+<li>The value of this new pixel depends on the operation performed.</li>
+<li>There are two basic morphological operations: dilation and erosion.
+Dilation
+Dilation of image  f  by structuring element  s is given by f     s
+The structuring element s is positioned with its origin at (x, y) and the new pixel value is determined using the rule:</li>
+</ul>
+<p>Example for Dilation
+Example for Dilation
+Example for Dilation
+Example for Dilation
+Example for Dilation
+Example for Dilation
+Example for Dilation
+Example for Dilation
+Dilation Example
+Dilation Example
+Dilation
+Dilation:</p>
+<ul>
+<li>B is often called the “structuring element”</li>
+<li>Process consists of obtaining the reflection of B, about its origin</li>
+<li>Then shifting this reflection, B, by x</li>
+<li>The dilation of A by B is the set of all x, displacements such that B and A overlap by at least one element
+Dilation Example
+Dilation Example</li>
+</ul>
+<p>Dilation Example 1
+Dilation Example 2
+What Is Dilation For?
+Dilation can repair breaks</p>
+<p>Dilation can repair intrusions</p>
+<p>Watch out: Dilation enlarges objects
+Erosion
+Erosion of image f by structuring element s is given by f  s
+The structuring element s is positioned with its origin at (x, y) and the new pixel value is determined using the rule:</p>
+<p>Example for Erosion
+Example for Erosion
+Erosion Example
+Erosion Example
+Erosion
+Erosion Example</p>
+<p>Erosion Example 1
+Erosion Example 2
+What Is Erosion For?
+Erosion can split apart joined objects</p>
+<p>Erosion can strip away extrusions</p>
+<p>Watch out: Erosion shrinks objects
+Erosion &amp; Dilation Application
+Compound Operations
+More interesting morphological operations can be performed by performing combinations of erosions and dilations
+The most widely used of these compound operations are:</p>
+<ul>
+<li>Opening</li>
+<li>Closing
+Opening
+The opening of image f by structuring element s, denoted f ○ s is simply an erosion followed by a dilation
+f ○ s = (f s)    s</li>
+</ul>
+<p>Opening Example
+Opening Example
+Opening Example
+Opening
+Opening Example
+Closing
+The closing of image f by structuring element s, denoted f - s is simply a dilation followed by an erosion
+f - s = (f    s)s</p>
+<p>Closing Example
+Closing Example
+Closing Example
+Closing
+Closing Example</p>
+<p>In essence, dilation expands an image and erosion shrinks it.</p>
+<p>Opening:</p>
+<ul>
+<li>generally smoothes the contour of an image, breaks thin connections, eliminates protrusions.</li>
+</ul>
+<p>Closing:</p>
+<ul>
+<li>smoothes sections of contours, but it generally fuses breaks, holes, gaps, etc.
+Morphological Processing Example
+Morphological Processing Example</li>
+</ul>
+<p>Summary</p>
+<ul>
+<li>The purpose of morphological processing is primarily to remove imperfections added during segmentation.</li>
+<li>The basic operations are dilation and erosion.</li>
+<li>Using the basic operations we can perform opening and closing.</li>
+<li>More advanced morphological operation can then be implemented using combinations of all of these.</li>
+</ul>
+<h2 id="morphological-image-processing--new">Morphological Image Processing&ndash;new</h2>
+<p>Morphological Algorithms
+We can begin to consider some more interesting morphological algorithms by using the simple morphological technique we have learnt.</p>
+<p>We will look at:</p>
+<ul>
+<li>Boundary extraction</li>
+<li>Region filling
+There are lots of others as well though:</li>
+<li>Extraction of connected components</li>
+<li>Convex Hull</li>
+<li>Thinning/thickening</li>
+<li>Skeletons
+Boundary Extraction</li>
+<li>Extracting the boundary (or outline) of an object is often extremely useful</li>
+<li>The boundary can be given simply as
+β(A) = A - (AB)
+Boundary Extraction Example
+A simple image and the result of performing boundary extraction using a square 3*3 structuring element
+Boundary Extraction Example
+Region Filling
+Given a pixel inside a boundary, region filling attempts to fill that boundary with object pixels</li>
+</ul>
+<p>Region Filling (cont…)
+The key equation for region filling is:</p>
+<p>Where X0 is the starting point inside the boundary, B is a simple structuring element and Ac is the complement of A.
+This equation is applied repeatedly until:
+Xk =Xk-1.
+Finally the result is unioned with the original boundary: Xk A.
+Region Filling Step By Step
+Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step</p>
+<p>Region Filling Step By Step
+Region Filling Step By Step
+Region Filling Example</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Extraction of Connected Components</p>
+<p>Thinning</p>
+<p>Thinning
+Thinning
+Thinning
+Thinning
+Thinning</p>
+<p>Skeletons</p>
+<p>Grayscale Morphology
+Grayscale Erosion and Dilation</p>
+<p>Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+flat
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation</p>
+<ul>
+<li>Gray-scale X-ray image of size 448 425 × pixels.</li>
+<li>Erosion (a) using a flat disk SE with a radius of 2 pixels.</li>
+<li>Dilation (a) using the same SE.
+Grayscale Erosion and Dilation
+The eroded grayscale image b) was darker than the original a), that the sizes of bright features were reduced, and that the sizes of dark features is increased.</li>
+</ul>
+<p>Grayscale Erosion and Dilation
+The effects of c) are the opposite of using erosion. The bright features were thickened and the intensities of the darker features were reduced.
+Grayscale Erosion and Dilation
+Matlab code:
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Erosion and Dilation
+Grayscale Opening and Closing
+The expressions for opening and closing grayscale images have the same form as their binary counterparts.
+Grayscale Opening and Closing
+Grayscale Morphological Smoothing
+Grayscale Morphological Gradient</p>
+<h2 id="image-segmentation1">Image Segmentation1</h2>
+<p>Contents
+So far we have been considering image processing techniques used to transform images for human interpretation.
+Today we will begin looking at automated image analysis by image segmentation:</p>
+<ul>
+<li>The segmentation problem</li>
+<li>Edges detection</li>
+<li>Edge linking and boundary detection</li>
+<li>Hough Transform</li>
+</ul>
+<p>Segmentation
+Segmentation
+Segmentation</p>
+<p>Detection Of Discontinuities
+There are three basic types of grey level discontinuities that we tend to look for in digital images:</p>
+<ul>
+<li>Points</li>
+<li>Lines</li>
+<li>Edges
+We typically find discontinuities using masks and correlation.</li>
+</ul>
+<p>Edge Detection
+Spatial Differentiation
+2nd Derivative
+The formula for the 2nd derivative of a function is as follows:</p>
+<p>Edges &amp; Derivatives
+We can see
+how derivatives
+are used to find
+discontinuities
+1st derivative tells us
+where an edge is.
+2nd derivative can
+be used to show
+edge direction.</p>
+<p>Derivatives &amp; Noise</p>
+<p>Common Edge Detectors
+Given a 3*3 region of an image the following edge detection filters can be used
+Common Edge Detectors
+Edge Detection Example
+Edge Detection Example
+Edge Detection Example
+x=imread(name);
+x1=double(x);   imshow(x);
+[m,n]=size(x);
+sm=ones(5,5);
+x1=filter2(sm,x1);</p>
+<p>sobelx=[-1 -2 -1; 0 0 0; 1 2 1];
+sobely=[-1 0 1; -2 0 2; -1 0 1];</p>
+<p>xx=filter2(sobelx,x1); figure, imshow(xx, []);
+yy=filter2(sobely,x1); figure, imshow(yy, []);</p>
+<p>x2=abs(xx)+abs(yy);
+figure, imshow(x2, []);
+th=sum(sum(x2))/(m*n);</p>
+<p>Laplacian of Gaussian (LoG)
+Laplacian Of Gaussian
+Remarks:</p>
+<ul>
+<li>Because the second derivative is a linear operation, convolving an image with LoG is the same as convolving the image with the Gaussian smoothing function first, and then computing Laplacian.</li>
+<li>The purpose of Gaussian in the LoG is to smooth the image.</li>
+<li>The purpose of  Laplacian is to establish the location of edges (zero crossing)
+Laplacian Of Gaussian
+The Laplacian of Gaussian (LoG, or Mexican hat) filter uses the Gaussian for noise removal and the Laplacian for edge detection</li>
+</ul>
+<p>Operators in MATLAB
+I = imread(&lsquo;Fig0926(a)(rice).tif&rsquo;);
+BW1 = edge(I,&lsquo;sobel&rsquo;);   %Sobel operators
+BW2 = edge(I,&lsquo;roberts&rsquo;);  %Roberts operators
+BW3 = edge(I,&lsquo;prewitt&rsquo;); %Prewitt operators
+BW4 = edge(I,&lsquo;log&rsquo;); %LOG operators
+subplot(2,3,1),imshow(I), title(&lsquo;Original Image&rsquo;)
+subplot(2,3,2),imshow(BW1), title(&lsquo;Sobel&rsquo;)
+subplot(2,3,3),imshow(BW2), title(&lsquo;Roberts&rsquo;)
+subplot(2,3,4),imshow(BW3), title(&lsquo;Prewitt&rsquo;)
+subplot(2,3,5),imshow(BW4), title(&lsquo;LOG&rsquo;)
+Optimal Edge Detection: Canny
+John Canny:
+A Computational Approach to Edge Detection, IEEE Transactions on Pattern Analysis and Machine Intelligence ( Volume: PAMI-8, Issue: 6, Nov. 1986 ).</p>
+<p>Optimal edge detector should have 3 properties:</p>
+<ul>
+<li>Good SNR: Filter responds to edge, not noise.</li>
+<li>Good Localization: detected edge near true edge.</li>
+<li>Single Response: one per edge.</li>
+</ul>
+<p>Optimal Edge Detection: Canny</p>
+<ol>
+<li>
+<p>Gaussian function: noise removing</p>
+</li>
+<li>
+<p>1st derivative (soble, Prewitt or Roberts…)</p>
+</li>
+<li>
+<p>Non-maxima Suppression (NMS):  It is not enough to confirm the edge  by the global gradient. We can keep the local maxima gradient to find the edge (find the max gradient alone the angle, it is the edge point).</p>
+</li>
+<li>
+<p>Double threshold：</p>
+</li>
+</ol>
+<ul>
+<li>Usually, single threshold cannot get good results, since the perfect threshold is difficult to choose.</li>
+<li>The double thresholds are the better way: th1, th2, th1=0.4th2</li>
+<li>Then we can get two edge image: I1, I2, the I2 is gotten by the bigger threshold th2, which has removed more noise, and also loses some useful edge. I1 contains more detail edge, so we can combine them together.</li>
+</ul>
+<p>Optimal Edge Detection: Canny
+Edge Link and Boundary Detection
+Local Processing
+Local Processing
+Local Processing
+Global Processing
+Global Processing</p>
+<ul>
+<li>Find lines, curves, or parts of lines or curves in an input image.</li>
+<li>Such an image might be the output of an edge detector discussed in the previous lectures.</li>
+<li>Model fitting - Given a group points, find the curve or line that explains the data points best.</li>
+<li>For example: Line.</li>
+</ul>
+<p>Hough Transform</p>
+<p>Hough Transform
+Calculating steps of hough transform:</p>
+<ul>
+<li>In parameter space, quantize a and b, and give out (amin,amax) and (bmin,bmax).</li>
+<li>Set an accumulator A: A is A(amin:amax, bmin:bmax),set A to zero at the beginning.</li>
+<li>For a given point (xi,yi) in the original space, let a equal to each allowed values on the a-axis, and solve for the corresponding b using the equation:</li>
+<li>The resulting b are then rounded off to the nearest allowed value in the b-axis. If a choice of ap results in solution bq, we let A(p,q)=A(p,q)+1</li>
+<li>At the end of this procedure, a value Q in A(i,j) corresponds to Q points in the xy space lying on the line y=aix+bj.
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough Transform
+Hough transform detecting circles
+Although the focus so far has been on straight lines, the hough transform is applicable to any function of the form g(v,c)=0, where v is a vector of coordinates and c is a vector of coefficients. For example, the points lying on the circle</li>
+</ul>
+<p>can be detected by using the approach just discussed.
+The only difference is that there
+are three parameter.
+Hough transform detecting circles</p>
+<ul>
+<li>
+<p>The procedure is to increment c1 and c2, solve for the c3 that satisfy:</p>
+</li>
+<li>
+<p>Then updated the accumulator corresponding to the cell associated with the triplet (c1,c2,c3)</p>
+</li>
+<li>
+<p>Clearly, the complexity of the hough transform is proportional to the number of coordinates and coefficients in a given functional representation</p>
+</li>
+</ul>
+<p>Hough transform detecting circles
+Hough transform detecting circles
+Find the center of the circle (the biggest value in the accumulator), since the radius is known, then we can find the circle we want.</p>
+<p>Hough transform detecting circles
+Hough Transform</p>
+<ul>
+<li>The original Hough transform was designed to detect straight lines and curves.</li>
+<li>This method can be used if analytic equations of object borderlines are known.</li>
+<li>Since each point is handled independently, parallel implementations are possible.</li>
+<li>It becomes difficult when the dimension of the parameter space is large.</li>
+<li>Now hardware of Hough transform for line detection is available.
+Summary
+Next lecture we will look at:</li>
+<li>Thresholding</li>
+<li>Region based segmentation</li>
+<li>Morphological watersheds approach</li>
+</ul>
+<h2 id="image-segmentation2">Image Segmentation2</h2>
+<p>Contents
+Today we will begin looking at automated image analysis by examining the thorny issue of image segmentation:</p>
+<ul>
+<li>Thresholding</li>
+<li>Region based segmentation</li>
+<li>Morphological watersheds approach
+Thresholding</li>
+<li>Thresholding is usually the first step in any segmentation approach</li>
+<li>We have talked about simple single value thresholding already</li>
+<li>Here we will look at:</li>
+<li>Basic Global Thresholding</li>
+<li>Basic Adaptive Thresholding</li>
+<li>Minimisation Thresholding</li>
+</ul>
+<p>Thresholding
+Thresholding
+Basic Global Thresholding
+Basic Global Thresholding
+Threshold2.m
+Basic Global Thresholding
+Basic Global Thresholding Algorithm
+The basic global threshold, T, is calculated as follows:</p>
+<ul>
+<li>
+<p>Select an initial estimate for T (typically the average grey level in the image).</p>
+</li>
+<li>
+<p>Segment the image using T to produce two groups of pixels: G1 consisting of pixels with grey levels &gt;T and G2 consisting pixels with grey levels ≤ T.</p>
+</li>
+<li>
+<p>Compute the average grey levels of pixels in G1 to give μ1 and G2 to give μ2.</p>
+</li>
+<li>
+<p>Compute a new threshold value:</p>
+</li>
+<li>
+<p>Repeat steps 2 - 4 until the difference in T in successive iterations is less than a predefined limit T0.</p>
+</li>
+</ul>
+<p>Basic Global Thresholding Algorithm
+Remarks:</p>
+<ul>
+<li>When the background and object occupy comparable areas in the image, a good initial value for T is the average gray level of the image.</li>
+<li>When objects are smaller than the background (or vice versa), then one group of pixels will dominate the histogram and the average gray level is not as good an initial choice.</li>
+<li>A more appropriate initial value for T in cases such as this is the middle value.
+Basic Global Thresholding Algorithm
+Single Value Thresholding and Illumination
+Uneven illumination can really upset a single valued thresholding scheme.
+Basic Adaptive Thresholding</li>
+<li>An approach to handling situations in which single value thresholding will not work is to divide an image into sub images and threshold these individually.</li>
+<li>Since the threshold for each pixel depends on its location within an image this technique is said to adaptive.
+Basic Adaptive Thresholding Example
+The image below shows an example of using adaptive thresholding with the image shown previously.</li>
+</ul>
+<p>As can be seen success is mixed.
+But, we can further subdivide the troublesome sub images for more success.
+Basic Adaptive Thresholding Example
+Basic Adaptive Thresholding Example (cont…)
+These images show the
+troublesome parts of the
+previous problem further
+subdivided.
+After this sub division
+successful thresholding
+can be achieved.
+Otsu
+Proposed by Nobuyuki Otsu (大津展之）
+Otsu
+Otsu</p>
+<ul>
+<li>The mean of the image is M。</li>
+<li>Now, there is a given threshold t, which can segment the image into two parts: Object and background:</li>
+<li>The probability of group object is po(t)(前景像素点数占整幅图像的比例), mean is MO</li>
+<li>The probability of group background is pb(t) (背景像素点数占整幅图像的比例),  mean is MB</li>
+</ul>
+<p>The intra-class variance of Otsu：</p>
+<pre><code>		ICV=po(t)∗(MO−M)2+pb(t)∗(MB−M)2
+</code></pre>
+<p>Object: find a threshold that makes the maximum ICV.
+Otsu
+Try all t to find the maximum ICV:
+Otsu
+Segmentation result:</p>
+<pre><code>		ICV=po(t)∗(MO−M)2+pb(t)∗(MB−M)2
+</code></pre>
+<p>Sometimes, when the sizes of Object and Background have big difference, it doesn’t work.
+We can consider to modify the criterion:
+ICV=po(t)a∗(MO−M)2+pb(t)a∗(MB−M)2</p>
+<p>Otsu
+对图像中仅有目标-背景类的图像，Otsu可以得到统计意义上的最优分割。</p>
+<p>Otsu
+Otsu
+Problems With Single Value Thresholding
+Single value thresholding only works for bimodal histograms
+Images with other kinds of histograms need more than a single threshold
+Problems With Single Value Thresholding (cont…)
+Region based segmentation
+Region based segmentation
+Region Growing
+Region Growing:</p>
+<ul>
+<li>As name implies, region growing is a procedure that groups pixels or sub-regions into larger regions based on predefined criteria.</li>
+<li>Select a group start (seed) points.</li>
+<li>Grow the point based on a certain criteria.</li>
+<li>The selection of criteria depends not only on the problem under consideration, but also on the type of image data available. For example:</li>
+<li>Land-use satellite imagery: depend heavily on the use of color</li>
+<li>Monochrome image: depends on set of descriptors based on gray levels and spatial properties (moments or texture).</li>
+<li>Connectivity should be considered.</li>
+<li>Another problem in region growing is the formulation of a stopping rule. Basically, growing a region should be stop when no more pixels satisfy the criteria in that region.
+Region Growing
+Region Growing:
+-Determine seed points to maximum gray level.
+-Growing criteria:</li>
+<li>Gray level value difference (with respect to Seed Points) less than a threshold.</li>
+<li>Each candidate pixel should be N8 of region.
+Region Growing
+Region Growing
+Region Growing</li>
+</ul>
+<p>Region Splitting and Merging
+Region Splitting and Merging
+Region Splitting and Merging
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Morphological Watersheds
+Dam Construction
+Dam Construction
+Dam Construction
+Dam Construction
+Dam Construction
+Dam Construction
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Watershed Segmentation Algorithm
+Summary
+There are many other segmentation technologies:</p>
+<ul>
+<li>Susan Operators</li>
+<li>Snake modal</li>
+<li>Global Hough Transform</li>
+<li>….</li>
+</ul>
+<h2 id="color-image-processing1">Color Image Processing1</h2>
+<p>Contents</p>
+<ul>
+<li>Color fundamentals</li>
+<li>Color models</li>
+<li>Pseudo color</li>
+<li>Intensity slicing</li>
+<li>Gray level to color transform</li>
+<li>Multispectral color models</li>
+</ul>
+<p>Color Fundamental
+Human retinas have two types of photoreceptors</p>
+<ul>
+<li>Cones</li>
+<li>As noted in Section 2.1.1, cones are the sensors in the eye responsible for color vision</li>
+<li>High light level, high acuity vision</li>
+<li>Each type of cone has a different spectral response</li>
+<li>Rods</li>
+<li>Rods are more spread out and are sensitive to low levels of illumination
+Color Fundamental
+Color Fundamental
+Color Fundamental</li>
+</ul>
+<p>The characteristics used to distinguish one color from another are:</p>
+<ul>
+<li>Hue</li>
+<li>Hue represents dominant color as perceived by an observer.</li>
+<li>An attribute associated with the dominant wavelength in a mixture of light waves.</li>
+<li>Thus, when we call an object red or yellow, we are specifying its hue.</li>
+<li>Saturation</li>
+<li>The pure spectrum colors are fully saturated, colors such as pink (red and white) are less saturated.</li>
+<li>Saturation being inversely proportional to the amount of white light added.</li>
+<li>Brightness (Intensity)</li>
+<li>Embody the chromatic notion of intensity</li>
+</ul>
+<p>RGB Image
+RGB Image</p>
+<p>CMY and CMYK color models——For printer</p>
+<ul>
+<li>Cyan (青), magenta (深红), and yellow (黄) are the secondary colors of light. Or the primary colors of pigments.</li>
+<li>Assumpting all color values have been normalized to the range [0, 1].</li>
+</ul>
+<p>CMYK color models</p>
+<ul>
+<li>K is true black.</li>
+<li>Equal amounts of pigment primaries should produce black.</li>
+<li>In practice, combining these colors for printing produces a muddy looking black.</li>
+<li>So a fourth color k is added to produce true black.</li>
+<li>So called four-color printer.</li>
+</ul>
+<p>The conversion from CMY to CMYK begins by letting:</p>
+<p>The conversions from CMYK back to CMY are:
+C = C*(1−K)+K
+M = M*(1−K)+K
+Y = Y*(1−K)+K</p>
+<p>Point remove up or down</p>
+<p>Converting colors from RGB to HSI (R,G,B are normalized)</p>
+<p>Converting colors from HSI to RGB</p>
+<p>YIQ and YUV Color Model
+YIQ is the color model used for color TV in America (NTSC) .
+Y is luminance, I &amp; Q are color (I=red/green, Q=blue/yellow).
+YUV is the color model used for color TV in Israel (PAL), and in video.
+Y is luminance, U and V are blue and red as in YIQ.</p>
+<p>When processing colour images, the following problems have to be dealt with:</p>
+<ul>
+<li>The images are vectorial → 3 or 4 numbers are associated with each pixel.</li>
+<li>The colours recorded by a camera are heavily dependent on the lighting conditions.</li>
+</ul>
+<p>The lighting conditions of the scene have a large effect on the colours recorded.
+Problem in Color Image
+Knowing just the RGB values is not enough to know everything about the image.</p>
+<ul>
+<li>The R, G and B primaries used by different devices are usually different.
+For scientific work, the camera and lighting should be calibrated.
+Pseudo Color Processing</li>
+<li>The principle of pseudo color is for human visualization and interpretation of gray scale events in an image.</li>
+<li>Pseudo color processing</li>
+<li>Intensity slicing</li>
+<li>Gray level to color transform</li>
+<li>Multispectral color models</li>
+</ul>
+<p>Summary
+In this lecture we have learned:</p>
+<ul>
+<li>Color Fundaments</li>
+<li>Color Model</li>
+<li>Pseudo-color processing</li>
+</ul>
+<p>Next we will look at:</p>
+<ul>
+<li>Full-color transformation</li>
+<li>Smoothing and Sharpening</li>
+<li>Color Slicing</li>
+<li>Noise in color images</li>
+</ul>
+<h2 id="color-image-processing2">Color Image Processing2</h2>
+<p>Contents
+Full-color processing</p>
+<ul>
+<li>Color transformations</li>
+<li>Smoothing and sharpening</li>
+<li>Color segmentation</li>
+<li>Noise in Color Image</li>
+</ul>
+<p>A full color image has a vector at each pixel. For colour images, these vectors each have 3 or 4 components.
+There are two Categories to process vectorial images:
+First Category</p>
+<ul>
+<li>Process each component image individually</li>
+<li>Form a composite processed color image
+Second Category</li>
+<li>Work with color pixel directly.</li>
+<li>Color pixels are vectors.</li>
+</ul>
+<p>Each channel is processed separately:
+Full Color Image Processing
+The colour triplets are processed as single units:</p>
+<p>Color Transformation</p>
+<p>Color Complements</p>
+<p>Color Slicing</p>
+<p>Tone and Color Corrections
+Application Examples: Face and tongue diagnosis
+Tone and Color Corrections
+Tone and Color Corrections
+Saturation Enhancement</p>
+<ul>
+<li>减小饱和度，图像颜色变淡，原来比较淡的区域已经变为灰色</li>
+<li>增加饱和度，图像颜色变艳</li>
+</ul>
+<p>Hue Enhancement
+与亮度、饱和度的增强相比，色调增强比较特殊。
+在HSI空间中，色调对应的是角度，而且是循环的。
+如果色调整体加或减一个数，颜色在色谱上移动。当数字比较小时，色调变冷或暖；当数字较大时，色调会出现剧烈变化。</p>
+<p>Histogram Processing</p>
+<p>Noise in Color Images
+Summary
+In this lecture we have learned:</p>
+<ul>
+<li>Color Fundaments</li>
+<li>Color Model</li>
+<li>Pseudo-color processing</li>
+<li>Full-color transformation</li>
+<li>Smoothing and Sharpening</li>
+<li>Color Slicing</li>
+<li>Noise in color images
+Next we will look at Representation &amp; Description</li>
+</ul>
+<h2 id="representation--descriptionfeature-extraction">Representation &amp; Description(Feature Extraction)</h2>
+<p><a href="mailto:Luguangm@gmail.com" rel="">Luguangm@gmail.com</a>
+Contents
+This lecture will cover:</p>
+<ul>
+<li>Over view</li>
+<li>Representation</li>
+<li>Boundary descriptor
+Overview</li>
+<li>After an image has been segmented into regions. Representation and description should be considered.</li>
+<li>Representation and description used to make the data useful to a computer.</li>
+<li>Representing region in 2 ways:</li>
+<li>In terms of its external characteristics (its boundary)  focus on shape characteristics.</li>
+<li>In terms of its internal characteristics (its region)  focus on regional properties, e.g., color, texture.</li>
+<li>Sometimes, we may need to use both ways.
+Overview</li>
+<li>Choosing a representation scheme, however is only the part of the task of making data useful to computer.</li>
+<li>The next task is to describe the region based on the chosen representation.</li>
+<li>For example:</li>
+<li>Representation  boundary.</li>
+<li>Description  length of the boundary, orientation of the straight line joining its extreme points, and the number of concavities in the boundary.
+Sensitivity
+Feature selected as descriptors should be as insensitive as possible to variations in</li>
+<li>size</li>
+<li>translation</li>
+<li>rotation
+Following descriptors satisfy one or more of these properties.
+Representation</li>
+<li>Segmentation techniques yield raw data in the form of pixels along a boundary or pixels contained in a region.</li>
+<li>These data sometimes are used directly to obtain descriptors.</li>
+<li>Standard uses techniques to compute more useful data (descriptors) from the raw data in order to decrease the size of data.
+Chain Codes
+Chain Codes
+Unacceptable because</li>
+<li>The resulting chain of codes tends to be quite long.</li>
+<li>Any small disturbances along the boundary due to noise or imperfect segmentation cause changes in the code that may not be related to the shape of the boundary.</li>
+</ul>
+<p>Chain Codes
+Solve the problems by</p>
+<ul>
+<li>Resample the boundary by selecting a larger grid spacing.</li>
+<li>Then, as the boundary is traversed, a boundary point is assigned to each node of the large grid, depending on the proximity of the original boundary to that node.
+Chain Codes
+Chain Codes
+Chain Codes
+Chain Codes
+Chain Code Smoothing
+Chain Code Smoothing
+Chain Code Smoothing
+Polygonal Approximations</li>
+<li>Boundary can be approximated with arbitrary accuracy by a polygon.</li>
+<li>For a closed curve, the approximation is exact when the number of the segments in the polygon is equal to the number of points in the boundary.</li>
+<li>The goal: Try to capture the “essence” of the boundary shape with the fewest possible polygonal segments.</li>
+<li>Not trivial and time consuming.</li>
+<li>Three methods:</li>
+<li>Minimum perimeter polygons</li>
+<li>Merging techniques</li>
+<li>Splitting techniques
+Minimum Perimeter Polygons
+Minimum Perimeter Polygons
+Minimum Perimeter Polygons
+Merging Techniques
+Merging Techniques
+Splitting techniques
+Splitting techniques
+Landmark Points
+Landmark Points
+Signatures
+Signatures
+Signatures
+Boundary Segments
+Boundary Segments</li>
+<li>The set different H-S is called convex deficiency D (凸形缺陷) of the set S.
+Boundary Segments</li>
+<li>The region boundary can be partitioned by following the contour of S and marking the points at which a transition is made into or out of a component of the convex deficiency.</li>
+<li>In practice, digital boundaries tend to be irregular because of digitization, noise. These effect usually result in convex deficiency:</li>
+<li>To smooth a boundary prior to partitioning.</li>
+<li>Use a polygonal approximation first.</li>
+</ul>
+<p>Skeletons</p>
+<p>Skeletons
+Skeletons
+Skeletons
+Skeletons
+Skeletons
+Skeletons
+Skeletons</p>
+<p>Boundary Descriptors
+Position
+Direction
+Enclose Area
+Minimum Enclosing Rectangle
+Minimum Enclosing Rectangle
+Curvature</p>
+<ul>
+<li>The rate of change of slope</li>
+<li>Difficult to do as digital boundaries tend to be locally “ragged”</li>
+<li>Using the difference between the slopes of adjacent boundary segments (which represented as straight lines)</li>
+<li>E.g.: k1, and k2 are the slopes of two neighbor lines, and then the curvature at point a is k1-k2.
+Curvature</li>
+<li>As the boundary if traversed in the clockwise direction, a vertex point p is said to be the part of convex if the change in slope at p is nonnegative. Otherwise, p is said to belong to a concave.</li>
+<li>Line (if the change is less than 10 degrees) and corner (changes exceeds 90 degrees)
+Summary
+We have looked at:</li>
+<li>Over view</li>
+<li>Representation</li>
+<li>Boundary descriptor
+Minimum Enclosing Rectangle
+Minimum Enclosing Rectangle</li>
+</ul>
+<h2 id="representation2">Representation2</h2>
+<p><a href="mailto:Luguangm@gmail.com" rel="">Luguangm@gmail.com</a>
+Contents
+This lecture will cover:</p>
+<ul>
+<li>Boundary Descriptors</li>
+<li>Region descriptor</li>
+<li>Some simple descriptor</li>
+<li>Topological descriptor</li>
+<li>Texture</li>
+<li>Moments of two-dimensional function</li>
+<li>Relational descriptor</li>
+<li>Color descriptor</li>
+</ul>
+<p>Fourier Descriptors
+Fourier Descriptors
+Fourier Descriptors
+Fourier Descriptors
+Fourier Descriptors
+Regional Descriptors</p>
+<ul>
+<li>
+<p>Some simple descriptor</p>
+</li>
+<li>
+<p>Topological descriptor</p>
+</li>
+<li>
+<p>Texture</p>
+</li>
+<li>
+<p>Moments of two-dimensional function
+Simple Descriptors</p>
+</li>
+<li>
+<p>Area = the number of pixels in the region</p>
+</li>
+<li>
+<p>perimeter = length of its boundary</p>
+</li>
+<li>
+<p>Compactness = (perimeter)2/area</p>
+</li>
+<li>
+<p>Other simple measures used as region descriptor includes: the mean and median of the gray levels, the minimum and maximum gray levels, and the number of pixels with values above or blow the mean.
+Simple Descriptors
+Simple Descriptors
+Simple Descriptors
+Simple Descriptors
+Topological Descriptors
+Topological Descriptors
+Topological Descriptors
+Topological Descriptors</p>
+</li>
+</ul>
+<p>Texture
+Moments of Two Dimensional Functions</p>
+<ul>
+<li>Moments can be used to represent the geometrical characters in image. It is also called moment invariants, because it is insensitive to rotation, translation, and scale.</li>
+<li>Moment invariants (proposed by Hu in 1965 in paper: Visual pattern recognition by moment invariants.</li>
+</ul>
+<p>Moments of Two Dimensional Functions
+Code of Hu’s Moment
+function HuF = Hu_moment(image)
+image=double(image);
+m00=sum(sum(image));
+m10=0;m01=0;m11=0;m20=0;m02=0;m21=0;m12=0;m30=0;m03=0; ux=0;uy=0;
+[row,col]=size(image);
+for i=1:row
+for j=1:col
+m10=m10+i<em>image(i,j);
+m01=m01+j</em>image(i,j);
+m11=m11+i<em>j</em>image(i,j);
+m20=m20+(i<em>i)<em>image(i,j);
+m02=m02+(j</em>j)<em>image(i,j);
+m21=m21+(i</em>i)<em>j</em>image(i,j);
+m12=m12+i</em>(j<em>j)<em>image(i,j);
+m30=m30+(i</em>i</em>i)<em>image(i,j);
+m03=m03+(j</em>j*j)*image(i,j);
+end
+end
+ux=m10/m00; uy=m01/m00;</p>
+<p>n00=m00;<br>
+n10=0;
+n01=0;
+n11=m11-uy<em>m10;
+n20=m20-ux</em>m10;
+n02=m02-uy*m01;
+Moments of Two Dimensional Functions
+Moments of Two Dimensional Functions
+Relational descriptors</p>
+<ul>
+<li>We introduced rewriting rules for describing texture.</li>
+<li>Here, we expand that concept in the context of relational descriptors.</li>
+<li>Capture the basic repetitive patterns in a boundary or region based on rewriting rules.</li>
+<li>Directed line segments</li>
+<li>Tree</li>
+</ul>
+<p>Relational descriptors
+Tree descriptors</p>
+<ul>
+<li>Definition</li>
+<li>A unique root node.</li>
+<li>The remaining nodes are partitioned into m disjoined sets T1,…, T m (subtree)</li>
+<li>The tree frontier(末梢): the set of nodes at the bottom of the tree (the leaves)</li>
+</ul>
+<p>Color descriptors</p>
+<ul>
+<li>Color histogram descriptor</li>
+<li>A color histogram is a 3D entity where each pixel of an image (rather than each sample) is placed into a bin.</li>
+<li>The color space is divided into volumetric bins each of which represent a range of colors.</li>
+<li>Each axis of the color space may be divided independently of the others. This allows the axes to have different resolutions.</li>
+<li>In RGB may want to allocation more resolution in G than R or B</li>
+<li>In HSI may want to allocate more resolution on S than H or I
+Color descriptors
+Color descriptors
+Color descriptors</li>
+<li>HSV Model
+Color descriptors
+RGB to HSV:
+Color descriptors
+We can find from the HSV space:
+Hue: [21, 40]-&gt;Orange，[41, 75] -&gt;Yellow, [76, 155] -&gt;Green, [156, 190] -&gt;Cyan, [19l, 270] -&gt;Blue, [271, 295] -&gt;Purple, [296, 315] -&gt;Magenta, [316, 20] -&gt;Red.
+Saturation: [0, 0.2] -&gt; human eye cannot identify hue, appear to gray, (0.2, 0.7]-&gt;we can see color, (0.7, 1]-&gt;Hue keeps slight changes.
+Value: [0, 0.2] -&gt; appear to black, (0.2, 0.7]-&gt;noted the changes, (0.7, 1]-&gt;appear to white.
+Color descriptors
+function F2=colorFXhist6(x)
+H=x(:,:,1); S=x(:,:,2); V=x(:,:,3);
+[m,n]=size(H); N=m*n;
+t1=1/18; t2=1/9; t3=75/360; t4=155/360; t5=190/360; t6=270/360; t7=295/360;
+t8=315/360;
+for i=1:m
+for j=1:n
+if H(i,j)&lt;=t1 | H(i,j)&gt;t8
+h_bin=0;
+elseif t1&lt;H(i,j) &amp; H(i,j)&lt;=t2
+h_bin=1;
+elseif t2&lt;H(i,j) &amp; H(i,j)&lt;=t3
+h_bin=2;
+elseif t3&lt;H(i,j) &amp; H(i,j)&lt;=t4
+h_bin=3;
+elseif t4&lt;H(i,j) &amp; H(i,j)&lt;=t5
+h_bin=4;
+elseif t5&lt;H(i,j) &amp; H(i,j)&lt;=t6
+h_bin=5;
+elseif t6&lt;H(i,j) &amp; H(i,j)&lt;=t7
+h_bin=6;
+elseif t7&lt;H(i,j) &amp; H(i,j)&lt;=t8
+h_bin=7;
+end</li>
+</ul>
+<p>Color descriptors
+Color Histogram Usage</p>
+<ul>
+<li>Color histograms provide a concise but coarse characterization of an image</li>
+<li>Often used in CBIR (content based image retrieval) systems</li>
+<li>Large database of images which can be searched by image content, not by keyword</li>
+<li>Use color histograms to refine the search</li>
+<li>Similar histograms are likely to reflect visually similar source images</li>
+<li>Two very dissimilar source images may have two similar histograms
+Summary
+We have looked at:</li>
+<li>Boundary descriptor</li>
+<li>Region descriptor</li>
+<li>Relational descriptor</li>
+</ul>
+<h2 id="object-recognition">Object-Recognition</h2>
+<p><a href="mailto:Luguangm@gmail.com" rel="">Luguangm@gmail.com</a>
+The Basic Idea
+Object Recognition: Classification &amp; Clustering</p>
+<p>Objects characterized by one or more features</p>
+<p>Classification</p>
+<ul>
+<li>Have labels for some points</li>
+<li>Want a “rule” that will accurately assign labels to new points</li>
+<li>Supervised learning</li>
+</ul>
+<p>Clustering</p>
+<ul>
+<li>
+<p>No labels</p>
+</li>
+<li>
+<p>Group points into clusters based on how “near” they are to one another</p>
+</li>
+<li>
+<p>Identify structure in data</p>
+</li>
+<li>
+<p>Unsupervised learning
+Features &amp; Classifier</p>
+</li>
+<li>
+<p>Features: can be regarded as the descriptors we introduced before.</p>
+</li>
+<li>
+<p>Representation useful for classification:</p>
+</li>
+<li>
+<p>Easy to extract (reliable)</p>
+</li>
+<li>
+<p>Strong edges, texture, color, etc…</p>
+</li>
+<li>
+<p>Specific for the classes</p>
+</li>
+<li>
+<p>Green pears vs. red tomatoes</p>
+</li>
+<li>
+<p>Classifier: Algorithm/device that separates objects into different classes.</p>
+</li>
+</ul>
+<p>Features
+Feature Space</p>
+<ul>
+<li>The set of all possible patterns forms the Feature vector.</li>
+<li>Each feature vector is a point in the so-called feature space.</li>
+<li>Similar objects yields similar measurement results (feature vectors). Nearby points in feature space correspond to similar objects.</li>
+<li>Distance in feature space is related to similarity.
+Pattern Classification
+Recognition Based on Decision-Theoretic Method
+Recognition Based on Decision-Theoretic Method
+Pattern Classification</li>
+<li>Given a decision boundary, we can compute the classification error.</li>
+<li>The decision boundary that have minimum classification error is the optimal decision boundary.</li>
+</ul>
+<p>Pattern Classification</p>
+<ul>
+<li>The number of classes is usually known beforehand, and typically can be derived from the problem specification.</li>
+<li>The classifier does not decide about the class from the object itself — Depend on object properties called patterns (Features).</li>
+<li>The classes (clouds) may have wide variety of shapes.</li>
+<li>Decision functions specify the boundaries between the clouds. These boundaries can be used for classification of new, unidentified objects.</li>
+<li>If two clouds that represent different classes overlap in feature space, then a perfect classification does not exist.</li>
+<li>Multiple classes require multiple decision functions.</li>
+</ul>
+<p>Minimum Distance Classifier
+Minimum Distance Classifier
+Minimum Distance Classifier
+Minimum Distance Classifier
+More Dimensional Features</p>
+<ul>
+<li>Problems:</li>
+<li>Not all of features are discriminating!</li>
+<li>Using more features requires exponentially more data.</li>
+<li>Feature selection: Select a subset of features that are most discriminative.
+Feature Selection</li>
+<li>Features which show less overlap between classes are more discriminative.</li>
+<li>A simple measure for class separability is:</li>
+</ul>
+<p>Performance of Classifier
+Pattern Classification</p>
+<ul>
+<li>应用实例：智能电子秤
+Pattern Classification</li>
+<li>系统精度
+Pattern Classification</li>
+<li>特点与优势
+Cluster Analysis
+Data clustering is a common technique for statistical data analysis, which is used in many fields, including machine learning, data mining, pattern recognition, and image analysis.</li>
+</ul>
+<p>Cluster Analysis methods do not need training sets for learning</p>
+<p>Cluster Analysis methods divide the set of processed patterns into subsets (clusters) based on the mutual similarity of subset elements.</p>
+<ul>
+<li>Each cluster contains patterns representing objects that are similar according to the selected object description and similarity criteria.</li>
+<li>Objects that are not similar reside in different cluster.</li>
+</ul>
+<p>Distance Measure</p>
+<ul>
+<li>
+<p>An important step in any clustering is to select a distance measure, which determines how the similarity of two elements is calculated.</p>
+</li>
+<li>
+<p>This will influence the shape of the clusters, as some elements may be close to one another according to one distance and further away according to another.</p>
+</li>
+<li>
+<p>E.g., Euclidean distance, Manhattan distance…
+K-means
+The k-means cluster analysis method is a well known example of cluster analysis.</p>
+</li>
+<li>
+<p>Popular</p>
+</li>
+<li>
+<p>Simple</p>
+</li>
+<li>
+<p>And practically useful</p>
+</li>
+</ul>
+<p>K-means</p>
+<ul>
+<li>Choose the number of clusters, k.</li>
+<li>Randomly generate k cluster starting points in n-dimensional feature space.</li>
+<li>Assign each point to the nearest cluster center.</li>
+<li>Recompute the new cluster centers.</li>
+<li>Jump to the new center.</li>
+<li>Repeat the previous steps (3-5) until some convergence criterion is met (usually that the assignment hasn&rsquo;t changed).</li>
+</ul>
+<p>Discussion</p>
+<ul>
+<li>
+<p>The main advantages of this algorithm are its simplicity and speed which allows it to run on large datasets.</p>
+</li>
+<li>
+<p>Its disadvantage is that it does not yield the same result with each run, since the resulting clusters depend on the initial random assignments.</p>
+</li>
+<li>
+<p>It minimizes intra-cluster variance, but does not ensure that the result has a global minimum of variance.
+An Application: Biometrics</p>
+</li>
+</ul>
+<p>Biometrics: What you are/do!</p>
+<p>Challenges of Biometrics</p>
+<p>Challenges of Biometrics
+Challenges of Biometrics</p>
+<p>Biometric: Palmprint
+Why Palmprint:</p>
+<ul>
+<li>Convenient &amp; comfortable</li>
+<li>Not easy to get hurt</li>
+<li>Stable for a long period of time</li>
+<li>High accuracy</li>
+<li>Palmprint tells more than fingerprint</li>
+<li>Complementary to other biometric systems
+Plamprint Acquisition</li>
+</ul>
+<p>Palmprint Preprocessing
+Line Feature Extraction Method
+Line Feature Matching Method
+Matching Result
+Texture based Feature Extraction
+Gabor Filter</p>
+<p>Adjusted Gabor Filter to zero DC to provide more robust to brightness.</p>
+<p>The parameters, such as the sizes and orientation, are critical to provide good experiment results.
+Texture based Feature Extraction
+Texture based Feature Extraction
+Each feature vector is two 2D matrices: real and imaginary part
+Texture based Feature Extraction
+Texture based Feature Extraction
+Texture based Feature Extraction</p>
+<p>Biocomputing Research Center</p>
+<h2 id="image-compression">Image Compression</h2>
+<p>Contents
+Today we will begin looking at image Compression:</p>
+<ul>
+<li>Fundamentals</li>
+<li>Data Redundancies</li>
+<li>Image Compression Models</li>
+<li>Lossless Image Compression
+Fundamentals
+Motivation</li>
+<li>Much of the on-line information is graphical or pictorial, storage and communications requirements are immense.</li>
+<li>The spatial resolutions of today’s imaging sensors and the standard of broadcast television are greatly developed.</li>
+<li>1991, Kodak, MC-200, 0.4M pixels, 1.7M Japan Yuan(around 95000RMB).</li>
+<li>June 2020, Canon IXUS 190, 20M pixels, around 950RMB(JD).</li>
+<li>VGA resolution: 320×240, 640×480(标清), 1280×720(高清), 1920×1080(1080P), 3840x2160(4K), 7680×4320(8K)…</li>
+<li>Methods of compressing the data prior to storage and/or transmission are of practical and commercial interest.
+Fundamentals</li>
+<li>Image compression addresses the problem of reducing the amount of data required to represent a digital image.</li>
+<li>Remove the redundant data.</li>
+<li>Statistically uncorrelated data set.</li>
+<li>The transformation is applied prior to storage or transmission of the image.</li>
+<li>Decompressed to reconstruct the original image or an approximation of it.</li>
+</ul>
+<p>Fundamentals
+Applications</p>
+<ul>
+<li>Increased spatial resolutions</li>
+<li>Image sensors</li>
+<li>Broadcast television standards</li>
+<li>Tele-video-conferencing</li>
+<li>Remote sensing</li>
+<li>Document and medical imaging, fax</li>
+<li>An ever-expanding number of applications depend on the efficient processing, storage, and transmission of binary, gray-scale, and color images
+Classification
+Lossless compression</li>
+<li>Also called information preserving compression or error-free compression.</li>
+<li>Lossless compression for legal and medical documents, remote sensing.
+Lossy compression</li>
+<li>Provide higher levels of data reduction.</li>
+<li>Useful in broadcast television, video conference, internet image transmission.</li>
+<li>Where some errors or loss can be tolerated.
+Fundamentals
+Data and Information</li>
+<li>Distinguish the meaning of data and information:</li>
+<li>Data: the means by which information is delivered.</li>
+<li>Information: various amounts of data may be used to present the same amount of information.</li>
+<li>Data Compression:</li>
+<li>The process of reducing the amount of data required to represent a given quantity of information.
+Fundamentals
+Example: Story</li>
+<li>Story is information</li>
+<li>Word is data</li>
+<li>Data Redundancy</li>
+<li>If the two individuals use a different number of words to tell the same basic story.</li>
+<li>At least one includes nonessential data. It is thus said to contain data redundancy.</li>
+<li>Eg. 100000000 &amp; 108, People‘s Republic of China: PRC.</li>
+</ul>
+<p>Fundamentals
+Data redundancy is the central issue in digital image compression.</p>
+<p>Data Redundancy
+Data Redundancy: it is not an abstract concept, but a mathematically quantifiable entity.</p>
+<ul>
+<li>If n1 and n2 denote the number of information-carrying units in two data sets that represent the same information.</li>
+<li>The relative data redundancy RD of the first data set can be defined as:
+RD = 1 −1/CR
+where compression ratio CR is
+CR =n1/n2
+Data Redundancy
+CR and RD: RD = 1 −1/CR</li>
+<li>When n2=n1, CR=1 and RD=0</li>
+<li>When</li>
+<li>When                                              , not hoped situation.</li>
+<li>Usually, CR and RD lie in the open intervals           and          .</li>
+<li>Example:</li>
+<li>Compression ratio is 10:1.</li>
+<li>Redundancy is 0.9.</li>
+<li>It implies that 90% of the data in the first data set is redundant.
+Data Redundancy
+In image processing, there are three basic data redundancies can be identified and exploited:</li>
+<li>Coding Redundancy</li>
+<li>Interpixel Redundancy</li>
+<li>Psychovisual Redundancy</li>
+</ul>
+<p>Data compression is achieved when one or more of these redundancies are reduced or eliminated.
+Coding Redundancy</p>
+<ul>
+<li>
+<p>A discrete random variable rk in the interval [0,1], represents the gray levels.</p>
+</li>
+<li>
+<p>Each rk occurs with probability pr(rk):</p>
+</li>
+<li>
+<p>If the number of bits used to represent each value of rk is l(k), then the average number of bits required to represent the image pixel is:</p>
+</li>
+<li>
+<p>The total number of bits required to code an M×N image is MNLavg.
+Coding Redundancy</p>
+</li>
+<li>
+<p>For example, the gray levels of an image with a natural m-bit binary code.</p>
+</li>
+<li>
+<p>The constant m may be taken outside the summation, leaving only the sum of the pr(k) equals 1.</p>
+</li>
+<li>
+<p>Then: Lavg=m</p>
+</li>
+</ul>
+<p>Coding Redundancy
+Coding Redundancy</p>
+<ul>
+<li>
+<p>For code 2, the average number of bits required to code the image is reduced to:</p>
+</li>
+<li>
+<p>The resulting compression ratio CR is 3/2.7 or 1.11.</p>
+</li>
+<li>
+<p>Redundancy is RD = 1−1/1.11 = 0.099.
+Coding Redundancy
+Coding Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Interpixel Redundancy
+Psychovisual Redundancy
+Psychovisual Redundancy
+Basic Cognitive Procedure</p>
+</li>
+<li>
+<p>Human perception of the information in an image normally does not involve quantitative analysis of every pixel value in the image.</p>
+</li>
+<li>
+<p>Find features such as edges or textual regions.</p>
+</li>
+<li>
+<p>Mentally combines them into recognizable groupings.</p>
+</li>
+<li>
+<p>The brain correlates these groupings with prior knowledge.</p>
+</li>
+<li>
+<p>Then, complete the image interpretation process.
+Psychovisual Redundancy</p>
+</li>
+<li>
+<p>Lead to a loss of quantitative information (quantization).</p>
+</li>
+<li>
+<p>Mapping a broad range of input values to a limited number of output values.</p>
+</li>
+<li>
+<p>Irreversible Operation.
+Psychovisual Redundancy
+Psychovisual Redundancy
+Psychovisual Redundancy
+Psychovisual Redundancy
+Improved Gray-Scale (IGS) quantization</p>
+</li>
+<li>
+<p>A sum: initially set to zero.</p>
+</li>
+<li>
+<p>Add the four least significant bits of a previously generated sum with current 8-bit gray level.</p>
+</li>
+<li>
+<p>If the four most significant bits of the current value are 11112, however, 00002 is added instead.</p>
+</li>
+<li>
+<p>The four most significant bits of the resulting sum are used as the coded pixel value.</p>
+</li>
+</ul>
+<p>Fidelity Criteria</p>
+<ul>
+<li>
+<p>Compression may lead to loss information</p>
+</li>
+<li>
+<p>Quantifying the nature and extent of information loss</p>
+</li>
+<li>
+<p>Objective fidelity criteria</p>
+</li>
+<li>
+<p>When the level of information loss can be expressed as a function of the input image, the compressed and output image.</p>
+</li>
+<li>
+<p>Easy to operate (automatic).</p>
+</li>
+<li>
+<p>Often requires the original copy as the reference.</p>
+</li>
+<li>
+<p>Subjective fidelity criteria</p>
+</li>
+<li>
+<p>Evaluated by human observers.</p>
+</li>
+<li>
+<p>Do not require the original copy as a reference.</p>
+</li>
+<li>
+<p>Most decompressed images ultimately are view by human.
+Fidelity Criteria
+Objective Fidelity Criterion
+Root-Mean-Square (rms) Error:</p>
+</li>
+<li>
+<p>Let f(x, y) represent an input image</p>
+</li>
+<li>
+<p>Let             be an estimate or approximation of f(x, y)</p>
+</li>
+<li>
+<p>For any value of x and y, the error e(x, y) is given by:</p>
+</li>
+<li>
+<p>The root-mean-square error (erms) is
+Fidelity Criteria
+Mean-Square Signal-to-Noise Ratio:</p>
+</li>
+<li>
+<p>Assuming that            is the sum of the original image f(x, y) and a noise signal e(x, y).</p>
+</li>
+<li>
+<p>The mean-square signal-to-noise ratios of the output image (SNRms) is:</p>
+</li>
+<li>
+<p>SNRrms is the square root of above equation.
+Fidelity Criteria
+Subjective fidelity Criterion</p>
+</li>
+<li>
+<p>Most decompressed images are viewed by humans.</p>
+</li>
+<li>
+<p>Measuring image quality by the subjective evaluations is more appropriate.</p>
+</li>
+<li>
+<p>Example: evaluation or voting.
+Fidelity Criteria
+Fidelity Criteria
+Compression Models</p>
+</li>
+<li>
+<p>Three general techniques are always combined to form practical image compression systems.</p>
+</li>
+<li>
+<p>The overall characteristics of compression:</p>
+</li>
+<li>
+<p>A compression system consists of two distinct structural blocks: an encoder and a decoder.</p>
+</li>
+<li>
+<p>Encoder and a decoder: Source and Channel.</p>
+</li>
+<li>
+<p>Channel encoder: Increases the noise immunity of the source encoder’s output. If noise free, can be omitted.</p>
+</li>
+</ul>
+<p>Compression Models
+The Source Encoder and Decoder</p>
+<ul>
+<li>Source Encoder: Remove input redundancies.</li>
+<li>Each operation is designed to reduce or eliminating one of the three redundancies.</li>
+<li>Interpixel redundancy (Mapper, reversible).</li>
+<li>Psychovisual redundancy (Quantizer, irreversible).</li>
+<li>Coding redundancy (Symbol Encoder, reversible).
+Compression Models
+Three steps for source encoder:</li>
+<li>First, the mapper transforms the input data into a format designed to reduce interpixel redundancies in the input image (run-length coding), this operation generally is reversible.</li>
+<li>Second, quantizer block reduces the accuracy of the mapper’s output in accordance with some pre-established fidelity criterion. This stage reduces the psychovisual redundancies of the input image. It is irreversible.</li>
+<li>Third, symbol coder creates a fixed or variable length code to represent the quantizer output. It can reduce coding redundancy, and it is reversible.
+Compression Models
+Remark</li>
+<li>The quantizer must be omitted when error-free compression is desired.</li>
+<li>Some compression techniques normally are modeled by merging blocks that are physically separate in above figure.</li>
+<li>The source decoder only contains two blocks: symbol decoder and an inverse mapper. Because quantization results in irreversible information loss, an inverse quantizer block is not included in the general source decoder model.
+Compression Models
+The Channel Encoder and Decoder</li>
+<li>They play an important role in the overall encoding-decoding process when the channel is noisy or prone to error.</li>
+<li>Reduce the impact of channel noise</li>
+<li>Insert a controlled form of redundancy into the source encoded data.</li>
+<li>Source encoder contains little redundancy</li>
+<li>It would be highly sensitive to transmission noise without the addition of this &ldquo;controlled redundancy&rdquo;.
+Lossless Image Compression</li>
+<li>Also called Error-Free compression</li>
+<li>The need for error-free compression is motivated by the intended use or nature of the images.</li>
+<li>In some applications, it is the only acceptable means of data reduction.</li>
+<li>Archival of medical or business documents, where lossy compression usually is prohibited for legal reasons.</li>
+<li>Other is the processing of satellite imagery, where both the use and cost of collecting the data makes any loss undesirable.</li>
+<li>Another is digital radiography, where the loss of information can compromise diagnostic accuracy.
+Lossless Image Compression</li>
+<li>Two relatively independent operations</li>
+<li>Eliminate coding redundancies.</li>
+<li>Reduce interpixel redundancies.</li>
+<li>They normally provide compression ratios of 2 to 10.</li>
+<li>Approaches:</li>
+<li>Variable length coding(coding redundancies)</li>
+<li>Huffman coding</li>
+<li>Arithmetic coding</li>
+<li>LZW coding(interpixel redundancies)
+Variable-Length Coding</li>
+<li>Reducing coding redundancy: assign the shortest possible code words to the most probable gray levels.</li>
+<li>Huffman Coding</li>
+<li>Arithmetic Coding</li>
+<li>Remark: The source symbols may be either the gray levels of an image or the output of a gray-level mapping operation.</li>
+</ul>
+<p>Huffman Coding
+Huffman coding, 1952
+Coding Procedures for an N-symbol source, two steps:</p>
+<ul>
+<li>Source reduction</li>
+<li>List all probabilities in a descending order.</li>
+<li>Merge the two symbols with smallest probabilities into a new compound symbol.</li>
+<li>Repeat the above two steps until a reduced source with two symbols.</li>
+<li>Codeword assignment</li>
+<li>Start from the smallest source and work back to the original source.</li>
+<li>Each merging point corresponds to a node in binary codeword tree.
+Example-I</li>
+</ul>
+<p>Example-III</p>
+<h2 id="image-compression2">Image Compression2</h2>
+<p>Contents
+Image Compression:</p>
+<ul>
+<li>
+<p>Lossless Image Compression</p>
+</li>
+<li>
+<p>Variable length coding(Eliminate coding redundancies)</p>
+</li>
+<li>
+<p>Huffman coding</p>
+</li>
+<li>
+<p>Arithmetic coding</p>
+</li>
+<li>
+<p>LZW coding (Reduce interpixel redundancies)</p>
+</li>
+<li>
+<p>Hybrid Coding</p>
+</li>
+<li>
+<p>Lossy Image Compression
+Arithmetic coding</p>
+</li>
+<li>
+<p>Elias (1963) thought that: a one-to-one correspondence between source symbols and code words does not exist.</p>
+</li>
+<li>
+<p>An entire sequence of source symbols is assigned a single arithmetic code word.</p>
+</li>
+<li>
+<p>The code word defines an interval of real numbers between 0 and 1.</p>
+</li>
+<li>
+<p>As the number of symbols in the message increases, the interval used to represent it becomes smaller.</p>
+</li>
+<li>
+<p>And the number of information units (bits) required to represent the interval becomes larger.</p>
+</li>
+</ul>
+<p>LZW Coding</p>
+<ul>
+<li>Invented by Lempel and Ziv in 1977, and improved by Welch in 1984 (interpixel redundancies).</li>
+<li>Numerous variations and improvements since then.</li>
+<li>United States Patent No. 4,558,302, LZW compression has been integrated into a variety of mainstream imaging files formats:</li>
+<li>Including the graphic interchange format (GIF)</li>
+<li>Tagged image file format (TIFF)</li>
+<li>And the portable document format (PDF)
+LZW Coding</li>
+<li>Lempel-Ziv-Welch (LZW) coding</li>
+<li>Assigns fixed-length code words to variable length sequences of source symbols.</li>
+<li>Requires no priori knowledge of the probability of occurrence of the symbols to be encoded.</li>
+<li>LZW coding is conceptually very simple.</li>
+<li>At the onset of the coding process, a codebook or ’dictionary’ containing the source symbols to be coded is constructed.
+LZW Coding
+Example:8-bit monochrome images</li>
+<li>The first 256 words of the dictionary are assigned to the gray values 0, 1, 2, · · · , 255.</li>
+<li>As the encoder sequentially examines the image’s pixels, gray-level sequences that are not in the dictionary are placed in algorithmically determined locations.</li>
+<li>If the first two pixels of image are white, for instance, sequence 255-255 might be assigned to location 256, the address following the locations reserved for gray levels 0~255.</li>
+<li>The next time, when 255-255 is encountered, code word 256, the address of the location containing this sequence, is used to represent them.
+LZW Coding</li>
+<li>If a 9-bits, 512 word dictionary is employed in the coding process, the original (8+8) bits that were used to represent the two pixels are replaced by a single 9-bit code word.</li>
+<li>The size of the dictionary is an important system parameter.</li>
+<li>If it is too small, the detection of matching gray-level sequences will be impossible.</li>
+<li>If it is too large, the size of the code words will adversely affect compression performance.
+LZW Example
+Example: Consider the following 4 × 4, 8-bit image of a vertical edge:</li>
+</ul>
+<p>LZW Example
+LZW Example
+LZW Example
+LZW Example
+Decoding
+Define two variables:</p>
+<ul>
+<li>S1: to store the input data (encoded data) one by one.</li>
+<li>S2: a temporary variable.</li>
+<li>They are initialized to empty.</li>
+</ul>
+<p>LZW coding
+Hybrid Coding
+Hybrid Coding
+Lossy Image Compression</p>
+<ul>
+<li>
+<p>Lossy image compression</p>
+</li>
+<li>
+<p>Why lossy?</p>
+</li>
+<li>
+<p>An simple example</p>
+</li>
+<li>
+<p>Lossy transform coding</p>
+</li>
+<li>
+<p>Image Transform Selection</p>
+</li>
+<li>
+<p>Wavelet Coding</p>
+</li>
+<li>
+<p>Joint Photographic Expert Group (JPEG)
+Why Lossy?
+In most applications related to consumer electronics, lossless compression is not necessary.</p>
+</li>
+<li>
+<p>What we care is the subjective quality of the decoded image, not those intensity values.</p>
+</li>
+<li>
+<p>Compromising the accuracy of the reconstructed image in exchange for increased compression.</p>
+</li>
+<li>
+<p>If the resulting distortion can be tolerated, the increase in compression can be effective.
+Why Lossy?</p>
+</li>
+<li>
+<p>With the relaxation, it is possible to achieve a higher compression ratio (CR).</p>
+</li>
+<li>
+<p>Many lossy encoding techniques are capable of reproducing:</p>
+</li>
+<li>
+<p>Recognizable monochrome images from data that have been compressed by more than 100:1.</p>
+</li>
+<li>
+<p>And images that are virtually indistinguishable from the originals at 10:1 to 50:1.</p>
+</li>
+<li>
+<p>Lossless coding of monochrome images, however, seldom results in more than a 3:1 reduction in data.</p>
+</li>
+</ul>
+<p>Transform Coding
+For the purpose of image compression, the transform operation should be:</p>
+<ul>
+<li>To decorrelate  (“Break”) the correlations. Or to pack as much information as possible into the smallest number of transform coefficients.</li>
+<li>Basis transform functions are independent on the input images.</li>
+<li>Fast computation.</li>
+<li>Typical transforms:</li>
+<li>DFT transform</li>
+<li>DCT transform</li>
+<li>Walsh Hadamard Transform</li>
+<li>KL transform</li>
+</ul>
+<p>DFT
+Discrete Fourier Transform (DFT)</p>
+<ul>
+<li>Use cos+sin as its basis functions.</li>
+<li>Fast Fourier Transform (FFT).</li>
+<li>Not so popular in image compression because.</li>
+<li>Performance is not good enough.
+DFT
+Discrete Fourier Transform (DFT)</li>
+</ul>
+<p>DCT
+Discrete Cosine Transform (DCT)</p>
+<ul>
+<li>Use cosine function as its basis function</li>
+<li>Performance approaches KLT</li>
+<li>Fast algorithm exists</li>
+<li>Most popular in image compression application</li>
+<li>Adopted in JPEG
+2D DCT
+2D DCT: transfer spatial domain to frequency domain</li>
+<li>DC: F(0,0), average of f(x,y)</li>
+<li>AC: other coefficients
+WHT
+Walsh-Hadamard Transform (WHT)</li>
+<li>Simple basis functions: all kernel values are +1 or -1.</li>
+<li>Only addition and subtraction operations are needed.</li>
+<li>Popular when efficiency consideration dominates.</li>
+<li>Performance moderate.
+WHT
+Transform Selection
+Transform Selection
+KL Transform
+Karhunen-Loeve Transform (KLT)</li>
+<li>Optimal transform, better than prior transforms.</li>
+<li>Basis functions are image dependent.</li>
+<li>No fast algorithm exists.</li>
+<li>Not so useful in image compression.</li>
+<li>Usually used for comparison.
+Transform Selection
+Transform Selection
+Wavelet Transform
+Wavelet Transform</li>
+<li>The main difference between the wavelet transform and the transform coding system is the omission of the transform coder’s subimage processing stages.</li>
+<li>Because wavelet transfroms are both computationally efficient and inherently local, subdivision of the original image in unnecessary.
+Wavelet Transform</li>
+<li>Initially, wavelet transform just focused on the 1-D situation.</li>
+<li>2-D wavelets, in the same way, can be treated as two 1-D wavelet transforms: one 1-D wavelet transforms along the row direction and the other one along the column direction.</li>
+<li>Generally, an one-octave transform of an image can be decomposed into four components: low-pass rows, low-pass columns (LL); low-pass rows, high-pass columns (LH); high-pass rows, low-pass columns (HL); high-pass rows, high-pass columns (HH).
+Wavelet Transform
+Wavelet Transform
+Wavelet Transform
+JPEG</li>
+<li>JPEG - Joint Photographic Experts Group (联合图像专家组)</li>
+<li>Joint refers to CCITT (国际电报电话咨询委员会) and ISO (国际标准化协会).</li>
+<li>Compression standard of general continuous-tone still image.</li>
+<li>Became an international standard in 1992.</li>
+<li>It defines three different coding systems</li>
+<li>A lossy baseline coding system, which is based on the DCT and is adequate for most compression applications.</li>
+<li>An extended coding system for greater compression, higher precision, or progressive reconstruction applications.</li>
+<li>A lossless independent coding system for reversible compression.
+JPEG 2000
+Eliminates the blocky appearance of the JPEG image standard.</li>
+<li>This is because it uses a wavelet transform instead of the discrete cosine transform (DCT).</li>
+<li>In the previous DCT version, blocks of the image are compressed individually without reference to the adjoining blocks.</li>
+<li>Using a DWT creates a much smoother image.
+The compression rate is much higher, while the retention rate is the same, and often, better resolution is exhibited.</li>
+<li>20%-200% better than JPEG Standard with lossy compression.
+JPEG vs. JPEG 2000
+Thanks and Good Luck!</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/dip_base_09/" data-title="DIP_base_09"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/dip_base_09/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/dip_base_09/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/dip_base_09/" data-title="DIP_base_09"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/dip_base_09/" data-title="DIP_base_09"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/dip_base_09/" data-title="DIP_base_09"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/dip_base_08/" class="prev" rel="prev" title="DIP_base_08"><i class="fas fa-angle-left fa-fw"></i>DIP_base_08</a>
+            <a href="/dip_catalogue/" class="next" rel="next" title="DIP_catalogue">DIP_catalogue<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

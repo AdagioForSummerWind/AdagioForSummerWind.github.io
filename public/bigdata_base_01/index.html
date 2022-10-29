@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>BigData_base_01 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="BigData_base_01" />
+<meta property="og:description" content="先修课程 高等数学、代数与几何、概率论与数理统计、高级语言程序设计 从该课程你能学到什么? 如何在实际应用中设计和实现大数据项目 ➢ 大数据项目作为一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/bigdata_base_01/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-08T09:23:24+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="BigData_base_01"/>
+<meta name="twitter:description" content="先修课程 高等数学、代数与几何、概率论与数理统计、高级语言程序设计 从该课程你能学到什么? 如何在实际应用中设计和实现大数据项目 ➢ 大数据项目作为一"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/bigdata_base_01/" /><link rel="prev" href="https://jefofrank.xyz/file_sysytem/" /><link rel="next" href="https://jefofrank.xyz/linux_base_01/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "BigData_base_01",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/bigdata_base_01\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "big_data","wordcount":  1316 ,
+        "url": "https:\/\/jefofrank.xyz\/bigdata_base_01\/","datePublished": "2021-11-08T09:23:24+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">BigData_base_01</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-08 09:23:24">2021-11-08 09:23:24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1316 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#先修课程">先修课程</a></li>
+        <li><a href="#从该课程你能学到什么">从该课程你能学到什么?</a></li>
+        <li><a href="#大数据的历史背景">大数据的历史背景</a></li>
+        <li><a href="#大数据的应用领域">大数据的应用领域</a></li>
+        <li><a href="#数据的定义及其类型">数据的定义及其类型</a></li>
+        <li><a href="#大数据技术概况">大数据技术概况</a></li>
+        <li><a href="#数据的来源及其获取方法简介">数据的来源及其获取方法简介</a></li>
+        <li><a href="#大数据领域的学习资源">大数据领域的学习资源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="先修课程">先修课程</h3>
+<p>高等数学、代数与几何、概率论与数理统计、高级语言程序设计</p>
+<h3 id="从该课程你能学到什么">从该课程你能学到什么?</h3>
+<ul>
+<li>如何在实际应用中设计和实现大数据项目<br>
+➢ 大数据项目作为一个过程或工作流的思想（process or workflow）</li>
+<li>经典大数据算法<br>
+➢ 包括数据挖掘的经典算法</li>
+<li>大数据软件工具<br>
+➢ 开源工具、软件产品</li>
+</ul>
+<h3 id="大数据的历史背景">大数据的历史背景</h3>
+<p>大数据是什么？<br>
+大数据是指利用常用软件工具捕获、管理和处理数据所耗时间超过可容忍时间的数据集。&mdash;&mdash;来自维基百科 <br>
+2007 年 1 月，图灵奖得主JimGray 指出：科学的发展正在进入“数据密集型科学发
+现范式”——科学史上的“第四范式” <br>
+目前最成功的人工智能应用领域： 大数据智能、大数据机器学习！</p>
+<h3 id="大数据的应用领域">大数据的应用领域</h3>
+<ol>
+<li>商业智能应用：决策支持
+<ul>
+<li>市场分析与管理：精准营销、客户关系管理(CRM)、购物篮分析、交叉销售、市场细分</li>
+<li>风险分析与管理：预测（人、财、物）、客户维系、质量控制、竞争分析</li>
+<li>诈骗检测与异常模式发现</li>
+</ul>
+</li>
+<li>商业智能应用：推荐系统
+<ul>
+<li>应用领域：电商、信息推荐、电影、音乐等</li>
+<li>目的：预测用户对商品是否喜欢、喜欢程度、个性化服务</li>
+</ul>
+</li>
+<li>体育应用：篮球针对性训练
+<ul>
+<li>对运动员成长轨迹进行深度挖掘、建模</li>
+<li>找出运动员的”短板“与”长版“</li>
+<li>加强对特长点和薄弱点的训练</li>
+</ul>
+</li>
+<li>政治应用：美国总统大选
+<ul>
+<li>在总统候选人的第一次辩论之后，他们分析出哪些选民将倒戈，为每位选民找出一个最能说服他的理由</li>
+<li>通过一些复杂的模型来精准定位不同选民，购买了一些冷门节目的广告时段，而没有采用在本地新闻时段购买广告的传统做法，广告效率相比2008年提高了14%</li>
+<li>向奥巴马推荐，竞选后期应当在什么地方展开活动——那里有很多争取对象</li>
+<li>借助模型帮助奥巴马筹集到创记录的10亿美元</li>
+</ul>
+</li>
+<li>交通应用：拥堵预测
+<ul>
+<li>建立历史交通数据库
+<ul>
+<li>道路信息：从GIS数据库中导出北京市路网数据，包括道路的起点终点，中轴线经纬度，道路等级，车道数目等等。</li>
+<li>车辆信息：数据来源是北京市6万辆出租车每天的GPS数据，出租车每50s生成一条GPS信息。</li>
+</ul>
+</li>
+<li>未来时间段车速预测
+<ul>
+<li>影响交通因素：天气状况，车辆数量，交通事故等，但车速可以包含以上信息。</li>
+<li>根据历史数据中最相似的情况，从而进行预测，最相似的车速曲线，未来时刻的变化也可能相似。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据的定义及其类型">数据的定义及其类型</h3>
+<p>数据的基本概念：数据是对客观事物的观测（测量）或描述而得到的符号或数字集合。<br>
+数据对象的概念：原始数据通常是一个包含多个数据对象（data object）的集合，每个数据对象通常对应于一个具有完整语义信息的事物，是分析事物的基本单位。<br>
+数据类型：</p>
+<ul>
+<li>记录数据：关系表数据，事务数据</li>
+<li>多媒体数据：声、图、文</li>
+<li>时空数据：空间、时间数据</li>
+<li>关系图数据：网页链接图、社交网络、文献引用图</li>
+</ul>
+<h3 id="大数据技术概况">大数据技术概况</h3>
+<p>技术体系：数据采集、数据存储、数据处理、统计分析、智能挖掘、可视化<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108171948.png" />
+主要技术挑战：海量数据的检索性能！ <br>
+什么是数据挖掘：<br>
+从大量数据中提取有趣的（非平凡的，隐含的，以前未知的和潜在有用的）模式（pattern）或知识，即从数据中发现知识。 <br>
+推荐系统：协同过滤。<br>
+推荐系统的成功应用案例：今日头条根据浏览历史推荐新闻</p>
+<h3 id="数据的来源及其获取方法简介">数据的来源及其获取方法简介</h3>
+<p>数据来源于内部数据和外部数据（互联网开放的数据：开放的数据平台、爬虫、与合作机构的数据交换、网络上直接下载）</p>
+<h3 id="大数据领域的学习资源">大数据领域的学习资源</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211108172723.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/bigdata_base_01/" data-title="BigData_base_01" data-hashtags="big_data"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/bigdata_base_01/" data-hashtag="big_data"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/bigdata_base_01/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/bigdata_base_01/" data-title="BigData_base_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/bigdata_base_01/" data-title="BigData_base_01"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/bigdata_base_01/" data-title="BigData_base_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/big_data/">big_data</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/file_sysytem/" class="prev" rel="prev" title="File_sysytem"><i class="fas fa-angle-left fa-fw"></i>File_sysytem</a>
+            <a href="/linux_base_01/" class="next" rel="next" title="Linux_base_01">Linux_base_01<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

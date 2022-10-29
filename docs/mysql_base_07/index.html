@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql_base_07 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Mysql_base_07" />
+<meta property="og:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 函数依赖及其公理定理 函数依赖 定义： 函数依赖: 设R(U)是属性集合U={A1,A2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/mysql_base_07/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-09T11:28:16+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Mysql_base_07"/>
+<meta name="twitter:description" content="笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫 函数依赖及其公理定理 函数依赖 定义： 函数依赖: 设R(U)是属性集合U={A1,A2"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/mysql_base_07/" /><link rel="prev" href="https://jefofrank.xyz/mysql_base_06/" /><link rel="next" href="https://jefofrank.xyz/mysql_base_08/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql_base_07",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/mysql_base_07\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "mysql","wordcount":  2131 ,
+        "url": "https:\/\/jefofrank.xyz\/mysql_base_07\/","datePublished": "2021-11-09T11:28:16+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mysql_base_07</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-09 11:28:16">2021-11-09 11:28:16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2131 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#函数依赖">函数依赖</a></li>
+    <li><a href="#完全函数依赖与传递函数依赖">完全函数依赖与传递函数依赖</a></li>
+    <li><a href="#关于函数依赖的公理和定理">关于函数依赖的公理和定理</a></li>
+    <li><a href="#函数依赖集的最小覆盖">函数依赖集的最小覆盖</a></li>
+    <li><a href="#关系模式设计之规范形式">关系模式设计之规范形式</a>
+      <ul>
+        <li><a href="#关系的第1nf和第2nf">关系的第1NF和第2NF</a></li>
+        <li><a href="#关系的第3nf和boyce-codd-nf">关系的第3NF和Boyce-Codd NF</a></li>
+        <li><a href="#多值依赖及其公理定理">多值依赖及其公理定理</a></li>
+        <li><a href="#关系的第4nf">关系的第4NF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>笔记来自哈工大深圳2021秋数据库系统理论课授课老师：刘圣鑫</p>
+</blockquote>
+<h1 id="函数依赖及其公理定理">函数依赖及其公理定理</h1>
+<h2 id="函数依赖">函数依赖</h2>
+<p>定义：<br>
+函数依赖:
+设R(U)是属性集合U={A1,A2,…,An}上的一个关系模式，X, Y是U上的两个子集，若对R(U)的任意一个可能的关系r, r中不可能有两个元组满足在X中的属性值相等而在Y中的属性值不等，则称“X函数决定Y”或“Y函数依赖于X”,记作X-&gt;Y。<br>
+示例：U = {学号，姓名，年龄，班号，班长，课号，成绩}<br>
+学号-&gt;{姓名，年龄}<br>
+{学号，课号} -&gt; 成绩<br>
+函数依赖的特性：</p>
+<ul>
+<li>对X-&gt;Y,但Y不包含于X, 则称X-&gt;Y为非平凡的函数依赖；</li>
+<li>若X-&gt;Y,则任意两个元组,若X上值相等,则Y上值必然相等,则称X为决定因素；</li>
+<li>若X-&gt;Y,Y-&gt;X,则记作X&lt;-&gt;Y；</li>
+<li>X-&gt;Y,有基于模式R的,则要求对任意的关系r成立；有基于具体关系r 的,则要求对某一关系r成立；</li>
+<li>如一关系r的某属性集X,r中根本没有X上相等的两个元组存在,则X-&gt;Y恒
+成立。</li>
+</ul>
+<h2 id="完全函数依赖与传递函数依赖">完全函数依赖与传递函数依赖</h2>
+<p>部分或完全函数依赖：<br>
+在R(U)中，若X-&gt;Y并且对于X的任何真子集X&rsquo;都有y不依赖于x',则称Y完全函数依赖于X, 记为：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113023.png" />否则称Y部分函数依赖于X,记为：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113050.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113259.png" /></p>
+<p>传递函数依赖:<br>
+在R(U)中，<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211112113438.png" />则称Z传递函于X。</p>
+<p>几个重要概念：</p>
+<ul>
+<li>候选键
+<ul>
+<li>设K为R(U)中的属性或属性组合，若U部分依赖于K, 则称K为R(U)上的候选键(Candidate Key)。说明：
+<ul>
+<li>可任选一候选键作为R的主键(Primary Key)；</li>
+</ul>
+<ul>
+<li>包含在任一候选键中的属性称主属性(Prime Attribute), 其他属性称非主属性；</li>
+<li>若K是R的一个候选键，S包含于K, 则称S为R的一个超键(Super Key)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>逻辑蕴含
+<ul>
+<li>设F是关系模式R(U)中的一个函数依赖集合X，Y是R的属性子集，如果从F中的函数依赖能够推导出X-&gt;Y，则称F逻辑蕴涵X-&gt;Y，或称X-&gt;Y是F的逻辑蕴涵。记作F|= X-&gt;Y</li>
+<li>设F是关系模式R(U)的函数依赖集, X-&gt;Y是一个函数依赖，若对R中的每个满足F的关系r, 能够用逻辑推理的方法推出r也满足X-&gt;Y，则称F|= X-&gt;Y。</li>
+</ul>
+</li>
+<li>闭包
+<ul>
+<li>被F逻辑蕴涵的所有函数依赖集合称为F的闭包(Closure)，记作F+。</li>
+<li>若F+=F, 则说F是一个全函数依赖族(函数依赖完备集)。</li>
+</ul>
+</li>
+<li>属性(集)闭包
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113085606.png" /></li>
+</ul>
+<h2 id="关于函数依赖的公理和定理">关于函数依赖的公理和定理</h2>
+<p>用于隐含函数依赖推导：</p>
+<ul>
+<li>设R(U)是属性集U={A1,A2,…,An}上的一个关系模式，F为R(U)的一组函数依赖，记为R(U, F), 则有如下规则：
+<ul>
+<li>[A1]自反律(Reflexivity rule)：若Y真包含于X真包含于U，则X-&gt;Y被F逻辑蕴涵。</li>
+<li>[A2]增广律(Augmentation rule)：若X真包含于Y真包含于F，且Z-&gt;U,则XZ-&gt;YZ被F逻辑蕴涵。</li>
+<li>[A3]传递律(Transtivity rule)：若X真包含于Y真包含于F，且Y-&gt;Z，则X-&gt;Z被F逻辑蕴涵。</li>
+</ul>
+</li>
+<li>由A1.A2,A3可推出如下结论：
+<ul>
+<li>合并律(Union Rule)：若X-&gt;Y且X-&gt;Z, 则X-&gt;YZ。</li>
+<li>伪传递律(Pseudo Transitivity)：若X-&gt;Y且WY-&gt;Z，则XW-&gt;Z。</li>
+<li>分解律(Decomposition Rule)：若X-&gt;Y且Z-&gt;Y, 则X-&gt;Z</li>
+<li>如果A1,A2,…,An是属性，则X-&gt;A1,A2,…,An当且仅当对每个Ai有X-&gt;Ai(1 &lt;= i &lt;= n)</li>
+<li>X-&gt;Y，可从F由Armstrong Axiom(即A1,A2,A3)导出，当且仅当真包含于X的属性闭包</li>
+</ul>
+</li>
+</ul>
+<h2 id="函数依赖集的最小覆盖">函数依赖集的最小覆盖</h2>
+<p>覆盖：<br>
+对R(U)上的两个函数依赖集合F、G, 如果F+=G+，则称F和G是等价的，也称F覆盖G或者G覆盖<br>
+引理：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090019.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090446.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113090514.png" /><br>
+每个函数依赖集F可被一个其右端至多有一个属性的函数依赖之集G覆盖。</p>
+<p>最小覆盖：
+若F满足以下条件，则称F为最小覆盖(minimal Cover)或最小依赖集
+(minimal set of Functional Depandency)：</p>
+<ul>
+<li>F中每个函数依赖的右部是单个属性；</li>
+<li>对任何X-&gt;A属于F，有F- {X-&gt;A}不等价于F；</li>
+<li>对任何X-&gt;A属于F，Z包含于X，(F- {X-&gt;A})U{Z-&gt;A}不等价于F</li>
+</ul>
+<p>每个函数依赖集F都有等价的最小覆盖F’。</p>
+<h2 id="关系模式设计之规范形式">关系模式设计之规范形式</h2>
+<h3 id="关系的第1nf和第2nf">关系的第1NF和第2NF</h3>
+<ul>
+<li>若关系模式R(U)中关系的每个分量都是不可分的数据项(值、原子)，则称R(U)属于第一范式，记为：R(U) 属于 1NF。
+<ul>
+<li>1NF要求关系中不能有复合属性、多值属性及其组合</li>
+</ul>
+</li>
+<li>若R(U)属于1NF且U中的每一非主属性完全函数依赖于候选键，则称R(U)属于第二范式，记为：R(U) 属于 2NF。
+<ul>
+<li>第二范式消除了非主属性对候选键的部分依赖</li>
+</ul>
+</li>
+</ul>
+<h3 id="关系的第3nf和boyce-codd-nf">关系的第3NF和Boyce-Codd NF</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093439.png" />
+第3范式消除了非主属性对侯选键的传递依赖
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113093851.png" /></p>
+<h3 id="多值依赖及其公理定理">多值依赖及其公理定理</h3>
+<p>多值依赖：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094234.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211117113449.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094342.png" />
+[Armstrong&rsquo;s Axioms A4~A8]关于多值依赖的公理：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094612.png" />
+<strong>在设计数据库结构的时候，要尽量遵守三范式，如果不遵守，必须有足够的理由。比如性能。事实上我们经常会为了性能而妥协数据库的设计。</strong></p>
+<h3 id="关系的第4nf">关系的第4NF</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211113094422.png" />
+第四范式消除了非主属性对候选键以外属性的多值依赖</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/mysql_base_07/" data-title="Mysql_base_07" data-hashtags="mysql"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/mysql_base_07/" data-hashtag="mysql"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/mysql_base_07/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/mysql_base_07/" data-title="Mysql_base_07"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/mysql_base_07/" data-title="Mysql_base_07"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/mysql_base_07/" data-title="Mysql_base_07"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql_base_06/" class="prev" rel="prev" title="Mysql_base_06"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_06</a>
+            <a href="/mysql_base_08/" class="next" rel="next" title="Mysql_base_08">Mysql_base_08<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

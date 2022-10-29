@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20181129 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20181129" />
+<meta property="og:description" content="Go 2, here we come! Robert Griesemer
+29 November 2018
+Background At GopherCon 2017, Russ Cox officially started the thought process on the next big version of Go with his talk The Future of Go (blog post). We have called this future language informally Go 2, even though we understand now that it will arrive in incremental steps rather than with a big bang and a single major release. Still, Go 2 is a useful moniker, if only to have a way to talk about that future language, so let’s keep using it for now." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20181129/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T19:38:49+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20181129"/>
+<meta name="twitter:description" content="Go 2, here we come! Robert Griesemer
+29 November 2018
+Background At GopherCon 2017, Russ Cox officially started the thought process on the next big version of Go with his talk The Future of Go (blog post). We have called this future language informally Go 2, even though we understand now that it will arrive in incremental steps rather than with a big bang and a single major release. Still, Go 2 is a useful moniker, if only to have a way to talk about that future language, so let’s keep using it for now."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20181129/" /><link rel="prev" href="https://jefofrank.xyz/gb_20181110/" /><link rel="next" href="https://jefofrank.xyz/gb_20181219/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20181129",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20181129\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1673 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20181129\/","datePublished": "2022-10-29T19:38:49+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20181129</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 19:38:49">2022-10-29 19:38:49</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1673 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#status">Status</a></li>
+    <li><a href="#proposal-evaluation-process">Proposal evaluation process</a></li>
+    <li><a href="#proposal-selection-criteria">Proposal selection criteria</a></li>
+    <li><a href="#proposals">Proposals</a></li>
+    <li><a href="#next-steps">Next steps</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-2-here-we-come">Go 2, here we come!</h1>
+<p>Robert Griesemer<br>
+29 November 2018</p>
+<h2 id="background">Background</h2>
+<p>At GopherCon 2017, Russ Cox officially started the thought process on the next big version of Go with his talk <a href="https://www.youtube.com/watch?v=0Zbh_vmAKvk" target="_blank" rel="noopener noreffer">The Future of Go</a> (<a href="https://blog.golang.org/toward-go2" target="_blank" rel="noopener noreffer">blog post</a>). We have called this future language informally Go 2, even though we understand now that it will arrive in incremental steps rather than with a big bang and a single major release. Still, Go 2 is a useful moniker, if only to have a way to talk about that future language, so let’s keep using it for now.</p>
+<p>A major difference between Go 1 and Go 2 is who is going to influence the design and how decisions are made. Go 1 was a small team effort with modest outside influence; Go 2 will be much more community-driven. After almost 10 years of exposure, we have learned a lot about the language and libraries that we didn’t know in the beginning, and that was only possible through feedback from the Go community.</p>
+<p>In 2015 we introduced the <a href="https://go.dev/s/proposal" target="_blank" rel="noopener noreffer">proposal process</a> to gather a specific kind of feedback: proposals for language and library changes. A committee composed of senior Go team members has been reviewing, categorizing, and deciding on incoming proposals on a regular basis. That has worked pretty well, but as part of that process we have ignored all proposals that are not backward-compatible, simply labeling them Go 2 instead. In 2017 we also stopped making any kind of incremental backward-compatible language changes, however small, in favor of a more comprehensive plan that takes the bigger picture of Go 2 into account.</p>
+<p>It is now time to act on the Go 2 proposals, but to do this we first need a plan.</p>
+<h2 id="status">Status</h2>
+<p>At the time of writing, there are around 120 <a href="https://github.com/golang/go/issues?page=1&amp;q=is%3Aissue&#43;is%3Aopen&#43;label%3Aproposal&#43;label%3AGo2&amp;utf8=%E2%9C%93" target="_blank" rel="noopener noreffer">open issues labeled Go 2 proposal</a>. Each of them proposes a significant library or language change, often one that does not satisfy the existing <a href="https://go.dev/doc/go1compat" target="_blank" rel="noopener noreffer">Go 1 compatibility guarantee</a>. Ian Lance Taylor and I have been working through these proposals and categorized them (<a href="https://github.com/golang/go/issues?utf8=%E2%9C%93&amp;q=is%3Aissue&#43;is%3Aopen&#43;label%3Aproposal&#43;label%3AGo2&#43;label%3AGo2Cleanup" target="_blank" rel="noopener noreffer">Go2Cleanup</a>, <a href="https://github.com/golang/go/issues?utf8=%E2%9C%93&amp;q=is%3Aissue&#43;is%3Aopen&#43;label%3Aproposal&#43;label%3AGo2&#43;label%3ANeedsDecision" target="_blank" rel="noopener noreffer">NeedsDecision</a>, etc.) to get an idea of what’s there and to make it easier to proceed with them. We also merged related proposals and closed the ones which seemed clearly out of the scope of Go, or were otherwise unactionable.</p>
+<p>Ideas from the remaining proposals will likely influence Go 2’s libraries and languages. Two major themes have emerged early on: support for better error handling, and generics. <a href="https://blog.golang.org/go2draft" target="_blank" rel="noopener noreffer">Draft designs</a> for these two areas have been published at this year’s GopherCon, and more exploration is needed.</p>
+<p>But what about the rest? We are <a href="https://blog.golang.org/toward-go2" target="_blank" rel="noopener noreffer">constrained</a> by the fact that we now have millions of Go programmers and a large body of Go code, and we need to bring it all along, lest we risk a split ecosystem. That means we cannot make many changes, and the changes we are going to make need to be chosen carefully. To make progress, we are implementing a new proposal evaluation process for these significant potential changes.</p>
+<h2 id="proposal-evaluation-process">Proposal evaluation process</h2>
+<p>The purpose of the proposal evaluation process is to collect feedback on a small number of select proposals such that a final decision can be made. The process runs more or less in parallel to a release cycle and consists of the following steps:</p>
+<ol>
+<li>
+<p><em>Proposal selection</em>. The Go team selects a small number of <a href="https://github.com/golang/go/issues?utf8=%E2%9C%93&amp;q=is%3Aissue&#43;is%3Aopen&#43;label%3AGo2&#43;label%3AProposal" target="_blank" rel="noopener noreffer">Go 2 proposals</a> that seem worth considering for acceptance, without making a final decision. See below for more on the selection criteria.</p>
+</li>
+<li>
+<p><em>Proposal feedback</em>. The Go team sends out an announcement listing the selected proposals. The announcement explains to the community the tentative intent to move forward with the selected proposals and to collect feedback for each of them. This gives the community a chance to make suggestions and express concerns.</p>
+</li>
+<li>
+<p><em>Implementation</em>. Based on that feedback, the proposals are implemented. The target for these significant language and library changes is to have them ready to submit on day 1 of an upcoming release cycle.</p>
+</li>
+<li>
+<p><em>Implementation feedback</em>. During the development cycle, the Go team and community have a chance to experiment with the new features and collect further feedback.</p>
+</li>
+<li>
+<p><em>Launch decision</em>. At the end of the three month <a href="https://github.com/golang/go/wiki/Go-Release-Cycle" target="_blank" rel="noopener noreffer">development cycle</a> (just when starting the three month repo freeze before a release), and based on the experience and feedback gathered during the release cycle, the Go team makes the final decision about whether to ship each change. This provides an opportunity to consider whether the change has delivered the expected benefits or created any unexpected costs. Once shipped, the changes become part of the language and libraries. Excluded proposals may go back to the drawing board or may be declined for good.</p>
+</li>
+</ol>
+<p>With two rounds of feedback, this process is slanted towards declining proposals, which will hopefully prevent feature creep and help with keeping the language small and clean.</p>
+<p>We can’t go through this process for each of the open Go 2 proposals, there are simply too many of them. That’s where the selection criteria come into play.</p>
+<h2 id="proposal-selection-criteria">Proposal selection criteria</h2>
+<p>A proposal must at the very least:</p>
+<ol>
+<li>
+<p><em>address an important issue for many people</em>,</p>
+</li>
+<li>
+<p><em>have minimal impact on everybody else</em>, and</p>
+</li>
+<li>
+<p><em>come with a clear and well-understood solution</em>.</p>
+</li>
+</ol>
+<p>Requirement 1 ensures that any changes we make help as many Go developers as possible (make their code more robust, easier to write, more likely to be correct, and so on), while requirement 2 ensures we are careful to hurt as few developers as possible, whether by breaking their programs or causing other churn. As a rule of thumb, we should aim to help at least ten times as many developers as we hurt with a given change. Changes that don’t affect real Go usage are a net zero benefit put up against a significant implementation cost and should be avoided.</p>
+<p>Without requirement 3 we don’t have an implementation of the proposal. For instance, we believe that some form of genericity might solve an important issue for a lot of people, but we don’t yet have a clear and well-understood solution. That’s fine, it just means that the proposal needs to go back to the drawing board before it can be considered.</p>
+<h2 id="proposals">Proposals</h2>
+<p>We feel that this is a good plan that should serve us well but it is important to understand that this is only a starting point. As the process is used we will discover the ways in which it fails to work well and we will refine it as needed. The critical part is that until we use it in practice we won’t know how to improve it.</p>
+<p>A safe place to start is with a small number of backward-compatible language proposals. We haven’t done language changes for a long time, so this gets us back into that mode. Also, the changes won’t require us worrying about breaking existing code, and thus they serve as a perfect trial balloon.</p>
+<p>With all that said, we propose the following selection of Go 2 proposals for the Go 1.13 release (step 1 in the proposal evaluation process):</p>
+<ol>
+<li>
+<p><a href="https://github.com/golang/go/issues/20706" target="_blank" rel="noopener noreffer"><em>#20706</em></a> <em>General Unicode identifiers based on</em> <a href="http://unicode.org/reports/tr31/" target="_blank" rel="noopener noreffer"><em>Unicode TR31</em></a>: This addresses an important issue for Go programmers using non-Western alphabets and should have little if any impact on anyone else. There are normalization questions which we need to answer and where community feedback will be important, but after that the implementation path is well understood. Note that identifier export rules will not be affected by this.</p>
+</li>
+<li>
+<p><a href="https://github.com/golang/go/issues/19308" target="_blank" rel="noopener noreffer"><em>#19308</em></a>, <a href="https://github.com/golang/go/issues/28493" target="_blank" rel="noopener noreffer"><em>#28493</em></a> <em>Binary integer literals and support for _ in number literals</em>: These are relatively minor changes that seem hugely popular among many programmers. They may not quite reach the threshold of solving an “important issue” (hexadecimal numbers have worked well so far) but they bring Go up to par with most other languages in this respect and relieve a pain point for some programmers. They have minimal impact on others who don’t care about binary integer literals or number formatting, and the implementation is well understood.</p>
+</li>
+<li>
+<p><a href="https://github.com/golang/go/issues/19113" target="_blank" rel="noopener noreffer"><em>#19113</em></a> <em>Permit signed integers as shift counts</em>: An estimated 38% of all non-constant shifts require an (artificial) uint conversion (see the issue for a more detailed break-down). This proposal will clean up a lot of code, get shift expressions better in sync with index expressions and the built-in functions cap and len. It will mostly have a positive impact on code. The implementation is well understood.</p>
+</li>
+</ol>
+<h2 id="next-steps">Next steps</h2>
+<p>With this blog post we have executed the first step and started the second step of the proposal evaluation process. It’s now up to you, the Go community, to provide feedback on the issues listed above.</p>
+<p>For each proposal for which we have clear and approving feedback, we will move forward with the implementation (step 3 in the process). Because we want the changes implemented on the first day of the next release cycle (tentatively Feb. 1, 2019) we may start the implementation a bit early this time to leave time for two full months of feedback (Dec. 2018, Jan. 2019).</p>
+<p>For the 3-month development cycle (Feb. to May 2019) the chosen features are implemented and available at tip and everybody will have a chance to gather experience with them. This provides another opportunity for feedback (step 4 in the process).</p>
+<p>Finally, shortly after the repo freeze (May 1, 2019), the Go team makes the final decision whether to keep the new features for good (and include them in the Go 1 compatibility guarantee), or whether to abandon them (final step in the process).</p>
+<p>(Since there is a real chance that a feature may need to be removed just when we freeze the repo, the implementation will need to be such that the feature can be disabled without destabilizing the rest of the system. For language changes that may mean that all feature-related code is guarded by an internal flag.)</p>
+<p>This will be the first time that we have followed this process, hence the repo freeze will also be a good moment to reflect on the process and to adjust it if necessary. Let’s see how it goes.</p>
+<p>Happy evaluating!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20181129/" data-title="Gb_20181129" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20181129/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20181129/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20181129/" data-title="Gb_20181129"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20181129/" data-title="Gb_20181129"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20181129/" data-title="Gb_20181129"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20181110/" class="prev" rel="prev" title="Gb_20181110"><i class="fas fa-angle-left fa-fw"></i>Gb_20181110</a>
+            <a href="/gb_20181219/" class="next" rel="next" title="Gb_20181219">Gb_20181219<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

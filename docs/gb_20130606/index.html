@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20130606 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20130606" />
+<meta property="og:description" content="A conversation with the Go team 6 June 2013
+At Google I/O 2013, several members of the Go team hosted a “Fireside chat.” Robert Griesemer, Rob Pike, David Symonds, Andrew Gerrand, Ian Lance Taylor, Sameer Ajmani, Brad Fitzpatrick, and Nigel Tao took questions from the audience and people around the world about various aspects of the Go project.
+We also hosted a similar session at I/O last year: Meet the Go team." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20130606/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T08:55:37+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20130606"/>
+<meta name="twitter:description" content="A conversation with the Go team 6 June 2013
+At Google I/O 2013, several members of the Go team hosted a “Fireside chat.” Robert Griesemer, Rob Pike, David Symonds, Andrew Gerrand, Ian Lance Taylor, Sameer Ajmani, Brad Fitzpatrick, and Nigel Tao took questions from the audience and people around the world about various aspects of the Go project.
+We also hosted a similar session at I/O last year: Meet the Go team."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20130606/" /><link rel="prev" href="https://jefofrank.xyz/gb_20130523/" /><link rel="next" href="https://jefofrank.xyz/gb_20130612/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20130606",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20130606\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1319 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20130606\/","datePublished": "2022-10-24T08:55:37+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20130606</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 08:55:37">2022-10-24 08:55:37</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1319 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="aconversation-with-the-go-team">A conversation with the Go team</h1>
+<p>6 June 2013</p>
+<p>At Google I/O 2013, several members of the Go team hosted a “Fireside chat.” Robert Griesemer, Rob Pike, David Symonds, Andrew Gerrand, Ian Lance Taylor, Sameer Ajmani, Brad Fitzpatrick, and Nigel Tao took questions from the audience and people around the world about various aspects of the Go project.</p>
+<p>We also hosted a similar session at I/O last year: <a href="http://www.youtube.com/watch?v=sln-gJaURzk" target="_blank" rel="noopener noreffer"><em>Meet the Go team</em></a>.</p>
+<p>There were many more questions from Google Moderator than we were able to answer in the short 40 minute session. Here we answer some of those we missed in the live session.</p>
+<p><em>Linking speed (and memory usage) for the gc toolchain are a known problem.</em> <em>Are there any plans to address this during the 1.2 cycle?</em></p>
+<p><strong>Rob:</strong> Yes. We are always thinking about ways to improve performance of the tools as well as the language and libraries.</p>
+<p><em>I have been very pleased to see how quickly Go appears to be gaining traction.</em> <em>Can you talk about the reactions you have experienced working with other</em> <em>developers inside and outside Google? Are there any major sticking points remaining?</em></p>
+<p><strong>Robert:</strong> A lot of developers that seriously tried Go are very happy with it. Many of them report a much smaller, more readable and thus maintainable code base: A 50% code size reduction or more when coming from C++ seems common. Developers that switched to Go from Python are invariably pleased with the performance gain. The typical complaints are about small inconsistencies in the language (some of which we might iron out at some point). What surprises me is that almost nobody complains about the lack of generics.</p>
+<p><em>When will Go be a first-class language for Android development?</em></p>
+<p><strong>Andrew:</strong> This would be great, but we don’t have anything to announce.</p>
+<p><em>Is there a roadmap for the next version of Go?</em></p>
+<p><strong>Andrew:</strong> We have no feature roadmap as such. The contributors tend to work on what interests them. Active areas of development include the gc and gccgo compilers, the garbage collector and runtime, and many others. We expect the majority of exciting new additions will be in the form of improvements to our tools. You can find design discussions and code reviews on the <a href="http://groups.google.com/group/golang-dev" target="_blank" rel="noopener noreffer">golang-dev mailing list</a>.</p>
+<p>As for the timeline, we do have <a href="https://docs.google.com/document/d/106hMEZj58L9nq9N9p7Zll_WKfo-oyZHFyI6MttuZmBU/edit?usp=sharing" target="_blank" rel="noopener noreffer">concrete plans</a>: we expect to release Go 1.2 on December 1, 2013.</p>
+<p><em>Where do you guys want to see Go used externally?</em> <em>What would you consider a big win for Go adoption outside Google?</em> <em>Where do you think Go has the potential to make a significant impact?</em></p>
+<p><strong>Rob:</strong> Where Go is deployed is up to its users, not to us. We’re happy to see it gain traction anywhere it helps. It was designed with server-side software in mind, and is showing promise there, but has also shown strengths in many other areas and the story is really just beginning. There are many surprises to come.</p>
+<p><strong>Ian:</strong> It’s easier for startups to use Go, because they don’t have an entrenched code base that they need to work with. So I see two future big wins for Go. One would be a significant use of Go by an existing large software company other than Google. Another would be a significant IPO or acquisition of a startup that primarily uses Go. These are both indirect: clearly choice of programming language is a very small factor in the success of a company. But it would be another way to show that Go can be part of a successful software system.</p>
+<p><em>Have you thought any (more) about the potential of dynamically loading</em> <em>Go packages or objects and how it could work in Go?</em> <em>I think this could enable some really interesting and expressive constructs,</em> <em>especially coupled with interfaces.</em></p>
+<p><strong>Rob:</strong> This is an active topic of discussion. We appreciate how powerful the concept can be and hope we can find a way to implement it before too long. There are serious challenges in the design approach to take and the need to make it work portably.</p>
+<p><em>There was a discussion a while ago about collecting some best-of-breed</em> <code>database/sql</code> <em>drivers in a more central place.</em> <em>Some people had strong opinions to the contrary though.</em> <em>Where is</em> <code>database/sql</code> <em>and its drivers going in the next year?</em></p>
+<p><strong>Brad:</strong> While we could create an official subrepo (“go.db”) for database drivers, we fear that would unduly bless certain drivers. At this point we’d still rather see healthy competition between different drivers. The <a href="https://go.dev/wiki/SQLDrivers" target="_blank" rel="noopener noreffer">SQLDrivers wiki page</a> lists some good ones.</p>
+<p>The <code>database/sql</code> package didn’t get much attention for a while, due to lack of drivers. Now that drivers exist, usage of the package is increasing and correctness and performance bugs are now being reported (and fixed). Fixes will continue, but no major changes to the interface of <code>database/sql</code> are planned.  There might be small extensions here and there as needed for performance or to assist some drivers.</p>
+<p><em>What is the status of versioning?</em> <em>Is importing some code from GitHub a best practice recommended by the Go team?</em> <em>What happens when we publish our code that is dependent on a GitHub repo and</em> <em>the API of the dependee changes?</em></p>
+<p><strong>Ian:</strong> This is frequently discussed on the mailing list. What we do internally is take a snapshot of the imported code, and update that snapshot from time to time. That way, our code base won’t break unexpectedly if the API changes. But we understand that that approach doesn’t work very well for people who are themselves providing a library. We’re open to good suggestions in this area. Remember that this is an aspect of the tools that surround the language rather than the language itself; the place to fix this is in the tools, not the language.</p>
+<p><em>What about Go and Graphical User Interfaces?</em></p>
+<p><strong>Rob:</strong> This is a subject close to my heart. Newsqueak, a very early precursor language, was designed specifically for writing graphics programs (that’s what we used to call apps). The landscape has changed a lot but I think Go’s concurrency model has much to offer in the field of interactive graphics.</p>
+<p><strong>Andrew:</strong> There are many <a href="https://go.dev/wiki/Projects#Graphics_and_Audio" target="_blank" rel="noopener noreffer">bindings for existing graphics libraries</a> out there, and a few Go-specific projects. One of the more promising ones is <a href="https://github.com/skelterjohn/go.uik" target="_blank" rel="noopener noreffer">go.uik</a>, but it’s still in its early days. I think there’s a lot of potential for a great Go-specific UI toolkit for writing native applications (consider handling user events by receiving from a channel), but developing a production-quality package is a significant undertaking. I have no doubt one will come in time.</p>
+<p>In the meantime, the web is the most broadly available platform for user interfaces. Go provides great support for building web apps, albeit only on the back end.</p>
+<p><em>In the mailing lists Adam Langley has stated that the TLS code has not been</em> <em>reviewed by outside groups, and thus should not be used in production.</em> <em>Are there plans to have the code reviewed?</em> <em>A good secure implementation of concurrent TLS would be very nice.</em></p>
+<p><strong>Adam</strong>: Cryptography is notoriously easy to botch in subtle and surprising ways and I’m only human. I don’t feel that I can warrant that Go’s TLS code is flawless and I wouldn’t want to misrepresent it.</p>
+<p>There are a couple of places where the code is known to have side-channel issues: the RSA code is blinded but not constant time, elliptic curves other than P-224 are not constant time and the Lucky13 attack might work. I hope to address the latter two in the Go 1.2 timeframe with a constant-time P-256 implementation and AES-GCM.</p>
+<p>Nobody has stepped forward to do a review of the TLS stack however and I’ve not investigated whether we could get Matasano or the like to do it. That depends on whether Google wishes to fund it.</p>
+<p><em>What do you think about</em> <a href="http://www.gophercon.com/" target="_blank" rel="noopener noreffer"><em>GopherCon 2014</em></a><em>?</em> <em>Does anyone from the team plan to attend?</em></p>
+<p><strong>Andrew:</strong> It’s very exciting. I’m sure some of us will be there.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20130606/" data-title="Gb_20130606" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20130606/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20130606/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20130606/" data-title="Gb_20130606"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20130606/" data-title="Gb_20130606"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20130606/" data-title="Gb_20130606"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20130523/" class="prev" rel="prev" title="Gb_20130523"><i class="fas fa-angle-left fa-fw"></i>Gb_20130523</a>
+            <a href="/gb_20130612/" class="next" rel="next" title="Gb_20130612">Gb_20130612<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

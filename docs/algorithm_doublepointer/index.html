@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Algorithm_doublePointer - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Algorithm_doublePointer" />
+<meta property="og:description" content="学习代码随想录笔记 双指针法 双指针法（快慢指针法）在数组和链表的操作中是非常常见的，很多考察数组、链表、字符串等操作的面试题，都使用双指针法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/algorithm_doublepointer/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-06T08:19:19+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Algorithm_doublePointer"/>
+<meta name="twitter:description" content="学习代码随想录笔记 双指针法 双指针法（快慢指针法）在数组和链表的操作中是非常常见的，很多考察数组、链表、字符串等操作的面试题，都使用双指针法。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/algorithm_doublepointer/" /><link rel="prev" href="https://jefofrank.xyz/algorithm_string/" /><link rel="next" href="https://jefofrank.xyz/algorithm_stackandqueue/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Algorithm_doublePointer",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/algorithm_doublepointer\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data structure","wordcount":  1999 ,
+        "url": "https:\/\/jefofrank.xyz\/algorithm_doublepointer\/","datePublished": "2022-01-06T08:19:19+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Algorithm_doublePointer</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coding/"><i class="far fa-folder fa-fw"></i>Coding</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 08:19:19">2022-01-06 08:19:19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1999 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#移除元素">移除元素</a></li>
+    <li><a href="#反转字符串">反转字符串</a></li>
+    <li><a href="#替换空格">替换空格</a></li>
+    <li><a href="#翻转字符串里的单词">翻转字符串里的单词</a></li>
+    <li><a href="#翻转链表">翻转链表</a></li>
+    <li><a href="#删除链表的倒数第n个节点">删除链表的倒数第N个节点</a></li>
+    <li><a href="#链表相交">链表相交</a></li>
+    <li><a href="#环形链表ii">环形链表II</a></li>
+    <li><a href="#三数之和">三数之和</a></li>
+    <li><a href="#四数之和">四数之和</a></li>
+    <li><a href="#双指针总结">双指针总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>学习<a href="https://programmercarl.com/" target="_blank" rel="noopener noreffer">代码随想录</a>笔记</p>
+</blockquote>
+<h1 id="双指针法">双指针法</h1>
+<p>双指针法（快慢指针法）在数组和链表的操作中是非常常见的，很多考察数组、链表、字符串等操作的面试题，都使用双指针法。</p>
+<h2 id="移除元素">移除元素</h2>
+<p>给你一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，并返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须仅使用 $O(1)$ 额外空间并原地修改输入数组。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>示例 1: 给定 nums = [3,2,2,3], val = 3, 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。 你不需要考虑数组中超出新长度后面的元素。</p>
+<p>示例 2: 给定 nums = [0,1,2,2,3,0,4,2], val = 2, 函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。</p>
+<p>你不需要考虑数组中超出新长度后面的元素。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">removeElement</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">length</span><span class="o">:=</span><span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
+    <span class="nx">res</span><span class="o">:=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="p">&lt;</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+        <span class="k">if</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">!=</span><span class="nx">val</span> <span class="p">{</span>
+            <span class="nx">nums</span><span class="p">[</span><span class="nx">res</span><span class="p">]=</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+            <span class="nx">res</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="反转字符串">反转字符串</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">reverseString</span><span class="p">(</span><span class="nx">s</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="nx">left</span><span class="o">:=</span><span class="mi">0</span>
+    <span class="nx">right</span><span class="o">:=</span><span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="nx">left</span><span class="p">&lt;</span><span class="nx">right</span><span class="p">{</span>
+        <span class="nx">s</span><span class="p">[</span><span class="nx">left</span><span class="p">],</span><span class="nx">s</span><span class="p">[</span><span class="nx">right</span><span class="p">]=</span><span class="nx">s</span><span class="p">[</span><span class="nx">right</span><span class="p">],</span><span class="nx">s</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span>
+        <span class="nx">left</span><span class="o">++</span>
+        <span class="nx">right</span><span class="o">--</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="替换空格">替换空格</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 遍历添加
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">replaceSpace</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+            <span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;%20&#34;</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 原地修改
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">replaceSpace</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+    <span class="nx">length</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+    <span class="nx">spaceCount</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="c1">// 计算空格数量
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">v</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+            <span class="nx">spaceCount</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 扩展原有切片
+</span><span class="c1"></span>    <span class="nx">resizeCount</span> <span class="o">:=</span> <span class="nx">spaceCount</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="nx">tmp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">resizeCount</span><span class="p">)</span>
+    <span class="nx">b</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">tmp</span><span class="o">...</span><span class="p">)</span>
+    <span class="nx">i</span> <span class="o">:=</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="nx">j</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+            <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+            <span class="nx">i</span><span class="o">--</span>
+            <span class="nx">j</span><span class="o">--</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;0&#39;</span>
+            <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;2&#39;</span>
+            <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;%&#39;</span>
+            <span class="nx">i</span><span class="o">--</span>
+            <span class="nx">j</span> <span class="p">=</span> <span class="nx">j</span> <span class="o">-</span> <span class="mi">3</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="翻转字符串里的单词">翻转字符串里的单词</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">reverseWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">//1.使用双指针删除冗余的空格
+</span><span class="c1"></span>	<span class="nx">slowIndex</span><span class="p">,</span> <span class="nx">fastIndex</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+	<span class="nx">b</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="c1">//删除头部冗余空格
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">fastIndex</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">[</span><span class="nx">fastIndex</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+		<span class="nx">fastIndex</span><span class="o">++</span>
+	<span class="p">}</span>
+    <span class="c1">//删除单词间冗余空格
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">;</span> <span class="nx">fastIndex</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="nx">fastIndex</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">fastIndex</span><span class="o">-</span><span class="mi">1</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">[</span><span class="nx">fastIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nx">b</span><span class="p">[</span><span class="nx">fastIndex</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">[</span><span class="nx">fastIndex</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="nx">b</span><span class="p">[</span><span class="nx">slowIndex</span><span class="p">]</span> <span class="p">=</span> <span class="nx">b</span><span class="p">[</span><span class="nx">fastIndex</span><span class="p">]</span>
+		<span class="nx">slowIndex</span><span class="o">++</span>
+	<span class="p">}</span>
+	<span class="c1">//删除尾部冗余空格
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">slowIndex</span><span class="o">-</span><span class="mi">1</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">[</span><span class="nx">slowIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="p">{</span>
+		<span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">[:</span><span class="nx">slowIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">[:</span><span class="nx">slowIndex</span><span class="p">]</span>
+	<span class="p">}</span>
+	<span class="c1">//2.反转整个字符串
+</span><span class="c1"></span>	<span class="nf">reverse</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="c1">//3.反转单个单词  i单词开始位置，j单词结束位置
+</span><span class="c1"></span>	<span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">j</span> <span class="o">:=</span> <span class="nx">i</span>
+		<span class="k">for</span> <span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39; &#39;</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+		<span class="p">}</span>
+		<span class="nf">reverse</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="nx">i</span> <span class="p">=</span> <span class="nx">j</span>
+		<span class="nx">i</span><span class="o">++</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">reverse</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">left</span> <span class="p">&lt;</span> <span class="nx">right</span> <span class="p">{</span>
+		<span class="p">(</span><span class="o">*</span><span class="nx">b</span><span class="p">)[</span><span class="nx">left</span><span class="p">],</span> <span class="p">(</span><span class="o">*</span><span class="nx">b</span><span class="p">)[</span><span class="nx">right</span><span class="p">]</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">b</span><span class="p">)[</span><span class="nx">right</span><span class="p">],</span> <span class="p">(</span><span class="o">*</span><span class="nx">b</span><span class="p">)[</span><span class="nx">left</span><span class="p">]</span>
+		<span class="nx">left</span><span class="o">++</span>
+		<span class="nx">right</span><span class="o">--</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="翻转链表">翻转链表</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//双指针
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pre</span> <span class="o">*</span><span class="nx">ListNode</span>
+    <span class="nx">cur</span> <span class="o">:=</span> <span class="nx">head</span>
+    <span class="k">for</span> <span class="nx">cur</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">next</span> <span class="o">:=</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">cur</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">pre</span>
+        <span class="nx">pre</span> <span class="p">=</span> <span class="nx">cur</span>
+        <span class="nx">cur</span> <span class="p">=</span> <span class="nx">next</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">pre</span>
+<span class="p">}</span>
+
+<span class="c1">//递归
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">help</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="nx">head</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">help</span><span class="p">(</span><span class="nx">pre</span><span class="p">,</span> <span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span><span class="o">*</span><span class="nx">ListNode</span><span class="p">{</span>
+    <span class="k">if</span> <span class="nx">head</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">pre</span>
+    <span class="p">}</span>
+    <span class="nx">next</span> <span class="o">:=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">pre</span>
+    <span class="k">return</span> <span class="nf">help</span><span class="p">(</span><span class="nx">head</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="删除链表的倒数第n个节点">删除链表的倒数第N个节点</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="cm">/**
+</span><span class="cm"> * Definition for singly-linked list.
+</span><span class="cm"> * type ListNode struct {
+</span><span class="cm"> *     Val int
+</span><span class="cm"> *     Next *ListNode
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="kd">func</span> <span class="nf">removeNthFromEnd</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="nx">dummyHead</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{}</span>
+    <span class="nx">dummyHead</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">head</span>
+    <span class="nx">cur</span> <span class="o">:=</span> <span class="nx">head</span>
+    <span class="nx">prev</span> <span class="o">:=</span> <span class="nx">dummyHead</span>
+    <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="nx">cur</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">cur</span> <span class="p">=</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="nx">n</span> <span class="p">{</span>
+            <span class="nx">prev</span> <span class="p">=</span> <span class="nx">prev</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="p">}</span>
+        <span class="nx">i</span><span class="o">++</span>
+    <span class="p">}</span>
+    <span class="nx">prev</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">prev</span><span class="p">.</span><span class="nx">Next</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="k">return</span> <span class="nx">dummyHead</span><span class="p">.</span><span class="nx">Next</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="链表相交">链表相交</h2>
+<p>给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">getIntersectionNode</span><span class="p">(</span><span class="nx">headA</span><span class="p">,</span> <span class="nx">headB</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="nx">curA</span> <span class="o">:=</span> <span class="nx">headA</span>
+    <span class="nx">curB</span> <span class="o">:=</span> <span class="nx">headB</span>
+    <span class="nx">lenA</span><span class="p">,</span> <span class="nx">lenB</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="c1">// 求A，B的长度
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">curA</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">curA</span> <span class="p">=</span> <span class="nx">curA</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">lenA</span><span class="o">++</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="nx">curB</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">curB</span> <span class="p">=</span> <span class="nx">curB</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">lenB</span><span class="o">++</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">step</span> <span class="kt">int</span>
+    <span class="kd">var</span> <span class="nx">fast</span><span class="p">,</span> <span class="nx">slow</span> <span class="o">*</span><span class="nx">ListNode</span>
+    <span class="c1">// 请求长度差，并且让更长的链表先走相差的长度
+</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">lenA</span> <span class="p">&gt;</span> <span class="nx">lenB</span> <span class="p">{</span>
+        <span class="nx">step</span> <span class="p">=</span> <span class="nx">lenA</span> <span class="o">-</span> <span class="nx">lenB</span>
+        <span class="nx">fast</span><span class="p">,</span> <span class="nx">slow</span> <span class="p">=</span> <span class="nx">headA</span><span class="p">,</span> <span class="nx">headB</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">step</span> <span class="p">=</span> <span class="nx">lenB</span> <span class="o">-</span> <span class="nx">lenA</span>
+        <span class="nx">fast</span><span class="p">,</span> <span class="nx">slow</span> <span class="p">=</span> <span class="nx">headB</span><span class="p">,</span> <span class="nx">headA</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">step</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">fast</span> <span class="p">=</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="p">}</span>
+    <span class="c1">// 遍历两个链表遇到相同则跳出遍历
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">fast</span> <span class="o">!=</span> <span class="nx">slow</span> <span class="p">{</span>
+        <span class="nx">fast</span> <span class="p">=</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">slow</span> <span class="p">=</span> <span class="nx">slow</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">fast</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="环形链表ii">环形链表II</h2>
+<p>题意： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">detectCycle</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="nx">slow</span><span class="p">,</span> <span class="nx">fast</span> <span class="o">:=</span> <span class="nx">head</span><span class="p">,</span> <span class="nx">head</span>
+    <span class="k">for</span> <span class="nx">fast</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">slow</span> <span class="p">=</span> <span class="nx">slow</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">fast</span> <span class="p">=</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">Next</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="k">if</span> <span class="nx">slow</span> <span class="o">==</span> <span class="nx">fast</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="nx">slow</span> <span class="o">!=</span> <span class="nx">head</span> <span class="p">{</span>
+                <span class="nx">slow</span> <span class="p">=</span> <span class="nx">slow</span><span class="p">.</span><span class="nx">Next</span>
+                <span class="nx">head</span> <span class="p">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">head</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="三数之和">三数之和</h2>
+<p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。</p>
+<p><strong>注意</strong>： 答案中不可以包含重复的三元组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">示例：
+给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+满足要求的三元组集合为： [ [-1, 0, 1], [-1, -1, 2] ]
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">threeSum</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)[][]</span><span class="kt">int</span><span class="p">{</span>
+	<span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
+	<span class="nx">res</span><span class="o">:=</span><span class="p">[][]</span><span class="kt">int</span><span class="p">{}</span>
+	
+	<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="p">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+		<span class="nx">n1</span><span class="o">:=</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">n1</span><span class="p">&gt;</span><span class="mi">0</span><span class="p">{</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">i</span><span class="p">&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="nx">n1</span><span class="o">==</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]{</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="nx">l</span><span class="p">,</span><span class="nx">r</span><span class="o">:=</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+		<span class="k">for</span> <span class="nx">l</span><span class="p">&lt;</span><span class="nx">r</span><span class="p">{</span>
+			<span class="nx">n2</span><span class="p">,</span><span class="nx">n3</span><span class="o">:=</span><span class="nx">nums</span><span class="p">[</span><span class="nx">l</span><span class="p">],</span><span class="nx">nums</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span>
+			<span class="k">if</span> <span class="nx">n1</span><span class="o">+</span><span class="nx">n2</span><span class="o">+</span><span class="nx">n3</span><span class="o">==</span><span class="mi">0</span><span class="p">{</span>
+				<span class="nx">res</span><span class="p">=</span><span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,[]</span><span class="kt">int</span><span class="p">{</span><span class="nx">n1</span><span class="p">,</span><span class="nx">n2</span><span class="p">,</span><span class="nx">n3</span><span class="p">})</span>
+				<span class="k">for</span> <span class="nx">l</span><span class="p">&lt;</span><span class="nx">r</span><span class="o">&amp;&amp;</span><span class="nx">nums</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span><span class="o">==</span><span class="nx">n2</span><span class="p">{</span>
+					<span class="nx">l</span><span class="o">++</span>
+				<span class="p">}</span>
+				<span class="k">for</span> <span class="nx">l</span><span class="p">&lt;</span><span class="nx">r</span><span class="o">&amp;&amp;</span><span class="nx">nums</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span><span class="o">==</span><span class="nx">n3</span><span class="p">{</span>
+					<span class="nx">r</span><span class="o">--</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="nx">n1</span><span class="o">+</span><span class="nx">n2</span><span class="o">+</span><span class="nx">n3</span><span class="p">&lt;</span><span class="mi">0</span><span class="p">{</span>
+				<span class="nx">l</span><span class="o">++</span>
+			<span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+				<span class="nx">r</span><span class="o">--</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="四数之和">四数之和</h2>
+<p>题意：给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p><strong>注意</strong>：</p>
+<p>答案中不可以包含重复的四元组。</p>
+<p>示例： 给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。 满足要求的四元组集合为： [ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2] ]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">fourSum</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[][]</span><span class="kt">int</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">4</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
+	<span class="kd">var</span> <span class="nx">res</span> <span class="p">[][]</span><span class="kt">int</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">n1</span> <span class="o">:=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="c1">// if n1 &gt; target { // 不能这样写,因为可能是负数
+</span><span class="c1"></span>		<span class="c1">// 	break
+</span><span class="c1"></span>		<span class="c1">// }
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">n1</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+			<span class="nx">n2</span> <span class="o">:=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+			<span class="k">if</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">n2</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+				<span class="k">continue</span>
+			<span class="p">}</span>
+			<span class="nx">l</span> <span class="o">:=</span> <span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span>
+			<span class="nx">r</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+			<span class="k">for</span> <span class="nx">l</span> <span class="p">&lt;</span> <span class="nx">r</span> <span class="p">{</span>
+				<span class="nx">n3</span> <span class="o">:=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span>
+				<span class="nx">n4</span> <span class="o">:=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span>
+				<span class="nx">sum</span> <span class="o">:=</span> <span class="nx">n1</span> <span class="o">+</span> <span class="nx">n2</span> <span class="o">+</span> <span class="nx">n3</span> <span class="o">+</span> <span class="nx">n4</span>
+				<span class="k">if</span> <span class="nx">sum</span> <span class="p">&lt;</span> <span class="nx">target</span> <span class="p">{</span>
+					<span class="nx">l</span><span class="o">++</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">sum</span> <span class="p">&gt;</span> <span class="nx">target</span> <span class="p">{</span>
+					<span class="nx">r</span><span class="o">--</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">res</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="nx">n1</span><span class="p">,</span> <span class="nx">n2</span><span class="p">,</span> <span class="nx">n3</span><span class="p">,</span> <span class="nx">n4</span><span class="p">})</span>
+					<span class="k">for</span> <span class="nx">l</span> <span class="p">&lt;</span> <span class="nx">r</span> <span class="o">&amp;&amp;</span> <span class="nx">n3</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">l</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span> <span class="c1">// 去重
+</span><span class="c1"></span>						<span class="nx">l</span><span class="o">++</span>
+					<span class="p">}</span>
+					<span class="k">for</span> <span class="nx">l</span> <span class="p">&lt;</span> <span class="nx">r</span> <span class="o">&amp;&amp;</span> <span class="nx">n4</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">r</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span> <span class="c1">// 去重
+</span><span class="c1"></span>						<span class="nx">r</span><span class="o">--</span>
+					<span class="p">}</span>
+					<span class="c1">// 找到答案时,双指针同时靠近
+</span><span class="c1"></span>					<span class="nx">r</span><span class="o">--</span>
+					<span class="nx">l</span><span class="o">++</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="双指针总结">双指针总结</h2>
+<p><a href="https://programmercarl.com/%E5%8F%8C%E6%8C%87%E9%92%88%E6%80%BB%E7%BB%93.html" target="_blank" rel="noopener noreffer">总结</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/algorithm_doublepointer/" data-title="Algorithm_doublePointer" data-hashtags="data structure"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/algorithm_doublepointer/" data-hashtag="data structure"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/algorithm_doublepointer/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/algorithm_doublepointer/" data-title="Algorithm_doublePointer"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/algorithm_doublepointer/" data-title="Algorithm_doublePointer"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/algorithm_doublepointer/" data-title="Algorithm_doublePointer"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data-structure/">data structure</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/algorithm_string/" class="prev" rel="prev" title="Algorithm_string"><i class="fas fa-angle-left fa-fw"></i>Algorithm_string</a>
+            <a href="/algorithm_stackandqueue/" class="next" rel="next" title="Algorithm_stackAndQueue">Algorithm_stackAndQueue<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

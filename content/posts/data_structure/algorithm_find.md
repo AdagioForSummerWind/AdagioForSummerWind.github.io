@@ -5,7 +5,7 @@ lastmod: 2022-02-20
 tags: [data structure]
 categories: [Coding]
 slug: algo_find
-draft: false
+draft: true
 ---
 # 查找算法
 散列查找：也称哈希查找，有拉链法查找，也有线性探测法查找，拉链法使用数组链表结构，线性探测法使用数组。

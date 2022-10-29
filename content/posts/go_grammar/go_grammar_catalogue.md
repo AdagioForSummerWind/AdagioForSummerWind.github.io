@@ -5,7 +5,7 @@ lastmod: 2022-02-16
 tags: [catalogue, go grammar]
 categories: [Catalogue, Go]
 slug: Go_Catalogue
-draft: false
+draft: true
 ---
 > 参考学习go语言中文网、C语言中文网、golang官方文档等
 ![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/pgbgpohgbz.jpeg)

@@ -5,7 +5,7 @@ lastmod: 2022-08-28
 tags: [interview]
 categories: [interview]
 slug: all-interview
-draft: false
+draft: true
 ---
 
 ## Go

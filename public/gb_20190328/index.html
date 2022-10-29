@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20190328 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20190328" />
+<meta property="og:description" content="Go 2018 Survey Results Todd Kulesza, Steve Francia
+28 March 2019
+Thank you p.note { font-size: 0.80em; font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; }
+This post summarizes the results of our 2018 user survey and draws comparisons between the results of our prior surveys from 2016 and 2017.
+This year we had 5,883 survey respondents from 103 different countries. We are grateful to everyone who provided their feedback through this survey to help shape the future of Go." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20190328/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T19:41:35+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20190328"/>
+<meta name="twitter:description" content="Go 2018 Survey Results Todd Kulesza, Steve Francia
+28 March 2019
+Thank you p.note { font-size: 0.80em; font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; }
+This post summarizes the results of our 2018 user survey and draws comparisons between the results of our prior surveys from 2016 and 2017.
+This year we had 5,883 survey respondents from 103 different countries. We are grateful to everyone who provided their feedback through this survey to help shape the future of Go."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20190328/" /><link rel="prev" href="https://jefofrank.xyz/gb_20190321/" /><link rel="next" href="https://jefofrank.xyz/gb_20190626/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20190328",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20190328\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  3321 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20190328\/","datePublished": "2022-10-29T19:41:35+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20190328</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 19:41:35">2022-10-29 19:41:35</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3321 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#thank-you">Thank you</a></li>
+    <li><a href="#summary-of-findings">Summary of findings</a></li>
+    <li><a href="#programming-background">Programming background</a></li>
+    <li><a href="#development-domains">Development domains</a></li>
+    <li><a href="#attitudes-towards-go">Attitudes towards Go</a></li>
+    <li><a href="#development-environments">Development environments</a></li>
+    <li><a href="#deployments-and-services">Deployments and services</a></li>
+    <li><a href="#go-community">Go community</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-2018-survey-results">Go 2018 Survey Results</h1>
+<p>Todd Kulesza, Steve Francia<br>
+28 March 2019</p>
+<h2 id="thank-you">Thank you</h2>
+<p>p.note { font-size: 0.80em; font-family: &ldquo;Helvetica Neue&rdquo;, Arial, sans-serif; }</p>
+<p>This post summarizes the results of our 2018 user survey and draws comparisons between the results of our prior surveys from <a href="https://blog.golang.org/survey2016-results" target="_blank" rel="noopener noreffer">2016</a> and <a href="https://blog.golang.org/survey2017-results" target="_blank" rel="noopener noreffer">2017</a>.</p>
+<p>This year we had 5,883 survey respondents from 103 different countries. We are grateful to everyone who provided their feedback through this survey to help shape the future of Go. Thank you!</p>
+<h2 id="summary-of-findings">Summary of findings</h2>
+<ul>
+<li>For the first time, <strong>half of survey respondents are now using Go as part of their daily routine</strong>. This year also saw significant increases in the number of respondents who develop in Go as part of their jobs and use Go outside of work responsibilities.</li>
+<li>The most <strong>common uses for Go remain API/RPC services and CLI tools</strong>. Automation tasks, while not as common as CLI tools and API services, are a fast-growing area for Go.</li>
+<li><strong>Web development remains the most common domain</strong> that survey respondents work in, but <strong>DevOps showed the highest year-over-year growth</strong> and is now the second most common domain.</li>
+<li>A large majority of survey respondents said <strong>Go is their most-preferred programming language</strong>, despite generally feeling less proficient with it than at least one other language.</li>
+<li><strong>VS Code and GoLand are surging in popularity</strong> and are now the most popular code editors among survey respondents.</li>
+<li>Highlighting the portable nature of Go, <strong>many Go developers use more than one primary OS</strong> for development. Linux and macOS are particularly popular, with a large majority of survey respondents using one or both of these operating systems to write Go code.</li>
+<li>Survey respondents appear to be <strong>shifting away from on-prem Go deployments</strong> and moving towards containers and serverless cloud deployments.</li>
+<li>The majority of respondents said they feel welcome in the Go community, and most ideas for improving the Go community specifically focus on <strong>improving the experience of newcomers</strong>.</li>
+</ul>
+<p>Read on for all of the details.</p>
+<h2 id="programming-background">Programming background</h2>
+<p>This year’s results show a significant increase in the number of survey respondents who are paid to write Go as part of their jobs (68% → 72%), continuing a year-over-year trend that has been growing since our first survey in 2016. We also see an increase in the number of respondents who program in Go outside of work (64% → 70%). For the first time, the number of survey respondents who write in Go as part of their daily routine reached 50% (up from 44% in 2016). These findings suggest companies are continuing to embrace Go for professional software development at a consistent pace, and that Go’s general popularity with developers remains strong.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig1.svg"
+        data-srcset="survey2018/fig1.svg, survey2018/fig1.svg 1.5x, survey2018/fig1.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig1.svg"
+        title="survey2018/fig1.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig2.svg"
+        data-srcset="survey2018/fig2.svg, survey2018/fig2.svg 1.5x, survey2018/fig2.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig2.svg"
+        title="survey2018/fig2.svg" /></p>
+<p>To better understand where developers use Go, we broke responses down into three groups:</p>
+<ol>
+<li>people who are using Go both in and outside of work,</li>
+<li>people who use Go professionally but not outside of work, and 3) people who only write Go outside of their job responsibilities. Nearly half (46%) of respondents write Go code both professionally and on their own time (a 10-point increase since 2017), while the remaining respondents are closely split between either only writing Go at work, or only writing Go outside of work. The large percentage of respondents who both use Go at work and choose to use it outside of work suggests that the language appeals to developers who do not view software engineering as a day job: they also choose to hack on code outside of work responsibilities, and (as evidenced by 85% of respondents saying they’d prefer Go for their next project, see section <em>Attitudes towards Go</em> below) Go is the top language they’d prefer to use for these non-work-related projects.</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig4.svg"
+        data-srcset="survey2018/fig4.svg, survey2018/fig4.svg 1.5x, survey2018/fig4.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig4.svg"
+        title="survey2018/fig4.svg" /></p>
+<p>When asked how long they’ve been using Go, participants' answers are strongly trending upward over time, with a higher percentage of responses in the 2-4 and 4+ year buckets each year. This is expected for a newer programming language, and we’re glad to see that the percentage of respondents who are new to Go is dropping more slowly than the percentage of respondents who have been using Go for 2+ years is increasing, as this suggests that developers are not dropping out of the ecosystem after initially learning the language.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig5.svg"
+        data-srcset="survey2018/fig5.svg, survey2018/fig5.svg 1.5x, survey2018/fig5.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig5.svg"
+        title="survey2018/fig5.svg" /></p>
+<p>As in prior years, Go ranks at the top of respondents' preferred languages and languages in which they have expertise. A majority of respondents (69%) claimed expertise in 5 different languages, highlighting that their attitudes towards Go are influenced by experiences with other programming stacks. The charts below are sorted by the number of respondents who ranked each language as their most preferred/understood (the darkest blue bars), which highlights three interesting bits:</p>
+<ul>
+<li>While about ⅓ of respondents consider Go to be the language in which they have the most expertise, twice that many respondents consider it their most preferred programming language. So even though many respondents feel they haven’t become as proficient with Go as with some other language, they still frequently prefer to develop with Go.</li>
+<li>Few survey respondents rank Rust as a language in which they have expertise (6.8%), yet 19% rank it as a top preferred language, indicating a high level of interest in Rust among this audience.</li>
+<li>Only three languages have more respondents who say they prefer the language than say they have expertise with it: Rust (2.41:1 ratio of preference:expertise), Kotlin (1.95:1), and Go (1.02:1). Higher preference than expertise implies interest—but little direct experience—in a language, while lower preference than expertise numbers suggests barriers to proficient use. Ratios near 1.0 suggest that most developers are able to work effectively <em>and</em> enjoyably with a given language. This data is corroborated by <a href="https://insights.stackoverflow.com/survey/2018/#most-loved-dreaded-and-wanted" target="_blank" rel="noopener noreffer">Stack Overflow’s 2018 developer survey</a>, which also found Rust, Kotlin, and Go to be among the most-preferred programming languages.</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig6.svg"
+        data-srcset="survey2018/fig6.svg, survey2018/fig6.svg 1.5x, survey2018/fig6.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig6.svg"
+        title="survey2018/fig6.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig7.svg"
+        data-srcset="survey2018/fig7.svg, survey2018/fig7.svg 1.5x, survey2018/fig7.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig7.svg"
+        title="survey2018/fig7.svg" /></p>
+<p><em>Reading the data</em>: Participants could rank their top 5 languages. The color coding starts with dark blue for the top rank and lightens for each successive rank. These charts are sorted by the percentage of participants who ranked each language as their top choice.</p>
+<h2 id="development-domains">Development domains</h2>
+<p>Survey respondents reported working on a median of three different domains, with a large majority (72%) working in 2-5 different areas. Web development is the most prevalent at 65%, and it increased its dominance as the primary area survey respondents work in (up from 61% last year): web development has been the most common domain for Go development since 2016. This year DevOps noticeably increased, from 36% to 41% of respondents, taking over the number two spot from Systems Programming. We did not find any domains with lower usage in 2018 than in 2017, suggesting that respondents are adopting Go for a wider variety of projects, rather than shifting usage from one domain to another.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig8.svg"
+        data-srcset="survey2018/fig8.svg, survey2018/fig8.svg 1.5x, survey2018/fig8.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig8.svg"
+        title="survey2018/fig8.svg" /></p>
+<p>Since 2016, the top two uses of Go have been writing API/RPC services and developing CLI applications. While CLI usage has remained stable at 63% for three years, API/RPC usage has increased from 60% in 2016 to 65% in 2017 to 73% today. These domains play to core strengths of Go and are both central to cloud-native software development, so we expect them to remain two of the primary scenarios for Go developers into the future. The percentage of respondents who write web services that directly return HTML has steadily dropped while API/RPC usage has increased, suggesting some migration to the API/RPC model for web services. Another year-over-year trend suggests that automation is also a growing area for Go, with 38% of respondents now using Go for scripts and automation tasks (up from 31% in 2016).</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig9.svg"
+        data-srcset="survey2018/fig9.svg, survey2018/fig9.svg 1.5x, survey2018/fig9.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig9.svg"
+        title="survey2018/fig9.svg" /></p>
+<p>To better understand the contexts in which developers are using Go, we added a question about Go adoption across different industries. Perhaps unsurprisingly for a relatively new language, over half of survey respondents work in companies in the <em>Internet/web services</em> and <em>Software</em> categories (i.e., tech companies). The only other industries with &gt;3% responses were <em>Finance, banking, or insurance</em> and <em>Media, advertising, publishing, or entertainment</em>. (In the chart below, we’ve condensed all of the categories with response rates below 3% into the “Other” category.) We’ll continue tracking Go’s adoption across industries to better understand developer needs outside of technology companies.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig10.svg"
+        data-srcset="survey2018/fig10.svg, survey2018/fig10.svg 1.5x, survey2018/fig10.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig10.svg"
+        title="survey2018/fig10.svg" /></p>
+<h2 id="attitudes-towards-go">Attitudes towards Go</h2>
+<p>This year we added a question asking “How likely are you to recommend Go to a friend or colleague?” to calculate our <a href="https://en.wikipedia.org/wiki/Net_Promoter" target="_blank" rel="noopener noreffer">Net Promoter Score</a>. This score attempts to measure how many more “promoters” a product has than “detractors” and ranges from -100 to 100; a positive value suggests most people are likely to recommend using a product, while negative values suggest most people are likely to recommend against using it. Our 2018 score is 61 (68% promoters - 7% detractors) and will serve as a baseline to help us gauge community sentiment towards the Go ecosystem over time.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig11.svg"
+        data-srcset="survey2018/fig11.svg, survey2018/fig11.svg 1.5x, survey2018/fig11.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig11.svg"
+        title="survey2018/fig11.svg" /></p>
+<p>In addition to NPS, we asked several questions about developer satisfaction with Go. Overall, survey respondents indicated a high level of satisfaction, consistent with prior years. Large majorities say they are happy with Go (89%), would prefer to use Go for their next project (85%), and feel that it is working well for their team (66%), while a plurality feel that Go is at least somewhat critical to their company’s success (44%). While all of these metrics showed an increase in 2017, they remained mostly stable this year. (The wording of the first question changed in 2018 from “<em>I would recommend using Go to others</em>” to “<em>Overall, I’m happy with Go</em>”, so those results are not directly comparable.)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig12.svg"
+        data-srcset="survey2018/fig12.svg, survey2018/fig12.svg 1.5x, survey2018/fig12.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig12.svg"
+        title="survey2018/fig12.svg" /></p>
+<p>Given the strong sentiment towards preferring Go for future development, we want to understand what prevents developers from doing so. These remained largely unchanged since last year: about ½ of survey respondents work on existing projects written in other languages, and ⅓ work on a team or project that prefers to use a different language. Missing language features and libraries round out the most common reasons respondents did not use Go more. We also asked about the biggest challenges developers face while using Go; unlike most of our survey questions, respondents could type in anything they wished to answer this question. We analyzed the results via machine learning to identify common themes and counting the number of responses that supported each theme. The top three major challenges we identified are:</p>
+<ul>
+<li>Package management (e.g., “Keeping up with vendoring”, “dependency / packet [sic] management / vendoring not unified”)</li>
+<li>Differences from more familiar programming languages (e.g., “syntax close to C-languages with slightly different semantics makes me look up references somewhat more than I’d like”, “coworkers who come from non-Go backgrounds trying to use Go as a version of their previous language but with channels and Goroutines”)</li>
+<li>Lack of generics (e.g., “Lack of generics makes it difficult to persuade people who have not tried Go that they would find it efficient.”, “Hard to build richer abstractions (want generics)&quot;)</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig13.svg"
+        data-srcset="survey2018/fig13.svg, survey2018/fig13.svg 1.5x, survey2018/fig13.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig13.svg"
+        title="survey2018/fig13.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig14.svg"
+        data-srcset="survey2018/fig14.svg, survey2018/fig14.svg 1.5x, survey2018/fig14.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig14.svg"
+        title="survey2018/fig14.svg" /></p>
+<p>This year we added several questions about developer satisfaction with different aspects of Go. Survey respondents were very satisfied with Go applications' CPU performance (46:1, meaning 46 respondents said they were satisfied for every 1 respondent who said they were not satisfied), build speed (37:1), and application memory utilization (32:1). Responses for application debuggability (3.2:1) and binary size (6.4:1), however, suggest room for improvement.</p>
+<p>The dissatisfaction with binary size largely comes from developers building CLIs, only 30% of whom are satisfied with the size of Go’s generated binaries. For all other types of applications, however, developer satisfaction was &gt; 50%, and binary size was consistently ranked at the bottom of the list of important factors.</p>
+<p>Debuggability, conversely, stands out when we look at how respondents ranked the importance of each aspect; 44% of respondents ranked debuggability as their most or second-most important aspect, but only 36% were satisfied with the current state of Go debugging. Debuggability was consistently rated about as important as memory usage and build speed but with significantly lower satisfaction levels, and this pattern held true regardless of the type of software respondents were building. The two most recent Go releases, Go 1.11 and 1.12, both contained significant improvements to debuggability. We plan to investigate how developers debug Go applications in more depth this year, with a goal of improving the overall debugging experience for Go developers.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig15.svg"
+        data-srcset="survey2018/fig15.svg, survey2018/fig15.svg 1.5x, survey2018/fig15.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig15.svg"
+        title="survey2018/fig15.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig29.svg"
+        data-srcset="survey2018/fig29.svg, survey2018/fig29.svg 1.5x, survey2018/fig29.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig29.svg"
+        title="survey2018/fig29.svg" /></p>
+<h2 id="development-environments">Development environments</h2>
+<p>We asked respondents which operating systems they primarily use when writing Go code. A majority (65%) of respondents said they use Linux, 50% use macOS, and 18% use Windows, consistent with last year. This year we also looked at how many respondents develop on multiple OSes vs. a single OS. Linux and macOS remain the clear leaders, with 81% of respondents developing on some mix of these two systems. Only 3% of respondents evenly split their time between all three OSes. Overall, 41% of respondents use multiple operating systems for Go development, highlighting the cross-platform nature of Go.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig16.svg"
+        data-srcset="survey2018/fig16.svg, survey2018/fig16.svg 1.5x, survey2018/fig16.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig16.svg"
+        title="survey2018/fig16.svg" /></p>
+<p>Last year, VS Code edged out Vim as the most popular Go editor among survey respondents. This year it significantly expanded its lead to become the preferred editor for over ⅓ of our survey respondents (up from 27% last year). GoLand also experienced strong growth and is now the second most-preferred editor at 22%, swapping places with Vim (down to 17%). The surging popularity of VS Code and GoLand appear to be coming at the expense of Sublime Text and Atom. Vim also saw the number of respondents ranking it their top choice drop, but it remains the most popular second-choice editor at 14%. Interestingly, we found no differences in the level of satisfaction respondents reported for their editor(s) of choice.</p>
+<p>We also asked respondents what would most improve Go support in their preferred editor. Like the “biggest challenge” question above, participants could write in their own response rather than select from a multiple-choice list. A thematic analysis on the responses revealed that <em>improved debugging support</em> (e.g., “Live debugging”, “Integrated debugging”, “Even better debugging”) was the most-common request, followed by <em>improved code completion</em> (e.g., “autocomplete performance and quality”, “smarter autocomplete”). Other requests include better integration with Go’s CLI toolchain, better support for modules/packages, and general performance improvements.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig17.svg"
+        data-srcset="survey2018/fig17.svg, survey2018/fig17.svg 1.5x, survey2018/fig17.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig17.svg"
+        title="survey2018/fig17.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig18.svg"
+        data-srcset="survey2018/fig18.svg, survey2018/fig18.svg 1.5x, survey2018/fig18.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig18.svg"
+        title="survey2018/fig18.svg" /></p>
+<p>This year we also added a question asking which deployment architectures are most important to Go developers. Unsurprisingly, survey respondents overwhelmingly view x86/x86-64 as their top deployment platform (76% of respondents listed it as their most important deployment architecture, and 84% had it in their top 3). The ranking of the second- and third-choice architectures, however, is informative: there is significant interest in ARM64 (45%), WebAssembly (30%), and ARM (22%), but very little interest in other platforms.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig19.svg"
+        data-srcset="survey2018/fig19.svg, survey2018/fig19.svg 1.5x, survey2018/fig19.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig19.svg"
+        title="survey2018/fig19.svg" /></p>
+<h2 id="deployments-and-services">Deployments and services</h2>
+<p>For 2018 we see a continuation of the trend from on-prem to cloud hosting for both Go and non-Go deployments. The percentage of survey respondents who deploy Go applications to on-prem servers dropped from 43% → 32%, mirroring the 46% → 36% drop reported for non-Go deployments. The cloud services which saw the highest year-over-year growth include AWS Lambda (4% → 11% for Go, 10% → 15% non-Go) and Google Kubernetes Engine (8% → 12% for Go, 5% → 10% non-Go), suggesting that serverless and containers are becoming increasingly popular deployment platforms. This service growth appears to be driven by respondents who had already adopted cloud services, however, as we found no meaningful growth in the percentage of respondents who deploy to at least one cloud service this year (55% → 56%). We also see steady growth in Go deployments to GCP since 2016, increasing from 12% → 19% of respondents.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig20.svg"
+        data-srcset="survey2018/fig20.svg, survey2018/fig20.svg 1.5x, survey2018/fig20.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig20.svg"
+        title="survey2018/fig20.svg" /></p>
+<p>Perhaps correlated with the decrease in on-prem deployments, this year we saw cloud storage become the second-most used service by survey respondents, increasing from 32% → 44%. Authentication &amp; federation services also saw a significant increase (26% → 33%). The primary service survey respondents access from Go remains open-source relational databases, which ticked up from 61% → 65% of respondents. As the below chart shows, service usage increased across the board.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig21.svg"
+        data-srcset="survey2018/fig21.svg, survey2018/fig21.svg 1.5x, survey2018/fig21.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig21.svg"
+        title="survey2018/fig21.svg" /></p>
+<h2 id="go-community">Go community</h2>
+<p>The top community sources for finding answers to Go questions continue to be Stack Overflow (23% of respondents marked it as their top source), Go web sites (18% for godoc.org, 14% for golang.org), and reading source code (8% for source code generally, 4% for GitHub specifically). The order remains largely consistent with prior years. The primary sources for Go news remain the Go blog, Reddit’s r/golang, Twitter, and Hacker News. These were also the primary distribution methods for this survey, however, so there is likely some bias in this result. In the two charts below, we’ve grouped sources used by less than &lt; 5% of respondents into the “Other” category.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig24.svg"
+        data-srcset="survey2018/fig24.svg, survey2018/fig24.svg 1.5x, survey2018/fig24.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig24.svg"
+        title="survey2018/fig24.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig25.svg"
+        data-srcset="survey2018/fig25.svg, survey2018/fig25.svg 1.5x, survey2018/fig25.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig25.svg"
+        title="survey2018/fig25.svg" /></p>
+<p>This year, 55% of survey respondents said they have or are interested in contributing to the Go community, slightly down from 59% last year. Because the two most common areas for contribution (the standard library and official Go tools) require interacting with the core Go team, we suspect this decrease may be related to a dip in the percentage of participants who agreed with the statements “I feel comfortable approaching the Go project leadership with questions and feedback” (30% → 25%) and “I am confident in the leadership of Go (54% → 46%).</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig26.svg"
+        data-srcset="survey2018/fig26.svg, survey2018/fig26.svg 1.5x, survey2018/fig26.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig26.svg"
+        title="survey2018/fig26.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig27.svg"
+        data-srcset="survey2018/fig27.svg, survey2018/fig27.svg 1.5x, survey2018/fig27.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig27.svg"
+        title="survey2018/fig27.svg" /></p>
+<p>An important aspect of community is helping everyone feel welcome, especially people from traditionally under-represented demographics. To better understand this, we asked an optional question about identification across several under-represented groups. In 2017 we saw year-over-year increases across the board. For 2018, we saw a similar percentage of respondents (12%) identify as part of an under-represented group, and this was paired with a significant decrease in the percentage of respondents who do <strong>not</strong> identify as part of an under-represented group. In 2017, for every person who identified as part of an under-represented group, 3.5 people identified as not part of an under-represented group (3.5:1 ratio). In 2018 that ratio improved to 3.08:1. This suggests that the Go community is at least retaining the same proportions of under-represented members, and may even be increasing.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig28.svg"
+        data-srcset="survey2018/fig28.svg, survey2018/fig28.svg 1.5x, survey2018/fig28.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig28.svg"
+        title="survey2018/fig28.svg" /></p>
+<p>Maintaining a healthy community is extremely important to the Go project, so for the past three years we’ve been measuring the extent to which developers feel welcome in the Go community. This year we saw a drop in the percentage of survey respondents who agree with the statement “I feel welcome in the Go community”, from 66% → 59%.</p>
+<p>To better understand this decrease, we looked more closely at who reported feeling less welcome. Among traditionally under-represented groups, fewer people reported feeling unwelcome in 2018, suggesting that outreach in that area has been helpful. Instead, we found a linear relationship between the length of time someone has used Go and how welcome they feel: newer Go developers felt significantly less welcome (at 50%) than developers with 1-2 years of experience (62%), who in turn felt less welcome than developers with a few years of experience (73%). This interpretation of the data is supported by responses to the question “What changes would make the Go community more welcoming?”. Respondents' comments can be broadly grouped into four categories:</p>
+<ul>
+<li>Reduce a perception of elitism, especially for newcomers to Go (e.g., “less dismissiveness”, “Less defensiveness and hubris”)</li>
+<li>Increase transparency at the leadership level (e.g., “Future direction and planning discussions”, “Less top down leadership”, “More democratic”)</li>
+<li>Increase introductory resources (e.g., “A more clear introduction for contributors”, “Fun challenges to learn best practices”)</li>
+<li>More events and meetups, with a focus on covering a larger geographic area (e.g., “More meetups &amp; social events”, “Events in more cities”)</li>
+</ul>
+<p>This feedback is very helpful and gives us concrete areas we can focus on to improve the experience of being a Go developer. While it doesn’t represent a large percentage of our user base, we take this feedback very seriously and are working on improving each area.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig22.svg"
+        data-srcset="survey2018/fig22.svg, survey2018/fig22.svg 1.5x, survey2018/fig22.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig22.svg"
+        title="survey2018/fig22.svg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2018/fig23.svg"
+        data-srcset="survey2018/fig23.svg, survey2018/fig23.svg 1.5x, survey2018/fig23.svg 2x"
+        data-sizes="auto"
+        alt="survey2018/fig23.svg"
+        title="survey2018/fig23.svg" /></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We hope you’ve enjoyed seeing the results of our 2018 developer survey. These results are impacting our 2019 planning, and in the coming months we’ll share some ideas with you to address specific issues and needs the community has highlighted for us. Once again, thank you to everyone who contributed to this survey!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20190328/" data-title="Gb_20190328" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20190328/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20190328/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20190328/" data-title="Gb_20190328"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20190328/" data-title="Gb_20190328"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20190328/" data-title="Gb_20190328"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20190321/" class="prev" rel="prev" title="Gb_20190321"><i class="fas fa-angle-left fa-fw"></i>Gb_20190321</a>
+            <a href="/gb_20190626/" class="next" rel="next" title="Gb_20190626">Gb_20190626<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

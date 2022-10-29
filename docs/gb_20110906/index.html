@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20110906 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20110906" />
+<meta property="og:description" content="The Laws of Reflection Rob Pike
+6 September 2011
+Introduction Reflection in computing is the ability of a program to examine its own structure, particularly through types; it’s a form of metaprogramming. It’s also a great source of confusion.
+In this article we attempt to clarify things by explaining how reflection works in Go. Each language’s reflection model is different (and many languages don’t support it at all), but this article is about Go, so for the rest of this article the word “reflection” should be taken to mean “reflection in Go”." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20110906/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-23T22:56:52+08:00" />
+<meta property="article:modified_time" content="2022-10-23T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20110906"/>
+<meta name="twitter:description" content="The Laws of Reflection Rob Pike
+6 September 2011
+Introduction Reflection in computing is the ability of a program to examine its own structure, particularly through types; it’s a form of metaprogramming. It’s also a great source of confusion.
+In this article we attempt to clarify things by explaining how reflection works in Go. Each language’s reflection model is different (and many languages don’t support it at all), but this article is about Go, so for the rest of this article the word “reflection” should be taken to mean “reflection in Go”."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20110906/" /><link rel="prev" href="https://jefofrank.xyz/gb_20110901/" /><link rel="next" href="https://jefofrank.xyz/gb_20110921/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20110906",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20110906\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  2894 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20110906\/","datePublished": "2022-10-23T22:56:52+08:00","dateModified": "2022-10-23T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20110906</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-23 22:56:52">2022-10-23 22:56:52</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2894 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#types-and-interfaces">Types and interfaces</a></li>
+    <li><a href="#the-representation-of-an-interface">The representation of an interface</a></li>
+    <li><a href="#the-first-law-of-reflection">The first law of reflection</a></li>
+    <li><a href="#1-reflection-goes-from-interface-value-to-reflection-object">1. Reflection goes from interface value to reflection object.</a></li>
+    <li><a href="#the-second-law-of-reflection">The second law of reflection</a></li>
+    <li><a href="#2-reflection-goes-from-reflection-object-to-interface-value">2. Reflection goes from reflection object to interface value.</a></li>
+    <li><a href="#the-third-law-of-reflection">The third law of reflection</a></li>
+    <li><a href="#3-to-modify-a-reflection-object-the-value-must-be-settable">3. To modify a reflection object, the value must be settable.</a></li>
+    <li><a href="#structs">Structs</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="the-laws-of-reflection">The Laws of Reflection</h1>
+<p>Rob Pike<br>
+6 September 2011</p>
+<h2 id="introduction">Introduction</h2>
+<p>Reflection in computing is the ability of a program to examine its own structure, particularly through types; it’s a form of metaprogramming. It’s also a great source of confusion.</p>
+<p>In this article we attempt to clarify things by explaining how reflection works in Go. Each language’s reflection model is different (and many languages don’t support it at all), but this article is about Go, so for the rest of this article the word “reflection” should be taken to mean “reflection in Go”.</p>
+<p>Note added January 2022: This blog post was written in 2011 and predates parametric polymorphism (a.k.a. generics) in Go. Although nothing important in the article has become incorrect as a result of that development in the language, it has been tweaked in a few places to avoid confusing someone familiar with modern Go.</p>
+<h2 id="types-and-interfaces">Types and interfaces</h2>
+<p>Because reflection builds on the type system, let’s start with a refresher about types in Go.</p>
+<p>Go is statically typed. Every variable has a static type, that is, exactly one type known and fixed at compile time: <code>int</code>, <code>float32</code>, <code>*MyType</code>, <code>[]byte</code>, and so on. If we declare</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type MyInt int
+
+var i int
+var j MyInt
+</code></pre></td></tr></table>
+</div>
+</div><p>then <code>i</code> has type <code>int</code> and <code>j</code> has type <code>MyInt</code>. The variables <code>i</code> and <code>j</code> have distinct static types and, although they have the same underlying type, they cannot be assigned to one another without a conversion.</p>
+<p>One important category of type is interface types, which represent fixed sets of methods. (When discussing reflection, we can ignore the use of interface definitions as constraints within polymorphic code.) An interface variable can store any concrete (non-interface) value as long as that value implements the interface’s methods. A well-known pair of examples is <code>io.Reader</code> and <code>io.Writer</code>, the types <code>Reader</code> and <code>Writer</code> from the <a href="https://go.dev/pkg/io/" target="_blank" rel="noopener noreffer">io package</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// Reader is the interface that wraps the basic Read method.
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+// Writer is the interface that wraps the basic Write method.
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Any type that implements a <code>Read</code> (or <code>Write</code>) method with this signature is said to implement <code>io.Reader</code> (or <code>io.Writer</code>). For the purposes of this discussion, that means that a variable of type <code>io.Reader</code> can hold any value whose type has a <code>Read</code> method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var r io.Reader
+r = os.Stdin
+r = bufio.NewReader(r)
+r = new(bytes.Buffer)
+// and so on
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s important to be clear that whatever concrete value <code>r</code> may hold, <code>r</code>’s type is always <code>io.Reader</code>: Go is statically typed and the static type of <code>r</code> is <code>io.Reader</code>.</p>
+<p>An extremely important example of an interface type is the empty interface:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">interface{}
+</code></pre></td></tr></table>
+</div>
+</div><p>or its equivalent alias,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">any
+</code></pre></td></tr></table>
+</div>
+</div><p>It represents the empty set of methods and is satisfied by any value at all, since every value has zero or more methods.</p>
+<p>Some people say that Go’s interfaces are dynamically typed, but that is misleading. They are statically typed: a variable of interface type always has the same static type, and even though at run time the value stored in the interface variable may change type, that value will always satisfy the interface.</p>
+<p>We need to be precise about all this because reflection and interfaces are closely related.</p>
+<h2 id="the-representation-of-an-interface">The representation of an interface</h2>
+<p>Russ Cox has written a <a href="https://research.swtch.com/2009/12/go-data-structures-interfaces.html" target="_blank" rel="noopener noreffer">detailed blog post</a> about the representation of interface values in Go. It’s not necessary to repeat the full story here, but a simplified summary is in order.</p>
+<p>A variable of interface type stores a pair: the concrete value assigned to the variable, and that value’s type descriptor. To be more precise, the value is the underlying concrete data item that implements the interface and the type describes the full type of that item. For instance, after</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var r io.Reader
+tty, err := os.OpenFile(&#34;/dev/tty&#34;, os.O_RDWR, 0)
+if err != nil {
+    return nil, err
+}
+r = tty
+</code></pre></td></tr></table>
+</div>
+</div><p><code>r</code> contains, schematically, the (value, type) pair, (<code>tty</code>, <code>*os.File</code>). Notice that the type <code>*os.File</code> implements methods other than <code>Read</code>; even though the interface value provides access only to the <code>Read</code> method, the value inside carries all the type information about that value. That’s why we can do things like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var w io.Writer
+w = r.(io.Writer)
+</code></pre></td></tr></table>
+</div>
+</div><p>The expression in this assignment is a type assertion; what it asserts is that the item inside <code>r</code> also implements <code>io.Writer</code>, and so we can assign it to <code>w</code>. After the assignment, <code>w</code> will contain the pair (<code>tty</code>, <code>*os.File</code>). That’s the same pair as was held in <code>r</code>. The static type of the interface determines what methods may be invoked with an interface variable, even though the concrete value inside may have a larger set of methods.</p>
+<p>Continuing, we can do this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var empty interface{}
+empty = w
+</code></pre></td></tr></table>
+</div>
+</div><p>and our empty interface value <code>empty</code> will again contain that same pair, (<code>tty</code>, <code>*os.File</code>). That’s handy: an empty interface can hold any value and contains all the information we could ever need about that value.</p>
+<p>(We don’t need a type assertion here because it’s known statically that <code>w</code> satisfies the empty interface. In the example where we moved a value from a <code>Reader</code> to a <code>Writer</code>, we needed to be explicit and use a type assertion because <code>Writer</code>’s methods are not a subset of <code>Reader</code>’s.)</p>
+<p>One important detail is that the pair inside an interface variable always has the form (value, concrete type) and cannot have the form (value, interface type). Interfaces do not hold interface values.</p>
+<p>Now we’re ready to reflect.</p>
+<h2 id="the-first-law-of-reflection">The first law of reflection</h2>
+<h2 id="1-reflection-goes-from-interface-value-to-reflection-object">1. Reflection goes from interface value to reflection object.</h2>
+<p>At the basic level, reflection is just a mechanism to examine the type and value pair stored inside an interface variable. To get started, there are two types we need to know about in <a href="https://go.dev/pkg/reflect/" target="_blank" rel="noopener noreffer">package reflect</a>: <a href="https://go.dev/pkg/reflect/#Type" target="_blank" rel="noopener noreffer">Type</a> and <a href="https://go.dev/pkg/reflect/#Value" target="_blank" rel="noopener noreffer">Value</a>. Those two types give access to the contents of an interface variable, and two simple functions, called <code>reflect.TypeOf</code> and <code>reflect.ValueOf</code>, retrieve <code>reflect.Type</code> and <code>reflect.Value</code> pieces out of an interface value. (Also, from a <code>reflect.Value</code> it’s easy to get to the corresponding <code>reflect.Type</code>, but let’s keep the <code>Value</code> and <code>Type</code> concepts separate for now.)</p>
+<p>Let’s start with <code>TypeOf</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;reflect&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="kt">float64</span> <span class="p">=</span> <span class="mf">3.4</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;type:&#34;</span><span class="p">,</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This program prints</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type: float64
+</code></pre></td></tr></table>
+</div>
+</div><p>You might be wondering where the interface is here, since the program looks like it’s passing the <code>float64</code> variable <code>x</code>, not an interface value, to <code>reflect.TypeOf</code>. But it’s there; as <a href="https://go.dev/pkg/reflect/#TypeOf" target="_blank" rel="noopener noreffer">godoc reports</a>, the signature of <code>reflect.TypeOf</code> includes an empty interface:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// TypeOf returns the reflection Type of the value in the interface{}.
+func TypeOf(i interface{}) Type
+</code></pre></td></tr></table>
+</div>
+</div><p>When we call <code>reflect.TypeOf(x)</code>, <code>x</code> is first stored in an empty interface, which is then passed as the argument; <code>reflect.TypeOf</code> unpacks that empty interface to recover the type information.</p>
+<p>The <code>reflect.ValueOf</code> function, of course, recovers the value (from here on we’ll elide the boilerplate and focus just on the executable code):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+fmt.Println(&#34;value:&#34;, reflect.ValueOf(x).String())
+</code></pre></td></tr></table>
+</div>
+</div><p>prints</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">value: &lt;float64 Value&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>(We call the <code>String</code> method explicitly because by default the <code>fmt</code> package digs into a <code>reflect.Value</code> to show the concrete value inside. The <code>String</code> method does not.)</p>
+<p>Both <code>reflect.Type</code> and <code>reflect.Value</code> have lots of methods to let us examine and manipulate them. One important example is that <code>Value</code> has a <code>Type</code> method that returns the <code>Type</code> of a <code>reflect.Value</code>. Another is that both <code>Type</code> and <code>Value</code> have a <code>Kind</code> method that returns a constant indicating what sort of item is stored: <code>Uint</code>, <code>Float64</code>, <code>Slice</code>, and so on. Also methods on <code>Value</code> with names like <code>Int</code> and <code>Float</code> let us grab values (as <code>int64</code> and <code>float64</code>) stored inside:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+v := reflect.ValueOf(x)
+fmt.Println(&#34;type:&#34;, v.Type())
+fmt.Println(&#34;kind is float64:&#34;, v.Kind() == reflect.Float64)
+fmt.Println(&#34;value:&#34;, v.Float())
+</code></pre></td></tr></table>
+</div>
+</div><p>prints</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type: float64
+kind is float64: true
+value: 3.4
+</code></pre></td></tr></table>
+</div>
+</div><p>There are also methods like <code>SetInt</code> and <code>SetFloat</code> but to use them we need to understand settability, the subject of the third law of reflection, discussed below.</p>
+<p>The reflection library has a couple of properties worth singling out. First, to keep the API simple, the “getter” and “setter” methods of <code>Value</code> operate on the largest type that can hold the value: <code>int64</code> for all the signed integers, for instance. That is, the <code>Int</code> method of <code>Value</code> returns an <code>int64</code> and the <code>SetInt</code> value takes an <code>int64</code>; it may be necessary to convert to the actual type involved:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x uint8 = &#39;x&#39;
+v := reflect.ValueOf(x)
+fmt.Println(&#34;type:&#34;, v.Type())                            // uint8.
+fmt.Println(&#34;kind is uint8: &#34;, v.Kind() == reflect.Uint8) // true.
+x = uint8(v.Uint())                                       // v.Uint returns a uint64.
+</code></pre></td></tr></table>
+</div>
+</div><p>The second property is that the <code>Kind</code> of a reflection object describes the underlying type, not the static type. If a reflection object contains a value of a user-defined integer type, as in</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type MyInt int
+var x MyInt = 7
+v := reflect.ValueOf(x)
+</code></pre></td></tr></table>
+</div>
+</div><p>the <code>Kind</code> of <code>v</code> is still <code>reflect.Int</code>, even though the static type of <code>x</code> is <code>MyInt</code>, not <code>int</code>. In other words, the <code>Kind</code> cannot discriminate an <code>int</code> from a <code>MyInt</code> even though the <code>Type</code> can.</p>
+<h2 id="the-second-law-of-reflection">The second law of reflection</h2>
+<h2 id="2-reflection-goes-from-reflection-object-to-interface-value">2. Reflection goes from reflection object to interface value.</h2>
+<p>Like physical reflection, reflection in Go generates its own inverse.</p>
+<p>Given a <code>reflect.Value</code> we can recover an interface value using the <code>Interface</code> method; in effect the method packs the type and value information back into an interface representation and returns the result:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// Interface returns v&#39;s value as an interface{}.
+func (v Value) Interface() interface{}
+</code></pre></td></tr></table>
+</div>
+</div><p>As a consequence we can say</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">y := v.Interface().(float64) // y will have type float64.
+fmt.Println(y)
+</code></pre></td></tr></table>
+</div>
+</div><p>to print the <code>float64</code> value represented by the reflection object <code>v</code>.</p>
+<p>We can do even better, though. The arguments to <code>fmt.Println</code>, <code>fmt.Printf</code> and so on are all passed as empty interface values, which are then unpacked by the <code>fmt</code> package internally just as we have been doing in the previous examples. Therefore all it takes to print the contents of a <code>reflect.Value</code> correctly is to pass the result of the <code>Interface</code> method to the formatted print routine:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">fmt.Println(v.Interface())
+</code></pre></td></tr></table>
+</div>
+</div><p>(Since this article was first written, a change was made to the <code>fmt</code> package so that it automatically unpacks a <code>reflect.Value</code> like this, so we could just say</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">fmt.Println(v)
+</code></pre></td></tr></table>
+</div>
+</div><p>for the same result, but for clarity we’ll keep the <code>.Interface()</code> calls here.)</p>
+<p>Since our value is a <code>float64</code>, we can even use a floating-point format if we want:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">fmt.Printf(&#34;value is %7.1e\n&#34;, v.Interface())
+</code></pre></td></tr></table>
+</div>
+</div><p>and get in this case</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">3.4e+00
+</code></pre></td></tr></table>
+</div>
+</div><p>Again, there’s no need to type-assert the result of <code>v.Interface()</code> to <code>float64</code>; the empty interface value has the concrete value’s type information inside and <code>Printf</code> will recover it.</p>
+<p>In short, the <code>Interface</code> method is the inverse of the <code>ValueOf</code> function, except that its result is always of static type <code>interface{}</code>.</p>
+<p>Reiterating: Reflection goes from interface values to reflection objects and back again.</p>
+<h2 id="the-third-law-of-reflection">The third law of reflection</h2>
+<h2 id="3-to-modify-a-reflection-object-the-value-must-be-settable">3. To modify a reflection object, the value must be settable.</h2>
+<p>The third law is the most subtle and confusing, but it’s easy enough to understand if we start from first principles.</p>
+<p>Here is some code that does not work, but is worth studying.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+v := reflect.ValueOf(x)
+v.SetFloat(7.1) // Error: will panic.
+</code></pre></td></tr></table>
+</div>
+</div><p>If you run this code, it will panic with the cryptic message</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">panic: reflect.Value.SetFloat using unaddressable value
+</code></pre></td></tr></table>
+</div>
+</div><p>The problem is not that the value <code>7.1</code> is not addressable; it’s that <code>v</code> is not settable. Settability is a property of a reflection <code>Value</code>, and not all reflection <code>Values</code> have it.</p>
+<p>The <code>CanSet</code> method of <code>Value</code> reports the settability of a <code>Value</code>; in our case,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+v := reflect.ValueOf(x)
+fmt.Println(&#34;settability of v:&#34;, v.CanSet())
+</code></pre></td></tr></table>
+</div>
+</div><p>prints</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">settability of v: false
+</code></pre></td></tr></table>
+</div>
+</div><p>It is an error to call a <code>Set</code> method on a non-settable <code>Value</code>. But what is settability?</p>
+<p>Settability is a bit like addressability, but stricter. It’s the property that a reflection object can modify the actual storage that was used to create the reflection object. Settability is determined by whether the reflection object holds the original item. When we say</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+v := reflect.ValueOf(x)
+</code></pre></td></tr></table>
+</div>
+</div><p>we pass a copy of <code>x</code> to <code>reflect.ValueOf</code>, so the interface value created as the argument to <code>reflect.ValueOf</code> is a copy of <code>x</code>, not <code>x</code> itself. Thus, if the statement</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">v.SetFloat(7.1)
+</code></pre></td></tr></table>
+</div>
+</div><p>were allowed to succeed, it would not update <code>x</code>, even though <code>v</code> looks like it was created from <code>x</code>. Instead, it would update the copy of <code>x</code> stored inside the reflection value and <code>x</code> itself would be unaffected. That would be confusing and useless, so it is illegal, and settability is the property used to avoid this issue.</p>
+<p>If this seems bizarre, it’s not. It’s actually a familiar situation in unusual garb. Think of passing <code>x</code> to a function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">f(x)
+</code></pre></td></tr></table>
+</div>
+</div><p>We would not expect <code>f</code> to be able to modify <code>x</code> because we passed a copy of <code>x</code>’s value, not <code>x</code> itself. If we want <code>f</code> to modify <code>x</code> directly we must pass our function the address of <code>x</code> (that is, a pointer to <code>x</code>):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">f(&amp;x)
+</code></pre></td></tr></table>
+</div>
+</div><p>This is straightforward and familiar, and reflection works the same way. If we want to modify <code>x</code> by reflection, we must give the reflection library a pointer to the value we want to modify.</p>
+<p>Let’s do that. First we initialize <code>x</code> as usual and then create a reflection value that points to it, called <code>p</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var x float64 = 3.4
+p := reflect.ValueOf(&amp;x) // Note: take the address of x.
+fmt.Println(&#34;type of p:&#34;, p.Type())
+fmt.Println(&#34;settability of p:&#34;, p.CanSet())
+</code></pre></td></tr></table>
+</div>
+</div><p>The output so far is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type of p: *float64
+settability of p: false
+</code></pre></td></tr></table>
+</div>
+</div><p>The reflection object <code>p</code> isn’t settable, but it’s not <code>p</code> we want to set, it’s (in effect) <code>*p</code>. To get to what <code>p</code> points to, we call the <code>Elem</code> method of <code>Value</code>, which indirects through the pointer, and save the result in a reflection <code>Value</code> called <code>v</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">v := p.Elem()
+fmt.Println(&#34;settability of v:&#34;, v.CanSet())
+</code></pre></td></tr></table>
+</div>
+</div><p>Now <code>v</code> is a settable reflection object, as the output demonstrates,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">settability of v: true
+</code></pre></td></tr></table>
+</div>
+</div><p>and since it represents <code>x</code>, we are finally able to use <code>v.SetFloat</code> to modify the value of <code>x</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">v.SetFloat(7.1)
+fmt.Println(v.Interface())
+fmt.Println(x)
+</code></pre></td></tr></table>
+</div>
+</div><p>The output, as expected, is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">7.1
+7.1
+</code></pre></td></tr></table>
+</div>
+</div><p>Reflection can be hard to understand but it’s doing exactly what the language does, albeit through reflection <code>Types</code> and <code>Values</code> that can disguise what’s going on. Just keep in mind that reflection Values need the address of something in order to modify what they represent.</p>
+<h2 id="structs">Structs</h2>
+<p>In our previous example <code>v</code> wasn’t a pointer itself, it was just derived from one. A common way for this situation to arise is when using reflection to modify the fields of a structure. As long as we have the address of the structure, we can modify its fields.</p>
+<p>Here’s a simple example that analyzes a struct value, <code>t</code>. We create the reflection object with the address of the struct because we’ll want to modify it later. Then we set <code>typeOfT</code> to its type and iterate over the fields using straightforward method calls (see <a href="https://go.dev/pkg/reflect/" target="_blank" rel="noopener noreffer">package reflect</a> for details). Note that we extract the names of the fields from the struct type, but the fields themselves are regular <code>reflect.Value</code> objects.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type T struct {
+    A int
+    B string
+}
+t := T{23, &#34;skidoo&#34;}
+s := reflect.ValueOf(&amp;t).Elem()
+typeOfT := s.Type()
+for i := 0; i &lt; s.NumField(); i++ {
+    f := s.Field(i)
+    fmt.Printf(&#34;%d: %s %s = %v\n&#34;, i,
+        typeOfT.Field(i).Name, f.Type(), f.Interface())
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The output of this program is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0: A int = 23
+1: B string = skidoo
+</code></pre></td></tr></table>
+</div>
+</div><p>There’s one more point about settability introduced in passing here: the field names of <code>T</code> are upper case (exported) because only exported fields of a struct are settable.</p>
+<p>Because <code>s</code> contains a settable reflection object, we can modify the fields of the structure.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">s.Field(0).SetInt(77)
+s.Field(1).SetString(&#34;Sunset Strip&#34;)
+fmt.Println(&#34;t is now&#34;, t)
+</code></pre></td></tr></table>
+</div>
+</div><p>And here’s the result:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">t is now {77 Sunset Strip}
+</code></pre></td></tr></table>
+</div>
+</div><p>If we modified the program so that <code>s</code> was created from <code>t</code>, not <code>&amp;t</code>, the calls to <code>SetInt</code> and <code>SetString</code> would fail as the fields of <code>t</code> would not be settable.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Here again are the laws of reflection:</p>
+<ul>
+<li>
+<p>Reflection goes from interface value to reflection object.</p>
+</li>
+<li>
+<p>Reflection goes from reflection object to interface value.</p>
+</li>
+<li>
+<p>To modify a reflection object, the value must be settable.</p>
+</li>
+</ul>
+<p>Once you understand these laws reflection in Go becomes much easier to use, although it remains subtle. It’s a powerful tool that should be used with care and avoided unless strictly necessary.</p>
+<p>There’s plenty more to reflection that we haven’t covered — sending and receiving on channels, allocating memory, using slices and maps, calling methods and functions — but this post is long enough. We’ll cover some of those topics in a later article.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-23 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20110906/" data-title="Gb_20110906" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20110906/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20110906/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20110906/" data-title="Gb_20110906"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20110906/" data-title="Gb_20110906"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20110906/" data-title="Gb_20110906"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20110901/" class="prev" rel="prev" title="Gb_20110901"><i class="fas fa-angle-left fa-fw"></i>Gb_20110901</a>
+            <a href="/gb_20110921/" class="next" rel="next" title="Gb_20110921">Gb_20110921<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

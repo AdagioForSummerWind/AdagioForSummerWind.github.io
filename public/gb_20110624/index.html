@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20110624 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20110624" />
+<meta property="og:description" content="Profiling Go Programs Russ Cox, July 2011; updated by Shenghou Ma, May 2013
+24 June 2011
+At Scala Days 2011, Robert Hundt presented a paper titled Loop Recognition in C&#43;&#43;/Java/Go/Scala. The paper implemented a specific loop finding algorithm, such as you might use in a flow analysis pass of a compiler, in C&#43;&#43;, Go, Java, Scala, and then used those programs to draw conclusions about typical performance concerns in these languages." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20110624/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-23T22:51:00+08:00" />
+<meta property="article:modified_time" content="2022-10-23T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20110624"/>
+<meta name="twitter:description" content="Profiling Go Programs Russ Cox, July 2011; updated by Shenghou Ma, May 2013
+24 June 2011
+At Scala Days 2011, Robert Hundt presented a paper titled Loop Recognition in C&#43;&#43;/Java/Go/Scala. The paper implemented a specific loop finding algorithm, such as you might use in a flow analysis pass of a compiler, in C&#43;&#43;, Go, Java, Scala, and then used those programs to draw conclusions about typical performance concerns in these languages."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20110624/" /><link rel="prev" href="https://jefofrank.xyz/gb_20110603/" /><link rel="next" href="https://jefofrank.xyz/gb_20110630/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20110624",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20110624\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  4230 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20110624\/","datePublished": "2022-10-23T22:51:00+08:00","dateModified": "2022-10-23T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20110624</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-23 22:51:00">2022-10-23 22:51:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4230 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 20 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="profiling-go-programs">Profiling Go Programs</h1>
+<p>Russ Cox, July 2011; updated by Shenghou Ma, May 2013<br>
+24 June 2011</p>
+<p>At Scala Days 2011, Robert Hundt presented a paper titled <a href="http://research.google.com/pubs/pub37122.html" target="_blank" rel="noopener noreffer">Loop Recognition in C++/Java/Go/Scala.</a> The paper implemented a specific loop finding algorithm, such as you might use in a flow analysis pass of a compiler, in C++, Go, Java, Scala, and then used those programs to draw conclusions about typical performance concerns in these languages. The Go program presented in that paper runs quite slowly, making it an excellent opportunity to demonstrate how to use Go’s profiling tools to take a slow program and make it faster.</p>
+<p><em>By using Go’s profiling tools to identify and correct specific bottlenecks, we can make the Go loop finding program run an order of magnitude faster and use 6x less memory.</em> (Update: Due to recent optimizations of <code>libstdc++</code> in <code>gcc</code>, the memory reduction is now 3.7x.)</p>
+<p>Hundt’s paper does not specify which versions of the C++, Go, Java, and Scala tools he used. In this blog post, we will be using the most recent weekly snapshot of the <code>6g</code> Go compiler and the version of <code>g++</code> that ships with the Ubuntu Natty distribution. (We will not be using Java or Scala, because we are not skilled at writing efficient programs in either of those languages, so the comparison would be unfair. Since C++ was the fastest language in the paper, the comparisons here with C++ should suffice.) (Update: In this updated post, we will be using the most recent development snapshot of the Go compiler on amd64 and the most recent version of <code>g++</code> – 4.8.0, which was released in March 2013.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go version
+go version devel +08d20469cc20 Tue Mar 26 08:27:18 2013 +0100 linux/amd64
+$ g++ --version
+g++ (GCC) 4.8.0
+Copyright (C) 2013 Free Software Foundation, Inc.
+...
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>The programs are run on a computer with a 3.4GHz Core i7-2600 CPU and 16 GB of RAM running Gentoo Linux’s 3.8.4-gentoo kernel. The machine is running with CPU frequency scaling disabled via</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo bash
+# for i in /sys/devices/system/cpu/cpu[0-7]
+do
+    echo performance &gt; $i/cpufreq/scaling_governor
+done
+#
+</code></pre></td></tr></table>
+</div>
+</div><p>We’ve taken <a href="https://github.com/hundt98847/multi-language-bench" target="_blank" rel="noopener noreffer">Hundt’s benchmark programs</a> in C++ and Go, combined each into a single source file, and removed all but one line of output. We’ll time the program using Linux’s <code>time</code> utility with a format that shows user time, system time, real time, and maximum memory usage:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cat xtime
+<span class="c1">#!/bin/sh</span>
+/usr/bin/time -f <span class="s1">&#39;%Uu %Ss %er %MkB %C&#39;</span> <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+$
+
+$ make havlak1cc
+g++ -O3 -o havlak1cc havlak1.cc
+$ ./xtime ./havlak1cc
+<span class="c1"># of loops: 76002 (total 3800100)</span>
+loop-0, nest: 0, depth: <span class="m">0</span>
+17.70u 0.05s 17.80r 715472kB ./havlak1cc
+$
+
+$ make havlak1
+go build havlak1.go
+$ ./xtime ./havlak1
+<span class="c1"># of loops: 76000 (including 1 artificial root node)</span>
+25.05u 0.11s 25.20r 1334032kB ./havlak1
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>The C++ program runs in 17.80 seconds and uses 700 MB of memory. The Go program runs in 25.20 seconds and uses 1302 MB of memory. (These measurements are difficult to reconcile with the ones in the paper, but the point of this post is to explore how to use <code>go tool pprof</code>, not to reproduce the results from the paper.)</p>
+<p>To start tuning the Go program, we have to enable profiling. If the code used the <a href="https://go.dev/pkg/testing/" target="_blank" rel="noopener noreffer">Go testing package</a>’s benchmarking support, we could use gotest’s standard <code>-cpuprofile</code> and <code>-memprofile</code> flags. In a standalone program like this one, we have to import <code>runtime/pprof</code> and add a few lines of code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var cpuprofile = flag.String(&#34;cpuprofile&#34;, &#34;&#34;, &#34;write cpu profile to file&#34;)
+
+func main() {
+    flag.Parse()
+    if *cpuprofile != &#34;&#34; {
+        f, err := os.Create(*cpuprofile)
+        if err != nil {
+            log.Fatal(err)
+        }
+        pprof.StartCPUProfile(f)
+        defer pprof.StopCPUProfile()
+    }
+    ...
+</code></pre></td></tr></table>
+</div>
+</div><p>The new code defines a flag named <code>cpuprofile</code>, calls the <a href="https://go.dev/pkg/flag/" target="_blank" rel="noopener noreffer">Go flag library</a> to parse the command line flags, and then, if the <code>cpuprofile</code> flag has been set on the command line, <a href="https://go.dev/pkg/runtime/pprof/#StartCPUProfile" target="_blank" rel="noopener noreffer">starts CPU profiling</a> redirected to that file. The profiler requires a final call to <a href="https://go.dev/pkg/runtime/pprof/#StopCPUProfile" target="_blank" rel="noopener noreffer"><code>StopCPUProfile</code></a> to flush any pending writes to the file before the program exits; we use <code>defer</code> to make sure this happens as <code>main</code> returns.</p>
+<p>After adding that code, we can run the program with the new <code>-cpuprofile</code> flag and then run <code>go tool pprof</code> to interpret the profile.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak1.prof
+./havlak1 -cpuprofile=havlak1.prof
+# of loops: 76000 (including 1 artificial root node)
+$ go tool pprof havlak1 havlak1.prof
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>go tool pprof</code> program is a slight variant of <a href="https://github.com/gperftools/gperftools" target="_blank" rel="noopener noreffer">Google’s <code>pprof</code> C++ profiler</a>. The most important command is <code>topN</code>, which shows the top <code>N</code> samples in the profile:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) top10
+Total: 2525 samples
+     298  11.8%  11.8%      345  13.7% runtime.mapaccess1_fast64
+     268  10.6%  22.4%     2124  84.1% main.FindLoops
+     251   9.9%  32.4%      451  17.9% scanblock
+     178   7.0%  39.4%      351  13.9% hash_insert
+     131   5.2%  44.6%      158   6.3% sweepspan
+     119   4.7%  49.3%      350  13.9% main.DFS
+      96   3.8%  53.1%       98   3.9% flushptrbuf
+      95   3.8%  56.9%       95   3.8% runtime.aeshash64
+      95   3.8%  60.6%      101   4.0% runtime.settype_flush
+      88   3.5%  64.1%      988  39.1% runtime.mallocgc
+</code></pre></td></tr></table>
+</div>
+</div><p>When CPU profiling is enabled, the Go program stops about 100 times per second and records a sample consisting of the program counters on the currently executing goroutine’s stack. The profile has 2525 samples, so it was running for a bit over 25 seconds. In the <code>go tool pprof</code> output, there is a row for each function that appeared in a sample. The first two columns show the number of samples in which the function was running (as opposed to waiting for a called function to return), as a raw count and as a percentage of total samples. The <code>runtime.mapaccess1_fast64</code> function was running during 298 samples, or 11.8%. The <code>top10</code> output is sorted by this sample count. The third column shows the running total during the listing: the first three rows account for 32.4% of the samples. The fourth and fifth columns show the number of samples in which the function appeared (either running or waiting for a called function to return). The <code>main.FindLoops</code> function was running in 10.6% of the samples, but it was on the call stack (it or functions it called were running) in 84.1% of the samples.</p>
+<p>To sort by the fourth and fifth columns, use the <code>-cum</code> (for cumulative) flag:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) top5 -cum
+Total: 2525 samples
+       0   0.0%   0.0%     2144  84.9% gosched0
+       0   0.0%   0.0%     2144  84.9% main.main
+       0   0.0%   0.0%     2144  84.9% runtime.main
+       0   0.0%   0.0%     2124  84.1% main.FindHavlakLoops
+     268  10.6%  10.6%     2124  84.1% main.FindLoops
+(pprof) top5 -cum
+</code></pre></td></tr></table>
+</div>
+</div><p>In fact the total for <code>main.FindLoops</code> and <code>main.main</code> should have been 100%, but each stack sample only includes the bottom 100 stack frames; during about a quarter of the samples, the recursive <code>main.DFS</code> function was more than 100 frames deeper than <code>main.main</code> so the complete trace was truncated.</p>
+<p>The stack trace samples contain more interesting data about function call relationships than the text listings can show. The <code>web</code> command writes a graph of the profile data in SVG format and opens it in a web browser. (There is also a <code>gv</code> command that writes PostScript and opens it in Ghostview. For either command, you need <a href="http://www.graphviz.org/" target="_blank" rel="noopener noreffer">graphviz</a> installed.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) web
+</code></pre></td></tr></table>
+</div>
+</div><p>A small fragment of <a href="https://rawgit.com/rsc/benchgraffiti/master/havlak/havlak1.svg" target="_blank" rel="noopener noreffer">the full graph</a> looks like:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://go.dev/blog/pprof/havlak1a-75.png"
+        data-srcset="https://go.dev/blog/pprof/havlak1a-75.png, https://go.dev/blog/pprof/havlak1a-75.png 1.5x, https://go.dev/blog/pprof/havlak1a-75.png 2x"
+        data-sizes="auto"
+        alt="https://go.dev/blog/pprof/havlak1a-75.png"
+        title="pprof/havlak1a-75.png" /></p>
+<p>Each box in the graph corresponds to a single function, and the boxes are sized according to the number of samples in which the function was running. An edge from box X to box Y indicates that X calls Y; the number along the edge is the number of times that call appears in a sample. If a call appears multiple times in a single sample, such as during recursive function calls, each appearance counts toward the edge weight. That explains the 21342 on the self-edge from <code>main.DFS</code> to itself.</p>
+<p>Just at a glance, we can see that the program spends much of its time in hash operations, which correspond to use of Go’s <code>map</code> values. We can tell <code>web</code> to use only samples that include a specific function, such as <code>runtime.mapaccess1_fast64</code>, which clears some of the noise from the graph:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) web mapaccess1
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="pprof/havlak1-hash_lookup-75.png"
+        data-srcset="pprof/havlak1-hash_lookup-75.png, pprof/havlak1-hash_lookup-75.png 1.5x, pprof/havlak1-hash_lookup-75.png 2x"
+        data-sizes="auto"
+        alt="pprof/havlak1-hash_lookup-75.png"
+        title="pprof/havlak1-hash_lookup-75.png" /></p>
+<p>If we squint, we can see that the calls to <code>runtime.mapaccess1_fast64</code> are being made by <code>main.FindLoops</code> and <code>main.DFS</code>.</p>
+<p>Now that we have a rough idea of the big picture, it’s time to zoom in on a particular function. Let’s look at <code>main.DFS</code> first, just because it is a shorter function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) list DFS
+Total: 2525 samples
+ROUTINE ====================== main.DFS in /home/rsc/g/benchgraffiti/havlak/havlak1.go
+   119    697 Total samples (flat / cumulative)
+     3      3  240: func DFS(currentNode *BasicBlock, nodes []*UnionFindNode, number map[*BasicBlock]int, last []int, current int) int {
+     1      1  241:     nodes[current].Init(currentNode, current)
+     1     37  242:     number[currentNode] = current
+     .      .  243:
+     1      1  244:     lastid := current
+    89     89  245:     for _, target := range currentNode.OutEdges {
+     9    152  246:             if number[target] == unvisited {
+     7    354  247:                     lastid = DFS(target, nodes, number, last, lastid+1)
+     .      .  248:             }
+     .      .  249:     }
+     7     59  250:     last[number[currentNode]] = lastid
+     1      1  251:     return lastid
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>The listing shows the source code for the <code>DFS</code> function (really, for every function matching the regular expression <code>DFS</code>). The first three columns are the number of samples taken while running that line, the number of samples taken while running that line or in code called from that line, and the line number in the file. The related command <code>disasm</code> shows a disassembly of the function instead of a source listing; when there are enough samples this can help you see which instructions are expensive. The <code>weblist</code> command mixes the two modes: it shows <a href="https://rawgit.com/rsc/benchgraffiti/master/havlak/havlak1.html" target="_blank" rel="noopener noreffer">a source listing in which clicking a line shows the disassembly</a>.</p>
+<p>Since we already know that the time is going into map lookups implemented by the hash runtime functions, we care most about the second column. A large fraction of time is spent in recursive calls to <code>DFS</code> (line 247), as would be expected from a recursive traversal. Excluding the recursion, it looks like the time is going into the accesses to the <code>number</code> map on lines 242, 246, and 250. For that particular lookup, a map is not the most efficient choice. Just as they would be in a compiler, the basic block structures have unique sequence numbers assigned to them. Instead of using a <code>map[*BasicBlock]int</code> we can use a <code>[]int</code>, a slice indexed by the block number. There’s no reason to use a map when an array or slice will do.</p>
+<p>Changing <code>number</code> from a map to a slice requires editing seven lines in the program and cut its run time by nearly a factor of two:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak2
+go build havlak2.go
+$ ./xtime ./havlak2
+# of loops: 76000 (including 1 artificial root node)
+16.55u 0.11s 16.69r 1321008kB ./havlak2
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>(See the <a href="https://github.com/rsc/benchgraffiti/commit/58ac27bcac3ffb553c29d0b3fb64745c91c95948" target="_blank" rel="noopener noreffer">diff between <code>havlak1</code> and <code>havlak2</code></a>)</p>
+<p>We can run the profiler again to confirm that <code>main.DFS</code> is no longer a significant part of the run time:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak2.prof
+./havlak2 -cpuprofile=havlak2.prof
+# of loops: 76000 (including 1 artificial root node)
+$ go tool pprof havlak2 havlak2.prof
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof)
+(pprof) top5
+Total: 1652 samples
+     197  11.9%  11.9%      382  23.1% scanblock
+     189  11.4%  23.4%     1549  93.8% main.FindLoops
+     130   7.9%  31.2%      152   9.2% sweepspan
+     104   6.3%  37.5%      896  54.2% runtime.mallocgc
+      98   5.9%  43.5%      100   6.1% flushptrbuf
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>The entry <code>main.DFS</code> no longer appears in the profile, and the rest of the program runtime has dropped too. Now the program is spending most of its time allocating memory and garbage collecting (<code>runtime.mallocgc</code>, which both allocates and runs periodic garbage collections, accounts for 54.2% of the time). To find out why the garbage collector is running so much, we have to find out what is allocating memory. One way is to add memory profiling to the program. We’ll arrange that if the <code>-memprofile</code> flag is supplied, the program stops after one iteration of the loop finding, writes a memory profile, and exits:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var memprofile = flag.String(&#34;memprofile&#34;, &#34;&#34;, &#34;write memory profile to this file&#34;)
+...
+
+    FindHavlakLoops(cfgraph, lsgraph)
+    if *memprofile != &#34;&#34; {
+        f, err := os.Create(*memprofile)
+        if err != nil {
+            log.Fatal(err)
+        }
+        pprof.WriteHeapProfile(f)
+        f.Close()
+        return
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p>We invoke the program with <code>-memprofile</code> flag to write a profile:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak3.mprof
+go build havlak3.go
+./havlak3 -memprofile=havlak3.mprof
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>(See the <a href="https://github.com/rsc/benchgraffiti/commit/b78dac106bea1eb3be6bb3ca5dba57c130268232" target="_blank" rel="noopener noreffer">diff from havlak2</a>)</p>
+<p>We use <code>go tool pprof</code> exactly the same way. Now the samples we are examining are memory allocations, not clock ticks.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go tool pprof havlak3 havlak3.mprof
+Adjusting heap profiles for 1-in-524288 sampling rate
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof) top5
+Total: 82.4 MB
+    56.3  68.4%  68.4%     56.3  68.4% main.FindLoops
+    17.6  21.3%  89.7%     17.6  21.3% main.(*CFG).CreateNode
+     8.0   9.7%  99.4%     25.6  31.0% main.NewBasicBlockEdge
+     0.5   0.6% 100.0%      0.5   0.6% itab
+     0.0   0.0% 100.0%      0.5   0.6% fmt.init
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>The command <code>go tool pprof</code> reports that <code>FindLoops</code> has allocated approximately 56.3 of the 82.4 MB in use; <code>CreateNode</code> accounts for another 17.6 MB. To reduce overhead, the memory profiler only records information for approximately one block per half megabyte allocated (the “1-in-524288 sampling rate”), so these are approximations to the actual counts.</p>
+<p>To find the memory allocations, we can list those functions.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) list FindLoops
+Total: 82.4 MB
+ROUTINE ====================== main.FindLoops in /home/rsc/g/benchgraffiti/havlak/havlak3.go
+  56.3   56.3 Total MB (flat / cumulative)
+...
+   1.9    1.9  268:     nonBackPreds := make([]map[int]bool, size)
+   5.8    5.8  269:     backPreds := make([][]int, size)
+     .      .  270:
+   1.9    1.9  271:     number := make([]int, size)
+   1.9    1.9  272:     header := make([]int, size, size)
+   1.9    1.9  273:     types := make([]int, size, size)
+   1.9    1.9  274:     last := make([]int, size, size)
+   1.9    1.9  275:     nodes := make([]*UnionFindNode, size, size)
+     .      .  276:
+     .      .  277:     for i := 0; i &lt; size; i++ {
+   9.5    9.5  278:             nodes[i] = new(UnionFindNode)
+     .      .  279:     }
+...
+     .      .  286:     for i, bb := range cfgraph.Blocks {
+     .      .  287:             number[bb.Name] = unvisited
+  29.5   29.5  288:             nonBackPreds[i] = make(map[int]bool)
+     .      .  289:     }
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>It looks like the current bottleneck is the same as the last one: using maps where simpler data structures suffice. <code>FindLoops</code> is allocating about 29.5 MB of maps.</p>
+<p>As an aside, if we run <code>go tool pprof</code> with the <code>--inuse_objects</code> flag, it will report allocation counts instead of sizes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go tool pprof --inuse_objects havlak3 havlak3.mprof
+Adjusting heap profiles for 1-in-524288 sampling rate
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof) list FindLoops
+Total: 1763108 objects
+ROUTINE ====================== main.FindLoops in /home/rsc/g/benchgraffiti/havlak/havlak3.go
+720903 720903 Total objects (flat / cumulative)
+...
+     .      .  277:     for i := 0; i &lt; size; i++ {
+311296 311296  278:             nodes[i] = new(UnionFindNode)
+     .      .  279:     }
+     .      .  280:
+     .      .  281:     // Step a:
+     .      .  282:     //   - initialize all nodes as unvisited.
+     .      .  283:     //   - depth-first traversal and numbering.
+     .      .  284:     //   - unreached BB&#39;s are marked as dead.
+     .      .  285:     //
+     .      .  286:     for i, bb := range cfgraph.Blocks {
+     .      .  287:             number[bb.Name] = unvisited
+409600 409600  288:             nonBackPreds[i] = make(map[int]bool)
+     .      .  289:     }
+...
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>Since the ~200,000 maps account for 29.5 MB, it looks like the initial map allocation takes about 150 bytes. That’s reasonable when a map is being used to hold key-value pairs, but not when a map is being used as a stand-in for a simple set, as it is here.</p>
+<p>Instead of using a map, we can use a simple slice to list the elements. In all but one of the cases where maps are being used, it is impossible for the algorithm to insert a duplicate element. In the one remaining case, we can write a simple variant of the <code>append</code> built-in function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func appendUnique(a []int, x int) []int {
+    for _, y := range a {
+        if x == y {
+            return a
+        }
+    }
+    return append(a, x)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>In addition to writing that function, changing the Go program to use slices instead of maps requires changing just a few lines of code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak4
+go build havlak4.go
+$ ./xtime ./havlak4
+# of loops: 76000 (including 1 artificial root node)
+11.84u 0.08s 11.94r 810416kB ./havlak4
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>(See the <a href="https://github.com/rsc/benchgraffiti/commit/245d899f7b1a33b0c8148a4cd147cb3de5228c8a" target="_blank" rel="noopener noreffer">diff from havlak3</a>)</p>
+<p>We’re now at 2.11x faster than when we started. Let’s look at a CPU profile again.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak4.prof
+./havlak4 -cpuprofile=havlak4.prof
+# of loops: 76000 (including 1 artificial root node)
+$ go tool pprof havlak4 havlak4.prof
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof) top10
+Total: 1173 samples
+     205  17.5%  17.5%     1083  92.3% main.FindLoops
+     138  11.8%  29.2%      215  18.3% scanblock
+      88   7.5%  36.7%       96   8.2% sweepspan
+      76   6.5%  43.2%      597  50.9% runtime.mallocgc
+      75   6.4%  49.6%       78   6.6% runtime.settype_flush
+      74   6.3%  55.9%       75   6.4% flushptrbuf
+      64   5.5%  61.4%       64   5.5% runtime.memmove
+      63   5.4%  66.8%      524  44.7% runtime.growslice
+      51   4.3%  71.1%       51   4.3% main.DFS
+      50   4.3%  75.4%      146  12.4% runtime.MCache_Alloc
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>Now memory allocation and the consequent garbage collection (<code>runtime.mallocgc</code>) accounts for 50.9% of our run time. Another way to look at why the system is garbage collecting is to look at the allocations that are causing the collections, the ones that spend most of the time in <code>mallocgc</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) web mallocgc
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="pprof/havlak4a-mallocgc.png"
+        data-srcset="pprof/havlak4a-mallocgc.png, pprof/havlak4a-mallocgc.png 1.5x, pprof/havlak4a-mallocgc.png 2x"
+        data-sizes="auto"
+        alt="pprof/havlak4a-mallocgc.png"
+        title="pprof/havlak4a-mallocgc.png" /></p>
+<p>It’s hard to tell what’s going on in that graph, because there are many nodes with small sample numbers obscuring the big ones. We can tell <code>go tool pprof</code> to ignore nodes that don’t account for at least 10% of the samples:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go tool pprof --nodefraction=0.1 havlak4 havlak4.prof
+Welcome to pprof!  For help, type &#39;help&#39;.
+(pprof) web mallocgc
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="pprof/havlak4a-mallocgc-trim.png"
+        data-srcset="pprof/havlak4a-mallocgc-trim.png, pprof/havlak4a-mallocgc-trim.png 1.5x, pprof/havlak4a-mallocgc-trim.png 2x"
+        data-sizes="auto"
+        alt="pprof/havlak4a-mallocgc-trim.png"
+        title="pprof/havlak4a-mallocgc-trim.png" /></p>
+<p>We can follow the thick arrows easily now, to see that <code>FindLoops</code> is triggering most of the garbage collection. If we list <code>FindLoops</code> we can see that much of it is right at the beginning:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(pprof) list FindLoops
+...
+     .      .  270: func FindLoops(cfgraph *CFG, lsgraph *LSG) {
+     .      .  271:     if cfgraph.Start == nil {
+     .      .  272:             return
+     .      .  273:     }
+     .      .  274:
+     .      .  275:     size := cfgraph.NumNodes()
+     .      .  276:
+     .    145  277:     nonBackPreds := make([][]int, size)
+     .      9  278:     backPreds := make([][]int, size)
+     .      .  279:
+     .      1  280:     number := make([]int, size)
+     .     17  281:     header := make([]int, size, size)
+     .      .  282:     types := make([]int, size, size)
+     .      .  283:     last := make([]int, size, size)
+     .      .  284:     nodes := make([]*UnionFindNode, size, size)
+     .      .  285:
+     .      .  286:     for i := 0; i &lt; size; i++ {
+     2     79  287:             nodes[i] = new(UnionFindNode)
+     .      .  288:     }
+...
+(pprof)
+</code></pre></td></tr></table>
+</div>
+</div><p>Every time <code>FindLoops</code> is called, it allocates some sizable bookkeeping structures. Since the benchmark calls <code>FindLoops</code> 50 times, these add up to a significant amount of garbage, so a significant amount of work for the garbage collector.</p>
+<p>Having a garbage-collected language doesn’t mean you can ignore memory allocation issues. In this case, a simple solution is to introduce a cache so that each call to <code>FindLoops</code> reuses the previous call’s storage when possible. (In fact, in Hundt’s paper, he explains that the Java program needed just this change to get anything like reasonable performance, but he did not make the same change in the other garbage-collected implementations.)</p>
+<p>We’ll add a global <code>cache</code> structure:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var cache struct {
+    size int
+    nonBackPreds [][]int
+    backPreds [][]int
+    number []int
+    header []int
+    types []int
+    last []int
+    nodes []*UnionFindNode
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>and then have <code>FindLoops</code> consult it as a replacement for allocation:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if cache.size &lt; size {
+    cache.size = size
+    cache.nonBackPreds = make([][]int, size)
+    cache.backPreds = make([][]int, size)
+    cache.number = make([]int, size)
+    cache.header = make([]int, size)
+    cache.types = make([]int, size)
+    cache.last = make([]int, size)
+    cache.nodes = make([]*UnionFindNode, size)
+    for i := range cache.nodes {
+        cache.nodes[i] = new(UnionFindNode)
+    }
+}
+
+nonBackPreds := cache.nonBackPreds[:size]
+for i := range nonBackPreds {
+    nonBackPreds[i] = nonBackPreds[i][:0]
+}
+backPreds := cache.backPreds[:size]
+for i := range nonBackPreds {
+    backPreds[i] = backPreds[i][:0]
+}
+number := cache.number[:size]
+header := cache.header[:size]
+types := cache.types[:size]
+last := cache.last[:size]
+nodes := cache.nodes[:size]
+</code></pre></td></tr></table>
+</div>
+</div><p>Such a global variable is bad engineering practice, of course: it means that concurrent calls to <code>FindLoops</code> are now unsafe. For now, we are making the minimal possible changes in order to understand what is important for the performance of our program; this change is simple and mirrors the code in the Java implementation. The final version of the Go program will use a separate <code>LoopFinder</code> instance to track this memory, restoring the possibility of concurrent use.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak5
+go build havlak5.go
+$ ./xtime ./havlak5
+# of loops: 76000 (including 1 artificial root node)
+8.03u 0.06s 8.11r 770352kB ./havlak5
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>(See the <a href="https://github.com/rsc/benchgraffiti/commit/2d41d6d16286b8146a3f697dd4074deac60d12a4" target="_blank" rel="noopener noreffer">diff from havlak4</a>)</p>
+<p>There’s more we can do to clean up the program and make it faster, but none of it requires profiling techniques that we haven’t already shown. The work list used in the inner loop can be reused across iterations and across calls to <code>FindLoops</code>, and it can be combined with the separate “node pool” generated during that pass. Similarly, the loop graph storage can be reused on each iteration instead of reallocated. In addition to these performance changes, the <a href="https://github.com/rsc/benchgraffiti/blob/master/havlak/havlak6.go" target="_blank" rel="noopener noreffer">final version</a> is written using idiomatic Go style, using data structures and methods. The stylistic changes have only a minor effect on the run time: the algorithm and constraints are unchanged.</p>
+<p>The final version runs in 2.29 seconds and uses 351 MB of memory:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak6
+go build havlak6.go
+$ ./xtime ./havlak6
+# of loops: 76000 (including 1 artificial root node)
+2.26u 0.02s 2.29r 360224kB ./havlak6
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>That’s 11 times faster than the program we started with. Even if we disable reuse of the generated loop graph, so that the only cached memory is the loop finding bookkeeping, the program still runs 6.7x faster than the original and uses 1.5x less memory.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ./xtime ./havlak6 -reuseloopgraph=false
+# of loops: 76000 (including 1 artificial root node)
+3.69u 0.06s 3.76r 797120kB ./havlak6 -reuseloopgraph=false
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>Of course, it’s no longer fair to compare this Go program to the original C++ program, which used inefficient data structures like <code>set</code>s where <code>vector</code>s would be more appropriate. As a sanity check, we translated the final Go program into <a href="https://github.com/rsc/benchgraffiti/blob/master/havlak/havlak6.cc" target="_blank" rel="noopener noreffer">equivalent C++ code</a>. Its execution time is similar to the Go program’s:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ make havlak6cc
+g++ -O3 -o havlak6cc havlak6.cc
+$ ./xtime ./havlak6cc
+# of loops: 76000 (including 1 artificial root node)
+1.99u 0.19s 2.19r 387936kB ./havlak6cc
+</code></pre></td></tr></table>
+</div>
+</div><p>The Go program runs almost as fast as the C++ program. As the C++ program is using automatic deletes and allocation instead of an explicit cache, the C++ program a bit shorter and easier to write, but not dramatically so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ wc havlak6.cc; wc havlak6.go
+ 401 1220 9040 havlak6.cc
+ 461 1441 9467 havlak6.go
+$
+</code></pre></td></tr></table>
+</div>
+</div><p>(See <a href="https://github.com/rsc/benchgraffiti/blob/master/havlak/havlak6.cc" target="_blank" rel="noopener noreffer">havlak6.cc</a> and <a href="https://github.com/rsc/benchgraffiti/blob/master/havlak/havlak6.go" target="_blank" rel="noopener noreffer">havlak6.go</a>)</p>
+<p>Benchmarks are only as good as the programs they measure. We used <code>go tool pprof</code> to study an inefficient Go program and then to improve its performance by an order of magnitude and to reduce its memory usage by a factor of 3.7. A subsequent comparison with an equivalently optimized C++ program shows that Go can be competitive with C++ when programmers are careful about how much garbage is generated by inner loops.</p>
+<p>The program sources, Linux x86-64 binaries, and profiles used to write this post are available in the <a href="https://github.com/rsc/benchgraffiti/" target="_blank" rel="noopener noreffer">benchgraffiti project on GitHub</a>.</p>
+<p>As mentioned above, <a href="https://go.dev/cmd/go/#Test_packages" target="_blank" rel="noopener noreffer"><code>go test</code></a> includes these profiling flags already: define a <a href="https://go.dev/pkg/testing/" target="_blank" rel="noopener noreffer">benchmark function</a> and you’re all set. There is also a standard HTTP interface to profiling data. In an HTTP server, adding</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">import _ &#34;net/http/pprof&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>will install handlers for a few URLs under <code>/debug/pprof/</code>. Then you can run <code>go tool pprof</code> with a single argument—the URL to your server’s profiling data and it will download and examine a live profile.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go tool pprof http://localhost:6060/debug/pprof/profile   # 30-second CPU profile
+go tool pprof http://localhost:6060/debug/pprof/heap      # heap profile
+go tool pprof http://localhost:6060/debug/pprof/block     # goroutine blocking profile
+</code></pre></td></tr></table>
+</div>
+</div><p>The goroutine blocking profile will be explained in a future post. Stay tuned.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-23 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20110624/" data-title="Gb_20110624" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20110624/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20110624/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20110624/" data-title="Gb_20110624"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20110624/" data-title="Gb_20110624"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20110624/" data-title="Gb_20110624"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20110603/" class="prev" rel="prev" title="Gb_20110603"><i class="fas fa-angle-left fa-fw"></i>Gb_20110603</a>
+            <a href="/gb_20110630/" class="next" rel="next" title="Gb_20110630">Gb_20110630<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

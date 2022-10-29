@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20170809 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20170809" />
+<meta property="og:description" content="Contribution Workshop Steve Francia, Cassandra Salisbury, Matt Broberg, and Dmitri Shuralyov
+9 August 2017
+Event Overview by Steve
+During the community day at GopherCon, the Go team held two workshops where we worked with people to help them make their first contribution to the Go project. This was the first time the Go project has ever attempted anything like this. We had about 140 participants and about 35 people who volunteered as mentors." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20170809/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T13:02:01+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20170809"/>
+<meta name="twitter:description" content="Contribution Workshop Steve Francia, Cassandra Salisbury, Matt Broberg, and Dmitri Shuralyov
+9 August 2017
+Event Overview by Steve
+During the community day at GopherCon, the Go team held two workshops where we worked with people to help them make their first contribution to the Go project. This was the first time the Go project has ever attempted anything like this. We had about 140 participants and about 35 people who volunteered as mentors."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20170809/" /><link rel="prev" href="https://jefofrank.xyz/gb_20170803/" /><link rel="next" href="https://jefofrank.xyz/gb_20170824/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20170809",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20170809\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  3013 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20170809\/","datePublished": "2022-10-24T13:02:01+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20170809</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 13:02:01">2022-10-24 13:02:01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3013 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#event-overview">Event Overview</a>
+      <ul>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#future">Future</a></li>
+      </ul>
+    </li>
+    <li><a href="#my-contribution-experience">My Contribution Experience</a></li>
+    <li><a href="#my-contribution-experience-1">My Contribution Experience</a>
+      <ul>
+        <li><a href="#the-setup">The Setup</a></li>
+        <li><a href="#contributing">Contributing</a></li>
+        <li><a href="#contributing-for-real">Contributing, For Real</a></li>
+      </ul>
+    </li>
+    <li><a href="#my-mentorship-experience">My Mentorship Experience</a></li>
+    <li><a href="#photos-from-the-event">Photos from the event</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="contribution-workshop">Contribution Workshop</h1>
+<p>Steve Francia, Cassandra Salisbury, Matt Broberg, and Dmitri Shuralyov<br>
+9 August 2017</p>
+<h2 id="event-overview">Event Overview</h2>
+<p>by <a href="https://twitter.com/spf13" target="_blank" rel="noopener noreffer">Steve</a></p>
+<p>During the community day at GopherCon, the Go team held two workshops where we worked with people to help them make their first contribution to the Go project. This was the first time the Go project has ever attempted anything like this. We had about 140 participants and about 35 people who volunteered as mentors. Mentors not only received warm fuzzy feelings for helping others, but also a very stylish Go Mentor trucker hat. We had contributors of all ages and experience levels coming from North and South America, Africa, Europe, Asia, and Australia. It was truly a worldwide effort of Gophers coming together at GopherCon.</p>
+<p>One of our reasons for running the workshop was for it to act as a forcing function to make us improve our contributor experience. In preparation for the workshop, we rewrote our contributor guide, including adding a “troubleshooting” section and built a tool <code>go-contrib-init</code>, which automated the process of setting up a development environment to be able to contribute to Go.</p>
+<p>For the workshop itself, we developed a presentation <em>“Contributing to Go,&quot;</em> and a dashboard / scoreboard that was presented during the event. The scoreboard was designed to encourage us all to work together towards a common goal of seeing our collective score increase. Participants added 1, 2 or 3 points to the total score when they performed actions like registering an account, making a change list (also known as a CL, similar to a pull request), amending a CL, or submitting a CL.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image17.png"
+        data-srcset="contributor-workshop/image17.png, contributor-workshop/image17.png 1.5x, contributor-workshop/image17.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image17.png"
+        title="contributor-workshop/image17.png" /></p>
+<p>Brad Fitzpatrick, who stayed home from GopherCon this year, was ready and waiting to review all CLs submitted. He was so quick to review that many people thought he was an automated bot. Internally our team is now calling him “BradBot” mostly because we are in awe and a bit jealous.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image9.jpg"
+        data-srcset="contributor-workshop/image9.jpg, contributor-workshop/image9.jpg 1.5x, contributor-workshop/image9.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image9.jpg"
+        title="contributor-workshop/image9.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image6.png"
+        data-srcset="contributor-workshop/image6.png, contributor-workshop/image6.png 1.5x, contributor-workshop/image6.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image6.png"
+        title="contributor-workshop/image6.png" /></p>
+<h3 id="impact">Impact</h3>
+<p>We had a total of 65 CLs submitted from the people who participated in the workshop (within a week of the workshop). Of these, 44 were from contributors who had never previously contributed to any of the repos in the Go project. Half (22) of these contributions were already merged. Many of the others are waiting on the codebase to thaw as we are in the middle of a freeze for the upcoming 1.9 release. In addition to CLs, many contributed to the project in the form of bug reports, <a href="https://go.dev/wiki/Gardening" target="_blank" rel="noopener noreffer">gardening tasks</a>, and other types of contributions.</p>
+<p>The most common type of contribution was an example function to be used in the documentation. The <a href="https://blog.golang.org/survey2016-results" target="_blank" rel="noopener noreffer">Go User survey</a> identified that our documentation was significantly lacking examples. In the presentation, we asked users to find a package they loved and to add an example. In the Go project, examples are written as code in Go files (with specific naming) and the <code>go doc</code> tool displays them alongside the documentation. This is a perfect first contribution as it’s something that can be merged during a freeze, it’s of critical importance to our users, and it’s an addition that has a relatively narrow scope.</p>
+<p>One of the examples added is that of creating a Stringer, one of the more widely used interfaces in Go. <a href="https://go.dev/cl/49270/" target="_blank" rel="noopener noreffer">CL 49270</a></p>
+<p>In addition to examples, many people contributed critical bug fixes including:</p>
+<ul>
+<li><a href="https://go.dev/cl/48988/" target="_blank" rel="noopener noreffer">CL 48988</a> fixing <a href="https://go.dev/issue/21029" target="_blank" rel="noopener noreffer">issue #21029</a></li>
+<li><a href="https://go.dev/cl/49050/" target="_blank" rel="noopener noreffer">CL 49050</a> fixing <a href="https://go.dev/issue/20054" target="_blank" rel="noopener noreffer">issue #20054</a></li>
+<li><a href="https://go.dev/cl/49031/" target="_blank" rel="noopener noreffer">CL 49031</a> fixing <a href="https://go.dev/issue/20166" target="_blank" rel="noopener noreffer">issue #20166</a></li>
+<li><a href="https://go.dev/cl/49170/" target="_blank" rel="noopener noreffer">CL 49170</a> fixing <a href="https://go.dev/issue/20877" target="_blank" rel="noopener noreffer">issue #20877</a></li>
+</ul>
+<p>Some people even surprised us by arriving with a bug in mind that they wanted to fix. Nikhita arrived ready to tackle <a href="https://go.dev/issue/20786" target="_blank" rel="noopener noreffer">issue #20786</a> and she did submit <a href="https://go.dev/cl/48871/" target="_blank" rel="noopener noreffer">CL 48871</a>, after which she tweeted:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image19.png"
+        data-srcset="contributor-workshop/image19.png, contributor-workshop/image19.png 1.5x, contributor-workshop/image19.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image19.png"
+        title="contributor-workshop/image19.png" /></p>
+<p>Not only were some great improvements made, but most importantly, we narrowed the gap between the core Go team and the broader community members. Many people on the Go team remarked that the community members were teaching them things about the Go project. People in the community (in person, and on Twitter) remarked that felt welcome to participate in the project.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image12.png"
+        data-srcset="contributor-workshop/image12.png, contributor-workshop/image12.png 1.5x, contributor-workshop/image12.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image12.png"
+        title="contributor-workshop/image12.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image13.png"
+        data-srcset="contributor-workshop/image13.png, contributor-workshop/image13.png 1.5x, contributor-workshop/image13.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image13.png"
+        title="contributor-workshop/image13.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image3.png"
+        data-srcset="contributor-workshop/image3.png, contributor-workshop/image3.png 1.5x, contributor-workshop/image3.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image3.png"
+        title="contributor-workshop/image3.png" /></p>
+<h3 id="future">Future</h3>
+<p>The event was successful well beyond our expectations. Sameer Ajmani, Go team manager said, “The contributor workshop was incredibly fun and educational–for the Go team. We cringed as users hit the rough edges in our process, and celebrated when they got up on the dashboard. The cheer when the group score hit 1000 was awesome.”</p>
+<p>We are looking into ways to make this workshop easier to run for future events (like meetups and conferences). Our biggest challenge is providing enough mentorship so that users feel supported. If you have any ideas or would like to help with this process please <a href="mailto:spf@golang.org" rel="">let me know</a>.</p>
+<p>I’ve asked a few participants of the event to share their experiences below:</p>
+<h2 id="my-contribution-experience">My Contribution Experience</h2>
+<p>by <a href="https://twitter.com/cassandraoid" target="_blank" rel="noopener noreffer">Cassandra</a></p>
+<p>When I heard about the go-contrib workshop I was very excited and then I was extremely intimidated. I was encouraged by a member of the Go team to participate, so I thought what the heck.</p>
+<p>As I walked into the room (let’s be real, I ran into the room because I was running late) I was pleased to see the room was jam-packed. I looked around for people in Gopher caps, which was the main indicator they were teachers. I sat down at one of the 16 round tables that had two hats and three non-hats. Brought up my screen and was ready to roll…</p>
+<p>Jess Frazelle stood up and started the presentation and provided the group with <a href="https://docs.google.com/presentation/d/1ap2fycBSgoo-jCswhK9lqgCIFroE1pYpsXC1ffYBCq4/edit#slide=id.p" target="_blank" rel="noopener noreffer">a link</a> to make it easy to follow.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image16.png"
+        data-srcset="contributor-workshop/image16.png, contributor-workshop/image16.png 1.5x, contributor-workshop/image16.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image16.png"
+        title="contributor-workshop/image16.png" /></p>
+<p>The murmurs grew from a deep undercurrent to a resounding melody of voices, people were getting their computers set up with Go, they were skipping ahead to make sure their GOPATH was set, and were… wait what’s Gerrit?</p>
+<p>Most of us had to get a little intro to Gerrit. I had no clue what it was, but luckily there was a handy slide. Jess explained that it was an alternative to GitHub with slightly more advanced code review tools. We then went through GitHub vs Geritt terminology, so we had better understanding of the process.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image10.png"
+        data-srcset="contributor-workshop/image10.png, contributor-workshop/image10.png 1.5x, contributor-workshop/image10.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image10.png"
+        title="contributor-workshop/image10.png" /></p>
+<p>Ok, now it was time to become a <strong>freaking Go contributor</strong>.</p>
+<p>To make this more exciting than it already is, the Go team set up a game where we could track as a group how many points we could rack up based on the Gerrit score system.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image7.png"
+        data-srcset="contributor-workshop/image7.png, contributor-workshop/image7.png 1.5x, contributor-workshop/image7.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image7.png"
+        title="contributor-workshop/image7.png" /></p>
+<p>Seeing your name pop up on the board and listening to everyone’s excitement was intoxicating. It also invoked a sense of teamwork that lead to a feeling of inclusion and feeling like you were truly a part of the Go community.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image11.png"
+        data-srcset="contributor-workshop/image11.png, contributor-workshop/image11.png 1.5x, contributor-workshop/image11.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image11.png"
+        title="contributor-workshop/image11.png" /></p>
+<p>In 6 steps a room of around 80 people were able to learn how to contribute to go within an hour. That’s a feat!</p>
+<p>It wasn’t nearly as difficult as I anticipated and it wasn’t out of scope for a total newbie. It fostered a sense of community in an active and tangible way as well as a sense of inclusion in the illustrious process of Go contributions.</p>
+<p>I’d personally like to thank the Go Team, the Gopher mentors in hats, and my fellow participants for making it one of my most memorable moments at GopherCon.</p>
+<h2 id="my-contribution-experience-1">My Contribution Experience</h2>
+<p>by <a href="https://twitter.com/mbbroberg" target="_blank" rel="noopener noreffer">Matt</a></p>
+<p>I’ve always found programming languages to be intimidating. It’s the code that enables the world to write code. Given the impact, surely smarter people than me should be working on it… but that fear was something to overcome. So when the opportunity to join a workshop to contribute to my new favorite programming language came up, I was excited to see how I could help. A month later, I’m now certain that anyone and everyone can (and should) contribute back to Go.</p>
+<p>Here are my very verbose steps to go from 0 to 2 contributions to Go:</p>
+<h3 id="the-setup">The Setup</h3>
+<p>Given Go’s use of Gerrit, I started by setting up my environment for it. <a href="https://docs.google.com/presentation/d/1ap2fycBSgoo-jCswhK9lqgCIFroE1pYpsXC1ffYBCq4/edit#slide=id.g1f953ef7df_0_9" target="_blank" rel="noopener noreffer">Jess Frazzelle’s guide</a> is a great place to start to not miss a step.</p>
+<p>The real fun starts when you clone the Go repo. Ironically, you don’t hack on Go under <code>$GOPATH</code>, so I put it in my other workspace (which is <code>~/Develop</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd $DEV # That&#39;s my source code folder outside of $GOPATH
+git clone --depth 1 https://go.googlesource.com/go
+</code></pre></td></tr></table>
+</div>
+</div><p>Then install the handy dandy helper tool, <code>go-contrib-init</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go get -u golang.org/x/tools/cmd/go-contrib-init
+</code></pre></td></tr></table>
+</div>
+</div><p>Now you can run <code>go-contrib-init</code> from the <code>go/</code> folder we cloned above and see whether or not we’re ready to contribute. But hold on if you’re following along, you’re not ready just yet.</p>
+<p>Next, install <code>codereview</code> so you can participate in a Gerrit code review:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go get -u golang.org/x/review/git-codereview
+</code></pre></td></tr></table>
+</div>
+</div><p>This package includes <code>git change</code> and <code>git mail</code> which will replace your normal workflow of <code>git commit</code> and <code>git push</code> respectively.</p>
+<p>Okay, installations are out of the way. Now set up your <a href="https://go-review.googlesource.com/settings/#Profile" target="_blank" rel="noopener noreffer">Gerrit account here</a>, then <a href="https://go-review.googlesource.com/settings#Agreements" target="_blank" rel="noopener noreffer">sign the CLA</a> appropriate for you (I signed a personal one for all Google projects, but choose the right option for you. You can see all CLAs you’ve signed at <a href="https://cla.developers.google.com/clas" target="_blank" rel="noopener noreffer">cla.developers.google.com/clas</a>).</p>
+<p>AND BAM. You’re good (to go)! But where to contribute?</p>
+<h3 id="contributing">Contributing</h3>
+<p>In the workshop, they sent us into the <code>scratch</code> repository, which is a safe place to fool around in order to master the workflow:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd $(go env GOPATH)/src/golang.org/x
+git clone --depth 1 [[https://go.googlesource.com/scratch][go.googlesource.com/scratch]]
+</code></pre></td></tr></table>
+</div>
+</div><p>First stop is to <code>cd</code> in and run <code>go-contrib-init</code> to make sure you’re ready to contribute:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go-contrib-init
+All good. Happy hacking!
+</code></pre></td></tr></table>
+</div>
+</div><p>From there, I made a folder named after my GitHub account, did a <code>git add -u</code> then took <code>git change</code> for a spin. It has a hash that keeps track of your work, which is the one line you shouldn’t touch. Other than that, it feels just like <code>git commit</code>. Once I got the commit message matching the format of <code>package: description</code> (description begins with a lowercase), I used <code>git mail</code> to send it over to Gerrit.</p>
+<p>Two good notes to take at this point: <code>git change</code> also works like <code>git commit --amend</code>, so if you need to update your patch you can <code>add</code> then <code>change</code> and it will all link to the same patch. Secondly, you can always review your patch from your <a href="https://go-review.googlesource.com/dashboard/" target="_blank" rel="noopener noreffer">personal Gerrit dashboard</a>.</p>
+<p>After a few back and forths, I officially had a contribution to Go! And if Jaana is right, it might be the first with emojis ✌️.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image15.png"
+        data-srcset="contributor-workshop/image15.png, contributor-workshop/image15.png 1.5x, contributor-workshop/image15.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image15.png"
+        title="contributor-workshop/image15.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image23.png"
+        data-srcset="contributor-workshop/image23.png, contributor-workshop/image23.png 1.5x, contributor-workshop/image23.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image23.png"
+        title="contributor-workshop/image23.png" /></p>
+<h3 id="contributing-for-real">Contributing, For Real</h3>
+<p>The scratch repo is fun and all, but there’s a ton of ways to get into the depths of Go’s packages and give back. It’s at this point where I cruised around the many packages available to see what was available and interesting to me. And by “cruised around” I mean attempted to find a list of packages, then went to my source code to see what’s around under the <code>go/src/</code> folder:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image22.png"
+        data-srcset="contributor-workshop/image22.png, contributor-workshop/image22.png 1.5x, contributor-workshop/image22.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image22.png"
+        title="contributor-workshop/image22.png" /></p>
+<p>I decided to see what I can do in the <code>regexp</code> package, maybe out of love and fear of regex. Here’s where I switched to the <a href="https://godoc.org/regexp" target="_blank" rel="noopener noreffer">website’s view of the package</a> (it’s good to know that each standard package can be found at <a href="https://godoc.org/$PACKAGENAME" target="_blank" rel="noopener noreffer">https://godoc.org/$PACKAGENAME)</a>). In there I noticed that <code>QuoteMeta</code> was missing the same level of detailed examples other functions have (and I could use the practice using Gerrit).</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image1.png"
+        data-srcset="contributor-workshop/image1.png, contributor-workshop/image1.png 1.5x, contributor-workshop/image1.png 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image1.png"
+        title="contributor-workshop/image1.png" /></p>
+<p>I started looking at <code>go/src/regexp</code> to try to find where to add examples and I got lost pretty quickly. Lucky for me, <a href="https://twitter.com/francesc" target="_blank" rel="noopener noreffer">Francesc</a> was around that day. He walked me through how all examples are actually in-line tests in a <code>example_test.go</code> file. They follow the format of test cases followed by “Output” commented out and then the answers to the tests. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ExampleRegexp_FindString() {
+    re := regexp.MustCompile(&#34;fo.?&#34;)
+    fmt.Printf(&#34;%q\n&#34;, re.FindString(&#34;seafood&#34;))
+    fmt.Printf(&#34;%q\n&#34;, re.FindString(&#34;meat&#34;))
+    // Output:
+    // &#34;foo&#34;
+    // &#34;&#34;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Kind of cool, right?? I followed Francesc’s lead and added a function <code>ExampleQuoteMeta</code> and added a few I thought would be helpful. From there it’s a <code>git change</code> and <code>git mail</code> to Gerrit!</p>
+<p>I have to say that Steve Francia challenged me to “find something that isn’t an open issue and fix it,” so I included some documentation changes for QuoteMeta in my patch. It’s going to be open for a bit longer given the additional scope, but I think it’s worth it on this one.</p>
+<p>I can hear your question already: how did I verify it worked? Well it wasn’t easy to be honest. Running <code>go test example_test.go -run QuoteMeta -v</code> won’t do it since we’re working outside of our $GOPATH. I struggled to figure it out until <a href="https://medium.com/@vCabbage/go-testing-standard-library-changes-1e9cbed11339" target="_blank" rel="noopener noreffer">Kale Blakenship wrote this awesome post on testing in Go</a>. Bookmark this one for later.</p>
+<p>You can see my completed <a href="https://go-review.googlesource.com/c/49130/" target="_blank" rel="noopener noreffer">contribution here</a>. What I also hope you see is how simple it is to get into the flow of contributing. If you’re like me, you’ll be good at finding a small typo or missing example in the docs to start to get used to the <code>git codereview</code> workflow. After that, you’ll be ready to find an open issue, ideally one <a href="https://github.com/golang/go/milestones" target="_blank" rel="noopener noreffer">tagged for an upcoming release</a>, and give it a go. No matter what you choose to do, definitely go forth and do it. The Go team proved to me just how much they care about helping us all contribute back. I can’t wait for my next <code>git mail</code>.</p>
+<h2 id="my-mentorship-experience">My Mentorship Experience</h2>
+<p>by <a href="https://twitter.com/dmitshur" target="_blank" rel="noopener noreffer">Dmitri</a></p>
+<p>I was looking forward to participating in the Contribution Workshop event as a mentor. I had high expectations for the event, and thought it was a great idea before it started.</p>
+<p>I made my first contribution to Go on May 10th, 2014. I remember it was about four months from the moment I wanted to contribute, until that day, when I actually sent my first CL. It took that long to build up the courage and fully commit to figuring out the process. I was an experienced software engineer at the time. Despite that, the Go contribution process felt alien—being unlike all other processes I was already familiar with—and therefore seemed intimidating. It was well documented though, so I knew it would be just a matter of finding the time, sitting down, and doing it. The “unknown” factor kept me from giving it a shot.</p>
+<p>After a few months passed, I thought “enough is enough,” and decided to dedicate an entire day of an upcoming weekend to figuring out the process. I set aside all of Saturday for doing one thing: sending my first CL to Go. I opened up <a href="https://go.dev/doc/contribute.html" target="_blank" rel="noopener noreffer">the Contribution Guide</a> and started following all the steps, from the very top. Within an hour, I was done. I had sent my first CL. I was both in awe and shock. In awe, because I had finally sent a contribution to Go, and it was accepted! In shock, because, why did I wait so long to finally do this? Following the steps in <a href="https://go.dev/doc/contribute.html" target="_blank" rel="noopener noreffer">the Contribution Guide</a> was very easy, and the entire process went completely smoothly. If only someone had told me that I’d be done within an hour and nothing would go wrong, I would’ve done it much sooner!</p>
+<p>Which brings me to this event and why I thought it was such a good idea. For anyone who ever wanted to contribute to Go, but felt daunted by the unfamiliar and seemingly lengthy process (like I was during those four months), this was their chance! Not only is it easy to commit to figuring it out by attending the event, but also the Go team and helpful volunteer mentors would be there to help you along the way.</p>
+<p>Despite the already high expectations I had for the event, my expectations were exceeded. For one, the Go team had prepared really well and invested a lot in making the event that much more enjoyable for everyone. There was a very fun presentation that went over all the contributing steps quickly. There was a dashboard made for the event, where everyone’s successfully completed steps were rewarded with points towards a global score. That made it into a very collaborative and social event! Finally, and most importantly, they were Go team members like Brad Fitzpatrick behind the scenes, helping review CLs promptly! That meant the CLs that were submitted received reviews quickly, with actionable next steps, so everyone could move forward and learn more.</p>
+<p>I originally anticipated the event to be somewhat dull, in that the contribution steps are extremely simple to follow. However, I found that wasn’t always the case, and I was able to use my expertise in Go to help out people who got stuck in various unexpected places. It turns out, the real world is filled with edge cases. For instance, someone had two git emails, one personal and another for work. There was a delay with signing the CLA for the work email, so they tried to use their personal email instead. That meant each commit had to be amended to use the right email, something the tools didn’t take into account. (Luckily, there is a troubleshooting section in the contribution guide covering this exact issue!) There were other subtle mistakes or environment misconfiguration that some people ran into, because having more than one Go installation was a bit unusual. Sometimes, the GOROOT environment variable had to be explicitly set, temporarily, to get godoc to show changes in the right standard library (I was tongue-in-cheek looking over my shoulder to check for Dave Cheney as I uttered those words).</p>
+<p>Overall, I oversaw a few new gophers make their first Go contributions. They sent the CLs, responded to review feedback, made edits, iterated until everyone was happy, and eventually saw their first Go contributions get merged to master! It was very rewarding to see the happiness on their faces, because the joy of making one’s first contribution is something I can relate to myself. It was also great to be able to help them out, and explain tricky situations that they sometimes found themselves. From what I can tell, many happy gophers walked away from the event, myself included!</p>
+<h2 id="photos-from-the-event">Photos from the event</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image2.jpg"
+        data-srcset="contributor-workshop/image2.jpg, contributor-workshop/image2.jpg 1.5x, contributor-workshop/image2.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image2.jpg"
+        title="contributor-workshop/image2.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image4.jpg"
+        data-srcset="contributor-workshop/image4.jpg, contributor-workshop/image4.jpg 1.5x, contributor-workshop/image4.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image4.jpg"
+        title="contributor-workshop/image4.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image5.jpg"
+        data-srcset="contributor-workshop/image5.jpg, contributor-workshop/image5.jpg 1.5x, contributor-workshop/image5.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image5.jpg"
+        title="contributor-workshop/image5.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image8.jpg"
+        data-srcset="contributor-workshop/image8.jpg, contributor-workshop/image8.jpg 1.5x, contributor-workshop/image8.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image8.jpg"
+        title="contributor-workshop/image8.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image14.jpg"
+        data-srcset="contributor-workshop/image14.jpg, contributor-workshop/image14.jpg 1.5x, contributor-workshop/image14.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image14.jpg"
+        title="contributor-workshop/image14.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image18.jpg"
+        data-srcset="contributor-workshop/image18.jpg, contributor-workshop/image18.jpg 1.5x, contributor-workshop/image18.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image18.jpg"
+        title="contributor-workshop/image18.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image20.jpg"
+        data-srcset="contributor-workshop/image20.jpg, contributor-workshop/image20.jpg 1.5x, contributor-workshop/image20.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image20.jpg"
+        title="contributor-workshop/image20.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="contributor-workshop/image21.jpg"
+        data-srcset="contributor-workshop/image21.jpg, contributor-workshop/image21.jpg 1.5x, contributor-workshop/image21.jpg 2x"
+        data-sizes="auto"
+        alt="contributor-workshop/image21.jpg"
+        title="contributor-workshop/image21.jpg" /></p>
+<p>Photos by Sameer Ajmani &amp; Steve Francia</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20170809/" data-title="Gb_20170809" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20170809/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20170809/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20170809/" data-title="Gb_20170809"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20170809/" data-title="Gb_20170809"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20170809/" data-title="Gb_20170809"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20170803/" class="prev" rel="prev" title="Gb_20170803"><i class="fas fa-angle-left fa-fw"></i>Gb_20170803</a>
+            <a href="/gb_20170824/" class="next" rel="next" title="Gb_20170824">Gb_20170824<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

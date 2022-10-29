@@ -4,78 +4,77 @@
         <link>https://jefofrank.xyz/</link>
         <description>绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</lastBuildDate>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jefofrank.xyz/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>slidev</title>
-    <link>https://jefofrank.xyz/slidev/</link>
-    <pubDate>Sat, 08 Oct 2022 20:57:59 &#43;0800</pubDate>
+    <title>Interesting talk about Linux operating system</title>
+    <link>https://jefofrank.xyz/interesting_talk_linux/</link>
+    <pubDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/slidev/</guid>
-    <description><![CDATA[ https://juejin.cn/post/7062979350651469831#comment
- ]]></description>
+    <guid>https://jefofrank.xyz/interesting_talk_linux/</guid>
+    <description><![CDATA[趣谈Linux操作系统 入门准备 开篇词 | 为什么要学习Linux操作系统？ 刘超 2019-03-25 我们大学里上过操作系统的课，而且每天都在用操作系统，为什么还要专]]></description>
 </item><item>
-    <title>Patterns_principles</title>
-    <link>https://jefofrank.xyz/patterns_principles/</link>
-    <pubDate>Sun, 31 Jul 2022 14:17:48 &#43;0800</pubDate>
+    <title>DS_geek</title>
+    <link>https://jefofrank.xyz/ds_geek/</link>
+    <pubDate>Wed, 20 Jul 2022 16:24:55 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/patterns_principles/</guid>
-    <description><![CDATA[https://github.com/geekhall/gof/blob/main/README.md?plain=1 1. 软件设计的七大原则 也叫solid原则 迪米特与合成/复用是后加的 Principle 1 : 开闭原则（Open Close Principle, OCP） 内容：对扩展开放，对修改关闭 实现方式：]]></description>
+    <guid>https://jefofrank.xyz/ds_geek/</guid>
+    <description><![CDATA[深入浅出分布式技术原理 开篇词｜掌握好学习路径，分布式系统原来如此简单 陈现麟 2022-01-24 从我的经验来看，初学者想要高效且系统性地掌握分布式系统，这本身就]]></description>
 </item><item>
-    <title>interview</title>
-    <link>https://jefofrank.xyz/interview/</link>
-    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
+    <title>Cp_practice</title>
+    <link>https://jefofrank.xyz/cp_practice/</link>
+    <pubDate>Mon, 18 Jul 2022 23:55:56 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/interview/</guid>
-    <description><![CDATA[Go slice 切片和数组的区别？ 数据类型不同。这是从数据结构上决定的，因为数组的数据结构只有元素类型和长度，而切片的数据结构是一个结构体，结构体有一个]]></description>
+    <guid>https://jefofrank.xyz/cp_practice/</guid>
+    <description><![CDATA[编译原理实战课 开篇词 | 在真实世界的编译器中游历 宫文学 2020-06-01 你好，我是宫文学，一名技术创业者，现在是北京物演科技的 CEO，很高兴在这里跟你见面。我]]></description>
 </item><item>
-    <title>NIPS16_TRMF</title>
-    <link>https://jefofrank.xyz/nips16_trmf/</link>
-    <pubDate>Fri, 13 May 2022 09:33:30 &#43;0800</pubDate>
+    <title>Cp_base</title>
+    <link>https://jefofrank.xyz/cp_base/</link>
+    <pubDate>Mon, 18 Jul 2022 23:55:09 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/nips16_trmf/</guid>
-    <description><![CDATA[Hsiang-Fu Yu, Nikhil Rao, Inderjit S. Dhillon, 2016. Temporal regularized matrix factorization for high-dimensional time series prediction. 笔记中部分公式未渲染出来，文末截图可见 Temporal Regularized Matrix Factorization(TRMF) for High-dimensional Time Series Prediction 摘要 现代应用程序需要具有高度可扩展性的方法，并且可]]></description>
+    <guid>https://jefofrank.xyz/cp_base/</guid>
+    <description><![CDATA[编译原理之美 开篇词 | 为什么你要学习编译原理？ 宫文学 2019-08-14 我会通过具体的案例带你理解抽象的原理。比如语义分析阶段有个 I 属性和 S 属性，传统课本里只专]]></description>
 </item><item>
-    <title>图神经网络的多元时间序列插补</title>
-    <link>https://jefofrank.xyz/sameonlychinese/</link>
-    <pubDate>Fri, 13 May 2022 09:33:30 &#43;0800</pubDate>
+    <title>CN_proto</title>
+    <link>https://jefofrank.xyz/cn_proto/</link>
+    <pubDate>Sun, 17 Jul 2022 10:05:58 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/sameonlychinese/</guid>
-    <description><![CDATA[FILLING THE G AP S: MULTIVARIATE TIME SERIES IMPUTATION BY GRAPH NEURAL NETWORKS 摘要 在处理来自实际应用程序的数据时，处理缺失值和不完整的时间序列是一项劳动密集型、乏味且不可避免的任务。 有效的时空]]></description>
+    <guid>https://jefofrank.xyz/cn_proto/</guid>
+    <description><![CDATA[趣谈网络协议 刘超 2018-05-14 开篇词 | 想成为技术牛人？先搞定网络协议！ 工作 15 年，我在 EMC 做过类似 GFS 的分布式存储开发，做过基于 Lucene 的搜索引擎，做过 Hadoop 的运维；在]]></description>
 </item><item>
-    <title>Gb_20110125</title>
-    <link>https://jefofrank.xyz/gb_20110125/</link>
-    <pubDate>Sun, 08 May 2022 20:51:03 &#43;0800</pubDate>
+    <title>K8s_advanced</title>
+    <link>https://jefofrank.xyz/k8s_advanced/</link>
+    <pubDate>Thu, 14 Jul 2022 10:38:32 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20110125/</guid>
-    <description><![CDATA[JSON 和 Go 安德鲁·杰朗 2011 年 1 月 25 日 介绍 JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上它类似于 JavaScript 的对象和列表]]></description>
+    <guid>https://jefofrank.xyz/k8s_advanced/</guid>
+    <description><![CDATA[2018 深入剖析k8s 张磊 2018-08-27 开篇词 | 打通“容器技术”的任督二脉 你好，我是张磊，Kubernetes 社区的一位资深成员和项目维护者。2012 年，我还]]></description>
 </item><item>
-    <title>Gb_20110105</title>
-    <link>https://jefofrank.xyz/gb_20110105/</link>
-    <pubDate>Sun, 08 May 2022 20:50:41 &#43;0800</pubDate>
+    <title>K8s_base</title>
+    <link>https://jefofrank.xyz/k8s_base/</link>
+    <pubDate>Thu, 14 Jul 2022 10:38:08 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20110105/</guid>
-    <description><![CDATA[Go Slices：用法和内部结构 安德鲁·杰朗 2011 年 1 月 5 日 介绍 Go 的 slice 类型提供了一种处理类型化数据序列的便捷有效的方法。切片类似于其他语言中的数组]]></description>
+    <guid>https://jefofrank.xyz/k8s_base/</guid>
+    <description><![CDATA[k8s入门实战 开篇词｜迎难而上，做云原生时代的弄潮儿 你好，我是罗剑锋，不过更愿意你称呼我“Chrono”。先来简单介绍一下我自己吧。作为一个]]></description>
 </item><item>
-    <title>Gb_20101110</title>
-    <link>https://jefofrank.xyz/gb_20101110/</link>
-    <pubDate>Sun, 08 May 2022 20:50:12 &#43;0800</pubDate>
+    <title>CN_wangdao</title>
+    <link>https://jefofrank.xyz/cn_wangdao/</link>
+    <pubDate>Fri, 03 Jun 2022 10:46:24 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20101110/</guid>
-    <description><![CDATA[go：一年前的今天 安德鲁·杰朗 2010 年 11 月 10 日 2009 年 11 月 10 日，我们启动了 Go 项目：一种专注于简单性和效率的开源编程语言。在过去的一年里，Go 项目本身]]></description>
+    <guid>https://jefofrank.xyz/cn_wangdao/</guid>
+    <description><![CDATA[第1章计算机网络体系结构 1.1计算机网络概述 1.1.1概念 简而言之，计算机网络是一些互联的、自治的计算机系统的集合。 广义观点：能够实现远程信]]></description>
 </item><item>
-    <title>Gb_20101102</title>
-    <link>https://jefofrank.xyz/gb_20101102/</link>
-    <pubDate>Sun, 08 May 2022 20:49:57 &#43;0800</pubDate>
+    <title>Git</title>
+    <link>https://jefofrank.xyz/git/</link>
+    <pubDate>Tue, 31 May 2022 14:55:58 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20101102/</guid>
-    <description><![CDATA[调试 Go 代码（状态报告） Luuk van Dijk 2010 年 11 月 2 日 在调试方面，没有什么比使用一些策略性的打印语句来检查变量或放置得当的恐慌来获得堆栈跟踪更好的了。但是]]></description>
+    <guid>https://jefofrank.xyz/git/</guid>
+    <description><![CDATA[└── .git ├── COMMIT_EDITMSG # 保存最新的commit message ├── config # 仓库的配置文件 ├── description # 仓库的描述信息，主要给gitweb使用 ├── HEAD # 指向当前分支 ├─]]></description>
 </item><item>
-    <title>Gb_20101019</title>
-    <link>https://jefofrank.xyz/gb_20101019/</link>
-    <pubDate>Sun, 08 May 2022 20:49:43 &#43;0800</pubDate>
+    <title>Effective_go</title>
+    <link>https://jefofrank.xyz/effective_go/</link>
+    <pubDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/gb_20101019/</guid>
-    <description><![CDATA[真正的围棋项目：SmartTwitter 和 web.go 迈克尔·霍伊西 2010 年 10 月 19 日 本周的文章由 Michael Hoisie 撰写。 他是旧金山的一名程序员，是 Go 的早期采用者之一，也]]></description>
+    <guid>https://jefofrank.xyz/effective_go/</guid>
+    <description><![CDATA[https://go.dev/doc/effective_go 引言 Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性，使得用 Go 编程在本质上就不同于其它语言。将现有的 C++ 或 Java 程序直]]></description>
 </item></channel>
 </rss>

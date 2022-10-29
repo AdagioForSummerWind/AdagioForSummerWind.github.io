@@ -4,40 +4,12 @@
         <link>https://jefofrank.xyz/tags/data-structure/</link>
         <description>data structure - 标签 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Feb 2022 19:52:33 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/data-structure/" rel="self" type="application/rss+xml" /><item>
-    <title>Algorithm_find</title>
-    <link>https://jefofrank.xyz/algorithm_find/</link>
-    <pubDate>Sun, 20 Feb 2022 19:52:33 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/algorithm_find/</guid>
-    <description><![CDATA[查找算法 散列查找：也称哈希查找，有拉链法查找，也有线性探测法查找，拉链法使用数组链表结构，线性探测法使用数组。 树查找：有搜索二叉树，平衡查找]]></description>
-</item><item>
-    <title>Algorithm_sort</title>
-    <link>https://jefofrank.xyz/algorithm_sort/</link>
-    <pubDate>Sun, 20 Feb 2022 19:52:01 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/algorithm_sort/</guid>
-    <description><![CDATA[排序算法 稳定性概念 定义：能保证两个相等的数，经过排序之后，其在序列的前后位置顺序不变。（A1=A2，排序前A1在A2前面，排序后A1还在A2]]></description>
-</item><item>
-    <title>Algorithm_array</title>
-    <link>https://jefofrank.xyz/algorithm_array/</link>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/data-structure/" rel="self" type="application/rss+xml" /><item>
+    <title>Algorithm_carl</title>
+    <link>https://jefofrank.xyz/algorithm_carl/</link>
     <pubDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/algorithm_array/</guid>
+    <guid>https://jefofrank.xyz/algorithm_carl/</guid>
     <description><![CDATA[学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素]]></description>
-</item><item>
-    <title>Performance_analysis</title>
-    <link>https://jefofrank.xyz/performance_analysis/</link>
-    <pubDate>Sun, 02 Jan 2022 19:28:23 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/performance_analysis/</guid>
-    <description><![CDATA[算法性能分析 03 | 复杂度分析（上）：如何分析、统计算法的执行效率和资源消耗？ 复杂度分析是整个算法学习的精髓，只要掌握了它，数据结构和算法的内容]]></description>
-</item><item>
-    <title>Programming_literacy</title>
-    <link>https://jefofrank.xyz/programming_literacy/</link>
-    <pubDate>Sun, 02 Jan 2022 18:57:57 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/programming_literacy/</guid>
-    <description><![CDATA[编程相关 代码风格与规范 go其实没有什么要说的。。 变量命名 主要以团队风格为主； 主流有如下三种变量规则： 小驼峰、大驼峰(帕斯卡命名法)命名法（j]]></description>
 </item></channel>
 </rss>

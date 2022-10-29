@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20220908 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20220908" />
+<meta property="og:description" content="Go Developer Survey 2022 Q2 Results Todd Kulesza
+8 September 2022
+.chart { margin-left: 1.5rem; margin-right: 1.5rem; width: 800px; } .quote { margin-left: 2rem; margin-right: 2rem; color: #999; font-style: italic; font-size: 120%; } @media (prefers-color-scheme: dark) { .chart { border-radius: 8px; } }
+Overview This article shares the results of the 2022 June edition of the Go Developer Survey. On behalf of the Go team, thank you to the 5,752 people who told us about their experience working with new features introduced in Go 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20220908/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T20:28:25+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20220908"/>
+<meta name="twitter:description" content="Go Developer Survey 2022 Q2 Results Todd Kulesza
+8 September 2022
+.chart { margin-left: 1.5rem; margin-right: 1.5rem; width: 800px; } .quote { margin-left: 2rem; margin-right: 2rem; color: #999; font-style: italic; font-size: 120%; } @media (prefers-color-scheme: dark) { .chart { border-radius: 8px; } }
+Overview This article shares the results of the 2022 June edition of the Go Developer Survey. On behalf of the Go team, thank you to the 5,752 people who told us about their experience working with new features introduced in Go 1."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20220908/" /><link rel="prev" href="https://jefofrank.xyz/gb_20220906/" /><link rel="next" href="https://jefofrank.xyz/gb_20220926/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20220908",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20220908\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  3729 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20220908\/","datePublished": "2022-10-29T20:28:25+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20220908</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 20:28:25">2022-10-29 20:28:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3729 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 18 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#key-findings">Key findings</a></li>
+        <li><a href="#how-to-read-these-results">How to read these results</a></li>
+        <li><a href="#a-note-on-methodology">A note on methodology</a></li>
+      </ul>
+    </li>
+    <li><a href="#generics">Generics</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#tooling">Tooling</a></li>
+    <li><a href="#who-we-heard-from">Who we heard from</a></li>
+    <li><a href="#how-respondents-use-go">How respondents use Go</a></li>
+    <li><a href="#sentiment-and-challenges">Sentiment and challenges</a></li>
+    <li><a href="#survey-methodology">Survey methodology</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go-developer-survey-2022-q2-results">Go Developer Survey 2022 Q2 Results</h1>
+<p>Todd Kulesza<br>
+8 September 2022</p>
+<p>.chart { margin-left: 1.5rem; margin-right: 1.5rem; width: 800px; } .quote { margin-left: 2rem; margin-right: 2rem; color: #999; font-style: italic; font-size: 120%; } @media (prefers-color-scheme: dark) { .chart { border-radius: 8px; } }</p>
+<h2 id="overview">Overview</h2>
+<p>This article shares the results of the 2022 June edition of the Go Developer Survey. On behalf of the Go team, thank you to the 5,752 people who told us about their experience working with new features introduced in Go 1.18, including generics, security tooling, and workspaces. You’ve helped us better understand how developers are discovering and using this functionality, and as this article will discuss, provided useful insights for additional improvements. Thank you! 💙</p>
+<h3 id="key-findings">Key findings</h3>
+<ul>
+<li><strong>Generics has seen quick adoption</strong>. A large majority of respondents were aware generics had been included in the Go 1.18 release, and about 1 in 4 respondents said they’ve already started using generics in their Go code. The most common single piece of generics-related feedback was “thank you!”, but it is clear developers are already running into some limitations of the initial generics implementation.</li>
+<li><strong>Fuzzing is new to most Go developers</strong>. Awareness of Go’s built-in fuzz testing was much lower than generics, and respondents had much more uncertainty around why or when they might consider using fuzz testing.</li>
+<li><strong>Third-party dependencies are a top security concern</strong>. Avoiding dependencies with known vulnerabilities was the top security-related challenge for respondents. More broadly, security work can often be unplanned and unrewarded, implying that tooling needs to be respectful of developers' time and attention.</li>
+<li><strong>We can do better when announcing new functionality</strong>. Randomly sampled participants were less likely to know about recent Go tooling releases than people who found the survey via the Go blog. This suggests we should either look beyond blog articles to communicate changes in the Go ecosystem, or expand efforts to share these articles more widely.</li>
+<li><strong>Error handling remains a challenge</strong>. Following the release of generics, respondents' top challenge when working with Go shifted to error handling. Overall, however, satisfaction with Go remains very high, and we found no significant changes in how respondents said they were using Go.</li>
+</ul>
+<h3 id="how-to-read-these-results">How to read these results</h3>
+<p>Throughout this post, we use charts of survey responses to provide supporting evidence for our findings. All of these charts use a similar format. The title is the exact question that survey respondents saw. Unless otherwise noted, questions were multiple choice and participants could only select a single response choice; each chart’s subtitle will tell you if the question allowed multiple response choices or was an open-ended text box instead of a multiple choice question. For charts of open-ended text responses, a Go team member read and manually categorized all of the responses. Many open-ended questions elicited a wide variety of responses; to keep the chart sizes reasonable, we condensed them to a maximum of the top 10 themes, with additional themes all grouped under “Other”.</p>
+<p>To help readers understand the weight of evidence underlying each finding, we include error bars showing the 95% confidence interval for responses; narrower bars indicate increased confidence. Sometimes two or more responses have overlapping error bars, which means the relative order of those responses is not statistically meaningful (i.e., the responses are effectively tied). The lower right of each chart shows the number of people whose responses are included in the chart, in the form “<em>n = [number of respondents]</em>”.</p>
+<h3 id="a-note-on-methodology">A note on methodology</h3>
+<p>Most survey respondents “self-selected” to take the survey, meaning they found it on <a href="https://go.dev/blog" target="_blank" rel="noopener noreffer">the Go blog</a>, <a href="https://twitter.com/golang" target="_blank" rel="noopener noreffer">@golang on Twitter</a>, or other social Go channels. A potential problem with this approach is that people who don’t follow these channels are less likely to learn about the survey, and might respond differently than people who <em>do</em> closely follow them. About one third of respondents were randomly sampled, meaning they responded to the survey after seeing a prompt for it in VS Code (everyone using the VS Code Go plugin between June 1 - June 21st 2022 had a 10% of receiving this random prompt). This randomly sampled group helps us generalize these findings to the larger community of Go developers. Most survey questions showed no meaningful difference between these groups, but in the few cases with important differences, readers will see charts that break down responses into “Random sample” and “Self-selected” groups.</p>
+<h2 id="generics">Generics</h2>
+<p>&ldquo;[Generics] seemed like the only obvious missing feature from the first time I used the language. Has helped reduce code duplication a lot.&rdquo; — A survey respondent discussing generics</p>
+<p>After Go 1.18 was released with support for type parameters (more commonly referred to as <em>generics</em>), we wanted to understand what the initial awareness and adoption of generics looked like, as well as identify common challenges or blockers for using generics.</p>
+<p>The vast majority of survey respondents (86%) were already aware generics shipped as part of the Go 1.18 release. We had hoped to see a simple majority here, so this was much more awareness than we’d been expecting. We also found that about a quarter of respondents had begun using generics in Go code (26%), including 14% who said they are already using generics in production or released code. A majority of respondents (54%) were not opposed to using generics, but didn’t have a need for them today. We also found that 8% of respondents <em>wanted</em> to use generics in Go, but were currently blocked by something.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/generics_awareness.svg"
+        data-srcset="survey2022q2/generics_awareness.svg, survey2022q2/generics_awareness.svg 1.5x, survey2022q2/generics_awareness.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/generics_awareness.svg"
+        title="Chart showing most
+respondents were aware Go 1.18 included generics" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/generics_use.svg"
+        data-srcset="survey2022q2/generics_use.svg, survey2022q2/generics_use.svg 1.5x, survey2022q2/generics_use.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/generics_use.svg"
+        title="Chart showing 26% of respondents are
+already using Go generics" /></p>
+<p>What was blocking some developers from using generics? A majority of respondents fell into one of two categories. First, 30% of respondents said they hit a limit of the current implementation of generics, such as wanting parameterized methods, improved type inference, or switching on types. Respondents said these issues limited the potential use cases for generics or felt they made generic code unnecessarily verbose. The second category involved depending on something that didn’t (yet) support generics—linters were the most common tool preventing adoption, but this list also included things like organizations remaining on an earlier Go release or depending on a Linux distribution that did not yet provide Go 1.18 packages (26%). A steep learning curve or lack of helpful documentation was cited by 12% of respondents. Beyond these top issues, respondents told us about a wide range of less-common (though still meaningful) challenges, as shown in the chart below. To avoid focusing on hypotheticals, this analysis only includes people who said they were already using generics, or who tried to use generics but were blocked by something.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_gen_challenge.svg"
+        data-srcset="survey2022q2/text_gen_challenge.svg, survey2022q2/text_gen_challenge.svg 1.5x, survey2022q2/text_gen_challenge.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_gen_challenge.svg"
+        title="Chart showing the top
+generic challenges" /></p>
+<p>We also asked survey respondents who had tried using generics to share any additional feedback. Encouragingly, one in ten respondents said generics had already simplified their code, or resulted in less code duplication. The most common response was some variation of “thank you!” or a general positive sentiment (43%); for comparison, only 6% of respondents evinced a negative reaction or sentiment. Mirroring the findings from the “biggest challenge” question above, nearly one third of respondents discussed hitting a limitation of Go’s implementation of generics. The Go team is using this set of results to help decide if or how some of these limitations could be relaxed.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_gen_feedback.svg"
+        data-srcset="survey2022q2/text_gen_feedback.svg, survey2022q2/text_gen_feedback.svg 1.5x, survey2022q2/text_gen_feedback.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_gen_feedback.svg"
+        title="Chart showing most generics
+feedback was positive or referenced a limitation of the current
+implementation" /></p>
+<h2 id="security">Security</h2>
+<p>&ldquo;[The biggest challenge is] finding time given competing priorities; business customers want their features over security.&rdquo; — A survey respondent discussing security challenges</p>
+<p>Following the <a href="https://en.wikipedia.org/wiki/2020_United_States_federal_government_data_breach#SolarWinds_exploit" target="_blank" rel="noopener noreffer">2020 SolarWinds breach</a>, the practice of developing software securely has received renewed attention. The Go team has prioritized work in this area, including tools for creating <a href="https://pkg.go.dev/debug/buildinfo" target="_blank" rel="noopener noreffer">a software bill of materials (SBOM)</a>, <a href="https://go.dev/doc/fuzz/" target="_blank" rel="noopener noreffer">fuzz testing</a>, and most recently, <a href="https://go.dev/blog/vuln/" target="_blank" rel="noopener noreffer">vulnerability scanning</a>. To support these efforts, this survey asked several questions about software development security practices and challenges. We specifically wanted to understand:</p>
+<ul>
+<li>What types of security tools are Go developers using today?</li>
+<li>How do Go developers find and resolve vulnerabilities?</li>
+<li>What are the biggest challenges to writing secure Go software?</li>
+</ul>
+<p>Our results suggest that while static analysis tooling is in widespread use (65% of respondents), a minority of respondents currently use it to find vulnerabilities (35%) or otherwise improve code security (33%). Respondents said that security tooling is most commonly run during CI/CD time (84%), with a minority saying developers run these tools locally during development (22%). This aligns with additional security research our team has conducted, which found that security scanning at CI/CD time is a desired backstop, but developers often considered this too late for a first notification: they would prefer to know a dependency may be vulnerable <em>before</em> building upon it, or to verify that a version update resolved a vulnerability without waiting for CI to run a full battery of additional tests against their PR.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/dev_techniques.svg"
+        data-srcset="survey2022q2/dev_techniques.svg, survey2022q2/dev_techniques.svg 1.5x, survey2022q2/dev_techniques.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/dev_techniques.svg"
+        title="Chart showing prevalence of 9
+different development techniques" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/security_sa_when.svg"
+        data-srcset="survey2022q2/security_sa_when.svg, survey2022q2/security_sa_when.svg 1.5x, survey2022q2/security_sa_when.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/security_sa_when.svg"
+        title="Chart showing most respondents
+run security tools during CI" /></p>
+<p>We also asked respondents about their biggest challenges around developing secure software. The most wide-spread difficulty was evaluating the security of third-party libraries (57% of respondents), a topic vulnerability scanners (such as <a href="https://github.com/dependabot" target="_blank" rel="noopener noreffer">GitHub’s dependabot</a> or the Go team’s <a href="https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck" target="_blank" rel="noopener noreffer">govulncheck</a>) can help address. The other top challenges suggest opportunities for additional security tooling: respondents said it’s hard to consistently apply best practices while writing code, and validating that the resulting code doesn’t have vulnerabilities.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/security_challenges.svg"
+        data-srcset="survey2022q2/security_challenges.svg, survey2022q2/security_challenges.svg 1.5x, survey2022q2/security_challenges.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/security_challenges.svg"
+        title="Chart showing the most
+common security challenge is evaluating the security of third-party libraries" /></p>
+<p>Fuzz testing, another approach for increasing application security, was still quite new to most respondents. Only 12% said they use it at work, and 5% said they’ve adopted Go’s built-in fuzzing tools. An open-ended follow-up question asking what made fuzzing difficult to use found that the main reasons were not technical problems: the top three responses discussed not understanding how to use fuzz testing (23%), a lack of time to devote to fuzzing or security more broadly (22%), and understanding why and when developers might want to use fuzz testing (14%). These findings indicate that we still have work to do in terms of communicating the value of fuzz testing, what should be fuzz tested, and how to apply it to a variety of different code bases.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/fuzz_use.svg"
+        data-srcset="survey2022q2/fuzz_use.svg, survey2022q2/fuzz_use.svg 1.5x, survey2022q2/fuzz_use.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/fuzz_use.svg"
+        title="Chart showing most respondents have
+not tried fuzz testing yet" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_fuzz_challenge.svg"
+        data-srcset="survey2022q2/text_fuzz_challenge.svg, survey2022q2/text_fuzz_challenge.svg 1.5x, survey2022q2/text_fuzz_challenge.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_fuzz_challenge.svg"
+        title="Chart showing the biggest fuzz
+testing challenges relate to understanding, rather than technical issues" /></p>
+<p>To better understand common tasks around vulnerability detection and resolution, we asked respondents whether they’d learned of any vulnerabilities in their Go code or its dependencies during the past year. For those who did, we followed up with questions asking how the most recent vulnerability was discovered, how they investigated and/or resolved it, and what was most challenging about the whole process.</p>
+<p>First, we found evidence that vulnerability scanning is effective. One quarter of respondents said they’d learned of a vulnerability in one of their third-party dependencies. Recall, however, that only about ⅓ of respondents were using vulnerability scanning at all—when we look at responses from people who said they ran some sort of vulnerability scanner, this proportion nearly doubles, from 25% → 46%. Besides vulnerabilities in dependencies or in Go itself, 12% of respondents said they learned about vulnerabilities in their own code.</p>
+<p>A majority of respondents said they learned of vulnerabilities via security scanners (65%). The single most common tool respondents cited was <a href="https://github.com/dependabot" target="_blank" rel="noopener noreffer">GitHub’s dependabot</a> (38%), making it more frequently referenced than all other vulnerability scanners combined (27%). After scanning tools, the most common method for learning about vulnerabilities were public reports, such as release notes and CVEs (22%).</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/security_found_vuln.svg"
+        data-srcset="survey2022q2/security_found_vuln.svg, survey2022q2/security_found_vuln.svg 1.5x, survey2022q2/security_found_vuln.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/security_found_vuln.svg"
+        title="Chart showing that most
+respondents have not found security vulnerabilities during the past year" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_vuln_find.svg"
+        data-srcset="survey2022q2/text_vuln_find.svg, survey2022q2/text_vuln_find.svg 1.5x, survey2022q2/text_vuln_find.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_vuln_find.svg"
+        title="Chart showing
+that vulnerability scanners are the most common way to learn about security
+vulnerabilities" /></p>
+<p>Once respondents learned about a vulnerability, the most common resolution was to upgrade the vulnerable dependency (67%). Among respondents who also discussed using a vulnerability scanner (a proxy for participants who were discussing a vulnerability in a third-party dependency), this increased to 85%. Less than one third of respondents discussed reading the CVE or vulnerability report (31%), and only 12% mentioned a deeper investigation to understand whether (and how) their software was impacted by the vulnerability.</p>
+<p>That only 12% of respondents said they performed an investigation into whether a vulnerability was reachable in their code, or the potential impact it may have had on their service, was surprising. To understand this better, we also looked at what respondents said was most challenging about responding to security vulnerabilities. They described several different topics in roughly equal proportions, from ensuring that dependency updates didn’t break anything, to understanding how to update indirect dependencies via go.mod files. Also in this list is the type of investigation needed to understand a vulnerability’s impact or root cause. When we focus on only the respondents who said they performed these investigations, however, we see a clear correlation: 70% of respondents who said they performed an investigation into the vulnerability’s potential impact cited it as the most challenging part of this process. Reasons included not just the difficulty of the task, but the fact that it was often both unplanned and unrewarded work.</p>
+<p>The Go team believes these deeper investigations, which require an understanding of <em>how</em> an application uses a vulnerable dependency, are crucial for understanding the risk the vulnerability may present to an organization, as well as understanding whether a data breach or other security compromise occurred. Thus, <a href="https://go.dev/blog/vuln" target="_blank" rel="noopener noreffer">we designed <code>govulncheck</code></a> to only alert developers when a vulnerability is invoked, and point developers to the exact places in their code using the vulnerable functions. Our hope is that this will make it easier for developers to quickly investigate the vulnerabilities that truly matter to their application, thus reducing the overall amount of unplanned work in this space.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_vuln_resolve.svg"
+        data-srcset="survey2022q2/text_vuln_resolve.svg, survey2022q2/text_vuln_resolve.svg 1.5x, survey2022q2/text_vuln_resolve.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_vuln_resolve.svg"
+        title="Chart showing most
+respondents resolved vulnerabilities by upgrading dependencies" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_vuln_challenge.svg"
+        data-srcset="survey2022q2/text_vuln_challenge.svg, survey2022q2/text_vuln_challenge.svg 1.5x, survey2022q2/text_vuln_challenge.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_vuln_challenge.svg"
+        title="Chart showing a 6-way
+tie for tasks that were most challenging when investigating and resolving
+security vulnerabilities" /></p>
+<h2 id="tooling">Tooling</h2>
+<p>Next, we investigated three questions focused on tooling:</p>
+<ul>
+<li>Has the editor landscape shifted since our last survey?</li>
+<li>Are developers using workspaces? If so, what challenges have they encountered while getting started?</li>
+<li>How do developers handle internal package documentation?</li>
+</ul>
+<p>VS Code appears to be continuing to grow in popularity among survey respondents, with the proportion of respondents saying it’s their preferred editor for Go code increasing from 42% → 45% since 2021. VS Code and GoLand, the two most popular editors, showed no differences in popularity between small and large organizations, though hobbyist developers were more likely to prefer VS Code to GoLand. This analysis excludes the randomly sampled VS Code respondents—we’d expect people we invited to the survey to show a preference for the tool used to distribute the invitation, which is exactly what we saw (91% of the randomly sampled respondents preferred VS Code).</p>
+<p>Following the 2021 switch to <a href="https://go.dev/blog/gopls-vscode-go" target="_blank" rel="noopener noreffer">power VS Code’s Go support via the gopls language server</a>, the Go team has been interested in understanding developer pain points related to gopls. While we receive a healthy amount of feedback from developers currently using gopls, we wondered whether a large proportion of developers had disabled it shortly after release, which could mean we weren’t hearing feedback about particularly problematic use cases. To answer this question, we asked respondents who said they preferred an editor which supports gopls whether or not they <em>used</em> gopls, finding that only 2% said they had disabled it; for VS Code specifically, this dropped to 1%. This increases our confidence that we’re hearing feedback from a representative group of developers. For readers who still have unresolved issues with gopls, please let us know by <a href="https://github.com/golang/go/issues" target="_blank" rel="noopener noreffer">filing an issue on GitHub</a>.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/editor_self_select.svg"
+        data-srcset="survey2022q2/editor_self_select.svg, survey2022q2/editor_self_select.svg 1.5x, survey2022q2/editor_self_select.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/editor_self_select.svg"
+        title="Chart showing the top
+preferred editors for Go are VS Code, GoLand, and Vim / Neovim" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/use_gopls.svg"
+        data-srcset="survey2022q2/use_gopls.svg, survey2022q2/use_gopls.svg 1.5x, survey2022q2/use_gopls.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/use_gopls.svg"
+        title="Chart showing only 2% of
+respondents disabled gopls" /></p>
+<p>Regarding workspaces, it seems many people first learned about Go’s support for multi-module workspaces via this survey. Respondents who learned of the survey through VS Code’s randomized prompt were especially likely to say they had not heard of workspaces before (53% of randomly sampled respondents vs. 33% of self-selecting respondents), a trend we also observed with awareness of generics (though this was higher for both groups, with 93% of self-selecting respondents aware that generics landed in Go 1.18 vs. 68% of randomly sampled respondents). One interpretation is that there is a large audience of Go developers we do not currently reach through the Go blog or existing social media channels, which has traditionally been our primary mechanism for sharing new functionality.</p>
+<p>We found that 9% of respondents said they had tried workspaces, and an additional 5% would like to but are blocked by something. Respondents discussed a variety of challenges when trying to use Go workspaces. A lack of documentation and helpful error message from the <code>go work</code> command top the list (21%), followed by technical challenges such as refactoring existing repositories (13%). Similar to challenges discussed in the security section, we again see “lack of time / not a priority” in this list—we interpret this to mean the bar to understand and setup workspaces is still a bit too high compared to the benefits they provide, potentially because developers already had workarounds in place.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/workspaces_use_s.svg"
+        data-srcset="survey2022q2/workspaces_use_s.svg, survey2022q2/workspaces_use_s.svg 1.5x, survey2022q2/workspaces_use_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/workspaces_use_s.svg"
+        title="Chart showing a majority of
+randomly sampled respondents were not aware of workspaces prior to this
+survey" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_workspace_challenge.svg"
+        data-srcset="survey2022q2/text_workspace_challenge.svg, survey2022q2/text_workspace_challenge.svg 1.5x, survey2022q2/text_workspace_challenge.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_workspace_challenge.svg"
+        title="Chart showing that documentation and error messages were the top
+challenge when trying to use Go workspaces" /></p>
+<p>Prior to the release of Go modules, organizations were able to run internal documentation servers (such as <a href="https://github.com/golang/gddo" target="_blank" rel="noopener noreffer">the one that powered godoc.org</a>) to provide employees with documentation for private, internal Go packages. This remains true with <a href="https://pkg.go.dev/" target="_blank" rel="noopener noreffer">pkg.go.dev</a>, but setting up such a server is more complex than it used to be. To understand if we should invest in making this process easier, we asked respondents how they view documentation for internal Go modules today, and whether that’s their preferred way of working.</p>
+<p>The results show the most common way to view internal Go documentation today is by reading the code (81%), and while about half of the respondents were happy with this, a large proportion would prefer to have an internal documentation server (39%). We also asked who might be most likely to configure and maintain such a server: by a 2-to-1 margin, respondents thought it would be a software engineer rather than someone from a dedicated IT support or operations team. This strongly suggests that a documentation server should be a turn-key solution, or at least easy for a single developer to get running quickly (over, say, a lunch break), on the theory that this type of work is yet one more responsibility on developers' already full plates.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/doc_viewing_today.svg"
+        data-srcset="survey2022q2/doc_viewing_today.svg, survey2022q2/doc_viewing_today.svg 1.5x, survey2022q2/doc_viewing_today.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/doc_viewing_today.svg"
+        title="Chart showing most
+respondents use source code directly for internal package documentation" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/doc_viewing_ideal.svg"
+        data-srcset="survey2022q2/doc_viewing_ideal.svg, survey2022q2/doc_viewing_ideal.svg 1.5x, survey2022q2/doc_viewing_ideal.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/doc_viewing_ideal.svg"
+        title="Chart
+showing 39% of respondents would prefer to use a documentation server instead
+of viewing source for docs" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/doc_server_owner.svg"
+        data-srcset="survey2022q2/doc_server_owner.svg, survey2022q2/doc_server_owner.svg 1.5x, survey2022q2/doc_server_owner.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/doc_server_owner.svg"
+        title="Chart showing most respondents
+expect a software engineer to be responsible for such a documentation server" /></p>
+<h2 id="who-we-heard-from">Who we heard from</h2>
+<p>Overall, the demographics and firmographics of respondents did not meaningfully shift since <a href="https://go.dev/blog/survey2021-results" target="_blank" rel="noopener noreffer">our 2021 survey</a>. A small majority of respondents (53%) have at least two years of experience using Go, while the rest are newer to the Go community. About ⅓ of respondents work at small businesses (&lt; 100 employees), ¼ work at medium-sized businesses (100 – 1,000 employees), and ¼ work at enterprises (&gt; 1,000 employees). Similar to last year, we found that our VS Code prompt helped encourage survey participation outside of North America and Europe.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/go_exp.svg"
+        data-srcset="survey2022q2/go_exp.svg, survey2022q2/go_exp.svg 1.5x, survey2022q2/go_exp.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/go_exp.svg"
+        title="Chart showing distribution of
+respondents&#39; Go experience" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/where.svg"
+        data-srcset="survey2022q2/where.svg, survey2022q2/where.svg 1.5x, survey2022q2/where.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/where.svg"
+        title="Chart showing distribution of where respondents&#39; use Go" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/org_size.svg"
+        data-srcset="survey2022q2/org_size.svg, survey2022q2/org_size.svg 1.5x, survey2022q2/org_size.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/org_size.svg"
+        title="Chart showing distribution of
+organization sizes for survey respondents" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/industry.svg"
+        data-srcset="survey2022q2/industry.svg, survey2022q2/industry.svg 1.5x, survey2022q2/industry.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/industry.svg"
+        title="Chart showing distribution of industry
+classifications for survey respondents" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/location_s.svg"
+        data-srcset="survey2022q2/location_s.svg, survey2022q2/location_s.svg 1.5x, survey2022q2/location_s.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/location_s.svg"
+        title="Chart showing where in the world survey
+respondents live" /></p>
+<h2 id="how-respondents-use-go">How respondents use Go</h2>
+<p>Similar to the previous section, we did not find any statistically significant year-over-year changes in how respondents are using Go. The two most common use cases remain building API/RPC services (73%) and writing CLIs (60%). We used linear models to investigate whether there was a relationship between how long a respondent had been using Go and the types of things they were building with it. We found that respondents with &lt; 1 year of Go experience are more likely to be building something in the bottom half of this chart (GUIs, IoT, games, ML/AI, or mobile apps), suggesting that there is interest in using Go in these domains, but the drop-off after one year of experience also implies that developers hit significant barriers when working with Go in these areas.</p>
+<p>A majority of respondents use either Linux (59%) or macOS (52%) when developing with Go, and the vast majority deploy to Linux systems (93%). This cycle we added a response choice for developing on Windows Subsystem for Linux (WSL), finding that 13% of respondents use this when working with Go.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/go_app.svg"
+        data-srcset="survey2022q2/go_app.svg, survey2022q2/go_app.svg 1.5x, survey2022q2/go_app.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/go_app.svg"
+        title="Chart showing distribution of what
+respondents build with Go" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/os_dev.svg"
+        data-srcset="survey2022q2/os_dev.svg, survey2022q2/os_dev.svg 1.5x, survey2022q2/os_dev.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/os_dev.svg"
+        title="Chart showing Linux and macOS are the most common development systems" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/os_deploy.svg"
+        data-srcset="survey2022q2/os_deploy.svg, survey2022q2/os_deploy.svg 1.5x, survey2022q2/os_deploy.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/os_deploy.svg"
+        title="Chart showing
+Linux is the most common deployment platform" /></p>
+<h2 id="sentiment-and-challenges">Sentiment and challenges</h2>
+<p>Finally, we asked respondents about their overall level of satisfaction or dissatisfaction with Go during that past year, as well as the biggest challenge they face when using Go. We found that 93% of respondents said they were “somewhat” (30%) or “very” (63%) satisfied, which is not statistically different from the 92% of respondents who said they were satisfied during the 2021 Go Developer Survey.</p>
+<p>After years of generics consistently being the most commonly discussed challenge when using Go, the support for type parameters in Go 1.18 finally resulted in a new top challenge: our old friend, error handling. To be sure, error handling is statistically tied with several other challenges, including missing or immature libraries for certain domains, helping developers learn and implement best practices, and other revisions to the type system, such as support for enums or more functional programming syntax. Post-generics, there appears to be a very long tail of challenges facing Go developers.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/csat.svg"
+        data-srcset="survey2022q2/csat.svg, survey2022q2/csat.svg 1.5x, survey2022q2/csat.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/csat.svg"
+        title="Chart showing 93% of survey respondents
+are satisfied using Go, with 4% dissatisfied" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="survey2022q2/text_biggest_challenge.svg"
+        data-srcset="survey2022q2/text_biggest_challenge.svg, survey2022q2/text_biggest_challenge.svg 1.5x, survey2022q2/text_biggest_challenge.svg 2x"
+        data-sizes="auto"
+        alt="survey2022q2/text_biggest_challenge.svg"
+        title="Chart showing a long tail
+of challenges reported by survey respondents" /></p>
+<h2 id="survey-methodology">Survey methodology</h2>
+<p>We publicly announced this survey on June 1st, 2022 via <a href="https://go.dev/blog" target="_blank" rel="noopener noreffer">go.dev/blog</a> and <a href="https://twitter.com/golang" target="_blank" rel="noopener noreffer">@golang</a> on Twitter. We also randomly prompted 10% of <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreffer">VS Code</a> users via the Go plugin between June 1st – 21st. The survey closed on June 22nd, and partial responses (i.e., people who started but did not finish the survey) were also recorded. We filtered out data from respondents who completed the survey especially quickly (&lt; 30 seconds) or tended to check all of the response choices for multi-select questions. This left 5,752 responses.</p>
+<p>About ⅓ of respondents came from the randomized VS Code prompt, and this group tended to have less experience with Go than people who found the survey via the Go blog or Go’s social media channels. We used linear and logistic models to investigate whether apparent differences between these groups were better explained by this difference in experience, which was usually the case. The exceptions are noted in the text.</p>
+<p>This year we very much hoped to also share the raw dataset with the community, similar to developer surveys from <a href="https://insights.stackoverflow.com/survey" target="_blank" rel="noopener noreffer">Stack Overflow</a>, <a href="https://www.jetbrains.com/lp/devecosystem-2021/" target="_blank" rel="noopener noreffer">JetBrains</a>, and others. Recent legal guidance unfortunately prevents us from doing that right now, but we’re working on this and expect to be able to share the raw dataset for our next Go Developer Survey.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This iteration of the Go Developer Survey focused on new functionality from the Go 1.18 release. We found that generics adoption is well under way, with developers already hitting some limitations of the current implementation. Fuzz testing and workspaces have seen slower adoption, though largely not for technical reasons: the primary challenge with both was understanding when and how to use them. A lack of developer time to focus on these topics was another challenge, and this theme carried into security tooling as well. These findings are helping the Go team prioritize our next efforts and will influence how we approach the design of future tooling.</p>
+<p>Thank you for joining us in the tour of Go developer research—we hope it’s been insightful and interesting. Most importantly, thank you to everyone who has responded to our surveys over the years. Your feedback helps us understand the constraints Go developers work under and identify challenges they face. By sharing these experiences, you’re helping to improve the Go ecosystem for everyone. On behalf of Gophers everywhere, we appreciate you!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20220908/" data-title="Gb_20220908" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20220908/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20220908/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20220908/" data-title="Gb_20220908"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20220908/" data-title="Gb_20220908"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20220908/" data-title="Gb_20220908"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20220906/" class="prev" rel="prev" title="Gb_20220906"><i class="fas fa-angle-left fa-fw"></i>Gb_20220906</a>
+            <a href="/gb_20220926/" class="next" rel="next" title="Gb_20220926">Gb_20220926<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

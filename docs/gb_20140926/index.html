@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20140926 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20140926" />
+<meta property="og:description" content="Deploying Go servers with Docker Andrew Gerrand
+26 September 2014
+Introduction This week Docker announced official base images for Go and other major languages, giving programmers a trusted and easy way to build containers for their Go programs.
+In this article we’ll walk through a recipe for creating a Docker container for a simple Go web application and deploying that container to Google Compute Engine. If you’re not familiar with Docker, you should read Understanding Docker before reading on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20140926/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-24T09:12:08+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20140926"/>
+<meta name="twitter:description" content="Deploying Go servers with Docker Andrew Gerrand
+26 September 2014
+Introduction This week Docker announced official base images for Go and other major languages, giving programmers a trusted and easy way to build containers for their Go programs.
+In this article we’ll walk through a recipe for creating a Docker container for a simple Go web application and deploying that container to Google Compute Engine. If you’re not familiar with Docker, you should read Understanding Docker before reading on."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20140926/" /><link rel="prev" href="https://jefofrank.xyz/gb_20140825/" /><link rel="next" href="https://jefofrank.xyz/gb_20141006/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20140926",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20140926\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  1148 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20140926\/","datePublished": "2022-10-24T09:12:08+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20140926</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-24 09:12:08">2022-10-24 09:12:08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1148 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-demo-app">The demo app</a></li>
+    <li><a href="#write-a-dockerfile">Write a Dockerfile</a></li>
+    <li><a href="#build-and-run-the-image">Build and run the image</a></li>
+    <li><a href="#create-a-repository-on-docker-hub">Create a repository on Docker Hub</a></li>
+    <li><a href="#deploy-the-container-to-google-compute-engine">Deploy the container to Google Compute Engine</a></li>
+    <li><a href="#learn-more">Learn more</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="deploying-go-servers-with-docker">Deploying Go servers with Docker</h1>
+<p>Andrew Gerrand<br>
+26 September 2014</p>
+<h2 id="introduction">Introduction</h2>
+<p>This week Docker <a href="https://blog.docker.com/2014/09/docker-hub-official-repos-announcing-language-stacks/" target="_blank" rel="noopener noreffer">announced</a> official base images for Go and other major languages, giving programmers a trusted and easy way to build containers for their Go programs.</p>
+<p>In this article we’ll walk through a recipe for creating a Docker container for a simple Go web application and deploying that container to Google Compute Engine. If you’re not familiar with Docker, you should read <a href="https://docs.docker.com/engine/understanding-docker/" target="_blank" rel="noopener noreffer">Understanding Docker</a> before reading on.</p>
+<h2 id="the-demo-app">The demo app</h2>
+<p>For our demonstration we will use the <a href="https://pkg.go.dev/golang.org/x/example/outyet" target="_blank" rel="noopener noreffer">outyet</a> program from the <a href="https://cs.opensource.google/go/x/example" target="_blank" rel="noopener noreffer">Go examples repository</a>, a simple web server that reports whether the next version of Go has been released (designed to power sites like <a href="http://isgo1point4.outyet.org/" target="_blank" rel="noopener noreffer">isgo1point4.outyet.org</a>). It has no dependencies outside the standard library and requires no additional data files at run time; for a web server, it’s about as simple as it gets.</p>
+<p>Use “go get” to fetch and install outyet in your <a href="https://go.dev/doc/code.html#Workspaces" target="_blank" rel="noopener noreffer">workspace</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go get golang.org/x/example/outyet
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="write-a-dockerfile">Write a Dockerfile</h2>
+<p>Replace a file named <code>Dockerfile</code> in the <code>outyet</code> directory with the following contents:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="err">#</span> <span class="nx">Start</span> <span class="nx">from</span> <span class="nx">a</span> <span class="nx">Debian</span> <span class="nx">image</span> <span class="nx">with</span> <span class="nx">the</span> <span class="nx">latest</span> <span class="nx">version</span> <span class="nx">of</span> <span class="nx">Go</span> <span class="nx">installed</span>
+<span class="err">#</span> <span class="nx">and</span> <span class="nx">a</span> <span class="nf">workspace</span> <span class="p">(</span><span class="nx">GOPATH</span><span class="p">)</span> <span class="nx">configured</span> <span class="nx">at</span> <span class="o">/</span><span class="k">go</span><span class="p">.</span>
+<span class="nx">FROM</span> <span class="nx">golang</span>
+
+<span class="err">#</span> <span class="nx">Copy</span> <span class="nx">the</span> <span class="nx">local</span> <span class="kn">package</span> <span class="nx">files</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">container</span><span class="err">&#39;</span><span class="nx">s</span> <span class="nx">workspace</span><span class="p">.</span>
+<span class="nx">ADD</span> <span class="p">.</span> <span class="o">/</span><span class="k">go</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">example</span><span class="o">/</span><span class="nx">outyet</span>
+
+<span class="err">#</span> <span class="nx">Build</span> <span class="nx">the</span> <span class="nx">outyet</span> <span class="nx">command</span> <span class="nx">inside</span> <span class="nx">the</span> <span class="nx">container</span><span class="p">.</span>
+<span class="err">#</span> <span class="p">(</span><span class="nx">You</span> <span class="nx">may</span> <span class="nx">fetch</span> <span class="nx">or</span> <span class="nx">manage</span> <span class="nx">dependencies</span> <span class="nx">here</span><span class="p">,</span>
+<span class="err">#</span> <span class="nx">either</span> <span class="nx">manually</span> <span class="nx">or</span> <span class="nx">with</span> <span class="nx">a</span> <span class="nx">tool</span> <span class="nx">like</span> <span class="s">&#34;godep&#34;</span><span class="p">.)</span>
+<span class="nx">RUN</span> <span class="k">go</span> <span class="nx">install</span> <span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">example</span><span class="o">/</span><span class="nx">outyet</span>
+
+<span class="err">#</span> <span class="nx">Run</span> <span class="nx">the</span> <span class="nx">outyet</span> <span class="nx">command</span> <span class="nx">by</span> <span class="k">default</span> <span class="nx">when</span> <span class="nx">the</span> <span class="nx">container</span> <span class="nx">starts</span><span class="p">.</span>
+<span class="nx">ENTRYPOINT</span> <span class="o">/</span><span class="k">go</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">outyet</span>
+
+<span class="err">#</span> <span class="nx">Document</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nx">service</span> <span class="nx">listens</span> <span class="nx">on</span> <span class="nx">port</span> <span class="mf">8080.</span>
+<span class="nx">EXPOSE</span> <span class="mi">8080</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This <code>Dockerfile</code> specifies how to construct a container that runs <code>outyet</code>, starting with the basic dependencies (a Debian system with Go installed; the <a href="https://registry.hub.docker.com/_/golang/" target="_blank" rel="noopener noreffer">official <code>golang</code> docker image</a>), adding the <code>outyet</code> package source, building it, and then finally running it.</p>
+<p>The <code>ADD</code>, <code>RUN</code>, and <code>ENTRYPOINT</code> steps are common tasks for any Go project. To simplify this, there is an <a href="https://github.com/docker-library/golang/blob/9ff2ccca569f9525b023080540f1bb55f6b59d7f/1.3.1/onbuild/Dockerfile" target="_blank" rel="noopener noreffer"><code>onbuild</code> variant</a> of the <code>golang</code> image that automatically copies the package source, fetches the application dependencies, builds the program, and configures it to run on startup.</p>
+<p>With the <code>onbuild</code> variant, the <code>Dockerfile</code> is much simpler:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">FROM golang:onbuild
+EXPOSE 8080
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="build-and-run-the-image">Build and run the image</h2>
+<p>Invoke Docker from the <code>outyet</code> package directory to build an image using the <code>Dockerfile</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker build -t outyet .
+</code></pre></td></tr></table>
+</div>
+</div><p>This will fetch the <code>golang</code> base image from Docker Hub, copy the package source to it, build the package inside it, and tag the resulting image as <code>outyet</code>.</p>
+<p>To run a container from the resulting image:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker run --publish 6060:8080 --name test --rm outyet
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>--publish</code> flag tells docker to publish the container’s port <code>8080</code> on the external port <code>6060</code>.</p>
+<p>The <code>--name</code> flag gives our container a predictable name to make it easier to work with.</p>
+<p>The <code>--rm</code> flag tells docker to remove the container image when the outyet server exits.</p>
+<p>With the container running, open <code>http://localhost:6060/</code> in a web browser and you should see something like this:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="docker/outyet.png"
+        data-srcset="docker/outyet.png, docker/outyet.png 1.5x, docker/outyet.png 2x"
+        data-sizes="auto"
+        alt="docker/outyet.png"
+        title="docker/outyet.png" /></p>
+<p>(If your docker daemon is running on another machine (or in a virtual machine), you should replace <code>localhost</code> with the address of that machine. If you’re using <a href="http://boot2docker.io/" target="_blank" rel="noopener noreffer">boot2docker</a> on OS X or Windows you can find that address with <code>boot2docker ip</code>.)</p>
+<p>Now that we’ve verified that the image works, shut down the running container from another terminal window:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker stop test
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="create-a-repository-on-docker-hub">Create a repository on Docker Hub</h2>
+<p><a href="https://hub.docker.com/" target="_blank" rel="noopener noreffer">Docker Hub</a>, the container registry from which we pulled the <code>golang</code> image earlier, offers a feature called <a href="http://docs.docker.com/docker-hub/builds/" target="_blank" rel="noopener noreffer">Automated Builds</a> that builds images from a GitHub or BitBucket repository.</p>
+<p>By committing <a href="https://go.googlesource.com/example/&#43;/refs/heads/master/outyet/" target="_blank" rel="noopener noreffer">the Dockerfile</a> to the repository and creating an <a href="https://registry.hub.docker.com/u/adg1/outyet/" target="_blank" rel="noopener noreffer">automated build</a> for it, anyone with Docker installed can download and run our image with a single command. (We will see the utility of this in the next section.)</p>
+<p>To set up an Automated Build, commit the Dockerfile to your repo on <a href="https://github.com/" target="_blank" rel="noopener noreffer">GitHub</a> or <a href="https://bitbucket.org/" target="_blank" rel="noopener noreffer">BitBucket</a>, create an account on Docker Hub, and follow the instructions for <a href="http://docs.docker.com/docker-hub/builds/" target="_blank" rel="noopener noreffer">creating an Automated Build</a>.</p>
+<p>When you’re done, you can run your container using the name of the automated build:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker run goexample/outyet
+</code></pre></td></tr></table>
+</div>
+</div><p>(Replace <code>goexample/outyet</code> with the name of the automated build you created.)</p>
+<h2 id="deploy-the-container-to-google-compute-engine">Deploy the container to Google Compute Engine</h2>
+<p>Google provides <a href="https://developers.google.com/compute/docs/containers/container_vms" target="_blank" rel="noopener noreffer">container-optimized Google Compute Engine images</a> that make it easy to spin up a virtual machine running an arbitrary Docker container. On startup, a program running on the instance reads a configuration file that specifies which container to run, fetches the container image, and runs it.</p>
+<p>Create a <a href="https://cloud.google.com/compute/docs/containers/container_vms#container_manifest" target="_blank" rel="noopener noreffer">containers.yaml</a> file that specifies the docker image to run and the ports to expose:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">version: v1beta2
+containers:
+- name: outyet
+  image: goexample/outyet
+  ports:
+  - name: http
+    hostPort: 80
+    containerPort: 8080
+</code></pre></td></tr></table>
+</div>
+</div><p>(Note that we’re publishing the container’s port <code>8080</code> as external port <code>80</code>, the default port for serving HTTP traffic. And, again, you should replace <code>goexample/outyet</code> with the name of your Automated Build.)</p>
+<p>Use the <a href="https://cloud.google.com/sdk/#Quick_Start" target="_blank" rel="noopener noreffer">gcloud tool</a> to create a VM instance running the container:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud compute instances create outyet \
+    --image container-vm-v20140925 \
+    --image-project google-containers \
+    --metadata-from-file google-container-manifest=containers.yaml \
+    --tags http-server \
+    --zone us-central1-a \
+    --machine-type f1-micro
+</code></pre></td></tr></table>
+</div>
+</div><p>The first argument (<code>outyet</code>) specifies the instance name, a convenient label for administrative purposes.</p>
+<p>The <code>--image</code> and <code>--image-project</code> flags specify the special container-optimized system image to use (copy these flags verbatim).</p>
+<p>The <code>--metadata-from-file</code> flag supplies your <code>containers.yaml</code> file to the VM.</p>
+<p>The <code>--tags</code> flag tags your VM instance as an HTTP server, adjusting the firewall to expose port 80 on the public network interface.</p>
+<p>The <code>--zone</code> and <code>--machine-type</code> flags specify the zone in which to run the VM and the type of machine to run. (To see a list of machine types and the zones, run <code>gcloud compute machine-types list</code>.)</p>
+<p>Once this has completed, the gcloud command should print some information about the instance. In the output, locate the <code>networkInterfaces</code> section to find the instance’s external IP address. Within a couple of minutes you should be able to access that IP with your web browser and see the “Has Go 1.4 been released yet?” page.</p>
+<p>(To see what’s happening on the new VM instance you can ssh into it with <code>gcloud compute ssh outyet</code>. From there, try <code>sudo docker ps</code> to see which Docker containers are running.)</p>
+<h2 id="learn-more">Learn more</h2>
+<p>This is just the tip of the iceberg—there’s a lot more you can do with Go, Docker, and Google Compute Engine.</p>
+<p>To learn more about Docker, see their <a href="https://docs.docker.com/" target="_blank" rel="noopener noreffer">extensive documentation</a>.</p>
+<p>To learn more about Docker and Go, see the <a href="https://registry.hub.docker.com/_/golang/" target="_blank" rel="noopener noreffer">official <code>golang</code> Docker Hub repository</a> and Kelsey Hightower’s <a href="https://medium.com/@kelseyhightower/optimizing-docker-images-for-static-binaries-b5696e26eb07" target="_blank" rel="noopener noreffer">Optimizing Docker Images for Static Go Binaries</a>.</p>
+<p>To learn more about Docker and <a href="http://cloud.google.com/compute" target="_blank" rel="noopener noreffer">Google Compute Engine</a>, see the <a href="https://cloud.google.com/compute/docs/containers/container_vms" target="_blank" rel="noopener noreffer">Container-optimized VMs page</a> and the <a href="https://registry.hub.docker.com/u/google/docker-registry/" target="_blank" rel="noopener noreffer">google/docker-registry Docker Hub repository</a>.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20140926/" data-title="Gb_20140926" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20140926/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20140926/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20140926/" data-title="Gb_20140926"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20140926/" data-title="Gb_20140926"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20140926/" data-title="Gb_20140926"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20140825/" class="prev" rel="prev" title="Gb_20140825"><i class="fas fa-angle-left fa-fw"></i>Gb_20140825</a>
+            <a href="/gb_20141006/" class="next" rel="next" title="Gb_20141006">Gb_20141006<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

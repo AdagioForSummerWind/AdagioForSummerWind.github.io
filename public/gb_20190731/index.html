@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Gb_20190731 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Gb_20190731" />
+<meta property="og:description" content="Why Generics? Ian Lance Taylor
+31 July 2019
+Introduction This is the blog post version of my talk last week at Gophercon 2019.
+This article is about what it would mean to add generics to Go, and why I think we should do it. I’ll also touch on an update to a possible design for adding generics to Go.
+Go was released on November 10, 2009. Less than 24 hours later we saw the first comment about generics." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/gb_20190731/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T19:42:43+08:00" />
+<meta property="article:modified_time" content="2022-10-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Gb_20190731"/>
+<meta name="twitter:description" content="Why Generics? Ian Lance Taylor
+31 July 2019
+Introduction This is the blog post version of my talk last week at Gophercon 2019.
+This article is about what it would mean to add generics to Go, and why I think we should do it. I’ll also touch on an update to a possible design for adding generics to Go.
+Go was released on November 10, 2009. Less than 24 hours later we saw the first comment about generics."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/gb_20190731/" /><link rel="prev" href="https://jefofrank.xyz/gb_20190718/" /><link rel="next" href="https://jefofrank.xyz/gb_20190801/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gb_20190731",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/gb_20190731\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go official blogs","wordcount":  4587 ,
+        "url": "https:\/\/jefofrank.xyz\/gb_20190731\/","datePublished": "2022-10-29T19:42:43+08:00","dateModified": "2022-10-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Gb_20190731</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/2022/"><i class="far fa-folder fa-fw"></i>2022</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-29 19:42:43">2022-10-29 19:42:43</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4587 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 22 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#why-generics-1">Why generics?</a></li>
+    <li><a href="#go-generic-programming-today">Go generic programming today</a></li>
+    <li><a href="#what-generics-can-bring-to-go">What generics can bring to Go</a></li>
+    <li><a href="#benefits-and-costs">Benefits and costs</a>
+      <ul>
+        <li><a href="#minimize-new-concepts">Minimize new concepts</a></li>
+        <li><a href="#complexity-falls-on-the-writer-of-generic-code-not-the-user">Complexity falls on the writer of generic code, not the user</a></li>
+        <li><a href="#writer-and-user-can-work-independently">Writer and user can work independently</a></li>
+        <li><a href="#short-build-times-fast-execution-times">Short build times, fast execution times</a></li>
+        <li><a href="#preserve-clarity-and-simplicity-of-go">Preserve clarity and simplicity of Go</a></li>
+      </ul>
+    </li>
+    <li><a href="#draft-design">Draft design</a>
+      <ul>
+        <li><a href="#contracts">Contracts</a></li>
+        <li><a href="#contracts-with-methods">Contracts with methods</a></li>
+        <li><a href="#contracts-with-multiple-types">Contracts with multiple types</a></li>
+        <li><a href="#ordered-types">Ordered types</a></li>
+        <li><a href="#generic-data-structures">Generic data structures</a></li>
+        <li><a href="#next-steps">Next steps</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="why-generics">Why Generics?</h1>
+<p>Ian Lance Taylor<br>
+31 July 2019</p>
+<h2 id="introduction">Introduction</h2>
+<p>This is the blog post version of my talk last week at Gophercon 2019.</p>
+<p>This article is about what it would mean to add generics to Go, and why I think we should do it. I’ll also touch on an update to a possible design for adding generics to Go.</p>
+<p>Go was released on November 10, 2009. Less than 24 hours later we saw the <a href="https://groups.google.com/d/msg/golang-nuts/70-pdwUUrbI/onMsQspcljcJ" target="_blank" rel="noopener noreffer">first comment about generics</a>. (That comment also mentions exceptions, which we added to the language, in the form of <code>panic</code> and <code>recover</code>, in early 2010.)</p>
+<p>In three years of Go surveys, lack of generics has always been listed as one of the top three problems to fix in the language.</p>
+<h2 id="why-generics-1">Why generics?</h2>
+<p>But what does it mean to add generics, and why would we want it?</p>
+<p>To paraphrase <a href="https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=98171" target="_blank" rel="noopener noreffer">Jazayeri, et al</a>: generic programming enables the representation of functions and data structures in a generic form, with types factored out.</p>
+<p>What does that mean?</p>
+<p>For a simple example, let’s assume we want to reverse the elements in a slice. It’s not something that many programs need to do, but it’s not all that unusual.</p>
+<p>Let’s say it’s a slice of int.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ReverseInts(s []int) {
+    first := 0
+    last := len(s)
+    for first &lt; last {
+        s[first], s[last] = s[last], s[first]
+        first++
+        last--
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Pretty simple, but even for a simple function like that you’d want to write a few test cases. In fact, when I did, I found a bug. I’m sure many readers have spotted it already.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ReverseInts(s []int) {
+    first := 0
+    last := len(s) - 1
+    for first &lt; last {
+        s[first], s[last] = s[last], s[first]
+        first++
+        last--
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>We need to subtract 1 when we set the variable last.</p>
+<p>Now let’s reverse a slice of string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ReverseStrings(s []string) {
+    first := 0
+    last := len(s) - 1
+    for first &lt; last {
+        s[first], s[last] = s[last], s[first]
+        first++
+        last--
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>If you compare <code>ReverseInts</code> and <code>ReverseStrings</code>, you’ll see that the two functions are exactly the same, except for the type of the parameter. I don’t think any reader is surprised by that.</p>
+<p>What some people new to Go find surprising is that there is no way to write a simple <code>Reverse</code> function that works for a slice of any type.</p>
+<p>Most other languages do let you write that kind of function.</p>
+<p>In a dynamically typed language like Python or JavaScript you can simply write the function, without bothering to specify the element type. This doesn’t work in Go because Go is statically typed, and requires you to write down the exact type of the slice and the type of the slice elements.</p>
+<p>Most other statically typed languages, like C++ or Java or Rust or Swift, support generics to address exactly this kind of issue.</p>
+<h2 id="go-generic-programming-today">Go generic programming today</h2>
+<p>So how do people write this kind of code in Go?</p>
+<p>In Go you can write a single function that works for different slice types by using an interface type, and defining a method on the slice types you want to pass in. That is how the standard library’s <code>sort.Sort</code> function works.</p>
+<p>In other words, interface types in Go are a form of generic programming. They let us capture the common aspects of different types and express them as methods. We can then write functions that use those interface types, and those functions will work for any type that implements those methods.</p>
+<p>But this approach falls short of what we want. With interfaces you have to write the methods yourself. It’s awkward to have to define a named type with a couple of methods just to reverse a slice. And the methods you write are exactly the same for each slice type, so in a sense we’ve just moved and condensed the duplicate code, we haven’t eliminated it. Although interfaces are a form of generics, they don’t give us everything we want from generics.</p>
+<p>A different way of using interfaces for generics, which could get around the need to write the methods yourself, would be to have the language define methods for some kinds of types. That isn’t something the language supports today, but, for example, the language could define that every slice type has an Index method that returns an element. But in order to use that method in practice it would have to return an empty interface type, and then we lose all the benefits of static typing. More subtly, there would be no way to define a generic function that takes two different slices with the same element type, or that takes a map of one element type and returns a slice of the same element type. Go is a statically typed language because that makes it easier to write large programs; we don’t want to lose the benefits of static typing in order to gain the benefits of generics.</p>
+<p>Another approach would be to write a generic <code>Reverse</code> function using the reflect package, but that is so awkward to write and slow to run that few people do that. That approach also requires explicit type assertions and has no static type checking.</p>
+<p>Or, you could write a code generator that takes a type and generates a <code>Reverse</code> function for slices of that type. There are several code generators out there that do just that. But this adds another step to every package that needs <code>Reverse</code>, it complicates the build because all the different copies have to be compiled, and fixing a bug in the master source requires re-generating all the instances, some of which may be in different projects entirely.</p>
+<p>All these approaches are awkward enough that I think most people who have to reverse a slice in Go just write the function for the specific slice type that they need. Then they’ll need to write test cases for the function, to make sure they didn’t make a simple mistake like the one I made initially. And they’ll need to run those tests routinely.</p>
+<p>However we do it, it means a lot of extra work just for a function that looks exactly the same except for the element type. It’s not that it can’t be done. It clearly can be done, and Go programmers are doing it. It’s just that there ought to be a better way.</p>
+<p>For a statically typed language like Go, that better way is generics. What I wrote earlier is that generic programming enables the representation of functions and data structures in a generic form, with types factored out. That’s exactly what we want here.</p>
+<h2 id="what-generics-can-bring-to-go">What generics can bring to Go</h2>
+<p>The first and most important thing we want from generics in Go is to be able to write functions like <code>Reverse</code> without caring about the element type of the slice. We want to factor out that element type. Then we can write the function once, write the tests once, put them in a go-gettable package, and call them whenever we want.</p>
+<p>Even better, since this is an open source world, someone else can write <code>Reverse</code> once, and we can use their implementation.</p>
+<p>At this point I should say that “generics” can mean a lot of different things. In this article, what I mean by “generics” is what I just described. In particular, I don’t mean templates as found in the C++ language, which support quite a bit more than what I’ve written here.</p>
+<p>I went through <code>Reverse</code> in detail, but there are many other functions that we could write generically, such as:</p>
+<ul>
+<li>Find smallest/largest element in slice</li>
+<li>Find average/standard deviation of slice</li>
+<li>Compute union/intersection of maps</li>
+<li>Find shortest path in node/edge graph</li>
+<li>Apply transformation function to slice/map, returning new slice/map</li>
+</ul>
+<p>These examples are available in most other languages. In fact, I wrote this list by glancing at the C++ standard template library.</p>
+<p>There are also examples that are specific to Go with its strong support for concurrency.</p>
+<ul>
+<li>Read from a channel with a timeout</li>
+<li>Combine two channels into a single channel</li>
+<li>Call a list of functions in parallel, returning a slice of results</li>
+<li>Call a list of functions, using a Context, return the result of the first function to finish, canceling and cleaning up extra goroutines</li>
+</ul>
+<p>I’ve seen all of these functions written out many times with different types. It’s not hard to write them in Go. But it would be nice to be able to reuse an efficient and debugged implementation that works for any value type.</p>
+<p>To be clear, these are just examples. There are many more general purpose functions that could be written more easily and safely using generics.</p>
+<p>Also, as I wrote earlier, it’s not just functions. It’s also data structures.</p>
+<p>Go has two general purpose generic data structures built into the language: slices and maps. Slices and maps can hold values of any data type, with static type checking for values stored and retrieved. The values are stored as themselves, not as interface types. That is, when I have a <code>[]int</code>, the slice holds ints directly, not ints converted to an interface type.</p>
+<p>Slices and maps are the most useful generic data structures, but they aren’t the only ones. Here are some other examples.</p>
+<ul>
+<li>Sets</li>
+<li>Self-balancing trees, with efficient insertion and traversal in sorted order</li>
+<li>Multimaps, with multiple instances of a key</li>
+<li>Concurrent hash maps, supporting parallel insertions and lookups with no single lock</li>
+</ul>
+<p>If we can write generic types, we can define new data structures, like these, that have the same type-checking advantages as slices and maps: the compiler can statically type-check the types of the values that they hold, and the values can be stored as themselves, not as interface types.</p>
+<p>It should also be possible to take algorithms like the ones mentioned earlier and apply them to generic data structures.</p>
+<p>These examples should all be just like <code>Reverse</code>: generic functions and data structures written once, in a package, and reused whenever they are needed. They should work like slices and maps, in that they shouldn’t store values of empty interface type, but should store specific types, and those types should be checked at compile time.</p>
+<p>So that’s what Go can gain from generics. Generics can give us powerful building blocks that let us share code and build programs more easily.</p>
+<p>I hope I’ve explained why this is worth looking into.</p>
+<h2 id="benefits-and-costs">Benefits and costs</h2>
+<p>But generics don’t come from the <a href="https://mainlynorfolk.info/folk/songs/bigrockcandymountain.html" target="_blank" rel="noopener noreffer">Big Rock Candy Mountain</a>, the land where the sun shines every day over the <a href="http://www.lat-long.com/Latitude-Longitude-773297-Montana-Lemonade_Springs.html" target="_blank" rel="noopener noreffer">lemonade springs</a>. Every language change has a cost. There’s no doubt that adding generics to Go will make the language more complicated. As with any change to the language, we need to talk about maximizing the benefit and minimizing the cost.</p>
+<p>In Go, we’ve aimed to reduce complexity through independent, orthogonal language features that can be combined freely. We reduce complexity by making the individual features simple, and we maximize the benefit of the features by permitting their free combination. We want to do the same with generics.</p>
+<p>To make this more concrete I’m going to list a few guidelines we should follow.</p>
+<h3 id="minimize-new-concepts">Minimize new concepts</h3>
+<p>We should add as few new concepts to the language as possible. That means a minimum of new syntax and a minimum of new keywords and other names.</p>
+<h3 id="complexity-falls-on-the-writer-of-generic-code-not-the-user">Complexity falls on the writer of generic code, not the user</h3>
+<p>As much as possible the complexity should fall on the programmer writing the generic package. We don’t want the user of the package to have to worry about generics. This means that it should be possible to call generic functions in a natural way, and it means that any errors in using a generic package should be reported in a way that is easy to understand and to fix. It should also be easy to debug calls into generic code.</p>
+<h3 id="writer-and-user-can-work-independently">Writer and user can work independently</h3>
+<p>Similarly, we should make it easy to separate the concerns of the writer of the generic code and its user, so that they can develop their code independently. They shouldn’t have to worry about what the other is doing, any more than the writer and caller of a normal function in different packages have to worry. This sounds obvious, but it’s not true of generics in every other programming language.</p>
+<h3 id="short-build-times-fast-execution-times">Short build times, fast execution times</h3>
+<p>Naturally, as much as possible, we want to keep the short build times and fast execution time that Go gives us today. Generics tend to introduce a tradeoff between fast builds and fast execution. As much as possible, we want both.</p>
+<h3 id="preserve-clarity-and-simplicity-of-go">Preserve clarity and simplicity of Go</h3>
+<p>Most importantly, Go today is a simple language. Go programs are usually clear and easy to understand. A major part of our long process of exploring this space has been trying to understand how to add generics while preserving that clarity and simplicity. We need to find mechanisms that fit well into the existing language, without turning it into something quite different.</p>
+<p>These guidelines should apply to any generics implementation in Go. That’s the most important message I want to leave you with today: <strong>generics can bring a significant benefit to the language, but they are only worth doing if Go still feels like Go</strong>.</p>
+<h2 id="draft-design">Draft design</h2>
+<p>Fortunately, I think it can be done. To finish up this article I’m going to shift from discussing why we want generics, and what the requirements on them are, to briefly discuss a design for how we think we can add them to the language.</p>
+<p>Note added January 2022: This blog post was written in 2019 and does not describe the version of generics that was finally adopted. For updated information please see <a href="https://go.dev/ref/spec" target="_blank" rel="noopener noreffer">the language spec</a> and [the generics design document] (<a href="https://go.dev/design/43651-type-parameters" target="_blank" rel="noopener noreffer">https://go.dev/design/43651-type-parameters)</a>).</p>
+<p>At this year’s Gophercon Robert Griesemer and I published <a href="https://github.com/golang/proposal/blob/master/design/go2draft-contracts.md" target="_blank" rel="noopener noreffer">a design draft</a> for adding generics to Go. See the draft for full details. I’ll go over some of the main points here.</p>
+<p>Here is the generic Reverse function in this design.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Reverse (type Element) (s []Element) {
+    first := 0
+    last := len(s) - 1
+    for first &lt; last {
+        s[first], s[last] = s[last], s[first]
+        first++
+        last--
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>You’ll notice that the body of the function is exactly the same. Only the signature has changed.</p>
+<p>The element type of the slice has been factored out. It’s now named <code>Element</code> and has become what we call a <em>type parameter</em>. Instead of being part of the type of the slice parameter, it’s now a separate, additional, type parameter.</p>
+<p>To call a function with a type parameter, in the general case you pass a type argument, which is like any other argument except that it’s a type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ReverseAndPrint(s []int) {
+    Reverse(int)(s)
+    fmt.Println(s)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>That is the <code>(int)</code> seen after <code>Reverse</code> in this example.</p>
+<p>Fortunately, in most cases, including this one, the compiler can deduce the type argument from the types of the regular arguments, and you don’t need to mention the type argument at all.</p>
+<p>Calling a generic function just looks like calling any other function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ReverseAndPrint(s []int) {
+    Reverse(s)
+    fmt.Println(s)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>In other words, although the generic <code>Reverse</code> function is slightly more complex than <code>ReverseInts</code> and <code>ReverseStrings</code>, that complexity falls on the writer of the function, not the caller.</p>
+<h3 id="contracts">Contracts</h3>
+<p>Since Go is a statically typed language, we have to talk about the type of a type parameter. This <em>meta-type</em> tells the compiler what sorts of type arguments are permitted when calling a generic function, and what sorts of operations the generic function can do with values of the type parameter.</p>
+<p>The <code>Reverse</code> function can work with slices of any type. The only thing it does with values of type <code>Element</code> is assignment, which works with any type in Go. For this kind of generic function, which is a very common case, we don’t need to say anything special about the type parameter.</p>
+<p>Let’s take a quick look at a different function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func IndexByte (type T Sequence) (s T, b byte) int {
+    for i := 0; i &lt; len(s); i++ {
+        if s[i] == b {
+            return i
+        }
+    }
+    return -1
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Currently both the bytes package and the strings package in the standard library have an <code>IndexByte</code> function. This function returns the index of <code>b</code> in the sequence <code>s</code>, where <code>s</code> is either a <code>string</code> or a <code>[]byte</code>. We could use this single generic function to replace the two functions in the bytes and strings packages. In practice we may not bother doing that, but this is a useful simple example.</p>
+<p>Here we need to know that the type parameter <code>T</code> acts like a <code>string</code> or a <code>[]byte</code>. We can call <code>len</code> on it, and we can index to it, and we can compare the result of the index operation to a byte value.</p>
+<p>To let this compile, the type parameter <code>T</code> itself needs a type. It’s a meta-type, but because we sometimes need to describe multiple related types, and because it describes a relationship between the implementation of the generic function and its callers, we actually call the type of <code>T</code> a contract. Here the contract is named <code>Sequence</code>. It appears after the list of type parameters.</p>
+<p>This is how the Sequence contract is defined for this example.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">contract Sequence(T) {
+    T string, []byte
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s pretty simple, since this is a simple example: the type parameter <code>T</code> can be either <code>string</code> or <code>[]byte</code>. Here <code>contract</code> may be a new keyword, or a special identifier recognized in package scope; see the design draft for details.</p>
+<p>Anybody who remembers <a href="https://github.com/golang/proposal/blob/4a530dae40977758e47b78fae349d8e5f86a6c0a/design/go2draft-contracts.md" target="_blank" rel="noopener noreffer">the design we presented at Gophercon 2018</a> will see that this way of writing a contract is a lot simpler. We got a lot of feedback on that earlier design that contracts were too complicated, and we’ve tried to take that into account. The new contracts are much simpler to write, and to read, and to understand.</p>
+<p>They let you specify the underlying type of a type parameter, and/or list the methods of a type parameter. They also let you describe the relationship between different type parameters.</p>
+<h3 id="contracts-with-methods">Contracts with methods</h3>
+<p>Here is another simple example, of a function that uses the String method to return a <code>[]string</code> of the string representation of all the elements in <code>s</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func ToStrings (type E Stringer) (s []E) []string {
+    r := make([]string, len(s))
+    for i, v := range s {
+        r[i] = v.String()
+    }
+    return r
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s pretty straightforward: walk through the slice, call the <code>String</code> method on each element, and return a slice of the resulting strings.</p>
+<p>This function requires that the element type implement the <code>String</code> method. The Stringer contract ensures that.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">contract Stringer(T) {
+    T String() string
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The contract simply says that <code>T</code> has to implement the <code>String</code> method.</p>
+<p>You may notice that this contract looks like the <code>fmt.Stringer</code> interface, so it’s worth pointing out that the argument of the <code>ToStrings</code> function is not a slice of <code>fmt.Stringer</code>. It’s a slice of some element type, where the element type implements <code>fmt.Stringer</code>. The memory representation of a slice of the element type and a slice of <code>fmt</code>.Stringer are normally different, and Go does not support direct conversions between them. So this is worth writing, even though <code>fmt.Stringer</code> exists.</p>
+<h3 id="contracts-with-multiple-types">Contracts with multiple types</h3>
+<p>Here is an example of a contract with multiple type parameters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Graph (type Node, Edge G) struct { ... }
+
+contract G(Node, Edge) {
+    Node Edges() []Edge
+    Edge Nodes() (from Node, to Node)
+}
+
+func New (type Node, Edge G) (nodes []Node) *Graph(Node, Edge) {
+    ...
+}
+
+func (g *Graph(Node, Edge)) ShortestPath(from, to Node) []Edge {
+    ...
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Here we’re describing a graph, built from nodes and edges. We’re not requiring a particular data structure for the graph. Instead, we’re saying that the <code>Node</code> type has to have an <code>Edges</code> method that returns the list of edges that connect to the <code>Node</code>. And the <code>Edge</code> type has to have a <code>Nodes</code> method that returns the two <code>Nodes</code> that the <code>Edge</code> connects.</p>
+<p>I’ve skipped the implementation, but this shows the signature of a <code>New</code> function that returns a <code>Graph</code>, and the signature of a <code>ShortestPath</code> method on <code>Graph</code>.</p>
+<p>The important takeaway here is that a contract isn’t just about a single type. It can describe the relationships between two or more types.</p>
+<h3 id="ordered-types">Ordered types</h3>
+<p>One surprisingly common complaint about Go is that it doesn’t have a <code>Min</code> function. Or, for that matter, a <code>Max</code> function. That’s because a useful <code>Min</code> function should work for any ordered type, which means that it has to be generic.</p>
+<p>While <code>Min</code> is pretty trivial to write yourself, any useful generics implementation should let us add it to the standard library. This is what it looks like with our design.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Min (type T Ordered) (a, b T) T {
+    if a &lt; b {
+        return a
+    }
+    return b
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Ordered</code> contract says that the type T has to be an ordered type, which means that it supports operators like less than, greater than, and so forth.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">contract Ordered(T) {
+    T int, int8, int16, int32, int64,
+        uint, uint8, uint16, uint32, uint64, uintptr,
+        float32, float64,
+        string
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Ordered</code> contract is just a list of all the ordered types that are defined by the language. This contract accepts any of the listed types, or any named type whose underlying type is one of those types. Basically, any type you can use with the less than operator.</p>
+<p>It turns out that it’s much easier to simply enumerate the types that support the less than operator than it is to invent a new notation that works for all operators. After all, in Go, only built-in types support operators.</p>
+<p>This same approach can be used for any operator, or more generally to write a contract for any generic function intended to work with builtin types. It lets the writer of the generic function specify clearly the set of types the function is expected to be used with. It lets the caller of the generic function clearly see whether the function is applicable for the types being used.</p>
+<p>In practice this contract would probably go into the standard library, and so really the <code>Min</code> function (which will probably also be in the standard library somewhere) will look like this. Here we’re just referring to the contract <code>Ordered</code> defined in the contracts package.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func Min (type T contracts.Ordered) (a, b T) T {
+    if a &lt; b {
+        return a
+    }
+    return b
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="generic-data-structures">Generic data structures</h3>
+<p>Finally, let’s look at a simple generic data structure, a binary tree. In this example the tree has a comparison function, so there are no requirements on the element type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">type Tree (type E) struct {
+    root    *node(E)
+    compare func(E, E) int
+}
+
+type node (type E) struct {
+    val         E
+    left, right *node(E)
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Here is how to create a new binary tree. The comparison function is passed to the <code>New</code> function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func New (type E) (cmp func(E, E) int) *Tree(E) {
+    return &amp;Tree(E){compare: cmp}
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>An unexported method returns a pointer either to the slot holding v, or to the location in the tree where it should go.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func (t *Tree(E)) find(v E) **node(E) {
+    pn := &amp;t.root
+    for *pn != nil {
+        switch cmp := t.compare(v, (*pn).val); {
+        case cmp &lt; 0:
+            pn = &amp;(*pn).left
+        case cmp &gt; 0:
+            pn = &amp;(*pn).right
+        default:
+            return pn
+        }
+    }
+    return pn
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The details here don’t really matter, especially since I haven’t tested this code. I’m just trying to show what it looks like to write a simple generic data structure.</p>
+<p>This is the code for testing whether the tree contains a value.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func (t *Tree(E)) Contains(v E) bool {
+    return *t.find(e) != nil
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>This is the code for inserting a new value.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">func (t *Tree(E)) Insert(v E) bool {
+    pn := t.find(v)
+    if *pn != nil {
+        return false
+    }
+    *pn = &amp;node(E){val: v}
+    return true
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Notice that the type <code>node</code> has a type argument <code>E</code>. This is what it looks like to write a generic data structure. As you can see, it looks like writing ordinary Go code, except that some type arguments are sprinkled in here and there.</p>
+<p>Using the tree is pretty simple.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var intTree = tree.New(func(a, b int) int { return a - b })
+
+func InsertAndCheck(v int) {
+    intTree.Insert(v)
+    if !intTree.Contains(v) {
+        log.Fatalf(&#34;%d not found after insertion&#34;, v)
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>That’s as it should be. It’s a bit harder to write a generic data structure, because you often have to explicitly write out type arguments for supporting types, but as much as possible using one is no different from using an ordinary non-generic data structure.</p>
+<h3 id="next-steps">Next steps</h3>
+<p>We are working on actual implementations to allow us to experiment with this design. It’s important to be able to try out the design in practice, to make sure that we can write the kinds of programs we want to write. It hasn’t gone as fast as we’d hoped, but we’ll send out more detail on these implementations as they become available.</p>
+<p>Robert Griesemer has written a <a href="https://go.dev/cl/187317" target="_blank" rel="noopener noreffer">preliminary CL</a> that modifies the go/types package. This permits testing whether code using generics and contracts can type check. It’s incomplete right now, but it mostly works for a single package, and we’ll keep working on it.</p>
+<p>What we’d like people to do with this and future implementations is to try writing and using generic code and see what happens. We want to make sure that people can write the code they need, and that they can use it as expected. Of course not everything is going to work at first, and as we explore this space we may have to change things. And, to be clear, we’re much more interested in feedback on the semantics than on details of the syntax.</p>
+<p>I’d like to thank everyone who commented on the earlier design, and everyone who has discussed what generics can look like in Go. We’ve read all of the comments, and we greatly appreciate the work that people have put into this. We would not be where we are today without that work.</p>
+<p>Our goal is to arrive at a design that makes it possible to write the kinds of generic code I’ve discussed today, without making the language too complex to use or making it not feel like Go anymore. We hope that this design is a step toward that goal, and we expect to continue to adjust it as we learn, from our experiences and yours, what works and what doesn’t. If we do reach that goal, then we’ll have something that we can propose for future versions of Go.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-29 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/gb_20190731/" data-title="Gb_20190731" data-hashtags="go official blogs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/gb_20190731/" data-hashtag="go official blogs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/gb_20190731/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/gb_20190731/" data-title="Gb_20190731"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/gb_20190731/" data-title="Gb_20190731"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/gb_20190731/" data-title="Gb_20190731"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go-official-blogs/">go official blogs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gb_20190718/" class="prev" rel="prev" title="Gb_20190718"><i class="fas fa-angle-left fa-fw"></i>Gb_20190718</a>
+            <a href="/gb_20190801/" class="next" rel="next" title="Gb_20190801">Gb_20190801<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

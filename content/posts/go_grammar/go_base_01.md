@@ -5,7 +5,7 @@ lastmod: 2022-01-09
 tags: [go grammar]
 categories: [Go]
 slug: go_base_01
-draft: false
+draft: true
 ---
 > 参考学习go语言中文网、C语言中文网、golang官方文档等
 

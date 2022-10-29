@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CN_base_01 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="CN_base_01" />
+<meta property="og:description" content="来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版 概论 10%&#43;15%&#43;15%&#43;60% 计算机网络是通信技术与计算机技术紧密结合的产物，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/cn_base_01/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T10:50:16+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="CN_base_01"/>
+<meta name="twitter:description" content="来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版 概论 10%&#43;15%&#43;15%&#43;60% 计算机网络是通信技术与计算机技术紧密结合的产物，"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/cn_base_01/" /><link rel="prev" href="https://jefofrank.xyz/structural_type/" /><link rel="next" href="https://jefofrank.xyz/cn_base_02/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CN_base_01",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/cn_base_01\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "computer network","wordcount":  6621 ,
+        "url": "https:\/\/jefofrank.xyz\/cn_base_01\/","datePublished": "2022-01-23T10:50:16+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CN_base_01</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-23 10:50:16">2022-01-23 10:50:16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6621 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-什么是internet">1.1 什么是Internet?</a></li>
+    <li><a href="#12-网络边缘">1.2 网络边缘</a></li>
+    <li><a href="#13-网络核心">1.3 网络核心</a></li>
+    <li><a href="#14-接入网和物理媒体">1.4 接入网和物理媒体</a>
+      <ul>
+        <li><a href="#接入网">接入网</a></li>
+        <li><a href="#物理媒体">物理媒体</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-internet结构和isp">1.5 Internet结构和ISP</a></li>
+    <li><a href="#16-分组延时丢失和吞吐量">1.6 分组延时、丢失和吞吐量</a></li>
+    <li><a href="#17-协议层次及服务模型">1.7 协议层次及服务模型</a></li>
+    <li><a href="#18-历史">1.8 历史</a></li>
+    <li><a href="#回顾与小结">回顾与小结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版</p>
+</blockquote>
+<h1 id="概论">概论</h1>
+<p>10%+15%+15%+60%</p>
+<p>计算机网络是通信技术与计算机技术紧密结合的产物，就是一种通信网络，是是互连的、自治的计算机集合。</p>
+<p>通信系统模型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">信源-》发送设备-》信道-》接收设备-》信宿
+                   ^
+                   |
+                噪声源
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="11-什么是internet">1.1 什么是Internet?</h2>
+<p>具体构成角度：</p>
+<ul>
+<li>计算设备
+<ul>
+<li>主机=端系统（运行网络应用程序）</li>
+</ul>
+</li>
+<li>通信链路
+<ul>
+<li>光纤、同轴电缆、无线电、卫星（传输速率：带宽（bps=BitPerSecond））</li>
+</ul>
+</li>
+<li>分组交换设备
+<ul>
+<li>路由器和交换机（转发分组packets）</li>
+</ul>
+</li>
+</ul>
+<p>或者说：</p>
+<ul>
+<li>节点
+<ul>
+<li>主机及其上运行的应用程序</li>
+<li>路由器、交换机等网络交换设备</li>
+</ul>
+</li>
+<li>边：通信链路
+<ul>
+<li>接入网链路：主机连接到互联网的链路</li>
+<li>主干链路：路由器间的链路</li>
+</ul>
+</li>
+<li>协议：控制发送、接收消息
+<ul>
+<li>eg:TCP,IP,HTTP,FTP,PPP……</li>
+</ul>
+</li>
+</ul>
+<p>Internet标准：</p>
+<ul>
+<li>RFC: Request for comments</li>
+<li>IETF: Internet Engineering Task Force</li>
+</ul>
+<p>什么是协议：</p>
+<ul>
+<li>发送特定的消息以及收到消息时采取的特定行动或其他事件</li>
+<li>Internet 中所有的通信行为都受协议制约</li>
+<li><strong>协议定义了两个或多个通信实体之间交换的报文格式和次序，以及在报文传输或接收或其他事件方面所采取的行动。</strong></li>
+</ul>
+<p>服务角度看什么是Internet:</p>
+<ul>
+<li>使用通信设施进行通信的分布式应用
+<ul>
+<li>Web、VoIP、email、分布式游戏、电子商务、社交网络</li>
+</ul>
+</li>
+<li>通信基础设施为apps提供编程接口（通信服务）
+<ul>
+<li>将发送和接收数据的apps与互联网连接起来</li>
+<li>为app应用提供服务选择，类似于邮政服务：
+<ul>
+<li>无连接不可靠服务</li>
+<li>面向连接的可靠服务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-网络边缘">1.2 网络边缘</h2>
+<p>网络结构：</p>
+<ul>
+<li>网络边缘
+<ul>
+<li>主机</li>
+<li>应用程序（客户端和服务器）</li>
+</ul>
+</li>
+<li>网络核心
+<ul>
+<li>互联着的路由器</li>
+<li>网络的网络（互连的ISP互联网服务提供商以及公用Internet,专用Internet）</li>
+</ul>
+</li>
+<li>接入网、物理媒体
+<ul>
+<li>有线或者无线通信链路</li>
+</ul>
+</li>
+</ul>
+<p>网络边缘：</p>
+<ul>
+<li>端系统（主机）
+<ul>
+<li>运行应用程序（web,email等）</li>
+<li>在“网络的边缘”</li>
+</ul>
+</li>
+<li>客户/服务器模式
+<ul>
+<li>客户端向服务器请求、接收服务</li>
+<li>如web浏览器/服务器；email客户端/服务器</li>
+</ul>
+</li>
+<li>对等（peer-peer）模式
+<ul>
+<li>很少或者没有专门的服务器</li>
+<li>eg:Gnutella,KaZaA,Emule</li>
+</ul>
+</li>
+</ul>
+<p>网络边缘：</p>
+<ul>
+<li>采用网络设施的面向连接服务
+<ul>
+<li>目标：在端系统之间传输数据
+<ul>
+<li>握手：在数据传输之前做好准备
+<ul>
+<li>人类协议：你好，你好</li>
+<li>两个通信主机之间为<strong>连接建立状态</strong></li>
+</ul>
+</li>
+<li>TCP-传输控制协议(Transmission Control Protocol)
+<ul>
+<li>Internet上面向连接的服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP服务[RFC 793]
+<ul>
+<li>可靠地按顺序地传送数据
+<ul>
+<li>确认和重传</li>
+</ul>
+</li>
+<li>流量控制
+<ul>
+<li>发送方不会淹没接收方</li>
+</ul>
+</li>
+<li>拥塞控制
+<ul>
+<li>当网络拥塞时，发送方降低发送速率</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>采用基础设施的无连接服务
+<ul>
+<li>目标：在端系统之间传输数据
+<ul>
+<li>无连接服务</li>
+<li>UDP-用户数据报协议(User Datagram Protocol)
+<ul>
+<li>无连接</li>
+<li>不可靠数据传输</li>
+<li>无流量控制</li>
+<li>无拥塞控制</li>
+</ul>
+</li>
+<li>使用TCP的应用
+<ul>
+<li>HTTP(Web)</li>
+<li>FTP(文件传送)</li>
+<li>Telnet(远程登陆)</li>
+<li>SMTP(email)</li>
+</ul>
+</li>
+<li>使用UDP的应用
+<ul>
+<li>流媒体</li>
+<li>远程会议</li>
+<li>DNS</li>
+<li>Internet电话</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-网络核心">1.3 网络核心</h2>
+<p>网络分类：</p>
+<ul>
+<li>通信网络
+<ul>
+<li>电路交换网络
+<ul>
+<li>FDM</li>
+<li>TDM</li>
+</ul>
+</li>
+<li>分组交换网络
+<ul>
+<li>虚电路网络</li>
+<li>数据报网络</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>网络核心的关键功能：</p>
+<ul>
+<li>路由：决定分组采用的源到目标的路径（路由算法）</li>
+<li>转发：将分组从路由器的输入链路转移到输出链路</li>
+</ul>
+<p>网络核心：<strong>路由器的网状网络</strong></p>
+<p>数据怎样通过网络进行传输？</p>
+<ul>
+<li>电路交换
+<ul>
+<li>为每个呼叫预留一条专有电路：如电话网</li>
+</ul>
+</li>
+<li>分组交换
+<ul>
+<li>将要传送的数据分成一个个单位：分组</li>
+<li>将分组从一个路由器传到相邻路由器（hop），一段段最终从源端传到目标端</li>
+<li>每段：采用链路的最大传输能力（带宽）</li>
+</ul>
+</li>
+</ul>
+<p>网络核心：<strong>电路交换</strong></p>
+<ul>
+<li>端到端的资源被分配给从源端到目标端的呼叫 “call”：
+<ul>
+<li>独享资源：不同享
+<ul>
+<li>每个呼叫一旦建立起来就能够保证性能</li>
+</ul>
+</li>
+<li>如果呼叫没有数据发送，被分配的资源就会被浪费 (no sharing)</li>
+<li>通常被传统电话网络采用</li>
+</ul>
+</li>
+<li>为呼叫预留端-端资源
+<ul>
+<li>链路带宽、交换能力</li>
+<li>专用资源：不共享</li>
+<li>保证性能</li>
+<li>要求建立呼叫连</li>
+</ul>
+</li>
+<li>网络资源（如带宽）被分成片
+<ul>
+<li>为呼叫分配片</li>
+<li>如果某个呼叫没有数据，则其资源片处于空闲状态（不共享）</li>
+<li>将带宽分成片
+<ul>
+<li>频分(Frequency-division multiplexing)</li>
+<li>时分(Time-division multiplexing)</li>
+<li>波分(Wave-division multiplexing)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>计算举例</strong>：在一个电路交换网络上，从主机A到主机B发送一个640,000比特的文件需要多长时间？</p>
+<ul>
+<li>所有的链路速率为1.536 Mbps</li>
+<li>每条链路使用时隙数为24的TDM</li>
+<li>建立端-端的电路需500 m</li>
+</ul>
+<p>解：</p>
+<ul>
+<li>每条链路的速率（一个时间片）：1.536Mbps/24=64kbps</li>
+<li>传输事件：640kb/64kps=10s</li>
+<li>共用时间：传输时间+建立链路时间=10s+500ms=10.5s</li>
+</ul>
+<p>电路交换不适合计算机之间的通信</p>
+<ul>
+<li>连接建立时间长</li>
+<li>计算机之间的通信有突发性，如果使用线路交换，则浪费的片较多
+<ul>
+<li>即使这个呼叫没有数据传递，其所占据的片也不能够被别的呼叫使用</li>
+</ul>
+</li>
+<li>可靠性不高</li>
+</ul>
+<p>网络核心：<strong>分组交换</strong></p>
+<ul>
+<li>以分组为单位存储-转发方式
+<ul>
+<li>网络带宽资源不再分分为一个个片，传输时使用全部带宽</li>
+<li>主机之间传输的数据被分为一个个分组</li>
+</ul>
+</li>
+<li>资源共享，按需使用：
+<ul>
+<li>存储-转发：分组每次移动一跳（ hop ）
+<ul>
+<li>在转发之前，节点必须收到整个分组</li>
+<li>延迟比线路交换要大</li>
+<li>排队时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>分组交换</p>
+<ul>
+<li>存储-转发
+<ul>
+<li>被传输到下一个链路之前，整个分组必须到达路由器：存储-转发</li>
+<li>在一个速率为R bps的链路，一个长度为L bits 的分组的存储转发延时： L/R s</li>
+<li>分组的存储转发一段一段从源端传到目标端，按照有无网络层的连接，分成：
+<ul>
+<li>数据报网络：
+<ul>
+<li>数据报工作原理：
+<ul>
+<li>在通信之前,无须建立起一个连接,有数据就传输</li>
+<li>每一个分组都独立路由(路径不一样,可能会失序)</li>
+<li>路由器根据分组的目标地址进行路由</li>
+</ul>
+</li>
+<li>分组的目标地址决定下一跳</li>
+<li>在不同的阶段，路由可以改变</li>
+<li>类似：问路</li>
+<li>Internent</li>
+</ul>
+</li>
+<li>虚电路网络：
+<ul>
+<li>虚电路工作原理：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123134658.png" /></li>
+<li>每个分组都带标签（虚电路标识 VC ID），标签决定下一跳</li>
+<li>在呼叫建立时决定路径，在整个呼叫中路径保持不变</li>
+<li>路由器维持每个呼叫的状态信息</li>
+<li>X.25 和ATM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排队延迟和丢失
+<ul>
+<li>排队和延迟：
+<ul>
+<li>如果到达速率 &gt; 链路的输出速率：
+<ul>
+<li>分组将会排队，等待传输</li>
+<li>如果路由器的缓存用完了，分组将会被抛弃</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>统计多路复用
+<ul>
+<li>A&amp;B时复用链路资源，A&amp;B分组没有固定的模式，所有需要统计多路复用</li>
+</ul>
+</li>
+</ul>
+<p>分组交换VS电路交换</p>
+<ul>
+<li>同样的网络资源，分组交换允许更多用户使用网络</li>
+<li>分组交换是“突发数据的胜利者”
+<ul>
+<li>适合于对突发式数据传输
+<ul>
+<li>资源共享</li>
+<li>简单，不必建立呼叫</li>
+</ul>
+</li>
+<li>过度使用会造成网络拥塞：分组延时和丢失
+<ul>
+<li>对可靠地数据传输需要协议来约束：拥塞控制</li>
+</ul>
+</li>
+<li>Q: 怎样提供类似电路交换的服务？
+<ul>
+<li>保证音频/视频应用需要的带宽</li>
+<li>一个仍未解决的问题(chapter 7)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>报文交换：</p>
+<ul>
+<li>报文：源（应用）发送信息整体，比如一个文件</li>
+</ul>
+<p>报文交换VS分组交换</p>
+<ul>
+<li>报文交换:
+<ul>
+<li>报文长度为M bits</li>
+<li>链路带宽为R bps</li>
+<li>每次传输报文需要M/R秒</li>
+</ul>
+</li>
+<li>分组交换:
+<ul>
+<li>报文被拆分为多个分组</li>
+<li>分组长度为L bits</li>
+<li>每个分组传输时延为L/R秒</li>
+</ul>
+</li>
+</ul>
+<h2 id="14-接入网和物理媒体">1.4 接入网和物理媒体</h2>
+<h3 id="接入网">接入网</h3>
+<p>接入网：digital subscriber line (DSL,数字用户线)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135824.png" /></p>
+<p>接入网：线缆网络</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123135926.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140015.png" /></li>
+</ul>
+<p>接入网：家庭网络</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140121.png" /></li>
+</ul>
+<p>怎样将端系统和边缘路由器连接？</p>
+<ul>
+<li>
+<p>住宅接入网络（调制解调器modem）</p>
+<ul>
+<li>将上网数据调制加载音频信号上，在电话线上传输，在局端将其中的数据解调出来；反之亦然
+<ul>
+<li>调频</li>
+<li>调幅</li>
+<li>调相位</li>
+<li>综合调制</li>
+</ul>
+</li>
+<li>拨号调制解调器
+<ul>
+<li>56Kbps 的速率直接接入路由器(通常更低)</li>
+<li>不能同时上网和打电话：不能总是在线</li>
+</ul>
+</li>
+<li>电缆模式
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140230.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>单位接入网络 （学校、公司）</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140310.png" /></li>
+</ul>
+</li>
+<li>
+<p>无线接入网络</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123140331.png" />
+<strong>注意</strong>：</li>
+</ul>
+</li>
+<li>
+<p>接入网络的带宽 (bits per second)</p>
+</li>
+<li>
+<p>共享/专用</p>
+</li>
+</ul>
+<h3 id="物理媒体">物理媒体</h3>
+<ul>
+<li>Bit: 在发送-接收对间传播</li>
+<li>物理链路：连接每个发送-接收对之间的物理媒体</li>
+<li>导引型媒体:
+<ul>
+<li>信号沿着固体媒介被导引：同轴电缆、光纤、 双绞线
+<ul>
+<li>同轴电缆
+<ul>
+<li>两根同轴的铜导线</li>
+<li>双向</li>
+<li>基带电缆：
+<ul>
+<li>电缆上一个单个信道</li>
+<li>Ethernet</li>
+</ul>
+</li>
+<li>宽带电缆：
+<ul>
+<li>电缆上有多个信道</li>
+<li>HFC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>光纤和光缆
+<ul>
+<li>光脉冲，每个脉冲表示一个bit，在玻璃纤维中传输</li>
+<li>高速：点到点的高速传输（如10Gbps-100Gbps传输速率）</li>
+<li>低误码率：在两个中继器之间可以有很长的距离，不受电磁噪声的干扰</li>
+<li>安全</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非导引型媒体：
+<ul>
+<li>开放的空间传输电磁波或者光信号，在电磁或者光信号中承载数字数据</li>
+<li>无线链路：
+<ul>
+<li>开放空间传输电磁波，携带要传输的数据</li>
+<li>无需物理“线缆”</li>
+<li>双向</li>
+<li>传播环境效应：
+<ul>
+<li>反射</li>
+<li>吸收</li>
+<li>干扰</li>
+</ul>
+</li>
+<li>类型有：
+<ul>
+<li>地面微波:45Mbps</li>
+<li>LAN（eg:wifi）</li>
+<li>wide-area（eg:蜂窝）
+<ul>
+<li>3G:~Mbps</li>
+<li>4G:10Mbps</li>
+<li>5G:数Gbps</li>
+</ul>
+</li>
+<li>卫星
+<ul>
+<li>每个信道Kbps到45Mbps（或者多个聚集信道）</li>
+<li>270msec端到端延迟</li>
+<li>同步静止卫星和低轨卫星</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>双绞线 (TP)
+<ul>
+<li>两根绝缘铜导线拧合
+<ul>
+<li>5类：100Mbps 以太网，Gbps 千兆位以太网</li>
+<li>6类：10Gbps万兆以太</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="15-internet结构和isp">1.5 Internet结构和ISP</h2>
+<p>互联网络结构：网络的网络</p>
+<ul>
+<li>端系统通过接入ISPs (Internet Service Providers)连接到互联网
+<ul>
+<li>住宅，公司和大学的ISPs</li>
+</ul>
+</li>
+<li>接入ISPs相应的必须是互联的
+<ul>
+<li>因此任何2个端系统可相互发送分组到对方</li>
+</ul>
+</li>
+<li>导致的“网络的网络”非常复杂
+<ul>
+<li>发展和演化是通过经济的和国家的政策来驱动的</li>
+</ul>
+</li>
+<li>让我们采用渐进方法来描述当前互联网的结构</li>
+</ul>
+<p>给定数百万接入ISPs，如何将它们互联到一起？</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142814.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123142848.png" /></li>
+<li>但是，如果全局ISP是可行的业务，那会有竞争者有利可图，一定会有竞争。与此同时，通过ISP之间的合作可以完成业务的扩展，肯定会有互联，对等互联的结算关系</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143046.png" /></li>
+<li>然后业务会细分（全球接入和区域接入），区域网络将出现，用与将接入ISPs连接到全局ISPs</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143129.png" /></li>
+<li>然后内容提供商网络(Internet Content Providers,e.g., Google,Microsoft，Akamai) 可能会构建它们自己的网络，将它们的服务、内容更加靠近端用户，向用户提供更好的服务,减少自己的运营支出</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143255.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143336.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143602.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143619.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143648.png" /></li>
+<li>很多内容提供商(如：Google, Akamai )可能会部署自己的网络,连接自己的在各地的DC（数据中心），走自己的数据</li>
+<li>连接若干local ISP和各级（包括一层）ISP,更加靠近用户</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143838.png" /></li>
+</ul>
+<p><strong>ISP之间的连接</strong></p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123143952.png" /></li>
+<li>POP: 高层ISP面向客户网络的接入点，涉及费用结算
+<ul>
+<li>如一个低层ISP接入多个高层ISP，多宿（multi home）</li>
+</ul>
+</li>
+<li>对等接入：2个ISP对等互接，不涉及费用结算</li>
+<li>IXP：多个对等ISP互联互通之处，通常不涉及费用结算
+<ul>
+<li>对等接入</li>
+</ul>
+</li>
+<li>ICP自己部署专用网络，同时和各级ISP连接</li>
+</ul>
+<h2 id="16-分组延时丢失和吞吐量">1.6 分组延时、丢失和吞吐量</h2>
+<p>分组丢失和延时是怎样发生的？</p>
+<ul>
+<li>在路由器缓冲区的分组队列
+<ul>
+<li>分组到达链路的速率超过了链路输出的能力</li>
+<li>分组等待排到队头、被传输</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144141.png" /></li>
+</ul>
+<p>四种分组延时：</p>
+<ul>
+<li>
+<ol>
+<li>节点处理延时：</li>
+</ol>
+<ul>
+<li>检查 bit级差错</li>
+<li>检查分组首部和决定将分组导向何处</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>排队延时</li>
+</ol>
+<ul>
+<li>在输出链路上等待传输的时间</li>
+<li>依赖于路由器的拥塞程度</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>传输延时:</li>
+</ol>
+<ul>
+<li>R=链路带宽(bps)</li>
+<li>L=分组长度(bits)</li>
+<li>将分组发送到链路上的时间= L/R</li>
+<li>存储转发延时</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>传播延时:</li>
+</ol>
+<ul>
+<li>d = 物理链路的长度</li>
+<li>s = 在媒体上的传播速度(~2x108 m/sec)</li>
+<li>传播延时 = d/s</li>
+</ul>
+</li>
+</ul>
+<p>车队类比：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144751.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123144818.png" /></p>
+<p>节点延时：</p>
+<ul>
+<li>$d_{nodal}=d_{proc}+d_{queue}+d_{trans}+d_{prop}$</li>
+<li>$d_{proc}$ = 处理延时
+<ul>
+<li>通常是微秒数量级或更少</li>
+</ul>
+</li>
+<li>$d_{queue}$ = 排队延时
+<ul>
+<li>取决于拥塞程度</li>
+</ul>
+</li>
+<li>$d_{trans}$ = 传输延时
+<ul>
+<li>= L/R, 对低速率的链路而言很大（如拨号），通常为微秒级到毫秒级</li>
+</ul>
+</li>
+<li>$d_{prop}$ = 传播延时
+<ul>
+<li>几微秒到几百毫秒</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145426.png" /></p>
+<p>Internet的延时和路由</p>
+<ul>
+<li>Internet 的延时和路由是什么样的呢?</li>
+<li>Traceroute 诊断程序: 提供从源端，经过路由器，到目的的延时测量
+<ul>
+<li>For all i:
+<ul>
+<li>沿着目的的路径，向每个路由器发送3个探测分组</li>
+<li>路由器 i 将向发送方返回一个分组</li>
+<li>发送方对发送和回复之间间隔计时</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145646.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123145725.png" /></li>
+</ul>
+<p>关于traceroute</p>
+<ul>
+<li>在Windows系统下
+<ul>
+<li>Tracerert hostname
+<ul>
+<li>如 Tracerert <a href="http://www.gucas.ac.cn" target="_blank" rel="noopener noreffer">www.gucas.ac.cn</a></li>
+</ul>
+</li>
+<li>更完整的例子
+<ul>
+<li>tracert [-d] [-h maximum_hops] [-j computer-list] [-w timeout] target_name</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>测试网址：
+<ul>
+<li><a href="http://www.traceroute.org" target="_blank" rel="noopener noreffer">www.traceroute.org</a></li>
+<li><a href="http://www.linkwan.com" target="_blank" rel="noopener noreffer">www.linkwan.com</a></li>
+</ul>
+</li>
+</ul>
+<p>分组丢失：</p>
+<ul>
+<li>链路的队列缓冲区容量有限</li>
+<li>当分组到达一个满的队列时，该分组将会丢失</li>
+<li>丢失的分组可能会被前一个节点或源端系统重传，或根本不重传</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150111.png" /></li>
+</ul>
+<p>吞吐量：</p>
+<ul>
+<li>吞吐量: 在源端和目标端之间传输的速率（数据量/单位时间）
+<ul>
+<li>瞬间吞吐量: 在一个时间点的速率</li>
+<li>平均吞吐量: 在一个长时间内平均值</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150204.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150244.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150311.png" /></li>
+<li>互联网场景：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123150515.png" /></li>
+</ul>
+<h2 id="17-协议层次及服务模型">1.7 协议层次及服务模型</h2>
+<p>网络是一个复杂的系统!</p>
+<ul>
+<li>网络功能繁杂：数字信号的物理信号承载、点到点、路由、rdt、进程区分、应用等</li>
+<li>现实来看，网络的许多构成元素和设备:
+<ul>
+<li>主机</li>
+<li>路由器</li>
+<li>各种媒体的链路</li>
+<li>应用</li>
+<li>协议</li>
+<li>硬件,软件</li>
+</ul>
+</li>
+</ul>
+<p>如何组织和实现这个复杂的网络功能？</p>
+<p><strong>层次化方式实现复杂网络功能:</strong></p>
+<ul>
+<li>将网络复杂的功能分层功能明确的层次，每一层实现了其中一个或一组功能，功能中有其上层可以使用的功能：服务</li>
+<li>本层协议实体相互交互执行本层的协议动作，目的是实现本层功能，通过接口为上层提供更好的服务</li>
+<li>在实现本层协议的时候，直接利用了下层所提供的服务</li>
+<li>本层的服务：借助下层服务实现的本层协议实体之间交互带来的新功能（上层可以利用的）+更下层所提供的服务</li>
+</ul>
+<p>服务和服务访问点：</p>
+<ul>
+<li>服务( Service)：低层实体向上层实体提供它们之间的通信的能力
+<ul>
+<li>服务用户(service user)</li>
+<li>服务提供者(service provider )</li>
+</ul>
+</li>
+<li>原语(primitive)：上层使用下层服务的形式，高层使用低层提供的服务，以及低层向高层提供服务都是通过服务访问原语来进行交互的形式</li>
+<li>服务访问点 SAP (Services Access Point) ：上层使用下层提供的服务通过层间的接口—地点；
+<ul>
+<li>例子:邮箱</li>
+<li>地址(address)：下层的一个实体支撑着上层的多个实体，SAP有标志不同上层实体的作用</li>
+<li>可以有不同的实现，队列</li>
+<li>例子:传输层的SAP: 端口(port)</li>
+</ul>
+</li>
+</ul>
+<p>服务的类型：</p>
+<ul>
+<li>面向连接的服务和无连接的服务-方式
+<ul>
+<li>面向连接的服务（Connection-oriented Service）
+<ul>
+<li>连接 (Connection)：两个通信实体为进行通信而建立的一种结合</li>
+<li>面向连接的服务通信的过程：建立连接，通信，拆除连接</li>
+<li>面向连接的服务的例子：网络层的连接被成为虚电路</li>
+<li>适用范围：对于大的数据块要传输; 不适合小的零星报文</li>
+<li>特点：保序</li>
+<li>服务类型:
+<ul>
+<li>可靠的信息流 传送页面(可靠的获得，通过接收方的确认)</li>
+<li>可靠的字节流 远程登陆</li>
+<li>不可靠的连接 数字化声音</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>面向连接的服务和无连接的服务
+<ul>
+<li>无连接的服务(Connectionless Service)
+<ul>
+<li>无连接服务：两个对等层实体在通信前不需要建立一个连接，不预留资源；不需要通信双方都是活跃；(例：寄信)</li>
+<li>特点：不可靠、可能重复、可能失序</li>
+<li>IP分组，数据包；</li>
+<li>适用范围：适合传送零星数据；</li>
+<li>服务类型：
+<ul>
+<li>不可靠的数据报 电子方式的函件</li>
+<li>有确认的数据报 挂号信</li>
+<li>请求回答 信息查询</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>服务和协议的区别和联系：</p>
+<ul>
+<li>区别
+<ul>
+<li>服务(Service)：低层实体向上层实体提供它们之间的通信的能力，是通过原语(primitive)来操作的，垂直</li>
+<li>协议(protocol) ：对等层实体(peer entity)之间在相互通信的过程中，需要遵循的规则的集合，水平</li>
+</ul>
+</li>
+<li>联系
+<ul>
+<li>本层协议的实现要靠下层提供的服务来实现</li>
+<li>本层实体通过协议为上层提供更高级的服务</li>
+</ul>
+</li>
+</ul>
+<p>数据单元（DU）</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152136.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123152156.png" /></li>
+</ul>
+<p>分层处理和实现复杂系统的好处：</p>
+<ul>
+<li>对付复杂的系统
+<ul>
+<li>概念化：结构清晰，便于标示网络组件，以及描述其相互关系
+<ul>
+<li>分层参考模型</li>
+</ul>
+</li>
+<li>结构化：模块化更易于维护和系统升级
+<ul>
+<li>改变某一层服务的实现不影响系统中的其他层次
+<ul>
+<li>对于其他层次而言是透明的</li>
+</ul>
+</li>
+<li>如改变登机程序并不影响系统的其它部分
+<ul>
+<li>改变2个秘书使用的通信方式不影响2个翻译的工作</li>
+<li>改变2个翻译使用的语言也不影响上下2个层次的工作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Internet协议栈</strong></p>
+<ul>
+<li>应用层: 网络应用
+<ul>
+<li>为人类用户或者其他应用进程提供网络应用服务</li>
+<li>FTP, SMTP, HTTP,DNS</li>
+</ul>
+</li>
+<li>传输层: 主机之间的数据传输
+<ul>
+<li>在网络层提供的端到端通信基础上，细分为进程到进程，将不可靠的通信变成可靠地通信</li>
+<li>TCP, UDP</li>
+</ul>
+</li>
+<li>网络层: 为数据报从源到目的选择路由
+<ul>
+<li>主机主机之间的通信，端到端通信，不可靠</li>
+<li>IP, 路由协议</li>
+</ul>
+</li>
+<li>链路层: 相邻网络节点间的数据传输
+<ul>
+<li>2个相邻2点的通信，点到点通信，可靠或不可靠</li>
+<li>点对对协议PPP, 802.11(wifi), Ethernet</li>
+</ul>
+</li>
+<li>物理层: 在线路上传送bit</li>
+</ul>
+<p>ISO/OSI 参考模型:</p>
+<ul>
+<li>表示层: 允许应用解释传输的数据, e.g., 加密，压缩，机
+器相关的表示转换</li>
+<li>会话层: 数据交换的同步，检查点，恢复</li>
+<li>互联网协议栈没有这两层!
+<ul>
+<li>这些服务，如果需要的话，必须被应用实现</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153351.png" /></li>
+</ul>
+<p>封装和解封装：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153432.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153519.png" /></p>
+<p><strong>各层次的协议数据单元</strong></p>
+<ul>
+<li>应用层：报文(message)</li>
+<li>传输层：报文段(segment)：TCP段，UDP数据报</li>
+<li>网络层：分组packet（如果无连接方式：数据报datagram）</li>
+<li>数据链路层：帧(frame)</li>
+<li>物理层：位(bit)</li>
+</ul>
+<h2 id="18-历史">1.8 历史</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123153636.png" /></p>
+<h2 id="回顾与小结">回顾与小结</h2>
+<ul>
+<li>
+<p>什么是Internet ?</p>
+</li>
+<li>
+<p>什么是协议?</p>
+</li>
+<li>
+<p>网络边缘</p>
+</li>
+<li>
+<p>接入网、物理媒体</p>
+</li>
+<li>
+<p>网络核心：分组交换、线路交换</p>
+</li>
+<li>
+<p>Internet/ISP 结构</p>
+</li>
+<li>
+<p>性能：丢包、延时、吞吐量</p>
+</li>
+<li>
+<p>协议层次、服务模型</p>
+</li>
+<li>
+<p>历史</p>
+</li>
+<li>
+<p>组成角度看 什么是互联网</p>
+<ul>
+<li>边缘：端系统（包括应用）+接入网</li>
+<li>核心：网络交换设备+通信链路</li>
+<li>协议：对等层实体通信过程中遵守的规则的集合
+<ul>
+<li>语法，语义，时序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>为了实现复杂的网络功能，采用分层方式设计、实现和调试</p>
+<ul>
+<li>应用层，传输层，网络层，数据链路层，物理层</li>
+<li>协议数据单位：
+<ul>
+<li>报文，报文段，分组，帧，位</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>从服务角度看互联网</p>
+<ul>
+<li>通信服务基础设施
+<ul>
+<li>提供的通信服务：面向连接 无连接</li>
+</ul>
+</li>
+<li>应用</li>
+</ul>
+</li>
+<li>
+<p>应用之间的交互</p>
+<ul>
+<li>C/S模式</li>
+<li>P2P模</li>
+</ul>
+</li>
+<li>
+<p>数据交换</p>
+<ul>
+<li>分组数据交换</li>
+<li>线路交换</li>
+</ul>
+</li>
+<li>
+<p>比较线路交换和分组交换</p>
+</li>
+<li>
+<p>分组交换的2种方式</p>
+<ul>
+<li>虚电路</li>
+<li>数据报</li>
+</ul>
+</li>
+<li>
+<p>接入网和物理媒介</p>
+<ul>
+<li>接入网技术：
+<ul>
+<li>住宅：ADSL，拨号，cable modem</li>
+<li>单位：以太网</li>
+<li>无线接入方式</li>
+</ul>
+</li>
+<li>物理媒介
+<ul>
+<li>光纤，同轴电缆，以太网，双绞线</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ISP层次结构</p>
+</li>
+<li>
+<p>分组交换网络中延迟和丢失是如何发生的</p>
+<ul>
+<li>延迟的组成：处理、传输、传播、排队</li>
+</ul>
+</li>
+<li>
+<p>网络的分层体系结构</p>
+<ul>
+<li>分层体系结构</li>
+<li>服务</li>
+<li>协议数据单元</li>
+<li>封装与解封装</li>
+</ul>
+</li>
+<li>
+<p>历史</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/cn_base_01/" data-title="CN_base_01" data-hashtags="computer network"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/cn_base_01/" data-hashtag="computer network"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/cn_base_01/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/cn_base_01/" data-title="CN_base_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/cn_base_01/" data-title="CN_base_01"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/cn_base_01/" data-title="CN_base_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/computer-network/">computer network</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/structural_type/" class="prev" rel="prev" title="Structural_type"><i class="fas fa-angle-left fa-fw"></i>Structural_type</a>
+            <a href="/cn_base_02/" class="next" rel="next" title="CN_base_02">CN_base_02<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CN_base_02 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="CN_base_02" />
+<meta property="og:description" content="来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版 应用层 目标： 网络应用的原理：网络应用协议的概念和实现方" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/cn_base_02/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T10:50:28+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="CN_base_02"/>
+<meta name="twitter:description" content="来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版 应用层 目标： 网络应用的原理：网络应用协议的概念和实现方"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/cn_base_02/" /><link rel="prev" href="https://jefofrank.xyz/cn_base_01/" /><link rel="next" href="https://jefofrank.xyz/cn_base_03/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CN_base_02",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/cn_base_02\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "computer network","wordcount":  13271 ,
+        "url": "https:\/\/jefofrank.xyz\/cn_base_02\/","datePublished": "2022-01-23T10:50:28+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CN_base_02</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-23 10:50:28">2022-01-23 10:50:28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 13271 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 27 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-应用层协议原理">2.1 应用层协议原理</a></li>
+    <li><a href="#22-web-and-http">2.2 Web and HTTP</a></li>
+    <li><a href="#23-ftp">2.3 FTP*</a></li>
+    <li><a href="#24-email">2.4 Email</a>
+      <ul>
+        <li><a href="#smtp">SMTP</a></li>
+        <li><a href="#pop3--imap">POP3 &amp; IMAP</a></li>
+      </ul>
+    </li>
+    <li><a href="#25-dns">2.5 DNS</a></li>
+    <li><a href="#26-p2p-应用">2.6 P2P 应用</a></li>
+    <li><a href="#27-cdn">2.7 CDN</a></li>
+    <li><a href="#28-tcp-套接字socket-编程">2.8 TCP 套接字（Socket ）编程</a></li>
+    <li><a href="#29-udp-套接字编程">2.9 UDP 套接字编程</a></li>
+    <li><a href="#小结">小结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>来自 中科大郑烇计网PPT，哈工大深圳堵宏伟计网PPT，改编自计算机网络-自顶向下 第七版</p>
+</blockquote>
+<h1 id="应用层">应用层</h1>
+<p>目标：</p>
+<ul>
+<li>网络应用的原理：网络应用协议的概念和实现方面
+<ul>
+<li>传输层的服务模型</li>
+<li>客户-服务器模式</li>
+<li>对等模式(peer-to-peer)</li>
+<li>内容分发网络</li>
+</ul>
+</li>
+<li>网络应用的 ：互联网流行的应用层协议
+<ul>
+<li>HTTP</li>
+<li>FTP</li>
+<li>SMTP / POP3 / IMAP</li>
+<li>DNS</li>
+</ul>
+</li>
+<li>编程 ：网络应用程序
+<ul>
+<li>Socket API</li>
+</ul>
+</li>
+</ul>
+<p>创建一个新的网络应用</p>
+<ul>
+<li>编程
+<ul>
+<li>在不同的端系统上运行</li>
+<li>通过网络基础设施提供的服务，应用进程彼此通信</li>
+<li>如Web:
+<ul>
+<li>Web 服务器软件与浏览器软件通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>网络核心中没有应用层软件
+<ul>
+<li>网络核心没有应用层功能</li>
+<li>网络应用只在端系统上存在，快速网络应用开发和部署</li>
+</ul>
+</li>
+</ul>
+<h2 id="21-应用层协议原理">2.1 应用层协议原理</h2>
+<p>网络应用的体系结构</p>
+<ul>
+<li>可能的应用架构：
+<ul>
+<li>客户-服务器模式（C/S:client/server）
+<ul>
+<li>服务器:
+<ul>
+<li>一直运行</li>
+<li>固定的IP地址和周知的端口号（约定）</li>
+<li>扩展性：服务器场
+<ul>
+<li>数据中心进行扩展</li>
+<li>扩展性差</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>客户端:
+<ul>
+<li>主动与服务器通信</li>
+<li>与互联网有间歇性的连接</li>
+<li>可能是动态IP 地址</li>
+<li>不直接与其它客户端通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对等模式(P2P:Peer To Peer)
+<ul>
+<li>（几乎）没有一直运行的服务器</li>
+<li>任意端系统之间可以进行通信</li>
+<li>每一个节点既是客户端又是服务器
+<ul>
+<li>自扩展性-新peer节点带来新的服务能力，当然也带来新的服
+务请求</li>
+</ul>
+</li>
+<li>参与的主机间歇性连接且可以改变IP 地址
+<ul>
+<li>难以管理</li>
+</ul>
+</li>
+<li>例子: Gnutella，迅雷</li>
+</ul>
+</li>
+<li>混合体：客户-服务器和对等体系结构
+<ul>
+<li>Napster
+<ul>
+<li>文件搜索：集中
+<ul>
+<li>主机在中心服务器上注册其资源</li>
+<li>主机向中心服务器查询资源位置</li>
+</ul>
+</li>
+<li>文件传输：P2P
+<ul>
+<li>任意Peer节点之间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>即时通信
+<ul>
+<li>在线检测：集中
+<ul>
+<li>当用户上线时，向中心服务器注册其IP地址</li>
+<li>用户与中心服务器联系，以找到其在线好友的位置</li>
+</ul>
+</li>
+<li>两个用户之间聊天：P2P</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>进程通信：</p>
+<ul>
+<li>进程：在主机上运行的应用程序</li>
+<li>客户端进程：发起通信的进程</li>
+<li>服务器进程：等待连接的进程</li>
+<li>在同一个主机内，使用进程间通信机制通信（
+操作系统定义）</li>
+<li>不同主机，通过交换报文（Message）来通信
+<ul>
+<li>使用OS提供的通信服务</li>
+<li>按照应用协议交换报文
+<ul>
+<li>借助传输层提供的服务</li>
+</ul>
+</li>
+<li><strong>注意</strong>：P2P架构的应用也有客户端进程和服务器进程之分</li>
+</ul>
+</li>
+</ul>
+<p>分布式进程通信需要解决的问题：</p>
+<ul>
+<li>问题1：进程标示和寻址问题（服务用户）
+<ul>
+<li>问题1解决：对进程进行编址（addressing）
+<ul>
+<li>进程为了接收报文，必须有一个标识即：SAP（发送也需要标示）
+<ul>
+<li>主机：唯一的 32位IP地址
+<ul>
+<li>仅仅有IP地址不能够唯一标示一个进程；在一台端系统上有很多应用进程在运行</li>
+</ul>
+</li>
+<li>所采用的传输层协议：TCP or UDP</li>
+<li>端口号（Port Numbers）</li>
+</ul>
+</li>
+<li>一些知名端口号的例子：
+<ul>
+<li>HTTP: TCP 80 Mail: TCP25 ftp:TCP 2</li>
+</ul>
+</li>
+<li>一个进程：用IP+port标示 端节点</li>
+<li>本质上，一对主机进程之间的通信由2个端节点构成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>问题2：传输层-应用层提供服务是如何（服务）
+<ul>
+<li>位置：层间界面的SAP （TCP/IP ：socket）</li>
+<li>形式：应用程序接口API （TCP/IP ：socket API）</li>
+<li>解决：传输层提供的服务
+<ul>
+<li>需要穿过层间的信息
+<ul>
+<li>层间接口必须要携带的信息
+<ul>
+<li>要传输的报文（对于本层来说：SDU）</li>
+<li>谁传的：自己的应用进程标示：IP+TCP(UDP) 端口</li>
+<li>传给谁：对方的应用进程标示：对方的IP+TCP(UDP)端口号</li>
+</ul>
+</li>
+<li>传输层实体（tcp或者udp实体）根据这些信息进行TCP报文段（UDP数据报）的封装
+<ul>
+<li>源端口号，目标端口号，数据等</li>
+<li>将IP地址往下交IP实体，用于封装IP数据报：源IP,目标IP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>层间信息的代表
+<ul>
+<li>如果Socket API 每次传输报文，都携带如此多的信息，太繁琐易错，不便于管理</li>
+<li>用个代号标示通信的双方或者单方：socket</li>
+<li>就像OS打开文件返回的句柄一样
+<ul>
+<li>对句柄的操作，就是对文件的操作</li>
+</ul>
+</li>
+<li>TCP socket：
+<ul>
+<li>TCP服务，两个进程之间的通信需要之前要建立连接
+<ul>
+<li>两个进程通信会持续一段时间，通信关系稳定</li>
+</ul>
+</li>
+<li>可以用一个整数表示两个应用实体之间的通信关系，本地标示</li>
+<li>穿过层间接口的信息量最小</li>
+<li>TCP socket：源IP,源端口，目标IP，目标IP,目标
+端口</li>
+<li>TCP之上的套接字（socket）
+<ul>
+<li>对于使用面向连接服务（TCP）的应用而言，套接字是4元组的一个具有本地意义的标示
+<ul>
+<li>4元组：(源IP，源port，目标IP，目标port)</li>
+<li>唯一的指定了一个会话（2个进程之间的会话关系）</li>
+<li>应用使用这个 ，与远程的应用进程通信</li>
+<li>不必在每一个报文的发送都要指定这4元组</li>
+<li>就像使用操作系统打开一个文件，OS返回一个文件句柄一样，以后使用这个文件句柄,而不是使用这个文件的目录名、文件名</li>
+<li>简单，便于管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165652.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123165721.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>层间信息代码
+<ul>
+<li>UDP socket：
+<ul>
+<li>UDP服务，两个进程之间的通信需要之前无需建立连接
+<ul>
+<li>每个报文都是独立传输的</li>
+<li>前后报文可能给不同的分布式进程</li>
+</ul>
+</li>
+<li>因此，只能用一个整数表示本应用实体的标示
+<ul>
+<li>因为这个报文可能传给另外一个分布式进程 ·1</li>
+</ul>
+</li>
+<li>穿过层间接口的信息大小最小</li>
+<li>UDP socket：本IP,本端口</li>
+<li>但是传输 报文时：必须要提供对方IP，port
+<ul>
+<li>接收报文时： 传输层需要上传对方的IP，port</li>
+</ul>
+</li>
+<li>UDP之上的套接字（socket）
+<ul>
+<li>对于使用无连接服务（UDP）的应用而言，套接字是2元组的一个具有本地意义的标示
+<ul>
+<li>2元组：IP，port （源端指定）</li>
+<li>UDP套接字指定了应用所在的一个端节点（end point）</li>
+<li>在发送数据报时，采用创建好的本地套接字（标示ID），就不必在发送每个报文中指明自己所采用的ip和port</li>
+<li>但是在发送报文时，必须要指定对方的ip和udp port(另外一个段节点)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170238.png" /></li>
+</ul>
+</li>
+<li>套接字（Socket）
+<ul>
+<li>进程向套接字发送报文或从套接字接收报文</li>
+<li>套接字 &lt;-&gt; 门户
+<ul>
+<li>发送进程将报文 门户，发送进程依赖于传输层设施在另外一侧的门将报文交付给接受进程</li>
+<li>接收进程从另外一端的门户 报文（依赖于传输层设施）</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123170628.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>问题3：如何使用传输层提供的服务，实现应用进程之间的报文交换，实现应用（用户使用服务）
+<ul>
+<li>定义应用层协议：报文格式，解释，时序等
+<ul>
+<li>定义了：运行在不同端系统上的应用 如何相互交换报文
+<ul>
+<li>交换的报文类型：请求和应答报文</li>
+<li>各种报文类型的语法：报文中的各个字段及其描述</li>
+<li>字段的语义：即字段取值的含义</li>
+<li>进程何时、如何发送报文及对报文进行响应的规则</li>
+</ul>
+</li>
+<li>应用协议仅仅是应用的一个组成部分
+<ul>
+<li>Web应用：HTTP协议，web客户端，web服务器，HTML</li>
+</ul>
+</li>
+<li>公开协议：
+<ul>
+<li>由RFC文档定义</li>
+<li>允许互操作</li>
+<li>如HTTP, SMTP</li>
+</ul>
+</li>
+<li>专用（私有）协议：
+<ul>
+<li>协议不公开</li>
+<li>如：Skype</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何描述传输层的服务？
+<ul>
+<li>数据丢失率
+<ul>
+<li>有些应用则要求100%的可靠数据传输（如文件）</li>
+<li>有些应用（如音频）能容忍一定比例以下的数据丢失延迟</li>
+</ul>
+</li>
+<li>延迟
+<ul>
+<li>一些应用 出于有效性考虑，对数据传输有严格的时间限制
+<ul>
+<li>Internet 电话、交互式游戏</li>
+<li>延迟、延迟差</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>吞吐
+<ul>
+<li>一些应用（如多媒体）必须需要最小限度的吞吐，从而使得应用能够有效运转</li>
+<li>一些应用能充分利用可供使用的吞吐(弹性应用)</li>
+</ul>
+</li>
+<li>安全性
+<ul>
+<li>机密性</li>
+<li>完整性</li>
+<li>可认证性（鉴别）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见应用对传输服务的要求：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123171842.png" /></li>
+<li>Internet 传输层提供的服务
+<ul>
+<li>TCP 服务：
+<ul>
+<li>可靠的传输服务</li>
+<li>流量控制：发送方不会淹没接受方</li>
+<li>拥塞控制：当网络出现拥塞时，能抑制发送方</li>
+<li>不能提供的服务：时间保证、最小吞吐保证和安全</li>
+<li>面向连接：要求在客户端进程和服务器进程之间建立连接</li>
+</ul>
+</li>
+<li>UDP 服务
+<ul>
+<li>不可靠数据传输</li>
+<li>不提供的服务：可靠，流量控制、拥塞控制、时间、带宽保证、建立连接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>编制程序，使用OS提供的API ，调用网络基础设施提供通信服务传报文，实现应用时序等；</li>
+</ul>
+</li>
+</ul>
+<p>UDP存在的必要性</p>
+<ul>
+<li>能够区分不同的进程，而IP服务不能
+<ul>
+<li>在IP提供的主机到主机端到端功能的基础上，区分了主机的应用进程</li>
+</ul>
+</li>
+<li>无需建立连接，省去了建立连接时间，适合事务性的应用</li>
+<li>不做可靠性的工作，例如检错重发，适合那些对实时性要求比较高而对正确性要求不高的应用
+<ul>
+<li>因为为了实现可靠性（准确性、保序等），必须付出时间代价（检错重发）</li>
+</ul>
+</li>
+<li>没有拥塞控制和流量控制，应用能够按照设定的速度发送数据
+<ul>
+<li>而在TCP上面的应用，应用发送数据的速度和主机向网络发送的实际速度是不一致的，因为有流量控制和拥塞控制</li>
+</ul>
+</li>
+</ul>
+<p>Internet应用及其应用层协议和传输协议：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123172419.png" /></p>
+<p>安全TCP</p>
+<ul>
+<li>TCP &amp; UDP
+<ul>
+<li>都没有加密</li>
+<li>明文通过互联网传输，甚至密码</li>
+</ul>
+</li>
+<li>SSL
+<ul>
+<li>在TCP上面实现，提供加密的TCP连接</li>
+<li>私密性</li>
+<li>数据完整性</li>
+<li>端到端的鉴别</li>
+</ul>
+</li>
+<li>SSL在应用层
+<ul>
+<li>应用采用SSL库，SSL库使用TCP通信</li>
+</ul>
+</li>
+<li>SSL socket API
+<ul>
+<li>应用通过API将明文交给socket，SSL将其加密在互联网上传输</li>
+</ul>
+</li>
+</ul>
+<h2 id="22-web-and-http">2.2 Web and HTTP</h2>
+<p>Web 与 HTTP</p>
+<ul>
+<li>一些术语</li>
+<li>Web页：由一些对象组成</li>
+<li>对象可以是HTML文件、JPEG图像、Java小程序、声音剪辑文件等</li>
+<li>Web页含有一个基本的HTML文件，该基本HTML文件又包含若干对象的引用（链接）</li>
+<li>通过URL对每个对象进行引用
+<ul>
+<li>访问协议，用户名，口令字，端口，目录文件等；</li>
+</ul>
+</li>
+<li>URL格式:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Prot:// user:psw@  www.someSchool.edu:port/someDept/pic.gif
+[协议名][用户:口令][主机名            ][路径名      ][端口]
+</code></pre></td></tr></table>
+</div>
+</div><p>HTTP概况</p>
+<ul>
+<li>HTTP: 超文本传输协议
+<ul>
+<li>Web的应用层协议</li>
+<li>客户/服务器模式</li>
+<li>客户: 请求、接收和显示Web对象的浏览器</li>
+<li>服务器: 对请求进行响应，发送对象的Web服务器</li>
+<li>HTTP 1.0: RFC 1945</li>
+<li>HTTP 1.1: RFC 2068</li>
+</ul>
+</li>
+<li>使用TCP:
+<ul>
+<li>客户发起一个与服务器的TCP连接 (建立套接字) ，端口号为 80</li>
+<li>服务器接受客户的TCP连接</li>
+<li>在浏览器(HTTP客户端)与 Web服务器(HTTP服务器 server)交换HTTP报文 (应用层协议报文)</li>
+<li>TCP连接关闭</li>
+</ul>
+</li>
+<li>HTTP是无状态的
+<ul>
+<li>服务器并不维护关于客户的任何信息</li>
+</ul>
+</li>
+<li>维护状态的协议很复杂！
+<ul>
+<li>必须维护历史信息(状态)</li>
+<li>如果服务器/客户端死机，它们的状态信息可能不一致，二者的信息必须是一致</li>
+<li>无状态的服务器能够支持更多的客户端</li>
+</ul>
+</li>
+</ul>
+<p>HTTP连接</p>
+<ul>
+<li>非持久HTTP
+<ul>
+<li>最多只有一个对象在TCP连接上发送</li>
+<li>下载多个对象需要多个TCP连接</li>
+<li>HTTP/1.0使用非持久连接</li>
+</ul>
+</li>
+<li>持久HTTP
+<ul>
+<li>多个对象可以在一个（在客户端和服务器之间的）TCP连接上传输</li>
+<li>HTTP/1.1 默认使用持久连接</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184439.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123184504.png" /></p>
+<p>响应时间模型</p>
+<ul>
+<li>往返时间RTT（round-trip time）：一个小的分组从客户端到服务器，在回到客户端的时间（传输时间忽略）</li>
+<li>响应时间：
+<ul>
+<li>一个RTT用来发起TCP连接</li>
+<li>一个 RTT用来HTTP请求并等待HTTP响应</li>
+<li>文件传输时间</li>
+</ul>
+</li>
+<li>共：2RTT+传输时间
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214130.png" /></li>
+</ul>
+<p>持久HTTP</p>
+<ul>
+<li>非持久HTTP的缺点：
+<ul>
+<li>每个对象要2个 RTT</li>
+<li>操作系统必须为每个TCP连接分配资源</li>
+<li>但浏览器通常打开并行TCP连接，以获取引用对象</li>
+</ul>
+</li>
+<li>持久HTTP
+<ul>
+<li>服务器在发送响应后，仍保持TCP连接</li>
+<li>在相同客户端和服务器之间的后续请求和响应报文通过相同的连接进行传送</li>
+<li>客户端在遇到一个引用对象的时候，就可以尽快发送该对象的请求</li>
+<li><strong>非流水方式的持久HTTP：</strong>
+<ul>
+<li>客户端只能在收到前一个响应后才能发出新的请求</li>
+<li>每个引用对象花费一个RTT</li>
+</ul>
+</li>
+<li><strong>流水方式的持久HTTP：</strong>
+<ul>
+<li>HTTP/1.1的默认模式</li>
+<li>客户端遇到一个引用对象就立即产生一个请求</li>
+<li>所有引用（小）对象只花费一个RTT是可能的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>HTTP请求报文：</p>
+<ul>
+<li>两种类型的HTTP报文：请求、响应</li>
+<li>HTTP请求报文:
+<ul>
+<li>ASCII (人能阅读)</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214512.png" /></li>
+<li>通用格式
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214547.png" /></li>
+</ul>
+</li>
+</ul>
+<p>提交表单输入：</p>
+<ul>
+<li>Post方式：
+<ul>
+<li>网页通常包括表单输入</li>
+<li>包含在实体主体(entity body )中的输入被提交到服务器</li>
+</ul>
+</li>
+<li>URL方式：
+<ul>
+<li>方法：GET</li>
+<li>输入通过请求行的URL字段上载</li>
+</ul>
+</li>
+</ul>
+<p>方法类型：</p>
+<ul>
+<li>HTTP/1.0
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD
+<ul>
+<li>要求服务器在响应报文中不包含请求对象 -&gt; 故障跟踪</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTTP/1.1
+<ul>
+<li>GET, POST, HEAD</li>
+<li>PUT
+<ul>
+<li>将实体主体中的文件上载到URL字段规定的路径</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>删除URL字段规定的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>HTTP响应报文：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123214926.png" /></p>
+<p>HTTP响应状态码：位于服务器-&gt;客户端的响应报文中的首行一些状态码的例子：</p>
+<ul>
+<li>200 OK
+<ul>
+<li>请求成功，请求对象包含在响应报文的后续部分</li>
+</ul>
+</li>
+<li>301 Moved Permanently
+<ul>
+<li>请求的对象已经被永久转移了；新的URL在响应报文的Location:首部行中指定</li>
+<li>客户端软件自动用新的URL去获取对象</li>
+</ul>
+</li>
+<li>400 Bad Request
+<ul>
+<li>一个通用的差错代码，表示该请求不能被服务器解读</li>
+</ul>
+</li>
+<li>404 Not Found
+<ul>
+<li>请求的文档在该服务上没有找到</li>
+</ul>
+</li>
+<li>505 HTTP Version Not Supported</li>
+</ul>
+<p>用户-服务器状态：cookies</p>
+<ul>
+<li>大多数主要的门户网站使用 cookies</li>
+<li>四个组成部分：
+<ul>
+<li>在HTTP响应报文中有一个cookie的首部行</li>
+<li>在HTTP请求报文含有一个cookie的首部行</li>
+<li>在用户端系统中保留有一个cookie文件，由用户的浏览器管理</li>
+<li>在Web站点有一个后端数据库</li>
+</ul>
+</li>
+<li>例子：
+<ul>
+<li>Susan总是用同一个PC使用Internet Explore上网</li>
+<li>她第一次访问了一个使用了Cookie的电子商务网站</li>
+<li>当最初的HTTP请求到达服务器时，该Web站点产生一个唯一的ID，并以此作为索引在它的后端数据库中产生一个项</li>
+</ul>
+</li>
+<li>如何维持状态：
+<ul>
+<li>协议端节点：在多个事务上，发送端和接收端维持状态</li>
+<li>cookies: http报文携带状态信息</li>
+</ul>
+</li>
+<li>Cookies与隐私：
+<ul>
+<li>Cookies允许站点知道许多关于用户的信息</li>
+<li>可能将它知道的东西卖给第三方</li>
+<li>使用重定向和cookie的搜索引擎还能知道用户更多的信息
+<ul>
+<li>如通过某个用户在大量站点上的行为，了解其个人浏览方式的大致模式</li>
+</ul>
+</li>
+<li>广告公司从站点获得信息</li>
+</ul>
+</li>
+</ul>
+<p>cookies:维护状态
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215433.png" /></p>
+<p>Web缓存 (代理服务器)</p>
+<ul>
+<li>目标：不访问 服务器，就满足客户的请求</li>
+<li>用户设置浏览器： 通过缓存访问Web</li>
+<li>浏览器将所有的HTTP 请求发给缓存
+<ul>
+<li>在缓存中的对象：缓存直接返回对象</li>
+<li>如对象不在缓存，缓存请求原始服务器，然后再将对象返回给客户端</li>
+</ul>
+</li>
+<li>缓存既是客户端又是服务器</li>
+<li>通常缓存是由ISP安装 (大学、公司、居民区ISP)</li>
+<li>为什么要使用Web缓存？
+<ul>
+<li>降低客户端的请求响应时间</li>
+<li>可以大大减少一个机构内部网络与Internent接入链路上的流量</li>
+<li>互联网大量采用了缓存：可以使较弱的ICP也能够有效提供内容</li>
+</ul>
+</li>
+</ul>
+<p>缓存示例：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123215849.png" /></p>
+<ul>
+<li>
+<ol>
+<li>可以更快地接入链路，但会因为接入链路带宽增加使代价昂贵。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>可以安装本地缓存，使web缓存变得廉价。且可能比方法1延迟更低</li>
+</ol>
+</li>
+</ul>
+<p>条件GET方法：</p>
+<ul>
+<li>目标：如果缓存器中的对象拷贝是最新的，就不要发送对象</li>
+<li>缓存器: 在HTTP请求中指定缓存拷贝的日期
+<ul>
+<li>If-modified-since: &lt; date &gt;</li>
+</ul>
+</li>
+<li>服务器: 如果缓存拷贝陈旧，则响应报文没包含对象:
+<ul>
+<li>HTTP/1.0 304 Not Modified</li>
+</ul>
+</li>
+</ul>
+<h2 id="23-ftp">2.3 FTP*</h2>
+<p>FTP文件传输协议：</p>
+<ul>
+<li>向远程主机上传输文件或从远程主机接收文件</li>
+<li>客户/服务器模式
+<ul>
+<li>客户端：发起传输的一方</li>
+<li>服务器：远程主机</li>
+</ul>
+</li>
+<li>ftp: RFC 959</li>
+<li>ftp服务器：端口号为2
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220658.png" /></li>
+</ul>
+<p>FTP: 控制连接与数据连接分开</p>
+<ul>
+<li>FTP客户端与FTP服务器通过端口21联系，并使用TCP为传输协议</li>
+<li>客户端通过控制连接获得身份确认</li>
+<li>客户端通过控制连接发送命令浏览远程目录</li>
+<li>收到一个文件传输命令时，服务器打开一个到客户端的数据连接</li>
+<li>一个文件传输完成后，服务器关闭连接</li>
+<li>服务器打开第二个TCP数据连接用来传输另一个文件</li>
+<li>控制连接： 带外（ “out of band” ）传送</li>
+<li>FTP服务器维护用户的状态信息：当前路径、用户帐户与控制连接对应 = 有状态</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123220915.png" /></li>
+</ul>
+<p>FTP命令、响应：</p>
+<ul>
+<li>命令样例：
+<ul>
+<li>在上以ASCII文本方式传送</li>
+<li>USER username</li>
+<li>PASS password</li>
+<li>LIST 请服务器返回远程主机当前目录的文件列表</li>
+<li>RETR filename 从远程主机的当前目录检索文件(gets)</li>
+<li>STOR filename 向远程主机的当前目录存放文件(puts)</li>
+</ul>
+</li>
+<li>返回码样例：</li>
+<li>状态码和状态信息 (同HTTP)
+<ul>
+<li>331 Username OK,
+<ul>
+<li>password required</li>
+</ul>
+</li>
+<li>125 data connection
+<ul>
+<li>already open;</li>
+<li>transfer starting</li>
+</ul>
+</li>
+<li>425 Can t open data
+<ul>
+<li>connection</li>
+</ul>
+</li>
+<li>452 Error writing
+<ul>
+<li>file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="24-email">2.4 Email</h2>
+<p>3个主要组成部分：</p>
+<ul>
+<li>用户代理
+<ul>
+<li>又名 “邮件阅读器”</li>
+<li>撰写、编辑和阅读邮件</li>
+<li>如Outlook、Foxmail</li>
+<li>输出和输入邮件保存在服务器上</li>
+</ul>
+</li>
+<li>邮件服务器</li>
+<li>简单邮件传输协议：SMTP</li>
+</ul>
+<p>邮件服务器：</p>
+<ul>
+<li>邮箱中管理和维护发送给用户的邮件</li>
+<li>输出报文队列保持待发送邮件报文</li>
+<li>邮件服务器之间的SMTP协议：发送email报文
+<ul>
+<li>客户：发送方邮件服务器</li>
+<li>服务器：接收端邮件服务器</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221315.png" /></p>
+<h3 id="smtp">SMTP</h3>
+<p>EMail: SMTP [RFC 2821]</p>
+<ul>
+<li>使用TCP在客户端和服务器之间传送报文，端口号为25</li>
+<li>直接传输：从发送方服务器到接收方服务器</li>
+<li>传输的3个阶段
+<ul>
+<li>握手</li>
+<li>传输报文</li>
+<li>关闭</li>
+</ul>
+</li>
+<li>命令/响应交互
+<ul>
+<li>命令：ASCII文本</li>
+<li>响应：状态码和状态信息</li>
+</ul>
+</li>
+<li>报文必须为7位ASCII</li>
+</ul>
+<p>举例：Alice给Bob发送报文：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221743.png" /></p>
+<p>简单的SMTP交互：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123221810.png" /></p>
+<p>SMTP：总结</p>
+<ul>
+<li>SMTP使用持久连接</li>
+<li>SMTP要求报文（首部和主体）为7位ASCII编码</li>
+<li>SMTP服务器使用CRLF.CRLF决定报文的尾部</li>
+</ul>
+<p>HTTP比较：</p>
+<ul>
+<li>HTTP：拉（pull）</li>
+<li>SMTP：推（push）</li>
+<li>二者都是ASCII形式的命令/响应交互、状态码</li>
+<li>HTTP：每个对象封装在各自的响应报文中</li>
+<li>SMTP：多个对象包含在一个报文中</li>
+</ul>
+<p>邮件报文格式：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222018.png" /></p>
+<p>报文格式：多媒体扩展</p>
+<ul>
+<li>MIME：多媒体邮件扩展（multimedia mail extension）, RFC 2045, 2056</li>
+<li>在报文首部用额外的行申明MIME内容类型
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222118.png" /></li>
+</ul>
+<p>邮件访问协议：</p>
+<ul>
+<li>SMTP: 传送到接收方的邮件服务器</li>
+<li>邮件访问协议：从服务器访问邮件
+<ul>
+<li>POP：邮局访问协议（Post Office Protocol）[RFC 1939]
+<ul>
+<li>用户身份确认 (代理&lt;&ndash;&gt;服务器) 并下载</li>
+</ul>
+</li>
+<li>IMAP：Internet邮件访问协议（Internet Mail Access Protocol）[RFC 1730]
+<ul>
+<li>更多特性 (更复杂)</li>
+<li>在服务器上处理存储的报文</li>
+</ul>
+</li>
+<li>HTTP：Hotmail , Yahoo! Mail等
+<ul>
+<li>方便</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="pop3--imap">POP3 &amp; IMAP</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222314.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123222340.png" /></p>
+<h2 id="25-dns">2.5 DNS</h2>
+<p>DNS的必要性</p>
+<ul>
+<li>IP地址标识主机、路由器</li>
+<li>但IP地址不好记忆，不便人类使用(没有意义)</li>
+<li>人类一般倾向于使用一些有意义的字符串来标识Internet上的设备
+<ul>
+<li>例如：qzheng@ustc.edu.cn 所在的邮件服务器www.ustc.edu.cn 所在的web服务器</li>
+</ul>
+</li>
+<li>存在着“字符串”—IP地址的转换的必要性</li>
+<li>人类用户提供要访问机器的“字符串”名称</li>
+<li>由DNS负责转换成为二进制的网络地址</li>
+</ul>
+<p>DNS系统需要解决的问题</p>
+<ul>
+<li>问题1：如何命名设备
+<ul>
+<li>用有意义的字符串：好记，便于人类用使用</li>
+<li>解决一个平面命名的重名问题：层次化命名</li>
+</ul>
+</li>
+<li>问题2：如何完成名字到IP地址的转换
+<ul>
+<li>分布式的数据库维护和响应名字查询</li>
+</ul>
+</li>
+<li>问题3：如何维护：增加或者删除一个域，需要在域名系统中做哪些工作</li>
+</ul>
+<p>DNS(Domain Name System)的历史</p>
+<ul>
+<li>ARPANET的名字解析解决方案
+<ul>
+<li>主机名：没有层次的一个字符串（一个平面）</li>
+<li>存在着 维护站：维护着一张 主机名-IP地址的映射文件：Hosts.txt</li>
+<li>每台主机定时从维护站取文件</li>
+</ul>
+</li>
+<li>ARPANET解决方案的问题
+<ul>
+<li>当网络中主机数量很大时
+<ul>
+<li>没有层次的主机名称很难分配</li>
+<li>文件的管理、发布、查找都很麻烦</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>DNS(Domain Name System)总体思路和目标</p>
+<ul>
+<li>DNS的主要思路
+<ul>
+<li>的、基于域的命名机制</li>
+<li>若干分布式的数据库完成名字到IP地址的转换</li>
+<li>运行在UDP之上端口号为53的应用服务</li>
+<li>核心的Internet功能，但以应用层协议实现
+<ul>
+<li>在网络边缘处理复杂性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DNS主要目的：
+<ul>
+<li>实现主机名-IP地址的转换(name/IP translate)</li>
+<li>其它目的
+<ul>
+<li>主机别名到规范名字的转换：Host aliasing</li>
+<li>邮件服务器别名到邮件服务器的正规名字的转换：Mail server     aliasing</li>
+<li>负载均衡：Load Distribution</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>问题1：DNS名字空间(The DNS Name Space)</p>
+<ul>
+<li>DNS域名结构
+<ul>
+<li>一个层面命名设备会有很多重名</li>
+<li>NDS采用层次树状结构的 命名方法</li>
+<li>Internet 根被划为几百个顶级域(top lever domains)
+<ul>
+<li>通用的(generic)
+<ul>
+<li>.com; .edu ; .gov ; .int ; .mil ; .net ; .org; .firm ; .hsop ; .web ; .arts ; .rec ;</li>
+</ul>
+</li>
+<li>国家的(countries)
+<ul>
+<li>.cn ; .us ; .nl ; .jp</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>每个(子)域下面可划分为若干子域(subdomains)</li>
+<li>树叶是主机</li>
+</ul>
+</li>
+</ul>
+<p>DNS: 根名字服务器<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223020.png" /></p>
+<p>DNS名字空间(The DNS Name Space):<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223112.png" /></p>
+<ul>
+<li>域名(Domain Name)
+<ul>
+<li>从本域往上，直到树根</li>
+<li>中间使用“.”间隔不同的级别</li>
+<li>例如：ustc.edu.cn</li>
+<li>auto.ustc.edu.cn</li>
+<li>www.auto. ustc.edu.cn</li>
+<li>域的域名：可以用于表示一个域</li>
+<li>主机的域名：一个域上的一个主机</li>
+</ul>
+</li>
+<li>域名的管理
+<ul>
+<li>一个域管理其下的子域
+<ul>
+<li>.jp 被划分为 ac.jp co.jp</li>
+<li>.cn 被划分为 edu.cn com.cn</li>
+</ul>
+</li>
+<li>创建一个新的域，必须征得它所属域的同意</li>
+</ul>
+</li>
+<li>域与物理网络无关
+<ul>
+<li>域遵从组织界限，而不是物理网络
+<ul>
+<li>一个域的主机可以不在一个网络</li>
+<li>一个网络的主机不一定在一个域</li>
+</ul>
+</li>
+<li>域的划分是逻辑的，而不是物理的</li>
+</ul>
+</li>
+</ul>
+<p>问题2：解析问题-名字服务器(Name Server)</p>
+<ul>
+<li>一个名字服务器的问题
+<ul>
+<li>可靠性问题：单点故障</li>
+<li>扩展性问题：通信容量</li>
+<li>维护问题：远距离的集中式数据库</li>
+</ul>
+</li>
+<li>区域(zone)
+<ul>
+<li>区域的划分有区域管理者自己决定</li>
+<li>将DNS名字空间划分为互不相交的区域，每个区域都是
+树的一部分</li>
+<li>名字服务器：
+<ul>
+<li>每个区域都有一个名字服务器：维护着它所管辖区域的权威信息(authoritative record)</li>
+<li>名字服务器允许被放置在区域之外，以保障可靠性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>名字空间划分为若干区域：Zone
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223342.png" />
+权威DNS服务器：组织机构的DNS服务器， 提供组织机构服务器（如Web和mail）可访问的主机和IP之间的映射组织机构可以选择实现自己维护或由某个服务提供商来维护</p>
+<p>TLD服务器</p>
+<ul>
+<li>顶级域(TLD)服务器：负责顶级域名（如com, org, net, edu和gov）和所有国家级的顶级域名（如cn, uk, fr, ca, jp ）
+<ul>
+<li>Network solutions 公司维护com TLD服务器</li>
+<li>Educause公司维护edu TLD服务器</li>
+</ul>
+</li>
+</ul>
+<p>区域名字服务器维护资源记录</p>
+<ul>
+<li>资源记录(resource records)
+<ul>
+<li>作用：维护 域名-IP地址(其它)的映射关系</li>
+<li>位置：Name Server的分布式数据库中</li>
+</ul>
+</li>
+<li>RR格式: (domain_name, ttl, type,class,Value)
+<ul>
+<li>Domain_name: 域名</li>
+<li>Ttl: time to live : 生存时间(权威，缓冲记录)</li>
+<li>Class 类别 ：对于Internet，值为IN</li>
+<li>Value 值：可以是数字，域名或ASCII串</li>
+<li>Type 类别：资源记录的类型—见下页</li>
+</ul>
+</li>
+</ul>
+<p>DNS记录</p>
+<ul>
+<li>DNS ：保存资源记录(RR)的分布式数据库
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223554.png" /></li>
+</ul>
+<p>资源记录(resource records)</p>
+<ul>
+<li>一个例子</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223623.png" /></li>
+</ul>
+<p>DNS(Domain Name System)</p>
+<ul>
+<li>DNS大致工作过程
+<ul>
+<li>应用调用 解析器(resolver)</li>
+<li>解析器作为客户 向Name Server发出查询报文（封装在UDP段中）</li>
+<li>Name Server返回响应报文(name/ip)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223718.png" /></li>
+</ul>
+</li>
+</ul>
+<p>本地名字服务器（Local Name Server）</p>
+<ul>
+<li>并不严格属于层次结构</li>
+<li>每个ISP (居民区的ISP、公司、大学）都有一个本地DNS服务器
+<ul>
+<li>也称为“默认名字服务器”</li>
+</ul>
+</li>
+<li>当一个主机发起一个DNS查询时，查询被送到其本地DNS服务器
+<ul>
+<li>起着代理的作用，将查询转发到层次结构</li>
+</ul>
+</li>
+</ul>
+<p>名字服务器(Name Server)</p>
+<ul>
+<li>名字解析过程
+<ul>
+<li>目标名字在Local Name Server中
+<ul>
+<li>情况1：查询的名字在该区域内部</li>
+<li>情况2：缓存(cashing)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当与本地名字服务器不能解析名字时，联系根名字服务器顺着根-TLD 一直找到 权威名
+字服务器</li>
+</ul>
+<p>递归查询：</p>
+<ul>
+<li>名字解析负担都放在当前联络的名字服务器上</li>
+<li>问题：根服务器的负担太重</li>
+<li>解决： 迭代查询(iterated queries)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123223858.png" /></li>
+</ul>
+<p>迭代查询</p>
+<ul>
+<li>主机cis.poly.edu 想知道主机 gaia.cs.umass.edu的IP地址</li>
+<li>根（及各级域名）服务器返回的不是查询结果，而是下一个NS的地址</li>
+<li>最后由权威名字服务器给出解析结果</li>
+<li>当前联络的服务器给出可以联系的服务器的名字</li>
+<li>“我不知道这个名字，但可以向这个服务器请求”
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224324.png" /></li>
+</ul>
+<p>DNS协议、报文:</p>
+<ul>
+<li>DNS协议：查询和响应报文的报文格式相同</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224454.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220123224513.png" /></li>
+</ul>
+<p>提高性能：缓存</p>
+<ul>
+<li>一旦名字服务器学到了一个映射，就将该映射
+缓存起来</li>
+<li>根服务器通常都在本地服务器中缓存着
+<ul>
+<li>使得根服务器不用经常被访问</li>
+</ul>
+</li>
+<li>目的：提高效率</li>
+<li>可能存在的问题：如果情况变化，缓存结果和
+权威资源记录不一致</li>
+<li>解决方案：TTL（默认2天）</li>
+</ul>
+<p>问题3：维护问题：新增一个域</p>
+<ul>
+<li>在上级域的名字服务器中增加两条记录，指向这个新增的子域的域名 和 域名服务器的地址</li>
+<li>在新增子域 的名字服务器上运行名字服务器，负责本域的名字解析： 名字-&gt;IP地址</li>
+<li>例子：在com域中建立一个“Network Utopia”</li>
+<li>到注册登记机构注册域名networkutopia.com
+<ul>
+<li>需要向该机构提供权威DNS服务器（基本的、和辅助的）的名字和IP地址</li>
+<li>登记机构在com TLD服务器中插入两条RR记录:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(networkutopia.com, dns1.networkutopia.com, NS)
+(dns1.networkutopia.com, 212.212.212.1, A)
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>在networkutopia.com的权威服务器中确保有
+<ul>
+<li>用于Web服务器的www.networkuptopia.com的类型为A的记录</li>
+<li>用于邮件服务器mail.networkutopia.com的类型为MX的记录</li>
+</ul>
+</li>
+</ul>
+<p>攻击DNS</p>
+<ul>
+<li>DDoS 攻击
+<ul>
+<li>对根服务器进行流量轰炸攻击：发送大量ping
+<ul>
+<li>没有成功</li>
+<li>原因１：根目录服务器配置了流量过滤器，防火墙</li>
+<li>原因２：Local DNS 服务器缓存了TLD服务器的IP地址, 因此无需查询根服务器</li>
+</ul>
+</li>
+<li>向TLD服务器流量轰炸攻击：发送大量查询
+<ul>
+<li>可能更危险</li>
+<li>效果一般，大部分DNS缓存了TLD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>重定向攻击
+<ul>
+<li>中间人攻击
+<ul>
+<li>截获查询，伪造回答，从而攻击某个（DNS回答指定的IP）站点</li>
+</ul>
+</li>
+<li>DNS中毒
+<ul>
+<li>发送伪造的应答给DNS服务器，希望它能够缓存这个虚假的结果</li>
+</ul>
+</li>
+<li>技术上较困难：分布式截获和伪造利用DNS基础设施进行DDoS</li>
+<li>伪造某个IP进行查询， 攻击这个目标IP</li>
+<li>查询放大，响应报文比查询报文大</li>
+<li>效果有限</li>
+</ul>
+</li>
+</ul>
+<p><strong>总的说来，DNS比较健壮</strong></p>
+<h2 id="26-p2p-应用">2.6 P2P 应用</h2>
+<p>纯P2P架构</p>
+<ul>
+<li>没有（或极少）一直运行的服务器</li>
+<li>任意端系统都可以直接通信</li>
+<li>利用peer的服务能力</li>
+<li>Peer节点间歇上网，每次IP地址都有可能变化
+例子:</li>
+<li>文件分发 (BitTorrent)</li>
+<li>流媒体(KanKan)</li>
+<li>VoIP (Skype)</li>
+</ul>
+<p>文件分发: C/S vs P2P
+问题: 从一台服务器分发文件（大小F）到N个peer
+需要多少时间？</p>
+<ul>
+<li>Peer节点上下载能力是有限的资源
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132357.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132434.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132525.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132550.png" />
+P2P文件分发： BitTorrent
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124132615.png" /></li>
+<li>Peer加入torrent:
+<ul>
+<li>一开始没有块，但是将会通过其他节点处累积文件块</li>
+<li>向跟踪服务器注册，获得peer节点列表，和部分peer节点构成邻居关系 (“连接”)</li>
+</ul>
+</li>
+<li>当peer下载时，该peer可以同时向其他节点提供上载服务</li>
+<li>Peer可能会变换用于交换块的peer节点</li>
+<li>扰动churn: peer节点可能会上线或者下线</li>
+<li>一旦一个peer拥有整个文件，它会（自私的）离开或者保留（利他主义）在torrent中</li>
+</ul>
+<p>BitTorrent: 请求，发送文件块</p>
+<ul>
+<li>请求块：
+<ul>
+<li>在任何给定时间，不同peer节点拥有一个文件块的子集</li>
+<li>周期性的，Alice节点向邻居询问他们拥有哪些块的信息</li>
+<li>Alice向peer节点请求它希望的块，稀缺的块</li>
+</ul>
+</li>
+<li>发送块：一报还一报tit-for-tat
+<ul>
+<li>Alice向4个peer发送块，这些块向它自己提供最大带宽的服务
+<ul>
+<li>其他peer被Alice阻塞 (将不会从Alice处获得服务)</li>
+<li>每10秒重新评估一次：前4位</li>
+</ul>
+</li>
+<li>每个30秒：随机选择其他peer节点，向这个节点发送块
+<ul>
+<li>“优化疏通” 这个节点</li>
+<li>新选择的节点可以加入这个top 4</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>BitTorrent: tit-for-tat</p>
+<ul>
+<li>(1) Alice “优化疏通” Bob</li>
+<li>(2) Alice 变成了Bob的前4位提供者; Bob答谢Alice</li>
+<li>(3) Bob 变成了Alice的前4提供者</li>
+</ul>
+<p>P2P文件共享例子:</p>
+<ul>
+<li>Alice在其笔记本电脑上运行P2P客户端程序</li>
+<li>间歇性地连接到Internet，每次从其ISP得到新的IP地址</li>
+<li>请求“双截棍.MP3” - 应用程序显示其他有“双截棍.MP3” 拷贝的对等方</li>
+<li>Alice选择其中一个对等方，如Bob.</li>
+<li>文件从Bob’s PC传送到Alice的笔记本上：HTTP</li>
+<li>当Alice下载时，其他用户也可以从Alice处下载</li>
+<li>Alice的对等方既是一个Web客户端，也是一个瞬时Web服务器</li>
+<li><strong>所有的对等方都是服务器= 可扩展性好！</strong></li>
+</ul>
+<p>P2P文件共享</p>
+<ul>
+<li>两大问题：
+<ul>
+<li>如何定位所需资源</li>
+<li>如何处理对等方的加入与离开</li>
+</ul>
+</li>
+<li>可能的方案
+<ul>
+<li>集中</li>
+<li>分散</li>
+<li>半分散</li>
+</ul>
+</li>
+</ul>
+<p>P2P：集中式目录</p>
+<ul>
+<li>最初的“Napster”设计
+<ul>
+<li>
+<ol>
+<li>当对等方连接时，它告知中心服务器：</li>
+</ol>
+<ul>
+<li>IP地址</li>
+<li>内容</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Alice查询 “双截棍.MP3” 3) Alice从Bob处请求文件</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>P2P：集中式目录中存在的问题（<strong>文件传输是分散的，而定位内容则是高度集中的</strong>）</p>
+<ul>
+<li>单点故障</li>
+<li>性能瓶颈</li>
+<li>侵犯版权</li>
+</ul>
+<p>查询洪泛：Gnutella</p>
+<ul>
+<li>全分布式
+<ul>
+<li>没有中心服务器</li>
+</ul>
+</li>
+<li>开放文件共享协议</li>
+<li>许多Gnutella客户端实现了Gnutella协议
+<ul>
+<li>类似HTTP有许多的浏览器</li>
+</ul>
+</li>
+<li>覆盖网络：图
+<ul>
+<li>如果X和Y之间有一个TCP连接，则二者之间存在一条边</li>
+<li>所有活动的对等方和边就是覆盖网络</li>
+<li>边并不是物理链路</li>
+<li>给定一个对等方，通常所连接的节点少于10个</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133656.png" /></p>
+<p>Gnutella：对等方加入</p>
+<ol>
+<li>对等方X必须首先发现某些已经在覆盖网络中的其他对等方：使用可用对等方列表自己维持一张对等方列表（经常开机的对等方的IP）联系维持列表的Gnutella站点</li>
+<li>X接着试图与该列表上的对等方建立TCP连接，直到与某个对等方Y建立连接</li>
+<li>X向Y发送一个Ping报文，Y转发该Ping报文</li>
+<li>所有收到Ping报文的对等方以Pong报文响应IP地址、共享文件的数量及总字节数</li>
+<li>X收到许多Pong报文，然后它能建立其他TCP连接</li>
+</ol>
+<p>利用不匀称性：KaZaA:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124133757.png" /></p>
+<p>KaZaA：查询</p>
+<ul>
+<li>每个文件有一个散列标识码和一个描述符</li>
+<li>客户端向其组长发送关键字查询</li>
+<li>组长用匹配进行响应：
+<ul>
+<li>对每个匹配：元数据、散列标识码和IP地址</li>
+</ul>
+</li>
+<li>如果组长将查询转发给其他组长，其他组长也以匹配进行响应</li>
+<li>客户端选择要下载的文件
+<ul>
+<li>向拥有文件的对等方发送一个带散列标识码的HTTP请求</li>
+</ul>
+</li>
+</ul>
+<p>Kazaa小技巧</p>
+<ul>
+<li>请求排队
+<ul>
+<li>限制并行上载的数量</li>
+<li>确保每个被传输的文件从上载节点接收一定量的带宽</li>
+</ul>
+</li>
+<li>激励优先权
+<ul>
+<li>鼓励用户上载文件</li>
+<li>加强系统的扩展性</li>
+</ul>
+</li>
+<li>并行下载
+<ul>
+<li>从多个对等方下载同一个文件的不同部分
+<ul>
+<li>HTTP的字节范围首部</li>
+<li>更快地检索一个文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Distributed Hash Table (DHT)</p>
+<ul>
+<li>哈希表</li>
+<li>DHT方案</li>
+<li>环形DHT 以及覆盖网络</li>
+<li>Peer波动</li>
+</ul>
+<h2 id="27-cdn">2.7 CDN</h2>
+<p>视频流化服务和CDN：上下文</p>
+<ul>
+<li>视频流量：占据着互联网大部分的带宽
+<ul>
+<li>Netflix, YouTube: 占据37%, 16% 的ISP下行流量</li>
+<li>~1B YouTube 用户, ~75M Netflix用户</li>
+</ul>
+</li>
+<li>挑战：规模性-如何服务者 ~1B 用户?
+<ul>
+<li>单个超级服务器无法提供服务（为什么）</li>
+</ul>
+</li>
+<li>挑战：异构性
+<ul>
+<li>不同用户拥有不同的能力（例如：有线接入和移动用户；带宽丰富和受限用户）</li>
+</ul>
+</li>
+<li>解决方案: 分布式的，应用层面的基础设施</li>
+</ul>
+<p>多媒体：视频</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134350.png" /></li>
+<li>CBR: (constant bit rate): 以固定速率编码</li>
+<li>VBR: (variable bit rate): 视频编码速率随时间的变化而变化</li>
+<li>例子:
+<ul>
+<li>MPEG 1 (CD-ROM) 1.5 Mbps</li>
+<li>MPEG2 (DVD) 3-6 Mbps</li>
+<li>MPEG4 (often used in Internet, &lt; 1 Mbps)</li>
+</ul>
+</li>
+</ul>
+<p>存储视频的流化服务：<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124134551.png" /></p>
+<p>多媒体流化服务：DASH</p>
+<ul>
+<li>DASH: Dynamic, Adaptive Streaming over HTTP</li>
+<li>服务器:
+<ul>
+<li>将视频文件分割成多个块</li>
+<li>每个块独立存储，编码于不同码率（8-10种）</li>
+<li>告示文件（manifest file）: 提供不同块的URL</li>
+</ul>
+</li>
+<li>客户端:
+<ul>
+<li>先获取告示文件</li>
+<li>周期性地测量服务器到客户端的带宽</li>
+<li>查询告示文件,在一个时刻请求一个块，HTTP头部指定字节范围
+<ul>
+<li>如果带宽足够，选择最大码率的视频块</li>
+<li>会话中的不同时刻，可以切换请求不同的编码块 (取决于当时的可用带宽)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>流式多媒体技术3: DASH</p>
+<ul>
+<li>“智能”客户端: 客户端自适应决定
+<ul>
+<li>什么时候去请求块 (不至于缓存挨饿，或者溢出)</li>
+<li>请求什么编码速率的视频块 (当带宽够用时，请求高质量的视频块)</li>
+<li>哪里去请求块 (可以向离自己近的服务器发送URL，或者向高可用带宽的服务器请求)</li>
+</ul>
+</li>
+</ul>
+<p>Content Distribution Networks</p>
+<ul>
+<li>挑战: 服务器如何通过网络向上百万用户同时流化视频内容 (上百万视频内容)?</li>
+<li>选择1: 单个的、大的超级服务中心“mega server”
+<ul>
+<li>服务器到客户端路径上跳数较多，瓶颈链路的带宽小导致停顿</li>
+<li>“二八规律”决定了网络同时充斥着同一个视频的多个拷贝，效率低（付费高、带宽浪费、效果差）</li>
+<li>单点故障点，性能瓶颈</li>
+<li>周边网络的拥塞</li>
+</ul>
+</li>
+<li>评述：相当简单，但是这个方法不可扩展</li>
+<li>选项2: 通过CDN，全网部署缓存节点，存储服务内容，就近为用户提供服务，提高用户体验
+<ul>
+<li>enter deep: 将CDN服务器深入到许多接入网
+<ul>
+<li>更接近用户，数量多，离用户近，管理困难</li>
+<li>Akamai, 1700个位置</li>
+</ul>
+</li>
+<li>bring home: 部署在少数(10个左右)关键位置，如将服务器簇安装于POP附近（离若干1stISP POP较近）
+<ul>
+<li>采用租用线路将服务器簇连接起来</li>
+<li>Limelight</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CDN: 在CDN节点中存储内容的多个拷贝
+<ul>
+<li>e.g. Netflix stores copies of MadMen</li>
+</ul>
+</li>
+<li>用户从CDN中请求内容
+<ul>
+<li>重定向到最近的拷贝，请求内容</li>
+<li>如果网络路径拥塞，可能选择不同的拷贝
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135056.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135130.png" /></li>
+</ul>
+</li>
+</ul>
+<p>Netflix:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124135151.png" /></p>
+<h2 id="28-tcp-套接字socket-编程">2.8 TCP 套接字（Socket ）编程</h2>
+<p>Socket编程</p>
+<ul>
+<li>应用进程使用传输层提供的服务才能够交换报文，实现应用协议，实现应用
+<ul>
+<li>TCP/IP：应用进程使用Socket API访问传输服务</li>
+<li>地点：界面上的SAP(Socket） 方式：Socket API</li>
+</ul>
+</li>
+<li>目标: 学习如何构建能借助sockets进行通信的C/S应用程序</li>
+<li>socket: 分布式应用进程之间的门，传输层协议提供的端到端服务接口</li>
+<li>2种传输层服务的socket类型:
+<ul>
+<li>TCP: 可靠的、字节流的服务</li>
+<li>UDP: 不可靠（数据UDP数据报）服务</li>
+</ul>
+</li>
+</ul>
+<p>TCP套接字编程</p>
+<ul>
+<li>套接字：应用进程与端到端传输协议（TCP或UDP）之间的门户</li>
+<li>TCP服务：从一个进程向另一个进程可靠地传输字节流</li>
+</ul>
+<p>TCP套接字编程</p>
+<ul>
+<li>服务器首先运行，等待连接建立
+<ol>
+<li>服务器进程必须先处于运行状态
+<ul>
+<li>创建欢迎socket</li>
+<li>和本地端口捆绑</li>
+<li>在欢迎socket上阻塞式等待接收用户的连接</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>客户端主动和服务器建立连接：
+2. 创建客户端本地套接字（隐式捆绑到本地port）
+<ul>
+<li>指定服务器进程的IP地址和端口号，与服务器进程连接</li>
+</ul>
+<ol start="4">
+<li>连接API调用有效时，客户端P与服务器建立了TCP连接</li>
+<li>当与客户端连接请求到来时</li>
+</ol>
+<ul>
+<li>服务器接受来自用户端的请求，解除阻塞式等待，返回一个新的socket（与欢迎socket不一样），与客户端通信
+<ul>
+<li>允许服务器与多个客户端通信</li>
+<li>使用源IP和源端口来区分不同的客户端</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从应用程序的角度
+<ul>
+<li>TCP在客户端和服务器进程之间提供了可靠的、字节流（管道）服务</li>
+</ul>
+</li>
+<li>C/S模式的应用样例:
+<ul>
+<li>
+<ol>
+<li>客户端从标准输入装置读取一行字符，发送给服务器</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>服务器从socket读取字符</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>服务器将字符转换成大写，然后返回给客户端</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>客户端从socket中读取一行字符，然后打印出来</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>C/S socket 交互: TCP
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124174748.png" /></p>
+<p>数据结构 sockaddr_in:</p>
+<ul>
+<li>IP地址和port捆绑关系的数据结构（标示进程的端节点）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">struct sockaddr_ in {
+short sin_ family;//AF INET
+u_ short sin_ port;// port
+struct in_ addr sin_ addr ;// IP address, unsigned long
+char sin_ zero[8]; // align
+};
+</code></pre></td></tr></table>
+</div>
+</div><p>数据结构 hostent:</p>
+<ul>
+<li>域名和IP地址的数据结构</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">struct hostent
+{
+    char *h name;
+    char **h_ aliases;
+    int h_addrtype;
+    int h_ length; /*地址长度*/
+    char **h_addr_list;
+    #define h_ addr h_ addr_ list[0];
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>作为调用域名解析函数时的参数返回后，将IP地址拷贝到 sockaddr_in的IP地址部分</li>
+</ul>
+<p>例子: C客户端(TCP)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175606.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175635.png" /></p>
+<p>例子: C服务器（TCP）
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175723.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175744.png" /></p>
+<h2 id="29-udp-套接字编程">2.9 UDP 套接字编程</h2>
+<p>UDP Socket编程</p>
+<ul>
+<li>UDP: 在客户端和服务器之间没有连接
+<ul>
+<li>没有握手</li>
+<li>发送端在每一个报文中明确地指定目标的IP地址和端口号</li>
+<li>服务器必须从收到的分组中提取出发送端的IP地址和端口号</li>
+</ul>
+</li>
+<li>UDP: 传送的数据可能乱序，也可能丢失</li>
+<li>进程视角看UDP服务
+<ul>
+<li>UDP 为客户端和服务器提供不可靠的字节组的传送服务</li>
+</ul>
+</li>
+</ul>
+<p>Client/server socket 交互: UDP
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124175950.png" /></p>
+<p>样例: C客户端 (UDP)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180023.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180140.png" /></p>
+<p>样例: C服务器(UDP)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180212.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220124180229.png" /></p>
+<h2 id="小结">小结</h2>
+<ul>
+<li>应用程序体系结构
+<ul>
+<li>客户-服务器</li>
+<li>P2P</li>
+<li>混合</li>
+</ul>
+</li>
+<li>应用程序需要的服务品质描述:
+<ul>
+<li>可靠性、带宽、延时、安全</li>
+</ul>
+</li>
+<li>Internet传输层服务模式
+<ul>
+<li>可靠的、面向连接的服务：TCP</li>
+<li>不可靠的数据报：UD</li>
+</ul>
+</li>
+<li>流行的应用层协议:
+<ul>
+<li>HTTP</li>
+<li>FTP</li>
+<li>SMTP, POP, IMAP</li>
+<li>DNS</li>
+</ul>
+</li>
+<li>Socket编程</li>
+</ul>
+<p><strong>更重要的：学习协议的知识</strong></p>
+<ul>
+<li>应用层协议报文类型：请求/响应报文：
+<ul>
+<li>客户端请求信息或服务</li>
+<li>服务器以数据、状态码进行响应</li>
+</ul>
+</li>
+<li>报文格式：
+<ul>
+<li>首部：关于数据信息的字段</li>
+<li>数据：被交换的信息</li>
+</ul>
+</li>
+<li>控制报文 vs. 数据报文
+<ul>
+<li>带内、带外</li>
+</ul>
+</li>
+<li>集中式 vs. 分散式</li>
+<li>无状态 vs. 维护状态</li>
+<li>可靠的 vs. 不可靠的报文传输</li>
+<li>在网络边缘处理复杂性</li>
+</ul>
+<p>一个协议定义了在两个或多个通信实体之间交换报文的格式和次序、以及就一条报文传输和接收或其他事件采取的动作</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/cn_base_02/" data-title="CN_base_02" data-hashtags="computer network"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/cn_base_02/" data-hashtag="computer network"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/cn_base_02/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/cn_base_02/" data-title="CN_base_02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/cn_base_02/" data-title="CN_base_02"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/cn_base_02/" data-title="CN_base_02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/computer-network/">computer network</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/cn_base_01/" class="prev" rel="prev" title="CN_base_01"><i class="fas fa-angle-left fa-fw"></i>CN_base_01</a>
+            <a href="/cn_base_03/" class="next" rel="next" title="CN_base_03">CN_base_03<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

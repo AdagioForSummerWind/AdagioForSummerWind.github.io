@@ -5,7 +5,7 @@ lastmod: 2022-07-14
 tags: [k8s]
 categories: [k8s]
 slug: k8s base
-draft: true
+draft: false
 ---
 
 # k8s入门实战

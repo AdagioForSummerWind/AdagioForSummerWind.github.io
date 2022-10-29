@@ -5,7 +5,7 @@ lastmod: 2022-07-14
 tags: [k8s]
 categories: [k8s]
 slug: k8s advanced
-draft: true
+draft: false
 ---
 > 2018
 # 深入剖析k8s

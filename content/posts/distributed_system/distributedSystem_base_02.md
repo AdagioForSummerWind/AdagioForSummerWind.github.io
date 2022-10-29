@@ -5,7 +5,7 @@ lastmod: 2021-12-01
 tags: [distributed system]
 categories: [School courses]
 slug: system models
-draft: false
+draft: true
 ---
 # 系统模型
 ## 简介

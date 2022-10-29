@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Go_advanced_01 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Go_advanced_01" />
+<meta property="og:description" content="Go语言核心36讲 戳此查看 Go 语言专栏文章配套详细代码。 开篇词 | 跟着学，你也能成为Go语言高手 郝林 2018-08-06 基础概念：我会讲述 Go 语言基础中的基础，包括" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/go_advanced_01/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-05T16:42:35+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Go_advanced_01"/>
+<meta name="twitter:description" content="Go语言核心36讲 戳此查看 Go 语言专栏文章配套详细代码。 开篇词 | 跟着学，你也能成为Go语言高手 郝林 2018-08-06 基础概念：我会讲述 Go 语言基础中的基础，包括"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/go_advanced_01/" /><link rel="prev" href="https://jefofrank.xyz/patterns_principles/" /><link rel="next" href="https://jefofrank.xyz/go_advanced_02/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go_advanced_01",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/go_advanced_01\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  4115 ,
+        "url": "https:\/\/jefofrank.xyz\/go_advanced_01\/","datePublished": "2022-08-05T16:42:35+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Go_advanced_01</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-05 16:42:35">2022-08-05 16:42:35</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4115 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#开篇词--跟着学你也能成为go语言高手">开篇词 | 跟着学，你也能成为Go语言高手</a></li>
+    <li><a href="#导读--写给0基础入门的go语言学习者">导读 | 写给0基础入门的Go语言学习者</a></li>
+    <li><a href="#导读--学习专栏的正确姿势">导读 | 学习专栏的正确姿势</a></li>
+    <li><a href="#基础知识">基础知识</a></li>
+    <li><a href="#01--工作区和gopath">01 | 工作区和GOPATH</a>
+      <ul>
+        <li><a href="#1-go-语言源码的组织方式">1. Go 语言源码的组织方式</a></li>
+        <li><a href="#2-了解源码安装后的结果">2. 了解源码安装后的结果</a></li>
+        <li><a href="#3-理解构建和安装-go-程序的过程">3. 理解构建和安装 Go 程序的过程</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#02--命令源码文件">02 | 命令源码文件</a>
+      <ul>
+        <li><a href="#问题解析">问题解析</a></li>
+      </ul>
+    </li>
+    <li><a href="#03--库源码文件">03 | 库源码文件</a></li>
+    <li><a href="#04--程序实体的那些事儿上">04 | 程序实体的那些事儿（上）</a></li>
+    <li><a href="#05--程序实体的那些事儿中">05 | 程序实体的那些事儿（中）</a></li>
+    <li><a href="#06--程序实体的那些事儿-下">06 | 程序实体的那些事儿 （下）</a></li>
+    <li><a href="#进阶技术">进阶技术</a></li>
+    <li><a href="#07--数组和切片">07 | 数组和切片</a></li>
+    <li><a href="#08--container包中的那些容器">08 | container包中的那些容器</a></li>
+    <li><a href="#09--字典的操作和约束">09 | 字典的操作和约束</a></li>
+    <li><a href="#10--通道的基本操作">10 | 通道的基本操作</a></li>
+    <li><a href="#11--通道的高级玩法">11 | 通道的高级玩法</a></li>
+    <li><a href="#12--使用函数的正确姿势">12 | 使用函数的正确姿势</a></li>
+    <li><a href="#13--结构体及其方法的使用法门">13 | 结构体及其方法的使用法门</a></li>
+    <li><a href="#15--关于指针的有限操作">15 | 关于指针的有限操作</a></li>
+    <li><a href="#16--go语句及其执行规则上">16 | go语句及其执行规则（上）</a></li>
+    <li><a href="#17--go语句及其执行规则下">17 | go语句及其执行规则（下）</a></li>
+    <li><a href="#18--if语句for语句和switch语句">18 | if语句、for语句和switch语句</a></li>
+    <li><a href="#19--错误处理上">19 | 错误处理（上）</a></li>
+    <li><a href="#20--错误处理-下">20 | 错误处理 （下）</a></li>
+    <li><a href="#21--panic函数recover函数以及defer语句-上">21 | panic函数、recover函数以及defer语句 （上）</a></li>
+    <li><a href="#22--panic函数recover函数以及defer语句下">22 | panic函数、recover函数以及defer语句（下）</a></li>
+    <li><a href="#实战与应用">实战与应用</a></li>
+    <li><a href="#23--测试的基本规则和流程-上">23 | 测试的基本规则和流程 （上）</a></li>
+    <li><a href="#24--测试的基本规则和流程下">24 | 测试的基本规则和流程（下）</a></li>
+    <li><a href="#25--更多的测试手法">25 | 更多的测试手法</a></li>
+    <li><a href="#26--syncmutex与syncrwmutex">26 | sync.Mutex与sync.RWMutex</a></li>
+    <li><a href="#27--条件变量synccond-上">27 | 条件变量sync.Cond （上）</a></li>
+    <li><a href="#28--条件变量synccond-下">28 | 条件变量sync.Cond （下）</a></li>
+    <li><a href="#29--原子操作上">29 | 原子操作（上）</a></li>
+    <li><a href="#30--原子操作下">30 | 原子操作（下）</a></li>
+    <li><a href="#31--syncwaitgroup和synconce">31 | sync.WaitGroup和sync.Once</a></li>
+    <li><a href="#32--contextcontext类型">32 | context.Context类型</a></li>
+    <li><a href="#33--临时对象池syncpool">33 | 临时对象池sync.Pool</a></li>
+    <li><a href="#34--并发安全字典syncmap-上">34 | 并发安全字典sync.Map （上）</a></li>
+    <li><a href="#35--并发安全字典syncmap-下">35 | 并发安全字典sync.Map (下)</a></li>
+    <li><a href="#36--unicode与字符编码">36 | unicode与字符编码</a></li>
+    <li><a href="#37--strings包与字符串操作">37 | strings包与字符串操作</a></li>
+    <li><a href="#38--bytes包与字节串操作上">38 | bytes包与字节串操作（上）</a></li>
+    <li><a href="#39--bytes包与字节串操作下">39 | bytes包与字节串操作（下）</a></li>
+    <li><a href="#40--io包中的接口和工具-上">40 | io包中的接口和工具 （上）</a></li>
+    <li><a href="#41--io包中的接口和工具-下">41 | io包中的接口和工具 （下）</a></li>
+    <li><a href="#42--bufio包中的数据类型-上">42 | bufio包中的数据类型 （上）</a></li>
+    <li><a href="#43--bufio包中的数据类型下">43 | bufio包中的数据类型（下）</a></li>
+    <li><a href="#44--使用os包中的api-上">44 | 使用os包中的API （上）</a></li>
+    <li><a href="#45--使用os包中的api-下">45 | 使用os包中的API （下）</a></li>
+    <li><a href="#46--访问网络服务">46 | 访问网络服务</a></li>
+    <li><a href="#47--基于http协议的网络服务">47 | 基于HTTP协议的网络服务</a></li>
+    <li><a href="#48--程序性能分析基础上">48 | 程序性能分析基础（上）</a></li>
+    <li><a href="#49--程序性能分析基础下">49 | 程序性能分析基础（下）</a></li>
+    <li><a href="#尾声--愿你披荆斩棘所向无敌">尾声 | 愿你披荆斩棘，所向无敌</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go语言核心36讲">Go语言核心36讲</h1>
+<p><a href="https://github.com/hyper0x/Golang_Puzzlers" target="_blank" rel="noopener noreffer">戳此查看 Go 语言专栏文章配套详细代码。</a></p>
+<h2 id="开篇词--跟着学你也能成为go语言高手">开篇词 | 跟着学，你也能成为Go语言高手</h2>
+<p>郝林 2018-08-06</p>
+<ul>
+<li>基础概念：我会讲述 Go 语言基础中的基础，包括一些基本概念和运作机制。它们都应该是你初识 Go 语言时必须知道的，同时也有助于你理解后面的知识。</li>
+<li>数据类型和语句：Go 语言中的数据类型大都是很有特色的，你只有理解了它们才能真正玩转 Go 语言。我将和你一起与探索它们的奥妙。另外，我也会一一揭示怎样使用各种语法和语句操纵它们。</li>
+<li>Go 程序的测试：很多程序员总以为测试是另一个团队的事情，其实不然。单元测试甚至接口测试其实都应该是程序员去做的，并且应该受到重视。在 Go 语言中怎样做好测试这件事？我会跟你说清楚、讲明白。</li>
+<li>标准库的用法：虽然 Go 语言提供了自己的高效并发编程方式，但是同步方法依然不容忽视。这些方法集中在sync代码包及其子包中。这部分还涉及了字节和字符问题、OS 操控方法和 Web 服务写法等，这些都是我们在日常工作中很可能会用到的。</li>
+<li>Go 语言拾遗：这部分将会讲述一些我们使用 Go 语言做软件项目的过程中很可能会遇到的问题，至少会包含两篇文章，是附赠给广大 Go 语言爱好者的。虽然我已经有一个计划了，但是具体会讲哪些内容我还是选择暂时保密。请你和我一起小期待一下吧。</li>
+</ul>
+<h2 id="导读--写给0基础入门的go语言学习者">导读 | 写给0基础入门的Go语言学习者</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/ad/85/add8566dc5431378bda313a32a6ebb85.jpg?wh=2602*10316"
+        data-srcset="https://static001.geekbang.org/resource/image/ad/85/add8566dc5431378bda313a32a6ebb85.jpg?wh=2602*10316, https://static001.geekbang.org/resource/image/ad/85/add8566dc5431378bda313a32a6ebb85.jpg?wh=2602*10316 1.5x, https://static001.geekbang.org/resource/image/ad/85/add8566dc5431378bda313a32a6ebb85.jpg?wh=2602*10316 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/ad/85/add8566dc5431378bda313a32a6ebb85.jpg?wh=2602*10316"
+        title="img" /></p>
+<h2 id="导读--学习专栏的正确姿势">导读 | 学习专栏的正确姿势</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/29/f8/29c794731d9fb43f9fd37cc4d91994f8.png?wh=1920*4240"
+        data-srcset="https://static001.geekbang.org/resource/image/29/f8/29c794731d9fb43f9fd37cc4d91994f8.png?wh=1920*4240, https://static001.geekbang.org/resource/image/29/f8/29c794731d9fb43f9fd37cc4d91994f8.png?wh=1920*4240 1.5x, https://static001.geekbang.org/resource/image/29/f8/29c794731d9fb43f9fd37cc4d91994f8.png?wh=1920*4240 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/29/f8/29c794731d9fb43f9fd37cc4d91994f8.png?wh=1920*4240"
+        title="img" /></p>
+<h2 id="基础知识">基础知识</h2>
+<h2 id="01--工作区和gopath">01 | 工作区和GOPATH</h2>
+<p>今天我们的面试问题是：你知道设置 GOPATH 有什么意义吗？</p>
+<p>关于这个问题，它的典型回答是这样的：</p>
+<p>你可以把 GOPATH 简单理解成 Go 语言的工作目录，它的值是一个目录的路径，也可以是多个目录路径，每个目录都代表 Go 语言的一个工作区（workspace）。我们需要利用这些工作区，去放置 Go 语言的源码文件（source file），以及安装（install）后的归档文件（archive file，也就是以“.a”为扩展名的文件）和可执行文件（executable file）。</p>
+<p>事实上，由于 Go 语言项目在其生命周期内的所有操作（编码、依赖管理、构建、测试、安装等）基本上都是围绕着 GOPATH 和工作区进行的。所以，它的背后至少有 3 个知识点，分别是：</p>
+<ol>
+<li>Go 语言源码的组织方式是怎样的；2. 你是否了解源码安装后的结果（只有在安装后，Go 语言源码才能被我们或其他代码使用）；3. 你是否理解构建和安装 Go 程序的过程（这在开发程序以及查找程序问题的时候都很有用，否则你很可能会走弯路）。</li>
+</ol>
+<h3 id="1-go-语言源码的组织方式">1. Go 语言源码的组织方式</h3>
+<p>与许多编程语言一样，Go 语言的源码也是以代码包为基本组织单位的。在文件系统中，这些代码包其实是与目录一一对应的。由于目录可以有子目录，所以代码包也可以有子包。一个代码包中可以包含任意个以.go 为扩展名的源码文件，这些源码文件都需要被声明属于同一个代码包。代码包的名称一般会与源码文件所在的目录同名。如果不同名，那么在构建、安装的过程中会以代码包名称为准。每个代码包都会有导入路径。代码包的导入路径是其他代码在使用该包中的程序实体时，需要引入的路径。在实际使用程序实体之前，我们必须先导入其所在的代码包。具体的方式就是import该代码包的导入路径。就像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">import &#34;github.com/labstack/echo&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>在工作区中，一个代码包的导入路径实际上就是从 src 子目录，到该包的实际存储位置的相对路径。所以说，Go 语言源码的组织方式就是以环境变量 GOPATH、工作区、src 目录和代码包为主线的。一般情况下，Go 语言的源码文件都需要被存放在环境变量 GOPATH 包含的某个工作区（目录）中的 src 目录下的某个代码包（目录）中。</p>
+<h3 id="2-了解源码安装后的结果">2. 了解源码安装后的结果</h3>
+<p>了解了 Go 语言源码的组织方式后，我们很有必要知道 Go 语言源码在安装后会产生怎样的结果。源码文件以及安装后的结果文件都会放到哪里呢？我们都知道，源码文件通常会被放在某个工作区的 src 子目录下。那么在安装后如果产生了归档文件（以“.a”为扩展名的文件），就会放进该工作区的 pkg 子目录；如果产生了可执行文件，就可能会放进该工作区的 bin 子目录。我再讲一下归档文件存放的具体位置和规则。源码文件会以代码包的形式组织起来，一个代码包其实就对应一个目录。安装某个代码包而产生的归档文件是与这个代码包同名的。放置它的相对目录就是该代码包的导入路径的直接父级。比如，一个已存在的代码包的导入路径是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">github.com/labstack/echo
+</code></pre></td></tr></table>
+</div>
+</div><p>那么执行命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">go install github.com/labstack/echo
+</code></pre></td></tr></table>
+</div>
+</div><p>生成的归档文件的相对目录就是 github.com/labstack ，文件名为 echo.a 。顺便说一下，上面这个代码包导入路径还有另外一层含义，那就是：该代码包的源码文件存在于 GitHub 网站的 labstack 组的代码仓库 echo 中。再说回来，归档文件的相对目录与 pkg 目录之间还有一级目录，叫做平台相关目录。平台相关目录的名称是由 build（也称“构建”）的目标操作系统、下划线和目标计算架构的代号组成的。比如，构建某个代码包时的目标操作系统是 Linux，目标计算架构是 64 位的，那么对应的平台相关目录就是 linux_amd64。因此，上述代码包的归档文件就会被放置在当前工作区的子目录 pkg/linux_amd64/github.com/labstack 中。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/2f/3c/2fdfb5620e072d864907870e61ae5f3c.png?wh=1472*797"
+        data-srcset="https://static001.geekbang.org/resource/image/2f/3c/2fdfb5620e072d864907870e61ae5f3c.png?wh=1472*797, https://static001.geekbang.org/resource/image/2f/3c/2fdfb5620e072d864907870e61ae5f3c.png?wh=1472*797 1.5x, https://static001.geekbang.org/resource/image/2f/3c/2fdfb5620e072d864907870e61ae5f3c.png?wh=1472*797 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/2f/3c/2fdfb5620e072d864907870e61ae5f3c.png?wh=1472*797"
+        title="img" /></p>
+<p>（GOPATH 与工作区）总之，你需要记住的是，某个工作区的 src 子目录下的源码文件在安装后一般会被放置到当前工作区的 pkg 子目录下对应的目录中，或者被直接放置到该工作区的 bin 子目录中。</p>
+<h3 id="3-理解构建和安装-go-程序的过程">3. 理解构建和安装 Go 程序的过程</h3>
+<p>我们再来说说构建和安装 Go 程序的过程都是怎样的，以及它们的异同点。构建使用命令go build，安装使用命令go install。构建和安装代码包的时候都会执行编译、打包等操作，并且，这些操作生成的任何文件都会先被保存到某个临时的目录中。如果构建的是库源码文件，那么操作后产生的结果文件只会存在于临时目录中。这里的构建的主要意义在于检查和验证。</p>
+<p>如果构建的是命令源码文件，那么操作的结果文件会被搬运到源码文件所在的目录中。（这里讲到的两种源码文件我在“预习篇”的基础知识图中提到过，在后面的文章中我也会带你详细了解。）</p>
+<p>安装操作会先执行构建，然后还会进行链接操作，并且把结果文件搬运到指定目录。进一步说，如果安装的是库源码文件，那么结果文件会被搬运到它所在工作区的 pkg 目录下的某个子目录中。如果安装的是命令源码文件，那么结果文件会被搬运到它所在工作区的 bin 目录中，或者环境变量GOBIN指向的目录中。这里你需要记住的是，构建和安装的不同之处，以及执行相应命令后得到的结果文件都会出现在哪里。</p>
+<h3 id="总结">总结</h3>
+<p>工作区和 GOPATH 的概念和含义是每个 Go 工程师都需要了解的。虽然它们都比较简单，但是说它们是 Go 程序开发的核心知识并不为过。然而，我在招聘面试的过程中仍然发现有人忽略掉了它们。Go 语言提供的很多工具都是在 GOPATH 和工作区的基础上运行的，比如上面提到的go build、go install和go get，这三个命令也是我们最常用到的。</p>
+<h2 id="02--命令源码文件">02 | 命令源码文件</h2>
+<p>这里的源码文件又分为三种，即：命令源码文件、库源码文件和测试源码文件，它们都有着不同的用途和编写规则。（ 我在“预习篇”的基础知识图介绍过这三种文件的基本情况。）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://static001.geekbang.org/resource/image/9d/cb/9d08647d238e21e7184d60c0afe5afcb.png?wh=1570*1363"
+        data-srcset="https://static001.geekbang.org/resource/image/9d/cb/9d08647d238e21e7184d60c0afe5afcb.png?wh=1570*1363, https://static001.geekbang.org/resource/image/9d/cb/9d08647d238e21e7184d60c0afe5afcb.png?wh=1570*1363 1.5x, https://static001.geekbang.org/resource/image/9d/cb/9d08647d238e21e7184d60c0afe5afcb.png?wh=1570*1363 2x"
+        data-sizes="auto"
+        alt="https://static001.geekbang.org/resource/image/9d/cb/9d08647d238e21e7184d60c0afe5afcb.png?wh=1570*1363"
+        title="img" /></p>
+<p>我今天的问题就是：命令源码文件的用途是什么，怎样编写它？</p>
+<p>这里，我给出你一个参考的回答：命令源码文件是程序的运行入口，是每个可独立运行的程序必须拥有的。我们可以通过构建或安装，生成与其对应的可执行文件，后者一般会与该命令源码文件的直接父目录同名。</p>
+<p>如果一个源码文件声明属于main包，并且包含一个无参数声明且无结果声明的main函数，那么它就是命令源码文件。 就像下面这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你把这段代码存成 demo1.go 文件，那么运行go run demo1.go命令后就会在屏幕（标准输出）中看到Hello, world!</p>
+<p>当需要模块化编程时，我们往往会将代码拆分到多个文件，甚至拆分到不同的代码包中。但无论怎样，对于一个独立的程序来说，命令源码文件永远只会也只能有一个。如果有与命令源码文件同包的源码文件，那么它们也应该声明属于main包。</p>
+<h3 id="问题解析">问题解析</h3>
+<p>命令源码文件如此重要，以至于它毫无疑问地成为了我们学习 Go 语言的第一助手。不过，只会打印Hello, world是远远不够的，咱们千万不要成为“Hello, world”党。既然决定学习 Go 语言，你就应该从每一个知识点深入下去。无论是 Linux 还是 Windows，如果你用过命令行（command line）的话，肯定就会知道几乎所有命令（command）都是可以接收参数（argument）的。通过构建或安装命令源码文件，生成的可执行文件就可以被视为“命令”，既然是命令，那么就应该具备接收参数的能力。下面，我就带你深入了解一下与命令参数的接收和解析有关的一系列问题。</p>
+<p>……</p>
+<h2 id="03--库源码文件">03 | 库源码文件</h2>
+<h2 id="04--程序实体的那些事儿上">04 | 程序实体的那些事儿（上）</h2>
+<h2 id="05--程序实体的那些事儿中">05 | 程序实体的那些事儿（中）</h2>
+<h2 id="06--程序实体的那些事儿-下">06 | 程序实体的那些事儿 （下）</h2>
+<h2 id="进阶技术">进阶技术</h2>
+<h2 id="07--数组和切片">07 | 数组和切片</h2>
+<h2 id="08--container包中的那些容器">08 | container包中的那些容器</h2>
+<h2 id="09--字典的操作和约束">09 | 字典的操作和约束</h2>
+<h2 id="10--通道的基本操作">10 | 通道的基本操作</h2>
+<h2 id="11--通道的高级玩法">11 | 通道的高级玩法</h2>
+<h2 id="12--使用函数的正确姿势">12 | 使用函数的正确姿势</h2>
+<h2 id="13--结构体及其方法的使用法门">13 | 结构体及其方法的使用法门</h2>
+<h2 id="15--关于指针的有限操作">15 | 关于指针的有限操作</h2>
+<h2 id="16--go语句及其执行规则上">16 | go语句及其执行规则（上）</h2>
+<h2 id="17--go语句及其执行规则下">17 | go语句及其执行规则（下）</h2>
+<h2 id="18--if语句for语句和switch语句">18 | if语句、for语句和switch语句</h2>
+<h2 id="19--错误处理上">19 | 错误处理（上）</h2>
+<h2 id="20--错误处理-下">20 | 错误处理 （下）</h2>
+<h2 id="21--panic函数recover函数以及defer语句-上">21 | panic函数、recover函数以及defer语句 （上）</h2>
+<h2 id="22--panic函数recover函数以及defer语句下">22 | panic函数、recover函数以及defer语句（下）</h2>
+<h2 id="实战与应用">实战与应用</h2>
+<h2 id="23--测试的基本规则和流程-上">23 | 测试的基本规则和流程 （上）</h2>
+<h2 id="24--测试的基本规则和流程下">24 | 测试的基本规则和流程（下）</h2>
+<h2 id="25--更多的测试手法">25 | 更多的测试手法</h2>
+<h2 id="26--syncmutex与syncrwmutex">26 | sync.Mutex与sync.RWMutex</h2>
+<h2 id="27--条件变量synccond-上">27 | 条件变量sync.Cond （上）</h2>
+<h2 id="28--条件变量synccond-下">28 | 条件变量sync.Cond （下）</h2>
+<h2 id="29--原子操作上">29 | 原子操作（上）</h2>
+<h2 id="30--原子操作下">30 | 原子操作（下）</h2>
+<h2 id="31--syncwaitgroup和synconce">31 | sync.WaitGroup和sync.Once</h2>
+<h2 id="32--contextcontext类型">32 | context.Context类型</h2>
+<h2 id="33--临时对象池syncpool">33 | 临时对象池sync.Pool</h2>
+<h2 id="34--并发安全字典syncmap-上">34 | 并发安全字典sync.Map （上）</h2>
+<h2 id="35--并发安全字典syncmap-下">35 | 并发安全字典sync.Map (下)</h2>
+<h2 id="36--unicode与字符编码">36 | unicode与字符编码</h2>
+<h2 id="37--strings包与字符串操作">37 | strings包与字符串操作</h2>
+<h2 id="38--bytes包与字节串操作上">38 | bytes包与字节串操作（上）</h2>
+<h2 id="39--bytes包与字节串操作下">39 | bytes包与字节串操作（下）</h2>
+<h2 id="40--io包中的接口和工具-上">40 | io包中的接口和工具 （上）</h2>
+<h2 id="41--io包中的接口和工具-下">41 | io包中的接口和工具 （下）</h2>
+<h2 id="42--bufio包中的数据类型-上">42 | bufio包中的数据类型 （上）</h2>
+<h2 id="43--bufio包中的数据类型下">43 | bufio包中的数据类型（下）</h2>
+<h2 id="44--使用os包中的api-上">44 | 使用os包中的API （上）</h2>
+<h2 id="45--使用os包中的api-下">45 | 使用os包中的API （下）</h2>
+<h2 id="46--访问网络服务">46 | 访问网络服务</h2>
+<h2 id="47--基于http协议的网络服务">47 | 基于HTTP协议的网络服务</h2>
+<h2 id="48--程序性能分析基础上">48 | 程序性能分析基础（上）</h2>
+<h2 id="49--程序性能分析基础下">49 | 程序性能分析基础（下）</h2>
+<h2 id="尾声--愿你披荆斩棘所向无敌">尾声 | 愿你披荆斩棘，所向无敌</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/go_advanced_01/" data-title="Go_advanced_01"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/go_advanced_01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/go_advanced_01/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/go_advanced_01/" data-title="Go_advanced_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/go_advanced_01/" data-title="Go_advanced_01"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/go_advanced_01/" data-title="Go_advanced_01"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/patterns_principles/" class="prev" rel="prev" title="Patterns_principles"><i class="fas fa-angle-left fa-fw"></i>Patterns_principles</a>
+            <a href="/go_advanced_02/" class="next" rel="next" title="Go_advanced_02">Go_advanced_02<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

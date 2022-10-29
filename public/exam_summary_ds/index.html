@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Exam_Summary_DS - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Exam_Summary_DS" />
+<meta property="og:description" content="复习 分布式系统 1.4 16:00 8-15小题，英文题目 包括计算题、证明题，最好的答题方法：记住答题要点。 绪论： 分布式系统的产生、动机：共享资源， 分布式系统" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/exam_summary_ds/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-20T10:07:54+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="Exam_Summary_DS"/>
+<meta name="twitter:description" content="复习 分布式系统 1.4 16:00 8-15小题，英文题目 包括计算题、证明题，最好的答题方法：记住答题要点。 绪论： 分布式系统的产生、动机：共享资源， 分布式系统"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/exam_summary_ds/" /><link rel="prev" href="https://jefofrank.xyz/musk/" /><link rel="next" href="https://jefofrank.xyz/exam_summary_sek/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Exam_Summary_DS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/exam_summary_ds\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2748 ,
+        "url": "https:\/\/jefofrank.xyz\/exam_summary_ds\/","datePublished": "2022-01-20T10:07:54+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Exam_Summary_DS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-20 10:07:54">2022-01-20 10:07:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2748 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#复习">复习</a>
+      <ul>
+        <li><a href="#绪论">绪论：</a></li>
+        <li><a href="#系统模型">系统模型，</a></li>
+        <li><a href="#时钟同步">时钟同步</a></li>
+        <li><a href="#ipc-socket-operations">IPC Socket operations：</a></li>
+        <li><a href="#rpc">RPC</a></li>
+        <li><a href="#群组通信组播式的通讯因为所有因特网里面访问的主要是组播通讯">群组通信：组播式的通讯，因为所有因特网里面访问的主要是组播通讯。</a></li>
+        <li><a href="#互斥选举算法"><strong>互斥选举算法</strong>。</a></li>
+        <li><a href="#复制一致性">复制、一致性：</a></li>
+        <li><a href="#internetworking因特网物流">internetworking因特网物流：</a></li>
+        <li><a href="#dns不考">DNS不考</a></li>
+        <li><a href="#文件系统">文件系统</a></li>
+        <li><a href="#事务处理">事务处理</a></li>
+        <li><a href="#网络搜索">网络搜索</a></li>
+      </ul>
+    </li>
+    <li><a href="#20春">20春</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="复习">复习</h2>
+<ul>
+<li>分布式系统 1.4  16:00</li>
+<li>8-15小题，英文题目</li>
+<li>包括计算题、证明题，最好的答题方法：记住答题要点。</li>
+</ul>
+<h3 id="绪论">绪论：</h3>
+<ul>
+<li>
+<ol>
+<li>分布式系统的产生、动机：共享资源，</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>分布式系统特点：并发性、没有全局时钟、独立故障；</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>分布式系统定义：分布式系统定义为网络计算机上的组件仅通过传递消息进行通信和协调其动作的系统。</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>分布式系统挑战：</li>
+</ol>
+<ul>
+<li>异质性（不同设备应用场景等造成异质性问题），可通过中间件和移动代码解决。</li>
+<li>公开性：可以添加新资源共享服务并使其可供各种客户端程序使用的程度。</li>
+<li>并发性：同一设备进程之间的并发性，不同设备进程之间的并发性</li>
+<li>透明性，所有系统里所发生的对于用户设备来说是透明的。</li>
+<li>服务质量：分布式系统建立在不稳定的网络之中，增加服务器解决的是负载问题，单台服务器承受不了，所以要用轮询的机制随机地给一台服务器对客户端进行访问。整个网络问题，不稳定，</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统模型">系统模型，</h3>
+<p>画系统架构图，描述系统，软硬件：机械式的物理模型。体系结构模型。实体：对象、组件、服务……实体通讯方法：直接式、RMI/RPC、间接通讯模式。分布式方式：水平式分布方式，垂直分布方式。轮询机构。两种实现的方式：接口、逻辑结构（通常放在服务器端）、数据。基础模型：故障模型、交互模型、安全模型……</p>
+<h3 id="时钟同步">时钟同步</h3>
+<ul>
+<li>物理时间：时间是怎么测量的，每一个时钟的标准是什么。如何调整计算机的时钟。线性补偿函数。两个算法：知道大体原理。NTP协议。及相关计算。</li>
+<li>逻辑时间。逻辑时间本身是做时间顺序、时间顺序。对于相同时间里的事件，我们希望通过时间戳才决定事件之间的顺序结构。最终通过向量时钟，（<strong>给你一个因果关系的组播，一张图画出来了，随便扔出两个消息，告诉两三个向量，问你哪些有因果关系请解释原因</strong>）。<strong>或者说已知一个向量时钟，有些有，有些没有需要填写，对比他们之间的关系。解释为什么相关</strong>。对于每一个向量时钟之间的元素。属性之间的关系。要么全小于、要么全大于。既小于又大于就没有什么关系了，并发的，一个练习题。</li>
+</ul>
+<h3 id="ipc-socket-operations">IPC Socket operations：</h3>
+<p>本来是重点，考怎么创建连接，但是做了pro。不考编程。因为pro普遍做的不好。<strong>但是所有它所用的系统的sockets操作针对于客户端和用户端。这个需要知道。</strong></p>
+<h3 id="rpc">RPC</h3>
+<p>就过了，不考。因为第二个项目没做。给你小段程序，去设计服务器端的程序。再生成一个接口程序。</p>
+<h3 id="群组通信组播式的通讯因为所有因特网里面访问的主要是组播通讯">群组通信：组播式的通讯，因为所有因特网里面访问的主要是组播通讯。</h3>
+<ul>
+<li>组播通讯：原子组播、稳定组播、不稳定组播。对于原子组播：<strong>怎么样满足原子性的、为什么要满足原子性的(两种方法：发送方和接收方维护一个持久的日志;重新定义组</strong>)</li>
+<li>对于消息的顺序，全局时钟的顺序。全序、偏序、因果顺序。对于消息，判断消息之间接受顺序，遵循了全局时钟的按照发送之间的顺序结构在接受端按顺序的接收。</li>
+</ul>
+<h3 id="互斥选举算法"><strong>互斥选举算法</strong>。</h3>
+<p>每个方法，要知道对于发送者来说对于接收者来说关注的是什么，<strong>消息类型是什么</strong></p>
+<ul>
+<li>互斥
+<ul>
+<li>集中式算法</li>
+<li>令牌环算法</li>
+<li>Ricart &amp; Agrawala 算法</li>
+<li>分布式互斥</li>
+</ul>
+</li>
+<li>选举
+<ul>
+<li>欺凌算法</li>
+<li>环选举算法</li>
+<li>Robert &amp; Chang 算法</li>
+</ul>
+</li>
+</ul>
+<h3 id="复制一致性">复制、一致性：</h3>
+<ul>
+<li>数据一致性：严格一致性、顺序一致性、因果一致性等模型
+<ul>
+<li><strong>会怎么样考</strong>：可能会给你几段的程序/进程（五个进程，上面有不同的操作），问你哪些是符合什么样的模型。解释为什么。</li>
+<li>一定会考，比如说：在逻辑时间里面，判断逻辑关系，问你这事件里哪些符合顺序一致性、因果一致性？每个一致性基本概念要了解。</li>
+</ul>
+</li>
+<li>面向客户端的一致性：
+<ul>
+<li>四个规则：单调读、单调写、读后写、写后读</li>
+<li><strong>什么在传播消息，传播什么样的消息,消息类型</strong>
+<ul>
+<li>
+<ol>
+<li>无效化消息（传播无效化消息干什么：通知复制服务器，哪些数据项无效）**（消息可能是组播的方式传出去的，需要知道所有接收节点的标识ID，一般协调者知道）</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>数据消息（完整的更新数据）</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>更新操作消息（一般的主动式的复制，发送更新的操作）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>怎么样传播消息：
+<ul>
+<li>push，组播的通讯方式</li>
+<li>pull，单播的通讯方式</li>
+</ul>
+</li>
+<li>一致性协议
+<ul>
+<li>基于主要的协议</li>
+<li>复制写协议（两种）</li>
+<li>缓存一致性协议：讨论什么时候去验证这个数据是一致的，访问前还是访问后还是无验证</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="internetworking因特网物流">internetworking因特网物流：</h3>
+<ul>
+<li>虽然没学计算机网络，但应该知道基本的协议，<strong>考了，没考深入的</strong></li>
+<li>CIDR - 无类别域间路由</li>
+<li>NAT - 网络地址转换
+<ul>
+<li>把内部网络地址转化为外部网络地址进行通讯，要知道怎么转化，端口分配，怎么回信息</li>
+</ul>
+</li>
+<li>DHCP - 动态主机配置协议
+<ul>
+<li>是ARP协议的reverse（返回），分配一个内网IP地址给你，怎么分配。<strong>要知道有哪几段是内网地址，三个范围</strong>，哪些用来做网络地址、哪些用来分配的地址，哪些用来做本地端的地址。</li>
+</ul>
+</li>
+<li>ARP - 地址解析问题</li>
+<li>OSPF - 内部网关路由协议</li>
+<li>BGP - 外部网关路由协议
+<ul>
+<li>链路状态协议、距离向量协议，他们怎么做的路由，适用于哪些类型的网络？<strong>给一个示意图，计算如果这个节点到达另外一个节点花费了多少，……这是去年的题</strong>  <strong>在一个DNS里面，画一个示意图，哪种场景适用于……</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="dns不考">DNS不考</h3>
+<h3 id="文件系统">文件系统</h3>
+<ul>
+<li>本地端文件系统和分布式文件系统的区别在哪</li>
+<li>所有分布式系统的组成有什么，三个</li>
+<li>本地端的文件系统里面如何去做路径解析的，过程中访问了多少次硬盘，从根目录逐层次访问</li>
+<li>什么是一个超级块，定义</li>
+<li>文件访问的内部架构是什么，访问过程中三个不同的……table</li>
+<li>挂卸载机制</li>
+<li>……</li>
+</ul>
+<h3 id="事务处理">事务处理</h3>
+<ul>
+<li>原子交易的定义</li>
+<li>RM-ODP 属性</li>
+<li>如何实现事务的原子性？
+<ul>
+<li>故障恢复（保证一无所有）
+<ul>
+<li>意向清单法</li>
+<li>影子版方法</li>
+</ul>
+</li>
+<li><strong>并发控制（保证序列化）</strong>（优缺点）
+<ul>
+<li>两相锁定</li>
+<li>时间戳排序</li>
+<li>乐观法</li>
+</ul>
+</li>
+<li><strong>给一个示意图，决定到底符合什么样的顺序呢？</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="网络搜索">网络搜索</h3>
+<ul>
+<li>蜘蛛的架构是什么，操作是什么，（操作：不断地把url加入index）,通过广度优先的方法进行搜索。</li>
+<li>页面排序：考虑了两个因素：
+<ul>
+<li>指向它的网页的排名
+<ul>
+<li>越高越好</li>
+</ul>
+</li>
+<li>指向它的网页中传出链接的数量
+<ul>
+<li>越少越好</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排名计算</li>
+<li>倒排文件：搜索索引</li>
+</ul>
+<h2 id="20春">20春</h2>
+<ul>
+<li>问题1。[10马克]详细解释NAT（网络地址转换）的工作原理。使用图表帮助您进行解释。假设组织使用一个外部IP地址168.12.0.4，并且组织内部的一个主机（内部IP地址为12.0.60.4，端口号为1234）向外部web服务器发送一个IP数据包，目标IP地址为125.12.4.16。</li>
+<li>问题2。[10标记]NTP服务器B在16:34:23.480接收服务器A的消息，该消息带有时间戳16:34:13.430，并回复该消息。A在16:34:15.725接收消息，带有B的时间戳16:34:25.7。估计B和A之间的偏移量以及估计的准确性。（10分）</li>
+<li>问题3。[10标记]在UNIX文件系统中，用户打开文件“/hitsz/ds/code/example/exam.txt”。假设根目录的inode（即“/”）已经在inode表中（内存中）。
+<ul>
+<li>a） 列出解析路径名“/hitsz/ds/code/example/exam.txt”并将文件的inode加载到inode表中的步骤。</li>
+<li>b） 需要多少次磁盘访问？</li>
+</ul>
+</li>
+<li>问题4。[10马克]分布式文件系统和事务处理系统之间的区别是什么？</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/exam_summary_ds/" data-title="Exam_Summary_DS"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/exam_summary_ds/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/exam_summary_ds/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/exam_summary_ds/" data-title="Exam_Summary_DS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/exam_summary_ds/" data-title="Exam_Summary_DS"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/exam_summary_ds/" data-title="Exam_Summary_DS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/musk/" class="prev" rel="prev" title="MUSK"><i class="fas fa-angle-left fa-fw"></i>MUSK</a>
+            <a href="/exam_summary_sek/" class="next" rel="next" title="Exam_Summary_SEK">Exam_Summary_SEK<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

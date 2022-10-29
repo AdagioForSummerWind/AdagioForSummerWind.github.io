@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DistributedSystem_HongweiDu_05 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="DistributedSystem_HongweiDu_05" />
+<meta property="og:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Mutual Exclusion &amp; Election Algorithms(互斥算法 &amp; 选举算法) Mutual Exclusion Process Synchronization: Techniques to coordinate execution among processes One process may have to wait for another Shared resource (e.g. critical section) may" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/distributedsystem_hongweidu_05/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T14:35:53+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="DistributedSystem_HongweiDu_05"/>
+<meta name="twitter:description" content="2021哈工大深圳堵宏伟分布式系统课程笔记 Mutual Exclusion &amp; Election Algorithms(互斥算法 &amp; 选举算法) Mutual Exclusion Process Synchronization: Techniques to coordinate execution among processes One process may have to wait for another Shared resource (e.g. critical section) may"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/distributedsystem_hongweidu_05/" /><link rel="prev" href="https://jefofrank.xyz/distributedsystem_hongweidu_04/" /><link rel="next" href="https://jefofrank.xyz/distributedsystem_hongweidu_06/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DistributedSystem_HongweiDu_05",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/distributedsystem_hongweidu_05\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "distributed system","wordcount":  1225 ,
+        "url": "https:\/\/jefofrank.xyz\/distributedsystem_hongweidu_05\/","datePublished": "2021-12-03T14:35:53+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DistributedSystem_HongweiDu_05</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03 14:35:53">2021-12-03 14:35:53</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1225 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mutual-exclusion">Mutual Exclusion</a></li>
+    <li><a href="#election--algorithms">Election  Algorithms</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2021哈工大深圳堵宏伟分布式系统课程笔记</p>
+</blockquote>
+<h1 id="mutual--exclusion---election--algorithms互斥算法--选举算法">Mutual  Exclusion  &amp; Election  Algorithms(互斥算法 &amp; 选举算法)</h1>
+<h2 id="mutual-exclusion">Mutual Exclusion</h2>
+<p>Process Synchronization:</p>
+<ul>
+<li>Techniques to coordinate execution among processes
+<ul>
+<li>One process may have to wait for another</li>
+<li>Shared resource (e.g. critical section) may require exclusive access</li>
+</ul>
+</li>
+</ul>
+<p>Requirements of Mutual Exclusion Algorithms:</p>
+<ul>
+<li>A mutual exclusion algorithm should satisfy the following properties:
+<ul>
+<li>Safety Property: The safety property states that at any instant, only one process can execute the critical section.</li>
+<li>Liveness Property: This property states the absence of deadlock and starvation.</li>
+<li>Fairness: Fairness in the context of mutual exclusion means that each process gets a fair chance to execute the critical section.</li>
+</ul>
+</li>
+</ul>
+<p>Centralized Systems:</p>
+<ul>
+<li>Achieve Mutual exclusion via:
+<ul>
+<li>Test &amp; set in hardware</li>
+<li>Semaphores</li>
+<li>Messages(inter-process)</li>
+<li>Condition variables</li>
+</ul>
+</li>
+</ul>
+<p>Distributed Mutual Exclusion:</p>
+<ul>
+<li>Assume there is agreement on how a resource is identified
+<ul>
+<li>Pass identifier with requests</li>
+<li>e.g., lock(“printer”), lock(“table:employees”),lock(“table:employees;row:15”)</li>
+</ul>
+</li>
+<li>…and every process can identify itself uniquely</li>
+<li>Goal:
+<ul>
+<li>Create an algorithm to allow a process to obtain exclusive access to a resource that is available on the network</li>
+</ul>
+</li>
+</ul>
+<p>Centralized algorithm（集中式算法）:</p>
+<ul>
+<li>Mimic single processor system</li>
+<li>One process elected as coordinator</li>
+</ul>
+<ol>
+<li>Request resource</li>
+<li>Wait for response</li>
+<li>Receive  grant</li>
+<li>Access resource</li>
+<li>Release  resource</li>
+</ol>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151450.png" /></li>
+<li>If another process claimed resource:
+<ul>
+<li>Coordinator does not reply until release</li>
+<li>Maintain queue
+<ul>
+<li>Service requests in FIFO order</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151558.png" /></li>
+<li>Benefits
+<ul>
+<li>Fair: All requests processed in order</li>
+<li>Easy to implement, understand, verify</li>
+<li>Processes do not need to know group members – just the coordinator</li>
+</ul>
+</li>
+<li>Problems
+<ul>
+<li>Process cannot distinguish being blocked from a dead coordinator – single point of failure</li>
+<li>Centralized server can be a bottleneck</li>
+</ul>
+</li>
+</ul>
+<p>Token Ring algorithm（令牌环算法）:</p>
+<ul>
+<li>Assume known group of processes
+<ul>
+<li>Some ordering can be imposed on group (unique process IDs)</li>
+<li>Construct logical ring in software</li>
+<li>Process communicates with its neighbor</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151837.png" /></li>
+<li>Initialization
+<ul>
+<li>Process 0 creates a token for resource R</li>
+</ul>
+</li>
+<li>Token circulates around ring
+<ul>
+<li>From Pi to P(i+1)mod N</li>
+</ul>
+</li>
+<li>When process acquires token
+<ul>
+<li>Checks to see if it needs to enter critical section</li>
+<li>If no, send ring to neighbor</li>
+<li>If yes, access resource
+<ul>
+<li>Hold token until done</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210151948.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152053.png" /></li>
+<li>……</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152140.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152022.png" /></li>
+</ul>
+<p>Token Ring algorithm summary:</p>
+<ul>
+<li>Only one process at a time has token
+<ul>
+<li>Mutual exclusion guaranteed</li>
+</ul>
+</li>
+<li>Order well-defined (but not necessarily first-come, first-served)
+<ul>
+<li>Starvation cannot occur</li>
+<li>Lack of FCFS ordering may be undesirable sometimes</li>
+</ul>
+</li>
+<li>Problems
+<ul>
+<li>Token loss (e.g., process died)
+<ul>
+<li>It will have to be regenerated</li>
+<li>Detecting loss may be a problem(is the token lost or in just use by someone?)</li>
+</ul>
+</li>
+<li>Process loss: what if you can&rsquo;t talk to your neighbor?</li>
+</ul>
+</li>
+</ul>
+<p>Ricart &amp; Agrawala algorithm:</p>
+<ul>
+<li>Distributed algorithm using reliable multicast and logical clocks</li>
+<li>Process wants to enter critical section:
+<ul>
+<li>Compose message containing:
+<ul>
+<li>Identifier (machine ID, process ID)</li>
+<li>Name of resource</li>
+<li>Timestamp (totally-ordered Lamport）</li>
+</ul>
+</li>
+<li>Send request to all processes in group</li>
+<li>Wait until everyone gives permission</li>
+<li>Enter critical section / use resource</li>
+</ul>
+</li>
+<li>When process receives request:
+<ul>
+<li>If receiver not interested:
+<ul>
+<li>Send OK to sender</li>
+</ul>
+</li>
+<li>If receiver is in critical section
+<ul>
+<li>Do not reply; add request to queue</li>
+</ul>
+</li>
+<li>If receiver just sent a request as well:
+<ul>
+<li>Compare timestamps: received &amp; sent messages</li>
+<li>Earliest wins</li>
+<li>If receiver is loser, send OK</li>
+<li>If receiver is winner, do not reply, queue</li>
+</ul>
+</li>
+<li>When done with critical section
+<ul>
+<li>Send OK to all  queued  requests</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Example for Ricart &amp; Agrawala algorithm:</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210152548.png" /></li>
+</ul>
+<p>Ricart &amp; Agrawala algorithm:</p>
+<ul>
+<li>N points of failure</li>
+<li>A lot of messaging traffic</li>
+<li>Demonstrates that a fully distributed algorithm is possible</li>
+</ul>
+<p>Lamport’s Mutual Exclusion:</p>
+<ul>
+<li>Each process maintains request queue
+<ul>
+<li>Contains mutual  exclusion  requests</li>
+</ul>
+</li>
+<li>Requesting critical section
+<ul>
+<li>Process Pi sends request(i, Ti) to all nodes(Ti:Lamport time)</li>
+<li>Places request on its own queue</li>
+<li>When a process Pj receives a request, it returns a timestamped ack</li>
+</ul>
+</li>
+<li>Entering critical section  (accessing resource):
+<ul>
+<li>Pi received a message (ack or release) from every other process with a timestamp larger than Ti</li>
+<li>Pi’s request has the earliest timestamp in its queue</li>
+</ul>
+</li>
+<li>Difference from Ricart-Agrawala:
+<ul>
+<li>Everyone responds (acks) … always - no hold-back</li>
+<li>Process decides to go based on whether its request is the earliest in its queue</li>
+</ul>
+</li>
+<li>Releasing critical section
+<ul>
+<li>Remove request from its own queue</li>
+<li>Send a timestamped release message</li>
+<li>When a process receives a release message
+<ul>
+<li>Removes request for that process from its queue</li>
+<li>This may cause its own entry have the earliest timestamp in the queue, enabling it to access the critical section</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="election--algorithms">Election  Algorithms</h2>
+<p>Elections：</p>
+<ul>
+<li>Need one process to act as coordinator</li>
+<li>Processes have no distinguishing characteristics</li>
+<li>Each process has a unique ID to identify itself</li>
+</ul>
+<p>Bully algorithm （霸道选举算法)：</p>
+<ul>
+<li>Select process with largest ID as coordinator</li>
+<li>When process P detects dead coordinator:
+<ul>
+<li>Send election message to all processes with higher IDs.</li>
+</ul>
+</li>
+<li>If nobody responds, P wins and takes over.</li>
+<li>If any process responds, P’s job is done.
+<ul>
+<li>Optional: Let all nodes with lower IDs know an election is taking place.</li>
+</ul>
+</li>
+<li>If process receives an election message
+<ul>
+<li>Send OK message back</li>
+<li>Hold election (unless it is already holding one)</li>
+</ul>
+</li>
+<li>A process announces victory by sending all processes a
+message telling them that it is the new coordinator</li>
+<li>If a dead process recovers, it holds an election to find the
+coordinator.</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153245.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153309.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153332.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153355.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153422.png" /></li>
+</ul>
+<p>Ring algorithm （环选举算法）：</p>
+<ul>
+<li>Ring arrangement of processes</li>
+<li>If any process detects failure of coordinator
+<ul>
+<li>Construct election message with process ID and send to next process</li>
+<li>If successor is down, skip over</li>
+<li>Repeat until a running process is located</li>
+</ul>
+</li>
+<li>Upon receiving an election message
+<ul>
+<li>Process forwards the message, adding its process ID to the body</li>
+</ul>
+</li>
+<li>Eventually message returns to originator
+<ul>
+<li>Process sees its ID on list</li>
+<li>Circulates (or multicasts) a coordinator message announcing coordinator</li>
+</ul>
+</li>
+<li>E.g. lowest numbered process</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153539.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153618.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153713.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153736.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153756.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153819.png" /></li>
+<li>P2 receives the election message that it initiated</li>
+<li>P2 now picks a leader (e.g., lowest or highest ID)</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153914.png" /></li>
+<li>P2 announces the new coordinator to the group</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210153958.png" /></li>
+</ul>
+<p>Chang &amp; Roberts Ring Algorithm：</p>
+<ul>
+<li>Optimize the ring
+<ul>
+<li>Message always contains one process ID</li>
+<li>Avoid multiple circulating elections</li>
+<li>If a process sends a message, it marks its state as a participant</li>
+</ul>
+</li>
+<li>Upon receiving an election message:
+<ul>
+<li>If PID(message) &gt; PID(process)</li>
+<li>forward the message – higher ID will always win over a lower one</li>
+<li>If PID(message) &lt; PID(process)</li>
+<li>replace PID in message with PID(process)</li>
+<li>forward the new message – we have a higher ID number; use it</li>
+<li>If PID(message) &lt; PID(process) AND process is participant</li>
+<li>discard the message – we&rsquo;re already circulating our ID</li>
+<li>If PID(message) == PID(process)</li>
+<li>the process is now the leader – message circulated: announce winner</li>
+</ul>
+</li>
+</ul>
+<p>Network Partitioning: Split Brain （脑裂）：</p>
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211210154220.png" /></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/" data-title="DistributedSystem_HongweiDu_05" data-hashtags="distributed system"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/" data-hashtag="distributed system"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/" data-title="DistributedSystem_HongweiDu_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/" data-title="DistributedSystem_HongweiDu_05"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/distributedsystem_hongweidu_05/" data-title="DistributedSystem_HongweiDu_05"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/distributed-system/">distributed system</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/distributedsystem_hongweidu_04/" class="prev" rel="prev" title="DistributedSystem_HongweiDu_04"><i class="fas fa-angle-left fa-fw"></i>DistributedSystem_HongweiDu_04</a>
+            <a href="/distributedsystem_hongweidu_06/" class="next" rel="next" title="DistributedSystem_HongweiDu_06">DistributedSystem_HongweiDu_06<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

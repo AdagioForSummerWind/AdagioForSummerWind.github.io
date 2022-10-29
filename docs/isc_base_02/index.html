@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>ISC_base_02 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="ISC_base_02" />
+<meta property="og:description" content="2021秋哈工大深圳罗文坚 信息安全概论课程PPT 摘抄 密码学基础 解决数据的机密性、完整性、不可否认性以及身份识别等问题均需要以密码为基础密码技" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/isc_base_02/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-21T11:35:51+08:00" />
+<meta property="article:modified_time" content="2022-10-08T19:55:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="ISC_base_02"/>
+<meta name="twitter:description" content="2021秋哈工大深圳罗文坚 信息安全概论课程PPT 摘抄 密码学基础 解决数据的机密性、完整性、不可否认性以及身份识别等问题均需要以密码为基础密码技"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/isc_base_02/" /><link rel="prev" href="https://jefofrank.xyz/mysql_base_14/" /><link rel="next" href="https://jefofrank.xyz/isc_base_03/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ISC_base_02",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/isc_base_02\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "information security conspectus","wordcount":  8913 ,
+        "url": "https:\/\/jefofrank.xyz\/isc_base_02\/","datePublished": "2021-11-21T11:35:51+08:00","dateModified": "2022-10-08T19:55:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">ISC_base_02</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/school-courses/"><i class="far fa-folder fa-fw"></i>School courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-21 11:35:51">2021-11-21 11:35:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8913 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 18 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#密码学基础知识">密码学基础知识</a></li>
+    <li><a href="#古典替换密码">古典替换密码</a></li>
+    <li><a href="#对称密钥密码">对称密钥密码</a></li>
+    <li><a href="#公开密钥密码">公开密钥密码</a></li>
+    <li><a href="#消息认证">消息认证</a></li>
+    <li><a href="#密码学新进展">密码学新进展</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2021秋哈工大深圳罗文坚 信息安全概论课程PPT 摘抄</p>
+</blockquote>
+<h1 id="密码学基础">密码学基础</h1>
+<p>解决数据的机密性、完整性、不可否认性以及身份识别等问题均需要以密码为基础密码技术是保障信息安全的核心基础。</p>
+<p>密码学(Cryptography)包括密码编码学和密码分析学两部分。</p>
+<ul>
+<li>将密码变化的客观规律应用于编制密码用来保守通信秘密的，称为密码编码学；</li>
+<li>研究密码变化客观规律中的固有缺陷，并应用于破译密码以获取通信情报的，称为密码分析学</li>
+</ul>
+<h2 id="密码学基础知识">密码学基础知识</h2>
+<ul>
+<li>密码体制
+<ul>
+<li>消息在密码学中被称为明文(Plain Text)。</li>
+<li>伪装消息以隐藏它的内容的过程称为加密(Encrypt)。</li>
+<li>被加密的消息称为密文(Cipher Text)。</li>
+<li>把密文转变为明文的过程称为解密(Decrypt)。</li>
+<li>完整密码体制要包括如下五个要素：
+<ul>
+<li>M是可能明文的有限集称为明文空间；</li>
+<li>C是可能密文的有限集称为密文空间；</li>
+<li>K是一切可能密钥构成的有限集称为密钥空间；</li>
+<li>E为加密算法，对于任一密钥， 都能够有效地计算；</li>
+<li>D为解密算法，对于任一密钥，都能够有效地计算。</li>
+</ul>
+</li>
+<li>密码体系必须满足如下特性：
+<ul>
+<li>加密算法(Ek：M-&gt;C)和解密算法(Dk：C-&gt;M)满足:</li>
+<li>Dk(Ek(x))=x，这里xϵM；</li>
+<li>破译者不能在有效的时间内破解出密钥k或明文x。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>密码学的发展阶段
+<ul>
+<li>密码学的发展历程大致经历了三个阶段：</li>
+<li>古代加密方法（手工阶段）
+<ul>
+<li>例如，塞塔式密码，藏头诗等。</li>
+</ul>
+</li>
+<li>古典密码（机械阶段）
+<ul>
+<li>文字替换，使用手工或机械变换的方式实现。</li>
+</ul>
+</li>
+<li>近代密码（计算机阶段）
+<ul>
+<li>与计算机技术、电子通信技术紧密相关。</li>
+<li>摆脱了原先用铅笔和纸进行手工设计时易犯的错误。</li>
+<li>摆脱了用电子机械方式实现的密码机的高额费用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>密码的分类
+<ul>
+<li>依据密码体制的特点以及出现的时间分类：
+<ul>
+<li>古典替换密码
+<ul>
+<li>文字替换，使用手工或机械变换的方式实现。</li>
+<li>例如，单表代替密码、多表代替密码以及转轮密码。</li>
+</ul>
+</li>
+<li>对称密钥密码
+<ul>
+<li>加密过程和解密过程使用同一密钥来完成。</li>
+<li>又称为秘密密钥密码，或单密钥密码。</li>
+<li>分为分组密码和序列密码。</li>
+</ul>
+</li>
+<li>公开密钥密码
+<ul>
+<li>加密过程和解密过程使用两个不同的密钥来完成。</li>
+<li>又称为非对称密钥密码，双密钥密码。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>依据处理数据的类型：
+<ul>
+<li>分组密码(block cipher)
+<ul>
+<li>将定长的明文块转换成等长的密文，这一过程是在密钥控制下完成的。</li>
+<li>对于大部分分组密码，分组大小是64位；以后会增加。</li>
+<li>又称为分块密码或者块密码。</li>
+</ul>
+</li>
+<li>序列密码(stream cipher)
+<ul>
+<li>加解密时一次处理明文中的一个或几个比特。</li>
+<li>又称为流密码。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非对称密码体制都是分组密码。</li>
+</ul>
+</li>
+<li>密码分析
+<ul>
+<li>密码分析也称为密码攻击。密码分析攻击主要包括：
+<ul>
+<li>唯密文攻击：有一些消息的密文。</li>
+<li>已知明文攻击：有一些消息的密文以及对应的明文。</li>
+<li>选择明文攻击：不仅有一些消息的密文及对应的明文，而且可选择被加密的明文。</li>
+<li>自适应选择明文攻击：选择明文攻击的特殊情况。不仅能选择被加密的明文，而且也能基于以前加密的结果修正这个选择。</li>
+<li>选择密文攻击：能选择不同的被加密的密文，并可得到对应的解密的明文。例如，得到了一个防篡改的自动解密盒，但不知道密钥。</li>
+<li>选择密钥攻击：并不表示密码分析者能够选择密钥，只表示密码分析者具有不同密钥之间的关系的有关知识。不是很实际，但有时很有效。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="古典替换密码">古典替换密码</h2>
+<p>简单代替密码</p>
+<ul>
+<li>指将明文字母表M中的每个字母用密文字母表C中的相应字母来代替。</li>
+<li>例如：移位密码、乘数密码、仿射密码等。</li>
+</ul>
+<p>移位密码</p>
+<ul>
+<li>具体算法是将字母表的字母右移k个位置，并对字母表长度作模运算。</li>
+<li>每一个字母具有两个属性，本身代表的含义，可计算的位置序列值。</li>
+<li>加密函数：Ek(m) = (m + k) mod q；</li>
+<li>解密函数：Dk (c) = ( c – k ) mod q；</li>
+</ul>
+<p>乘数密码</p>
+<ul>
+<li>将明文字母串逐位乘以密钥k并进行模运算。</li>
+<li>数学表达式：Ek ( m )=k * m mod q, gcd (k, q) = 1。gcd(k, q)=1表示k与q的最大公因子为1。</li>
+<li>算法描述：
+<ul>
+<li>M=C=Z/(26)，明文空间和密文空间同为英文字母表空间，包含26个元素；q=26；</li>
+<li>K={k∈整数集 | 0 &lt; k &lt; 26，gcd(k, 26)=1}，密钥为大于0小于26，与26互素的正整数；</li>
+<li>Ek ( m ) = k * m mod q。</li>
+<li>Dk-1(c)=k-1 * c mod q，其中k-1为k在模q下的乘法逆元。</li>
+</ul>
+</li>
+<li>乘数密码的密钥k与26互素时，加密变换才是一一映射的。
+<ul>
+<li>k的选择有11种：3、5、7、9、11、15、17、19、21、23、25。</li>
+<li>k取1时没有意义。</li>
+</ul>
+</li>
+<li>k-1为k在模q下的乘法逆元。
+<ul>
+<li>其定义为k-1 * k mod q =1，</li>
+<li>可采用扩展的欧几里德算法。欧几里德算法又称辗转相除法，用于计算两个整数a和b的最大公约数。</li>
+</ul>
+</li>
+</ul>
+<p>仿射密码</p>
+<ul>
+<li>仿射密码可以看作是移位密码和乘数密码的结合。</li>
+<li>密码体制描述如下：
+<ul>
+<li>M=C=Z/(26)；q=26；</li>
+<li>K={ k1, k2∈Z | 0&lt; k1, k2&lt;26，gcd(k1, 26)=1}；</li>
+<li>Ek(m)=(k1m + k2) mod q；</li>
+<li>Dk(c)= k1-1( c - k2) mod q，其中k1-1为k1在模q下的乘法逆元。</li>
+</ul>
+</li>
+<li>密钥情况：k1和k2？</li>
+</ul>
+<p>基于统计的密码分析</p>
+<ul>
+<li>简单代替密码的加密是从明文字母到密文字母的一一映射。</li>
+<li>攻击者统计密文中字母的使用频度，比较正常英文字母的使用频度，进行匹配分析。</li>
+<li>如果密文信息足够长，很容易对单表代替密码进行破译。</li>
+</ul>
+<p>多表代替密码</p>
+<ul>
+<li>多表代替密码是以一系列代替表依次对明文消息的字母进行代替的加密方法。</li>
+<li>多表代替密码使用从明文字母到密文字母的多个映射来隐藏单字母出现的频率分布。
+<ul>
+<li>每个映射是简单代替密码中的一对一映射。</li>
+</ul>
+</li>
+<li>若映射系列是非周期的无限序列，则相应的密码称为非周期多表代替密码。
+<ul>
+<li>非周期多表代替密码：对每个明文字母都采用不同的代替表（或密钥）进行加密，称作一次一密密码。</li>
+<li>这是一种理论上唯一不可破译的密码。但需要的密钥量和明文消息长度相同，难于广泛使用。</li>
+</ul>
+</li>
+</ul>
+<p>维吉尼亚Vigenère密码</p>
+<ul>
+<li>经典的多表代换密码有：
+<ul>
+<li>Vigenère、Beaufort、Running Key、Vernam和轮转机等密码。</li>
+</ul>
+</li>
+<li>维吉尼亚Vigenère密码
+<ul>
+<li>是以移位代替为基础的周期多表代替密码。</li>
+<li>加密时每一个密钥被用来加密一个明文字母，当所有密钥使用完后，密钥又重新循环使用。</li>
+</ul>
+</li>
+<li>维吉尼亚Vigenère密码算法如下：
+<ul>
+<li>EK(m)=C1 C2 … Cn，其中Ci=（mi + ki）mod 26；</li>
+<li>密钥K可以通过周期性反复使用以至无穷。</li>
+</ul>
+</li>
+</ul>
+<h2 id="对称密钥密码">对称密钥密码</h2>
+<p>对称密钥密码的通讯安全性取决于密钥的机密性，与算法本身无关，算法是公开的。</p>
+<p>对称密码加密系统从工作方式上可分为：</p>
+<ul>
+<li>分组密码、序列密码</li>
+</ul>
+<p>分组密码原理：</p>
+<ul>
+<li>明文消息分成若干固定长度的组，进行加密；解密亦然。</li>
+</ul>
+<p>序列密码（流密码）：</p>
+<ul>
+<li>通过伪随机数发生器产生性能优良的伪随机序列（密钥流），用该序列加密明文消息流，得到密文序列；解密亦然。</li>
+</ul>
+<p>数据加密标准DES</p>
+<ul>
+<li>1973年，美国国家标准局NBS公开征集国家密码标准方案，要求：
+<ul>
+<li>算法必须提供高度的安全性；</li>
+<li>算法必须有详细的说明，并易于理解；</li>
+<li>算法的安全性取决于密钥，不依赖于算法；</li>
+<li>算法适用于所有用户；</li>
+<li>算法适用于不同应用场合；</li>
+<li>算法必须高效、经济；</li>
+<li>算法必须能被证实有效；</li>
+<li>算法必须是可出口的。</li>
+</ul>
+</li>
+<li>1974年，NBS开始第二次征集时，IBM公司提交了算法LUCIFER。</li>
+<li>1977年，LUCIFER被美国国家标准局NBS作为“数据加密标准 FIPS PUB 46”发布，简称为DES。</li>
+</ul>
+<p>S-DES加密算法：</p>
+<ul>
+<li>S-DES：Simplified DES，简化的DES。</li>
+<li>S-DES是由美国圣达卡拉大学的Edward Schaeffer教授提出的，主要用于教学，其设计思想和性质与DES一致，有关函数变换相对简化，具体参数要小得多。</li>
+<li>输入为一个8位的二进制明文组和一个10位的二进制密钥，输出为8位二进制密文组。</li>
+<li>涉及的主要函数：
+<ul>
+<li>与密钥变换有关的两个置换函数：P8、P10；与密钥变换有关的循环移位函数Shift。</li>
+<li>用于数据加密变换的4个基本函数：初始置换IP、复合函数fk、转换函数SW、末尾置换IP-1。</li>
+</ul>
+</li>
+<li>解密与加密基本一致。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123093957.png" /></li>
+<li>P10=(3,5,2,7,4,10,1,9,8,6)</li>
+<li>循环左移函数LS</li>
+<li>P8=(6,3,7,4,8,5,10,9)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094038.png" /></li>
+<li>IP=(2,6,3,1,4,8,5,7)</li>
+<li>IP-1=(4,1,3,5,7,2,8,6)</li>
+<li>E/P=（4,1,2,3,2,3,4,1）</li>
+<li>“⊕”：按位异或运算；</li>
+<li>S盒函数
+<ul>
+<li>S0和S1为两个盒子函数，将输入作为索引查表，得到相应的系数作为输出。</li>
+</ul>
+</li>
+<li>P4=（2,4,3,1）</li>
+<li>SW：将左4位和右4位交换。</li>
+<li>S盒函数按下述规则运算：
+<ul>
+<li>输入的第1位和第4位二进制数合并为一个两位二进制数，作为S盒的行号索引i；</li>
+<li>将第2位和第3位同样合并为一个两位二进制数，作为S盒的列号索引j；</li>
+<li>确定S盒矩阵中的一个系数（i，j）。</li>
+<li>此系数以两位二进制数形式作为S盒的输出。</li>
+<li>例如：
+<ul>
+<li>L’=（l0, l1, l2, l3）=（0，1，0，0）， （i，j）=（0, 2）</li>
+<li>在S0中确定系数3，则S0的输出为11B。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123094315.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DES的安全问题
+<ul>
+<li>1977年，人们估计要耗资两千万美元建成一个专门计算机用于DES的破译，而且需要12个小时的破解才能得到结果。</li>
+<li>1994年世界密码大会，M. Matsui提出线性分析方法，利用243个已知明文，成功破译DES。</li>
+<li>1997年，首届“向DES挑战”的竞技赛。罗克·维瑟用了96天时间破解了用DES加密的一段信息。</li>
+<li>2000年1月19日，电子边疆基金会组织25万美元的DES解密机，以22.5小时成功破解DES加密算法。</li>
+<li>DES的最近一次评估是在1994年，同时决定1998年12月以后，DES将不再作为联邦加密标准。</li>
+<li>DES的密钥长度仅有56bit（64bit中有8位用于奇偶校验）。</li>
+</ul>
+</li>
+</ul>
+<p>其他对称密码简介：</p>
+<ul>
+<li>
+<p>为提高安全性，主要有两种研究思路。</p>
+<ul>
+<li>对DES进行复合变换，强化它的抗攻击能力；</li>
+<li>开辟新的算法。</li>
+</ul>
+</li>
+<li>
+<p>三重DES</p>
+</li>
+<li>
+<p>RC5</p>
+</li>
+<li>
+<p>IDEA</p>
+</li>
+<li>
+<p>AES算法</p>
+</li>
+</ul>
+<h2 id="公开密钥密码">公开密钥密码</h2>
+<p>公开密钥密码体制是现代密码学最重要的发明，也可以说是密码学发展史上最伟大的革命。</p>
+<ul>
+<li>
+<p>两大特点：</p>
+<ul>
+<li>与之前的所有密码不同，其算法不是基于代替和置换，二是基于数学函数。</li>
+<li>与使用一个密钥的传统的对称密钥密码不同，公开密钥密码是非对称的，使用两个独立的密钥。</li>
+</ul>
+</li>
+<li>
+<p>一般认为，密码学就是保护信息传递的机密性，其实这仅仅是现代密码学主题的一个方面。</p>
+<ul>
+<li>对信息发送人与接收人的真实身份的验证、事后对所发出或接收信息的不可抵赖性，以及保障数据的完整性是现代密码学主题的另一方面。</li>
+</ul>
+</li>
+<li>
+<p>公开密钥密码，又称非对称密钥密码或双密钥密码。</p>
+<ul>
+<li>加密密钥和解密密钥为两个独立密钥。</li>
+<li>公开密钥密码的通信安全性取决于私钥的保密性</li>
+</ul>
+</li>
+<li>
+<p>Diffie-Hellman密钥交换算法</p>
+<ul>
+<li>数学知识：原根
+<ul>
+<li>素数p的原根（primitive root）的定义：如果a是素数p的原根，则数a mod p, a2 mod p, …, ap-1 mod p是不同的并且包含从1到p-1之间的所有整数的某种排列。对任意的整数b（mod p ≠ 0），可以找到唯一的幂i，满足b≡ai mod p，且1 ≤ i ≤ p-1。</li>
+<li>注：“b≡a mod p”等价于“b mod p = a mod p”，称为“b与a模p同余”。</li>
+</ul>
+</li>
+<li>数学知识：离散对数
+<ul>
+<li>若a是素数p的一个原根，则相对于任意整数b（mod p ≠ 0），必然存在唯一的整数i（1 ≤ i ≤ p-1），使得b≡ai mod p，i称为b的以a为基数且模p的幂指数，即离散对数。</li>
+<li>对于函数y≡gx mod p，其中，g为素数p的原根，y与x均为正整数，已知g、x、p，计算y是容易的；而已知y、g、p，计算x是困难的，即求解y的离散对数x是困难的。</li>
+<li>注：离散对数的求解为数学界公认的困难问题。</li>
+</ul>
+</li>
+<li>Alice和Bob协商好一个大素数p，和一个大的整数g，1 &lt; g &lt; p，g是p的原根。p和g无须保密，可为网络上的所有用户共享。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095634.png" /></li>
+</ul>
+</li>
+<li>
+<p>RSA公开密钥算法
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095726.png" /></p>
+</li>
+<li>
+<p>大整数因子分解
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20211123095851.png" /></p>
+</li>
+<li>
+<p>RSA密码算法</p>
+<ul>
+<li>RSA密码体制：
+<ul>
+<li>明文和密文均是0到n之间的整数，n通常为1024位二进制数或309位十进制数。</li>
+<li>明文空间M=密文空间C={x∈Z|0&lt; x &lt; n, Z为整数集合}。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>RSA密码的密钥生成具体步骤如下：</p>
+<ul>
+<li>选择互异的素数p和q，计算n=pq，A(n) = (p - 1)(q - 1)；</li>
+<li>选择整数e，使gcd(A(n), e) = 1，且1 &lt; e &lt; A(n)；</li>
+<li>计算d，d = e-1 mod A(n)，即d为模A(n)下e的乘法逆元；</li>
+<li>公钥Pk = { e, n }，私钥Sk = { d, n, p, q }</li>
+<li>加密：c = (m的e次方) mod n；解密：m = (c的d次方) mod n。</li>
+</ul>
+<p>RSA的安全性</p>
+<ul>
+<li>
+<p>RSA的安全性是基于单向函数ek(x)=xe(mod n) ，求逆计算不可行。</p>
+</li>
+<li>
+<p>解密的关键是了解陷门信息，即能够分解n=pq，知道(n)=(p-1)(q-1)，从而解出解密私钥d。</p>
+</li>
+<li>
+<p>如果要求RSA是安全的，p与q必为足够大的素数，使分析者没有办法在多项式时间内将n分解出来。</p>
+</li>
+<li>
+<p>RSA开发人员建议，p和q的选择应该大约是100位的十进制素数，模n的长度要求至少是512bit。</p>
+<ul>
+<li>国际数字签名标准ISO/IEC 9796中规定n的长度为512bit。</li>
+</ul>
+</li>
+<li>
+<p>为了抵抗现有的整数分解算法，对RSA模n的素因子p和q还有如下要求：</p>
+<ul>
+<li>|𝒑−𝒒|很大，通常p和q的长度相同。</li>
+<li>𝒑−𝟏和𝒒−𝟏分别含有大素因子𝒑_𝟏和𝒒_𝟏。</li>
+<li>𝒑_𝟏−𝟏和𝒒_𝟏−𝟏分别含有大素因子𝒑_𝟐和𝒒_𝟐。</li>
+<li>𝒑+𝟏和𝒒+𝟏分别含有大素因子𝒑_𝟑和𝒒_𝟑。</li>
+</ul>
+</li>
+<li>
+<p>其他公开密钥密码简介</p>
+<ul>
+<li>基于大整数因子分解问题:
+<ul>
+<li>RSA密码、Rabin密码</li>
+</ul>
+</li>
+<li>基于有限域上的离散对数问题：
+<ul>
+<li>Diffie-Hellman公钥交换体制、ElGamal密码</li>
+</ul>
+</li>
+<li>基于椭圆曲线上的离散对数问题：
+<ul>
+<li>Diffie-Hellman公钥交换体制、ElGamal密码。</li>
+</ul>
+</li>
+<li>Rabin密码算法是M. Rabin设计的，是RSA密码算法的一种改进。
+<ul>
+<li>RSA是基于大整数因子分解问题，Rabin则是基于求合数的模平方根的难题。</li>
+</ul>
+</li>
+<li>Elgamal算法是Taher Elgamal发明的，既能用于数据加密，也能用于数字签名，其安全性依赖于计算有限域上离散对数这一难题，其不足之处是它的密文成倍扩张。</li>
+<li>大整数分解算法的发展，计算机速度的提高和网络的发展，RSA的密钥长度需要不断增加。
+<ul>
+<li>但是，密钥长度的增加，导致了加密、解密的速度大为降低。</li>
+<li>需要新的算法来代替RSA！</li>
+</ul>
+</li>
+<li>1985年，Koblitz和Miller分别独立提出将椭圆曲线用于密码算法，其根据是椭圆曲线上的离散对数问题（ECDLP，Elliptic  Curve Discrete Logarithm Problem）。</li>
+<li>椭圆曲线密码体制（ECC，Elliptic Curve Cryptosystems）相比于RSA的优势：
+<ul>
+<li>相同的密钥长度，ECC抗攻击性比RSA强很多倍。</li>
+<li>计算量小，处理速度快。</li>
+<li>存储空间小。ECC的密钥尺寸和系统参数比RSA要小得多。</li>
+<li>带宽要求低。对于短消息加密，ECC带宽要求比RSA低得多。带宽要求低使得ECC在无线网络领域具有广泛的应用前景。</li>
+</ul>
+</li>
+<li>ECC是新一代安全电子交易(SET)协议中缺省的公钥密码算法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="消息认证">消息认证</h2>
+<p>概述：</p>
+<ul>
+<li>威胁信息完整性的行为主要包括：
+<ul>
+<li>伪造：假冒他人的信息源向网络中发布消息；</li>
+<li>内容修改：对消息的内容进行插入、删除、变换和修改；</li>
+<li>顺序修改：对消息进行插入、删除或重组消息序列；</li>
+<li>时间修改：针对网络中的消息，实施延迟或重放；</li>
+<li>否认：接受者否认收到消息，发送者否认发送过消息。</li>
+</ul>
+</li>
+<li>消息认证是保证信息完整性的重要措施。其目的主要包括：
+<ul>
+<li>证明：消息的信源和信宿的真实性；</li>
+<li>证明：消息内容是否曾受到偶然或有意的篡改，</li>
+<li>证明：消息的序号和时间性是否正确。</li>
+</ul>
+</li>
+</ul>
+<p>消息和信息的关系：</p>
+<ul>
+<li>信息，一般解释为，“事物运动状态或存在方式的不确定性的描述”。</li>
+<li>消息，一般解释为，“用文字、符号、数据、语言、音符、图片、图像等能够被人们感觉感官所感知的形式，把客观物质运动和主观思维活动的状态表示出来的载体”。</li>
+<li>消息是信息的载体，信息通过消息来传递；消息是符号形式的，信息则是消息所反映的实质内容。</li>
+</ul>
+<p>认证技术在功能上可以分为两层。</p>
+<ul>
+<li>下层包含一个产生认证符的函数；认证符是一个用来认证消息的值；</li>
+<li>上层是以认证函数为原语；接收方可以通过认证函数来验证消息的真伪。</li>
+</ul>
+<p>消息认证由具有认证功能的函数来实现的。</p>
+<ul>
+<li>消息加密，用消息的完整密文作为消息的认证符；</li>
+<li>消息认证码MAC（Message Authentication Code），也称密码校验和，使用密码对消息加密，生成固定长度的认证符；</li>
+<li>消息编码，是针对信源消息的编码函数，使用编码抵抗针对消息的攻击。</li>
+</ul>
+<p>对称密钥密码对消息加密，不仅具有机密性，同时也具有一定的可认证性; <br>
+公开密钥密码本身就提供认证功能，其具有的私钥加密、公钥解密以及反之亦然的特性;</p>
+<p>消息认证码：</p>
+<ul>
+<li>消息认证码MAC的基本思想：
+<ul>
+<li>利用事先约定的密码，加密生成一个固定长度的短数据块MAC，并将MAC附加到消息之后，一起发送给接收者；</li>
+<li>接收者使用相同密码对消息原文进行加密得到新的MAC，比较新的MAC和随消息一同发来的MAC，如果相同则未受到篡改。</li>
+</ul>
+</li>
+<li>生成消息认证码的方法主要包括：
+<ul>
+<li>基于加密函数的认证码：使用加密函数生成固定长度的认证符。</li>
+<li>消息摘要：将任意长度的消息全文作为单向散列函数的输入，进行散列计算，得到的被压缩到某一固定长度的散列值（即消息摘要）作为认证符。消息摘要的运算-过程无需加密算法的参与，其关键是单向散列函数是否具有良好的无碰撞性。</li>
+</ul>
+</li>
+</ul>
+<p>消息编码：</p>
+<ul>
+<li>使用消息编码对信息进行认证，基本思想来源于信息通信中的差错校验码。
+<ul>
+<li>差错校验码是差错控制中的检错方法。数据通信中的噪音可能会使得传输的比特值改变，用校验码可以检测出来。同样，一些人为造成的比特值的改变，使用差错控制也可以检测到。</li>
+</ul>
+</li>
+<li>消息编码认证的基本思想：
+<ul>
+<li>引入冗余度，使通过信道传送的可能序列集M（编码集）大于消息集S（信源集）。</li>
+<li>发送方从M中选出用来代表消息的许用序列Li，即对信息进行编码；接收方根据编码规则，进行解码，还原出发送方按此规则向他传来的消息。</li>
+<li>窜扰者不知道被选定的编码规则，因而所伪造的假码字多是M中的禁用序列，接收方将以很高的概率将其检测出来，并拒绝通过认证。</li>
+</ul>
+</li>
+</ul>
+<p>散列函数：</p>
+<ul>
+<li>散列函数（Hash Function）的目的
+<ul>
+<li>将任意长的消息映射成一个固定长度的散列值（hash值），也称为消息摘要。</li>
+<li>消息摘要可以作为认证符，完成消息认证。</li>
+</ul>
+</li>
+</ul>
+<p>散列函数的健壮性：</p>
+<ul>
+<li>弱无碰撞特性：散列函数h被称为是弱无碰撞的，是指在消息特定的明文空间X中，给定消息x∈X，在计算上几乎找不到不同于x的x'，x'∈X，使得h(x)=h(x')。</li>
+<li>强无碰撞特性：散列函数h被称为是强无碰撞的，是指在计算上难以找到与x相异的x'，满足h(x)=h(x')，x&rsquo;可以不属于X。</li>
+<li>单向性：散列函数h被称为单向的，是指通过h的逆函数h-1来求得散列值h(x)的消息原文x，在计算上不可行。</li>
+</ul>
+<p>数字签名：</p>
+<ul>
+<li>数字签名：Digital Signature。</li>
+<li>在ISO7498-2标准定义为：
+<ul>
+<li>“附加在数据单元上的一些数据或是对数据单元所作的密码变换，这种数据或变换可以被数据单元的接收者用来确认数据单元来源和数据单元的完整性，并保护数据不会被人（例如接收者）伪造”。</li>
+</ul>
+</li>
+<li>美国电子签名标准对数字签名作了如下解释：
+<ul>
+<li>“数字签名是利用一套规则和一个参数对数据进行计算所得的结果，用此结果能够确认签名者的身份和数据的完整性”。</li>
+</ul>
+</li>
+<li>一般来说，数字签名可以被理解为：
+<ul>
+<li>通过某种密码运算生成一系列符号及代码，构成可以用来进行数据来源验证的数字信息。</li>
+</ul>
+</li>
+<li>从签名形式上分，数字签名有两种。
+<ul>
+<li>一种是对整个消息的签名。</li>
+<li>一种是对压缩消息的签名。</li>
+<li>它们都是附加在被签名消息之后或在某一特定位置上的一段数据信息。</li>
+</ul>
+</li>
+<li>数字签名主要目的：
+<ul>
+<li>保证接收方能够确认或验证发送方的签名，但不能伪造；发送方发出签名消息后，不能否认所签发的消息。</li>
+</ul>
+</li>
+<li>设计数字签名必须满足下列条件：
+<ul>
+<li>签名必须基于一个待签名信息的位串模板；</li>
+<li>签名必须使用某些对发送方来说是唯一的信息，以防止双方的伪造与否认；</li>
+<li>必须相对容易生成、识别和验证数字签名；</li>
+<li>伪造该数字签名在计算复杂性意义上具有不可行性。
+<ul>
+<li>既包括对一个已有的数字签名构造新的消息，也包括对一个给定消息伪造一个数字签名。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数字签名主要采用公钥加密技术来实现。
+<ul>
+<li>通常情况下，一次数字签名涉及三个信息，分别是一个哈希函数、发送者的公钥、发送者是私钥。</li>
+</ul>
+</li>
+<li>数字签名的一般应用过程
+<ul>
+<li>发送方：
+<ul>
+<li>首先，使用散列函数对消息报文进行散列计算，生成散列值（消息报文摘要），并用自己的私钥对这个散列值进行加密，加密的散列值即为数字签名。</li>
+<li>然后，这个加密的散列值将作为消息报文的附件和消息报文一起发送给接收方。</li>
+</ul>
+</li>
+<li>接收方：
+<ul>
+<li>首先，用与发送方一样的散列函数计算原始消息报文的散列值，接着再用发送方的公钥来对报文附加的数字签名进行解密，得到发送方计算的散列值。</li>
+<li>然后，比较两个散列值。如果相同，接收方就可确认消息报文的发送方，并且消息报文是完整的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数字签名方法
+<ul>
+<li>基于对称密钥密码体制，也可以依靠其密钥的双方保密的特点来实现数字签名，但使用范围受到局限。</li>
+<li>目前，数字签名多数还是基于公钥密码体制，常见的数字签名算法有RSA、ElGamal、DSA以及椭圆曲线数字签名算法等。</li>
+<li>另外，还有一些特殊数字签名方法，如盲签名、代理签名、群签名、门限签名、具有消息恢复功能的签名等，它们与具体应用环境密切相关。</li>
+<li>美国国家标准技术研究所（NIST）1994年公布了数字签名标准（DSS，Digital Signature Standard），采用的算法是DSA。
+<ul>
+<li>DSA是Schnorr和ElGamal签名算法变种，是基于有限域上的离散对数问题设计的。DSA算法不是标准的公钥密码，只能提供数字签名，但安全性和灵活性好，被广泛应用于金融等领域。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="密码学新进展">密码学新进展</h2>
+<ul>
+<li>混沌密码学
+<ul>
+<li>1989年，英国数学家Matthews，基于混沌的加密技术。</li>
+<li>混沌系统具有良好的伪随机特性、轨道的不可预测性、对初始状态及控制参数的敏感性等一系列特性；</li>
+<li>传统的密码算法敏感性依赖于密钥，而混沌映射依赖于初始条件和映射中的参数；</li>
+<li>传统的加密算法通过加密轮次来达到扰乱和扩散，混沌映射则通过迭代，将初始域扩散到整个相空间；</li>
+<li>传统加密算法定义在有限集上，而混沌映射定义在实数域内。</li>
+</ul>
+</li>
+<li>量子密码
+<ul>
+<li>1970年，威斯纳提出利用单量子态制造不可伪造的“电子钞票”，这个构想由于量子态的寿命太短而无法实现，</li>
+<li>1984年，IBM的贝内特和加拿大学者布拉萨德，提出了第一个量子密码方案，由此迎来了量子密码学的新时期。</li>
+<li>量子密码体系采用量子态作为信息载体，经由量子通道在合法的用户之间传送密钥。</li>
+<li>量子密码的安全性由量子力学原理所保证，被称为是绝对安全的。
+<ul>
+<li>所谓绝对安全，是指即使在窃听者可能拥有极高的智商、可能采用最高明的窃听措施、可能使用最先进的测量手段，密钥的传送仍然是安全的，可见量子密码研究具有极其重大的意义。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DNA计算
+<ul>
+<li>1994年，Adleman等科学家进行了世界上首次DNA计算，解决了一个7节点有向汉密尔顿回路问题。</li>
+<li>由于DNA计算具有的信息处理的高并行性、超高容量的存储密度和超低的能量消耗等特点，非常适合用于攻击密码计算系统的不同部分，对传统的基于计算安全的密码体制提出了挑战。</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-10-08 19:55:40&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/08d4d6cf8a78e5a1cb353b041919a9e49a704d6a" target="_blank" title="commit by JF-011101(2838264218@qq.com) 08d4d6cf8a78e5a1cb353b041919a9e49a704d6a: feat">
+                                    <i class="fas fa-hashtag fa-fw"></i>08d4d6c</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/isc_base_02/" data-title="ISC_base_02" data-hashtags="information security conspectus"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/isc_base_02/" data-hashtag="information security conspectus"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/isc_base_02/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/isc_base_02/" data-title="ISC_base_02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/isc_base_02/" data-title="ISC_base_02"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/isc_base_02/" data-title="ISC_base_02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/information-security-conspectus/">information security conspectus</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql_base_14/" class="prev" rel="prev" title="Mysql_base_14"><i class="fas fa-angle-left fa-fw"></i>Mysql_base_14</a>
+            <a href="/isc_base_03/" class="next" rel="next" title="ISC_base_03">ISC_base_03<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
