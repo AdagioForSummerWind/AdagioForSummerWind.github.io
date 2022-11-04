@@ -21,6 +21,12 @@
             <loc>https://jefofrank.xyz/categories/k8s/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/k8s_advanced/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/k8s_base/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jefofrank.xyz/tags/interview/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jefofrank.xyz/categories/interview/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jefofrank.xyz/b.-b%E7%AB%99/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/</loc><lastmod>2022-08-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jefofrank.xyz/cn_wangdao/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/git/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/tags/git/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -39,10 +45,6 @@
             <loc>https://jefofrank.xyz/ca_base_01/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/tags/computer-architecture/</loc><lastmod>2022-10-29T21:27:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jefofrank.xyz/about/</loc><lastmod>2022-10-08T19:55:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jefofrank.xyz/b.-b%E7%AB%99/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jefofrank.xyz/e.-%E7%B1%B3%E5%93%88%E6%B8%B8/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jefofrank.xyz/f.-%E6%B7%B1%E4%BF%A1%E6%9C%8D/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jefofrank.xyz/g.-rabbitmq-%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

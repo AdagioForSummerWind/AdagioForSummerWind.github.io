@@ -5,32 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+        <title>interview-bz - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="interview-bz" />
 <meta property="og:description" content="【Golang开发面经】B站（两轮技术面） 写在前面 面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/b.-b%E7%AB%99/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
-
-
+<meta property="article:published_time" content="2022-06-28T15:30:06+08:00" />
+<meta property="article:modified_time" content="2022-08-28T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
-<meta name="twitter:title" content=""/>
+<meta name="twitter:title" content="interview-bz"/>
 <meta name="twitter:description" content="【Golang开发面经】B站（两轮技术面） 写在前面 面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="prev" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="next" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="prev" href="https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/" /><link rel="next" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "",
+        "headline": "interview-bz",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/b.-b%E7%AB%99\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5415 ,
-        "url": "https:\/\/jefofrank.xyz\/b.-b%E7%AB%99\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  5415 ,
+        "url": "https:\/\/jefofrank.xyz\/b.-b%E7%AB%99\/","datePublished": "2022-06-28T15:30:06+08:00","dateModified": "2022-08-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -113,9 +113,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5415 字&nbsp;
+        </div><article class="page single"><h1 class="single-title animated flipInX">interview-bz</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/interview/"><i class="far fa-folder fa-fw"></i>interview</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5415 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -127,6 +127,9 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#写在前面">写在前面</a></li>
+    <li><a href="#笔试">笔试</a></li>
+    <li><a href="#一面">一面</a></li>
     <li><a href="#go的gmp模型">Go的GMP模型</a></li>
     <li><a href="#go的gc">GO的GC</a></li>
     <li><a href="#go的map底层是怎么实现的">Go的map底层是怎么实现的？</a></li>
@@ -141,9 +144,7 @@
     <li><a href="#死锁是怎么产生的">死锁是怎么产生的</a></li>
     <li><a href="#了解分布式锁吗讲讲红锁">了解分布式锁吗？讲讲红锁？</a></li>
     <li><a href="#算法反转链表这写不出来的话就说不过去了">算法：反转链表。这写不出来的话，就说不过去了。</a></li>
-  </ul>
-
-  <ul>
+    <li><a href="#二面">二面</a></li>
     <li><a href="#tcp和udp区别">TCP和UDP区别？</a></li>
     <li><a href="#tcp是可靠传输为什么还有丢包的情况">TCP是可靠传输，为什么还有丢包的情况？</a></li>
     <li><a href="#udp能实现可靠传输吗怎么实现">UDP能实现可靠传输吗？怎么实现？</a></li>
@@ -156,16 +157,17 @@
     <li><a href="#map-的底层说一下">map 的底层说一下？</a></li>
     <li><a href="#如果你这个项目我突然有一个时间段多了很多流量要怎么处理">如果你这个项目，我突然有一个时间段，多了很多流量，要怎么处理?</a></li>
     <li><a href="#算法连续子序列的最大和">算法：连续子序列的最大和</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="golang开发面经b站两轮技术面">【Golang开发面经】B站（两轮技术面）</h1>
-<h1 id="写在前面">写在前面</h1>
+<h2 id="写在前面">写在前面</h2>
 <blockquote>
 <p>面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是不招人啊。。</p>
 </blockquote>
-<h1 id="笔试">笔试</h1>
+<h2 id="笔试">笔试</h2>
 <p>略</p>
-<h1 id="一面">一面</h1>
+<h2 id="一面">一面</h2>
 <h2 id="go的gmp模型">Go的GMP模型</h2>
 <p>G：表示goroutine，存储了goroutine的执行stack信息、goroutine状态以及goroutine的任务函数等；另外G对象是<code>可以重用</code>的。
 P：表示逻辑processor，P 的数量决定了系统内最大可并行的 G 的数量（前提：系统的物理cpu核数 &gt;= P的数量）；P的最大作用还是其拥有的各种G对象队列、链表、一些cache和状态。
@@ -513,7 +515,7 @@ M：M 代表着真正的执行计算资源，物理 Processor。</p>
 <p>只磕磕绊绊讲了一些分布式锁，红锁就不太记得了（</p>
 <p>可以看看这篇博客 <a href="https://www.aisoutu.com/a/435487" target="_blank" rel="noopener noreffer">基于Go语言的分布式红锁</a></p>
 <h2 id="算法反转链表这写不出来的话就说不过去了">算法：反转链表。这写不出来的话，就说不过去了。</h2>
-<h1 id="二面">二面</h1>
+<h2 id="二面">二面</h2>
 <h2 id="tcp和udp区别">TCP和UDP区别？</h2>
 <p>TCP 是可靠传输，面向连接，基于流，占用资源多，效率低。</p>
 <p>UDP是尽最大努力交付，基于无连接，基于报文，UDP 占用系统资源较少，效率高。</p>
@@ -577,33 +579,33 @@ M：M 代表着真正的执行计算资源，物理 Processor。</p>
 <li>&hellip;</li>
 </ol>
 <h2 id="算法连续子序列的最大和">算法：连续子序列的最大和</h2>
-<h1 id="参考资料">参考资料</h1>
+<h2 id="参考资料">参考资料</h2>
 <p>[1] <a href="https://blog.csdn.net/Peerless__/article/details/125458742" target="_blank" rel="noopener noreffer">https://blog.csdn.net/Peerless__/article/details/125458742</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 0001-01-01 00:00:00</span>
+                <span>更新于 2022-08-28 00:00:00</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title="interview-bz" data-hashtags="interview"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-hashtag="interview"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title="interview-bz"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title="interview-bz"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/b.-b%E7%AB%99/" data-title="interview-bz"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/interview/">interview</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/c.-%E7%99%BE%E5%BA%A6/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
-            <a href="/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/d.-%E6%BB%B4%E6%BB%B4/" class="prev" rel="prev" title="interview-dd"><i class="fas fa-angle-left fa-fw"></i>interview-dd</a>
+            <a href="/c.-%E7%99%BE%E5%BA%A6/" class="next" rel="next" title="interview-bd">interview-bd<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

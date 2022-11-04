@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/git\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "git","wordcount":  11555 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "git","wordcount":  11488 ,
         "url": "https:\/\/jefofrank.xyz\/git\/","datePublished": "2022-05-31T14:55:58+08:00","dateModified": "2022-10-29T21:27:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-31 14:55:58">2022-05-31 14:55:58</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11555 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-31 14:55:58">2022-05-31 14:55:58</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11488 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 23 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -132,7 +132,7 @@
         <li><a href="#git-tag">git tag</a></li>
         <li><a href="#git-merge">git merge</a></li>
         <li><a href="#git-rebase"><strong>git rebase</strong></a></li>
-        <li><a href="#head">HEAD</a></li>
+        <li><a href="#分离head">分离HEAD</a></li>
         <li><a href="#相对引用">相对引用</a></li>
         <li><a href="#撤销变更">撤销变更</a>
           <ul>
@@ -196,19 +196,35 @@ git pull：相当于是从远程获取最新版本并merge到本地</p>
 <h3 id="git-tag">git tag</h3>
 <p><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener noreffer">https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE</a></p>
 <h3 id="git-merge">git merge</h3>
-<p>咱们先来看一下第一种方法 —— git merge(把某个分支合并到当前分支)。在 Git 中合并两个分支时会产生一个特殊的提交记录，它有两个父节点。翻译成自然语言相当于：“我要把这两个父节点本身及它们所有的祖先都包含进来。”</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git merge xxx
+</code></pre></td></tr></table>
+</div>
+</div><p>将xxx分支合并到当前分支</p>
 <h3 id="git-rebase"><strong>git rebase</strong></h3>
 <p>第二种合并分支的方法是 git rebase(把当前分支的工作直接移到目标分支)。Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。</p>
 <p>Rebase 的优势就是可以创造更线性的提交历史，这听上去有些难以理解。如果只允许使用 Rebase 的话，代码库的提交历史将会变得异常清晰。</p>
-<p>git rebase b1 b2(将b2合并到b1下)</p>
-<p>在提交树上移动
-在接触 Git 更高级功能之前，我们有必要先学习在你项目的提交树上前后移动的几种方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git rebase b1 b2(将b2合并到b1下)
+git rebase b1(将当前分支合并到b1下)
+</code></pre></td></tr></table>
+</div>
+</div><p>在接触 Git 更高级功能之前，我们有必要先学习在你项目的提交树上前后移动的几种方法。</p>
 <p>一旦熟悉了如何在 Git 提交树上移动，你驾驭其它命令的能力也将水涨船高！</p>
-<h3 id="head">HEAD</h3>
+<h3 id="分离head">分离HEAD</h3>
 <p>我们首先看一下 “HEAD”。 HEAD 是一个对当前检出记录的符号引用 —— 也就是指向你正在其基础上进行工作的提交记录。</p>
 <p><strong>HEAD 总是指向当前分支上最近一次提交记录</strong>。大多数修改提交树的 Git 命令都是从改变 HEAD 的指向开始的。</p>
 <p>HEAD 通常情况下是指向分支名的（如 bugFix）。在你提交时，改变了 bugFix 的状态，这一变化通过 HEAD 变得可见。</p>
-<p>分离的 HEAD 就是让其指向了某个具体的提交记录而不是分支名。</p>
+<p>分离的 HEAD 就是让其指向了某个具体的提交记录（哈希值）而不是分支名。</p>
 <p>通过git checkout c1(某个提交记录)可以将HEAD从默认的分支名移到c1</p>
 <h3 id="相对引用">相对引用</h3>
 <p>通过指定提交记录哈希值的方式在 Git 中移动不太方便。在实际应用时，并没有像本程序中这么漂亮的可视化提交树供你参考，所以你就不得不用 git log 来查查看提交记录的哈希值。</p>
@@ -220,27 +236,64 @@ git pull：相当于是从远程获取最新版本并merge到本地</p>
 <p>使用 ^ 向上移动 1 个提交记录eg:git checkout HEAD^
 使用 ~<num> 向上移动多个提交记录，如 ~3  eg:git checkout HEAD~4</p>
 <p>我使用相对引用最多的就是移动分支。可以直接使用 -f 选项让分支指向另一个提交。例如:</p>
-<p>git branch -f main HEAD~3</p>
-<p>上面的命令会将 main 分支强制指向 HEAD 的第 3 级父提交。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git branch -f main HEAD~3
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的命令会将 main 分支强制指向 HEAD 的第 3 级父提交。</p>
 <h3 id="撤销变更">撤销变更</h3>
 <p>在 Git 里撤销变更的方法很多。和提交一样，撤销变更由底层部分（暂存区的独立文件或者片段）和上层部分（变更到底是通过哪种方式被撤销的）组成。我们这个应用主要关注的是后者。</p>
 <p>主要有两种方法用来撤销变更 —— 一是 git reset，还有就是 git revert。接下来咱们逐个进行讲解。</p>
 <h4 id="git-reset">git reset</h4>
-<p>通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。git reset HEAD~1(撤回本地的最近一次提交)</p>
-<p>虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！</p>
+<p>通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git reset HEAD~1(撤回本地的最近一次提交)
+</code></pre></td></tr></table>
+</div>
+</div><p>虽然在你的本地分支中使用 git reset 很方便，<strong>但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！</strong></p>
 <p>为了撤销更改并分享给别人，我们需要使用</p>
 <h4 id="git-revert">git revert。</h4>
-<p>git revert HEAD（撤回远程的最近一次提交）</p>
-<h3 id="整理提交记录">整理提交记录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git revert HEAD（撤回远程的最近一次提交）
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="整理提交记录">整理提交记录</h3>
 <p>到现在我们已经学习了 Git 的基础知识 —— 提交、分支以及在提交树上移动。 这些概念涵盖了 Git 90% 的功能，同样也足够满足开发者的日常需求</p>
 <p>然而, 剩余的 10% 在处理复杂的工作流时(或者当你陷入困惑时）可能就显得尤为重要了。接下来要讨论的这个话题是“整理提交记录” —— 开发人员有时会说“我想要把这个提交放到这里, 那个提交放到刚才那个提交的后面”, 而接下来就讲的就是它的实现方式，非常清晰、灵活，还很生动。</p>
 <p>看起来挺复杂, 其实是个很简单的概念。</p>
 <h4 id="git-cherry-pick">Git Cherry-pick</h4>
 <p>本系列的第一个命令是 git cherry-pick, 命令形式为:</p>
-<p>git cherry-pick &lt;提交号&gt;&hellip;
-如果你想将一些提交复制到当前所在的位置（HEAD）下面的话， Cherry-pick 是最直接的方式了。我个人非常喜欢 cherry-pick，因为它特别简单。</p>
-<p>这里有一个仓库, 我们想将 side 分支上的工作复制到 main 分支，你立刻想到了之前学过的 rebase 了吧？但是咱们还是看看 cherry-pick 有什么本领吧。  git cherry-pick c2 c4（把c2 c4两次提交记录依次放在HEAD后面）</p>
-<h4 id="交互式的-rebase">交互式的 rebase</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git cherry-pick &lt;提交号&gt;...
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你想将一些提交复制到当前所在的位置（HEAD）下面的话， Cherry-pick 是最直接的方式了。我个人非常喜欢 cherry-pick，因为它特别简单。</p>
+<p>这里有一个仓库, 我们想将 side 分支上的工作复制到 main 分支，你立刻想到了之前学过的 rebase 了吧？但是咱们还是看看 cherry-pick 有什么本领吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git cherry-pick c2 c4（把c2 c4两次提交记录依次放在HEAD后面）
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="交互式的-rebase">交互式的 rebase</h4>
 <p>当你知道你所需要的提交记录（并且还知道这些提交记录的哈希值）时, 用 cherry-pick 再好不过了 —— 没有比这更简单的方式了。</p>
 <p>但是如果你不清楚你想要的提交记录的哈希值呢? 幸好 Git 帮你想到了这一点, 我们可以利用交互式的 rebase —— 如果你想从一系列的提交记录中找到想要的记录, 这就是最好的方法了</p>
 <p>咱们具体来看一下……</p>
