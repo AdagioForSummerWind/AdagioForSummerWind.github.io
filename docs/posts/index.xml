@@ -4,13 +4,48 @@
         <link>https://jefofrank.xyz/posts/</link>
         <description>所有文章 | 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>go</title>
+    <link>https://jefofrank.xyz/goetc/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/goetc/</guid>
+    <description><![CDATA[Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构]]></description>
+</item><item>
+    <title>MYSQL</title>
+    <link>https://jefofrank.xyz/mysql/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/mysql/</guid>
+    <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。 第二范式：要求实体的属性完全]]></description>
+</item><item>
+    <title>OS</title>
+    <link>https://jefofrank.xyz/os/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/os/</guid>
+    <description><![CDATA[操作系统 进程和线程 进程是操作系统资源分配的最小单位，线程是CPU任务调度的最小单位。一个进程可以包含多个线程，所以进程和线程都是一个时间段的]]></description>
+</item><item>
+    <title>计网</title>
+    <link>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</guid>
+    <description><![CDATA[计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数]]></description>
+</item><item>
     <title>Interesting talk about Linux operating system</title>
     <link>https://jefofrank.xyz/interesting_talk_linux/</link>
     <pubDate>Fri, 05 Aug 2022 22:05:00 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/interesting_talk_linux/</guid>
     <description><![CDATA[趣谈Linux操作系统 入门准备 开篇词 | 为什么要学习Linux操作系统？ 刘超 2019-03-25 我们大学里上过操作系统的课，而且每天都在用操作系统，为什么还要专]]></description>
+</item><item>
+    <title>Redis_geek</title>
+    <link>https://jefofrank.xyz/redis_geek/</link>
+    <pubDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/redis_geek/</guid>
+    <description><![CDATA[开篇词 | 这样学Redis，才能技高一筹 蒋德钧 2020-08-03 作为键值数据库，Redis 的应用非常广泛，如果你是后端工程师，我猜你出去面试，八成都会被问到与]]></description>
 </item><item>
     <title>DS_geek</title>
     <link>https://jefofrank.xyz/ds_geek/</link>
@@ -39,40 +74,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/cn_proto/</guid>
     <description><![CDATA[趣谈网络协议 刘超 2018-05-14 开篇词 | 想成为技术牛人？先搞定网络协议！ 工作 15 年，我在 EMC 做过类似 GFS 的分布式存储开发，做过基于 Lucene 的搜索引擎，做过 Hadoop 的运维；在]]></description>
-</item><item>
-    <title>K8s_advanced</title>
-    <link>https://jefofrank.xyz/k8s_advanced/</link>
-    <pubDate>Thu, 14 Jul 2022 10:38:32 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/k8s_advanced/</guid>
-    <description><![CDATA[2018 深入剖析k8s 张磊 2018-08-27 开篇词 | 打通“容器技术”的任督二脉 你好，我是张磊，Kubernetes 社区的一位资深成员和项目维护者。2012 年，我还]]></description>
-</item><item>
-    <title>K8s_base</title>
-    <link>https://jefofrank.xyz/k8s_base/</link>
-    <pubDate>Thu, 14 Jul 2022 10:38:08 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/k8s_base/</guid>
-    <description><![CDATA[k8s入门实战 开篇词｜迎难而上，做云原生时代的弄潮儿 你好，我是罗剑锋，不过更愿意你称呼我“Chrono”。先来简单介绍一下我自己吧。作为一个]]></description>
-</item><item>
-    <title>interview-bd</title>
-    <link>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</link>
-    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</guid>
-    <description><![CDATA[【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我]]></description>
-</item><item>
-    <title>interview-bz</title>
-    <link>https://jefofrank.xyz/b.-b%E7%AB%99/</link>
-    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/b.-b%E7%AB%99/</guid>
-    <description><![CDATA[【Golang开发面经】B站（两轮技术面） 写在前面 面试下来我感觉我都讲出来了，算法题也写出来了，但是二面完一查结果就直接淘汰了。这个B是不是]]></description>
-</item><item>
-    <title>interview-dd</title>
-    <link>https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/</link>
-    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/</guid>
-    <description><![CDATA[【Golang开发面经】滴滴（三轮技术面） 写在前面 滴滴面试赶紧感觉还行吧，挺注重基础的，很多时间都花在了挖项目上面，所以大家一定要很熟悉自己]]></description>
 </item></channel>
 </rss>

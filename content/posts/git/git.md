@@ -32,6 +32,9 @@ git fetch 相当于是从远程获取最新到本地，不会自动merge
 git pull：相当于是从远程获取最新版本并merge到本地
 
 
+git里的三个对象：commit tree(每个commit 的文件树(夹)快照) blob（单个文件对象，即使两个文件名不同，但内容相同则是唯一一个blob）
+
+
 清空暂存区：rm .git/index
 
 更改远程origin仓库git remote set-url origin git://new.url.here

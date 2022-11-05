@@ -4,7 +4,14 @@
         <link>https://jefofrank.xyz/categories/go/</link>
         <description>Go - 分类 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/go/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/go/" rel="self" type="application/rss+xml" /><item>
+    <title>go</title>
+    <link>https://jefofrank.xyz/goetc/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/goetc/</guid>
+    <description><![CDATA[Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构]]></description>
+</item><item>
     <title>Effective_go</title>
     <link>https://jefofrank.xyz/effective_go/</link>
     <pubDate>Sat, 30 Apr 2022 09:22:50 &#43;0800</pubDate>

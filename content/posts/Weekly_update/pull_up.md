@@ -36,7 +36,7 @@ VLAN划分
 ⚫ 基于协议划分
 ⚫ 基于子网划分
 
-![](https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20220402141625.png)
+![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220402141625.png)
 
 中继端口(trunk port): 在跨越多个物理交换机定义的VLAN承载帧
 
@@ -46,4 +46,4 @@ VLAN的端口类型
 
 交换机每个端口都有pvid（缺省vlan id），默认都属于VLAN1（pvid=1），也可人为设置
 
-![](https://raw.githubusercontent.com/QizhengZou/Image_hosting_rep/main/20220402141942.png)
+![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220402141942.png)

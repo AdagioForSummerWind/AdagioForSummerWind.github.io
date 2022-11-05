@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>redis - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/redis/</link>
+        <description>redis - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/redis/" rel="self" type="application/rss+xml" /><item>
+    <title>Redis_geek</title>
+    <link>https://jefofrank.xyz/redis_geek/</link>
+    <pubDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/redis_geek/</guid>
+    <description><![CDATA[开篇词 | 这样学Redis，才能技高一筹 蒋德钧 2020-08-03 作为键值数据库，Redis 的应用非常广泛，如果你是后端工程师，我猜你出去面试，八成都会被问到与]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>go - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="go" />
+<meta property="og:description" content="Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/goetc/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
+<meta property="article:modified_time" content="2022-11-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="go"/>
+<meta name="twitter:description" content="Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/goetc/" /><link rel="prev" href="https://jefofrank.xyz/mysql/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "go",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/goetc\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go","wordcount":  7187 ,
+        "url": "https:\/\/jefofrank.xyz\/goetc\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">go</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7187 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#go">Go</a>
+      <ul>
+        <li><a href="#slice">slice</a>
+          <ul>
+            <li><a href="#切片和数组的区别">切片和数组的区别？</a></li>
+            <li><a href="#为什么切片的应用比数组多">为什么切片的应用比数组多？</a></li>
+            <li><a href="#切片的访问的复杂度">切片的访问的复杂度？</a></li>
+            <li><a href="#切片的扩容机制">切片的扩容机制？</a></li>
+            <li><a href="#为什么切片底层不用链表">为什么切片底层不用链表？</a></li>
+          </ul>
+        </li>
+        <li><a href="#map">map</a>
+          <ul>
+            <li><a href="#map-的扩容机制">map 的扩容机制？</a></li>
+            <li><a href="#map-的存储是有序的吗">map 的存储是有序的吗？</a></li>
+            <li><a href="#map-是线程安全的吗">map 是线程安全的吗？</a></li>
+            <li><a href="#map-有缩容机制吗">map 有缩容机制吗？</a></li>
+          </ul>
+        </li>
+        <li><a href="#channel">channel</a></li>
+        <li><a href="#gmp-模型中的-gmp-指的是什么">GMP 模型中的 GMP 指的是什么</a>
+          <ul>
+            <li><a href="#gmp-模型中有什么组件">GMP 模型中有什么组件</a></li>
+            <li><a href="#gmp-模型中为什么需要-p">GMP 模型中为什么需要 P</a></li>
+            <li><a href="#p-调度器的设计策略">P 调度器的设计策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#sync">sync</a>
+          <ul>
+            <li><a href="#syncmap-为什么是线程安全的">sync.map 为什么是线程安全的</a></li>
+            <li><a href="#syncmutex-作用">sync.mutex 作用</a></li>
+            <li><a href="#syncrwmutex-作用">sync.RWmutex 作用</a></li>
+            <li><a href="#syncsingleflight-作用">sync.singleflight 作用</a></li>
+          </ul>
+        </li>
+        <li><a href="#context-有什么作用">context 有什么作用</a>
+          <ul>
+            <li><a href="#goroutine">goroutine</a></li>
+            <li><a href="#进程线程和协程的区别">进程、线程和协程的区别</a></li>
+            <li><a href="#协程的好处">协程的好处</a></li>
+          </ul>
+        </li>
+        <li><a href="#defer">defer</a>
+          <ul>
+            <li><a href="#defer底层原理">defer底层原理</a></li>
+            <li><a href="#defer配合recover">defer配合recover</a></li>
+          </ul>
+        </li>
+        <li><a href="#interface">interface</a></li>
+        <li><a href="#goroutine-1">goroutine</a>
+          <ul>
+            <li><a href="#goroutine与线程的区别">goroutine与线程的区别</a></li>
+            <li><a href="#goroutine调度机制">goroutine调度机制</a></li>
+            <li><a href="#goroutine调度流程">goroutine调度流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#gc">GC</a>
+          <ul>
+            <li><a href="#常用的垃圾回收的方法">常用的垃圾回收的方法:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="go">Go</h2>
+<blockquote>
+<p>熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理</p>
+</blockquote>
+<h3 id="slice">slice</h3>
+<h4 id="切片和数组的区别">切片和数组的区别？</h4>
+<p>数据类型不同。这是从数据结构上决定的，因为数组的数据结构只有元素类型和长度，而切片的数据结构是一个结构体，结构体有一个指向数组的指针，长度和容量，所以切片是一个引用类型而不是像数组一样的不可变的值类型。</p>
+<p>额外一点说，在 go 中虽然函数传递中是值传递的，但是由于切片的数据结构中的结构体里面包含了指针，所以函数传递的时候会将指针的值拷贝走，从结果来说会操作到同一个切片。</p>
+<h4 id="为什么切片的应用比数组多">为什么切片的应用比数组多？</h4>
+<p>在日常业务上，更需要存储一个可变的序列。业务中有一个确定的长度序列的场景是比较少的，或者说要确定一个序列的长度是会需要做额外的操作损耗性能的。</p>
+<h4 id="切片的访问的复杂度">切片的访问的复杂度？</h4>
+<p>切片的底层实现是一块连续的内存地址，所以能进行 O(1) 的随机访问元素。 具体的源码都是在编译时编译好（类似于 内存地址=元素类型*下标，不在此处细究。</p>
+<h4 id="切片的扩容机制">切片的扩容机制？</h4>
+<p>当扩容的时候需要扩容的容量是现在容量的 2 倍以上时，会直接扩容需要扩容的容量。否则的话，如果现在的长度（1.16 改成了容量）是 1024 以下时，会直接翻倍扩容。但是如果超过 1024 时，会反复扩容 25 % 直到达到或超过需要扩容的容量</p>
+<h4 id="为什么切片底层不用链表">为什么切片底层不用链表？</h4>
+<ol>
+<li>设计上，切片的设计上允许随机访问，而随机访问对于链表是不友好的</li>
+<li>容量上，切片的扩容机制无论从小切片是翻倍扩容，还是到大切片不断扩容 25 % 直至扩容到指定值的扩容机制，在容量上已经能覆盖大多数的场景内存上，使用链表会产生内存碎片，并且对于 Go 的垃圾回收算法（三色标记法）在递归根对象寻找可达对象的过程中不友好</li>
+</ol>
+<hr>
+<h3 id="map">map</h3>
+<h4 id="map-的扩容机制">map 的扩容机制？</h4>
+<p>分为了翻倍扩容、等量扩容。还有确定了要扩容后，使用的是渐进式扩容去避免性能抖动。</p>
+<p>扩容的触发条件有两个，状态装载因子超过 6.5（现在的桶装在的元素超过 80 %），也就是元素太多了，或者溢出桶太多（逻辑是判断现在桶的总数是否超过 map 结构体中的设置值，如果超过说明太多溢出桶），也就是太多元素被删除，元素非常稀疏。 前者会使用翻倍扩容，会申请现有翻倍的空间。当有读操作时仍会访问旧桶，当有插入或者删除操作的时候会将旧桶分流到两个新桶。后者会使用等倍扩容，重新申请一块和现有大小相同的新桶，也是使用渐进式扩容在插入或者删除操作中进行。</p>
+<h4 id="map-的存储是有序的吗">map 的存储是有序的吗？</h4>
+<p>​	存储结构上由于在扩容的时候会将 key 随机分流到另外两个桶，这导致了 key  的相对位置会发生改变，所以 key 是无序的。 遍历上来说，每次遍历是取一个随机数，随机从一个桶开始遍历。所以每次遍历出来的结果都是不一样的。额外一点是，当未发生扩容前，key 的相对位置是确定的。</p>
+<h4 id="map-是线程安全的吗">map 是线程安全的吗？</h4>
+<p>不是的，当赋值和删除时是置写操作位。当置了之后有别的协程用任何操作进行来时否都会报错。如果想要 map 线程安全，解决方案一般是用 <strong>sync.map</strong> 或者 <strong>互斥锁+map</strong></p>
+<h4 id="map-有缩容机制吗">map 有缩容机制吗？</h4>
+<p>go 的 map 没有缩容的机制。map 内部的存储结构是基于拉链法的，里面的元素如果被大批量的删除后，会触发等量扩容。等量扩容时会申请原有大小一样的内存块，渐进式的扩容过去，让原有的 map 中因为很多元素被删除后导致元素排序稀疏的情况经过 rehash 后会排序会变得紧密，减少溢出桶的使用。</p>
+<hr>
+<h3 id="channel">channel</h3>
+<p>//todo</p>
+<h3 id="gmp-模型中的-gmp-指的是什么">GMP 模型中的 GMP 指的是什么</h3>
+<ol>
+<li>G 协程</li>
+<li>M 线程</li>
+<li>P 调度器</li>
+<li>其中 M 可能会自旋，也有可能会休眠，GC 会把一些休眠的线程销毁。</li>
+</ol>
+<h4 id="gmp-模型中有什么组件">GMP 模型中有什么组件</h4>
+<p>除开 GMP ，还有 P 的 G 本地队列， G 的全局队列，P 列表（MAXPROCS 决定），M 列表（最大限定 1W，runtime/debug 可以设置）</p>
+<h4 id="gmp-模型中为什么需要-p">GMP 模型中为什么需要 P</h4>
+<p>假设没有 P 会发生什么事情，（没有 P 本地队列，没有 P 全局队列）</p>
+<ol>
+<li>出现资源竞争，由于没有 P 的本地以及全局队列的多级缓存，所以 G 都会放在一起，多个 M 去获取时会出现资源竞争</li>
+<li>协程切换资源消耗大，由于没有 P ，也没有 g0 去负责切换协程堆栈，相当于协程堆栈以及一些运行现场全部都在内核态去维护</li>
+<li>系统调用阻塞时切换成本高，M 会经常被阻塞和解阻塞切换内核态和用户态（类似于进程间切换），消耗大</li>
+</ol>
+<p>引入了 P 相当于解决了上面的大部分问题，甚至引入了新的特性去榨干 CPU 的性能</p>
+<ol>
+<li>引入本地队列和全局队列做多级缓存，获 取 G 时都会从本地队列获取，没有竞争，就算去全局队列获取也比较少的几率出现大量 P 去获取，降低了资源竞争的概率</li>
+<li>切换协程堆栈效率提高，使用了 g0 的协程负责去管理协程切换的堆栈以及保护现场的工作，进入内核态去切换的时候少了很多切换指令以及寄存器的使用，甚至引入了 g0 去负责做垃圾回收部分工作的职能</li>
+<li>系统调用的曲线救国方案，当 G 和 M 发生了系统调用时，P 会解绑 M ，带着本地队列的 P 去找空闲的 M 或者新创建的 M 去继续剩下的工作 还引入了「工作窃取」的功能，让基于和 M 绑定的 P 更加灵活的让每个 M 都能够最大限度的运行 task，榨干 CPU</li>
+</ol>
+<h4 id="p-调度器的设计策略">P 调度器的设计策略</h4>
+<ol>
+<li>work stealing 机制：当 P 本地队列无运行 G 时，会去其他线程绑定的 P 窃取 G ，若其他 P 本地队列也没有时会去 G 全局队列进行窃取</li>
+<li>hand off 机制：当 G 因为系统调用阻塞时，P 会和 M 解绑，将 G 和 M 绑定，P 会和空闲的线程进行绑定</li>
+<li>主动让出机制：当 G 占用了 CPU 超过 10MS 会主动让出（sysmon 轮询）</li>
+</ol>
+<h3 id="sync">sync</h3>
+<h4 id="syncmap-为什么是线程安全的">sync.map 为什么是线程安全的</h4>
+<p>因为原有的 map 会在赋值和删除的置写标志，置了后别的协程来做任何操作都会报错。所以引出了 sync.map 解决多协程问题。</p>
+<p><strong>sync.map 使用了读写分离来去保证线程安全的</strong>，sync.map 的数据结构分为读 map、写 map、还有互斥锁以及一个记录穿透次数的值。具体实现是每个协程来读取时都会先读取读部分的 kv，没有则去读写部分的 kv（操作写部分时都会上锁）。当穿透到写部分的次数大于写部分的长度时就会将写部分同步到读部分并且把写部分清空。所以多协程下一般都会先打到无锁的读部分，这能保证读取性能</p>
+<h4 id="syncmutex-作用">sync.mutex 作用</h4>
+<p>sync.mutex 是一把互斥锁，<strong>具体作用是锁住限定区域的代码逻辑</strong>，这段区域只能被一个协程占用。具体实现原理是，当一个协程去获取锁时（获取锁是 CAS 看锁的状态位），当获取不到会自选一定次数后加入到队列去休眠，当锁被释放时，正在自旋的协程 + 休眠中的任意一个协程会才能会被唤醒的会去抢锁，这是正常模式。还有一种模式是饥饿模式，由于被唤醒的协程有很大几率是抢不到正在自旋的协程的，所以当有协程超过 1 毫秒获取不到锁时将会进入饥饿模式。进入后会根据上面提到的队列中按照先进先出的模式依次获取锁，新来的协程直接进入队列中等待。当队列中已经清空或者队列中头个协程等待时间小于 1 毫秒后退化为正常模式。</p>
+<h4 id="syncrwmutex-作用">sync.RWmutex 作用</h4>
+<p>sync.RWmutex 是读写锁，用于解决 reader / wirter 问题（保证一个写协程和其他所有协程互斥的同步问题）。也就是可以读锁可以被多个协程拥有，但是只能一个协程拥有写锁。读写操作互斥、写写操作互斥。当有协程获取写锁时，会阻塞所有新来获取读锁的所有协程，并且会等所有正在拥有读锁的协程释放后才能获取到</p>
+<h4 id="syncsingleflight-作用">sync.singleflight 作用</h4>
+<p>sync.signleflight 能将对同一个资源访问 的多个请求合并为一个请求。常见的应用场景比如防缓冲击穿。具体的实现是使用了 map 对同一资源访问的请求进行去重，使用互斥锁让当个协程进入临界区后进行资源访问，其他线程阻塞等待资源访问完成后，共同拿到访问资源的结果并返回。</p>
+<hr>
+<h3 id="context-有什么作用">context 有什么作用</h3>
+<ol>
+<li>传递上下文。使用 context 传递业务参数是很不推荐的，但是比较常用的用来传递整个链路的 trace id 来作为链路追踪</li>
+<li>协程间同步信息。使用 context 后能在多个协程组成的协程树传递取消信号（通过 Cancel，超时计数器调用 Cancel 等）</li>
+</ol>
+<h4 id="goroutine">goroutine</h4>
+<h4 id="进程线程和协程的区别">进程、线程和协程的区别</h4>
+<p>进程是应用程序的实体，分配<strong>操作系统资源的最小单位</strong>，拥有自己的内存空间以及堆栈。</p>
+<p>线程是内核操作<strong>系统调度CPU</strong>的基本单位，在进程的内存空间及堆栈上进行执行运行。</p>
+<p>协程指的是用户态线程，由用户的应用程序进行调度。</p>
+<h4 id="协程的好处">协程的好处</h4>
+<ol>
+<li>切换上下文代价小，协程切换时不用进行系统调用，走内核态的指令。</li>
+<li>没有多线程的竞争资源锁问题，多线程竞争资源还会锁内存走系统调用，而协程如果竞争资源直接在当前线程上的进行判断就可以了</li>
+<li>内存占用小，只占用 2K，线程占用 2M</li>
+</ol>
+<h3 id="defer">defer</h3>
+<h4 id="defer底层原理">defer底层原理</h4>
+<p>1、每次defer语句在执⾏的时候，都会将函数进⾏&quot;压栈&quot;，函数参数会被拷⻉下来。当外层函数退出时，defer函数会按照定义的顺序逆序执⾏ 。如果defer执⾏的函数为nil，那么会在最终调⽤函数中产⽣panic。</p>
+<p>2、为什么defer要按照定义的顺序逆序执⾏
+后⾯定义的函数可能会依赖前⾯的资源，所以要先执⾏。如果前⾯先执⾏，释放掉这个依赖，那后⾯的函数就找不到它的依赖了。</p>
+<p>3、defer函数定义时，对外部变量的引⽤⽅式有两种
+分别是函数参数以及作为闭包引⽤。
+在作为函数参数的时候，在defer定义时就把值传递给defer，并被缓存起来。
+如果是作为闭包引⽤，则会在defer真正调⽤的时候，根据整个上下⽂去确定当前的值。</p>
+<p>4、defer后⾯的语句在执⾏的时候，函数调⽤的参数会被保存起来，也就是复制⼀份。
+在真正执⾏的时候，实际上⽤到的是复制的变ᰁ，也就是说，如果这个变ᰁ是⼀个&quot;值类型&quot;，那他就和定义的时候
+是⼀致的，如果是⼀个&quot;引⽤&quot;，那么就可能和定义的时候的值不⼀致</p>
+<h4 id="defer配合recover">defer配合recover</h4>
+<p>recover(异常捕获)可以让程序在引发panic的时候不会崩溃退出。 
+在引发panic的时候，panic会停掉当前正在执⾏的程序，但是，在这之前，它会有序的执⾏完当前goroutine的defer列表中的语句。 
+所以我们通常在defer⾥⾯挂⼀个recover，防⽌程序直接挂掉，类似于try&hellip;catch，但绝对不能像try&hellip;catch这样使⽤，因为panic的作⽤不是为了抓异常。recover函数只在defer的上下⽂中才有效，如果直接调⽤recover，会返回nil</p>
+<h3 id="interface">interface</h3>
+<p>接口分为侵入式和非侵入式。
+侵入式⽐如：java中的继承，必须显示的表明我要继承那个接⼝</p>
+<p>而像go和Python则使用了非侵入式接口。实现了接口的方法便实现了该接口，有利于代码复用。</p>
+<h3 id="goroutine-1">goroutine</h3>
+<h4 id="goroutine与线程的区别">goroutine与线程的区别</h4>
+<p>1、使⽤⽅⾯：
+（1）goroutine⽐线程更加轻量级，可以轻松创建⼗万、百万，不⽤担⼼资源问题 
+（2）goroutine与channel搭配使⽤，能够更加⽅便的实现⾼并发 
+2、实现⽅⾯：
+（1）从资源上讲</p>
+<ol>
+<li>线程栈的内存⼤⼩⼀般固定为2MB</li>
+<li>goroutine栈内存是可变的，初始的时候⼀般为2KB，最⼤可以扩⼤到1GB 
+（2）从调度上讲</li>
+<li>线程的调度由OS的内核完成</li>
+<li>goroutine调度由⾃身的调度器完成 
+goroutine与线程的联系：
+（1）多个goroutine绑定在同⼀个线程上⾯，按照⼀定的调度算法执⾏</li>
+</ol>
+<h4 id="goroutine调度机制">goroutine调度机制</h4>
+<p>三个基本概念：MPG
+1、M
+代表⼀个线程，所有的G(goroutine)任务最终都会在M上执⾏ 
+2、P（Processor）</p>
+<ol>
+<li>代表⼀个处理器，每个运⾏的M都必须绑定⼀个P。P的个数是GOMAXPOCS，最⼤为256，在程序启动时固
+定，⼀般不去修改。</li>
+<li>GOMAXPOCS默认值是当前电脑的核⼼数，单核CPU就只能设置为1，如果设置&gt;1，在GOMAXPOCS函数中
+也会被修改为1。</li>
+<li>M和P的个数不⼀定⼀样多，M&gt;=P，每⼀个P都会保存本地的G任务队列，另外还有⼀个全局的G任务队列。G
+任务队列可以认为线程池中的线程队列。
+3、G（Goroutine）</li>
+<li>代表⼀个goroutine对象，每次go调⽤的时候都会创建⼀个G对象</li>
+</ol>
+<h4 id="goroutine调度流程">goroutine调度流程</h4>
+<p>1、启动⼀个goroutine
+也就是创建⼀个G对象，然后加⼊到本地队列或者全局队列中 
+2、查找是否有空闲的P
+如果没有就直接返回
+如果有，就⽤系统API创建⼀个M（线程） 
+3、由这个刚创建的M循环执⾏能找到的G任务 
+4、G任务执⾏的循序
+先从本地队列找，本地没有找到
+就从全局队列找，如果还没有找到
+就去其他P中找
+5、所有的G任务的执⾏是按照go的调⽤顺序执⾏的 
+6、如果⼀个系统调⽤或者G任务执⾏的时间太⻓，就会⼀直占⽤这个线程
+（1）在启动的时候，会专⻔创建⼀个线程sysmon，⽤来监控和管理，在内部挨个循环
+（2）sysmon主要执⾏任务（中断G任务）</p>
+<ol>
+<li>记录所有P的G任务并⽤schedtick变ᰁ计数，该变ᰁ在每执⾏⼀个G任务之后递增</li>
+<li>如果schedtick⼀直没有递增，说明这个P⼀直在执⾏同⼀个任务</li>
+<li>如果持续超过10ms，就在这个G任务的栈信息加⼀个标记</li>
+<li>G任务在执⾏的时候，会检查这个标记，然后中断⾃⼰，把⾃⼰添加到队列的末尾，执⾏下⼀个G
+（3）G任务的恢复</li>
+<li>中断的时候将寄存器中栈的信息保存到⾃⼰G对象⾥⾯</li>
+<li>当两次轮到⾃⼰执⾏的时候，将⾃⼰保存的栈信息复制到寄存器⾥⾯，这样就可以接着上⼀次运⾏
+goroutine是按照抢占式进⾏调度的，⼀个goroutine最多执⾏10ms就会换下⼀个</li>
+</ol>
+<h3 id="gc">GC</h3>
+<p>内存管理是程序员开发应用的一大难题。传统的系统级编程语言（主要指C/C++）中，程序开发者必须对内存小心的进行管理操作，控制内存的申请及释放。因为稍有不慎，就可能产生内存泄露问题，这种问题不易发现并且难以定位，一直成为困扰程序开发者的噩梦。如何解决这个头疼的问题呢？
+过去一般采用两种办法：</p>
+<p>内存泄露检测工具。这种工具的原理一般是静态代码扫描，通过扫描程序检测可能出现内存泄露的代码段。然而检测工具难免有疏漏和不足，只能起到辅助作用。
+智能指针。这是 c++ 中引入的自动内存管理方法，通过拥有自动内存管理功能的指针对象来引用对象，程序员不用太关注内存的释放，而达到内存自动释放的目的。这种方法是采用最广泛的做法，但是对程序开发者有一定的学习成本（并非语言层面的原生支持），而且一旦有忘记使用的场景依然无法避免内存泄露。</p>
+<p>为了解决这个问题，后来开发出来的几乎所有新语言（java，python，php等等）都引入了语言层面的自动内存管理 – 也就是语言的使用者只用关注内存的申请而不必关心内存的释放，内存释放由虚拟机（virtual machine）或运行时（runtime）来自动进行管理。而这种对不再使用的内存资源进行自动回收的行为就被称为垃圾回收。</p>
+<h4 id="常用的垃圾回收的方法">常用的垃圾回收的方法:</h4>
+<ol>
+<li>引用计数（reference counting）
+这是最简单的一种垃圾回收算法，和之前提到的智能指针异曲同工。对每个对象维护一个引用计数，当引用该对象的对象被销毁或更新时被引用对象的引用计数自动减一，当被引用对象被创建或被赋值给其他对象时引用计数自动加一。当引用计数为0时则立即回收对象。
+这种方法的优点是实现简单，并且内存的回收很及时。这种算法在内存比较紧张和实时性比较高的系统中使用的比较广泛，如ios cocoa框架，php，python等。
+但是简单引用计数算法也有明显的缺点：</li>
+</ol>
+<p>频繁更新引用计数降低了性能。
+一种简单的解决方法就是编译器将相邻的引用计数更新操作合并到一次更新；还有一种方法是针对频繁发生的临时变量引用不进行计数，而是在引用达到0时通过扫描堆栈确认是否还有临时对象引用而决定是否释放，等等还有很多其他方法。
+循环引用。
+当对象间发生循环引用时引用链中的对象都无法得到释放。最明显的解决办法是避免产生循环引用，如cocoa引入了strong指针和weak指针两种指针类型。或者系统检测循环引用并主动打破循环链。当然这也增加了垃圾回收的复杂度。</p>
+<ol start="2">
+<li>
+<p>标记-清除（mark and sweep）
+标记-清除（mark and sweep）分为两步，标记从根变量开始迭代到遍历所有被引用的对象，对能够通过应用遍历访问到的对象都进行标记为“被引用”；标记完成后进行清除操作，对没有标记过的内存进行回收（回收同时可能伴有碎片整理操作）。这种方法解决了引用计数的不足，但是也有比较明显的问题：每次启动垃圾回收都会暂停当前所有的正常代码执行，回收使系统响应能力大大降低！当然后续也出现了很多mark&amp;sweep算法的变种（如三色标记法）优化了这个问题。</p>
+</li>
+<li>
+<p>分代搜集（generation）
+java的jvm 就使用的分代回收的思路。在面向对象编程语言中，绝大多数对象的生命周期都非常短。分代收集的基本思想是，将堆划分为两个或多个称为代（generation）的空间。新创建的对象存放在称为新生代（young generation）中（一般来说，新生代的大小会比 老年代小很多），随着垃圾回收的重复执行，生命周期较长的对象会被提升（promotion）到老年代中（这里用到了一个分类的思路，这个是也是科学思考的一个基本思路）。
+因此，新生代垃圾回收和老年代垃圾回收两种不同的垃圾回收方式应运而生，分别用于对各自空间中的对象执行垃圾回收。新生代垃圾回收的速度非常快，比老年代快几个数量级，即使新生代垃圾回收的频率更高，执行效率也仍然比老年代垃圾回收强，这是因为大多数对象的生命周期都很短，根本无需提升到老年代。
+Golang 1.5后，采取的是“非分代的、非移动的、并发的、三色的”标记清除垃圾回收算法。</p>
+</li>
+</ol>
+<p>golang 中的 gc 基本上是标记清除的过程：
+gc的过程一共分为四个阶段：</p>
+<p>栈扫描（开始时STW）
+第一次标记（并发）
+第二次标记（STW）
+清除（并发）
+整个进程空间里申请每个对象占据的内存可以视为一个图，初始状态下每个内存对象都是白色标记。</p>
+<p>先STW，做一些准备工作，比如 enable write barrier。然后取消STW，将扫描任务作为多个并发的goroutine立即入队给调度器，进而被CPU处理
+第一轮先扫描root对象，包括全局指针和 goroutine 栈上的指针，标记为灰色放入队列
+第二轮将第一步队列中的对象引用的对象置为灰色加入队列，一个对象引用的所有对象都置灰并加入队列后，这个对象才能置为黑色并从队列之中取出。循环往复，最后队列为空时，整个图剩下的白色内存空间即不可到达的对象，即没有被引用的对象；
+第三轮再次STW，将第二轮过程中新增对象申请的内存进行标记（灰色），这里使用了write barrier（写屏障）去记录
+Golang gc 优化的核心就是尽量使得 STW(Stop The World) 的时间越来越短。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-03 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/goetc/" data-title="go" data-hashtags="go"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/goetc/" data-hashtag="go"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/goetc/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/goetc/" data-title="go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/goetc/" data-title="go"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/goetc/" data-title="go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql/" class="prev" rel="prev" title="MYSQL"><i class="fas fa-angle-left fa-fw"></i>MYSQL</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

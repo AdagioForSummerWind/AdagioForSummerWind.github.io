@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>计网 - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/%E8%AE%A1%E7%BD%91/</link>
+        <description>计网 - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/%E8%AE%A1%E7%BD%91/" rel="self" type="application/rss+xml" /><item>
+    <title>计网</title>
+    <link>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</guid>
+    <description><![CDATA[计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数]]></description>
+</item></channel>
+</rss>

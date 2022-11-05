@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>计网 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="计网" />
+<meta property="og:description" content="计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
+<meta property="article:modified_time" content="2022-11-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="计网"/>
+<meta name="twitter:description" content="计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" /><link rel="prev" href="https://jefofrank.xyz/interesting_talk_linux/" /><link rel="next" href="https://jefofrank.xyz/os/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计网",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  28609 ,
+        "url": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">计网</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%BD%91/"><i class="far fa-folder fa-fw"></i>计网</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 28609 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 58 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#计网">计网</a>
+      <ul>
+        <li><a href="#get和post区别">Get和Post区别</a></li>
+        <li><a href="#http请求的完全过程">Http请求的完全过程</a></li>
+        <li><a href="#计算机网络的五层模型">计算机网络的五层模型</a></li>
+        <li><a href="#tcp和udp区别">tcp和udp区别</a></li>
+        <li><a href="#tcp和udp的优点">tcp和udp的优点</a></li>
+        <li><a href="#三次握手">三次握手</a></li>
+        <li><a href="#为什么不能两次握手">为什么不能两次握手</a></li>
+        <li><a href="#四次挥手">四次挥手</a></li>
+        <li><a href="#为什么连接的时候是三次握手关闭的时候却是四次握手">为什么连接的时候是三次握手，关闭的时候却是四次握手</a></li>
+        <li><a href="#1-osi与tcpip-模型">1. OSI与TCP/IP 模型</a></li>
+        <li><a href="#2-常见网络服务分层">2. 常见网络服务分层</a></li>
+        <li><a href="#3-tcp三次握手">3. TCP三次握手</a></li>
+        <li><a href="#4-四次挥手过程">4. 四次挥手过程：</a></li>
+        <li><a href="#5-为什么连接的时候是三次握手关闭的时候却是四次握手">5. 为什么连接的时候是三次握手，关闭的时候却是四次握手?</a></li>
+        <li><a href="#6-如何查看time-wait状态的链接数量">6. 如何查看TIME-WAIT状态的链接数量？</a></li>
+        <li><a href="#7-为什么会time-wait过多解决方法是怎样的">7. 为什么会TIME-WAIT过多？解决方法是怎样的？</a></li>
+        <li><a href="#8-半连接洪泛攻击问题以及如何解决syn_cookie">8. 半连接，洪泛攻击问题以及如何解决（syn_cookie）</a></li>
+        <li><a href="#9-为什么客户端的time-wait状态必须等待2msl-">9. 为什么客户端的TIME-WAIT状态必须等待2MSL ?</a></li>
+        <li><a href="#10-4g切换wifi会发生什么">10. 4g切换wifi会发生什么</a></li>
+        <li><a href="#11-tcp与udp区别及场景">11. TCP与UDP区别及场景</a></li>
+        <li><a href="#12-tcp滑动窗口拥塞控制">12. TCP滑动窗口，拥塞控制</a></li>
+        <li><a href="#13-tcp粘包原因和解决方法">13. TCP粘包原因和解决方法</a></li>
+        <li><a href="#14-tcpudp报文格式">14. TCP、UDP报文格式</a></li>
+        <li><a href="#15-tcp协议如何保证可靠传输机制">15. TCP协议如何保证可靠传输机制？</a></li>
+        <li><a href="#16-tcp的滑动窗口">16. TCP的滑动窗口?</a></li>
+        <li><a href="#17-详细讲一下拥塞控制-为何要进行拥塞控制">17. 详细讲一下拥塞控制? 为何要进行拥塞控制？</a></li>
+        <li><a href="#18-tcp拥塞控制4种算法">18. TCP拥塞控制4种算法</a></li>
+        <li><a href="#http协议">HTTP协议</a>
+          <ul>
+            <li><a href="#1-http协议10--11--20">1. HTTP协议1.0  1.1  2.0</a></li>
+            <li><a href="#2-http10和http11的主要区别如下">2. HTTP1.0和HTTP1.1的主要区别如下：</a></li>
+            <li><a href="#3-http11和http20的主要区别">3. HTTP1.1和HTTP2.0的主要区别：</a></li>
+            <li><a href="#4-http和-https的区别">4. HTTP和 HTTPS的区别：</a></li>
+            <li><a href="#5-https-的缺点">5. HTTPS 的缺点：</a></li>
+            <li><a href="#6-https链接建立的过程">6. HTTPS链接建立的过程：</a></li>
+            <li><a href="#7-http常见响应状态码">7. HTTP常见响应状态码</a></li>
+            <li><a href="#8-状态码301和302的区别是什么">8. 状态码301和302的区别是什么?</a></li>
+            <li><a href="#9-对称加密算法与非对称加密算法的区别">9. 对称加密算法与非对称加密算法的区别</a></li>
+            <li><a href="#10-http请求方法">10. HTTP请求方法：</a></li>
+            <li><a href="#11-get和post请求区别">11. Get和Post请求区别</a></li>
+            <li><a href="#12-get-和-post-方法都是安全和幂等的吗">12. GET 和 POST 方法都是安全和幂等的吗？</a></li>
+            <li><a href="#13-重定向和转发区别">13. 重定向和转发区别</a></li>
+            <li><a href="#14-cookie和session区别">14. Cookie和Session区别</a></li>
+            <li><a href="#15-浏览器输入url过程">15. 浏览器输入URL过程</a></li>
+            <li><a href="#16-dns协议是tcp还是udp">16. DNS协议是TCP还是UDP?</a></li>
+            <li><a href="#17-arp协议如何找到对应ip地址和mac的映射的">17. ARP协议如何找到对应IP地址和mac的映射的</a></li>
+            <li><a href="#18-rarp-协议你知道是什么吗">18. RARP 协议你知道是什么吗？</a></li>
+            <li><a href="#19-什么是ddos攻击">19. 什么是DDos攻击?</a></li>
+            <li><a href="#20-什么是xss攻击">20. 什么是XSS攻击?</a></li>
+            <li><a href="#21-sql注入是什么如何避免sql注入">21. SQL注入是什么，如何避免SQL注入?</a></li>
+            <li><a href="#22-网络编程socket客户端和服务端通信过程分别调用了哪些函数作用是什么">22. 网络编程socket，客户端和服务端通信过程，分别调用了哪些函数，作用是什么</a></li>
+            <li><a href="#23-负载均衡算法有哪些">23. 负载均衡算法有哪些?</a></li>
+          </ul>
+        </li>
+        <li><a href="#什么是网络编程">什么是网络编程</a>
+          <ul>
+            <li><a href="#网络编程中两个主要的问题">网络编程中两个主要的问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#网络协议是什么">网络协议是什么</a>
+          <ul>
+            <li><a href="#为什么要对网络协议分层">为什么要对网络协议分层</a></li>
+          </ul>
+        </li>
+        <li><a href="#tcp--udp">TCP / UDP</a>
+          <ul>
+            <li><a href="#什么是tcpip和udp">什么是TCP/IP和UDP</a></li>
+            <li><a href="#tcp与udp区别">TCP与UDP区别：</a></li>
+            <li><a href="#tcp和udp的应用场景">TCP和UDP的应用场景</a></li>
+            <li><a href="#形容一下tcp和udp">形容一下TCP和UDP</a></li>
+            <li><a href="#运行在tcp-或udp的应用层协议分析">运行在TCP 或UDP的应用层协议分析</a></li>
+            <li><a href="#什么是arp协议-address-resolution-protocol">什么是ARP协议 (Address Resolution Protocol)？</a></li>
+            <li><a href="#从输入址到获得页面的过程">从输入址到获得页面的过程?</a></li>
+          </ul>
+        </li>
+        <li><a href="#tcp的三次握手">TCP的三次握手</a>
+          <ul>
+            <li><a href="#什么是tcp的三次握手">什么是TCP的三次握手</a></li>
+            <li><a href="#用现实理解三次握手的具体细节">用现实理解三次握手的具体细节</a></li>
+            <li><a href="#为什么不能把服务器发送的ack和fin合并起来变成三次挥手close_wait状态意义是什-么">为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什 么）？</a></li>
+            <li><a href="#如果第二次挥手时服务器的ack没有送达客户端会怎样">如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</a></li>
+            <li><a href="#客户端time_wait状态的意义是什么">客户端TIME_WAIT状态的意义是什么？</a></li>
+          </ul>
+        </li>
+        <li><a href="#socket">Socket</a>
+          <ul>
+            <li><a href="#什么是socket">什么是Socket</a></li>
+            <li><a href="#socket属于网络的那个层面">socket属于网络的那个层面</a></li>
+            <li><a href="#socket通讯的过程">Socket通讯的过程</a></li>
+            <li><a href="#tcp协议socket代码示例">TCP协议Socket代码示例：</a></li>
+            <li><a href="#5-udp协议socket代码示例">5 UDP协议Socket代码示例：</a></li>
+            <li><a href="#6-socket的常用类">6 Socket的常用类</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-http">3. HTTP</a>
+          <ul>
+            <li><a href="#什么是http协议">什么是Http协议？</a></li>
+            <li><a href="#socket和http的区别和应用场景">Socket和http的区别和应用场景</a></li>
+            <li><a href="#什么是http的请求体">什么是http的请求体？</a></li>
+            <li><a href="#https工作原理">HTTPS工作原理</a></li>
+            <li><a href="#一次完整的http请求所经历几个步骤">一次完整的HTTP请求所经历几个步骤?</a></li>
+            <li><a href="#常用http状态码是怎么分类的有哪些常见的状态码">常用HTTP状态码是怎么分类的，有哪些常见的状态码？</a></li>
+            <li><a href="#http版本的对比">http版本的对比</a></li>
+            <li><a href="#什么是对称加密与非对称加密">什么是对称加密与非对称加密</a></li>
+            <li><a href="#cookie和session对于http有什么用">cookie和session对于HTTP有什么用？</a></li>
+            <li><a href="#什么是cookie">什么是cookie</a></li>
+            <li><a href="#什么是session">什么是session</a></li>
+            <li><a href="#cookie与session区别">cookie与session区别</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="计网">计网</h2>
+<h3 id="get和post区别">Get和Post区别</h3>
+<ol>
+<li>Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。</li>
+<li>Get传送的数据量较小，这主要是因为受URL长度限制；Post传送的数据量较大，一般被默认为不受限制。</li>
+<li>Get限制Form表单的数据集的值必须为ASCII字符；而Post支持整个ISO10646字符集。</li>
+<li>Get执行效率却比Post方法好。Get是form提交的默认方法。</li>
+<li>GET产生一个TCP数据包；POST产生两个TCP数据包。（非必然，客户端可灵活决定）</li>
+</ol>
+<h3 id="http请求的完全过程">Http请求的完全过程</h3>
+<ol>
+<li>浏览器根据域名解析IP地址（DNS）,并查DNS缓存</li>
+<li>浏览器与WEB服务器建立一个TCP连接</li>
+<li>浏览器给WEB服务器发送一个HTTP请求（GET/POST）：一个HTTP请求报文由请求行（request line）、请求头部（headers）、空行（blank line）和请求数据（request body）4个部分组成。</li>
+<li>服务端响应HTTP响应报文，报文由状态行（status line）、相应头部（headers）、空行（blank line）和响应数据（response body）4个部分组成。</li>
+<li>浏览器解析渲染</li>
+</ol>
+<h3 id="计算机网络的五层模型">计算机网络的五层模型</h3>
+<ol>
+<li>应用层：为操作系统或网络应用程序提供访问网络服务的接口 ，通过应用进程间的交互完成特定网络应用。应用层定义的是应用进程间通信和交互的规则。（HTTP，FTP，SMTP，RPC）</li>
+<li>传输层：负责向两个主机中进程之间的通信提供通用数据服务。（TCP,UDP）</li>
+<li>网络层：负责对数据包进行路由选择和存储转发。（IP，ICMP(ping命令)）</li>
+<li>数据链路层：两个相邻节点之间传送数据时，数据链路层将网络层交下来的IP数据报组装成帧，在两个相邻的链路上传送帧（frame)。每一帧包括数据和必要的控制信息。</li>
+<li>物理层：物理层所传数据单位是比特（bit)。物理层要考虑用多大的电压代表1 或 0 ，以及接受方如何识别发送方所发送的比特。</li>
+</ol>
+<h3 id="tcp和udp区别">tcp和udp区别</h3>
+<ol>
+<li>TCP面向连接，UDP是无连接的，即发送数据之前不需要建立连接。</li>
+<li>TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付。</li>
+<li>TCP面向字节流，实际上是TCP把数据看成一连串无结构的字节流，UDP是面向报文的，UDP没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时视频会议等）</li>
+<li>每一条TCP连接只能是点到点的，UDP支持一对一，一对多，多对一和多对多的交互通信。</li>
+<li>TCP首部开销20字节，UDP的首部开销小，只有8个字节。</li>
+<li>TCP的逻辑通信信道是全双工的可靠信道，UDP则是不可靠信道。</li>
+</ol>
+<h3 id="tcp和udp的优点">tcp和udp的优点</h3>
+<ul>
+<li>TCP的优点： 可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。 TCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，确认机制、重传机制、拥塞控制机制等都会消耗大量的时间，而且要在每台设备上维护所有的传输连接，事实上，每个连接都会占用系统的CPU、内存等硬件资源。 而且，因为TCP有确认机制、三次握手机制，这些也导致TCP容易被人利用，实现DOS、DDOS、CC等攻击。</li>
+<li>UDP的优点： 快，比TCP稍安全 UDP没有TCP的握手、确认、窗口、重传、拥塞控制等机制，UDP是一个无状态的传输协议，所以它在传递数据时非常快。没有TCP的这些机制，UDP较TCP被攻击者利用的漏洞就要少一些。但UDP也是无法避免攻击的，比如：UDP Flood攻击…… UDP的缺点： 不可靠，不稳定 因为UDP没有TCP那些可靠的机制，在数据传递时，如果网络质量不好，就会很容易丢包。 基于上面的优缺点，那么： 什么时候应该使用TCP： 当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。 在日常生活中，常见使用TCP协议的应用如下： 浏览器，用的HTTP FlashFXP，用的FTP Outlook，用的POP、SMTP Putty，用的Telnet、SSH QQ文件传输。什么时候应该使用UDP： 当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频 TFTP。</li>
+</ul>
+<h3 id="三次握手">三次握手</h3>
+<ul>
+<li>第一次握手：建立连接时，客户端发送syn包（syn=x）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
+<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=y+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
+</ul>
+<h3 id="为什么不能两次握手">为什么不能两次握手</h3>
+<p>TCP是一个双向通信协议，通信双方都有能力发送信息，并接收响应。如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认</p>
+<h3 id="四次挥手">四次挥手</h3>
+<ol>
+<li>客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</li>
+<li>服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</li>
+<li>客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</li>
+<li>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</li>
+<li>客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。<strong>注意</strong>此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</li>
+<li>服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些</li>
+</ol>
+<h3 id="为什么连接的时候是三次握手关闭的时候却是四次握手">为什么连接的时候是三次握手，关闭的时候却是四次握手</h3>
+<p>因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&ldquo;你发的FIN报文我收到了&rdquo;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
+<h3 id="1-osi与tcpip-模型">1. OSI与TCP/IP 模型</h3>
+<p>OSI七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<p>TCP/IP五层：物理层、数据链路层、网络层、传输层、应用层</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg, https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220408144411.jpeg" /></p>
+<p>七层网络体系结构各层的主要功能：</p>
+<ul>
+<li>应用层：为应用程序提供交互服务。在互联网中的应用层协议很多，如域名系统<code>DNS</code>， 支持万维网应用的<code>HTTP</code>协议，支持电子邮件的<code>SMTP</code>协议等。</li>
+<li>表示层：主要负责数据格式的转换，如加密解密、转换翻译、压缩解压缩等。</li>
+<li>会话层：负责在网络中的两节点之间建立、维持和终止通信，如服务器验证用户登录便是由会话层完成的。</li>
+<li>运输层：有时也译为传输层，向主机进程提供通用的数据传输服务。该层主要有以下两种协议:
+<ul>
+<li><code>TCP</code>：提供面向连接的、可靠的数据传输服务;</li>
+<li><code>UDP</code>：提供无连接的、尽最大努力的数据传输服务，但不保证数据传输的可靠性。</li>
+</ul>
+</li>
+<li>网络层：选择合适的路由和交换结点，确保数据及时传送。主要包括<code>IP</code>协议。</li>
+<li>数据链路层：数据链路层通常简称为链路层。将网络层传下来的<code>IP</code>数据包组装成帧，并再相邻节点的链路上传送帧。</li>
+<li>物理层：实现相邻节点间比特流的透明传输，尽可能屏蔽传输介质和通信手段的差异。</li>
+</ul>
+<h3 id="2-常见网络服务分层">2. 常见网络服务分层</h3>
+<p>应用层：<code>HTTP</code>、<code>DNS</code>、<code>FTP</code>、<code>SMTP</code></p>
+<p>传输层：<code>TCP </code>、<code>UDP</code></p>
+<p>网络层：<code>IP</code>、<code>ICMP </code>、路由器、防火墙</p>
+<p>数据链路层：网卡、网桥、交换机</p>
+<p>物理层：中继器、集线器</p>
+<h3 id="3-tcp三次握手">3. TCP三次握手</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png" /></p>
+<p><strong>三次握手过程：</strong></p>
+<ol>
+<li>
+<p>客户端——发送带有<code>SYN</code>标志的数据包——服务端 <strong>一次握手</strong> 客户端进入<code>syn_sent</code>状态</p>
+</li>
+<li>
+<p>服务端——发送带有<code>SYN/ACK</code>标志的数据包——客户端  <strong>二次握手</strong> 服务端进入<code>syn_rcvd</code></p>
+</li>
+<li>
+<p>客户端——发送带有<code>ACK</code>标志的数据包——服务端 <strong>三次握手</strong> 连接就进入<code>Established</code>状态</p>
+</li>
+</ol>
+<p><strong>为什么三次：</strong>  主要是为了建立可靠的通信信道，保证客户端与服务端同时具备发送、接收数据的能力。</p>
+<p><strong>为什么两次不行？</strong></p>
+<ol>
+<li>
+<p>防止已失效的请求报文又传送到了服务端，建立了多余的链接，浪费资源。</p>
+</li>
+<li>
+<p><strong>两次握手只能保证单向连接是畅通的。</strong>（为了实现可靠数据传输， <code>TCP </code>协议的通信双方， 都必须维护一个序列号， 以标识发送出去的数据包中， 哪些是已经被对方收到的。三次握手的过程即是通信双方 相互告知序列号起始值， 并确认对方已经收到了序列号起始值的必经步骤；如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认）。</p>
+</li>
+</ol>
+<h3 id="4-四次挥手过程">4. 四次挥手过程：</h3>
+<ol>
+<li>客户端——发送带有<code>FIN</code>标志的数据包——服务端，关闭与服务端的连接 ，客户端进入<code>FIN-WAIT-1</code>状态</li>
+<li>服务端收到这个 <code>FIN</code>，它发回⼀个 <code>ACK</code>，确认序号为收到的序号加<code>1</code>，服务端就进入了<code>CLOSE-WAIT</code>状态</li>
+<li>服务端——发送⼀个<code>FIN</code>数据包——客户端，关闭与客户端的连接，客户端就进入<code>FIN-WAIT-2</code>状态</li>
+<li>客户端收到这个 <code>FIN</code>，发回 <code>ACK </code>报⽂确认，并将确认序号设置为收到序号加<code>1</code>，客户端进入<code>TIME-WAIT</code>状态</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png" /></p>
+<p>**为什么四次：**因为需要确保客户端与服务端的数据能够完成传输。</p>
+<p><strong>CLOSE-WAIT：</strong> 这种状态的含义其实是表示在<strong>等待关闭</strong>。</p>
+<p><strong>TIME-WAIT：</strong> 为了解决网络的丢包和网络不稳定所带来的其他问题，确保连接方能在时间范围内，关闭自己的连接。</p>
+<h3 id="5-为什么连接的时候是三次握手关闭的时候却是四次握手">5. 为什么连接的时候是三次握手，关闭的时候却是四次握手?</h3>
+<p>服务器在收到客户端的<code>FIN</code>报文段后，可能还有一些数据要传输，所以不能马上关闭连接，但是会做出应答，返回<code>ACK</code>报文段。</p>
+<p>接下来可能会继续发送数据，在数据发送完后，服务器会向客户端发送<code>FIN</code>报文，表示数据已经发送完毕，请求关闭连接。服务器的<code>ACK</code>和<code>FIN</code>一般都会分开发送，从而导致多了一次，因此一共需要四次挥手。</p>
+<h3 id="6-如何查看time-wait状态的链接数量">6. 如何查看TIME-WAIT状态的链接数量？</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">netstat -an <span class="p">|</span> grep TIME_WAIT <span class="p">|</span> wc -l  //查看连接数等待time_wait状态连接数
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-为什么会time-wait过多解决方法是怎样的">7. 为什么会TIME-WAIT过多？解决方法是怎样的？</h3>
+<p>**可能原因：**高并发短连接的<code>TCP</code>服务器上，当服务器处理完请求后立刻按照主动正常关闭连接</p>
+<p>**解决：**负载均衡服务器；Web服务器首先关闭来自负载均衡服务器的连接</p>
+<h3 id="8-半连接洪泛攻击问题以及如何解决syn_cookie">8. 半连接，洪泛攻击问题以及如何解决（syn_cookie）</h3>
+<p>在三次握手的过程中，服务器为了响应一个受到的<code>SYN</code>报文段，会分配并初始化连接变量和缓存，然后服务器发送一个<code>SYN/ACK</code>报文段进行响应，并等待客户端的<code>ACK</code>报文段。如果客户不发送<code>ACK</code>来完成该三次握手的第三步，最终(通常在一分多钟之后)服务器将终止该半开连接并回收资源。这种<code>TCP</code>连接管理协议的特性就会有这样一个漏洞，攻击者发送大量的<code>TCP SYN</code>报文段，而不完成第三次握手的步骤。随着这种<code>SYN</code>报文段的不断到来，服务器不断为这些半开连接分配资源，从而导致服务器连接资源被消耗殆尽。这种攻击就是<code>SYN</code>泛供攻击。</p>
+<p>为了应对这种攻击，现在有一种<strong>有效的防御系统，称为SYN cookie</strong>。SYN cookie的工作方式如下：</p>
+<ol>
+<li>当服务器接收到一个<code>SYN</code>报文段时，它并不知道该报文段是来自一个合法的用户，还是这种SYN洪泛攻击的一部分。因为服务器不会为该报文段生成一个半开的连接。相反，服务器生成一个初始<code>TCP</code>序列号，该序列号是SYN报文段的源IP地址和目的IP地址，源端口号和目的端口号以及仅有服务器知道的秘密数的复杂函数(散列函数)。这种精心制作的初始序列号称为为“cookie”。服务器则发送具有这种特殊初始序号的<code>SYN/ACK</code>报文分组。服务器并不记忆该cookie或任何对应于SYN的其他状态信息。</li>
+<li>如果该客户是合法的，则它将返回一个<code>ACK</code>报文段。当服务器收到该<code>ACK</code>报文段，需要验证该ACK是与前面发送的某个<code>SYN</code>相对应。由于服务器并不维护有关<code>SYN</code>报文段的记忆，所以服务器通过使用<code>SYN/ACK</code>报文段中的源和目的IP地址与端口号以及秘密数运行相同的散列函数。如果这个函数的结果(cookie值)加1和在客户的ACK报文段中的确认值相同的话，那么服务器就会认为该<code>ACK</code>对应于较早的<code>SYN</code>报文段，因此它是合法的。服务器则会生成一个套接字的全开连接。</li>
+<li>另一方面，如果客户没有返回一个<code>ACK</code>报文段，说明之前的<code>SYN</code>报文段是洪泛攻击的一部分，但是它并没有对服务器产生危害，因为服务器没有为它分配任何资源。</li>
+</ol>
+<h3 id="9-为什么客户端的time-wait状态必须等待2msl-">9. 为什么客户端的TIME-WAIT状态必须等待2MSL ?</h3>
+<p>主要有两个原因:</p>
+<ol>
+<li><strong>为了保证客户端发送的最后一个ACK报文段能够达到服务器。</strong>
+这个<code>ACK</code>报文段可能丢失，因而使处在<code>LAST-ACK</code>状态的服务器收不到确认。服务器会超时重传<code>FIN+ACK</code>报文段，客户端就能在2MSL时间内收到这个重传的<code>FIN+ACK</code>报文段，接着客户端重传一次确认，重启计时器。最好，客户端和服务器都正常进入到<code>CLOSED</code>状态。如果客户端在<code>TIME-WAIT</code>状态不等待一段时间，而是再发送完<code>ACK</code>报文后立即释放连接，那么就无法收到服务器重传的<code>FIN+ACK</code>报文段，因而也不会再发送一次确认报文。这样，服务器就无法按照正常步骤进入<code>CLOSED</code>状态。</li>
+<li><strong>防止已失效的连接请求报文段出现在本连接中。</strong>
+客户端在发送完最后一个<code>ACK</code>确认报文段后，再经过时间<code>2MSL</code>，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样就可以使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
+</ol>
+<h3 id="10-4g切换wifi会发生什么">10. 4g切换wifi会发生什么</h3>
+<p>当移动设备的网络从<code>4G</code>切换到<code>WiFi</code>时，意味着IP地址变化了，那么必须要断开连接，然后重新连接，而建立连接的过程包含TCP三次握手和TLS四次挥手的时延，以及TCP慢启动的减速过程，给用户的感觉就是突然网络卡顿了一下，所以说，迁移的成本是很高的。</p>
+<p><strong>http3是怎么解决连接迁移</strong></p>
+<p><code>HTTP3</code>中<code>QUIC</code>协议没有用四元组的方式来&quot;绑定”连接，而是通过连接ID来标记通信的两个端点，客户端和服务器可以各自选择一组ID来标记自己，因此即使移动设备的网络变化后，导致IP地址变化了，只要仍保有上下文信息(比如连接ID、TLS 密钥等)，就可以&quot;无缝&quot;地复用原连接，消除重连的成本，没有丝毫卡顿感，达到了<strong>连接迁移</strong>的功能。</p>
+<h3 id="11-tcp与udp区别及场景">11. TCP与UDP区别及场景</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>性能</th>
+<th>应用过场景</th>
+<th>首部字节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>面向连接、可靠、字节流</td>
+<td>传输效率慢、所需资源多</td>
+<td>文件、邮件传输</td>
+<td>20-60</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>无连接、不可靠、数据报文段</td>
+<td>传输效率快、所需资源少</td>
+<td>语音、视频、直播</td>
+<td>8个字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>基于TCP的协议：</strong><code>HTTP</code>、<code>FTP</code>、<code>SMTP</code></p>
+<p><strong>基于UDP的协议：</strong> <code>RIP</code>、<code>DNS</code>、<code>SNMP</code></p>
+<h3 id="12-tcp滑动窗口拥塞控制">12. TCP滑动窗口，拥塞控制</h3>
+<p>**TCP通过：**应用数据分割、对数据包进行编号、校验和、流量控制、拥塞控制、超时重传等措施保证数据的可靠传输。</p>
+<p>**拥塞控制目的：**为了防止过多的数据注入到网络中，避免网络中的路由器、链路过载。</p>
+<p>**拥塞控制过程：**TCP维护一个拥塞窗口，该窗口随着网络拥塞程度动态变化，通过慢开始、拥塞避免等算法减少网络拥塞的发生。</p>
+<h3 id="13-tcp粘包原因和解决方法">13. TCP粘包原因和解决方法</h3>
+<p><strong>TCP粘包是指</strong>：发送方发送的若干包数据到接收方接收时粘成一包</p>
+<p><strong>发送方原因：</strong></p>
+<p>TCP默认使用Nagle算法（主要作用：减少网络中报文段的数量）：</p>
+<p>收集多个小分组，在一个确认到来时一起发送、导致发送方可能会出现粘包问题</p>
+<p><strong>接收方原因：</strong></p>
+<p>TCP将接收到的数据包保存在接收缓存里，如果TCP接收数据包到缓存的速度大于应用程序从缓存中读取数据包的速度，多个包就会被缓存，应用程序就有可能读取到多个首尾相接粘到一起的包。</p>
+<ul>
+<li>
+<p><strong>传输层的UDP协议不会发生粘包或者拆包问题</strong></p>
+<p><code>UDP</code>是基于报文发送的，在<code>UDP</code>首部采用了16bit来指示<code>UDP</code>数据报文的长度，因此在应用层能很好的将不同的数据报文区分开，从而避免粘包和拆包的问题。</p>
+</li>
+<li>
+<p><strong>传输层的TCP协议会发生粘包或者拆包问题</strong></p>
+<p>原因有以下两点：</p>
+<ol>
+<li><code>TCP</code>是基于字节流的，虽然应用层和传输层之间的数据交互是大小不等的数据块，但是<code>TCP</code>把这些数据块仅仅看成一连串无结构的字节流，没有边界；</li>
+<li>在<code>TCP</code>的首部没有表示数据长度的字段，基于上面两点，在使用<code>TCP</code>传输数据时，才有粘包或者拆包现象发生的可能。</li>
+</ol>
+</li>
+</ul>
+<p>**解决粘包问题：**解决问题的关键在于如何给每个数据包添加边界信息</p>
+<p>最本质原因在与接收对等方无法分辨消息与消息之间的边界在哪，通过使用某种方案给出边界，例如：</p>
+<ul>
+<li>发送定长包。每个消息的大小都是一样的，接收方只要累计接收数据，直到数据等于一个定长的数值就将它作为一个消息。</li>
+<li>包尾加上\r\n标记。<code>FTP</code>协议正是这么做的。但问题在于如果数据正文中也含有\r\n，则会误判为消息的边界。</li>
+<li>包头加上包体长度。包头是定长的4个字节，说明了包体的长度。接收对等方先接收包体长度，依据包体长度来接收包体。</li>
+</ul>
+<h3 id="14-tcpudp报文格式">14. TCP、UDP报文格式</h3>
+<p><strong>TCP报文格式：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101002.png" /></p>
+<p><strong>源端口号和目的端口号</strong>：</p>
+<p>用于寻找发端和收端应用进程。这两个值加上<code>IP</code>首部源端IP地址和目的端<code>IP</code>地址唯一确定一个<code>TCP</code>连接。</p>
+<p><strong>序号字段：</strong></p>
+<p>序号用来标识从<code>TCP</code>发端向<code>TCP</code>收端发送的数据字节流，它表示在这个报文段中的的第一个数据字节。如果将字节流看作在两个应用程序间的单向流动，则 <code>TCP</code>用序号对每个字节进行计数。序号是32 bit的无符号数，序号到达 2^32-1后又从0开始。</p>
+<p>当建立一个新的连接时，<code>SYN</code>标志变1。序号字段包含由这个主机选择的该连接的初始序号ISN（Initial Sequence Number）。该主机要发送数据的第一个字节序号为这个ISN加1，因为<code>SYN</code>标志消耗了一个序号</p>
+<p><strong>确认序号</strong>：</p>
+<p>既然每个传输的字节都被计数，确认序号包含发送确认的一端所期望收到的下一个序号。因此，确认序号应当是上次已成功收到数据字节序号加 1。只有<code>ACK</code>标志为 1时确认序号字段才有效。发送<code>ACK</code>无需任何代价，因为 32 bit的确认序号字段和A C K标志一样，总是TCP首部的一部分。因此，我们看到一旦一个连接建立起来，这个字段总是被设置， ACK标志也总是被设置为1。TCP为应用层提供全双工服务。这意味数据能在两个方向上独立地进行传输。因此，连接的每一端必须保持每个方向上的传输数据序号。</p>
+<p><strong>首都长度</strong>：</p>
+<p>首部长度给出首部中 32 bit字的数目。需要这个值是因为任选字段的长度是可变的。这个字段占4 bit，因此TCP最多有6 0字节的首部。然而，没有任选字段，正常的长度是 20字节。</p>
+<p><strong>标志字段</strong>：在<code>TCP</code>首部中有 6个标志比特，它们中的多个可同时被设置为1。</p>
+<ul>
+<li><code>URG</code>紧急指针（u rgent pointer）有效</li>
+<li><code>ACK</code>确认序号有效。</li>
+<li><code>PSH</code>接收方应该尽快将这个报文段交给应用层。</li>
+<li><code>RST</code>重建连接。</li>
+<li><code>SYN</code>同步序号用来发起一个连接。这个标志和下一个标志将在第 1 8章介绍。</li>
+<li><code>FIN</code>发端完成发送任务。</li>
+</ul>
+<p><strong>窗口大小</strong>：</p>
+<p><code>TCP</code>的流量控制由连接的每一端通过声明的窗口大小来提供。窗口大小为字节数，起始于确认序号字段指明的值，这个值是接收端期望接收的字节。窗口大小是一个 16 bit字段，因而窗口大小最大为 65535字节。</p>
+<p><strong>检验和：</strong></p>
+<p>检验和覆盖了整个的 <code>TCP</code>报文段：<code>TCP</code>首部和<code>TCP</code>数据。这是一个强制性的字段，一定是由发端计算和存储，并由收端进行验证。</p>
+<p><strong>紧急指针</strong>：</p>
+<p>只有当<code>URG</code>标志置1时紧急指针才有效。紧急指针是一个正的偏移量，和序号字段中的值相加表示紧急数据最后一个字节的序号。<code>TCP</code>的紧急方式是发送端向另一端发送紧急数据的一种方式。</p>
+<p><strong>选项</strong>：</p>
+<p>最常见的可选字段是最长报文大小，又称为 <code>MSS </code>(Maximum Segment Size)。每个连接方通常都在通信的第一个报文段（为建立连接而设置 <code>SYN</code>标志的那个段）中指明这个选项。它指明本端所能接收的最大长度的报文段。</p>
+<p><strong>UDP报文格式：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://mmbiz.qpic.cn/mmbiz_png/DWQ5ap0dyHP9wH6dWPia9Lna1rITnndXj1mOPAbjgvicRWDqAwosyhn44R5plROezpLBF3c3Q0ZsTokN8IpOiaNAQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1"
+        data-srcset="https://mmbiz.qpic.cn/mmbiz_png/DWQ5ap0dyHP9wH6dWPia9Lna1rITnndXj1mOPAbjgvicRWDqAwosyhn44R5plROezpLBF3c3Q0ZsTokN8IpOiaNAQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1, https://mmbiz.qpic.cn/mmbiz_png/DWQ5ap0dyHP9wH6dWPia9Lna1rITnndXj1mOPAbjgvicRWDqAwosyhn44R5plROezpLBF3c3Q0ZsTokN8IpOiaNAQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1 1.5x, https://mmbiz.qpic.cn/mmbiz_png/DWQ5ap0dyHP9wH6dWPia9Lna1rITnndXj1mOPAbjgvicRWDqAwosyhn44R5plROezpLBF3c3Q0ZsTokN8IpOiaNAQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1 2x"
+        data-sizes="auto"
+        alt="https://mmbiz.qpic.cn/mmbiz_png/DWQ5ap0dyHP9wH6dWPia9Lna1rITnndXj1mOPAbjgvicRWDqAwosyhn44R5plROezpLBF3c3Q0ZsTokN8IpOiaNAQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1"
+        title="图片" /></p>
+<p><strong>端口号</strong>：</p>
+<p>用来表示发送和接受进程。由于 <code>IP</code>层已经把I P数据报分配给<code>TCP</code>或 <code>UDP</code>（根据I P首部中协议字段值），因此<code>TCP</code>端口号由<code>TCP</code>来查看，而 <code>UDP</code>端口号由 <code>UDP</code>来查看。<code>TCP</code>端口号与 <code>UDP</code>端口号是相互独立的。</p>
+<p><strong>长度</strong>：</p>
+<p><code>UDP</code>长度字段指的是 <code>UDP</code>首部和 <code>UDP</code>数据的字节长度。该字段的最小值为 8字节（发送一份0字节的 <code>UDP</code>数据报是 O K）。</p>
+<p><strong>检验和</strong>：</p>
+<p><code>UDP</code>检验和是一个端到端的检验和。它由发送端计算，然后由接收端验证。其目的是为了发现 <code>UDP</code>首部和数据在发送端到接收端之间发生的任何改动。</p>
+<p>**IP报文格式：**普通的IP首部长为20个字节，除非含有可选项字段。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215715.webp" /></p>
+<p><strong>4位版本</strong>：目前协议版本号是4，因此IP有时也称作IPV4.</p>
+<p><strong>4位首部长度</strong>：</p>
+<p>首部长度指的是首部占<code>32bit</code>字的数目，包括任何选项。由于它是一个4比特字段，因此首部长度最长为60个字节。</p>
+<p><strong>服务类型（TOS）</strong>：</p>
+<p>服务类型字段包括一个<code>3bit</code>的优先权字段（现在已经被忽略），<code>4bit</code>的TOS子字段和1bit未用位必须置0。<code>4bit</code>的TOS分别代表：最小时延，最大吞吐量，最高可靠性和最小费用。4bit中只能置其中1比特。如果所有4bit均为0，那么就意味着是一般服务。</p>
+<p><strong>总长度</strong>：</p>
+<p>总长度字段是指整个IP数据报的长度，以字节为单位。利用首部长度和总长度字段，就可以知道IP数据报中数据内容的起始位置和长度。由于该字段长<code>16bit</code>，所以IP数据报最长可达65535字节。当数据报被分片时，该字段的值也随着变化。</p>
+<p><strong>标识字段</strong>：</p>
+<p>标识字段唯一地标识主机发送的每一份数据报。通常每发送一份报文它的值就会加1。</p>
+<p><strong>生存时间</strong>：</p>
+<p>TTL（time-to-live）生存时间字段设置了数据报可以经过的最多路由器数。它指定了数据报的生存时间。TTL的初始值由源主机设置（通常为 3 2或6 4），一旦经过一个处理它的路由器，它的值就减去 1。当该字段的值为 0时，数据报就被丢弃，并发送 <code>ICMP </code>报文通知源主机。</p>
+<p><strong>首部检验和</strong>：</p>
+<p>首部检验和字段是根据 I P首部计算的检验和码。它不对首部后面的数据进行计算。<code>ICMP</code>、<code>IGMP</code>、<code>UDP</code>和<code>TCP</code>在它们各自的首部中均含有同时覆盖首部和数据检验和码。</p>
+<p><strong>以太网报文格式：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215724.webp" /></p>
+<p><strong>目的地址和源地址：</strong> 是指网卡的硬件地址（也叫MAC 地址），长度是48 位，是在网卡出厂时固化的。</p>
+<p><strong>数据：</strong></p>
+<p>以太网帧中的数据长度规定最小46 字节，最大1500 字节，<code>ARP </code>和<code>RARP </code>数据包的长度不够46 字节，要在后面补填充位。最大值1500 称为以太网的最大传输单元（<code>MTU</code>），不同的网络类型有不同的<code>MTU</code>，如果一个数据包从以太网路由到拨号链路上，数据包度大于拨号链路的<code>MTU</code>了，则需要对数据包进行分片fragmentation）。<code>ifconfig </code>命令的输出中也有“MTU:1500”。<strong>注意</strong>，<code>MTU</code>个概念指数据帧中有效载荷的最大长度，不包括帧首部的长度。</p>
+<h3 id="15-tcp协议如何保证可靠传输机制">15. TCP协议如何保证可靠传输机制？</h3>
+<p><strong>TCP主要提供了检验和、序列号/确认应答、超时重传、滑动窗口、拥塞控制和流量控制等方法实现了可靠性传输。</strong></p>
+<ul>
+<li>**检验和：**通过检验和的方式，接收端可以检测出来数据是否有差错和异常，假如有差错就会直接丢弃<code>TCP</code>段，重新发送。</li>
+<li><strong>序列号/确认应答：</strong>
+序列号的作用不仅仅是应答的作用，有了序列号能够将接收到的数据根据序列号排序，并且去掉重复序列号的数据。
+<code>TCP</code>传输的过程中，每次接收方收到数据后，都会对传输方进行确认应答。也就是发送<code>ACK</code>报文,这个<code>ACK</code>报文当中带有对应的确认序列号，告诉发送方，接收到了哪些数据，下一次的数据从哪里发。</li>
+<li>**超时重传：**超时重传是指发送出去的数据包到接收到确认包之间的时间，如果超过了这个时间会被认为是丢包了，需要重传。最大超时时间是动态计算的。</li>
+<li>**滑动窗口：**滑动窗口既提高了报文传输的效率，也避免了发送方发送过多的数据而导致接收方无法正常处理的异常。</li>
+<li>**拥塞控制：**在数据传输过程中，可能由于网络状态的问题，造成网络拥堵，此时引入拥塞控制机制，在保证<code>TCP</code>可靠性的同时，提高性能。</li>
+<li>**流量控制：**如果主机A一直向主机B发送数据，不考虑主机B的接受能力，则可能导致主机B的接受缓冲区满了而无法再接受数据，从而会导致大量的数据丢包，引发重传机制。而在重传的过程中，若主机B的接收缓冲区情况仍未好转，则会将大量的时间浪费在重传数据上，降低传送数据的效率。所以引入流量控制机制，主机B通过告诉主机A自己接收缓冲区的大小，来使主机A控制发送的数据量。流量控制与<code>TCP</code>协议报头中的窗口大小有关。</li>
+</ul>
+<h3 id="16-tcp的滑动窗口">16. TCP的滑动窗口?</h3>
+<p>在进行数据传输时，如果传输的数据比较大，就需要拆分为多个数据包进行发送。<code>TCP</code>协议需要对数据进行确认后，才可以发送下一个数据包。这样一来，就会在等待确认应答包环节浪费时间。
+为了避免这种情况，<code>TCP</code>引入了窗口概念。窗口大小指的是不需要等待确认应答包而可以继续发送数据包的最大值。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327223444.png" /></p>
+<p>从上面的图可以看到滑动窗口左边的是已发送并且被确认的分组，滑动窗口右边是还没有轮到的分组。</p>
+<p>滑动窗口里面也分为两块，一块是已经发送但是未被确认的分组，另一块是窗口内等待发送的分组。随着已发送的分组不断被确认，窗口内等待发送的分组也会不断被发送。整个窗口就会往右移动，让还没轮到的分组进入窗口内。</p>
+<p>可以看到滑动窗口起到了一个限流的作用，也就是说当前滑动窗口的大小决定了当前<code>TCP</code>发送包的速率，而滑动窗口的大小取决于拥塞控制窗口和流量控制窗口的两者间的最小值。</p>
+<h3 id="17-详细讲一下拥塞控制-为何要进行拥塞控制">17. 详细讲一下拥塞控制? 为何要进行拥塞控制？</h3>
+<p>A在给B传输数据, A却没有收到B反馈的<code>TCP</code>,A就认为B发送的数据包丢失了..进而会重新传输这个丢失的数据包。然而实际情况有可能此时有太多主机正在使用信道资源，导致<strong>网络拥塞</strong>了。重传数据浪费了资源，所以要进行拥塞控制。发送发不知道一次发多少数据合适，所以设置一个拥塞窗口。</p>
+<p><strong>TCP拥塞控制原理是通过：慢启动、拥塞避免、快重传、快启动</strong></p>
+<p>发送方维持一个叫做拥塞窗口cwnd (congestion window)的状态变量。当cwndssthresh时， 改用拥塞避免算法。</p>
+<ul>
+<li><strong>慢开始:</strong> 不要一开始就发送大量的数据，由小到大逐渐增加拥塞窗口的大小。</li>
+<li><strong>拥塞避免:</strong> 拥塞避免算法让拥塞窗口缓慢增长，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1而不是加倍。这样拥塞窗口按线性规律缓慢增长。</li>
+<li>**快重传: **我们可以剔除一些不必要的拥塞报文，提高网络吞吐量。比如接收方在收到一个失序的报文段后就立即发出重复确认，而不要等到自己发送数据时捎带确认。快重传规定:发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</li>
+<li>**快恢复: **主要是配合快重传。当发送方连续收到三个重复确认时，就执行“乘法减小”算法，把ssthresh门限减半(为了预防网络发生拥塞)，但接下来并不执行慢开始算法，因为如果网络出现拥塞的话就不会收到好几个重复的确认，收到三个重复确认说明网络状况还可以。</li>
+</ul>
+<h3 id="18-tcp拥塞控制4种算法">18. TCP拥塞控制4种算法</h3>
+<ul>
+<li><strong>基于丢包的拥塞控制</strong>：将丢包视为出现拥塞，采取缓慢探测的方式，逐渐增大拥塞窗口，当出现丢包时，将拥塞窗口减小，如<code>Reno</code>、<code>Cubic</code>等。</li>
+<li><strong>基于时延的拥塞控制</strong>：将时延增加视为出现拥塞，延时增加时增大拥塞窗口，延时减小时减小拥塞窗口，如<code>Vegas</code>、<code>FastTCP</code>等。</li>
+<li><strong>基于链路容量的拥塞控制</strong>：实时测量网络带宽和时延，认为网络上报文总量大于带宽时延乘积时出现了拥塞，如<code>BBR</code>。</li>
+<li><strong>基于学习的拥塞控制</strong>：没有特定的拥塞信号，而是借助评价函数，基于训练数据，使用机器学习的方法形成一个控制策略，如<code>Remy</code>。</li>
+</ul>
+<h3 id="http协议">HTTP协议</h3>
+<h4 id="1-http协议10--11--20">1. HTTP协议1.0  1.1  2.0</h4>
+<p>**HTTP1.0：**服务器处理完成后立即断开<code>TCP</code>连接（<strong>无连接</strong>），服务器不跟踪每个客户端也不记录过去的请求（<strong>无状态</strong>）</p>
+<p><strong>HTTP1.1：</strong> <code>KeepAlived</code> <strong>长连接</strong>避免了连接建立和释放的开销；通过<code>Content-Length</code>来判断当前请求数据是否已经全部接受（<strong>有状态</strong>）</p>
+<p><strong>HTTP2.0：<strong>引入二进制数据帧和流的概念，其中帧对数据进行顺序标识；因为有了序列，服务器可以</strong>并行</strong>的传输数据。</p>
+<hr>
+<p><strong>无状态的好坏</strong></p>
+<ul>
+<li><strong>无状态的好处</strong>，因为服务器不会去记忆 <code>HTTP </code>的状态，所以不需要额外的资源来记录状态信息，这能减 轻服务器的负担，能够把更多的 <code>CPU </code>和内存用来对外提供服务。</li>
+<li><strong>无状态的坏处</strong>，既然服务器没有记忆能力，这样每操作一次，都要验证信息。例如登录-&gt;添加购物车-&gt;下单-&gt;结算-&gt;支付，这系列操作都要知道用户的身份才行。但服务器不知道这些请求是有关联的，每次都要问一遍身份信息。</li>
+</ul>
+<p>解决无状态的问题，解法方案有很多种，其中比较简单的方式用 <code>Cookie </code>和<code>Session</code>技术。</p>
+<h4 id="2-http10和http11的主要区别如下">2. HTTP1.0和HTTP1.1的主要区别如下：</h4>
+<ol>
+<li><strong>缓存处理</strong>：1.1添加更多的缓存控制策略（如：<code>Entity tag</code>，<code>If-Match</code>）</li>
+<li><strong>网络连接的优化</strong>：1.1支持断点续传</li>
+<li><strong>错误状态码的增多</strong>：1.1新增了24个错误状态响应码，丰富的错误码更加明确各个状态</li>
+<li><strong>Host头处理</strong>：支持<code>Host</code>头域，不在以<code>IP</code>为请求方标志</li>
+<li><strong>长连接</strong>：减少了建立和关闭连接的消耗和延迟。</li>
+</ol>
+<h4 id="3-http11和http20的主要区别">3. HTTP1.1和HTTP2.0的主要区别：</h4>
+<ol>
+<li><strong>新的传输格式</strong>：2.0使用二进制格式，1.0依然使用基于文本格式</li>
+<li><strong>多路复用</strong>：连接共享，不同的<code>request</code>可以使用同一个连接传输（最后根据每个<code>request</code>上的id号组合成正常的请求）</li>
+<li><strong>header压缩</strong>：由于1.X中<code>header</code>带有大量的信息，并且得重复传输，2.0使用<code>encoder</code>来减少需要传输的<code>hearder</code>大小</li>
+<li><strong>服务端推送</strong>：同<code>google</code>的<code>SPDUY</code>（1.0的一种升级）一样</li>
+</ol>
+<h4 id="4-http和-https的区别">4. HTTP和 HTTPS的区别：</h4>
+<ol>
+<li>最重要的区别就是<strong>安全性</strong>，<code>HTTP </code>明文传输，不对数据进行加密安全性较差。<code>HTTPS </code>(HTTP + SSL / TLS)的数据传输过程是加密的，安全性较好。</li>
+<li><strong>证书</strong>：使用 <code>HTTPS </code>协议需要申请 <code>CA </code>证书，一般免费证书较少，因而需要一定费用。证书颁发机构如：<code>Symantec</code>、<code>Comodo </code> 、<code>DigiCert </code>和 <code>GlobalSign </code>等。</li>
+<li><strong>响应速度</strong>：<code>HTTP </code>页面响应速度比 <code>HTTPS </code>快，这个很好理解，由于加了一层安全层，建立连接的过程更复杂，也要交换更多的数据，难免影响速度。</li>
+<li><strong>加密</strong>：<code>HTTP</code>协议运行在<code>TCP</code>（三次握手）之上，所有传输的内容都是明文，<code>HTTPS</code>运行在<code>SSL/TLS</code>之上，<code>SSL/TLS</code>运行在<code>TCP</code>之上，所有传输的内容都经过加密的。</li>
+<li><strong>端口不同</strong>：<code>HTTPS </code>和 <code>HTTP </code>使用的是完全不同的连接方式，用的端口也不一样，前者是 <code>443</code>，后者是 <code>80</code>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认端口80</td>
+<td>默认端口443</td>
+</tr>
+<tr>
+<td>明文传输、数据未加密、安全性较差</td>
+<td>传输协议ssl加密、安全性较好</td>
+</tr>
+<tr>
+<td>响应速度快，消耗资源少</td>
+<td>响应速度慢、消耗资源多，需要用到CA证书</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-https-的缺点">5. HTTPS 的缺点：</h4>
+<ol>
+<li>在相同网络环境中，<code>HTTPS </code>相比 <code>HTTP </code>无论是响应时间还是耗电量都有大幅度上升。</li>
+<li><code>HTTPS </code>的安全是有范围的，在黑客攻击、服务器劫持等情况下几乎起不到作用。</li>
+<li>在现有的证书机制下，中间人攻击依然有可能发生。</li>
+<li><code>HTTPS </code>需要更多的服务器资源，也会导致成本的升高。</li>
+</ol>
+<h4 id="6-https链接建立的过程">6. HTTPS链接建立的过程：</h4>
+<ol>
+<li>首先客户端先给服务器发送一个请求</li>
+<li>服务器发送一个<code>SSL</code>证书给客户端，内容包括：证书的发布机构、有效期、所有者、签名以及公钥</li>
+<li>客户端对发来的公钥进行真伪校验，校验为真则使用公钥对对称加密算法以及对称密钥进行加密</li>
+<li>服务器端使用私钥进行解密并使用对称密钥加密确认信息发送给客户端</li>
+<li>随后客户端和服务端就使用对称密钥进行信息传输</li>
+</ol>
+<hr>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327225658.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327225658.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327225658.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327225658.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327225658.png"
+        title="HTTPS 加密、解密、验证及数据传输过程" /></p>
+<p>加密流程按图中的序号分为:</p>
+<ol>
+<li>客户端请求<code>HTTPS</code>网址，然后连接到<code>server</code>的443端口(<code>HTTPS</code>默认端口，类似于<code>HTTP</code>的80端口)。</li>
+<li>采用<code>HTTPS</code>协议的服务器必须要有一套数字<code>CA </code>(Certification Authority)证书。颁发证书的同时会产生一个私钥和公钥。私钥由服务端自己保存，不可泄漏。公钥则是附带在证书的信息中，可以公开的。证书本身也附带-一个证书电子签名，这个签名用来验证证书的完整性和真实性，可以防止证书被篡改。</li>
+<li>服务器响应客户端请求，将证书传递给客户端，证书包含公钥和大量其他信息，比如证书颁发机构信息，公司信息和证书有效期等。</li>
+<li>客户端解析证书并对其进行验证。如果证书不是可信机构颁布，或者证书中的域名与实际域名不一致，或者证书已经过期，就会向访问者显示一个警告，由其选择是否还要继续通信。如果证书没有问题，客户端就会从服务器证书中取出服务器的公钥A。然后客户端还会生成一一个随机码<code>KEY</code>,并使用公钥A将其加密。</li>
+<li>客户端把加密后的随机码<code>KEY</code>发送给服务器，作为后面对称加密的密钥。</li>
+<li>服务器在收到随机码<code>KEY</code>之后会使用私钥B将其解密。经过以上这些步骤，客户端和服务器终于建立了安全连接，完美解决了对称加密的密钥泄露问题，接下来就可以用对称加密愉快地进行通信了。</li>
+<li>服务器使用密钥(随机码<code>KEY</code>)对数据进行对称加密并发送给客户端，客户端使用相同的密钥(随机码<code>KEY</code>)解密数据。</li>
+<li>双方使用对称加密愉快地传输所有数据。</li>
+</ol>
+<h4 id="7-http常见响应状态码">7. HTTP常见响应状态码</h4>
+<p><code>100</code>：Continue 一一 继续。客户端应继续其请求。</p>
+<p><code>200</code>：OK 一一 请求成功。一 般用于GET与POST请求。</p>
+<p><code>301</code>：Moved Permanently 一一 永久重定向。</p>
+<p><code>302</code>：Found 一一 暂时重定向。</p>
+<p><code>400</code>：Bad Request 一一 客户端请求的语法错误，服务器无法理解。请求没有包含host头</p>
+<p><code>403</code>：Forbideen 一一 服务器理解请求客户端的请求，但是拒绝执行此请求。禁止客户访问该资源</p>
+<p><code>404</code>：Not Found 一一 服务器无法根据客户端的请求找到资源（网页）。资源未找到</p>
+<p><code>500</code>：Internal Server Error 一一 服务器内部错误，无法完成请求。</p>
+<p><code>502</code>：Bad Gateway 一一 作为网关或者代理服务器尝试执行请求时，从远程服务器接收到了无效的响应。</p>
+<h4 id="8-状态码301和302的区别是什么">8. 状态码301和302的区别是什么?</h4>
+<p><code>301</code>为永久重定向，<code>302</code>为临时重定向</p>
+<p><strong>共同点</strong>: <code>301</code>和<code>302</code>状态码都表示重定向，就是说浏览器在拿到服务器返回的这个状态码后会自动跳转到一个新的URL地址，这个地址可以从响应的Location首部中获取(用户看到的效果就是他输入的地址A瞬间变成了另一个地址B)。</p>
+<p><strong>不同点</strong>: <code>301</code>表示旧地址A的资源已经被永久地移除了(这个资源不可访问了)，搜索引擎在抓取新内容的同时也将旧的网址交换为重定向之后的网址;<code>302</code>表示旧地址A的资源还在(仍然可以访问)，这个重定向只是临时地从旧地址A跳转到地址B，搜索引擎会抓取新的内容而保存旧的网址。SEO中<code>302</code>好于<code>301</code>。</p>
+<p>补充，重定向原因:</p>
+<ol>
+<li>网站调整(如改变网页目录结构);</li>
+<li>网页被移到一个新地址;</li>
+<li>网页扩展名改变(如应用需要把.php改成.Html或.shtml)。</li>
+</ol>
+<h4 id="9-对称加密算法与非对称加密算法的区别">9. 对称加密算法与非对称加密算法的区别</h4>
+<p><strong>对称加密算法：</strong></p>
+<p>双方持有相同的密钥，且加密速度快，典型对称加密算法：<code>DES</code>、<code>AES</code></p>
+<p><strong>非对称加密算法：</strong></p>
+<p>密钥成对出现（私钥、公钥），私钥只有自己知道，不在网络中传输；而公钥可以公开。相比对称加密速度较慢，典型的非对称加密算法有：<code>AES</code>、<code>DSA</code></p>
+<h4 id="10-http请求方法">10. HTTP请求方法：</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>像特定资源发送请求，查询数据，并返回实体</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>向指定资源提交数据进行处理，可能会导致新的资源建立、已有的资源修改</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>向服务器上传新的内容</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>类似GET请求，返回的响应式中没有具体内容，用于获取报头</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>请求服务器删除指定标识的资源</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>可以原来向服务器发送请求来测试服务器的功能性</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>回显服务器收到的请求，用于测试和诊断</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="11-get和post请求区别">11. Get和Post请求区别</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP规范</td>
+<td>GET用于信息获取</td>
+<td>修改服务器上的资源的请求</td>
+</tr>
+<tr>
+<td>可见性</td>
+<td>数据在URL中对所有人可见</td>
+<td>数据不会显示在URL中</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>与post相比，get的安全性较差，因为所发送的数据是URL的一部分</td>
+<td>安全，因为参数不会被保存在浏览器历史或web服务器日志中</td>
+</tr>
+<tr>
+<td>数据长度</td>
+<td>受限制，最长2kb</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>编码类型</td>
+<td>application/x-www-form-urlencoded</td>
+<td>multipart/form-data</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>能被缓存</td>
+<td>不能被缓存</td>
+</tr>
+</tbody>
+</table>
+<h4 id="12-get-和-post-方法都是安全和幂等的吗">12. GET 和 POST 方法都是安全和幂等的吗？</h4>
+<p>先说明下安全和幂等的概念：</p>
+<ul>
+<li>在 <code>DSA</code>协议里，所谓的「安全」是指请求方法不会「破坏」服务器上的资源。</li>
+<li>所谓的「幂等」，意思是多次执行相同的操作，结果都是「相同」的。</li>
+</ul>
+<p>那么很明显 <strong>GET 方法就是安全且幂等的</strong>，因为它是「只读」操作，无论操作多少次，服务器上的数据 都是安全的，且每次的结果都是相同的。</p>
+<p><code>POST </code>因为是「新增或提交数据」的操作，会修改服务器上的资源，所以是<strong>不安全</strong>的，且多次提交数据 就会创建多个资源，所以<strong>不是幂等</strong>的。</p>
+<h4 id="13-重定向和转发区别">13. 重定向和转发区别</h4>
+<p><strong>转发是服务器行为,重定向是客户端行为</strong></p>
+<p><strong>重定向：redirect：</strong></p>
+<p>地址栏发生变化</p>
+<p>重定向可以访问其他站点（服务器）的资源</p>
+<p>重定向是两次请求。不能使用request对象来共享数据</p>
+<p><strong>转发：forward：</strong></p>
+<p>转发地址栏路径不变</p>
+<p>转发只能访问当前服务器下的资源</p>
+<p>转发是一次请求，可以使用<code>request</code>对象共享数据</p>
+<h4 id="14-cookie和session区别">14. Cookie和Session区别</h4>
+<p><strong>Cookie 和 Session都是用来跟踪浏览器用户身份的会话方式</strong>，但两者有所区别：</p>
+<p><code>Cookie </code>数据保存在客户端(浏览器端)，<code>Session </code>数据保存在服务器端。</p>
+<p><code>cookie</code>不是很安全，别人可以分析存放在本地的<code>Cookie</code>并进行欺骗,考虑到安全应当使用session。</p>
+<p><code>Cookie </code>⼀般⽤来保存⽤户信息，<code>Session </code>的主要作⽤就是通过服务端记录⽤户的状态</p>
+<h4 id="15-浏览器输入url过程">15. 浏览器输入URL过程</h4>
+<p><strong>过程：</strong><code>DNS</code>解析、<code>TCP</code>连接、发送<code>HTTP</code>请求、服务器处理请求并返回<code>HTTP</code>报文、浏览器渲染、结束</p>
+<ol>
+<li>域名解析(域名www.baidu.com变为IP地址)。
+浏览器搜索自己的<code>DNS</code>缓存(维护一张域名与IP的对应表);
+<ol>
+<li>若没有，则搜索操作系统的<code>DNS</code>缓存(维护一张域名与IP的对应表) ;</li>
+<li>若没有，则搜索操作系统的hosts文件(维护一张域名与IP的对应表)。</li>
+<li>若都没有，则找TCP/IP参数中设置的首选dns服务器，即本地<code>DNS</code>服务器(递归查询)，本地域名服务器查询自己的<code>DNS</code>缓存，如果没有，则进行迭代查询。将本地dns服务器将IP返回给操作系统，同时缓存IP。</li>
+</ol>
+</li>
+<li>发起<code>TCP</code>的三次握手，建立<code>TCP</code>连接。浏览器会以一个随机端口(1024-65535) 向服务端的web程序80端口发起<code>TCP</code>的连接。</li>
+<li>建立<code>TCP</code>连接后发起HTTP请求。</li>
+<li>服务器响应<code>HTTP</code>请求，客户端得到<code>html</code>代码。服务器web应用程序收到<code>HTTP</code>请求后，就开始处理请求，处理之后就返回给浏览器<code>html</code>文件。</li>
+<li>浏览器解析<code>html</code>代码，并请求<code>html</code>中的资源。</li>
+<li>浏览器对页面进行渲染，并呈现给用户。</li>
+</ol>
+<hr>
+<p>如何查看 TCP 的连接状态？ <strong>TCP 的连接状态查看，在 Linux 可以通过 netstat -napt 命令查看。</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220401215515.png" /></p>
+<h4 id="16-dns协议是tcp还是udp">16. DNS协议是TCP还是UDP?</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png"
+        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png 2x"
+        data-sizes="auto"
+        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png"
+        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220330211131.png" /></p>
+<ul>
+<li>
+<p><code>DNS</code>占用53号端口，同时使用<code>TCP</code>和<code>UDP</code>协议。那么<code>DNS</code>在什么情况下使用这两种协议？</p>
+<p><strong>DNS在区域传输的时候使用TCP协议，其他时候使用UDP协议。</strong></p>
+<ul>
+<li><strong>DNS区域传输的时候使用TCP协议：</strong>
+<ul>
+<li>辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用<code>TCP</code>而不是<code>UDP</code>，因为数据同步传送的数据量比一个请求应答的数据量要多得多。</li>
+<li><code>TCP</code>是一种可靠连接，保证了数据的准确性。</li>
+</ul>
+</li>
+<li><strong>域名解析时使用UDP协议：</strong>
+<ul>
+<li>客户端向<code>DNS</code>服务器查询域名，一般返回的内容都不超过512字节，用<code>UDP</code>传输即可。不用经过<code>TCP</code>三次握手，这样<code>DNS</code>服务器负载更低，响应更快。虽然从理论上说，客户端也可以指定向<code>DNS</code>服务器查询的时候使用<code>TCP</code>，但事实上，很多<code>DNS</code>服务器进行配置的时候，仅支持<code>UDP</code>查询包。</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101037.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220408101042.png" /></p>
+</li>
+</ul>
+<h4 id="17-arp协议如何找到对应ip地址和mac的映射的">17. ARP协议如何找到对应IP地址和mac的映射的</h4>
+<p>简单地说，<code>ARP</code> 是借助 <code>ARP</code>  请求与 <code>ARP</code>  响应两种类型的包确定 <code>MAC</code> 地址的。</p>
+<ul>
+<li>主机会通过广播发送 <code>ARP</code>  请求，这个包中包含了想要知道的  <code>MAC</code> 地址的主机 IP 地址。</li>
+<li>当同个链路中的所有设备收到 <code>ARP</code>  请求时，会去拆开 <code>ARP</code>  请求包里的内容，如果 <code>ARP</code>  请求包中 的目标 IP 地址与自己的 IP 地址一致，那么这个设备就将自己的 MAC 地址塞入 <code>ARP</code>  响应包返回 给主机。</li>
+</ul>
+<p>操作系统通常会把第一次通过 <code>ARP</code>  获取的  <code>MAC</code> 地址缓存起来，以便下次直接从缓存中找到对应 IP 地 址的  <code>MAC</code> 地址。不过， <code>MAC</code> 地址的缓存是有一定期限的，超过这个期限，缓存的内容将被清除</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224806.png" /></p>
+<h4 id="18-rarp-协议你知道是什么吗">18. RARP 协议你知道是什么吗？</h4>
+<p>ARP 协议是已知 IP 地址求  <code>MAC</code> 地址，那 <code>RARP</code> 协议正好相反，它是已知  <code>MAC</code>地址求 IP 地址。例如 将打印机服务器等小型嵌入式设备接入到网络时就经常会用得到。</p>
+<p>通常这需要架设一台 <code>RARP</code> 服务器，在这个服务器上注册设备的  <code>MAC</code> 地址及其 IP 地址。然后再将 这个设备接入到网络，接着：</p>
+<ul>
+<li>该设备会发送一条「我的  <code>MAC</code> 地址是XXXX，请告诉我，我的IP地址应该是什么」的请求信息。</li>
+<li><code>RARP</code> 服务器接到这个消息后返回「 <code>MAC</code>地址为 XXXX 的设备，IP地址为 XXXX」的信息给这个 设备。</li>
+</ul>
+<p>最后，设备就根据从 <code>RARP</code> 服务器所收到的应答信息设置自己的 IP 地址</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220401224906.png" /></p>
+<h4 id="19-什么是ddos攻击">19. 什么是DDos攻击?</h4>
+<p><code>DDos</code>全称Distributed Denial of Service，分布式拒绝服务攻击。最基本的DOS攻击过程如下:</p>
+<ol>
+<li>客户端向服务端发送请求链接数据包。</li>
+<li>服务端向客户端发送确认数据包。</li>
+<li>客户端不向服务端发送确认数据包，服务器一直等待来自客户端的确认</li>
+</ol>
+<p><code>DDos</code>则是采用分布式的方法，通过在网络上占领多台“肉鸡”，用多台计算机发起攻击。</p>
+<p><code>DDos</code>攻击现在基本没啥作用了，因为服务器的性能都很好，而且是多台服务器共同作用，1V1的模式黑客无法占上风。对于<code>DDos</code>攻击，预防方法有:</p>
+<ul>
+<li>减少SYN timeout时间。在握手的第三步，服务器会等待30秒-120秒的时间，减少这个等待时间就能释放更多的资源。</li>
+<li>限制同时打开的SYN半连接数目。</li>
+</ul>
+<h4 id="20-什么是xss攻击">20. 什么是XSS攻击?</h4>
+<p>XSS也称cross-sitescripting,跨站脚本。这种攻击是由于服务器将攻击者存储的数据原原本本地显示给其他用户所致的。比如一个存在XSS漏洞的论坛，用户发帖时就可以引入带有&lt; script&gt;标签的代码，导致恶意代码的执行。</p>
+<p>预防措施有:</p>
+<ul>
+<li>前端：过滤。</li>
+<li>后端：转义，比如go自带的处理器就具有转义功能。</li>
+</ul>
+<h4 id="21-sql注入是什么如何避免sql注入">21. SQL注入是什么，如何避免SQL注入?</h4>
+<p><code>SQL</code>注入就是在用户输入的字符串中加入<code>SQL</code>语句，如果在设计不良的程序中忽略了检查，那么这些注入进去的<code>SQL</code>语句就会被数据库服务器误认为是正常的<code>SQL</code>语句而运行，攻击者就可以执行计划外的命令或访问未被授权的数据。</p>
+<p><code>SQL</code>注入的原理主要有以下4点：</p>
+<ol>
+<li>恶意拼接查询</li>
+<li>利用注释执行非法命令</li>
+<li>传入非法参数</li>
+<li>添加额外条件</li>
+</ol>
+<p>避免<code>SQL</code>注入的一些方法：</p>
+<ol>
+<li>参数校验：在一些不该有特殊字符的参数中提前进行特殊字符校验即可。</li>
+<li>限制数据库权限，给用户提供仅仅能够满足其工作的最低权限。</li>
+<li>提供参数化查询接口，不要直接使用原生<code>SQL</code>。</li>
+<li><strong>SQL预编译</strong></li>
+</ol>
+<p>​	在知道了<code>SQL</code>注入的原理之后，我们同样也了解到<code>MySQL</code>有预编译的功能，指的是在服务器启动时，<code>MySQL</code> Client把<code>SQL</code>语句的模板（变量采用占位符进行占位）发送给<code>MySQL</code>服务器，<code>MySQL</code>服务器对<code>SQL</code>语句的模板进行编译，编译之后根据语句的优化分析对相应的索引进行优化，在最终绑定参数时把相应的参数传送给<code>MySQL</code>服务器，直接进行执行，节省了<code>SQL</code>查询时间，以及<code>MySQL</code>服务器的资源，达到一次编译、多次执行的目的，除此之外，还可以防止SQL注入。</p>
+<p>​	具体是怎样防止<code>SQL</code>注入的呢？实际上当将绑定的参数传到<code>MySQL</code>服务器，<code>MySQL</code>服务器对参数进行编译，即填充到相应的占位符的过程中，做了转义操作。我们常用的JDBC就有预编译功能，不仅提升性能，而且防止<code>SQL</code>注入。</p>
+<h4 id="22-网络编程socket客户端和服务端通信过程分别调用了哪些函数作用是什么">22. 网络编程socket，客户端和服务端通信过程，分别调用了哪些函数，作用是什么</h4>
+<ul>
+<li>
+<p>服务器端程序：</p>
+<ol>
+<li>创建一个<code>socket</code>，用函数<code>socket()</code></li>
+<li>绑定IP地址、端口等信息到<code>socket</code>上，用函数<code>bind()</code></li>
+<li>设置允许的最大连接数，用函数<code>listen()</code></li>
+<li>接收客户端上来的连接，用函数<code>accept()</code></li>
+<li>收发数据，用函数<code>send()</code>和<code>recv()</code>，或者<code>read()</code>和<code>write()</code></li>
+<li>关闭网络连接</li>
+</ol>
+</li>
+<li>
+<p>客户端程序：</p>
+<ol>
+<li>创建一个<code>socket</code>，用函数<code>socket()</code></li>
+<li>设置要连接的对方的IP地址和端口等属性</li>
+<li>连接服务器，用函数<code>connect()</code></li>
+<li>收发数据，用函数<code>send()</code>和<code>recv()</code>，或<code>read()</code>和<code>write()</code></li>
+<li>关闭网络连接</li>
+</ol>
+</li>
+</ul>
+<h4 id="23-负载均衡算法有哪些">23. 负载均衡算法有哪些?</h4>
+<p>nginx负载均衡的三种方式主要是<strong>轮询模式、weight权重模式、ip_hash</strong>。</p>
+<p>当一台服务器的单位时间内的访问量越大时，服务器压力就越大，大到超过自身承受能力时，服务器就会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通过负载均衡的方式来分担服务器压力。</p>
+<ol>
+<li>
+<p><strong>轮询模式（默认）</strong>
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+适合服务器配置相当，无状态且短平快的服务使用。也适用于图片服务器集群和纯静态页面服务器集群。</p>
+</li>
+<li>
+<p><strong>weight权重模式</strong>
+这种方式比较灵活，当后端服务器性能存在差异的时候，通过配置权重，可以让服务器的性能得到充分发挥，有效利用资源。weight和访问比率成正比，用于后端服务器性能不均的情况。权重越高，在被访问的概率越大</p>
+</li>
+<li>
+<p><strong>ip_hash</strong>
+上述weight权重模式方式存在一个问题，在负载均衡系统中，假如用户在某台服务器上登录了，那么该用户第二次请求的时候，因为我们是负载均衡系统，每次请求都会重新定位到服务器集群中的某一个，那么已经登录某一个服务器的用户再重新定位到另一个服务器，其登录信息将会丢失，这样显然是不妥的。</p>
+<p>可以采用ip_hash指令解决这个问题，如果客户已经访问了某个服务器，当用户再次访问时，会将该请求通过哈希算法，自动定位到该服务器。每个请求按访问IP的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。</p>
+</li>
+</ol>
+<hr>
+<p><strong>涉及到的linux命令</strong></p>
+<ul>
+<li>查端口netstat -tunlp | grep 端口号</li>
+<li>查进程 ps -aux | grep 进程号</li>
+<li>查cpu top命令</li>
+<li>查内存 free</li>
+</ul>
+<h3 id="什么是网络编程">什么是网络编程</h3>
+<ul>
+<li>网络编程的本质是多台计算机之间的数据交换。数据传递本身没有多大的难度，不就是把一个设备 中的数据发送给其他设备，然后接受另外一个设备反馈的数据。现在的网络编程基本上都是基于请 求/响应方式的，也就是一个设备发送请求数据给另外一个，然后接收另一个设备的反馈。在网络 编程中，发起连接程序，也就是发送第一次请求的程序，被称作客户端(Client)，等待其他程序连 接的程序被称作服务器(Server)。客户端程序可以在需要的时候启动，而服务器为了能够时刻相应 连接，则需要一直启动。</li>
+<li>例如以打电话为例，首先拨号的人类似于客户端，接听电话的人必须保持电话畅通类似于服务器。 连接一旦建立以后，就客户端和服务器端就可以进行数据传递了，而且两者的身份是等价的。在一 些程序中，程序既有客户端功能也有服务器端功能，最常见的软件就是QQ、微信这类软件了。</li>
+</ul>
+<h4 id="网络编程中两个主要的问题">网络编程中两个主要的问题</h4>
+<ol>
+<li>一个是如何准确的定位网络上一台或多台主机，</li>
+<li>另一个就是找到主机后如何可靠高效的进行数据传输。</li>
+</ol>
+<ul>
+<li>在TCP/IP协议中IP层主要负责网络主机的定位，数据传输的路由，由IP地址可以唯一地确定 Internet上的一台主机。</li>
+<li>而TCP层则提供面向应用的可靠（TCP）的或非可靠（UDP）的数据传输机制，这是网络编程的主 要对象，一般不需要关心IP层是如何处理数据的。</li>
+<li>目前较为流行的网络编程模型是客户机/服务器（C/S）结构。即通信双方一方作为服务器等待客户 提出请求并予以响应。客户则在需要服务时向服务器提 出申请。服务器一般作为守护进程始终运 行，监听网络端口，一旦有客户请求，就会启动一个服务进程来响应该客户，同时自己继续监听服 务端口，使后来的客户也 能及时得到服务。</li>
+</ul>
+<h3 id="网络协议是什么">网络协议是什么</h3>
+<p>在计算机网络要做到井井有条的交换数据，就必须遵守一些事先约定好的规则，比如交换数据的格 式、是否需要发送一个应答信息。这些规则被称为网络协议。</p>
+<h4 id="为什么要对网络协议分层">为什么要对网络协议分层</h4>
+<ul>
+<li>简化问题难度和复杂度。由于各层之间独立，我们可以分割大问题为小问题。</li>
+<li>灵活性好。当其中一层的技术变化时，只要层间接口关系保持不变，其他层不受影响。</li>
+<li>易于实现和维护。</li>
+<li>促进标准化工作。分开后，每层功能可以相对简单地被描述</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104194210.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104194210.png, https://gitee.com/nateshao/images/raw/master/img/20220104194210.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104194210.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104194210.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104194210.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104194216.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104194216.png, https://gitee.com/nateshao/images/raw/master/img/20220104194216.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104194216.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104194216.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104194216.png" /></p>
+<p>TCP/IP参考模型</p>
+<p>TCP/IP四层协议（数据链路层、网络层、传输层、应用层）</p>
+<ol>
+<li><strong>应用层</strong> 应用层最靠近用户的一层，是为计算机用户提供应用接口，也为用户直接提供各种网 络服务。我们常见应用层的网络服务协议有：HTTP，HTTPS，FTP，TELNET等。</li>
+<li><strong>传输层</strong> 建立了主机端到端的链接，传输层的作用是为上层协议提供端到端的可靠和透明的数 据传输服务，包括处理差错控制和流量控制等问题。该层向高层屏蔽了下层数据通信的细 节，使高层用户看到的只是在两个传输实体间的一条主机到主机的、可由用户控制和设定 的、可靠的数据通路。我们通常说的，TCP UDP就是在这一层。端口号既是这里的“端”。</li>
+<li><strong>网络层</strong> 本层通过IP寻址来建立两个节点之间的连接，为源端的运输层送来的分组，选择合适 的路由和交换节点，正确无误地按照地址传送给目的端的运输层。就是通常说的IP层。这一 层就是我们经常说的IP协议层。IP协议是Internet的基础。</li>
+<li><strong>数据链路层</strong> 通过一些规程或协议来控制这些数据的传输，以保证被传输数据的正确性。实现 这些规程或协议的 硬件 和软件加到物理线路，这样就构成了数据链路，</li>
+</ol>
+<h3 id="tcp--udp">TCP / UDP</h3>
+<h4 id="什么是tcpip和udp">什么是TCP/IP和UDP</h4>
+<ul>
+<li>TCP/IP即传输控制/网络协议，是面向连接的协议，发送数据前要先建立连接(发送方和接收方的成 对的两个之间必须建 立连接)，TCP提供可靠的服务，也就是说，通过TCP连接传输的数据不会丢 失，没有重复，并且按顺序到达</li>
+<li>UDP它是属于TCP/IP协议族中的一种。是无连接的协议，发送数据前不需要建立连接，是没有可 靠性的协议。因为不需要建立连接所以可以在在网络上以任何可能的路径传输，因此能否到达目的 地，到达目的地的时间以及内容的正确性都是不能被保证的。</li>
+</ul>
+<h4 id="tcp与udp区别">TCP与UDP区别：</h4>
+<ul>
+<li>TCP是面向连接的协议，发送数据前要先建立连接，TCP提供可靠的服务，也就是说，通过TCP连 接传输的数据不会丢失，没有重复，并且按顺序到达；</li>
+<li>UDP是无连接的协议，发送数据前不需要建立连接，是没有可靠性；</li>
+<li>TCP通信类似于于要打个电话，接通了，确认身份后，才开始进行通行；</li>
+<li>UDP通信类似于学校广播，靠着广播播报直接进行通信。 TCP只支持点对点通信，UDP支持一对一、一对多、多对一、多对多；</li>
+<li>TCP是面向字节流的，UDP是面向报文的；</li>
+<li>面向字节流是指发送数据时以字节为单位，一个数据 包可以拆分成若干组进行发送，而UDP一个报文只能一次发完。</li>
+<li>TCP首部开销（20字节）比UDP首部开销（8字节）要大 UDP 的主机不需要维持复杂的连接状态表</li>
+</ul>
+<h4 id="tcp和udp的应用场景">TCP和UDP的应用场景</h4>
+<p>对某些实时性要求比较高的情况使用UDP，比如游戏，媒体通信，实时直播，即使出现传输错误 也可以容忍；</p>
+<p>其它大部分情况下，HTTP都是用TCP，因为要求传输的内容可靠，不出现丢失的情 况</p>
+<h4 id="形容一下tcp和udp">形容一下TCP和UDP</h4>
+<ul>
+<li>TCP通信可看作打电话：</li>
+</ul>
+<p>李三(拨了个号码)：喂，是王五吗？ 王五：哎，您谁啊？ 李三：我是李三，我想给你说点事儿， 你现在方便吗？ 王五：哦，我现在方便，你说吧。 甲：那我说了啊？ 乙：你说吧。 (连接建立 了，接下来就是说正事了…)</p>
+<ul>
+<li>UDP通信可看为学校里的广播：</li>
+</ul>
+<p>播音室：喂喂喂！全体操场集合</p>
+<h4 id="运行在tcp-或udp的应用层协议分析">运行在TCP 或UDP的应用层协议分析</h4>
+<ul>
+<li>
+<p>运行在TCP协议上的协议：</p>
+<ul>
+<li>HTTP（Hypertext Transfer Protocol，超文本传输协议），主要用于普通浏览。</li>
+<li>HTTPS（HTTP over SSL，安全超文本传输协议）,HTTP协议的安全版本。</li>
+<li>FTP（File Transfer Protocol，文件传输协议），用于文件传输。</li>
+<li>POP3（Post Office Protocol, version 3，邮局协议），收邮件用。</li>
+<li>SMTP（Simple Mail Transfer Protocol，简单邮件传输协议），用来发送电子邮件。</li>
+<li>TELNET（Teletype over the Network，网络电传），通过一个终端（terminal）登陆到网 络。</li>
+<li>SSH（Secure Shell，用于替代安全性差的TELNET），用于加密安全登陆用。</li>
+</ul>
+</li>
+<li>
+<p>运行在UDP协议上的协议：</p>
+<ul>
+<li>BOOTP（Boot Protocol，启动协议），应用于无盘设备。</li>
+<li>NTP（Network Time Protocol，网络时间协议），用于网络同步。</li>
+<li>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议），动态配置IP地址。</li>
+</ul>
+</li>
+<li>
+<p>运行在TCP和UDP协议上：</p>
+<ul>
+<li>DNS（Domain Name Service，域名服务），用于完成地址查找，邮件转发等工作。</li>
+<li>ECHO（Echo Protocol，回绕协议），用于查错及测量应答时间（运行在TCP和UDP协议 上）。</li>
+<li>SNMP（Simple Network Management Protocol，简单网络管理协议），用于网络信息的 收集和网络管理。</li>
+<li>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议），动态配置IP地址。</li>
+<li>ARP（Address Resolution Protocol，地址解析协议），用于动态解析以太网硬件的地址。</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是arp协议-address-resolution-protocol">什么是ARP协议 (Address Resolution Protocol)？</h4>
+<ul>
+<li><strong>ARP协议完成了IP地址与物理地址的映射。每一个主机都设有一个 ARP 高速缓存，里面有所在的 局域网上</strong>的各主机和路由器的 IP 地址到硬件地址的映射表。当源主机要发送数据包到目的主机 时，会先检查自己的ARP高速缓存中有没有目的主机的MAC地址，如果有，就直接将数据包发到这 个MAC地址，如果没有，就向所在的局域网发起一个ARP请求的广播包（在发送自己的 ARP 请求 时，同时会带上自己的 IP 地址到硬件地址的映射），收到请求的主机检查自己的IP地址和目的主 机的IP地址是否一致，如果一致，则先保存源主机的映射到自己的ARP缓存，然后给源主机发送一 个ARP响应数据包。源主机收到响应数据包之后，先添加目的主机的IP地址与MAC地址的映射，再 进行数据传送。如果源主机一直没有收到响应，表示ARP查询失败。</li>
+<li>如果所要找的主机和源主机不在同一个局域网上，那么就要通过 ARP 找到一个位于本局域网上的 某个路由器的硬件地址，然后把分组发送给这个路由器，让这个路由器把分组转发给下一个网络。 剩下的工作就由下一个网络来做。</li>
+</ul>
+<h4 id="从输入址到获得页面的过程">从输入址到获得页面的过程?</h4>
+<p>**过程：**DNS解析、TCP连接、发送HTTP请求、服务器处理请求并返回HTTP报文、浏览器渲染、<strong>结束</strong></p>
+<ol>
+<li>浏览器查询 DNS，获取域名对应的IP地址:具体过程包括浏览器搜索自身的DNS缓存、搜索操作系 统的DNS缓存、读取本地的Host文件和向本地DNS服务器进行查询等。对于向本地DNS服务器进 行查询，如果要查询的域名包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析 (此解析具有权威性)；如果要查询的域名不由本地DNS服务器区域解析，但该服务器已缓存了此网 址映射关系，则调用这个IP地址映射，完成域名解析（此解析不具有权威性）。如果本地域名服务 器并未缓存该网址映射关系，那么将根据其设置发起递归查询或者迭代查询；</li>
+<li>浏览器获得域名对应的IP地址以后，浏览器向服务器请求建立链接，发起三次握手；</li>
+<li>TCP/IP链接建立起来后，浏览器向服务器发送HTTP请求；</li>
+<li>服务器接收到这个请求，并根据路径参数映射到特定的请求处理器进行处理，并将处理结果及相应 的视图返回给浏览器；</li>
+<li>浏览器解析并渲染视图，若遇到对js文件、css文件及图片等静态资源的引用，则重复上述步骤并 向服务器请求这些资源；</li>
+<li>浏览器根据其请求到的资源、数据渲染页面，最终向用户呈现一个完整的页面。</li>
+</ol>
+<h3 id="tcp的三次握手">TCP的三次握手</h3>
+<h4 id="什么是tcp的三次握手">什么是TCP的三次握手</h4>
+<p>在网络数据传输中，传输层协议TCP是要建立连接的可靠传输，TCP建立连接的过程，我们称为三 次握手。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png, https://gitee.com/nateshao/images/raw/master/img/20220104222206.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104222206.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png" /></p>
+<ol>
+<li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状 态；</li>
+<li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK 置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列 号，发送给客户端；进入SYN_RCVD状态；</li>
+<li>第三次握手：客户端检查acknowledge number是否为序列号+1，ACK是否为1，检查正确之后将 自己的ACK置为1，产生一个acknowledge number=服务器发的序列号+1，发送给服务器；进入 ESTABLISHED状态；服务器检查ACK为1和acknowledge number为序列号+1之后，也进入 ESTABLISHED状态；完成三次握手，连接建立。</li>
+</ol>
+<h4 id="用现实理解三次握手的具体细节">用现实理解三次握手的具体细节</h4>
+<ul>
+<li>三次握手的目的是建立可靠的通信信道，主要的目的就是双方确认自己与对方的发送与接收机能正 常。</li>
+</ul>
+<ol>
+<li>第一次握手：客户什么都不能确认；服务器确认了对方发送正常</li>
+<li>第二次握手：客户确认了：自己发送、接收正常，对方发送、接收正常；服务器确认 了：自己接 收正常，对方发送正常</li>
+<li>第三次握手：客户确认了：自己发送、接收正常，对方发送、接收正常；服务器确认 了：自己发 送、接收正常，对方发送接收正常 所以三次握手就能确认双发收发功能都正常，缺一不可。</li>
+</ol>
+<h4 id="为什么不能把服务器发送的ack和fin合并起来变成三次挥手close_wait状态意义是什-么">为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什 么）？</h4>
+<p>因为服务器收到客户端断开连接的请求时，可能还有一些数据没有发完，这时先回复ACK，表示接 收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传送。</p>
+<h4 id="如果第二次挥手时服务器的ack没有送达客户端会怎样">如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</h4>
+<p>客户端没有收到ACK确认，会重新发送FIN请求。</p>
+<h4 id="客户端time_wait状态的意义是什么">客户端TIME_WAIT状态的意义是什么？</h4>
+<p>第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME_WAIT状态就是用来重发可能丢失的 ACK报文。如果Server没有收到ACK，就会重发FIN，如果Client在2*MSL的时间内收到了FIN，就 会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。 MSL(Maximum Segment Lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的 最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则 结束TCP连接。</p>
+<h3 id="socket">Socket</h3>
+<h4 id="什么是socket">什么是Socket</h4>
+<ul>
+<li>网络上的两个程序通过一个双向的通讯连接实现数据的交换，这个双向链路的一端称为一个 Socket。Socket通常用来实现客户方和服务方的连接。Socket是TCP/IP协议的一个十分流行的编 程界面，一个Socket由一个IP地址和一个端口号唯一确定。</li>
+<li>但是，Socket所支持的协议种类也不光TCP/IP、UDP，因此两者之间是没有必然联系的。在Java环境下，Socket编程主要是指基于TCP/IP协议的网络编程。 socket连接就是所谓的长连接，客户端和服务器需要互相连接，理论上客户端和服务器端一旦建立 起连接将不会主动断掉的，但是有时候网络波动还是有可能的</li>
+<li>Socket偏向于底层。一般很少直接使用Socket来编程，框架底层使用Socket比较多，</li>
+</ul>
+<h4 id="socket属于网络的那个层面">socket属于网络的那个层面</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104225037.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104225037.png, https://gitee.com/nateshao/images/raw/master/img/20220104225037.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104225037.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104225037.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104225037.png" /></p>
+<ul>
+<li>Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。在设计模式中，Socket 其实就是一个外观模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简 单的接口就是全部，让Socket去组织数据，以符合指定的协议。</li>
+</ul>
+<h4 id="socket通讯的过程">Socket通讯的过程</h4>
+<ul>
+<li>
+<p>基于TCP：服务器端先初始化Socket，然后与端口绑定(bind)，对端口进行监听(listen)，调用 accept阻塞，等待客户端连接。在这时如果有个客户端初始化一个Socket，然后连接服务器 (connect)，如果连接成功，这时客户端与服务器端的连接就建立了。客户端发送数据请求，服务 器端接收请求并处理请求，然后把回应数据发送给客户端，客户端读取数据，最后关闭连接，一次 交互结束。</p>
+</li>
+<li>
+<p>基于UDP：UDP 协议是用户数据报协议的简称，也用于网络数据的传输。虽然 UDP 协议是一种不 太可靠的协议，但有时在需要较快地接收数据并且可以忍受较小错误的情况下，UDP 就会表现出 更大的优势。我客户端只需要发送，服务端能不能接收的到我不管</p>
+</li>
+</ul>
+<h4 id="tcp协议socket代码示例">TCP协议Socket代码示例：</h4>
+<p>先运行服务端，在运行客户端 ，</p>
+<ol>
+<li>服务端：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.test.io</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+<span class="c1">//TCP协议Socket使用BIO进行通行：服务端
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BIOServer</span> <span class="o">{</span>
+<span class="c1">// 在main线程中执行下面这些代码
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">//1单线程服务
+</span><span class="c1"></span><span class="n">ServerSocket</span> <span class="n">server</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+<span class="n">server</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerSocket</span><span class="o">(</span><span class="n">8000</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;服务端启动成功，监听端口为8000，等待客户端连接...&#34;</span><span class="o">);</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+<span class="n">socket</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span> <span class="c1">//等待客户端连接
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;客户连接成功，客户信息为：&#34;</span> <span class="o">+</span>
+<span class="n">socket</span><span class="o">.</span><span class="na">getRemoteSocketAddress</span><span class="o">());</span>
+<span class="n">in</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
+<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="c1">//读取客户端的数据
+</span><span class="c1"></span><span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">));</span>
+<span class="o">}</span>
+<span class="c1">//向客户端写数据
+</span><span class="c1"></span><span class="n">out</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+<span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&#34;hello!&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+<span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>客户端：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.test.io</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="c1">//TCP协议Socket：客户端
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client01</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+<span class="c1">//创建套接字对象socket并封装ip与port
+</span><span class="c1"></span><span class="n">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Socket</span><span class="o">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="o">,</span> <span class="n">8000</span><span class="o">);</span>
+<span class="c1">//根据创建的socket对象获得一个输出流
+</span><span class="c1"></span><span class="n">OutputStream</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+<span class="c1">//控制台输入以IO的形式发送到服务器
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;TCP连接成功 \n请输入：&#34;</span><span class="o">);</span>
+<span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">).</span><span class="na">nextLine</span><span class="o">().</span><span class="na">getBytes</span><span class="o">();</span>
+<span class="n">outputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">car</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;TCP协议的Socket发送成功&#34;</span><span class="o">);</span>
+<span class="c1">//刷新缓冲区
+</span><span class="c1"></span><span class="n">outputStream</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>先运行服务端，在运行客户端 。测试结果发送成功：</p>
+<h4 id="5-udp协议socket代码示例">5 UDP协议Socket代码示例：</h4>
+<p>先运行服务端，在运行客户端</p>
+<ol>
+<li>服务端：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UDP协议Socket：服务端
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Server1</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">try</span> <span class="o">{</span>
+<span class="c1">//DatagramSocket代表声明一个UDP协议的Socket
+</span><span class="c1"></span><span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span>
+<span class="c1">//byte数组用于数据存储。
+</span><span class="c1"></span><span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
+<span class="c1">//DatagramPacket 类用来表示数据报包DatagramPacket
+</span><span class="c1"></span><span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">car</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="c1">// //创建DatagramPacket的receive()方法来进行数据的接收,等待接收一个socket请
+</span><span class="c1"></span><span class="n">求后才执行后续操作</span><span class="err">；</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;等待UDP协议传输数据&#34;</span><span class="o">);</span>
+<span class="n">socket</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">packet</span><span class="o">);</span>
+<span class="c1">//packet.getLength返回将要发送或者接收的数据的长度。
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">packet</span><span class="o">.</span><span class="na">getLength</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;啥东西来了：&#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">length</span><span class="o">));</span>
+<span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;UDP协议Socket接受成功&#34;</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>客户端：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UDP协议Socket：客户端
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client1</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">try</span> <span class="o">{</span>
+<span class="c1">//DatagramSocket代表声明一个UDP协议的Socket
+</span><span class="c1"></span><span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="o">(</span><span class="n">2468</span><span class="o">);</span>
+<span class="c1">//字符串存储人Byte数组
+</span><span class="c1"></span><span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="s">&#34;UDP协议的Socket请求，有可能失败哟&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+<span class="c1">//InetSocketAddress类主要作用是封装端口
+</span><span class="c1"></span><span class="n">InetSocketAddress</span> <span class="n">address</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="o">,</span> <span class="n">8888</span><span class="o">);</span>
+<span class="c1">//DatagramPacket 类用来表示数据报包DatagramPacket
+</span><span class="c1"></span><span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">car</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
+<span class="n">address</span><span class="o">);</span>
+<span class="c1">//send() 方法发送数据包。
+</span><span class="c1"></span><span class="n">socket</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">packet</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;UDP协议的Socket发送成功&#34;</span><span class="o">);</span>
+<span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>先运行服务端，在运行客户端 。测试结果成功发送成功：</p>
+<h4 id="6-socket的常用类">6 Socket的常用类</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104230638.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104230638.png, https://gitee.com/nateshao/images/raw/master/img/20220104230638.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104230638.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104230638.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104230638.png" /></p>
+<h3 id="3-http">3. HTTP</h3>
+<h4 id="什么是http协议">什么是Http协议？</h4>
+<ul>
+<li>Http协议是对客户端和服务器端之间数据之间实现可靠性的传输文字、图片、音频、视频等超文 本数据的规范，格式简称为“超文本传输协议”</li>
+<li>Http协议属于应用层，及用户访问的第一层就是http</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104230750.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104230750.png, https://gitee.com/nateshao/images/raw/master/img/20220104230750.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104230750.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220104230750.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220104230750.png" /></p>
+<h4 id="socket和http的区别和应用场景">Socket和http的区别和应用场景</h4>
+<ul>
+<li>Socket连接就是所谓的长连接，理论上客户端和服务器端一旦建立起连接将不会主动断掉；</li>
+<li>Socket适用场景：网络游戏，银行持续交互，直播，在线视屏等。</li>
+<li>http连接就是所谓的短连接，即客户端向服务器端发送一次请求，服务器端响应后连接即会断开等 待下次连接</li>
+<li>http适用场景：公司OA服务，互联网服务，电商，办公，网站等等等等</li>
+</ul>
+<h4 id="什么是http的请求体">什么是http的请求体？</h4>
+<ul>
+<li>HTTP请求体是我们请求数据时先发送给服务器的数据，毕竟我向服务器那数据，先要表明我要什 么吧</li>
+<li>HTTP请求体由：请求行 、请求头、请求数据组成的，</li>
+<li><strong>注意</strong>：GIT请求是没有请求体的</li>
+</ul>
+<h4 id="https工作原理">HTTPS工作原理</h4>
+<ul>
+<li>一、首先HTTP请求服务端生成证书，客户端对证书的有效期、合法性、域名是否与请求的域名一 致、证书的公钥（RSA加密）等进行校验；</li>
+<li>二、客户端如果校验通过后，就根据证书的公钥的有效， 生成随机数，随机数使用公钥进行加密 （RSA加密）；</li>
+<li>三、消息体产生的后，对它的摘要进行MD5（或者SHA1）算法加密，此时就得到了RSA签名；</li>
+<li>四、发送给服务端，此时只有服务端（RSA私钥）能解密。</li>
+<li>五、解密得到的随机数，再用AES加密，作为密钥（此时的密钥只有客户端和服务端知道）。</li>
+</ul>
+<h4 id="一次完整的http请求所经历几个步骤">一次完整的HTTP请求所经历几个步骤?</h4>
+<p>HTTP通信机制是在一次完整的HTTP通信过程中，Web浏览器与Web服务器之间将完成下列7个步骤：</p>
+<ol>
+<li>
+<p>建立TCP连接 怎么建立连接的，看上面的三次捂手</p>
+</li>
+<li>
+<p>Web浏览器向Web服务器发送请求行 一旦建立了TCP连接，Web浏览器就会向Web服务器发送请求命令。例如：GET /sample/hello.jsp HTTP/1.1。</p>
+</li>
+<li>
+<p>Web浏览器发送请求头 浏览器发送其请求命令之后，还要以头信息的形式向Web服务器发送一些别的信息，之后浏览器发送 了一空白行来通知服务器，它已经结束了该头信息的发送。</p>
+</li>
+<li>
+<p>Web服务器应答 客户机向服务器发出请求后，服务器会客户机回送应答， HTTP/1.1 200 OK ，应答的第一部分是协议 的版本号和应答状态码。</p>
+</li>
+<li>
+<p>Web服务器发送应答头 类别 描述 1xx： 指示信息–表示请求已接收，正在处理 2xx： 成功–表示请求已被成功接收、理解、接受 3xx： 重定向–要完成请求必须进行更进一步的操作 4xx： 客户端错误–请求有语法错误或请求无法实现 5xx： 服务器端错误–服务器未能实现合法的请求 正如客户端会随同请求发送关于自身的信息一样，服务器也会随同应答向用户发送关于它自己的数据及 被请求的文档。</p>
+</li>
+<li>
+<p>Web服务器向浏览器发送数据 Web服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，它 就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。</p>
+</li>
+<li>
+<p>Web服务器关闭TCP连接</p>
+</li>
+</ol>
+<h4 id="常用http状态码是怎么分类的有哪些常见的状态码">常用HTTP状态码是怎么分类的，有哪些常见的状态码？</h4>
+<ul>
+<li>
+<p>HTTP状态码表示客户端HTTP请求的返回结果、标识服务器处理是否正常、表明请求出现的错误 等。</p>
+</li>
+<li>
+<p>状态码的类别：</p>
+</li>
+</ul>
+<p>1xx： 指示信息–表示请求已接收，正在处理</p>
+<p>2xx： 成功–表示请求已被成功接收、理解、接受</p>
+<p>3xx： 重定向–要完成请求必须进行更进一步的操作</p>
+<p>4xx： 客户端错误–请求有语法错误或请求无法实现</p>
+<p>5xx： 服务器端错误–服务器未能实现合法的请求</p>
+<h4 id="http版本的对比">http版本的对比</h4>
+<ul>
+<li>
+<p>HTTP1.0版本的特性：</p>
+<ul>
+<li>早先1.0的HTTP版本，是一种无状态、无连接的应用层协议。</li>
+<li>HTTP1.0规定浏览器和服务器保持短暂的连接，浏览器的每次请求都需要与服务器建立一个 TCP连接，服务器处理完成后立即断开TCP连接（无连接），服务器不跟踪每个客户端也不记 录过去的请求（无状态）。</li>
+</ul>
+</li>
+<li>
+<p>HTTP1.1版本新特性</p>
+<ul>
+<li>默认持久连接节省通信量，只要客户端服务端任意一端没有明确提出断开TCP连接，就一直 保持连接，可以发送多次HTTP请求</li>
+<li>管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应</li>
+<li>断点续传原理</li>
+</ul>
+</li>
+<li>
+<p>HTTP2.0版本的特性</p>
+<ul>
+<li>二进制分帧（采用二进制格式的编码将其封装）</li>
+<li>首部压缩（设置了专门的首部压缩设计的HPACK算法。）</li>
+<li>流量控制（设置了接收某个数据流的多少字节一些流量控制）</li>
+<li>多路复用（可以在共享TCP链接的基础上同时发送请求和响应）</li>
+<li>请求优先级（可以通过优化这些帧的交错和传输顺序进一步优化性能）</li>
+<li>服务器推送（就是服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资 源无 需客户端明确的请求。（重大更新））</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是对称加密与非对称加密">什么是对称加密与非对称加密</h4>
+<ul>
+<li>对称密钥加密是指加密和解密使用同一个密钥的方式，这种方式存在的最大问题就是密钥发送问 题，即如何安全地将密钥发给对方；</li>
+<li>而非对称加密是指使用一对非对称密钥，即公钥和私钥，公钥可以随意发布，但私钥只有自己知 道。发送密文的一方使用对方的公钥进行加密处理，对方接收到加密信息后，使用自己的私钥进行 解密。 由于非对称加密的方式不需要发送用来解密的私钥，所以可以保证安全性；但是和对称加 密比起来，非常的慢</li>
+</ul>
+<h4 id="cookie和session对于http有什么用">cookie和session对于HTTP有什么用？</h4>
+<p>HTTP协议本身是无法判断用户身份。所以需要cookie或者session</p>
+<h4 id="什么是cookie">什么是cookie</h4>
+<p>cookie是由Web服务器保存在用户浏览器上的文件（key-value格式），可以包含用户相关的信 息。客户端向服务器发起请求，就提取浏览器中的用户信息由http发送给服务器</p>
+<h4 id="什么是session">什么是session</h4>
+<ul>
+<li>session 是浏览器和服务器会话过程中，服务器会分配的一块储存空间给session。</li>
+<li>服务器默认为客户浏览器的cookie中设置 sessionid，这个sessionid就和cookie对应，浏览器在向 服务器请求过程中传输的cookie 包含 sessionid ，服务器根据传输cookie 中的 sessionid 获取出 会话中存储的信息，然后确定会话的身份信息。</li>
+</ul>
+<h4 id="cookie与session区别">cookie与session区别</h4>
+<ol>
+<li>cookie数据存放在客户端上，安全性较差，session数据放在服务器上，安全性相对更高</li>
+<li>单个cookie保存的数据不能超过4K，session无此限制</li>
+<li>session一定时间内保存在服务器上，当访问增多，占用服务器性能，考虑到服务器性能方面，应 当使用cookie。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-03 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" data-title="计网" data-hashtags="计网"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" data-hashtag="计网"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" data-title="计网"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" data-title="计网"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" data-title="计网"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/interesting_talk_linux/" class="prev" rel="prev" title="Interesting talk about Linux operating system"><i class="fas fa-angle-left fa-fw"></i>Interesting talk about Linux operating system</a>
+            <a href="/os/" class="next" rel="next" title="OS">OS<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
