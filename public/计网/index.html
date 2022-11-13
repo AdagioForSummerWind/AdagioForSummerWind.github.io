@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  28609 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  29687 ,
         "url": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">计网</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%BD%91/"><i class="far fa-folder fa-fw"></i>计网</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 28609 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 58 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29687 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 60 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -132,6 +132,8 @@
         <li><a href="#get和post区别">Get和Post区别</a></li>
         <li><a href="#http请求的完全过程">Http请求的完全过程</a></li>
         <li><a href="#计算机网络的五层模型">计算机网络的五层模型</a></li>
+        <li><a href="#tcpip-四层协议栈">TCP/IP 四层协议栈</a></li>
+        <li><a href="#osi七层">OSI七层：</a></li>
         <li><a href="#tcp和udp区别">tcp和udp区别</a></li>
         <li><a href="#tcp和udp的优点">tcp和udp的优点</a></li>
         <li><a href="#三次握手">三次握手</a></li>
@@ -254,7 +256,7 @@
 </ol>
 <h3 id="http请求的完全过程">Http请求的完全过程</h3>
 <ol>
-<li>浏览器根据域名解析IP地址（DNS）,并查DNS缓存</li>
+<li>浏览器根据域名解析IP地址（DNS）,并查DNS缓存（域名解析的过程中会有多级的缓存，浏览器首先看一下自己的缓存里有没有，如果没有就向操作系统的缓存要，还没有就检查本机域名解析文件 hosts）</li>
 <li>浏览器与WEB服务器建立一个TCP连接</li>
 <li>浏览器给WEB服务器发送一个HTTP请求（GET/POST）：一个HTTP请求报文由请求行（request line）、请求头部（headers）、空行（blank line）和请求数据（request body）4个部分组成。</li>
 <li>服务端响应HTTP响应报文，报文由状态行（status line）、相应头部（headers）、空行（blank line）和响应数据（response body）4个部分组成。</li>
@@ -268,6 +270,32 @@
 <li>数据链路层：两个相邻节点之间传送数据时，数据链路层将网络层交下来的IP数据报组装成帧，在两个相邻的链路上传送帧（frame)。每一帧包括数据和必要的控制信息。</li>
 <li>物理层：物理层所传数据单位是比特（bit)。物理层要考虑用多大的电压代表1 或 0 ，以及接受方如何识别发送方所发送的比特。</li>
 </ol>
+<h3 id="tcpip-四层协议栈">TCP/IP 四层协议栈</h3>
+<ul>
+<li>TCP/IP 协议实际上是一系列网络通信协议的统称，其中最核心的两个协议是 TCP 和 IP，其他的还有 UDP、ICMP、ARP 等等，共同构成了一个复杂但有层次的协议栈。</li>
+<li><strong>这个协议栈有四层，最上层是“应用层”，最下层是“链接层”，TCP 和 IP 则在中间：TCP 属于“传输层”，IP 属于“网际层”。协议的层级关系模型非常重要。</strong></li>
+<li>IP 协议是“Internet Protocol”的缩写，主要目的是解决寻址和路由问题，以及如何在两点间传送数据包。IP 协议使用“IP 地址”的概念来定位互联网上的每一台计算机。</li>
+<li>现在我们使用的 IP 协议大多数是 v4 版，地址是四个用“.”分隔的数字，例如“192.168.0.1”，总共有 2^32，大约 42 亿个可以分配的地址。看上去好像很多，但互联网的快速发展让地址的分配管理很快就“捉襟见肘”。所以，就又出现了 v6 版，使用 8 组“:”分隔的数字作为地址，容量扩大了很多，有 2^128 个，在未来的几十年里应该是足够用了。</li>
+<li>TCP 协议是“Transmission Control Protocol”的缩写，意思是“传输控制协议”，它位于 IP 协议之上，基于 IP 协议提供可靠的、字节流形式的通信，是 HTTP 协议得以实现的基础。<strong>“可靠”是指保证数据不丢失，“字节流”是指保证数据完整</strong>，所以在 TCP 协议的两端可以如同操作文件一样访问传输的数据，就像是读写在一个密闭的管道里“流动”的字节。</li>
+<li>因此，HTTP协议运行在TCP/IP之上。</li>
+</ul>
+<h3 id="osi七层">OSI七层：</h3>
+<p>物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<p>七层网络体系结构各层的主要功能：</p>
+<ul>
+<li>应用层：为应用程序提供交互服务。在互联网中的应用层协议很多，如域名系统<code>DNS</code>， 支持万维网应用的<code>HTTP</code>协议，支持电子邮件的<code>SMTP</code>协议等。</li>
+<li>表示层：主要负责数据格式的转换，如加密解密、转换翻译、压缩解压缩等。</li>
+<li>会话层：负责在网络中的两节点之间建立、维持和终止通信，如服务器验证用户登录便是由会话层完成的。</li>
+<li>运输层：有时也译为传输层，向主机进程提供通用的数据传输服务。该层主要有以下两种协议:
+<ul>
+<li><code>TCP</code>：提供面向连接的、可靠的数据传输服务;</li>
+<li><code>UDP</code>：提供无连接的、尽最大努力的数据传输服务，但不保证数据传输的可靠性。</li>
+</ul>
+</li>
+<li>网络层：选择合适的路由和交换结点，确保数据及时传送。主要包括<code>IP</code>协议。</li>
+<li>数据链路层：数据链路层通常简称为链路层。将网络层传下来的<code>IP</code>数据包组装成帧，并再相邻节点的链路上传送帧。</li>
+<li>物理层：实现相邻节点间比特流的透明传输，尽可能屏蔽传输介质和通信手段的差异。</li>
+</ul>
 <h3 id="tcp和udp区别">tcp和udp区别</h3>
 <ol>
 <li>TCP面向连接，UDP是无连接的，即发送数据之前不需要建立连接。</li>

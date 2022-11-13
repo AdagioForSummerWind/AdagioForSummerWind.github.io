@@ -44,8 +44,7 @@ Go 的并发原则非常优秀，目标就是简单：尽量使用 channel；把
 ### channel底层数据结构是什么
 底层数据结构需要看源码，版本为 go 1.9.2：
 
-```
-golang
+```go
 type hchan struct {
 	// chan 里元素数量
 	qcount   uint
@@ -83,8 +82,7 @@ type hchan struct {
 
 `waitq` 是 `sudog` 的一个双向链表，而 `sudog` 实际上是对 goroutine 的一个封装：
 
-```
-golang
+```go
 type waitq struct {
 	first *sudog
 	last  *sudog
@@ -101,8 +99,7 @@ type waitq struct {
 
 一般而言，使用 `make` 创建一个能收能发的通道：
 
-```
-golang
+```go
 // 无缓冲通道
 ch1 := make(chan int)
 // 有缓冲通道
@@ -110,16 +107,14 @@ ch2 := make(chan int, 10)
 ```
 通过[汇编](https://mp.weixin.qq.com/s/obnnVkO2EiFnuXk_AIDHWw)分析，我们知道，最终创建 chan 的函数是 `makechan`：
 
-```
-golang
+```go
 func makechan(t *chantype, size int64) *hchan
 ```
 从函数原型来看，创建的 chan 是一个指针。所以我们能在函数间直接传递 channel，而不用传递 channel 的指针。
 
 具体来看下代码：
 
-```
-golang
+```go
 const hchanSize = unsafe.Sizeof(hchan{}) + uintptr(-int(unsafe.Sizeof(hchan{}))&(maxAlign-1))
 
 func makechan(t *chantype, size int64) *hchan {
@@ -174,8 +169,7 @@ func makechan(t *chantype, size int64) *hchan {
 #### 源码分析
 发送操作最终转化为 `chansend` 函数，直接上源码，同样大部分都注释了，可以看懂主流程：
 
-```
-golang
+```go
 // 位于 src/runtime/chan.go
 
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
@@ -307,8 +301,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 
 对于这一点，runtime 源码里注释了很多。这一条判断语句是为了在不阻塞发送的场景下快速检测到发送失败，好快速返回。
 
-```
-golang
+```go
 if !block && c.closed == 0 && ((c.dataqsiz == 0 && c.recvq.first == nil) || (c.dataqsiz > 0 && c.qcount == c.dataqsiz)) {
 	return false
 }
@@ -331,8 +324,7 @@ if !block && c.closed == 0 && ((c.dataqsiz == 0 && c.recvq.first == nil) || (c.d
 
 - 如果能从等待接收队列 recvq 里出队一个 sudog（代表一个 goroutine），说明此时 channel 是空的，没有元素，所以才会有等待接收者。这时会调用 send 函数将元素直接从发送者的栈拷贝到接收者的栈，关键操作由 `sendDirect` 函数完成。
 
-```
-golang
+```go
 // send 函数处理向一个空的 channel 发送操作
 
 // ep 指向被发送的元素，会被直接拷贝到接收的 goroutine
@@ -366,8 +358,7 @@ func send(c *hchan, sg *sudog, ep unsafe.Pointer, unlockf func(), skip int) {
 ```
 继续看 `sendDirect` 函数：
 
-```
-golang
+```go
 // 向一个非缓冲型的 channel 发送数据、从一个无元素的（非缓冲型或缓冲型但空）的 channel
 // 接收数据，都会导致一个 goroutine 直接操作另一个 goroutine 的栈
 // 由于 GC 假设对栈的写操作只能发生在 goroutine 正在运行中并且由当前 goroutine 来写
@@ -390,8 +381,7 @@ func sendDirect(t *_type, sg *sudog, src unsafe.Pointer) {
 
 - 如果 `c.qcount < c.dataqsiz`，说明缓冲区可用（肯定是缓冲型的 channel）。先通过函数取出待发送元素应该去到的位置：
 
-```
-golang
+```go
 qp := chanbuf(c, c.sendx)
 
 // 返回循环队列里第 i 个元素的地址处
@@ -414,8 +404,7 @@ func chanbuf(c *hchan, i uint) unsafe.Pointer {
 #### 案例分析
 好了，看完源码。我们接着来分析例子，代码如下：
 
-```
-golang
+```go
 func goroutineA(a <-chan int) {
 	val := <- a
 	fmt.Println("goroutine A received data: ", val)
@@ -470,8 +459,7 @@ func main() {
 
 经过编译器的处理后，这两种写法最后对应源码里的这两个函数：
 
-```
-golang
+```go
 // entry points for <- c from compiled code
 func chanrecv1(c *hchan, elem unsafe.Pointer) {
 	chanrecv(c, elem, true)
@@ -486,8 +474,7 @@ func chanrecv2(c *hchan, elem unsafe.Pointer) (received bool) {
 
 无论如何，最终转向了 `chanrecv` 函数：
 
-```
-golang
+```go
 // 位于 src/runtime/chan.go
 
 // chanrecv 函数接收 channel c 的元素并将其写入 ep 所指向的内存地址。
@@ -643,8 +630,7 @@ func chanrecv(c *hchan, ep unsafe.Pointer, block bool) (selected, received bool)
 
 - 和发送函数一样，接下来搞了一个在非阻塞模式下，不用获取锁，快速检测到失败并且返回的操作。顺带插一句，我们平时在写代码的时候，找到一些边界条件，快速返回，能让代码逻辑更清晰，因为接下来的正常情况就比较少，更聚焦了，看代码的人也更能专注地看核心代码逻辑了。
 
-```
-golang
+```go
 	// 在非阻塞模式下，快速检测到失败，不用获取锁，快速返回 (false, false)
 	if !block && (c.dataqsiz == 0 && c.sendq.first == nil ||
 		c.dataqsiz > 0 && atomic.Loaduint(&c.qcount) == 0) &&
@@ -667,8 +653,7 @@ golang
 
 于是，调用 recv 函数：
 
-```
-golang
+```go
 func recv(c *hchan, sg *sudog, ep unsafe.Pointer, unlockf func(), skip int) {
 	// 如果是非缓冲型的 channel
 	if c.dataqsiz == 0 {
@@ -717,8 +702,7 @@ func recv(c *hchan, sg *sudog, ep unsafe.Pointer, unlockf func(), skip int) {
 ```
 如果是非缓冲型的，就直接从发送者的栈拷贝到接收者的栈。
 
-```
-golang
+```go
 func recvDirect(t *_type, sg *sudog, dst unsafe.Pointer) {
 	// dst is on our stack or the heap, src is on another stack.
 	src := sg.elem
@@ -728,8 +712,7 @@ func recvDirect(t *_type, sg *sudog, dst unsafe.Pointer) {
 ```
 否则，就是缓冲型 channel，而 buf 又满了的情形。说明发送游标和接收游标重合了，因此需要先找到接收游标：
 
-```
-golang
+```go
 // chanbuf(c, i) is pointer to the i'th slot in the buffer.
 func chanbuf(c *hchan, i uint) unsafe.Pointer {
 	return add(c.buf, uintptr(i)*uintptr(c.elemsize))
@@ -751,8 +734,7 @@ func chanbuf(c *hchan, i uint) unsafe.Pointer {
 
 从 channel 接收和向 channel 发送数据的过程我们均会使用下面这个例子来进行说明：
 
-```
-golang
+```go
 func goroutineA(a <-chan int) {
 	val := <- a
 	fmt.Println("G1 received data: ", val)
@@ -828,8 +810,7 @@ G2 也是同样的遭遇。现在 G1 和 G2 都被挂起了，等待着一个 se
 
 关闭某个 channel，会执行函数 `closechan`：
 
-```
-golang
+```go
 func closechan(c *hchan) {
 	// 关闭一个 nil channel，panic
 	if c == nil {
@@ -931,8 +912,7 @@ close 函数先上一把大锁，接着把所有挂在这个 channel 上的 send
 
 从一个有缓冲的 channel 里读数据，当 channel 被关闭，依然能读出有效值。只有当返回的 ok 为 false 时，读出的数据才是无效的。
 
-```
-golang
+```go
 func main() {
 	ch := make(chan int, 5)
 	ch <- 18
@@ -950,8 +930,7 @@ func main() {
 ```
 运行结果：
 
-```
-golang
+```go
 received:  18
 channel closed, data invalid.
 ```
@@ -986,8 +965,7 @@ channel closed, data invalid.
 
 一个比较粗糙的检查 channel 是否关闭的函数：
 
-```
-golang
+```go
 func IsClosed(ch <-chan T) bool {
 	select {
 	case <-ch:
@@ -1042,8 +1020,7 @@ func main() {
 
 解决方案就是增加一个传递关闭信号的 channel，receiver 通过信号 channel 下达关闭数据 channel 指令。senders 监听到关闭信号后，停止发送数据。代码如下：
 
-```
-golang
+```go
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
@@ -1092,8 +1069,7 @@ func main() {
 
 和第 3 种情况不同，这里有 M 个 receiver，如果直接还是采取第 3 种解决方案，由 receiver 直接关闭 stopCh 的话，就会重复关闭一个 channel，导致 panic。因此需要增加一个中间人，M 个 receiver 都向它发送关闭 dataCh 的“请求”，中间人收到第一个请求后，就会直接下达关闭 dataCh 的指令（通过关闭 stopCh，这时就不会发生重复关闭的情况，因为 stopCh 的发送方只有中间人一个）。另外，这里的 N 个 sender 也可以向中间人发送关闭 dataCh 的请求。
 
-```
-golang
+```go
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
@@ -1171,8 +1147,7 @@ func main() {
 
 如果，我们把 toStop 的容量声明成 Num(senders) + Num(receivers)，那发送 dataCh 请求的部分可以改成更简洁的形式：
 
-```
-golang
+```go
 ...
 toStop := make(chan string, NumReceivers + NumSenders)
 ...
@@ -1319,8 +1294,7 @@ Channel 可能会引发 goroutine 泄漏。
 
 我们直接来看例子：
 
-```
-golang
+```go
 var done = make(chan bool)
 var msg string
 
@@ -1343,8 +1317,7 @@ func main() {
 
 进一步利用前面提到的第 3 条 happened before 规则，修改一下代码：
 
-```
-golang
+```go
 var done = make(chan bool)
 var msg string
 
@@ -1379,8 +1352,7 @@ channel 用于停止信号的场景还是挺多的，经常是关闭某个 chann
 
 有时候，需要执行某项操作，但又不想它耗费太长时间，上一个定时器就可以搞定：
 
-```
-golang
+```go
 select {
 	case <-time.After(100 * time.Millisecond):
 	case <-s.stopc:
@@ -1391,8 +1363,7 @@ select {
 
 定时执行某个任务，也比较简单：
 
-```
-golang
+```go
 func worker() {
 	ticker := time.Tick(1 * time.Second)
 	for {
@@ -1410,8 +1381,7 @@ func worker() {
 
 服务启动时，启动 n 个 worker，作为工作协程池，这些协程工作在一个 `for {}` 无限循环里，从某个 channel 消费工作任务并执行：
 
-```
-golang
+```go
 func main() {
 	taskCh := make(chan int, 100)
 	go worker(taskCh)
@@ -1464,8 +1434,7 @@ finish task: 5 by worker 2
 
 下面的例子来自《Go 语言高级编程》：
 
-```
-golang
+```go
 var limit = make(chan int, 3)
 
 func main() {
@@ -1547,8 +1516,7 @@ go version go1.9.2 darwin/amd64
 #### map 内存模型
 在源码中，表示 map 的结构体是 hmap，它是 hashmap 的“缩写”：
 
-```
-golang
+```go
 // A header for a Go map.
 type hmap struct {
     // 元素个数，调用 len(map) 时，直接返回此值
@@ -1575,16 +1543,14 @@ type hmap struct {
 
 buckets 是一个指针，最终它指向的是一个结构体：
 
-```
-golang
+```go
 type bmap struct {
 	tophash [bucketCnt]uint8
 }
 ```
 但这只是表面(src/runtime/hashmap.go)的结构，**编译期间会给它加料，动态地创建一个新的结构**：
 
-```
-golang
+```go
 type bmap struct {
     topbits  [8]uint8
     keys     [8]keytype
@@ -1601,8 +1567,7 @@ type bmap struct {
 
 当 map 的 key 和 value 都不是指针，并且 size 都小于 128 字节的情况下，会把 bmap 标记为不含指针，这样可以避免 gc 时扫描整个 hmap。但是，我们看 bmap 其实有一个 overflow 的字段，是指针类型的，破坏了 bmap 不含指针的设想，这时会把 overflow 移动到 extra 字段来。
 
-```
-golang
+```go
 type mapextra struct {
 	// overflow[0] contains overflow buckets for hmap.buckets.
 	// overflow[1] contains overflow buckets for hmap.oldbuckets.
@@ -1620,8 +1585,7 @@ bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部�
 
 例如，有这样一个类型的 map：
 
-```
-golang
+```go
 map[int64]int8
 ```
 如果按照 `key/value/key/value/...` 这样的模式存储，那在每一个 key/value 对之后都要额外 padding 7 个字节；而将所有的 key，value 分别绑定到一起，这种形式 `key/key/.../value/value/...`，则只需要在最后添加 padding。
@@ -1631,8 +1595,7 @@ map[int64]int8
 #### 创建 map
 从语法层面上来说，创建 map 很简单：
 
-```
-golang
+```go
 ageMp := make(map[string]int)
 // 指定 map 长度
 ageMp := make(map[string]int, 8)
@@ -1642,8 +1605,7 @@ var ageMp map[string]int
 ```
 通过汇编语言可以看到，实际上底层调用的是 `makemap` 函数，主要做的工作就是初始化 `hmap` 结构体的各种字段，例如计算 B 的大小，设置哈希种子 hash0 等等。
 
-```
-golang
+```go
 func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
 	// 省略各种条件检查...
 
@@ -1687,14 +1649,12 @@ func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
 
 注意，这个函数返回的结果：`*hmap`，它是一个指针，而我们之前讲过的 `makeslice` 函数返回的是 `Slice` 结构体：
 
-```
-golang
+```go
 func makeslice(et *_type, len, cap int) slice
 ```
 回顾一下 slice 的结构体定义：
 
-```
-golang
+```go
 // runtime/slice.go
 type slice struct {
     array unsafe.Pointer // 元素指针
@@ -1718,8 +1678,7 @@ map 的一个关键点在于，哈希函数的选择。在程序启动时，会�
 
 之前我们讲过，表示类型的结构体：
 
-```
-golang
+```go
 type _type struct {
 	size       uintptr
 	ptrdata    uintptr // size of memory prefix holding all pointers
@@ -1736,8 +1695,7 @@ type _type struct {
 ```
 其中 `alg` 字段就和哈希相关，它是指向如下结构体的指针：
 
-```
-golang
+```go
 // src/runtime/alg.go
 type typeAlg struct {
 	// (ptr to object, seed) -> hash
@@ -1750,8 +1708,7 @@ typeAlg 包含两个函数，hash 函数计算类型的哈希值，而 equal 函
 
 对于 string 类型，它的 hash、equal 函数如下：
 
-```
-golang
+```go
 func strhash(a unsafe.Pointer, h uintptr) uintptr {
 	x := (*stringStruct)(a)
 	return memhash(x.str, h, uintptr(x.len))
@@ -1788,8 +1745,7 @@ buckets 编号就是桶编号，当两个不同的 key 落在同一个桶中，�
 
 我们来看下源码吧，哈哈！通过汇编语言可以看到，查找某个 key 的底层函数是 `mapacess` 系列函数，函数的作用类似，区别在下一节会讲到。这里我们直接看 `mapacess1` 函数：
 
-```
-golang
+```go
 func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer {
 	// ……
 	
@@ -1886,8 +1842,7 @@ func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer {
 
 这里，说一下定位 key 和 value 的方法以及整个循环的写法。
 
-```
-golang
+```go
 // key 定位公式
 k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.keysize))
 
@@ -1896,8 +1851,7 @@ v := add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.
 ```
 b 是 bmap 的地址，这里 bmap 还是源码里定义的结构体，只包含一个 tophash 数组，经编译器扩充之后的结构体才包含 key，value，overflow 这些字段。dataOffset 是 key 相对于 bmap 起始地址的偏移：
 
-```
-golang
+```go
 dataOffset = unsafe.Offsetof(struct {
 		b bmap
 		v int64
@@ -1907,8 +1861,7 @@ dataOffset = unsafe.Offsetof(struct {
 
 再说整个大循环的写法，最外层是一个无限循环，通过 
 
-```
-golang
+```go
 b = b.overflow(t)
 ```
 遍历所有的 bucket，这相当于是一个 bucket 链表。
@@ -1921,8 +1874,7 @@ b = b.overflow(t)
 
 下面的这几种状态就表征了 bucket 的情况：
 
-```
-golang
+```go
 // 空的 cell，也是初始时 bucket 的状态
 empty          = 0
 // 空的 cell，表示 cell 已经被迁移到新的 bucket
@@ -1937,8 +1889,7 @@ minTopHash     = 4
 ```
 源码里判断这个 bucket 是否已经搬迁完毕，用到的函数：
 
-```
-golang
+```go
 func evacuated(b *bmap) bool {
 	h := b.tophash[0]
 	return h > empty && h < minTopHash
@@ -1954,8 +1905,7 @@ func evacuated(b *bmap) bool {
 
 Go 语言中读取 map 有两种语法：带 comma 和 不带 comma。当要查询的 key 不在 map 里，带 comma 的用法会返回一个 bool 型变量提示 key 是否在 map 中；而不带 comma 的语句则会返回一个 key 对应 value 类型的零值。如果 value 是 int 型就会返回 0，如果 value 是 string 类型，就会返回空字符串。
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -1982,8 +1932,7 @@ shell
 ```
 以前一直觉得好神奇，怎么实现的？这其实是编译器在背后做的工作：分析代码后，将两种语法对应到底层两个不同的函数。
 
-```
-golang
+```go
 // src/runtime/hashmap.go
 func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer
 func mapaccess2(t *maptype, h *hmap, key unsafe.Pointer) (unsafe.Pointer, bool)
@@ -2017,8 +1966,7 @@ func mapaccess2(t *maptype, h *hmap, key unsafe.Pointer) (unsafe.Pointer, bool)
 
 我先写一个简单的代码样例，假装不知道遍历过程具体调用的是什么函数：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -2042,8 +1990,7 @@ go tool compile -S main.go
 
 关键的几行汇编代码如下：
 
-```
-golang
+```go
 // ......
 0x0124 00292 (test16.go:9)      CALL    runtime.mapiterinit(SB)
 
@@ -2061,8 +2008,7 @@ golang
 
 迭代器的结构体定义：
 
-```
-golang
+```go
 type hiter struct {
 	// key 指针
 	key         unsafe.Pointer
@@ -2097,8 +2043,7 @@ type hiter struct {
 
 前面已经提到过，即使是对一个写死的 map 进行遍历，每次出来的结果也是无序的。下面我们就可以近距离地观察他们的实现了。
 
-```
-golang
+```go
 // 生成随机数 r
 r := uintptr(fastrand())
 if h.B > 31-bucketCntBits {
@@ -2128,8 +2073,7 @@ it.offset = uint8(r >> h.B & (bucketCnt - 1))
 
 因为 3 号 bucket 对应老的 1 号 bucket，因此先检查老 1 号 bucket 是否已经被搬迁过。判断方法就是：
 
-```
-golang
+```go
 func evacuated(b *bmap) bool {
 	h := b.tophash[0]
 	return h > empty && h < minTopHash
@@ -2137,8 +2081,7 @@ func evacuated(b *bmap) bool {
 ```
 如果 b.tophash[0] 的值在标志值范围内，即在 (0,4) 区间里，说明已经被搬迁过了。
 
-```
-golang
+```go
 empty = 0
 evacuatedEmpty = 1
 evacuatedX = 2
@@ -2227,8 +2170,7 @@ mapassign 有一个系列的函数，根据 key 类型的不同，编译器会�
 
 另外，有一个重要的点要说一下。前面说的找到 key 的位置，进行赋值操作，实际上并不准确。我们看 `mapassign` 函数的原型就知道，函数并没有传入 value 值，所以赋值操作是什么时候执行的呢？
 
-```
-golang
+```go
 func mapassign(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer
 ```
 答案还得从汇编语言中寻找。我直接揭晓答案，有兴趣可以私下去研究一下。`mapassign` 函数返回的指针就是指向的 key 所对应的 value 值位置，有了地址，就很好操作赋值了。
@@ -2239,8 +2181,7 @@ func mapassign(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer
 
 写操作底层的执行函数是 `mapdelete`：
 
-```
-golang
+```go
 func mapdelete(t *maptype, h *hmap, key unsafe.Pointer) 
 ```
 根据 key 类型的不同，删除操作会被优化成更具体的函数：
@@ -2259,8 +2200,7 @@ func mapdelete(t *maptype, h *hmap, key unsafe.Pointer)
 
 找到对应位置后，对 key 或者 value 进行“清零”操作：
 
-```
-golang
+```go
 // 对 key 清零
 if t.indirectkey {
 	*(*unsafe.Pointer)(k) = nil
@@ -2293,8 +2233,7 @@ Go 语言采用一个 bucket 里装载 8 个 key，定位到某个 bucket 后，
 
 因此，需要有一个指标来衡量前面描述的情况，这就是`装载因子`。Go 源码里这样定义 `装载因子`：
 
-```
-golang
+```go
 loadFactor := count / (2^B)
 ```
 count 就是 map 的元素个数，2^B 表示 bucket 数量。
@@ -2306,8 +2245,7 @@ count 就是 map 的元素个数，2^B 表示 bucket 数量。
 
 通过汇编语言可以找到赋值操作对应源码中的函数是 `mapassign`，对应扩容条件的源码如下：
 
-```
-golang
+```go
 // src/runtime/hashmap.go/mapassign
 
 // 触发扩容时机
@@ -2350,8 +2288,7 @@ func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 
 我们先看 `hashGrow()` 函数所做的工作，再来看具体的搬迁 buckets 是如何进行的。
 
-```
-golang
+```go
 func hashGrow(t *maptype, h *hmap) {
 	// B+1 相当于是原来 2 倍的空间
 	bigger := uint8(1)
@@ -2388,8 +2325,7 @@ func hashGrow(t *maptype, h *hmap) {
 
 值得一说的是对 `h.flags` 的处理：
 
-```
-golang
+```go
 flags := h.flags &^ (iterator | oldIterator)
 if h.flags&iterator != 0 {
 	flags |= oldIterator
@@ -2397,8 +2333,7 @@ if h.flags&iterator != 0 {
 ```
 这里得先说下运算符：&^。这叫`按位置 0`运算符。例如：
 
-```
-golang
+```go
 x = 01010011
 y = 01010100
 z = x &^ y = 00000011
@@ -2409,8 +2344,7 @@ z = x &^ y = 00000011
 
 几个标志位如下：
 
-```
-golang
+```go
 // 可能有迭代器使用 buckets
 iterator     = 1
 // 可能有迭代器使用 oldbuckets
@@ -2422,8 +2356,7 @@ sameSizeGrow = 8
 ```
 再来看看真正执行搬迁工作的 growWork() 函数。
 
-```
-golang
+```go
 func growWork(t *maptype, h *hmap, bucket uintptr) {
 	// 确认搬迁老的 bucket 对应正在使用的 bucket
 	evacuate(t, h, bucket&h.oldbucketmask())
@@ -2436,8 +2369,7 @@ func growWork(t *maptype, h *hmap, bucket uintptr) {
 ```
 h.growing() 函数非常简单：
 
-```
-golang
+```go
 func (h *hmap) growing() bool {
 	return h.oldbuckets != nil
 }
@@ -2452,8 +2384,7 @@ func (h *hmap) growing() bool {
 
 源码如下：
 
-```
-golang
+```go
 func evacuate(t *maptype, h *hmap, oldbucket uintptr) {
 	// 定位老的 bucket 地址
 	b := (*bmap)(add(h.oldbuckets, oldbucket*uintptr(t.bucketsize)))
@@ -2676,8 +2607,7 @@ evacuate 函数每次只完成一个 bucket 的搬迁工作，因此要遍历完
 
 这是通过 tophash 值与新算出来的哈希值进行运算得到的：
 
-```
-golang
+```go
 if top&1 != 0 {
     // top hash 最低位为 1
     // 新算出来的 hash 值的 B 位置 1
@@ -2734,8 +2664,7 @@ map 在扩容后，会发生 key 的搬迁，原来落在同一个 bucket 中的
 
 来看个例子：
 
-```
-golang
+```go
 func main() {
 	m := make(map[float64]int)
 	m[1.4] = 1
@@ -2778,8 +2707,7 @@ false
 
 具体是通过 `Float64frombits` 函数完成：
 
-```
-golang
+```go
 // Float64frombits returns the floating point number corresponding
 // the IEEE 754 binary representation b.
 func Float64frombits(b uint64) float64 { return *(*float64)(unsafe.Pointer(&b)) }
@@ -2806,8 +2734,7 @@ asm
 ```
 我们再来输出点东西：
 
-```
-golang
+```go
 package main
 
 import (
@@ -2842,23 +2769,20 @@ shell
 
 再来看一下 NAN（not a number）：
 
-```
-golang
+```go
 // NaN returns an IEEE 754 ``not-a-number'' value.
 func NaN() float64 { return Float64frombits(uvnan) }
 ```
 uvan 的定义为：
 
-```
-golang
+```go
 uvnan    = 0x7FF8000000000001
 ```
 NAN() 直接调用 `Float64frombits`，传入写死的 const 型变量 `0x7FF8000000000001`，得到 NAN 型值。既然，NAN 是从一个常量解析得来的，为什么插入 map 时，会被认为是不同的 key？
 
 这是由类型的哈希函数决定的，例如，对于 64 位的浮点数，它的哈希函数如下：
 
-```
-golang
+```go
 func f64hash(p unsafe.Pointer, h uintptr) uintptr {
 	f := *(*float64)(p)
 	switch {
@@ -2935,8 +2859,7 @@ map 并不是一个线程安全的数据结构。同时读写一个 map 是未�
 
 无法对 map 的 key 或 value 进行取址。以下代码不能通过编译：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -2967,8 +2890,7 @@ shell
 ```
 直接将使用 map1 == map2 是错误的。这种写法只能比较 map 是否为 nil。
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -2986,8 +2908,7 @@ func main() {
 ```
 输出结果：
 
-```
-golang
+```go
 true
 true
 ```
@@ -3003,16 +2924,14 @@ map 不是线程安全的。
 
 检测写标志：
 
-```
-golang
+```go
 if h.flags&hashWriting == 0 {
 		throw("concurrent map writes")
 	}
 ```
 设置写标志：
 
-```
-golang
+```go
 h.flags |= hashWriting
 ```
 ## interface
@@ -3046,8 +2965,7 @@ Go 语言作为一门现代静态语言，是有后发优势的。它引入了�
 
 先定义一个接口，和使用此接口作为参数的函数：
 
-```
-golang
+```go
 type IGreeting interface {
 	sayHello()
 }
@@ -3058,8 +2976,7 @@ func sayHello(i IGreeting) {
 ```
 再来定义两个结构体：
 
-```
-golang
+```go
 type Go struct {}
 func (g Go) sayHello() {
 	fmt.Println("Hi, I am GO!")
@@ -3072,8 +2989,7 @@ func (p PHP) sayHello() {
 ```
 最后，在 main 函数里调用 sayHello() 函数：
 
-```
-golang
+```go
 func main() {
 	golang := Go{}
 	php := PHP{}
@@ -3121,8 +3037,7 @@ Hi, I am PHP!
 
 来看个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3187,8 +3102,7 @@ shell
 
 来看一个例子，就会完全明白：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3218,8 +3132,7 @@ func main() {
 ```
 上述代码里定义了一个接口 `coder`，接口定义了两个函数：
 
-```
-golang
+```go
 code()
 debug()
 ```
@@ -3236,8 +3149,7 @@ I am debuging Go language
 ```
 但是如果我们把 `main` 函数的第一条语句换一下：
 
-```
-golang
+```go
 func main() {
 	var c coder = Gopher{"Go"}
 	c.code()
@@ -3296,8 +3208,7 @@ src/main.go:23:6: cannot use Gopher literal (type Gopher) as type coder in assig
 
 从源码层面看一下：
 
-```
-golang
+```go
 type iface struct {
 	tab  *itab
 	data unsafe.Pointer
@@ -3324,8 +3235,7 @@ type itab struct {
 
 再看一下 `interfacetype` 类型，它描述的是接口的类型：
 
-```
-golang
+```go
 type interfacetype struct {
 	typ     _type
 	pkgpath name
@@ -3340,8 +3250,7 @@ type interfacetype struct {
 
 接着来看一下 `eface` 的源码：
 
-```
-golang
+```go
 type eface struct {
     _type *_type
     data  unsafe.Pointer
@@ -3353,8 +3262,7 @@ type eface struct {
 
 我们来看个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3403,8 +3311,7 @@ func convT2I(tab *itab, elem unsafe.Pointer) (i iface)
 
 作为补充，我们最后再来看下 `_type` 结构体：
 
-```
-golang
+```go
 type _type struct {
     // 类型大小
 	size       uintptr
@@ -3427,8 +3334,7 @@ type _type struct {
 ```
 go 语言各种数据类型都是在 `_type` 字段的基础上，增加一些额外的字段来进行管理的：
 
-```
-golang
+```go
 type arraytype struct {
 	typ   _type
 	elem  *_type
@@ -3472,8 +3378,7 @@ type structtype struct {
 
 来看个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3518,8 +3423,7 @@ c: *main.Gopher, <nil>
 【引申2】
 来看一个例子，看一下它的输出：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3555,8 +3459,7 @@ false
 
 直接看代码：
 
-```
-golang
+```go
 package main
 
 import (
@@ -3605,16 +3508,14 @@ a 的动态类型和动态值的地址均为 0，也就是 nil；b 的动态类�
 
 经常看到一些开源库里会有一些类似下面这种奇怪的用法：
 
-```
-golang
+```go
 var _ io.Writer = (*myWriter)(nil)
 ```
 这时候会有点懵，不知道作者想要干什么，实际上这就是此问题的答案。编译器会由此检查 `*myWriter` 类型是否实现了 `io.Writer` 接口。
 
 来看一个例子：
 
-```
-golang
+```go
 package main
 
 import "io"
@@ -3637,8 +3538,7 @@ func main() {
 ```
 注释掉为 myWriter 定义的 Write 函数后，运行程序：
 
-```
-golang
+```go
 src/main.go:14:6: cannot use (*myWriter)(nil) (type *myWriter) as type io.Writer in assignment:
 	*myWriter does not implement io.Writer (missing Write method)
 src/main.go:15:6: cannot use myWriter literal (type myWriter) as type io.Writer in assignment:
@@ -3652,8 +3552,7 @@ src/main.go:15:6: cannot use myWriter literal (type myWriter) as type io.Writer 
 
 总结一下，可通过在代码中添加类似如下的代码，用来检测类型是否实现了接口：
 
-```
-golang
+```go
 var _ io.Writer = (*myWriter)(nil)
 var _ io.Writer = myWriter{}
 ```
@@ -3666,8 +3565,7 @@ var _ io.Writer = myWriter{}
 
 来看一个示例代码：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3749,8 +3647,7 @@ asm
 
 我们来看下这个函数的参数形式：
 
-```
-golang
+```go
 func convT2I64(tab *itab, elem unsafe.Pointer) (i iface) {
 	// ……
 }
@@ -3771,8 +3668,7 @@ go.itab."".Student,"".Person SNOPTRDATA dupok size=40
 ```
 `size=40` 大小为40字节，回顾一下：
 
-```
-golang
+```go
 type itab struct {
 	inter  *interfacetype // 8字节
 	_type  *_type // 8字节
@@ -3796,8 +3692,7 @@ type itab struct {
 
 具体看下代码：
 
-```
-golang
+```go
 func convT2I64(tab *itab, elem unsafe.Pointer) (i iface) {
 	t := tab._type
 	
@@ -3832,8 +3727,7 @@ func convT2I64(tab *itab, elem unsafe.Pointer) (i iface) {
 
 这里参考曹大神翻译的一篇文章，参考资料里会写上。具体做法如下：
 
-```
-golang
+```go
 type iface struct {
 	tab  *itab
 	data unsafe.Pointer
@@ -3881,8 +3775,7 @@ iface.tab.hash = 0xd4209fda
 
 ><结果类型> := <目标类型> ( <表达式> )
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3920,8 +3813,7 @@ cannot convert i (type int) to type []int
 
 还是来看一个简短的例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -3946,8 +3838,7 @@ panic: interface conversion: interface {} is *main.Student, not main.Student
 ```
 直接 `panic` 了，这是因为 `i` 是 `*Student` 类型，并非 `Student` 类型，断言失败。这里直接发生了 `panic`，线上代码可能并不适合这样做，可以采用“安全断言”的语法：
 
-```
-golang
+```go
 func main() {
 	var i interface{} = new(Student)
 	s, ok := i.(Student)
@@ -3962,8 +3853,7 @@ func main() {
 
 代码示例如下：
 
-```
-golang
+```go
 func main() {
 	//var i interface{} = new(Student)
 	//var i interface{} = (*Student)(nil)
@@ -4026,24 +3916,21 @@ nil type[<nil>] <nil>
 ```
 对于第一行语句：
 
-```
-golang
+```go
 var i interface{} = new(Student)
 ```
 `i` 是一个 `*Student` 类型，匹配上第三个 case，从打印的三个地址来看，这三处的变量实际上都是不一样的。在 `main` 函数里有一个局部变量 `i`；调用函数时，实际上是复制了一份参数，因此函数里又有一个变量 `v`，它是 `i` 的拷贝；断言之后，又生成了一份新的拷贝。所以最终打印的三个变量的地址都不一样。
 
 对于第二行语句：
 
-```
-golang
+```go
 var i interface{} = (*Student)(nil)
 ```
 这里想说明的其实是 `i` 在这里动态类型是 `(*Student)`, 数据为 `nil`，它的类型并不是 `nil`，它与 `nil` 作比较的时候，得到的结果也是 `false`。
 
 最后一行语句：
 
-```
-golang
+```go
 var i interface{}
 ```
 这回 `i` 才是 `nil` 类型。
@@ -4053,8 +3940,7 @@ var i interface{}
 
 再来看一个简短的例子，比较简单，不要紧张：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -4081,8 +3967,7 @@ shell
 ```
 增加一个 `String()` 方法的实现：
 
-```
-golang
+```go
 func (s Student) String() string {
 	return fmt.Sprintf("[Name: %s], [Age: %d]", s.Name, s.Age)
 }
@@ -4116,8 +4001,7 @@ shell
 
 所以， `Student` 结构体定义了接受者类型是值类型的 `String()` 方法时，通过
 
-```
-golang
+```go
 fmt.Println(s)
 fmt.Println(&s)
 ```
@@ -4125,8 +4009,7 @@ fmt.Println(&s)
 
 如果 `Student` 结构体定义了接受者类型是指针类型的 `String()` 方法时，只有通过
 
-```
-golang
+```go
 fmt.Println(&s)
 ```
 才能按照自定义的格式打印。
@@ -4152,8 +4035,7 @@ fmt.Println(&s)
 
 直接来看一个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -4197,8 +4079,7 @@ go tool compile -S ./src/main.go
 ```
 得到 main 函数的汇编命令，可以看到： `r = c` 这一行语句实际上是调用了 `runtime.convI2I(SB)`，也就是 `convI2I` 函数，从函数名来看，就是将一个 `interface` 转换成另外一个 `interface`，看下它的源代码：
 
-```
-golang
+```go
 func convI2I(inter *interfacetype, i iface) (r iface) {
 	tab := i.tab
 	if tab == nil {
@@ -4220,8 +4101,7 @@ func convI2I(inter *interfacetype, i iface) (r iface) {
 
 因此，重点来看下 `getitab` 函数的源码，只看关键的地方：
 
-```
-golang
+```go
 func getitab(inter *interfacetype, typ *_type, canfail bool) *itab {
 	// ……
 
@@ -4272,8 +4152,7 @@ func getitab(inter *interfacetype, typ *_type, canfail bool) *itab {
 
 再来看一下 `additab` 函数的代码：
 
-```
-golang
+```go
 // 检查 _type 是否符合 interface_type 并且创建对应的 itab 结构体 将其放到 hash 表中
 func additab(m *itab, locked, canfail bool) {
 	inter := m.inter
@@ -4342,8 +4221,7 @@ func additab(m *itab, locked, canfail bool) {
 
 求 hash 值的函数比较简单：
 
-```
-golang
+```go
 func itabhash(inter *interfacetype, typ *_type) uint32 {
 	h := inter.typ.hash
 	h += 17 * typ.hash
@@ -4384,8 +4262,7 @@ func itabhash(inter *interfacetype, typ *_type) uint32 {
 
 看一个实现了多态的代码例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -4448,8 +4325,7 @@ func (p Programmer) growUp() {
 ```
 代码里先定义了 1 个 `Person` 接口，包含两个函数：
 
-```
-golang
+```go
 job()
 growUp()
 ```
@@ -4457,8 +4333,7 @@ growUp()
 
 之后，我又定义了函数参数是 `Person` 接口的两个函数：
 
-```
-golang
+```go
 func whatJob(p Person)
 func growUp(p Person)
 ```
@@ -4570,16 +4445,14 @@ context 包就是为了解决上面所说的这些问题而开发的：在 一�
 
 context 使用起来非常方便。源码里对外提供了一个创建根节点 context 的函数：
 
-```
-golang
+```go
 func Background() Context
 ```
 background 是一个空的 context， 它不能被取消，没有值，也没有超时时间。
 
 有了根节点 context，又提供了四个函数创建子节点 context：
 
-```
-golang
+```go
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
 func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)
 func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
@@ -4605,8 +4478,7 @@ context 会在函数传递间传递。只需要在适当的时间调用 cancel �
 
 对于 Web 服务端开发，往往希望将一个请求处理的整个过程串起来，这就非常依赖于 Thread Local（对于 Go 可理解为单个协程所独有） 的变量，而在 Go 语言中并没有这个概念，因此需要在函数调用的时候传递 context。
 
-```
-golang
+```go
 package main
 
 import (
@@ -4642,8 +4514,7 @@ process over. trace_id=qcrao-2019
 
 当然，现实场景中可能是从一个 HTTP 请求中获取到的 Request-ID。所以，下面这个样例可能更适合：
 
-```
-golang
+```go
 const requestIDKey int = 0
 
 func WithRequestID(next http.Handler) http.Handler {
@@ -4686,8 +4557,7 @@ func main() {
 
 后端可能的实现如下：
 
-```
-golang
+```go
 func Perform() {
     for {
         calculatePos()
@@ -4700,8 +4570,7 @@ func Perform() {
 
 上面给出的简单做法，可以实现想要的效果，没有问题，但是并不优雅，并且一旦协程数量多了之后，并且各种嵌套，就会很麻烦。优雅的做法，自然就要用到 context。
 
-```
-golang
+```go
 func Perform(ctx context.Context) {
     for {
         calculatePos()
@@ -4719,8 +4588,7 @@ func Perform(ctx context.Context) {
 ```
 主流程可能是这样的：
 
-```
-golang
+```go
 ctx, cancel := context.WithTimeout(context.Background(), time.Hour)
 go Perform(ctx)
 
@@ -4733,8 +4601,7 @@ cancel()
 ##### 防止 goroutine 泄漏
 前面那个例子里，goroutine 还是会自己执行完，最后返回，只不过会多浪费一些系统资源。这里改编一个“如果不用 context 取消，goroutine 就会泄漏的例子”，来自参考资料：`【避免协程泄漏】`。
 
-```
-golang
+```go
 func gen() <-chan int {
 	ch := make(chan int)
 	go func() {
@@ -4750,8 +4617,7 @@ func gen() <-chan int {
 ```
 这是一个可以生成无限整数的协程，但如果我只需要它产生的前 5 个数，那么就会发生 goroutine 泄漏：
 
-```
-golang
+```go
 func main() {
 	for n := range gen() {
 		fmt.Println(n)
@@ -4766,8 +4632,7 @@ func main() {
 
 用 context 改进这个例子：
 
-```
-golang
+```go
 func gen(ctx context.Context) <-chan int {
 	ch := make(chan int)
 	go func() {
@@ -4804,8 +4669,7 @@ func main() {
 #### context.Value的查找过程是什么样的
 
 
-```
-golang
+```go
 type valueCtx struct {
 	Context
 	key, val interface{}
@@ -4813,8 +4677,7 @@ type valueCtx struct {
 ```
 它实现了两个方法：
 
-```
-golang
+```go
 func (c *valueCtx) String() string {
 	return fmt.Sprintf("%v.WithValue(%#v, %#v)", c.Context, c.key, c.val)
 }
@@ -4830,8 +4693,7 @@ func (c *valueCtx) Value(key interface{}) interface{} {
 
 创建 valueCtx 的函数：
 
-```
-golang
+```go
 func WithValue(parent Context, key, val interface{}) Context {
 	if key == nil {
 		panic("nil key")
@@ -4852,8 +4714,7 @@ func WithValue(parent Context, key, val interface{}) Context {
 
 取值的过程，实际上是一个递归查找的过程：
 
-```
-golang
+```go
 func (c *valueCtx) Value(key interface{}) interface{} {
 	if c.key == key {
 		return c.val
@@ -4915,8 +4776,7 @@ context 包的代码并不长，`context.go` 文件总共不到 500 行，其中
 ##### Context
 现在可以直接看源码：
 
-```
-golang
+```go
 type Context interface {
 	// 当 context 被取消或者到了 deadline，返回一个被关闭的 channel
 	Done() <-chan struct{}
@@ -4944,8 +4804,7 @@ type Context interface {
 ##### canceler
 再来看另外一个接口：
 
-```
-golang
+```go
 type canceler interface {
 	cancel(removeFromParent bool, err error)
 	Done() <-chan struct{}
@@ -4967,8 +4826,7 @@ caller 不应该去关心、干涉 callee 的情况，决定如何以及何时 r
 ##### emptyCtx
 源码中定义了 `Context` 接口后，并且给出了一个实现：
 
-```
-golang
+```go
 type emptyCtx int
 
 func (*emptyCtx) Deadline() (deadline time.Time, ok bool) {
@@ -4993,8 +4851,7 @@ func (*emptyCtx) Value(key interface{}) interface{} {
 
 它被包装成：
 
-```
-golang
+```go
 var (
 	background = new(emptyCtx)
 	todo       = new(emptyCtx)
@@ -5002,8 +4859,7 @@ var (
 ```
 通过下面两个导出的函数（首字母大写）对外公开：
 
-```
-golang
+```go
 func Background() Context {
 	return background
 }
@@ -5019,8 +4875,7 @@ todo 通常用在并不知道传递什么 context的情形。例如，调用一�
 ##### cancelCtx
 再来看一个重要的 context：
 
-```
-golang
+```go
 type cancelCtx struct {
 	Context
 
@@ -5035,8 +4890,7 @@ type cancelCtx struct {
 
 先来看 `Done()` 方法的实现：
 
-```
-golang
+```go
 func (c *cancelCtx) Done() <-chan struct{} {
 	c.mu.Lock()
 	if c.done == nil {
@@ -5053,8 +4907,7 @@ c.done 是“懒汉式”创建，只有调用了 Done() 方法的时候才会�
 
 接下来，我们重点关注 `cancel()` 方法的实现：
 
-```
-golang
+```go
 func (c *cancelCtx) cancel(removeFromParent bool, err error) {
     // 必须要传 err
 	if err == nil {
@@ -5093,8 +4946,7 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 
 我们再来看创建一个可取消的 Context 的方法：
 
-```
-golang
+```go
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 	c := newCancelCtx(parent)
 	propagateCancel(parent, &c)
@@ -5111,8 +4963,7 @@ func newCancelCtx(parent Context) cancelCtx {
 
 注意传给 WithCancel 方法的参数，前者是 true，也就是说取消的时候，需要将自己从父节点里删除。第二个参数则是一个固定的取消错误类型：
 
-```
-golang
+```go
 var Canceled = errors.New("context canceled")
 ```
 还注意到一点，调用子节点 cancel 方法的时候，传入的第一个参数 `removeFromParent` 是 false。
@@ -5121,8 +4972,7 @@ var Canceled = errors.New("context canceled")
 
 当 `removeFromParent` 为 true 时，会将当前节点的 context 从父节点 context 中删除：
 
-```
-golang
+```go
 func removeChild(parent Context, child canceler) {
 	p, ok := parentCancelCtx(parent)
 	if !ok {
@@ -5137,8 +4987,7 @@ func removeChild(parent Context, child canceler) {
 ```
 最关键的一行：
 
-```
-golang
+```go
 delete(p.children, child)
 ```
 什么时候会传 true 呢？答案是调用 `WithCancel()` 方法的时候，也就是新创建一个可取消的 context 节点时，返回的 cancelFunc 函数会传入 true。这样做的结果是：当调用返回的 cancelFunc 时，会将这个 context 从它的父节点里“除名”，因为父节点可能有很多子节点，你自己取消了，所以我要和你断绝关系，对其他人没影响。
@@ -5151,8 +5000,7 @@ delete(p.children, child)
 
 重点看 `propagateCancel()`：
 
-```
-golang
+```go
 func propagateCancel(parent Context, child canceler) {
 	// 父节点是个空节点
 	if parent.Done() == nil {
@@ -5193,8 +5041,7 @@ func propagateCancel(parent Context, child canceler) {
 
 其实不然。我们来看 `parentCancelCtx` 的代码：
 
-```
-golang
+```go
 func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 	for {
 		switch c := parent.(type) {
@@ -5214,8 +5061,7 @@ func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 
 由于 context 包的代码并不多，所以我直接把它 copy 出来了，然后在 else 语句里加上了几条打印语句，来验证上面的说法：
 
-```
-golang
+```go
 type MyContext struct {
     // 这里的 Context 是我 copy 出来的，所以前面不用加 context.
 	Context
@@ -5257,8 +5103,7 @@ context.Background.WithCancel
 
 再来说一下，select 语句里的两个 case 其实都不能删。
 
-```
-golang
+```go
 select {
 	case <-parent.Done():
 		child.cancel(false, parent.Err())
@@ -5272,8 +5117,7 @@ select {
 ##### timerCtx
 timerCtx 基于 cancelCtx，只是多了一个 time.Timer 和一个 deadline。Timer 会在 deadline 到来时，自动取消 context。
 
-```
-golang
+```go
 type timerCtx struct {
 	cancelCtx
 	timer *time.Timer // Under cancelCtx.mu.
@@ -5283,8 +5127,7 @@ type timerCtx struct {
 ```
 timerCtx 首先是一个 cancelCtx，所以它能取消。看下 cancel() 方法：
 
-```
-golang
+```go
 func (c *timerCtx) cancel(removeFromParent bool, err error) {
 	// 直接调用 cancelCtx 的取消方法
 	c.cancelCtx.cancel(false, err)
@@ -5303,16 +5146,14 @@ func (c *timerCtx) cancel(removeFromParent bool, err error) {
 ```
 创建 timerCtx 的方法：
 
-```
-golang
+```go
 func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
 	return WithDeadline(parent, time.Now().Add(timeout))
 }
 ```
 `WithTimeout` 函数直接调用了 `WithDeadline`，传入的 deadline 是当前时间加上 timeout 的时间，也就是从现在开始再经过 timeout 时间就算超时。也就是说，`WithDeadline` 需要用的是绝对时间。重点来看它：
 
-```
-golang
+```go
 func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc) {
 	if cur, ok := parent.Deadline(); ok && cur.Before(deadline) {
 		// 如果父节点 context 的 deadline 早于指定时间。直接构建一个可取消的 context。
@@ -5353,16 +5194,14 @@ func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc) {
 
 这个函数的最核心的一句是：
 
-```
-golang
+```go
 c.timer = time.AfterFunc(d, func() {
 	c.cancel(true, DeadlineExceeded)
 })
 ```
 c.timer 会在 d 时间间隔后，自动调用 cancel 函数，并且传入的错误就是 `DeadlineExceeded`：
 
-```
-golang
+```go
 var DeadlineExceeded error = deadlineExceededError{}
 
 type deadlineExceededError struct{}
@@ -5420,8 +5259,7 @@ Go 语言中，每个变量都有一个静态类型，在编译阶段就确定�
 
 Go 官方博客里就举了一个例子：
 
-```
-golang
+```go
 type MyInt int
 
 var i int
@@ -5431,8 +5269,7 @@ var j MyInt
 
 反射主要与 interface{} 类型相关。关于 interface 的底层结构，可以参考前面有关 interface 章节的内容，这里复习一下。
 
-```
-golang
+```go
 type iface struct {
 	tab  *itab
 	data unsafe.Pointer
@@ -5455,8 +5292,7 @@ type itab struct {
 
 实际上，iface 描述的是非空接口，它包含方法；与之相对的是 `eface`，描述的是空接口，不包含任何方法，Go 语言里有的类型都 `“实现了”` 空接口。
 
-```
-golang
+```go
 type eface struct {
     _type *_type
     data  unsafe.Pointer
@@ -5472,8 +5308,7 @@ type eface struct {
 
 Go 语言中最常见的就是 `Reader` 和 `Writer` 接口：
 
-```
-golang
+```go
 type Reader interface {
     Read(p []byte) (n int, err error)
 }
@@ -5484,8 +5319,7 @@ type Writer interface {
 ```
 接下来，就是接口之间的各种转换和赋值了：
 
-```
-golang
+```go
 var r io.Reader
 tty, err := os.OpenFile("/Users/qcrao/Desktop/test", os.O_RDWR, 0)
 if err != nil {
@@ -5501,8 +5335,7 @@ r = tty
 
 注意看上图，此时虽然 `fun` 所指向的函数只有一个 `Read` 函数，其实 `*os.File` 还包含 `Write` 函数，也就是说 `*os.File` 其实还实现了 `io.Writer` 接口。因此下面的断言语句可以执行：
 
-```
-golang
+```go
 var w io.Writer
 w = r.(io.Writer)
 ```
@@ -5516,8 +5349,7 @@ w = r.(io.Writer)
 
 最后，再来一个赋值：
 
-```
-golang
+```go
 var empty interface{}
 empty = w
 ```
@@ -5533,8 +5365,7 @@ empty = w
 
 先参考源码，分别定义一个`“伪装”`的 iface 和 eface 结构体。
 
-```
-golang
+```go
 type iface struct {
 	tab  *itab
 	data unsafe.Pointer
@@ -5555,8 +5386,7 @@ type eface struct {
 ```
 接着，将接口变量占据的内存内容强制解释成上面定义的类型，再打印出来：
 
-```
-golang
+```go
 package main
 
 import (
@@ -5599,8 +5429,7 @@ func main() {
 ```
 运行结果：
 
-```
-golang
+```go
 initial r: <nil>, <nil>
 tty: *os.File, &{0xc4200820f0}
 r: *os.File, &{0xc4200820f0}
@@ -5619,8 +5448,7 @@ reflect 包里定义了一个接口和一个结构体，即 `reflect.Type` 和 `
 
 reflect 包中提供了两个基础的关于反射的函数来获取上述的接口和结构体：
 
-```
-golang
+```go
 func TypeOf(i interface{}) Type 
 func ValueOf(i interface{}) Value
 ```
@@ -5628,8 +5456,7 @@ func ValueOf(i interface{}) Value
 
 看下源码：
 
-```
-golang
+```go
 func TypeOf(i interface{}) Type {
 	eface := *(*emptyInterface)(unsafe.Pointer(&i))
 	return toType(eface.typ)
@@ -5637,8 +5464,7 @@ func TypeOf(i interface{}) Type {
 ```
 这里的 `emptyInterface` 和上面提到的 `eface` 是一回事（字段名略有差异，字段是相同的），并且在不同的源码包：前者在 `reflect` 包，后者在 `runtime` 包。 `eface.typ` 就是动态类型。
 
-```
-golang
+```go
 type emptyInterface struct {
 	typ  *rtype
 	word unsafe.Pointer
@@ -5646,8 +5472,7 @@ type emptyInterface struct {
 ```
 至于 `toType` 函数，只是做了一个类型转换：
 
-```
-golang
+```go
 func toType(t *rtype) Type {
 	if t == nil {
 		return nil
@@ -5657,8 +5482,7 @@ func toType(t *rtype) Type {
 ```
 注意，返回值 `Type` 实际上是一个接口，定义了很多方法，用来获取类型相关的各种信息，而 `*rtype` 实现了 `Type` 接口。
 
-```
-golang
+```go
 type Type interface {
     // 所有的类型都可以调用下面这些函数
 
@@ -5768,12 +5592,10 @@ type Type interface {
 注意到 `Type` 方法集的倒数第二个方法 `common`
  返回的 `rtype`类型，它和上一篇文章讲到的 `_type` 是一回事，而且源代码里也注释了：两边要保持同步：
 
-```
-golang
+```go
  // rtype must be kept in sync with ../runtime/type.go:/^type._type.
 ```
-```
-golang
+```go
 type rtype struct {
 	size       uintptr
 	ptrdata    uintptr
@@ -5792,8 +5614,7 @@ type rtype struct {
 
 比如下面的 `arrayType` 和 `chanType` 都包含 `rytpe`，而前者还包含 slice，len 等和数组相关的信息；后者则包含 `dir` 表示通道方向的信息。
 
-```
-golang
+```go
 // arrayType represents a fixed array type.
 type arrayType struct {
 	rtype `reflect:"array"`
@@ -5811,8 +5632,7 @@ type chanType struct {
 ```
 注意到，`Type` 接口实现了 `String()` 函数，满足 `fmt.Stringer` 接口，因此使用 `fmt.Println` 打印的时候，输出的是 `String()` 的结果。另外，`fmt.Printf()` 函数，如果使用 `%T` 来作为格式参数，输出的是 `reflect.TypeOf` 的结果，也就是动态类型。例如：
 
-```
-golang
+```go
 fmt.Printf("%T", 3) // int
 ```
 ---
@@ -5821,8 +5641,7 @@ fmt.Printf("%T", 3) // int
 
 源码如下：
 
-```
-golang
+```go
 func ValueOf(i interface{}) Value {
 	if i == nil {
 		return Value{}
@@ -5852,8 +5671,7 @@ func unpackEface(i interface{}) Value {
 
 Value 结构体定义了很多方法，通过这些方法可以直接操作 Value 字段 ptr 所指向的实际数据：
 
-```
-golang
+```go
 // 设置切片的 len 字段，如果类型不是切片，就会panic
  func (v Value) SetLen(n int)
  
@@ -5873,8 +5691,7 @@ golang
 ```
 `Value` 字段还有很多其他的方法。例如：
 
-```
-golang
+```go
 // 用来获取 int 类型的值
 func (v Value) Int() int64
 
@@ -5923,8 +5740,7 @@ func (v Value) CallSlice(in []Value) []Value
 
 举一个经典例子：
 
-```
-golang
+```go
 var x float64 = 3.4
 v := reflect.ValueOf(x)
 v.SetFloat(7.1) // Error: will panic.
@@ -5935,8 +5751,7 @@ v.SetFloat(7.1) // Error: will panic.
 
 就像在一般的函数里那样，当我们想改变传入的变量时，使用指针就可以解决了。
 
-```
-golang
+```go
 var x float64 = 3.4
 p := reflect.ValueOf(&x)
 fmt.Println("type of p:", p.Type())
@@ -5944,15 +5759,13 @@ fmt.Println("settability of p:", p.CanSet())
 ```
 输出是这样的：
 
-```
-golang
+```go
 type of p: *float64
 settability of p: false
 ```
 `p` 还不是代表 `x`，`p.Elem()` 才真正代表 `x`，这样就可以真正操作 `x` 了：
 
-```
-golang
+```go
 v := p.Elem()
 v.SetFloat(7.1)
 fmt.Println(v.Interface()) // 7.1
@@ -5969,16 +5782,14 @@ Go 语言中反射的应用非常广：IDE 中的代码自动补全功能、对�
 
 Go 语言中提供了一个函数可以完成此项功能：
 
-```
-golang
+```go
 func DeepEqual(x, y interface{}) bool
 ```
 `DeepEqual` 函数的参数是两个 `interface`，实际上也就是可以输入任意类型，输出 true 或者 flase 表示输入的两个变量是否是“深度”相等。
 
 先明白一点，如果是不同的类型，即使是底层类型相同，相应的值也相同，那么两者也不是“深度”相等。
 
-```
-golang
+```go
 type MyInt int
 type YourInt int
 
@@ -6016,8 +5827,7 @@ func main() {
 
 来看源码：
 
-```
-golang
+```go
 func DeepEqual(x, y interface{}) bool {
 	if x == nil || y == nil {
 		return x == y
@@ -6040,8 +5850,7 @@ func DeepEqual(x, y interface{}) bool {
 
 实际上，各种类型的比较套路比较相似，这里就直接节选一个稍微复杂一点的 `map` 类型的比较：
 
-```
-golang
+```go
 // deepValueEqual 函数
 // ……
 
@@ -6068,8 +5877,7 @@ case Map:
 ```
 和前文总结的表格里，比较 map 是否相等的思路比较一致，也不需要多说什么。说明一点，`visited` 是一个 map，记录递归过程中，比较过的“对”：
 
-```
-golang
+```go
 type visit struct {
 	a1  unsafe.Pointer
 	a2  unsafe.Pointer
@@ -6096,8 +5904,7 @@ Go 语言的作者之一 Ken Thompson 也是 C 语言的作者。所以，Go 可
 
 来看一个简单的例子：
 
-```
-golang
+```go
 a := 5
 p := &a
 
@@ -6110,8 +5917,7 @@ p = &a + 3
 
 例如下面这个简短的例子：
 
-```
-golang
+```go
 func main() {
 	a := int(100)
 	var f *float64
@@ -6135,8 +5941,7 @@ cannot use &a (type *int) as type *float64 in assignment
 
 unsafe.Pointer 在 unsafe 包：
 
-```
-golang
+```go
 type ArbitraryType int
 
 type Pointer *ArbitraryType
@@ -6152,8 +5957,7 @@ unsafe 包提供了 2 点重要的能力：
 
 pointer 不能直接进行数学运算，但可以把它转换成 uintptr，对 uintptr 类型进行数学运算，再转换成 pointer 类型。
 
-```
-golang
+```go
 // uintptr 是一个整数类型，它足够大，可以存储
 type uintptr uintptr
 ```
@@ -6168,8 +5972,7 @@ unsafe 包中的几个函数都是在编译期间执行完毕，毕竟，编译�
 ##### 获取 slice 长度
 通过前面关于 slice 的[文章](https://mp.weixin.qq.com/s/MTZ0C9zYsNrb8wyIm2D8BA)，我们知道了 slice header 的结构体定义：
 
-```
-golang
+```go
 // runtime/slice.go
 type slice struct {
     array unsafe.Pointer // 元素指针
@@ -6179,14 +5982,12 @@ type slice struct {
 ```
 调用 make 函数新建一个 slice，底层调用的是 makeslice 函数，返回的是 slice 结构体：
 
-```
-golang
+```go
 func makeslice(et *_type, len, cap int) slice
 ```
 因此我们可以通过 unsafe.Pointer 和 uintptr 进行转换，得到 slice 的字段值。
 
-```
-golang
+```go
 func main() {
 	s := make([]int, 9, 20)
 	var Len = *(*int)(unsafe.Pointer(uintptr(unsafe.Pointer(&s)) + uintptr(8)))
@@ -6198,16 +5999,14 @@ func main() {
 ```
 Len，cap 的转换流程如下：
 
-```
-golang
+```go
 Len: &s => pointer => uintptr => pointer => *int => int
 Cap: &s => pointer => uintptr => pointer => *int => int
 ```
 ##### 获取 map 长度
 再来看一下上篇文章我们讲到的 map：
 
-```
-golang
+```go
 type hmap struct {
 	count     int
 	flags     uint8
@@ -6224,14 +6023,12 @@ type hmap struct {
 ```
 和 slice 不同的是，makemap 函数返回的是 hmap 的指针，注意是指针：
 
-```
-golang
+```go
 func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap
 ```
 我们依然能通过 unsafe.Pointer 和 uintptr 进行转换，得到 hamp 字段的值，只不过，现在 count 变成二级指针了：
 
-```
-golang
+```go
 func main() {
 	mp := make(map[string]int)
 	mp["qcrao"] = 100
@@ -6243,8 +6040,7 @@ func main() {
 ```
 count 的转换过程：
 
-```
-golang
+```go
 &mp => pointer => **int => int
 ```
 #### 如何利用unsafe包修改私有成员
@@ -6255,8 +6051,7 @@ golang
 
 我们来看一个例子：
 
-```
-golang
+```go
 package main
 
 import (
@@ -6295,8 +6090,7 @@ name 是结构体的第一个成员，因此可以直接将 &p 解析成 *string
 
 我把 Programmer 结构体升级，多加一个字段：
 
-```
-golang
+```go
 type Programmer struct {
 	name string
 	age int
@@ -6305,8 +6099,7 @@ type Programmer struct {
 ```
 并且放在其他包，这样在 main 函数中，它的三个字段都是私有成员变量，不能直接修改。但我通过 unsafe.Sizeof() 函数可以获取成员大小，进而计算出成员的地址，直接修改内存。
 
-```
-golang
+```go
 func main() {
 	p := Programmer{"stefno", 18, "go"}
 	fmt.Println(p)
@@ -6331,8 +6124,7 @@ shell
 
 完成这个任务，我们需要了解 slice 和 string 的底层数据结构：
 
-```
-golang
+```go
 type StringHeader struct {
 	Data uintptr
 	Len  int
@@ -6346,8 +6138,7 @@ type SliceHeader struct {
 ```
 上面是反射包下的结构体，路径：src/reflect/value.go。只需要共享底层 Data 和 Len 就可以实现 `zero-copy`。
 
-```
-golang
+```go
 func string2bytes(s string) []byte {
 	return *(*[]byte)(unsafe.Pointer(&s))
 }
@@ -6460,8 +6251,7 @@ Go scheduler 会启动一个后台线程 sysmon，用来检测长时间（超过
 
 但是配上 CPU 的超线程，1 个核可以变成 2 个，所以当我在 mac 上运行下面的程序时，会打印出 4。
 
-```
-golang
+```go
 func main() {
 	// NumCPU 返回当前进程可以用到的逻辑核心数
 	fmt.Println(runtime.NumCPU())
@@ -6542,8 +6332,7 @@ Go scheduler 使用 M:N 模型，在任一时刻，M 个 goroutines（G） 要�
 
 实际上，Go scheduler 每一轮调度要做的工作就是找到处于 runnable 的 goroutines，并执行它。找的顺序如下：
 
-```
-golang
+```go
 runtime.schedule() {
     // only 1/61 of the time, check the global runnable queue for a G.
     // if not found, check the local queue.
@@ -6576,8 +6365,7 @@ G、P、M 是 Go 调度器的三个核心组件，各司其职。在它们精密
 
 本系列使用的代码版本是 1.9.2，来看一下 g 的源码：
 
-```
-golang
+```go
 type g struct {
 
 	// goroutine 使用的栈
@@ -6644,8 +6432,7 @@ type g struct {
 
 `g` 结构体关联了两个比较简单的结构体，stack 表示 goroutine 运行时的栈：
 
-```
-golang
+```go
 // 描述栈的数据结构，栈的范围：[lo, hi)
 type stack struct {
     // 栈顶，低地址
@@ -6656,8 +6443,7 @@ type stack struct {
 ```
 goroutine 运行时，光有栈还不行，至少还得包括 PC，SP 等寄存器，gobuf 就保存了这些值：
 
-```
-golang
+```go
 type gobuf struct {
 	// 存储 rsp 寄存器的值
 	sp   uintptr
@@ -6678,8 +6464,7 @@ type gobuf struct {
 
 结构体 m 的源码如下：
 
-```
-golang
+```go
 // m 代表工作线程，保存了自身使用的栈信息
 type m struct {
 	// 记录工作线程（也就是内核线程）使用的栈信息。在执行调度代码时需要使用
@@ -6769,8 +6554,7 @@ type m struct {
 
 一个 M 只有绑定 P 才能执行 goroutine，当 M 被阻塞时，整个 P 会被传递给其他 M ，或者说整个 P 被接管。
 
-```
-golang
+```go
 // p 保存 go 运行时所必须的资源
 type p struct {
 	lock mutex
@@ -6874,8 +6658,7 @@ M 只有自旋和非自旋两种状态。自旋的时候，会努力找工作；
 
 Go scheduler 在源码中的结构体为 `schedt`，保存调度器的状态信息、全局的可运行 G 队列等。源码如下：
 
-```
-golang
+```go
 // 保存调度器的信息
 type schedt struct {
 	// accessed atomically. keep at top to ensure alignment on 32-bit systems.
@@ -6955,8 +6738,7 @@ type schedt struct {
 
 在 proc.go 和 runtime2.go 文件中，有一些很重要全局的变量，我们先列出来：
 
-```
-golang
+```go
 // 所有 g 的长度
 allglen     uintptr
 
@@ -7000,8 +6782,7 @@ g0           g
 
 我们从一个 `Hello World` 的例子来回顾一下 Go 程序初始化的过程：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -7246,8 +7027,7 @@ MOVL	AX, 0	// abort
 
 继续来看源码，L3 将 m0.tls 地址存储到 DI 寄存器，再调用 settls 完成 tls 的设置，tls 是 m 结构体中的一个数组。
 
-```
-golang
+```go
 // thread-local storage (for x86 extern register)
 tls [6]uintptr
 ```
@@ -7261,8 +7041,7 @@ tls [6]uintptr
 
 设置完 tls 之后，又来了一段验证上面 settls 是否能正常工作。如果不能，会直接 crash。
 
-```
-golang
+```go
 get_tls(BX)
 MOVQ	$0x123, g(BX)
 MOVQ	runtime·m0+m_tls(SB), AX
@@ -7276,8 +7055,7 @@ L2 将一个数 `0x123` 放入 `m.tls[0]` 处，L3 则将 `m.tls[0]` 处的数�
 
 继续看代码：
 
-```
-golang
+```go
 // set the per-goroutine and per-mach "registers"
 // 获取 fs 段基址到 BX 寄存器
 get_tls(BX)
@@ -7297,8 +7075,7 @@ MOVQ	AX, g_m(CX)
 ```
 L3 将 m.tls 地址存入 BX；L5 将 g0 的地址存入 CX；L7 将 CX，也就是 g0 的地址存入 m.tls[0]；L9 将 m0 的地址存入 AX；L13 将 g0 的地址存入 m0.g0；L16 将 m0 存入 g0.m。也就是：
 
-```
-golang
+```go
 tls[0] = g0
 m0.g0 = &g0
 g0.m = &m0
@@ -7326,8 +7103,7 @@ g0.m = &m0
 ![工作线程绑定 m0，g0](https://static.sitestack.cn/projects/qcrao-Go-Questions/1bc940f117d52d2981f0632c5b527e13.png)
 
 #### 初始化 m0
-```
-golang
+```go
 MOVL	16(SP), AX		// copy argc
 MOVL	AX, 0(SP)
 MOVQ	24(SP), AX		// copy argv
@@ -7344,8 +7120,7 @@ L1-L2 将 16(SP) 处的内容移动到 0(SP)，也就是栈顶，通过前面的
 
 下面，我们来重点看 schedinit 函数：
 
-```
-golang
+```go
 // src/runtime/proc.go
 
 // The bootstrap sequence is:
@@ -7420,8 +7195,7 @@ func schedinit() {
 
 函数首先调用 `getg()` 函数获取当前正在运行的 `g`，`getg()` 在 `src/runtime/stubs.go` 中声明，真正的代码由编译器生成。
 
-```
-golang
+```go
 // getg returns the pointer to the current g.
 // The compiler rewrites calls to this function into instructions
 // that fetch the g directly (from TLS or from the dedicated register).
@@ -7429,23 +7203,20 @@ func getg() *g
 ```
 注释里也说了，getg 返回当前正在运行的 goroutine 的指针，它会从 tls 里取出 tls[0]，也就是当前运行的 goroutine 的地址。编译器插入类似下面的代码：
 
-```
-golang
+```go
 get_tls(CX) 
 MOVQ g(CX), BX; // BX存器里面现在放的是当前g结构体对象的地址
 ```
 继续往下看：
 
-```
-golang
+```go
 sched.maxmcount = 10000
 ```
 设置最多只能创建 10000 个工作线程。
 
 然后，调用了一堆 init 函数，初始化各种配置，现在不去深究。只关心本小节的重点，m0 的初始化：
 
-```
-golang
+```go
 // 初始化 m
 func mcommoninit(mp *m) {
 	// 初始化过程中_g_ = g0
@@ -7484,22 +7255,19 @@ func mcommoninit(mp *m) {
 因为 sched 是一个全局变量，多个线程同时操作 sched 会有并发问题，因此先要加锁，操作结束之后再解锁。
 
 
-```
-golang
+```go
 mp.id = sched.mcount
 sched.mcount++
 checkmcount()
 ```
 可以看到，m0 的 id 是 0，并且之后创建的 m 的 id 是递增的。`checkmcount()` 函数检查已创建系统线程是否超过了数量限制（10000）。
 
-```
-golang
+```go
 mp.alllink = allm
 ```
 将 m 挂到全局变量 allm 上，allm 是一个指向 m 的的指针。
 
-```
-golang
+```go
 atomicstorep(unsafe.Pointer(&allm), unsafe.Pointer(mp))
 ```
 这一行将 allm 变成 m 的地址，这样变成了一个循环链表。之后再新建 m 的时候，新 m 的 alllink 就会指向本次的 m，最后 allm 又会指向新创建的 m。
@@ -7514,8 +7282,7 @@ atomicstorep(unsafe.Pointer(&allm), unsafe.Pointer(mp))
 
 跳过一些其他的初始化代码，继续往后看：
 
-```
-golang
+```go
 procs := ncpu
 if n, ok := atoi32(gogetenv("GOMAXPROCS")); ok && n > 0 {
 	procs = n
@@ -7528,8 +7295,7 @@ if procs > _MaxGomaxprocs {
 
 来看最后一个核心的函数：
 
-```
-golang
+```go
 // src/runtime/proc.go
 
 func procresize(nprocs int32) *p {
@@ -7630,8 +7396,7 @@ func procresize(nprocs int32) *p {
 
 接着，调用函数 `acquirep` 将 p0 和 m0 关联起来。我们来详细看一下：
 
-```
-golang
+```go
 func acquirep(_p_ *p) {
 	// Do the part that isn't allowed to have write barriers.
 	acquirep1(_p_)
@@ -7645,8 +7410,7 @@ func acquirep(_p_ *p) {
 ```
 先调用 `acquirep1` 函数真正地进行关联，之后，将 p0 的 mcache 资源赋给 m0。再来看 `acquirep1`：
 
-```
-golang
+```go
 func acquirep1(_p_ *p) {
 	_g_ := getg()
 
@@ -7659,8 +7423,7 @@ func acquirep1(_p_ *p) {
 ```
 可以看到就是一些字段相互设置，执行完成后：
 
-```
-golang
+```go
 g0.m.p = p0
 p0.m = m0
 ```
@@ -7670,8 +7433,7 @@ p0.m = m0
 
 函数 `runqempty` 用来判断一个 P 是否是空闲，依据是 P 的本地 run queue 队列里有没有 runnable 的 G，如果没有，那 P 就是空闲的。
 
-```
-golang
+```go
 // src/runtime/proc.go
 
 // 如果 _p_ 的本地队列里没有待运行的 G，则返回 true
@@ -7696,8 +7458,7 @@ func runqempty(_p_ *p) bool {
 
 函数的最后，初始化了一个“随机分配器”：
 
-```
-golang
+```go
 stealOrder.reset(uint32(nprocs))
 ```
 将来有些 m 去偷工作的时候，会遍历所有的 P，这时为了偷地随机一些，就会用到 stealOrder 来返回一个随机选择的 P，后面的文章会再讲。
@@ -7758,8 +7519,7 @@ RET
 
 重点来看 `newproc` 函数：
 
-```
-golang
+```go
 // src/runtime/proc.go
 // 创建一个新的 g，运行 fn 函数，需要 siz byte 的参数
 // 将其放至 G 队列等待运行
@@ -7770,8 +7530,7 @@ func newproc(siz int32, fn *funcval)
 ```
 从这里开始要进入 hard 模式了，打起精神！当我们随手一句：
 
-```
-golang
+```go
 go func() {
     // 要做的事
 }()
@@ -7782,8 +7541,7 @@ go func() {
 
 再回过头看，构造 newproc 函数调用栈的时候，第一个参数是 0，因为 runtime.main 函数没有参数：
 
-```
-golang
+```go
 // src/runtime/proc.go
 
 func main()
@@ -7798,8 +7556,7 @@ func main()
 
 继续看代码，newproc 函数的第二个参数：
 
-```
-golang
+```go
 type funcval struct {
 	fn uintptr
 	// variable-size, fn-specific data here
@@ -7809,8 +7566,7 @@ type funcval struct {
 
 参考资料【欧神 关键字 go】有一个例子：
 
-```
-golang
+```go
 package main
 
 func hello(msg string) {
@@ -7827,8 +7583,7 @@ func main() {
 
 栈顶是 siz，再往上是函数的地址，再往上就是传给 hello 函数的参数，string 在这里是一个地址。因此前面代码里先 push 参数的地址，再 push 参数大小。
 
-```
-golang
+```go
 // src/runtime/proc.go
 
 //go:nosplit
@@ -7854,8 +7609,7 @@ func newproc(siz int32, fn *funcval) {
 
 一鼓作气，继续看 `newproc1` 函数，为了连贯性，我先将整个函数的代码贴出来，并且加上了注释。当然，这篇文章不会涉及到所有的代码，只会讲部分内容。放在这里，方便阅读后面的文章时对照：
 
-```
-golang
+```go
 // 创建一个新的 g 来跑 fn
 func newproc1(fn *funcval, argp *uint8, narg int32, nret int32, callerpc uintptr) *g {
 	// 当前 goroutine 的指针
@@ -7964,8 +7718,7 @@ func newproc1(fn *funcval, argp *uint8, narg int32, nret int32, callerpc uintptr
 
 接着，尝试从 p0 上找一个空闲的 G：
 
-```
-golang
+```go
 // 从 p 的本地缓冲里获取一个没有使用的 g，初始化时为空，返回 nil
 newg := gfget(_p_)
 ```
@@ -7993,15 +7746,13 @@ newg := gfget(_p_)
 
 继续看 `proc1` 函数的代码。中间有一段调整运行空间的代码，计算出的结果一般为 0，也就是一般不会调整 SP 的位置，忽略好了。
 
-```
-golang
+```go
 // 确定参数入栈位置
 spArg := sp
 ```
 参数的入参位置也是从 SP 处开始，通过：
 
-```
-golang
+```go
 // 将参数从执行 newproc 函数的栈拷贝到新 g 的栈
 memmove(unsafe.Pointer(spArg), unsafe.Pointer(argp), uintptr(narg))
 ```
@@ -8009,8 +7760,7 @@ memmove(unsafe.Pointer(spArg), unsafe.Pointer(argp), uintptr(narg))
 
 接着，初始化 newg 的各种字段，而且涉及到最重要的 pc，sp 等字段：
 
-```
-golang
+```go
 // 把 newg.sched 结构体成员的所有成员设置为 0
 memclrNoHeapPointers(unsafe.Pointer(&newg.sched), unsafe.Sizeof(newg.sched))
 // 设置 newg 的 sched 成员，调度器需要依靠这些字段才能把 goroutine 调度到 CPU 上运行
@@ -8032,21 +7782,18 @@ if _g_.m.curg != nil {
 
 最关键的一行来了：
 
-```
-golang
+```go
 // newg.sched.pc 表示当 newg 被调度起来运行时从这个地址开始执行指令
 newg.sched.pc = funcPC(goexit) + sys.PCQuantum // +PCQuantum so that previous instruction is in same function
 ```
 设置 `pc` 字段为函数 `goexit` 的地址加 1，也说是 `goexit` 函数的第二条指令，`goexit` 函数是 `goroutine` 退出后的一些清理工作。有点奇怪，这是要干嘛？接着往后看。
 
-```
-golang
+```go
 newg.sched.g = guintptr(unsafe.Pointer(newg))
 ```
 设置 `g` 字段为 newg 的地址。插一句，sched 是 g 结构体的一个字段，它本身也是一个结构体，保存调度信息。复习一下：
 
-```
-golang
+```go
 type gobuf struct {
 	// 存储 rsp 寄存器的值
 	sp   uintptr
@@ -8063,14 +7810,12 @@ type gobuf struct {
 ```
 接下来的这个函数非常重要，可以解释之前为什么要那样设置 `pc` 字段的值。调用 `gostartcallfn`：
 
-```
-golang
+```go
 gostartcallfn(&newg.sched, fn) //调整sched成员和newg的栈
 ```
 传入 newg.sched 和 fn。
 
-```
-golang
+```go
 func gostartcallfn(gobuf *gobuf, fv *funcval) {
 	var fn unsafe.Pointer
 	if fv != nil {
@@ -8102,8 +7847,7 @@ func gostartcall(buf *gobuf, fn, ctxt unsafe.Pointer) {
 ```
 函数 `gostartcallfn` 只是拆解出了包含在 funcval 结构体里的函数指针，转过头就调用 `gostartcall`。将 sp 减小了一个指针的位置，这是给返回地址留空间。果然接着就把 buf.pc 填入了栈顶的位置：
 
-```
-golang
+```go
 *(*uintptr)(unsafe.Pointer(sp)) = buf.pc
 ```
 原来 buf.pc 只是做了一个搬运工，搞什么啊。重新设置 buf.sp 为送减掉一个指针位置之后的值，设置 buf.pc 为 fn，指向要执行的函数，这里就是指的 runtime.main 函数。
@@ -8120,8 +7864,7 @@ golang
 
 之后，将 newg 的状态改为 runnable，设置 goroutine 的 id：
 
-```
-golang
+```go
 // 设置 g 的状态为 _Grunnable，可以运行了
 casgstatus(newg, _Gdead, _Grunnable)
 newg.goid = int64(_p_.goidcache)
@@ -8130,8 +7873,7 @@ newg.goid = int64(_p_.goidcache)
 
 `newg` 的状态变成可执行后（Runnable），就可以将它加入到 P 的本地运行队列里，等待调度。所以，goroutine 何时被执行，用户代码决定不了。来看源码：
 
-```
-golang
+```go
 // 将 G 放入 _p_ 的本地待运行队列
 runqput(_p_, newg, true)
 
@@ -8187,8 +7929,7 @@ retry:
 
 “安顿”的动作在 retry 代码段中执行。先通过 `head`，`tail`，`len(_p_.runq)` 来判断队列是否已满，如果没满，则直接写到队列尾部，同时修改队列尾部的指针。
 
-```
-golang
+```go
 // store-release, makes it available for consumption
 atomic.Store(&_p_.runqtail, t+1)
 ```
@@ -8196,8 +7937,7 @@ atomic.Store(&_p_.runqtail, t+1)
 
 如果本地队列满了，那就只能试图将 newg 添加到全局可运行队列中了。调用 `runqputslow(_p_, gp, h, t)` 完成。
 
-```
-golang
+```go
 // 将 g 和 _p_ 本地队列的一半 goroutine 放入全局队列。
 // 因为要获取锁，所以会慢
 func runqputslow(_p_ *p, gp *g, h, t uint32) bool {
@@ -8238,16 +7978,14 @@ func runqputslow(_p_ *p, gp *g, h, t uint32) bool {
 
 接着，将从 runq 的头部开始的前一半 goroutine 存入 bacth 数组。然后，使用原子操作尝试修改 P 的队列头，因为出队了一半 goroutine，所以 head 要向后移动 1/2 的长度。如果修改失败，说明 runq 的本地队列被其他线程修改了，因此后面的操作就不进行了，直接返回 false，表示 newg 没被添加进来。
 
-```
-golang
+```go
 batch[n] = gp
 ```
 将 newg 本身添加到数组。
 
 通过循环将 batch 数组里的所有 g 串成链表：
 
-```
-golang
+```go
 for i := uint32(0); i < n; i++ {
 	batch[i].schedlink.set(batch[i+1])
 }
@@ -8256,8 +7994,7 @@ for i := uint32(0); i < n; i++ {
 
 最后，将链表添加到全局队列中。由于操作的是全局队列，因此需要获取锁，因为存在竞争，所以代价较高。这也是本地可运行队列存在的原因。调用 `globrunqputbatch(batch[0], batch[n], int32(n+1))`：
 
-```
-golang
+```go
 // Put a batch of runnable goroutines on the global runnable queue.
 // Sched must be locked.
 func globrunqputbatch(ghead *g, gtail *g, n int32) {
@@ -8299,8 +8036,7 @@ func globrunqputbatch(ghead *g, gtail *g, n int32) {
 
 我们继续看代码。搞了半天，我们其实还在 `runtime·rt0_go` 函数里，执行完 `runtime·newproc(SB)` 后，两条 POP 指令将之前为调用它构建的参数弹出栈。好消息是，最后就只剩下一个函数了：
 
-```
-golang
+```go
 // start this M
 // 主线程进入调度循环，运行刚刚创建的 goroutine
 CALL	runtime·mstart(SB)
@@ -8309,8 +8045,7 @@ CALL	runtime·mstart(SB)
 
 `mstart` 函数设置了 stackguard0 和 stackguard1 字段后，就直接调用 mstart1() 函数：
 
-```
-golang
+```go
 func mstart1() {
     // 启动过程时 _g_ = m0.g0
     _g_ := getg()
@@ -8351,8 +8086,7 @@ func mstart1() {
 ```
 调用 `gosave` 函数来保存调度信息到 `g0.sched` 结构体，来看源码：
 
-```
-golang
+```go
 // void gosave(Gobuf*)
 // save state in Gobuf; setjmp
 TEXT runtime·gosave(SB), NOSPLIT, $0-8
@@ -8388,8 +8122,7 @@ TEXT runtime·gosave(SB), NOSPLIT, $0-8
 
 接下来，进入 schedule 函数，永不返回。
 
-```
-golang
+```go
 // 执行一轮调度器的工作：找到一个 runnable 的 goroutine，并且执行它
 // 永不返回
 func schedule() {
@@ -8458,8 +8191,7 @@ top:
 
 经过千辛万苦，终于找到了可以运行的 goroutine，调用 `execute(gp, inheritTime)` 切换到选出的 goroutine 栈执行，调度器的调度次数会在这里更新，源码如下：
 
-```
-golang
+```go
 // 调度 gp 在当前 M 上运行
 // 如果 inheritTime 为真，gp 执行当前的时间片
 // 否则，开启一个新的时间片
@@ -8501,8 +8233,7 @@ func execute(gp *g, inheritTime bool) {
 
 继续看 `gogo` 函数的实现，传入 `&gp.sched` 参数，源码如下：
 
-```
-golang
+```go
 TEXT runtime·gogo(SB), NOSPLIT, $16-8
     // 0(FP) 表示第一个参数，即 buf = &gp.sched
     MOVQ    buf+0(FP), BX       // gobuf
@@ -8539,8 +8270,7 @@ nilctxt:
 ```
 注释地比较详细了。核心的地方是：
 
-```
-golang
+```go
 MOVQ    gobuf_g(BX), DX
 // ……
 get_tls(CX)
@@ -8550,8 +8280,7 @@ MOVQ    DX, g(CX)
 
 可能需要提一下的是，Go plan9 汇编中的一些奇怪的符号：
 
-```
-golang
+```go
 MOVQ    buf+0(FP), BX  # &gp.sched --> BX
 ```
 `FP` 是个伪奇存器，前面加 0 表示是第一个寄存器，表示参数的位置，最前面的 buf 表示一个符号。关于 Go 汇编语言的一些知识，可以参考曹大在夜读上的分享和《Go 语言高级编程》的相关章节，地址见参考资料。
@@ -8579,8 +8308,7 @@ MOVQ    buf+0(FP), BX  # &gp.sched --> BX
 
 上一讲说到调度器将 main goroutine 推上舞台，为它铺好了道路，开始执行 `runtime.main` 函数。这一讲，我们探索 main goroutine 以及普通 goroutine 从执行到退出的整个过程。
 
-```
-golang
+```go
 // The main goroutine.
 func main() {
     // g = main goroutine，不再是 g0 了
@@ -8669,8 +8397,7 @@ func main() {
 
 不过，main goroutine 实际上就是代表用户的 main 函数，它都执行完了，肯定是用户的任务都执行完了，直接退出就可以了，就算有其他的 goroutine 没执行完，同样会直接退出。
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -8702,8 +8429,7 @@ JMP	BX
 
 `gp` 执行完后，RET 指令弹出 `goexit` 函数地址（实际上是 funcPC(goexit)+1），CPU 跳转到 `goexit` 的第二条指令继续执行：
 
-```
-golang
+```go
 // src/runtime/asm_amd64.s
 
 // The top-most function running on a goroutine
@@ -8716,8 +8442,7 @@ TEXT runtime·goexit(SB),NOSPLIT,$0-0
 ```
 直接调用 `runtime·goexit1`：
 
-```
-golang
+```go
 // src/runtime/proc.go
 // Finishes execution of the current goroutine.
 func goexit1() {
@@ -8727,8 +8452,7 @@ func goexit1() {
 ```
 调用 `mcall` 函数：
 
-```
-golang
+```go
 // 切换到 g0 栈，执行 fn(g)
 // Fn 不能返回
 TEXT runtime·mcall(SB), NOSPLIT, $0-8
@@ -8776,8 +8500,7 @@ TEXT runtime·mcall(SB), NOSPLIT, $0-8
 ```
 函数参数是：
 
-```
-golang
+```go
 type funcval struct {
 	fn uintptr
 	// variable-size, fn-specific data here
@@ -8805,8 +8528,7 @@ L40 调用 goexit0 函数，这已经是在 g0 栈上执行了，函数参数就
 
 来继续看 goexit0：
 
-```
-golang
+```go
 // goexit continuation on g0.
 // 在 g0 上执行
 func goexit0(gp *g) {
@@ -8925,8 +8647,7 @@ schedule() -> execute() -> gogo() -> goroutine 任务 -> goexit() -> goexit1() -
 
 先看第一个：从 P 本地队列找。源码如下：
 
-```
-golang
+```go
 // 从本地可运行队列里找到一个 g
 // 如果 inheritTime 为真，gp 应该继承这个时间片，否则，新开启一个时间片
 func runqget(_p_ *p) (gp *g, inheritTime bool) {
@@ -8973,8 +8694,7 @@ func runqget(_p_ *p) (gp *g, inheritTime bool) {
 
 从本地队列获取可运行 goroutine 的过程比较简单，我们再来看从全局队列获取 goroutine 的过程。在 schedule 函数中调用 `globrunqget` 的代码：
 
-```
-golang
+```go
 // 为了公平，每调用 schedule 函数 61 次就要从全局可运行 goroutine 队列中获取
 if _g_.m.p.ptr().schedtick%61 == 0 && sched.runqsize > 0 {
 	lock(&sched.lock)
@@ -8987,8 +8707,7 @@ if _g_.m.p.ptr().schedtick%61 == 0 && sched.runqsize > 0 {
 
 我们来详细看下 `globrunqget` 的源码：
 
-```
-golang
+```go
 // 尝试从全局队列里获取可运行的 goroutine 队列
 func globrunqget(_p_ *p, max int32) *g {
 	// 如果队列大小为 0
@@ -9044,8 +8763,7 @@ func globrunqget(_p_ *p, max int32) *g {
 把全局队列中的可运行 goroutine 转移到本地队列，给了全局队列中可运行 goroutine 运行的机会，不然全局队列中的 goroutine 一直得不到运行。
 
 最后，我们继续看第三个过程，从其他 P “偷工作”：
-```
-golang
+```go
 // 从本地运行队列和全局运行队列都没有找到需要运行的 goroutine，
 // 调用 findrunnable 函数从其它工作线程的运行队列中偷取，如果偷不到，则当前工作线程进入睡眠
 // 直到获取到 runnable goroutine 之后 findrunnable 函数才会返回。
@@ -9055,8 +8773,7 @@ if gp == nil {
 ```
 这是整个找工作过程最复杂的部分：
 
-```
-golang
+```go
 // 从其他地方找 goroutine 来执行
 func findrunnable() (gp *g, inheritTime bool) {
     _g_ := getg()
@@ -9188,8 +8905,7 @@ stop:
 
 第二层的循环并不是每次都按一个固定的顺序去遍历所有的 P，这样不太科学，而是使用了一些方法，“随机”地遍历。具体是使用了下面这个变量：
 
-```
-golang
+```go
 var stealOrder randomOrder
 
 type randomOrder struct {
@@ -9203,14 +8919,12 @@ type randomOrder struct {
 
 在最后一次遍历所有的 P 的过程中，连人家的 runnext 也要尝试偷过来，毕竟前三次的失败经验证明，工作太不好“偷”了，民不聊生啊，只能做得绝一点了，`stealRunNextG` 控制是否要打 runnext 的主意：
 
-```
-golang
+```go
 stealRunNextG := i > 2
 ```
 确定好准备偷的对象 `allp[enum.position()` 之后，调用 `runqsteal(_p_, allp[enum.position()], stealRunNextG)` 函数执行。
 
-```
-golang
+```go
 // 从 p2 偷走一半的工作放到 _p_ 的本地
 func runqsteal(_p_, p2 *p, stealRunNextG bool) *g {
     // 队尾
@@ -9240,8 +8954,7 @@ func runqsteal(_p_, p2 *p, stealRunNextG bool) *g {
 ```
 调用 `runqgrab` 从 p2 偷走它一半的工作放到 `_p_` 本地：
 
-```
-golang
+```go
 n := runqgrab(p2, &_p_.runq, t, stealRunNextG)
 ```
 `runqgrab` 函数将从 p2 偷来的工作放到以 t 为地址的数组里，数组就是 `_p_.runq`。 我们知道，`t` 是 `_p_.runq` 的队尾，因此这行代码表达的真正意思是将从 p2 偷来的工作，神不知，鬼不觉地放到 `_p_.runq` 的队尾，之后，再悄悄改一下 ``_p_.runqtail` 就把这些偷来的工作据为己有了。
@@ -9250,8 +8963,7 @@ n := runqgrab(p2, &_p_.runq, t, stealRunNextG)
 
 我们接着往下看 `runqgrab` 函数的实现：
 
-```
-golang
+```go
 // 从 _p_ 批量获取可运行 goroutine，放到 batch 数组里
 // batch 是一个环，起始于 batchHead
 // 返回偷的数量，返回的 goroutine 可被任何 P 执行
@@ -9321,8 +9033,7 @@ func runqgrab(_p_ *p, batch *[256]guintptr, batchHead uint32, stealRunNextG bool
 
 如果没有，就先解除当前工作线程和当前 P 的绑定关系：
 
-```
-golang
+```go
 // 解除 p 与 m 的关联
 func releasep() *p {
 	_g_ := getg()
@@ -9345,8 +9056,7 @@ func releasep() *p {
 
 这之后，将其放入全局空闲 P 列表：
 
-```
-golang
+```go
 // 将 p 放到 _Pidle 列表里
 //go:nowritebarrierrec
 func pidleput(_p_ *p) {
@@ -9363,8 +9073,7 @@ func pidleput(_p_ *p) {
 
 接下来就要真正地准备休眠了，但是仍然不死心！还要再查看一次所有的 P 是否有工作，如果发现任何一个 P 有工作的话（判断 P 的本地队列不空），就先从全局空闲 P 链表里先拿到一个 P：
 
-```
-golang
+```go
 // 试图从 _Pidle 列表里获取 p
 //go:nowritebarrierrec
 func pidleget() *p {
@@ -9378,8 +9087,7 @@ func pidleget() *p {
 ```
 比较简单，获取链表最后一个，再更新 sched.pidle，使其指向前一个 P。调用 `acquirep(_p_)` 绑定获取到的 p 和 m，主要的动作就是设置 p 的 m 字段，更改 p 的工作状态为 `_Prunning`，并且设置 m 的 p 字段。做完这些之后，再次进入 top 代码段，再走一遍之前找工作的过程。
 
-```
-golang
+```go
 // 休眠，停止执行工作，直到有新的工作需要做为止
 func stopm() {
 	// 当前 goroutine，g0
@@ -9404,8 +9112,7 @@ retry:
 ```
 先将 m 放入全局空闲链表里，注意涉及到全局变量的修改，要上锁。接着，调用 `notesleep(&_g_.m.park)` 使得当前工作线程进入休眠状态。其他工作线程在检测到“当前有很多工作要做”，会调用 `noteclear(&_g_.m.park)` 将其唤醒。注意，这两个函数传入的参数都是一样的：`&_g_.m.park`，它的类型是：
 
-```
-golang
+```go
 type note struct {
 	key uintptr
 }
@@ -9418,8 +9125,7 @@ type note struct {
 
 上面这一段来自阿波张的系列教程。我们接着来看下 notesleep 的实现：
 
-```
-golang
+```go
 // runtime/lock_futex.go
 func notesleep(n *note) {
 	// g0
@@ -9450,8 +9156,7 @@ func notesleep(n *note) {
 ```
 继续往下追：
 
-```
-golang
+```go
 // runtime/os_linux.go
 func futexsleep(addr *uint32, val uint32, ns int64) {
 	var ts timespec
@@ -9496,8 +9201,7 @@ TEXT runtime·futex(SB),NOSPLIT,$0
 
 在 `runtime.main()` 函数中，执行 `runtime_init()` 前，会启动一个 sysmon 的监控线程，执行后台监控任务：
 
-```
-golang
+```go
 systemstack(func() {
 	// 创建监控线程，该线程独立于调度器，不需要跟 p 关联即可运行
 	newm(sysmon, nil)
@@ -9505,8 +9209,7 @@ systemstack(func() {
 ```
 `sysmon` 函数不依赖 P 直接执行，通过 newm 函数创建一个工作线程：
 
-```
-golang
+```go
 func newm(fn func(), _p_ *p) {
 	// 创建 m 对象
 	mp := allocm(_p_, fn)
@@ -9524,8 +9227,7 @@ func newm(fn func(), _p_ *p) {
 ```
 先调用 `allocm` 在堆上创建一个 m，接着调用 `newosproc` 函数启动一个工作线程：
 
-```
-golang
+```go
 // src/runtime/os_linux.go
 //go:nowritebarrier
 func newosproc(mp *m, stk unsafe.Pointer) {
@@ -9538,8 +9240,7 @@ func newosproc(mp *m, stk unsafe.Pointer) {
 ```
 核心就是调用 clone 函数创建系统线程，新线程从 mstart 函数开始执行。`clone` 函数由汇编语言实现：
 
-```
-golang
+```go
 // int32 clone(int32 flags, void *stk, M *mp, G *gp, void (*fn)(void));
 TEXT runtime·clone(SB),NOSPLIT,$0
     // 准备系统调用的参数
@@ -9616,8 +9317,7 @@ nog:
 
 最后执行 mstart 函数，这是在 newosproc 函数传递进来的。`mstart` 函数再调用 `mstart1`，在 `mstart1` 里会执行这一行：
 
-```
-golang
+```go
 // 执行启动函数。初始化过程中，fn == nil
 if fn := _g_.m.mstartfn; fn != nil {
 	fn()
@@ -9635,8 +9335,7 @@ if fn := _g_.m.mstartfn; fn != nil {
 
 和调度相关的，我们只关心 retake 函数：
 
-```
-golang
+```go
 func retake(now int64) uint32 {
 	n := 0
 	// 遍历所有的 p
@@ -9717,8 +9416,7 @@ func retake(now int64) uint32 {
 
 确定要抢占当前 p 后，先使用原子操作将 p 的状态修改为 `_Pidle`，最后调用 `handoffp` 进行抢占。
 
-```
-golang
+```go
 func handoffp(_p_ *p) {
 	// 如果 p 本地有工作或者全局有工作，需要绑定一个 m
 	if !runqempty(_p_) || sched.runqsize != 0 {
@@ -9762,8 +9460,7 @@ func handoffp(_p_ *p) {
 
 我们接着来看 `startm` 函数都做了些什么：
 
-```
-golang
+```go
 // runtime/proc.go
 // 
 // 调用 m 来绑定 p，如果没有 m，那就新建一个
@@ -9822,8 +9519,7 @@ func startm(_p_ *p, spinning bool) {
 
 搞定了 p，接下来看 m。先调用 `mget` 函数从全局空闲的 m 队列里获取一个 m，如果没找到 m，则要调用 newm 新创建一个 m，并且如果设置了 spinning 为 true 的话，先要设置好 mstartfn：
 
-```
-golang
+```go
 func mspinning() {
 	// startm's caller incremented nmspinning. Set the new M's spinning.
 	getg().m.spinning = true
@@ -9833,8 +9529,7 @@ func mspinning() {
 
 接下来是正常情况下（找到了 p 和 m）的处理：
 
-```
-golang
+```go
 mp.spinning = spinning
 // 设置 m 马上要结合的 p
 mp.nextp.set(_p_)
@@ -9843,8 +9538,7 @@ notewakeup(&mp.park)
 ```
 设置 nextp 为找到的 p，调用 `notewakeup` 唤醒 m。之前我们讲 findrunnable 函数的时候，对于最后没有找到工作的 m，我们调用 `notesleep(&_g_.m.park)`，使得 m 进入睡眠状态。现在终于有工作了，需要老将出山，将其唤醒：
 
-```
-golang
+```go
 // src/runtime/lock_futex.go
 func notewakeup(n *note) {
 	// 设置 n.key = 1, 被唤醒的线程通过查看该值是否等于 1 
@@ -9863,8 +9557,7 @@ func notewakeup(n *note) {
 
 调用 `futexwakeup` 来唤醒工作线程，它和 `futexsleep` 是相对的。
 
-```
-golang
+```go
 func futexwakeup(addr *uint32, cnt uint32) {
 	// 调用 futex 函数唤醒工作线程
 	ret := futex(unsafe.Pointer(addr), _FUTEX_WAKE, cnt, nil, nil, 0)
@@ -9887,8 +9580,7 @@ func futexwakeup(addr *uint32, cnt uint32) {
 
 接下来我们就来分析当 P 处于 `_Prunning` 状态的情况。`sysmon` 扫描每个 p 时，都会记录下当前调度器调度的次数和当前时间，数据记录在结构体：
 
-```
-golang
+```go
 type sysmontick struct {
 	schedtick   uint32
 	schedwhen   int64
@@ -9902,8 +9594,7 @@ type sysmontick struct {
 
 如果发现运行时间超过了 10 ms，则要调用 `preemptone(_p_)` 发起抢占的请求：
 
-```
-golang
+```go
 func preemptone(_p_ *p) bool {
 	mp := _p_.m.ptr()
 	if mp == nil || mp == getg().m {
@@ -9929,8 +9620,7 @@ func preemptone(_p_ *p) bool {
 
 举一个简单的例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -9993,8 +9683,7 @@ asm
 ```
 比较 SP 寄存器（代表当前 main goroutine 的栈顶寄存器）和 16(CX)，我们看下 g 结构体：
 
-```
-golang
+```go
 type g struct {
 	// goroutine 使用的栈
 	stack       stack   // offset known to runtime/cgo
@@ -10005,8 +9694,7 @@ type g struct {
 ```
 对象 g 的第一个字段是 stack 结构体：
 
-```
-golang
+```go
 type stack struct {
 	lo uintptr
 	hi uintptr
@@ -10087,8 +9775,7 @@ TEXT runtime·morestack(SB),NOSPLIT,$0-0
 
 最后，将 g0 的地址保存到 tls 本地存储，并且切到 g0 栈执行之后的代码。继续调用 newstack 函数：
 
-```
-golang
+```go
 func newstack(ctxt unsafe.Pointer) {
 	// thisg = g0
 	thisg := getg()
@@ -10149,8 +9836,7 @@ func newstack(ctxt unsafe.Pointer) {
 
 中间又处理了很多判断流程，再次判断 preempt 标志是 true 时，调用 `gopreempt_m(gp)` 将 gp 切换出去。
 
-```
-golang
+```go
 func gopreempt_m(gp *g) {
 	if trace.enabled {
 		traceGoPreempt()
@@ -10160,8 +9846,7 @@ func gopreempt_m(gp *g) {
 ```
 最终调用 `goschedImpl` 函数：
 
-```
-golang
+```go
 func goschedImpl(gp *g) {
 	status := readgstatus(gp)
 	if status&^_Gscan != _Grunning {
@@ -10201,8 +9886,7 @@ func goschedImpl(gp *g) {
 
 所以在某些极端情况下，会掉进一些陷阱。下面这个例子来自参考资料【scheduler 的陷阱】。
 
-```
-golang
+```go
 func main() {
     var x int
     threads := runtime.GOMAXPROCS(0)
@@ -10225,8 +9909,7 @@ func main() {
 
 解决的办法也有，把 threads 减小 1：
 
-```
-golang
+```go
 func main() {
     var x int
     threads := runtime.GOMAXPROCS(0) - 1
@@ -10251,8 +9934,7 @@ x = 0
 
 还有一种解决办法是在 for 循环里加一句：
 
-```
-golang
+```go
 go func() {
     time.Sleep(time.Second)
     for { x++ }
@@ -10321,8 +10003,7 @@ Go的垃圾回收，让堆和栈对程序员保持透明。真正解放了程序
 
 比如用这个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -10365,8 +10046,7 @@ go tool compile -S main.go
 
 引申2：下面代码中的变量发生逃逸了吗？
 示例1：[代码出处](http://www.agardner.me/golang/garbage/collection/gc/escape/analysis/2015/10/18/go-escape-analysis.html)
-```
-golang
+```go
 package main
 type S struct {}
 
@@ -10382,8 +10062,7 @@ func identity(x S) S {
 分析：Go语言函数传递都是通过值的，调用函数的时候，直接在栈上copy出一份参数，不存在逃逸。
 
 示例2：
-```
-golang
+```go
 package main
 
 type S struct {}
@@ -10401,8 +10080,7 @@ func identity(z *S) *S {
 分析：identity函数的输入直接当成返回值了，因为没有对z作引用，所以z没有逃逸。对x的引用也没有逃出main函数的作用域，因此x也没有发生逃逸。
 
 示例3：
-```
-golang
+```go
 package main
 
 type S struct {}
@@ -10420,8 +10098,7 @@ func ref(z S) *S {
 
 示例4：如果对一个结构体成员赋引用如何？
 
-```
-golang
+```go
 package main
 
 type S struct {
@@ -10441,8 +10118,7 @@ func refStruct(y int) (z S) {
 分析：refStruct函数对y取了引用，所以y发生了逃逸。
 
 示例5：
-```
-golang
+```go
 package main
 
 type S struct {
@@ -10462,8 +10138,7 @@ func refStruct(y *int) (z S) {
 分析：在main函数里对i取了引用，并且把它传给了refStruct函数，i的引用一直在main函数的作用域用，因此i没有发生逃逸。和上一个例子相比，有一点小差别，但是导致的程序效果是不同的：例子4中，i先在main的栈帧中分配，之后又在refStruct栈帧中分配，然后又逃逸到堆上，到堆上分配了一次，共3次分配。本例中，i只分配了一次，然后通过引用传递。
 
 示例6：
-```
-golang
+```go
 package main
 
 type S struct {
@@ -10518,8 +10193,7 @@ src 存放源文件，pkg 存放源文件编译后的库文件，后缀为 `.a`�
 
 我们从一个 `Hello World` 的例子开始：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -10592,8 +10266,7 @@ Go 源码里的编译器源码位于 `src/cmd/compile` 路径下，链接器源�
 
 例如，对于如下的代码：
 
-```
-golang
+```go
 slice[i] = i * (2 + 6)
 ```
 总共包含 16 个非空字符，经过扫描后，
@@ -10623,8 +10296,7 @@ src/cmd/compile/internal/syntax/token.go
 ```
 感受一下：
 
-```
-golang
+```go
 var tokstrings = [...]string{
 	// source control
 	_EOF: "EOF",
@@ -10693,8 +10365,7 @@ src/cmd/compile/internal/syntax/scanner.go
 ```
 其中最关键的函数就是 next 函数，它不断地读取下一个字符（不是下一个字节，因为 Go 语言支持 Unicode 编码，并不是像我们前面举得 ASCII 码的例子，一个字符只有一个字节），直到这些字符可以构成一个 Token。
 
-```
-golang
+```go
 func (s *scanner) next() {
 // ……
 
@@ -11036,8 +10707,7 @@ main 就是最终生成的可执行文件。
 
 我们从一个 `Hello World` 的例子开始：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -11083,8 +10753,7 @@ TEXT _rt0_amd64_linux(SB),NOSPLIT,$-8
 ```
 主要是把 argc，argv 从内存拉到了寄存器。这里 LEAQ 是计算内存地址，然后把内存地址本身放进寄存器里，也就是把 argv 的地址放到了 SI 寄存器中。最后跳转到：
 
-```
-golang
+```go
 TEXT main(SB),NOSPLIT,$-8
 	MOVQ	$runtime·rt0_go(SB), AX
 	JMP	AX
@@ -11145,8 +10814,7 @@ main 函数里执行的一些重要的操作包括：新建一个线程执行 sy
 
 >当 main 函数执行结束之后，会执行 exit(0) 来退出进程。若执行 exit(0) 后，进程没有退出，main 函数最后的代码会一直访问非法地址：
 
-```
-golang
+```go
 exit(0)
 for {
 	var x *int32
@@ -11173,8 +10841,7 @@ slice 的底层数据是数组，slice 是对数组的封装，它描述一个�
 
 数组就是一片连续的内存， slice 实际上是一个结构体，包含三个字段：长度、容量、底层数组。
 
-```
-golang
+```go
 // runtime/slice.go
 type slice struct {
 	array unsafe.Pointer // 元素指针
@@ -11198,8 +10865,7 @@ slice 的数据结构如下：
 
 说明：例子来自雨痕大佬《Go学习笔记》第四版，P43页。这里我会进行扩展，并会作图详细分析。
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -11234,8 +10900,7 @@ shell
 
 接着，向 `s2` 尾部追加一个元素 100：
 
-```
-golang
+```go
 s2 = append(s2, 100)
 ```
 `s2` 容量刚好够，直接追加。不过，这会修改原始数组对应位置的元素。这一改动，数组和 `s1` 都可以看得到。
@@ -11244,8 +10909,7 @@ s2 = append(s2, 100)
 
 再次向 `s2` 追加元素200：
 
-```
-golang
+```go
 s2 = append(s2, 100)
 ```
 这时，`s2` 的容量不够用，该扩容了。于是，`s2` 另起炉灶，将原来的元素复制新的位置，扩大自己的容量。并且为了应对未来可能的 `append` 带来的再一次扩容，`s2` 会在此次扩容的时候多留一些 `buffer`，将新的容量将扩大为原始容量的2倍，也就是10了。
@@ -11254,8 +10918,7 @@ s2 = append(s2, 100)
 
 最后，修改 `s1` 索引为2位置的元素：
 
-```
-golang
+```go
 s1[2] = 20
 ```
 这次只会影响原始数组相应位置的元素。它影响不到 `s2` 了，人家已经远走高飞了。
@@ -11271,21 +10934,18 @@ s1[2] = 20
 一般都是在向 slice 追加了元素之后，才会引起扩容。追加元素调用的是 `append` 函数。
 
 先来看看 `append` 函数的原型：
-```
-golang
+```go
 func append(slice []Type, elems ...Type) []Type
 ```
 append 函数的参数长度可变，因此可以追加多个值到 slice 中，还可以用 `...` 传入 slice，直接追加一个切片。
 
-```
-golang
+```go
 slice = append(slice, elem1, elem2)
 slice = append(slice, anotherSlice...)
 ```
 `append`函数返回值是一个新的slice，Go编译器不允许调用了 append 函数后不使用返回值。
 
-```
-golang
+```go
 append(slice, elem1, elem2)
 append(slice, anotherSlice...)
 ```
@@ -11304,8 +10964,7 @@ append(slice, anotherSlice...)
 
 为了说明上面的规律，我写了一小段玩具代码：
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -11385,8 +11044,7 @@ shell
 
 **golang版本1.9.5**
 
-```
-golang
+```go
 // go 1.9.5 src/runtime/slice.go:82
 func growslice(et *_type, old slice, cap int) slice {
     // ……
@@ -11411,8 +11069,7 @@ func growslice(et *_type, old slice, cap int) slice {
 ```
 **golang版本1.18**
 
-```
-golang
+```go
 // go 1.18 src/runtime/slice.go:178
 func growslice(et *_type, old slice, cap int) slice {
     // ……
@@ -11452,8 +11109,7 @@ func growslice(et *_type, old slice, cap int) slice {
 
 来看一个例子，来源于[这里](https://jiajunhuang.com/articles/2017_07_18-golang_slice.md.html)
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -11487,8 +11143,7 @@ shell
 
 关于 `append`，我们最后来看一个例子，来源于 [Golang Slice的扩容规则](https://jodezer.github.io/2017/05/golangSlice%E7%9A%84%E6%89%A9%E5%AE%B9%E8%A7%84%E5%88%99)。
 
-```
-golang
+```go
 package main
 
 import "fmt"
@@ -11514,8 +11169,7 @@ len=5, cap=8
 ```
 这是错误的！我们来仔细看看，为什么会这样，再次搬出代码：
 
-```
-golang
+```go
 // go 1.9.5 src/runtime/slice.go:82
 func growslice(et *_type, old slice, cap int) slice {
     // ……
@@ -11540,8 +11194,7 @@ func growslice(et *_type, old slice, cap int) slice {
 
 我们再看内存对齐，搬出 `roundupsize` 函数的代码：
 
-```
-golang
+```go
 // src/runtime/msize.go:13
 func roundupsize(size uintptr) uintptr {
 	if size < _MaxSmallSize {
@@ -11560,14 +11213,12 @@ const smallSizeDiv = 8
 ```
 很明显，我们最终将返回这个式子的结果：
 
-```
-golang
+```go
 class_to_size[size_to_class8[(size+smallSizeDiv-1)/smallSizeDiv]]
 ```
 这是 `Go` 源码中有关内存分配的两个 `slice`。`class_to_size`通过 `spanClass`获取 `span`划分的 `object`大小。而 `size_to_class8` 表示通过 `size` 获取它的 `spanClass`。
 
-```
-golang
+```go
 var size_to_class8 = [smallSizeMax/smallSizeDiv + 1]uint8{0, 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 22, 23, 23, 23, 23, 24, 24, 24, 24, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31}
 
 var class_to_size = [_NumSizeClasses]uint16{0, 8, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 896, 1024, 1152, 1280, 1408, 1536, 1792, 2048, 2304, 2688, 3072, 3200, 3456, 4096, 4864, 5376, 6144, 6528, 6784, 6912, 8192, 9472, 9728, 10240, 10880, 12288, 13568, 14336, 16384, 18432, 19072, 20480, 21760, 24576, 27264, 28672, 32768}
@@ -11576,8 +11227,7 @@ var class_to_size = [_NumSizeClasses]uint16{0, 8, 16, 32, 48, 64, 80, 96, 112, 1
 
 最终，新的 slice 的容量为 `6`：
 
-```
-golang
+```go
 newcap = int(capmem / ptrSize) // 6
 ```
 至于，上面的两个`魔法数组`的由来，就不展开了。
@@ -11602,8 +11252,7 @@ newcap = int(capmem / ptrSize) // 6
 
 来看一个代码片段：
 
-```
-golang
+```go
 package main
 
 func main() {
@@ -11634,8 +11283,7 @@ shell
 
 要想真的改变外层 `slice`，只有将返回的新的 slice 赋值到原始 slice，或者向函数传递一个指向 slice 的指针。我们再来看一个例子：
 
-```
-golang
+```go
 package main
 
 import "fmt"
