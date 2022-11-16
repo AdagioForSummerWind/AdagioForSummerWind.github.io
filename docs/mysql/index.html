@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>MYSQL - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="MYSQL" />
-<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。 第二范式：要求实体的属性完全" />
+<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/mysql/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="MYSQL"/>
-<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。 第二范式：要求实体的属性完全"/>
+<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/mysql\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  25986 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  27473 ,
         "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-05T22:53:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">MYSQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>MYSQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 25986 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 52 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 27473 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 55 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -278,7 +278,158 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="mysql基础">mysql基础</h2>
+            </div><div class="content" id="content"><ul>
+<li><a href="#mysql%e5%9f%ba%e7%a1%80" rel="">mysql基础</a>
+<ul>
+<li><a href="#1-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e4%b8%89%e8%8c%83%e5%bc%8f%e6%98%af%e4%bb%80%e4%b9%88" rel="">1. 数据库的三范式是什么？</a></li>
+<li><a href="#2-mysql-%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e" rel="">2. MySQL 支持哪些存储引擎?</a></li>
+<li><a href="#3-%e8%b6%85%e9%94%ae%e5%80%99%e9%80%89%e9%94%ae%e4%b8%bb%e9%94%ae%e5%a4%96%e9%94%ae%e5%88%86%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">3. 超键、候选键、主键、外键分别是什么？</a></li>
+<li><a href="#4-sql-%e7%ba%a6%e6%9d%9f%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d" rel="">4. SQL 约束有哪几种？</a></li>
+<li><a href="#5-mysql-%e4%b8%ad%e7%9a%84-varchar-%e5%92%8c-char-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">5. MySQL 中的 varchar 和 char 有什么区别？</a></li>
+<li><a href="#6-mysql%e4%b8%ad-in-%e5%92%8c-exists-%e5%8c%ba%e5%88%ab" rel="">6. MySQL中 in 和 exists 区别</a></li>
+<li><a href="#7-dropdelete%e4%b8%8etruncate%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">7. drop、delete与truncate的区别</a></li>
+<li><a href="#8-%e4%bb%80%e4%b9%88%e6%98%af%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">8. 什么是存储过程？有哪些优缺点？</a></li>
+<li><a href="#9-mysql-%e6%89%a7%e8%a1%8c%e6%9f%a5%e8%af%a2%e7%9a%84%e8%bf%87%e7%a8%8b" rel="">9. MySQL 执行查询的过程</a></li>
+<li><a href="#%e7%b4%a2%e5%bc%95" rel="">索引</a>
+<ul>
+<li><a href="#1-%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88" rel="">1. 索引是什么？</a></li>
+<li><a href="#2-%e7%b4%a2%e5%bc%95%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">2. 索引有哪些优缺点？</a></li>
+<li><a href="#3-mysql%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d%e7%b4%a2%e5%bc%95%e7%b1%bb%e5%9e%8b" rel="">3. MySQL有哪几种索引类型？</a></li>
+<li><a href="#4-%e8%af%b4%e4%b8%80%e8%af%b4%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" rel="">4. 说一说索引的底层实现？</a></li>
+<li>[5. 为什么索引结构默认使用B+Tree，而不是B-Tree，Hash，二叉树，<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e7%ba%a2%e9%bb%91%e6%a0%91" target="_blank" rel="noopener noreffer">红黑树</a>？](#5-为什么索引结构默认使用btree而不是b-treehash二叉树红黑树)</li>
+<li><a href="#6-%e8%ae%b2%e4%b8%80%e8%ae%b2%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%8e%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95" rel="">6. 讲一讲聚簇索引与非聚簇索引？</a></li>
+<li><a href="#7-%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%80%e5%ae%9a%e4%bc%9a%e5%9b%9e%e8%a1%a8%e6%9f%a5%e8%af%a2%e5%90%97" rel="">7. 非聚簇索引一定会回表查询吗？</a></li>
+<li><a href="#8-%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e4%b8%ad%e7%9a%84%e9%a1%ba%e5%ba%8f" rel="">8. 联合索引是什么？为什么需要<strong>注意</strong>联合索引中的顺序？</a></li>
+<li><a href="#9-%e8%ae%b2%e4%b8%80%e8%ae%b2mysql%e7%9a%84%e6%9c%80%e5%b7%a6%e5%89%8d%e7%bc%80%e5%8e%9f%e5%88%99" rel="">9. 讲一讲MySQL的最左前缀原则?</a></li>
+<li><a href="#10-%e8%ae%b2%e4%b8%80%e8%ae%b2%e5%89%8d%e7%bc%80%e7%b4%a2%e5%bc%95" rel="">10. 讲一讲前缀索引？</a></li>
+<li><a href="#11-%e4%ba%86%e8%a7%a3%e7%b4%a2%e5%bc%95%e4%b8%8b%e6%8e%a8%e5%90%97" rel="">11. 了解索引下推吗？</a></li>
+<li><a href="#12-%e6%80%8e%e4%b9%88%e6%9f%a5%e7%9c%8bmysql%e8%af%ad%e5%8f%a5%e6%9c%89%e6%b2%a1%e6%9c%89%e7%94%a8%e5%88%b0%e7%b4%a2%e5%bc%95" rel="">12. 怎么查看MySQL语句有没有用到索引？</a></li>
+<li><a href="#13-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ae%98%e6%96%b9%e5%bb%ba%e8%ae%ae%e4%bd%bf%e7%94%a8%e8%87%aa%e5%a2%9e%e9%95%bf%e4%b8%bb%e9%94%ae%e4%bd%9c%e4%b8%ba%e7%b4%a2%e5%bc%95" rel="">13. 为什么官方建议使用自增长主键作为索引？</a></li>
+<li><a href="#14-%e5%a6%82%e4%bd%95%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95" rel="">14. 如何创建索引？</a></li>
+<li><a href="#15-%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95%e6%97%b6%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" rel="">15. 创建索引时需要<strong>注意</strong>什么？</a></li>
+<li><a href="#16-%e5%bb%ba%e7%b4%a2%e5%bc%95%e7%9a%84%e5%8e%9f%e5%88%99%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">16. 建索引的原则有哪些？</a></li>
+<li><a href="#17-%e4%bd%bf%e7%94%a8%e7%b4%a2%e5%bc%95%e6%9f%a5%e8%af%a2%e4%b8%80%e5%ae%9a%e8%83%bd%e6%8f%90%e9%ab%98%e6%9f%a5%e8%af%a2%e7%9a%84%e6%80%a7%e8%83%bd%e5%90%97" rel="">17. 使用索引查询一定能提高查询的性能吗？</a></li>
+<li><a href="#18-%e4%bb%80%e4%b9%88%e6%83%85%e5%86%b5%e4%b8%8b%e4%b8%8d%e8%b5%b0%e7%b4%a2%e5%bc%95%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">18. 什么情况下不走索引（索引失效）？</a>
+<ul>
+<li><a href="#1%e4%bd%bf%e7%94%a8-%e6%88%96%e8%80%85--%e5%af%bc%e8%87%b4%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">1、使用!= 或者 &lt;&gt; 导致索引失效</a></li>
+<li><a href="#2%e7%b1%bb%e5%9e%8b%e4%b8%8d%e4%b8%80%e8%87%b4%e5%af%bc%e8%87%b4%e7%9a%84%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">2、类型不一致导致的索引失效</a></li>
+<li><a href="#3%e5%87%bd%e6%95%b0%e5%af%bc%e8%87%b4%e7%9a%84%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">3、函数导致的索引失效</a></li>
+<li><a href="#4%e8%bf%90%e7%ae%97%e7%ac%a6%e5%af%bc%e8%87%b4%e7%9a%84%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">4、运算符导致的索引失效</a></li>
+<li><a href="#5or%e5%bc%95%e8%b5%b7%e7%9a%84%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">5、OR引起的索引失效</a></li>
+<li><a href="#6%e6%a8%a1%e7%b3%8a%e6%90%9c%e7%b4%a2%e5%af%bc%e8%87%b4%e7%9a%84%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">6、模糊搜索导致的索引失效</a></li>
+<li><a href="#7not-innot-exists%e5%af%bc%e8%87%b4%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88" rel="">7、NOT IN、NOT EXISTS导致索引失效</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e4%ba%8b%e5%8a%a1" rel="">事务</a>
+<ul>
+<li><a href="#1-%e4%bb%80%e4%b9%88%e6%98%af%e6%95%b0%e6%8d%ae%e5%ba%93%e4%ba%8b%e5%8a%a1" rel="">1. 什么是数据库事务？</a></li>
+<li><a href="#2-%e4%bb%8b%e7%bb%8d%e4%b8%80%e4%b8%8b%e4%ba%8b%e5%8a%a1%e5%85%b7%e6%9c%89%e7%9a%84%e5%9b%9b%e4%b8%aa%e7%89%b9%e5%be%81" rel="">2. 介绍一下事务具有的四个特征</a></li>
+<li><a href="#3-%e8%af%b4%e4%b8%80%e4%b8%8bmysql-%e7%9a%84%e5%9b%9b%e7%a7%8d%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" rel="">3. 说一下MySQL 的四种隔离级别</a></li>
+<li><a href="#4-%e4%bb%80%e4%b9%88%e6%98%af%e8%84%8f%e8%af%bb%e5%b9%bb%e8%af%bb%e4%b8%8d%e5%8f%af%e9%87%8d%e5%a4%8d%e8%af%bb" rel="">4. 什么是脏读？幻读？不可重复读？</a></li>
+<li><a href="#5-%e4%ba%8b%e5%8a%a1%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" rel="">5. 事务的实现原理</a></li>
+<li><a href="#6-mysql%e4%ba%8b%e5%8a%a1%e6%97%a5%e5%bf%97%e4%bb%8b%e7%bb%8d%e4%b8%8b" rel="">6. MySQL事务日志介绍下？</a>
+<ul>
+<li><a href="#redo-log" rel="">redo log</a></li>
+<li><a href="#undo-log" rel="">undo log</a></li>
+</ul>
+</li>
+<li><a href="#7-%e4%bb%80%e4%b9%88%e6%98%afmysql%e7%9a%84-binlog" rel="">7. 什么是MySQL的 binlog？</a></li>
+<li><a href="#8-%e5%9c%a8%e4%ba%8b%e5%8a%a1%e4%b8%ad%e5%8f%af%e4%bb%a5%e6%b7%b7%e5%90%88%e4%bd%bf%e7%94%a8%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e5%90%97" rel=""><strong>8. 在事务中可以混合使用存储引擎吗？</strong></a></li>
+<li><a href="#9-mysql%e4%b8%ad%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e4%ba%8b%e5%8a%a1%e9%9a%94%e7%a6%bb%e7%9a%84" rel="">9. MySQL中是如何实现事务隔离的?</a></li>
+<li><a href="#10-%e4%bb%80%e4%b9%88%e6%98%af-mvcc" rel="">10. 什么是 MVCC？</a></li>
+<li><a href="#11-mvcc-%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" rel="">11. MVCC 的实现原理</a></li>
+</ul>
+</li>
+<li><a href="#%e9%94%81" rel="">锁</a>
+<ul>
+<li><a href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%8a%a0%e9%94%81" rel="">1. 为什么要加锁?</a></li>
+<li><a href="#2-%e6%8c%89%e7%85%a7%e9%94%81%e7%9a%84%e7%b2%92%e5%ba%a6%e5%88%86%e6%95%b0%e6%8d%ae%e5%ba%93%e9%94%81%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">2. 按照锁的粒度分数据库锁有哪些？</a></li>
+<li><a href="#3-%e4%bb%8e%e9%94%81%e7%9a%84%e7%b1%bb%e5%88%ab%e4%b8%8a%e5%88%86mysql%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e9%94%81%e5%91%a2" rel="">3. 从锁的类别上分MySQL都有哪些锁呢？</a></li>
+<li><a href="#4-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e4%b9%90%e8%a7%82%e9%94%81%e5%92%8c%e6%82%b2%e8%a7%82%e9%94%81%e6%98%af%e4%bb%80%e4%b9%88%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" rel="">4. 数据库的乐观锁和悲观锁是什么？怎么实现的？</a></li>
+<li><a href="#5-innodb%e5%bc%95%e6%93%8e%e7%9a%84%e8%a1%8c%e9%94%81%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" rel="">5. InnoDB引擎的行锁是怎么实现的？</a></li>
+<li><a href="#6-%e4%bb%80%e4%b9%88%e6%98%af%e6%ad%bb%e9%94%81%e6%80%8e%e4%b9%88%e8%a7%a3%e5%86%b3" rel="">6. 什么是死锁？怎么解决？</a></li>
+<li><a href="#7-%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab%e4%b8%8e%e9%94%81%e7%9a%84%e5%85%b3%e7%b3%bb" rel="">7. 隔离级别与锁的关系</a></li>
+<li><a href="#8-%e4%bc%98%e5%8c%96%e9%94%81%e6%96%b9%e9%9d%a2%e7%9a%84%e6%84%8f%e8%a7%81" rel="">8. 优化锁方面的意见？</a></li>
+</ul>
+</li>
+<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8" rel="">分库分表</a>
+<ul>
+<li><a href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8" rel="">1. 为什么要分库分表？</a></li>
+<li><a href="#2-%e7%94%a8%e8%bf%87%e5%93%aa%e4%ba%9b%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e4%b8%ad%e9%97%b4%e4%bb%b6%e4%b8%8d%e5%90%8c%e7%9a%84%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e4%b8%ad%e9%97%b4%e4%bb%b6%e9%83%bd%e6%9c%89%e4%bb%80%e4%b9%88%e4%bc%98%e7%82%b9%e5%92%8c%e7%bc%ba%e7%82%b9" rel="">2. 用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？</a>
+<ul>
+<li><a href="#cobar" rel="">cobar</a></li>
+<li><a href="#tddl" rel="">TDDL</a></li>
+<li><a href="#atlas" rel="">atlas</a></li>
+<li><a href="#sharding-jdbc" rel="">sharding-jdbc</a></li>
+<li><a href="#mycat" rel="">mycat</a></li>
+</ul>
+</li>
+<li><a href="#3-%e5%a6%82%e4%bd%95%e5%af%b9%e6%95%b0%e6%8d%ae%e5%ba%93%e5%a6%82%e4%bd%95%e8%bf%9b%e8%a1%8c%e5%9e%82%e7%9b%b4%e6%8b%86%e5%88%86%e6%88%96%e6%b0%b4%e5%b9%b3%e6%8b%86%e5%88%86%e7%9a%84" rel="">3. 如何对数据库如何进行垂直拆分或水平拆分的？</a></li>
+</ul>
+</li>
+<li><a href="#%e8%af%bb%e5%86%99%e5%88%86%e7%a6%bb%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e5%a4%8d%e5%88%b6" rel="">读写分离、主从同步（复制）</a>
+<ul>
+<li><a href="#1-%e4%bb%80%e4%b9%88%e6%98%afmysql%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5" rel="">1. 什么是MySQL主从同步？</a></li>
+<li><a href="#2-mysql%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e7%9a%84%e7%9b%ae%e7%9a%84%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%81%9a%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5" rel="">2. MySQL主从同步的目的？为什么要做主从同步？</a></li>
+<li><a href="#3-%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0mysql%e7%9a%84%e8%af%bb%e5%86%99%e5%88%86%e7%a6%bb" rel="">3. 如何实现MySQL的读写分离？</a></li>
+<li><a href="#4-mysql%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6%e6%b5%81%e7%a8%8b%e5%92%8c%e5%8e%9f%e7%90%86" rel="">4. MySQL主从复制流程和原理？</a></li>
+<li><a href="#5-mysql%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e5%bb%b6%e6%97%b6%e9%97%ae%e9%a2%98%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3" rel="">5. MySQL主从同步延时问题如何解决？</a></li>
+</ul>
+</li>
+<li><a href="#mysql%e4%bc%98%e5%8c%96" rel="">MySQL优化</a>
+<ul>
+<li><a href="#1-%e5%a6%82%e4%bd%95%e5%ae%9a%e4%bd%8d%e5%8f%8a%e4%bc%98%e5%8c%96sql%e8%af%ad%e5%8f%a5%e7%9a%84%e6%80%a7%e8%83%bd%e9%97%ae%e9%a2%98" rel="">1. 如何定位及优化SQL语句的性能问题？</a></li>
+<li><a href="#2-%e5%a4%a7%e8%a1%a8%e6%95%b0%e6%8d%ae%e6%9f%a5%e8%af%a2%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96" rel="">2. 大表数据查询，怎么优化</a></li>
+<li><a href="#3-%e8%b6%85%e5%a4%a7%e5%88%86%e9%a1%b5%e6%80%8e%e4%b9%88%e5%a4%84%e7%90%86" rel="">3. 超大分页怎么处理?</a></li>
+<li><a href="#4-%e7%bb%9f%e8%ae%a1%e8%bf%87%e6%85%a2%e6%9f%a5%e8%af%a2%e5%90%97%e5%af%b9%e6%85%a2%e6%9f%a5%e8%af%a2%e9%83%bd%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96%e8%bf%87" rel="">4. 统计过慢查询吗？对慢查询都怎么优化过？</a></li>
+<li><a href="#5-%e5%a6%82%e4%bd%95%e4%bc%98%e5%8c%96%e6%9f%a5%e8%af%a2%e8%bf%87%e7%a8%8b%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e8%ae%bf%e9%97%ae" rel="">5. 如何优化查询过程中的数据访问</a></li>
+<li><a href="#6-%e5%a6%82%e4%bd%95%e4%bc%98%e5%8c%96%e5%85%b3%e8%81%94%e6%9f%a5%e8%af%a2" rel="">6. 如何优化关联查询</a></li>
+<li><a href="#7-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bb%93%e6%9e%84%e4%bc%98%e5%8c%96" rel="">7. 数据库结构优化</a></li>
+<li><a href="#8-mysql%e6%95%b0%e6%8d%ae%e5%ba%93cpu%e9%a3%99%e5%8d%87%e5%88%b0500%e7%9a%84%e8%af%9d%e4%bb%96%e6%80%8e%e4%b9%88%e5%a4%84%e7%90%86" rel="">8. MySQL数据库cpu飙升到500%的话他怎么处理？</a></li>
+<li><a href="#9-%e5%a4%a7%e8%a1%a8%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96" rel="">9. 大表怎么优化？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#1-%e5%86%85%e5%b7%a6%e5%8f%b3%e5%85%a8%e8%bf%9e%e6%8e%a5" rel="">1. 内，左，右，全连接</a></li>
+<li><a href="#11-%e5%86%85%e8%bf%9e%e6%8e%a5" rel="">1.1 内连接</a></li>
+<li><a href="#12-%e5%b7%a6%e8%bf%9e%e6%8e%a5" rel="">1.2 左连接</a></li>
+<li><a href="#13-%e5%8f%b3%e8%bf%9e%e6%8e%a5" rel="">1.3 右连接</a></li>
+<li><a href="#14-%e5%85%a8%e8%bf%9e%e6%8e%a5" rel="">1.4 全连接</a></li>
+<li><a href="#2-redoundobin-%e4%b8%89%e5%a4%a7%e6%97%a5%e5%bf%97%e7%9a%84%e7%94%a8%e6%b3%95" rel="">2. redo，undo，bin 三大日志的用法</a></li>
+<li><a href="#3-mvcc%e7%9a%84%e7%90%86%e8%a7%a3" rel="">3. MVCC的理解</a></li>
+<li><a href="#4-mysql-%e7%94%a8%e7%b4%a2%e5%bc%95%e5%92%8c%e4%b8%8d%e7%94%a8%e7%b4%a2%e5%bc%95%e7%9a%84%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6" rel="">4. MySQL 用索引和不用索引的时间复杂度</a></li>
+<li><a href="#5-mysql%e7%9a%84%e9%94%81%e7%9a%84%e5%ae%9e%e7%8e%b0" rel="">5. MySQL的锁的实现</a></li>
+<li><a href="#6-mysql-%e7%9a%84%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" rel="">6. MySQL 的隔离级别</a></li>
+<li><a href="#redis" rel="">Redis</a>
+<ul>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" rel="">应用场景</a></li>
+<li><a href="#%e5%8d%95%e7%ba%bf%e7%a8%8b%e7%9a%84redis%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bf%ab" rel="">单线程的Redis为什么快</a></li>
+<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" rel="">Redis 的数据结构及使用场景</a></li>
+<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%87%e6%9c%9f%e7%ad%96%e7%95%a5" rel="">Redis 的数据过期策略</a></li>
+<li><a href="#redis%e7%9a%84set%e5%92%8csetnx" rel="">Redis的set和setnx</a></li>
+<li><a href="#redis%e7%9a%84lru%e5%85%b7%e4%bd%93%e5%ae%9e%e7%8e%b0" rel="">Redis的LRU具体实现：</a></li>
+<li><a href="#redis%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e7%83%ad%e7%82%b9key" rel="">Redis如何发现热点key</a></li>
+<li><a href="#redis%e7%9a%84%e7%83%ad%e7%82%b9key%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis的热点key解决方案</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存雪崩问题</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存穿透问题</a></li>
+<li><a href="#redis%e7%9a%84%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6" rel="">Redis的持久化机制</a></li>
+<li><a href="#redis%e7%9a%84%e4%ba%8b%e5%8a%a1" rel="">Redis的事务</a></li>
+<li><a href="#redis%e4%ba%8b%e5%8a%a1%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" rel="">Redis事务相关命令</a></li>
+<li><a href="#redis%e5%92%8c-memcached-%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">Redis和 memcached 的区别</a></li>
+<li><a href="#redis%e7%9a%84%e5%87%a0%e7%a7%8d%e9%9b%86%e7%be%a4%e6%a8%a1%e5%bc%8f" rel="">Redis的几种集群模式</a></li>
+<li><a href="#redis%e7%9a%84%e5%93%a8%e5%85%b5%e6%a8%a1%e5%bc%8f" rel="">Redis的哨兵模式</a></li>
+<li><a href="#redis%e7%9a%84rehash" rel="">Redis的rehash</a></li>
+<li><a href="#redis%e7%9a%84hash%e8%a1%a8%e8%a2%ab%e6%89%a9%e5%b1%95%e7%9a%84%e6%9d%a1%e4%bb%b6" rel="">Redis的hash表被扩展的条件</a></li>
+<li><a href="#redis%e5%b9%b6%e5%8f%91%e7%ab%9e%e4%ba%89key%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis并发竞争key的解决方案</a></li>
+<li><a href="#redis%e4%b8%8emysql%e5%8f%8c%e5%86%99%e4%b8%80%e8%87%b4%e6%80%a7%e6%96%b9%e6%a1%88" rel="">Redis与Mysql双写一致性方案</a></li>
+<li><a href="#redis%e7%9a%84%e7%ae%a1%e9%81%93pipeline" rel="">Redis的管道pipeline</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="mysql基础">mysql基础</h2>
 <h3 id="1-数据库的三范式是什么">1. 数据库的三范式是什么？</h3>
 <ul>
 <li>第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。</li>

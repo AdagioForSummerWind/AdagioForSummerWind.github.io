@@ -19,21 +19,21 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/mysql/</guid>
-    <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。 第二范式：要求实体的属性完全]]></description>
+    <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别]]></description>
 </item><item>
     <title>OS</title>
     <link>https://jefofrank.xyz/os/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/os/</guid>
-    <description><![CDATA[操作系统 进程和线程 进程是操作系统资源分配的最小单位，线程是CPU任务调度的最小单位。一个进程可以包含多个线程，所以进程和线程都是一个时间段的]]></description>
+    <description><![CDATA[操作系统 进程和线程 多线程和单线程 进程的组成部分 进程的通信方式 进程间五种通信方式的比较 内存管理有哪几种方式 页面置换算法 操作系统中进程调度策略有]]></description>
 </item><item>
     <title>计网</title>
     <link>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</guid>
-    <description><![CDATA[计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数]]></description>
+    <description><![CDATA[计网 Get和Post区别 Http请求的完全过程 计算机网络的五层模型 TCP/IP 四层协议栈 OSI七层： tcp和udp区别 tcp和udp的优点 三次握手 为什]]></description>
 </item><item>
     <title>Interesting talk about Linux operating system</title>
     <link>https://jefofrank.xyz/interesting_talk_linux/</link>

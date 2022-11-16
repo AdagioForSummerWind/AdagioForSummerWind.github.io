@@ -10,6 +10,6 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</guid>
-    <description><![CDATA[计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数]]></description>
+    <description><![CDATA[计网 Get和Post区别 Http请求的完全过程 计算机网络的五层模型 TCP/IP 四层协议栈 OSI七层： tcp和udp区别 tcp和udp的优点 三次握手 为什]]></description>
 </item></channel>
 </rss>

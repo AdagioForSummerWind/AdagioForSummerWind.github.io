@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>计网 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="计网" />
-<meta property="og:description" content="计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数" />
+<meta property="og:description" content="计网 Get和Post区别 Http请求的完全过程 计算机网络的五层模型 TCP/IP 四层协议栈 OSI七层： tcp和udp区别 tcp和udp的优点 三次握手 为什" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="计网"/>
-<meta name="twitter:description" content="计网 Get和Post区别 Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。 Get传送的数"/>
+<meta name="twitter:description" content="计网 Get和Post区别 Http请求的完全过程 计算机网络的五层模型 TCP/IP 四层协议栈 OSI七层： tcp和udp区别 tcp和udp的优点 三次握手 为什"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  29687 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  29166 ,
         "url": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">计网</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%BD%91/"><i class="far fa-folder fa-fw"></i>计网</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29687 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 60 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29166 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 59 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -142,9 +142,6 @@
         <li><a href="#为什么连接的时候是三次握手关闭的时候却是四次握手">为什么连接的时候是三次握手，关闭的时候却是四次握手</a></li>
         <li><a href="#1-osi与tcpip-模型">1. OSI与TCP/IP 模型</a></li>
         <li><a href="#2-常见网络服务分层">2. 常见网络服务分层</a></li>
-        <li><a href="#3-tcp三次握手">3. TCP三次握手</a></li>
-        <li><a href="#4-四次挥手过程">4. 四次挥手过程：</a></li>
-        <li><a href="#5-为什么连接的时候是三次握手关闭的时候却是四次握手">5. 为什么连接的时候是三次握手，关闭的时候却是四次握手?</a></li>
         <li><a href="#6-如何查看time-wait状态的链接数量">6. 如何查看TIME-WAIT状态的链接数量？</a></li>
         <li><a href="#7-为什么会time-wait过多解决方法是怎样的">7. 为什么会TIME-WAIT过多？解决方法是怎样的？</a></li>
         <li><a href="#8-半连接洪泛攻击问题以及如何解决syn_cookie">8. 半连接，洪泛攻击问题以及如何解决（syn_cookie）</a></li>
@@ -206,22 +203,12 @@
             <li><a href="#从输入址到获得页面的过程">从输入址到获得页面的过程?</a></li>
           </ul>
         </li>
-        <li><a href="#tcp的三次握手">TCP的三次握手</a>
-          <ul>
-            <li><a href="#什么是tcp的三次握手">什么是TCP的三次握手</a></li>
-            <li><a href="#用现实理解三次握手的具体细节">用现实理解三次握手的具体细节</a></li>
-            <li><a href="#为什么不能把服务器发送的ack和fin合并起来变成三次挥手close_wait状态意义是什-么">为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什 么）？</a></li>
-            <li><a href="#如果第二次挥手时服务器的ack没有送达客户端会怎样">如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</a></li>
-            <li><a href="#客户端time_wait状态的意义是什么">客户端TIME_WAIT状态的意义是什么？</a></li>
-          </ul>
-        </li>
         <li><a href="#socket">Socket</a>
           <ul>
             <li><a href="#什么是socket">什么是Socket</a></li>
             <li><a href="#socket属于网络的那个层面">socket属于网络的那个层面</a></li>
             <li><a href="#socket通讯的过程">Socket通讯的过程</a></li>
             <li><a href="#tcp协议socket代码示例">TCP协议Socket代码示例：</a></li>
-            <li><a href="#5-udp协议socket代码示例">5 UDP协议Socket代码示例：</a></li>
             <li><a href="#6-socket的常用类">6 Socket的常用类</a></li>
           </ul>
         </li>
@@ -243,9 +230,116 @@
         </li>
       </ul>
     </li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="计网">计网</h2>
+            </div><div class="content" id="content"><ul>
+<li><a href="#%e8%ae%a1%e7%bd%91" rel="">计网</a>
+<ul>
+<li><a href="#get%e5%92%8cpost%e5%8c%ba%e5%88%ab" rel="">Get和Post区别</a></li>
+<li><a href="#http%e8%af%b7%e6%b1%82%e7%9a%84%e5%ae%8c%e5%85%a8%e8%bf%87%e7%a8%8b" rel="">Http请求的完全过程</a></li>
+<li><a href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c%e7%9a%84%e4%ba%94%e5%b1%82%e6%a8%a1%e5%9e%8b" rel="">计算机网络的五层模型</a></li>
+<li><a href="#tcpip-%e5%9b%9b%e5%b1%82%e5%8d%8f%e8%ae%ae%e6%a0%88" rel="">TCP/IP 四层协议栈</a></li>
+<li><a href="#osi%e4%b8%83%e5%b1%82" rel="">OSI七层：</a></li>
+<li><a href="#tcp%e5%92%8cudp%e5%8c%ba%e5%88%ab" rel="">tcp和udp区别</a></li>
+<li><a href="#tcp%e5%92%8cudp%e7%9a%84%e4%bc%98%e7%82%b9" rel="">tcp和udp的优点</a></li>
+<li><a href="#%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b" rel="">三次握手</a></li>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e8%83%bd%e4%b8%a4%e6%ac%a1%e6%8f%a1%e6%89%8b" rel="">为什么不能两次握手</a></li>
+<li><a href="#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b" rel="">四次挥手</a></li>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%9e%e6%8e%a5%e7%9a%84%e6%97%b6%e5%80%99%e6%98%af%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%85%b3%e9%97%ad%e7%9a%84%e6%97%b6%e5%80%99%e5%8d%b4%e6%98%af%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b" rel="">为什么连接的时候是三次握手，关闭的时候却是四次握手</a></li>
+<li><a href="#1-osi%e4%b8%8etcpip-%e6%a8%a1%e5%9e%8b" rel="">1. OSI与TCP/IP 模型</a></li>
+<li><a href="#2-%e5%b8%b8%e8%a7%81%e7%bd%91%e7%bb%9c%e6%9c%8d%e5%8a%a1%e5%88%86%e5%b1%82" rel="">2. 常见网络服务分层</a></li>
+<li><a href="#6-%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8btime-wait%e7%8a%b6%e6%80%81%e7%9a%84%e9%93%be%e6%8e%a5%e6%95%b0%e9%87%8f" rel="">6. 如何查看TIME-WAIT状态的链接数量？</a></li>
+<li><a href="#7-%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9atime-wait%e8%bf%87%e5%a4%9a%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95%e6%98%af%e6%80%8e%e6%a0%b7%e7%9a%84" rel="">7. 为什么会TIME-WAIT过多？解决方法是怎样的？</a></li>
+<li><a href="#8-%e5%8d%8a%e8%bf%9e%e6%8e%a5%e6%b4%aa%e6%b3%9b%e6%94%bb%e5%87%bb%e9%97%ae%e9%a2%98%e4%bb%a5%e5%8f%8a%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3syn_cookie" rel="">8. 半连接，洪泛攻击问题以及如何解决（syn_cookie）</a></li>
+<li><a href="#9-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ae%a2%e6%88%b7%e7%ab%af%e7%9a%84time-wait%e7%8a%b6%e6%80%81%e5%bf%85%e9%a1%bb%e7%ad%89%e5%be%852msl-" rel="">9. 为什么客户端的TIME-WAIT状态必须等待2MSL ?</a></li>
+<li><a href="#10-4g%e5%88%87%e6%8d%a2wifi%e4%bc%9a%e5%8f%91%e7%94%9f%e4%bb%80%e4%b9%88" rel="">10. 4g切换wifi会发生什么</a></li>
+<li><a href="#11-tcp%e4%b8%8eudp%e5%8c%ba%e5%88%ab%e5%8f%8a%e5%9c%ba%e6%99%af" rel="">11. TCP与UDP区别及场景</a></li>
+<li><a href="#12-tcp%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6" rel="">12. TCP滑动窗口，拥塞控制</a></li>
+<li><a href="#13-tcp%e7%b2%98%e5%8c%85%e5%8e%9f%e5%9b%a0%e5%92%8c%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95" rel="">13. TCP粘包原因和解决方法</a></li>
+<li><a href="#14-tcpudp%e6%8a%a5%e6%96%87%e6%a0%bc%e5%bc%8f" rel="">14. TCP、UDP报文格式</a></li>
+<li><a href="#15-tcp%e5%8d%8f%e8%ae%ae%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e5%8f%af%e9%9d%a0%e4%bc%a0%e8%be%93%e6%9c%ba%e5%88%b6" rel="">15. TCP协议如何保证可靠传输机制？</a></li>
+<li><a href="#16-tcp%e7%9a%84%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3" rel="">16. TCP的滑动窗口?</a></li>
+<li><a href="#17-%e8%af%a6%e7%bb%86%e8%ae%b2%e4%b8%80%e4%b8%8b%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6-%e4%b8%ba%e4%bd%95%e8%a6%81%e8%bf%9b%e8%a1%8c%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6" rel="">17. 详细讲一下拥塞控制? 为何要进行拥塞控制？</a></li>
+<li><a href="#18-tcp%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b64%e7%a7%8d%e7%ae%97%e6%b3%95" rel="">18. TCP拥塞控制4种算法</a></li>
+<li><a href="#http%e5%8d%8f%e8%ae%ae" rel="">HTTP协议</a>
+<ul>
+<li><a href="#1-http%e5%8d%8f%e8%ae%ae10--11--20" rel="">1. HTTP协议1.0  1.1  2.0</a></li>
+<li><a href="#2-http10%e5%92%8chttp11%e7%9a%84%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab%e5%a6%82%e4%b8%8b" rel="">2. HTTP1.0和HTTP1.1的主要区别如下：</a></li>
+<li><a href="#3-http11%e5%92%8chttp20%e7%9a%84%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab" rel="">3. HTTP1.1和HTTP2.0的主要区别：</a></li>
+<li><a href="#4-http%e5%92%8c-https%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">4. HTTP和 HTTPS的区别：</a></li>
+<li><a href="#5-https-%e7%9a%84%e7%bc%ba%e7%82%b9" rel="">5. HTTPS 的缺点：</a></li>
+<li><a href="#6-https%e9%93%be%e6%8e%a5%e5%bb%ba%e7%ab%8b%e7%9a%84%e8%bf%87%e7%a8%8b" rel="">6. HTTPS链接建立的过程：</a></li>
+<li><a href="#7-http%e5%b8%b8%e8%a7%81%e5%93%8d%e5%ba%94%e7%8a%b6%e6%80%81%e7%a0%81" rel="">7. HTTP常见响应状态码</a></li>
+<li><a href="#8-%e7%8a%b6%e6%80%81%e7%a0%81301%e5%92%8c302%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">8. 状态码301和302的区别是什么?</a></li>
+<li><a href="#9-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e4%b8%8e%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">9. 对称加密算法与非对称加密算法的区别</a></li>
+<li><a href="#10-http%e8%af%b7%e6%b1%82%e6%96%b9%e6%b3%95" rel="">10. HTTP请求方法：</a></li>
+<li><a href="#11-get%e5%92%8cpost%e8%af%b7%e6%b1%82%e5%8c%ba%e5%88%ab" rel="">11. Get和Post请求区别</a></li>
+<li><a href="#12-get-%e5%92%8c-post-%e6%96%b9%e6%b3%95%e9%83%bd%e6%98%af%e5%ae%89%e5%85%a8%e5%92%8c%e5%b9%82%e7%ad%89%e7%9a%84%e5%90%97" rel="">12. GET 和 POST 方法都是安全和幂等的吗？</a></li>
+<li><a href="#13-%e9%87%8d%e5%ae%9a%e5%90%91%e5%92%8c%e8%bd%ac%e5%8f%91%e5%8c%ba%e5%88%ab" rel="">13. 重定向和转发区别</a></li>
+<li><a href="#14-cookie%e5%92%8csession%e5%8c%ba%e5%88%ab" rel="">14. Cookie和Session区别</a></li>
+<li><a href="#15-%e6%b5%8f%e8%a7%88%e5%99%a8%e8%be%93%e5%85%a5url%e8%bf%87%e7%a8%8b" rel="">15. 浏览器输入URL过程</a></li>
+<li><a href="#16-dns%e5%8d%8f%e8%ae%ae%e6%98%aftcp%e8%bf%98%e6%98%afudp" rel="">16. DNS协议是TCP还是UDP?</a></li>
+<li><a href="#17-arp%e5%8d%8f%e8%ae%ae%e5%a6%82%e4%bd%95%e6%89%be%e5%88%b0%e5%af%b9%e5%ba%94ip%e5%9c%b0%e5%9d%80%e5%92%8cmac%e7%9a%84%e6%98%a0%e5%b0%84%e7%9a%84" rel="">17. ARP协议如何找到对应IP地址和mac的映射的</a></li>
+<li><a href="#18-rarp-%e5%8d%8f%e8%ae%ae%e4%bd%a0%e7%9f%a5%e9%81%93%e6%98%af%e4%bb%80%e4%b9%88%e5%90%97" rel="">18. RARP 协议你知道是什么吗？</a></li>
+<li><a href="#19-%e4%bb%80%e4%b9%88%e6%98%afddos%e6%94%bb%e5%87%bb" rel="">19. 什么是DDos攻击?</a></li>
+<li><a href="#20-%e4%bb%80%e4%b9%88%e6%98%afxss%e6%94%bb%e5%87%bb" rel="">20. 什么是XSS攻击?</a></li>
+<li><a href="#21-sql%e6%b3%a8%e5%85%a5%e6%98%af%e4%bb%80%e4%b9%88%e5%a6%82%e4%bd%95%e9%81%bf%e5%85%8dsql%e6%b3%a8%e5%85%a5" rel="">21. SQL注入是什么，如何避免SQL注入?</a></li>
+<li><a href="#22-%e7%bd%91%e7%bb%9c%e7%bc%96%e7%a8%8bsocket%e5%ae%a2%e6%88%b7%e7%ab%af%e5%92%8c%e6%9c%8d%e5%8a%a1%e7%ab%af%e9%80%9a%e4%bf%a1%e8%bf%87%e7%a8%8b%e5%88%86%e5%88%ab%e8%b0%83%e7%94%a8%e4%ba%86%e5%93%aa%e4%ba%9b%e5%87%bd%e6%95%b0%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88" rel="">22. 网络编程socket，客户端和服务端通信过程，分别调用了哪些函数，作用是什么</a></li>
+<li><a href="#23-%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e7%ae%97%e6%b3%95%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">23. 负载均衡算法有哪些?</a></li>
+</ul>
+</li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e7%bd%91%e7%bb%9c%e7%bc%96%e7%a8%8b" rel="">什么是网络编程</a>
+<ul>
+<li><a href="#%e7%bd%91%e7%bb%9c%e7%bc%96%e7%a8%8b%e4%b8%ad%e4%b8%a4%e4%b8%aa%e4%b8%bb%e8%a6%81%e7%9a%84%e9%97%ae%e9%a2%98" rel="">网络编程中两个主要的问题</a></li>
+</ul>
+</li>
+<li><a href="#%e7%bd%91%e7%bb%9c%e5%8d%8f%e8%ae%ae%e6%98%af%e4%bb%80%e4%b9%88" rel="">网络协议是什么</a>
+<ul>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%af%b9%e7%bd%91%e7%bb%9c%e5%8d%8f%e8%ae%ae%e5%88%86%e5%b1%82" rel="">为什么要对网络协议分层</a></li>
+</ul>
+</li>
+<li><a href="#tcp--udp" rel="">TCP / UDP</a>
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%aftcpip%e5%92%8cudp" rel="">什么是TCP/IP和UDP</a></li>
+<li><a href="#tcp%e4%b8%8eudp%e5%8c%ba%e5%88%ab" rel="">TCP与UDP区别：</a></li>
+<li><a href="#tcp%e5%92%8cudp%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" rel="">TCP和UDP的应用场景</a></li>
+<li><a href="#%e5%bd%a2%e5%ae%b9%e4%b8%80%e4%b8%8btcp%e5%92%8cudp" rel="">形容一下TCP和UDP</a></li>
+<li><a href="#%e8%bf%90%e8%a1%8c%e5%9c%a8tcp-%e6%88%96udp%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" rel="">运行在TCP 或UDP的应用层协议分析</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afarp%e5%8d%8f%e8%ae%ae-address-resolution-protocol" rel="">什么是ARP协议 (Address Resolution Protocol)？</a></li>
+<li><a href="#%e4%bb%8e%e8%be%93%e5%85%a5%e5%9d%80%e5%88%b0%e8%8e%b7%e5%be%97%e9%a1%b5%e9%9d%a2%e7%9a%84%e8%bf%87%e7%a8%8b" rel="">从输入址到获得页面的过程?</a></li>
+</ul>
+</li>
+<li><a href="#socket" rel="">Socket</a>
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afsocket" rel="">什么是Socket</a></li>
+<li><a href="#socket%e5%b1%9e%e4%ba%8e%e7%bd%91%e7%bb%9c%e7%9a%84%e9%82%a3%e4%b8%aa%e5%b1%82%e9%9d%a2" rel="">socket属于网络的那个层面</a></li>
+<li><a href="#socket%e9%80%9a%e8%ae%af%e7%9a%84%e8%bf%87%e7%a8%8b" rel="">Socket通讯的过程</a></li>
+<li><a href="#tcp%e5%8d%8f%e8%ae%aesocket%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" rel="">TCP协议Socket代码示例：</a></li>
+<li><a href="#6-socket%e7%9a%84%e5%b8%b8%e7%94%a8%e7%b1%bb" rel="">6 Socket的常用类</a></li>
+</ul>
+</li>
+<li><a href="#3-http" rel="">3. HTTP</a>
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afhttp%e5%8d%8f%e8%ae%ae" rel="">什么是Http协议？</a></li>
+<li><a href="#socket%e5%92%8chttp%e7%9a%84%e5%8c%ba%e5%88%ab%e5%92%8c%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" rel="">Socket和http的区别和应用场景</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afhttp%e7%9a%84%e8%af%b7%e6%b1%82%e4%bd%93" rel="">什么是http的请求体？</a></li>
+<li><a href="#https%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" rel="">HTTPS工作原理</a></li>
+<li><a href="#%e4%b8%80%e6%ac%a1%e5%ae%8c%e6%95%b4%e7%9a%84http%e8%af%b7%e6%b1%82%e6%89%80%e7%bb%8f%e5%8e%86%e5%87%a0%e4%b8%aa%e6%ad%a5%e9%aa%a4" rel="">一次完整的HTTP请求所经历几个步骤?</a></li>
+<li><a href="#%e5%b8%b8%e7%94%a8http%e7%8a%b6%e6%80%81%e7%a0%81%e6%98%af%e6%80%8e%e4%b9%88%e5%88%86%e7%b1%bb%e7%9a%84%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b8%b8%e8%a7%81%e7%9a%84%e7%8a%b6%e6%80%81%e7%a0%81" rel="">常用HTTP状态码是怎么分类的，有哪些常见的状态码？</a></li>
+<li><a href="#http%e7%89%88%e6%9c%ac%e7%9a%84%e5%af%b9%e6%af%94" rel="">http版本的对比</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e4%b8%8e%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" rel="">什么是对称加密与非对称加密</a></li>
+<li><a href="#cookie%e5%92%8csession%e5%af%b9%e4%ba%8ehttp%e6%9c%89%e4%bb%80%e4%b9%88%e7%94%a8" rel="">cookie和session对于HTTP有什么用？</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afcookie" rel="">什么是cookie</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afsession" rel="">什么是session</a></li>
+<li><a href="#cookie%e4%b8%8esession%e5%8c%ba%e5%88%ab" rel="">cookie与session区别</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e5%8f%82%e8%80%83" rel="">参考</a></li>
+</ul>
+<h2 id="计网">计网</h2>
 <h3 id="get和post区别">Get和Post区别</h3>
 <ol>
 <li>Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。</li>
@@ -311,24 +405,43 @@
 <li>UDP的优点： 快，比TCP稍安全 UDP没有TCP的握手、确认、窗口、重传、拥塞控制等机制，UDP是一个无状态的传输协议，所以它在传递数据时非常快。没有TCP的这些机制，UDP较TCP被攻击者利用的漏洞就要少一些。但UDP也是无法避免攻击的，比如：UDP Flood攻击…… UDP的缺点： 不可靠，不稳定 因为UDP没有TCP那些可靠的机制，在数据传递时，如果网络质量不好，就会很容易丢包。 基于上面的优缺点，那么： 什么时候应该使用TCP： 当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。 在日常生活中，常见使用TCP协议的应用如下： 浏览器，用的HTTP FlashFXP，用的FTP Outlook，用的POP、SMTP Putty，用的Telnet、SSH QQ文件传输。什么时候应该使用UDP： 当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频 TFTP。</li>
 </ul>
 <h3 id="三次握手">三次握手</h3>
+<p>TCP连接的不是主机、IP地址、应用进程。而是socket(IP+端口号)</p>
 <ul>
-<li>第一次握手：建立连接时，客户端发送syn包（syn=x）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
-<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
-<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=y+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
+<li>连接前，CLOSED状态</li>
 </ul>
+<ul>
+<li>第一次握手：建立连接时，客户端发送一个报文段（seq=x, SYN=1的报文段）到服务器，并进入SYN_SENT状态，等待服务器确认；</li>
+<li>第二次握手：服务器收到这个报文段后，如果同意建立连接的话就回复一个报文段（seq=y, ack=x+1，SYN=1, ACK=1），此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的这个报文段后，向服务器发送确认报文段(seq=x+1，ack=y+1，ACK=1），此包发送完毕，客户端进入ESTABLISHED状态，服务器收到后也进入ESTABLISH状态。完成三次握手。</li>
+<li>服务器更易受到SYN泛洪攻击</li>
+</ul>
+<p><strong>为什么三次：</strong>  主要是为了建立可靠的通信信道，保证客户端与服务端同时具备发送、接收数据的能力。</p>
+<p><strong>为什么两次不行？</strong></p>
+<ol>
+<li>
+<p>防止已失效的请求报文又传送到了服务端，建立了多余的链接，浪费资源。</p>
+</li>
+<li>
+<p><strong>两次握手只能保证单向连接是畅通的。</strong>（为了实现可靠数据传输， <code>TCP </code>协议的通信双方， 都必须维护一个序列号， 以标识发送出去的数据包中， 哪些是已经被对方收到的。三次握手的过程即是通信双方 相互告知序列号起始值， 并确认对方已经收到了序列号起始值的必经步骤；如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认）。</p>
+</li>
+</ol>
 <h3 id="为什么不能两次握手">为什么不能两次握手</h3>
 <p>TCP是一个双向通信协议，通信双方都有能力发送信息，并接收响应。如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认</p>
 <h3 id="四次挥手">四次挥手</h3>
 <ol>
-<li>客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</li>
-<li>服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</li>
+<li>客户端进程发出连接释放报文段，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</li>
+<li>服务器收到连接释放报文段，发出确认报文段，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。此时客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</li>
 <li>客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</li>
-<li>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</li>
-<li>客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。<strong>注意</strong>此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</li>
+<li>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ACK=1, ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</li>
+<li>客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。<strong>注意</strong>此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命，也就是一个报文段来回时间）的时间后，客户端撤销相应的TCB(传输控制块)后，才进入CLOSED状态。如果在此过程中，服务端在规定时间内未收到确认报文段，会重复发送FIN报文段给客户端。</li>
 <li>服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些</li>
 </ol>
+<p>**为什么四次：**因为需要确保客户端与服务端的数据能够完成传输。</p>
+<p><strong>CLOSE-WAIT：</strong> 这种状态的含义其实是表示在<strong>等待关闭</strong>。</p>
+<p><strong>TIME-WAIT：</strong> 为了解决网络的丢包和网络不稳定所带来的其他问题，确保连接方能在时间范围内，关闭自己的连接。</p>
 <h3 id="为什么连接的时候是三次握手关闭的时候却是四次握手">为什么连接的时候是三次握手，关闭的时候却是四次握手</h3>
-<p>因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&ldquo;你发的FIN报文我收到了&rdquo;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
+<p>由于 TCP 的半关闭（half-close）特性，TCP 提供了连接的一端在结束它的发送后还能接收来自另一端数据的能力。任何一方都可以在数据传送结束后发出连接释放的通知，待对方确认后进入半关闭状态。当另一方也没有数据再发送的时候，则发出连接释放通知，对方确认后就完全关闭了TCP连接。所以简单地说两次握手就可以释放一端到另一端的 TCP 连接，完全释放连接一共需要四次握手。
+而建立连接时服务器可以把ACK报文段和SYN报文段（ACK报文段起确认作用，即确认客户端的连接建立请求；SYN报文段起同步作用）放在一起发送，所以是3次。</p>
 <h3 id="1-osi与tcpip-模型">1. OSI与TCP/IP 模型</h3>
 <p>OSI七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
 <p>TCP/IP五层：物理层、数据链路层、网络层、传输层、应用层</p>
@@ -361,58 +474,6 @@
 <p>网络层：<code>IP</code>、<code>ICMP </code>、路由器、防火墙</p>
 <p>数据链路层：网卡、网桥、交换机</p>
 <p>物理层：中继器、集线器</p>
-<h3 id="3-tcp三次握手">3. TCP三次握手</h3>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png"
-        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png 2x"
-        data-sizes="auto"
-        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png"
-        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215643.png" /></p>
-<p><strong>三次握手过程：</strong></p>
-<ol>
-<li>
-<p>客户端——发送带有<code>SYN</code>标志的数据包——服务端 <strong>一次握手</strong> 客户端进入<code>syn_sent</code>状态</p>
-</li>
-<li>
-<p>服务端——发送带有<code>SYN/ACK</code>标志的数据包——客户端  <strong>二次握手</strong> 服务端进入<code>syn_rcvd</code></p>
-</li>
-<li>
-<p>客户端——发送带有<code>ACK</code>标志的数据包——服务端 <strong>三次握手</strong> 连接就进入<code>Established</code>状态</p>
-</li>
-</ol>
-<p><strong>为什么三次：</strong>  主要是为了建立可靠的通信信道，保证客户端与服务端同时具备发送、接收数据的能力。</p>
-<p><strong>为什么两次不行？</strong></p>
-<ol>
-<li>
-<p>防止已失效的请求报文又传送到了服务端，建立了多余的链接，浪费资源。</p>
-</li>
-<li>
-<p><strong>两次握手只能保证单向连接是畅通的。</strong>（为了实现可靠数据传输， <code>TCP </code>协议的通信双方， 都必须维护一个序列号， 以标识发送出去的数据包中， 哪些是已经被对方收到的。三次握手的过程即是通信双方 相互告知序列号起始值， 并确认对方已经收到了序列号起始值的必经步骤；如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认）。</p>
-</li>
-</ol>
-<h3 id="4-四次挥手过程">4. 四次挥手过程：</h3>
-<ol>
-<li>客户端——发送带有<code>FIN</code>标志的数据包——服务端，关闭与服务端的连接 ，客户端进入<code>FIN-WAIT-1</code>状态</li>
-<li>服务端收到这个 <code>FIN</code>，它发回⼀个 <code>ACK</code>，确认序号为收到的序号加<code>1</code>，服务端就进入了<code>CLOSE-WAIT</code>状态</li>
-<li>服务端——发送⼀个<code>FIN</code>数据包——客户端，关闭与客户端的连接，客户端就进入<code>FIN-WAIT-2</code>状态</li>
-<li>客户端收到这个 <code>FIN</code>，发回 <code>ACK </code>报⽂确认，并将确认序号设置为收到序号加<code>1</code>，客户端进入<code>TIME-WAIT</code>状态</li>
-</ol>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png"
-        data-srcset="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png 1.5x, HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png 2x"
-        data-sizes="auto"
-        alt="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png"
-        title="HTTPS://cdn.jsdelivr.net/gh/nateshao/images/20220327215652.png" /></p>
-<p>**为什么四次：**因为需要确保客户端与服务端的数据能够完成传输。</p>
-<p><strong>CLOSE-WAIT：</strong> 这种状态的含义其实是表示在<strong>等待关闭</strong>。</p>
-<p><strong>TIME-WAIT：</strong> 为了解决网络的丢包和网络不稳定所带来的其他问题，确保连接方能在时间范围内，关闭自己的连接。</p>
-<h3 id="5-为什么连接的时候是三次握手关闭的时候却是四次握手">5. 为什么连接的时候是三次握手，关闭的时候却是四次握手?</h3>
-<p>服务器在收到客户端的<code>FIN</code>报文段后，可能还有一些数据要传输，所以不能马上关闭连接，但是会做出应答，返回<code>ACK</code>报文段。</p>
-<p>接下来可能会继续发送数据，在数据发送完后，服务器会向客户端发送<code>FIN</code>报文，表示数据已经发送完毕，请求关闭连接。服务器的<code>ACK</code>和<code>FIN</code>一般都会分开发送，从而导致多了一次，因此一共需要四次挥手。</p>
 <h3 id="6-如何查看time-wait状态的链接数量">6. 如何查看TIME-WAIT状态的链接数量？</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1175,37 +1236,6 @@
 <li>浏览器解析并渲染视图，若遇到对js文件、css文件及图片等静态资源的引用，则重复上述步骤并 向服务器请求这些资源；</li>
 <li>浏览器根据其请求到的资源、数据渲染页面，最终向用户呈现一个完整的页面。</li>
 </ol>
-<h3 id="tcp的三次握手">TCP的三次握手</h3>
-<h4 id="什么是tcp的三次握手">什么是TCP的三次握手</h4>
-<p>在网络数据传输中，传输层协议TCP是要建立连接的可靠传输，TCP建立连接的过程，我们称为三 次握手。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png"
-        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png, https://gitee.com/nateshao/images/raw/master/img/20220104222206.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220104222206.png 2x"
-        data-sizes="auto"
-        alt="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png"
-        title="https://gitee.com/nateshao/images/raw/master/img/20220104222206.png" /></p>
-<ol>
-<li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状 态；</li>
-<li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK 置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列 号，发送给客户端；进入SYN_RCVD状态；</li>
-<li>第三次握手：客户端检查acknowledge number是否为序列号+1，ACK是否为1，检查正确之后将 自己的ACK置为1，产生一个acknowledge number=服务器发的序列号+1，发送给服务器；进入 ESTABLISHED状态；服务器检查ACK为1和acknowledge number为序列号+1之后，也进入 ESTABLISHED状态；完成三次握手，连接建立。</li>
-</ol>
-<h4 id="用现实理解三次握手的具体细节">用现实理解三次握手的具体细节</h4>
-<ul>
-<li>三次握手的目的是建立可靠的通信信道，主要的目的就是双方确认自己与对方的发送与接收机能正 常。</li>
-</ul>
-<ol>
-<li>第一次握手：客户什么都不能确认；服务器确认了对方发送正常</li>
-<li>第二次握手：客户确认了：自己发送、接收正常，对方发送、接收正常；服务器确认 了：自己接 收正常，对方发送正常</li>
-<li>第三次握手：客户确认了：自己发送、接收正常，对方发送、接收正常；服务器确认 了：自己发 送、接收正常，对方发送接收正常 所以三次握手就能确认双发收发功能都正常，缺一不可。</li>
-</ol>
-<h4 id="为什么不能把服务器发送的ack和fin合并起来变成三次挥手close_wait状态意义是什-么">为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什 么）？</h4>
-<p>因为服务器收到客户端断开连接的请求时，可能还有一些数据没有发完，这时先回复ACK，表示接 收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传送。</p>
-<h4 id="如果第二次挥手时服务器的ack没有送达客户端会怎样">如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</h4>
-<p>客户端没有收到ACK确认，会重新发送FIN请求。</p>
-<h4 id="客户端time_wait状态的意义是什么">客户端TIME_WAIT状态的意义是什么？</h4>
-<p>第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME_WAIT状态就是用来重发可能丢失的 ACK报文。如果Server没有收到ACK，就会重发FIN，如果Client在2*MSL的时间内收到了FIN，就 会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。 MSL(Maximum Segment Lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的 最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则 结束TCP连接。</p>
 <h3 id="socket">Socket</h3>
 <h4 id="什么是socket">什么是Socket</h4>
 <ul>
@@ -1279,108 +1309,154 @@
 </span><span class="lnt">36
 </span><span class="lnt">37
 </span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.test.io</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
-<span class="c1">//TCP协议Socket使用BIO进行通行：服务端
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BIOServer</span> <span class="o">{</span>
-<span class="c1">// 在main线程中执行下面这些代码
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-<span class="c1">//1单线程服务
-</span><span class="c1"></span><span class="n">ServerSocket</span> <span class="n">server</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="n">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="k">try</span> <span class="o">{</span>
-<span class="n">server</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerSocket</span><span class="o">(</span><span class="n">8000</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;服务端启动成功，监听端口为8000，等待客户端连接...&#34;</span><span class="o">);</span>
-<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
-<span class="n">socket</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span> <span class="c1">//等待客户端连接
-</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;客户连接成功，客户信息为：&#34;</span> <span class="o">+</span>
-<span class="n">socket</span><span class="o">.</span><span class="na">getRemoteSocketAddress</span><span class="o">());</span>
-<span class="n">in</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
-<span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
-<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-<span class="c1">//读取客户端的数据
-</span><span class="c1"></span><span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">));</span>
-<span class="o">}</span>
-<span class="c1">//向客户端写数据
-</span><span class="c1"></span><span class="n">out</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
-<span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&#34;hello!&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
-<span class="o">}</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="o">}</span>
-<span class="o">}</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">server</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;net&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">server</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// 网络协议类型
+</span><span class="c1"></span>	<span class="nx">networkType</span> <span class="kt">string</span>
+	<span class="c1">// ip地址 + 端口
+</span><span class="c1"></span>	<span class="nx">ipAddress</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// NewServer 通过此函数可以得到一个 server 结构体
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">NewServer</span><span class="p">(</span><span class="nx">ipAddress</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">server</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">ipAddress</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="nx">ipAddress</span> <span class="p">=</span> <span class="s">&#34;127.0.0.1:8088&#34;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">server</span><span class="p">{</span>
+		<span class="c1">// 默认值 -- 方便开发
+</span><span class="c1"></span>		<span class="nx">networkType</span><span class="p">:</span> <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
+		<span class="nx">ipAddress</span><span class="p">:</span>   <span class="nx">ipAddress</span><span class="p">,</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// StartServer 启动服务端的方法
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">server</span><span class="p">)</span> <span class="nf">StartServer</span><span class="p">()</span> <span class="p">{</span>
+
+	<span class="c1">// 1. 表示使用的网络协议：tcp
+</span><span class="c1"></span>	<span class="c1">// 2. 对本机进行监听 ip为 xxx.xxx.xxx.xxx + 端口为 xxx
+</span><span class="c1"></span>	<span class="nx">listener</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">networkType</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">ipAddress</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;服务器启动失败, err = %v \n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">))</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;服务器端启动成功, %v , time: %v \n&#34;</span><span class="p">,</span> <span class="nx">listener</span><span class="p">.</span><span class="nf">Addr</span><span class="p">().</span><span class="nf">String</span><span class="p">(),</span> <span class="nf">nowTime</span><span class="p">())</span>
+
+	<span class="c1">// 服务器不断的接收客户端的信息
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">{</span>
+		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listener</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+		<span class="c1">// 客户端的信息
+</span><span class="c1"></span>		<span class="nx">remoteAddr</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">RemoteAddr</span><span class="p">()</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;客户端[%v]: %v 链接服务器端出现异常, err = %v \n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">remoteAddr</span><span class="p">.</span><span class="nf">String</span><span class="p">(),</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="c1">// 跳过此客户端链接不在往下执行
+</span><span class="c1"></span>			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;客户端[%v]: %v 链接服务器端成功 \n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">remoteAddr</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>
+		<span class="c1">// 处理客户端的消息..
+</span><span class="c1"></span>		<span class="c1">// 有多个客户端链接，就有多少个协程
+</span><span class="c1"></span>		<span class="k">go</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 获取当前运行的时间
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">nowTime</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Format</span><span class="p">(</span><span class="s">&#34;2006-01-02 15:04:05&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 用于处理客户端消息的函数
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// 客户端断开链接后要及时关闭
+</span><span class="c1"></span>	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+	<span class="nx">connRemoteAddr</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">RemoteAddr</span><span class="p">().</span><span class="nf">String</span><span class="p">()</span>
+	<span class="c1">// 循环读取客户端的消息
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">{</span>
+		<span class="c1">// 创建一个1024长度的 byte 切片用于存储客户端的消息
+</span><span class="c1"></span>		<span class="nx">bytes</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+		<span class="c1">// 等待客户端通过 conn 发送消息
+</span><span class="c1"></span>		<span class="c1">// 如果客户端一直没有发送，那么此协程就阻塞在这里
+</span><span class="c1"></span>		<span class="nx">readLen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">errStr</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span>
+			<span class="nx">contains</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="nx">errStr</span><span class="p">,</span> <span class="s">&#34;An existing connection was forcibly closed by the remote host&#34;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nx">contains</span> <span class="o">||</span> <span class="nx">errStr</span> <span class="o">==</span> <span class="s">&#34;EOF&#34;</span> <span class="p">{</span>
+				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;客户端[%v]: %v 断开链接\n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">connRemoteAddr</span><span class="p">)</span>
+				<span class="k">return</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;服务器读取客户端[%v]: %v 消息出现异常, err = %v \n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">connRemoteAddr</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+				<span class="k">return</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="c1">// 服务器端显示客户端的消息
+</span><span class="c1"></span>		<span class="c1">// bytes[:readLen] ==&gt; 只打印有效的数据长度
+</span><span class="c1"></span>		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;server[%v]-客户端[%v]说: %v\n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">connRemoteAddr</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[:</span><span class="nx">readLen</span><span class="p">]))</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>客户端：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.test.io</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
-<span class="c1">//TCP协议Socket：客户端
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client01</span> <span class="o">{</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-<span class="c1">//创建套接字对象socket并封装ip与port
-</span><span class="c1"></span><span class="n">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Socket</span><span class="o">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="o">,</span> <span class="n">8000</span><span class="o">);</span>
-<span class="c1">//根据创建的socket对象获得一个输出流
-</span><span class="c1"></span><span class="n">OutputStream</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
-<span class="c1">//控制台输入以IO的形式发送到服务器
-</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;TCP连接成功 \n请输入：&#34;</span><span class="o">);</span>
-<span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
-<span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">).</span><span class="na">nextLine</span><span class="o">().</span><span class="na">getBytes</span><span class="o">();</span>
-<span class="n">outputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">car</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;TCP协议的Socket发送成功&#34;</span><span class="o">);</span>
-<span class="c1">//刷新缓冲区
-</span><span class="c1"></span><span class="n">outputStream</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>先运行服务端，在运行客户端 。测试结果发送成功：</p>
-<h4 id="5-udp协议socket代码示例">5 UDP协议Socket代码示例：</h4>
-<p>先运行服务端，在运行客户端</p>
-<ol>
-<li>服务端：</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1409,89 +1485,86 @@
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UDP协议Socket：服务端
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Server1</span> <span class="o">{</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-<span class="k">try</span> <span class="o">{</span>
-<span class="c1">//DatagramSocket代表声明一个UDP协议的Socket
-</span><span class="c1"></span><span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span>
-<span class="c1">//byte数组用于数据存储。
-</span><span class="c1"></span><span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
-<span class="c1">//DatagramPacket 类用来表示数据报包DatagramPacket
-</span><span class="c1"></span><span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">car</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-<span class="c1">// //创建DatagramPacket的receive()方法来进行数据的接收,等待接收一个socket请
-</span><span class="c1"></span><span class="n">求后才执行后续操作</span><span class="err">；</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;等待UDP协议传输数据&#34;</span><span class="o">);</span>
-<span class="n">socket</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">packet</span><span class="o">);</span>
-<span class="c1">//packet.getLength返回将要发送或者接收的数据的长度。
-</span><span class="c1"></span>
-<span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">packet</span><span class="o">.</span><span class="na">getLength</span><span class="o">();</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;啥东西来了：&#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">length</span><span class="o">));</span>
-<span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;UDP协议Socket接受成功&#34;</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="o">}</span>
-<span class="o">}</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">client</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;net&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">client</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// 网络协议类型
+</span><span class="c1"></span>	<span class="nx">networkType</span> <span class="kt">string</span>
+	<span class="c1">// ip地址 + 端口
+</span><span class="c1"></span>	<span class="nx">ipAddress</span> <span class="kt">string</span>
+	<span class="c1">// 当前的链接
+</span><span class="c1"></span>	<span class="nx">conn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span>
+<span class="p">}</span>
+
+<span class="c1">// NewClient 通过此函数可以得到一个 client 结构体
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">NewClient</span><span class="p">(</span><span class="nx">ipAddress</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">client</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">client</span><span class="p">{</span>
+		<span class="nx">networkType</span><span class="p">:</span> <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
+		<span class="nx">ipAddress</span><span class="p">:</span>   <span class="nx">ipAddress</span><span class="p">,</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 获取当前运行的时间
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">nowTime</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Format</span><span class="p">(</span><span class="s">&#34;2006-01-02 15:04:05&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// StartClient 客户端启动方法
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">client</span><span class="p">)</span> <span class="nf">StartClient</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">networkType</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">ipAddress</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;链接服务器端: %v ,time = %v ,出现异常 err = %v\n&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">ipAddress</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[%v]链接服务器端:[%v]成功\n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">RemoteAddr</span><span class="p">().</span><span class="nf">String</span><span class="p">())</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">conn</span> <span class="p">=</span> <span class="nx">conn</span>
+<span class="p">}</span>
+
+<span class="c1">// SendMessage 发送消息
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">client</span><span class="p">)</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">writeLen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">msg</span><span class="p">))</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[%v]客户端发送消息至服务器失败, err = %v\n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[%v]客户发送长度为[%d]-[%v]消息成功\n&#34;</span><span class="p">,</span> <span class="nf">nowTime</span><span class="p">(),</span> <span class="nx">writeLen</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><ol>
-<li>客户端：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UDP协议Socket：客户端
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client1</span> <span class="o">{</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-<span class="k">try</span> <span class="o">{</span>
-<span class="c1">//DatagramSocket代表声明一个UDP协议的Socket
-</span><span class="c1"></span><span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="o">(</span><span class="n">2468</span><span class="o">);</span>
-<span class="c1">//字符串存储人Byte数组
-</span><span class="c1"></span><span class="kt">byte</span><span class="o">[]</span> <span class="n">car</span> <span class="o">=</span> <span class="s">&#34;UDP协议的Socket请求，有可能失败哟&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
-<span class="c1">//InetSocketAddress类主要作用是封装端口
-</span><span class="c1"></span><span class="n">InetSocketAddress</span> <span class="n">address</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="o">,</span> <span class="n">8888</span><span class="o">);</span>
-<span class="c1">//DatagramPacket 类用来表示数据报包DatagramPacket
-</span><span class="c1"></span><span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="o">(</span><span class="n">car</span><span class="o">,</span> <span class="n">car</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
-<span class="n">address</span><span class="o">);</span>
-<span class="c1">//send() 方法发送数据包。
-</span><span class="c1"></span><span class="n">socket</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">packet</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;UDP协议的Socket发送成功&#34;</span><span class="o">);</span>
-<span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>先运行服务端，在运行客户端 。测试结果成功发送成功：</p>
+</div><p>先运行服务端，在运行客户端 。测试结果发送成功</p>
 <h4 id="6-socket的常用类">6 Socket的常用类</h4>
 <p><img
         class="lazyload"
@@ -1624,6 +1697,8 @@
 <li>单个cookie保存的数据不能超过4K，session无此限制</li>
 <li>session一定时间内保存在服务器上，当访问增多，占用服务器性能，考虑到服务器性能方面，应 当使用cookie。</li>
 </ol>
+<h2 id="参考">参考</h2>
+<p><a href="https://baijiahao.baidu.com/s?id=1693383134922615393&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener noreffer">https://baijiahao.baidu.com/s?id=1693383134922615393&wfr=spider&for=pc</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

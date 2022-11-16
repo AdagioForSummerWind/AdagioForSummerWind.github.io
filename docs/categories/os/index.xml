@@ -10,6 +10,6 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/os/</guid>
-    <description><![CDATA[操作系统 进程和线程 进程是操作系统资源分配的最小单位，线程是CPU任务调度的最小单位。一个进程可以包含多个线程，所以进程和线程都是一个时间段的]]></description>
+    <description><![CDATA[操作系统 进程和线程 多线程和单线程 进程的组成部分 进程的通信方式 进程间五种通信方式的比较 内存管理有哪几种方式 页面置换算法 操作系统中进程调度策略有]]></description>
 </item></channel>
 </rss>
