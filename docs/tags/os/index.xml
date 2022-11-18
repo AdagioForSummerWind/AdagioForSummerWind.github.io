@@ -10,6 +10,6 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/os/</guid>
-    <description><![CDATA[操作系统 进程和线程 多线程和单线程 进程的组成部分 进程的通信方式 进程间五种通信方式的比较 内存管理有哪几种方式 页面置换算法 操作系统中进程调度策略有]]></description>
+    <description><![CDATA[熟悉操作系统内存管理、进程线程、死锁等知识 操作系统 进程和线程 2、协程与线程的区别？ 3、并发和并行有什么区别？ 4、进程与线程的切换流程？ 5、为]]></description>
 </item></channel>
 </rss>

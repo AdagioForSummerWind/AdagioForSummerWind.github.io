@@ -10,21 +10,49 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/goetc/</guid>
-    <description><![CDATA[Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构]]></description>
+    <description><![CDATA[Go 其他 和其他语言对比 3、Go 程序中的包是什么？ 6、 如何在运行时检查变量类型？ go包初始化顺序 12、Go Convey 是什么？一般用来做什么？ new make atomic 原子操]]></description>
 </item><item>
     <title>MYSQL</title>
     <link>https://jefofrank.xyz/mysql/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/mysql/</guid>
-    <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别]]></description>
+    <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL]]></description>
 </item><item>
     <title>OS</title>
     <link>https://jefofrank.xyz/os/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/os/</guid>
-    <description><![CDATA[操作系统 进程和线程 多线程和单线程 进程的组成部分 进程的通信方式 进程间五种通信方式的比较 内存管理有哪几种方式 页面置换算法 操作系统中进程调度策略有]]></description>
+    <description><![CDATA[熟悉操作系统内存管理、进程线程、死锁等知识 操作系统 进程和线程 2、协程与线程的区别？ 3、并发和并行有什么区别？ 4、进程与线程的切换流程？ 5、为]]></description>
+</item><item>
+    <title>redis</title>
+    <link>https://jefofrank.xyz/redis/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/redis/</guid>
+    <description><![CDATA[Redis 1、什么是 Redis? Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。 Redis 与其他 key - value 缓存产品有以下三个特点： Redis 支持数据的持久化，可以将内存中]]></description>
+</item><item>
+    <title>容器</title>
+    <link>https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/</guid>
+    <description><![CDATA[容器技术 1、为什么需要 DevOps 在当今，软件开发公司在软件新版本发布方面，多尝试通过发布一系列以小的特性改变集为目标的新软件版本，代替发布一个大特性]]></description>
+</item><item>
+    <title>微服务</title>
+    <link>https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+    <description><![CDATA[微服务 1、您对微服务有何了解？ 微服务，又称微服务架构，是一种架构风格，它将应用程序构建为以业务领域为模型的小型自治服务集合。 通俗地说，你必须]]></description>
+</item><item>
+    <title>缓存</title>
+    <link>https://jefofrank.xyz/%E7%BC%93%E5%AD%98/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E7%BC%93%E5%AD%98/</guid>
+    <description><![CDATA[缓存如何实现高性能 缓存如何实现高并发 3、Redis 和 Memcached 的区别 Redis 拥有更多的数据结构和丰富的数据操作 Redis 内存利用率高于 Memcached Redis 是单线程，Memcach]]></description>
 </item><item>
     <title>计网</title>
     <link>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</link>
@@ -46,33 +74,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/redis_geek/</guid>
     <description><![CDATA[开篇词 | 这样学Redis，才能技高一筹 蒋德钧 2020-08-03 作为键值数据库，Redis 的应用非常广泛，如果你是后端工程师，我猜你出去面试，八成都会被问到与]]></description>
-</item><item>
-    <title>DS_geek</title>
-    <link>https://jefofrank.xyz/ds_geek/</link>
-    <pubDate>Wed, 20 Jul 2022 16:24:55 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/ds_geek/</guid>
-    <description><![CDATA[深入浅出分布式技术原理 开篇词｜掌握好学习路径，分布式系统原来如此简单 陈现麟 2022-01-24 从我的经验来看，初学者想要高效且系统性地掌握分布式系统，这本身就]]></description>
-</item><item>
-    <title>Cp_practice</title>
-    <link>https://jefofrank.xyz/cp_practice/</link>
-    <pubDate>Mon, 18 Jul 2022 23:55:56 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/cp_practice/</guid>
-    <description><![CDATA[编译原理实战课 开篇词 | 在真实世界的编译器中游历 宫文学 2020-06-01 你好，我是宫文学，一名技术创业者，现在是北京物演科技的 CEO，很高兴在这里跟你见面。我]]></description>
-</item><item>
-    <title>Cp_base</title>
-    <link>https://jefofrank.xyz/cp_base/</link>
-    <pubDate>Mon, 18 Jul 2022 23:55:09 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/cp_base/</guid>
-    <description><![CDATA[编译原理之美 开篇词 | 为什么你要学习编译原理？ 宫文学 2019-08-14 我会通过具体的案例带你理解抽象的原理。比如语义分析阶段有个 I 属性和 S 属性，传统课本里只专]]></description>
-</item><item>
-    <title>CN_proto</title>
-    <link>https://jefofrank.xyz/cn_proto/</link>
-    <pubDate>Sun, 17 Jul 2022 10:05:58 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/cn_proto/</guid>
-    <description><![CDATA[趣谈网络协议 刘超 2018-05-14 开篇词 | 想成为技术牛人？先搞定网络协议！ 工作 15 年，我在 EMC 做过类似 GFS 的分布式存储开发，做过基于 Lucene 的搜索引擎，做过 Hadoop 的运维；在]]></description>
 </item></channel>
 </rss>

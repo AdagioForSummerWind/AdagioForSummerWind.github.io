@@ -4,7 +4,14 @@
         <link>https://jefofrank.xyz/tags/redis/</link>
         <description>redis - 标签 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/redis/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/redis/" rel="self" type="application/rss+xml" /><item>
+    <title>redis</title>
+    <link>https://jefofrank.xyz/redis/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/redis/</guid>
+    <description><![CDATA[Redis 1、什么是 Redis? Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。 Redis 与其他 key - value 缓存产品有以下三个特点： Redis 支持数据的持久化，可以将内存中]]></description>
+</item><item>
     <title>Redis_geek</title>
     <link>https://jefofrank.xyz/redis_geek/</link>
     <pubDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</pubDate>

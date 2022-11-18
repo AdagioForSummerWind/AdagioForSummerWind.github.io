@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>容器 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="容器" />
+<meta property="og:description" content="容器技术 1、为什么需要 DevOps 在当今，软件开发公司在软件新版本发布方面，多尝试通过发布一系列以小的特性改变集为目标的新软件版本，代替发布一个大特性" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
+<meta property="article:modified_time" content="2022-11-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="容器"/>
+<meta name="twitter:description" content="容器技术 1、为什么需要 DevOps 在当今，软件开发公司在软件新版本发布方面，多尝试通过发布一系列以小的特性改变集为目标的新软件版本，代替发布一个大特性"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" /><link rel="prev" href="https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><link rel="next" href="https://jefofrank.xyz/redis/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "容器",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E5%AE%B9%E5%99%A8\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "容器","wordcount":  7227 ,
+        "url": "https:\/\/jefofrank.xyz\/%E5%AE%B9%E5%99%A8\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">容器</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%AE%B9%E5%99%A8/"><i class="far fa-folder fa-fw"></i>容器</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7227 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#容器技术">容器技术</a>
+      <ul>
+        <li><a href="#1为什么需要-devops">1、为什么需要 DevOps</a></li>
+        <li><a href="#2-docker-是什么">2、 Docker 是什么？</a></li>
+        <li><a href="#3-devops-有哪些优势">3、 DevOps 有哪些优势？</a></li>
+        <li><a href="#4ci-服务有什么用途">4、CI 服务有什么用途？</a></li>
+        <li><a href="#5如何使用-docker-技术创建与环境无关的容器系统">5、如何使用 Docker 技术创建与环境无关的容器系统？</a></li>
+        <li><a href="#6dockerfile-配置文件中的-copy-和-add-指令有什么不同">6、Dockerfile 配置文件中的 COPY 和 ADD 指令有什么不同？</a></li>
+        <li><a href="#7-docker-映像image是什么">7、 Docker 映像（image）是什么？</a></li>
+        <li><a href="#8docker-容器container是什么">8、Docker 容器（container）是什么？</a></li>
+        <li><a href="#9docker-中心hub什么概念">9、Docker 中心（hub）什么概念？</a></li>
+        <li><a href="#10在任意给定时间点指出一个-docker-容器可能存在的运行阶段">10、在任意给定时间点指出一个 Docker 容器可能存在的运行阶段？</a></li>
+        <li><a href="#11-有什么方法确定一个-docker-容器运行状态">11、 有什么方法确定一个 Docker 容器运行状态？</a></li>
+        <li><a href="#12-在-dockerfile-配置文件中最常用的指令有哪些">12 、在 Dockerfile 配置文件中最常用的指令有哪些？</a></li>
+        <li><a href="#13-什么类型的应用无状态性或有状态性更适合-docker-容">13、 什么类型的应用（无状态性或有状态性）更适合 Docker 容</a></li>
+        <li><a href="#14-解释基本-docker-应用流程">14、 解释基本 Docker 应用流程</a></li>
+        <li><a href="#15docker-image-和-docker-layer-层-有什么不同">15、Docker Image 和 Docker Layer （层) 有什么不同？</a></li>
+        <li><a href="#16虚拟化技术是什么">16、虚拟化技术是什么？</a></li>
+        <li><a href="#17虚拟管理层程序是什么">17、虚拟管理层（程序）是什么？</a></li>
+        <li><a href="#18docker-群swarm是什么">18、Docker 群（Swarm）是什么？</a></li>
+        <li><a href="#19在使用-docker-技术的产品中如何监控其运行">19、在使用 Docker 技术的产品中如何监控其运行？</a></li>
+        <li><a href="#20-什么是孤儿卷及如何删除它">20 、什么是孤儿卷及如何删除它？</a></li>
+        <li><a href="#21什么是半虚拟化paravirtualization">21、什么是半虚拟化（Paravirtualization）？</a></li>
+        <li><a href="#22docker-技术与虚拟机技术有何不同">22、Docker 技术与虚拟机技术有何不同？</a></li>
+        <li><a href="#23请解释一下-dockerfile-配置文件中的-onbuild-指令的用途含义">23、请解释一下 dockerfile 配置文件中的 ONBUILD 指令的用途含义？</a></li>
+        <li><a href="#24有无在创建有状态性的-docker-应用的较好实践-最适合的场景有什么">24、有无在创建有状态性的 Docker 应用的较好实践？ 最适合的场景有什么？</a></li>
+        <li><a href="#25在-windows-系统上可以运行原生的-docker-容器吗">25、在 Windows 系统上可以运行原生的 Docker 容器吗？</a></li>
+        <li><a href="#26在非-linux-操作系统平台上如何运行-docker-">26、在非 Linux 操作系统平台上如何运行 Docker ?</a></li>
+        <li><a href="#27容器化技术在底层的运行原理">27、容器化技术在底层的运行原理？</a></li>
+        <li><a href="#28说说容器化技术与虚拟化技术的优缺点">28、说说容器化技术与虚拟化技术的优缺点</a></li>
+        <li><a href="#29如何使-docker-适应多种运行环境">29、如何使 Docker 适应多种运行环境？</a></li>
+        <li><a href="#30为什么-docker-compose-采取的是并不等待前面依赖服务项的容器启动就绪后再启动的组合容器启动策略">30、为什么 Docker compose 采取的是并不等待前面依赖服务项的容器启动就绪后再启动的组合容器启动策略？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="容器技术">容器技术</h2>
+<h3 id="1为什么需要-devops">1、为什么需要 DevOps</h3>
+<p>在当今，软件开发公司在软件新版本发布方面，多尝试通过发布一系列以小的特性改变集为目标的新软件版本，代替发布一个大特性改变集的新软件版本的方式。这种方式有许多优点，诸如，快速的客户反馈，软件质量的保证等。也会获得较高的客户满意度评价。完成这样的软件发布模式，开发公司需要做到：</p>
+<ul>
+<li>增加软件布署的频率</li>
+<li>降低新发布版本的失败率</li>
+<li>缩短修复缺陷的交付时间</li>
+<li>加快解决版本冲突的问题</li>
+<li>DevOps 满足所有这些需求且帮助公司高质完成软件无缝交付的目标。</li>
+</ul>
+<h3 id="2-docker-是什么">2、 Docker 是什么？</h3>
+<p>Docker 是一个容器化平台，它包装你所有开发环境依赖成一个整体，像一个容器。保证项目开发，如开发、测试、发布等各生产环节都可以无缝工作在不同的平台</p>
+<p>Docker 容器：将一个软件包装在一个完整的文件系统中，该文件系统包含运行所需的一切：代码，运行时，系统工具，系统库等。可以安装在服务器上的任何东西。这保证软件总是运行在相同的运行环境，无需考虑基础环境配置的改变。</p>
+<h3 id="3-devops-有哪些优势">3、 DevOps 有哪些优势？</h3>
+<p>技术优势: 
+持续的软件交付能力
+修复问题变得简单
+更快得解决问题</p>
+<p>商业优势: 
+更快交付的特性
+更稳定的操作系统环境
+更多时间可用于创造价值 (而不是修复 / 维护)</p>
+<h3 id="4ci-服务有什么用途">4、CI 服务有什么用途？</h3>
+<p>CI （Continuous Integration）&ndash; 持续集成服务 &ndash; 主要用于整合团队开发中不同开发者ᨀ交到开发仓库中的项目代码变化，并即时整合编译，检查整合
+编译错误的服务。它需要一天中多次整合编译代码的能力，若出现整合错误，可以优异地准确定位ᨀ交错误源。</p>
+<h3 id="5如何使用-docker-技术创建与环境无关的容器系统">5、如何使用 Docker 技术创建与环境无关的容器系统？</h3>
+<p>Docker 技术有三中主要的技术途径辅助完成此需求：</p>
+<ol>
+<li>存储卷（Volumes）</li>
+<li>环境变量（Environment variable）注入</li>
+<li>只读（Read-only）文件系统</li>
+</ol>
+<h3 id="6dockerfile-配置文件中的-copy-和-add-指令有什么不同">6、Dockerfile 配置文件中的 COPY 和 ADD 指令有什么不同？</h3>
+<p>虽然 ADD 和 COPY 功能相似，推荐 COPY 。
+那是因为 COPY 比 ADD 更直观易懂。 COPY 只是将本地文件拷入容器这么简单，而 ADD 有一些其它特性功能（诸如，本地归档解压和支持远程网址访问等），这些特性在指令本身体现并不明显。因此，有必要使用 ADD 指令的最好例子是需要在本地自动解压归档文件到容器中的情况，如 ADD rootfs.tar.xz 。</p>
+<h3 id="7-docker-映像image是什么">7、 Docker 映像（image）是什么？</h3>
+<p>Docker image 是 Docker 容器的源。换言之，Docker images 用于创建Docker 容器（containers）。映像（Images）通过 Docker build 命令创建，当 run 映像时，它启动成一个 容器（container）进程。 做好的映像由于可能非常庞大，常注册存储在诸如 registry.hub.docker.com 这样的公共平台上。映像常被分层设计，每层可单独成为一个小映像，由多层小映像再构成大映像，这样碎片化的设计为了使映像在互联网上共享时，最小化传输数据需求。</p>
+<h3 id="8docker-容器container是什么">8、Docker 容器（container）是什么？</h3>
+<p>Docker containers &ndash; Docker 容器 &ndash; 是包含其所有运行依赖环境，但与其它容器共享操作系统内核的应用，它运行在独立的主机操作系统用户空间进程中。Docker 容器并不紧密依赖特定的基础平台：可运行在任何配置的计算机，任何平台以及任何云平台上。</p>
+<h3 id="9docker-中心hub什么概念">9、Docker 中心（hub）什么概念？</h3>
+<p>Docker hub 是云基础的 Docker 注册服务平台，它允许用户进行访问 Docker 中心资源库，创建自己的 Docker 映像并测试，推送并存储创建好的 Docker 映像，连接 Docker 云平台将已创建好的指定 Docker 映像布署到本地主机等任务。它ᨀ供了一个查找发现 Docker 映像，发布 Docker 映像及控制变化升级的资源中心，成为用户组或团队协作开发中保证自动化开发流程的有效技术途径。</p>
+<h3 id="10在任意给定时间点指出一个-docker-容器可能存在的运行阶段">10、在任意给定时间点指出一个 Docker 容器可能存在的运行阶段？</h3>
+<p>在任意时间点，一个 Docker 容器可能存在以下运行阶段：
+运行中（Running）
+已暂停（Paused）
+重启中（Restarting）
+已退出（Exited）</p>
+<h3 id="11-有什么方法确定一个-docker-容器运行状态">11、 有什么方法确定一个 Docker 容器运行状态？</h3>
+<p>使用如下命令行命令确定一个 Docker 容器的运行状态<code>$ docker ps –a</code>这将列表形式输出运行在主机上的所有 Docker 容器及其运行状态。从这个列表中很容易找到想要的容器及其运行状态。</p>
+<h3 id="12-在-dockerfile-配置文件中最常用的指令有哪些">12 、在 Dockerfile 配置文件中最常用的指令有哪些？</h3>
+<p>一些最常用的指令如下：</p>
+<ul>
+<li>FROM：使用 FROM 为后续的指令建立基础映像。在所有有效的 Dockerfile 中， FROM 是第一条指令。</li>
+<li>LABEL：LABEL 指令用于组织项目映像，模块，许可等。在自动化布署方面LABEL 也有很大用途。在 LABEL 中指定一组键值对，可用于程序化配置或布署Docker 。</li>
+<li>RUN：RUN 指令可在映像当前层执行任何命令并创建一个新层，用于在映像层中添加功能层，也许最来的层会依赖它。</li>
+<li>CMD：使用 CMD 指令为执行的容器ᨀ供默认值。在 Dockerfile 文件中，若添加多个 CMD 指令，只有最后的 CMD 指令运行。</li>
+</ul>
+<h3 id="13-什么类型的应用无状态性或有状态性更适合-docker-容">13、 什么类型的应用（无状态性或有状态性）更适合 Docker 容</h3>
+<p>器技术？
+对于 Docker 容器创建无状态性（Stateless）的应用更可取。通过从应用项目中将与状态相关的信息及配置ᨀ取掉，我们可以在项目环境外建立不依赖项目环境的 Docker 容器。这样，我们可以在任意产品中运行同一容器，只需根据产品需要像问 &amp; 答（QA）一样给其配置环境即可。 这帮助我们在不同场景重用相同的 Docker 映像。另外，使用 无状态性（Stateless）容器应用相比有状态性（Stateful）容器应用更具伸缩性，也容易创建。</p>
+<h3 id="14-解释基本-docker-应用流程">14、 解释基本 Docker 应用流程</h3>
+<p>初始，所有都有赖于 Dockerfile 配置文件。Dockerfile 配置文件就是创建 Docker image (映像) 的源代码。</p>
+<p>一旦 Dockerfile 配置好了，就可以创建（build）并生成 &lsquo;image（映像）&rsquo; ，&lsquo;image&rsquo; 就是 Dockerfile 配置文件中 「源代码」的「编译」版本。一旦有了 &lsquo;image&rsquo; ，就可以在 registry（注册中心） 发布它。 &lsquo;registry&rsquo; 类似 git 的资源库 &ndash; 你可以推送你的映像（image），也可取回库中的映像（image）。</p>
+<p>之后，你就可以使用 image 去启动运行 &lsquo;containers（容器）'。运行中的容器在许多方面，与虚拟机非常相似，但容器的运行不需要虚拟管理软件的运行。</p>
+<h3 id="15docker-image-和-docker-layer-层-有什么不同">15、Docker Image 和 Docker Layer （层) 有什么不同？</h3>
+<p>Image：一个 Docker Image 是由一系列 Docker 只读层（read-only Layer）创建出来的。</p>
+<p>Layer：在 Dockerfile 配置文件中完成的一条配置指令，即表示一个 Docker 层（Layer）。</p>
+<p>如下 Dockerfile 文件包含 4 条指令，每条指令创建一个层（Layer）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> ubuntu:15.04</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . /app<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> make /app<span class="err">
+</span><span class="err"></span><span class="k">CMD</span> python /app/app.p<span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>重点，每层只对其前一层进行一（某）些进化。</p>
+<h3 id="16虚拟化技术是什么">16、虚拟化技术是什么？</h3>
+<p>最初的构想，virtualisation（虚拟化） 被认为是逻辑划分大型主机使得多个应用可以并行运行的一种技术方案。然而，随着技术公司及开源社区的推进，现实发生了戏剧性的转变，以致产生了以一种或某种方式操作特权指令可以在单台基于 x86 硬件的系统上同时运行多个（种）操作系统的技术。</p>
+<p>实质的效果是，虚拟化技术允许你在一个硬件平台下运行 2 个完全不同的操作系统。每个客户操作系统可完成像系统自检、启动、载入系统内核等像在独立硬件上的一切动作。同时也具备坚实的安全基础，例如，客户操作系统不能获取完全访问主机或其它客户系统的权限，及其它涉及安全，可能把系统搞坏的操作。</p>
+<p>基于对客户操作系统虚拟硬件、运行环境模拟方法的不同，对虚拟化技术进行分类，主要的有如下 3 种虚拟化技术种类：
+⚫ 全模拟（Emulation）
+⚫ 半虚拟（Paravirtualization）
+⚫ 基于容器的虚拟化（Container-based virtualization）</p>
+<h3 id="17虚拟管理层程序是什么">17、虚拟管理层（程序）是什么？</h3>
+<p>hypervisor &ndash; 虚拟管理层（程序）&ndash; 负责创建客户虚拟机系统运行所需虚拟硬件环境。它监管客户虚拟操作系统的运行，并为客户系统ᨀ供必要的运行资源，保证客户虚拟系统的运行。虚拟管理层（程序）驻留在物理主机系统和虚拟客户系统之间，为虚拟客户系统ᨀ供必要的虚拟服务。如何理解它，它侦听运行在虚拟机中的客户操作系统的操作并在主机操作系统中模拟客户操作系统所需硬件资源请求。满足客户机的运行需求。</p>
+<p>虚拟化技术的快速发展，主要在云平台，由于在虚拟管理程序的帮助下，可允许在单台物理服务器上生成多个虚拟服务器，驱动着虚拟化技术快速发展及广泛应用。诸如，Xen，VMware，KVM 等，以及商业化的处理器硬件生产厂商也加入在硬件层面支持虚拟化技术的支持。诸如，Intel 的 VT 和 AMD-V 。</p>
+<h3 id="18docker-群swarm是什么">18、Docker 群（Swarm）是什么？</h3>
+<p>Docker Swarm &ndash; Docker 群 &ndash; 是原生的 Docker 集群服务工具。它将一群 Docker 主机集成为单一一个虚拟 Docker 主机。利用一个 Docker 守护进程，通过标准的 Docker API 和任何完善的通讯工具，Docker Swarm ᨀ供透明地将Docker 主机扩散到多台主机上的服务。</p>
+<h3 id="19在使用-docker-技术的产品中如何监控其运行">19、在使用 Docker 技术的产品中如何监控其运行？</h3>
+<p>Docker 在产品中ᨀ供如 运行统计和 Docker 事件的工具。可以通过这些工具命令获取 Docker 运行状况的统计信息或报告。</p>
+<p>Docker stats ： 通过指定的容器 id 获取其运行统计信息，可获得容器对CPU，内存使用情况等的统计信息，类似 Linux 系统中的 top 命令。</p>
+<p>Docker events ：Docker 事件是一个命令，用于观察显示运行中的 Docker 一系列的行为活动。一般的 Docker 事件有：attach（关联），commit（ᨀ交），die（僵死），detach（取消关联），rename（改名），destory（销毁）等。也可使用多个选项对事件记录筛选找到想要的事件信息。</p>
+<h3 id="20-什么是孤儿卷及如何删除它">20 、什么是孤儿卷及如何删除它？</h3>
+<p>孤儿卷是未与任何容器关联的卷。在 Docker v。1.9 之前的版本中，删除这些孤儿卷存在很大问题。</p>
+<h3 id="21什么是半虚拟化paravirtualization">21、什么是半虚拟化（Paravirtualization）？</h3>
+<p>Paravirtualization，也称为第 1 类虚拟机管理（层）程序，其直接在硬件或裸机（bare-metal）上运行，ᨀ供虚拟机直接使用物理硬件的服务，它帮助主机操作系统，虚拟化硬件和实际硬件进行协作以实现最佳性能。这种虚拟层管理技术的程序一般占用系统资源较小，其本身并不需要占用大量系统资源。
+这种虚拟层管理程序有 Xen, KVM 等。</p>
+<h3 id="22docker-技术与虚拟机技术有何不同">22、Docker 技术与虚拟机技术有何不同？</h3>
+<p>Docker 不是严格意义上的虚拟化硬件的技术。它依赖 container-based virtualization（基于容器的虚拟化） 的技术实现工具，或可以认为它是操作系统用户运行级别的虚拟化。因此， Docker 最初使用 LXC 驱动它，后来移至由 libcontainer 基础库驱动它，现已更名为 runc 。 Docker 主要致力于应用容器内的应用程序的自动化部署。应用容器设计用于包装和运行单一服务，而操作系统设计用于运行多进程任务，ᨀ供多种运算服务的能力。如虚拟机中等同完全操作系统的能力。因此，Docker 被认为是容器化系统上管理容器及应用容器化的布署工具。</p>
+<ul>
+<li>与虚拟机不同，容器无需启动操作系统内核，因此，容器可在不到 1 秒钟时间内运行起来。这个特性，使得容器化技术比其它虚拟化技术更具有独特性及可取性。
+⚫ 由于容器化技术很少或几乎不给主机系统增加负载，因此，基于容器的虚拟化技术具有近乎原生的性能表现。
+⚫ 基于容器的虚拟化，与其他硬件虚拟化不同，运行时不需要其他额外的虚拟管理层软件。
+⚫ 主机上的所有容器共享主机操作系统上的进程调度，从而节省了额外的资源的需求。
+⚫ 与虚拟机 image 相比，容器（Docker 或 LXC images）映像较小， 因此，容器映像易于分发。
+⚫ 容器中的资源分配由 Cgroups 实现。 Cgroup 不会让容器占用比给它们分配的更多的资源。但是，现在其它的虚拟化技术，对于虚拟机，主机的所有资源都可见，但无法使用。这可以通过在容器和主机上同时运行 top 或htop 来观察到。在两个环境中的输出看起来相同。</li>
+</ul>
+<h3 id="23请解释一下-dockerfile-配置文件中的-onbuild-指令的用途含义">23、请解释一下 dockerfile 配置文件中的 ONBUILD 指令的用途含义？</h3>
+<p>配置文件中的 ONBUILD 指令为创建的 Docker image （映像）加入在将来执行的指令（译注：在当前配置文件生成的映像中并不执行）， 用于在以这个创建的映像为基础的创建的子映像（image） 中执行或定制。 举例， 以基映像创建自己的映像时，可定制创建特有的用户化的配置环境。
+（ 译注： 由于原文较短，关于这个问题容易迷惑。 译者认为，总体来说关键理解 &ndash; 以基础映像创建自有的映像过程中，基础映像中所有的创建层或指令是以整体或固化的方式导入自有映像中的，自有映像是不能对这个过程进行自有定制。 而 ONBUILD 指令ᨀ供了将某些层从基础映像中剥离出来ᨀ供给之后以自有映像为基础映像派生新的映像的可定制途径。这对发布映像而普适在不同的运行环境定制非常有用。不当之处，请指正！）</p>
+<h3 id="24有无在创建有状态性的-docker-应用的较好实践-最适合的场景有什么">24、有无在创建有状态性的 Docker 应用的较好实践？ 最适合的场景有什么？</h3>
+<p>有状态性 Docker 应用的问题关键在于状态数据保存在哪儿的问题。 若所有数据保存在容器内， 当更新软件版本或想将 Docker 容器移到其它机器上时，找回这些在运行中产生的状态数据将非常困难。</p>
+<p>您需要做的是将这些表达运行状态的数据保存在永久卷中。参考如下 3 种模式。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118210203.png" /></p>
+<ol>
+<li>数据保存在容器中，当容器停止运行时，运行状态数据丢失！</li>
+<li>数据保存在主机卷（Host Volume）中，当主机停机时，运行状态数据将无法访问</li>
+<li>数据保存在网络文件系统卷中，数据访问不依赖容器的运行与主机的运行</li>
+</ol>
+<p>若您使用：docker run -v hostFolder:/containerfolder 命令运行您的容器， 容器运行中任何对 /containerfolder 目录下数据的改变， 将永久保存在主机的 hostfolder 目录下。 使用网络文件系统（nfs）与此类似。 那样您就可以运行您的容器在任何主机上且其运行状态数据被保存在网络文件系统上</p>
+<h3 id="25在-windows-系统上可以运行原生的-docker-容器吗">25、在 Windows 系统上可以运行原生的 Docker 容器吗？</h3>
+<p>在 &lsquo;Windows Server 2016&rsquo; 系统上， 你可以运行 Windows 的原生容器， 微软推出其映像是 &lsquo;Windows Nano Server&rsquo; ， 一个轻量级的运行在容器中的Windows 原生系统。 您可以在其中布署基于 .NET 的应用。</p>
+<p>译注： 结合 Docker 的基本技术原理，参考后面的 问题 26 和 问题 27， 可推测， 微软在系统内核上开发了对 Docker 的支持， 支持其闭源系统的容器化虚拟技术。但译者认为， Windows 系统本就是闭源紧耦合的系统， 好像你在本机上不装 .NET 组件，各应用能很好运行似的。何必再弄个容器，浪费资源。这只是译者自己之孔见，想喷就喷！ 另： Windows Server 2016 版本之后的都可支持这种原生 Docker 技术，如 Windows Server 2018 版。</p>
+<h3 id="26在非-linux-操作系统平台上如何运行-docker-">26、在非 Linux 操作系统平台上如何运行 Docker ?</h3>
+<p>容器化虚拟技术概念可能来源于，在 Linux 内核版本 2.6.24 上加入的对命名空间（ namespace） 的技术支持特性。 容器化进程加入其进程 ID 到其创建的每个进程上并且对每个进程中的系统级调用进行访问控制及审查。 其本身是由系统级调用 clone () 克隆出来的进程， 允许其创建属于自己命名空间的进程实例，而区别于之前的，归属与整个本机系统的进程实例。</p>
+<p>如果上述在 Linux 系统内核上的技术实现成为可能， 那么明显的问题是如何在 非 Linux 系统上运行容器化的 Docker 。过去， Mac 和 Windows 系统上运行 Docker 容器都使用 Linux 虚拟机（VMs） 技术， Docker 工具箱使用的容器运行在 Virtual Box 虚拟机上。 现在，最新的情况是， Windows 平台上使用的是 Hyper-V 产品技术，Mac 平台上使用的是 Hypervisor.framework （框架）产品技术。</p>
+<h3 id="27容器化技术在底层的运行原理">27、容器化技术在底层的运行原理？</h3>
+<p>2006 年前后， 人们，包括一些谷歌的雇员， 在 Linux 内核级别上实现了一种新的名为 命名空间（namespace） 的技术（实际上这种概念在 FreeBSD 系统上由来已久）。我们知道，操作系统的一个功能就是进程共享公共资源， 诸如，网络和硬盘空间等。 但是，如果一些公共资源被包装在一个命名空间中，只允许属于这个命名空间中的进程访问又如何呢？ 也就是说，可以分配一大块硬盘空间给命名空间 X 供其使用，但是，命名空间 Y 中的进程无法看到或访问这部分资源。 同样地， 命名空间 Y 中分配的资源，命名空间 X 中的进程也无法访问。当然， X 中的进程无法与 Y 中的进程进行交互。这ᨀ供了某种对公共资源的虚拟化和隔离的技术。</p>
+<p>这就是 Docker 技术的底层工作原理： 每个容器运行在它自己的命名空间中，但是，确实与其它运行中的容器共用相同的系统内核。 隔离的产生是由于系统内核清楚地知道命名空间及其中的进程，且这些进程调用系统 API 时，内核保证进程只能访问属于其命名空间中的资源。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118211112.png" /></p>
+<p>图上文字说明： 运行中的容器是隔离的。准确地说， 各容器共享操作系统内核及操作系统 API。</p>
+<h3 id="28说说容器化技术与虚拟化技术的优缺点">28、说说容器化技术与虚拟化技术的优缺点</h3>
+<p>仅有下面的一些对比：</p>
+<p>不能像虚拟机那样在容器上运行与主机完全不同的操作系统。 然而， 可以在容器上运行不同的 Linux 发布版，由于容器共享系统内核的缘故。容器的隔离性没有虚拟机那么健壮。事实上， 在早期容器化技术实现上，存在某种方法使客户容器可接管整个主机系统。</p>
+<p>也可看到，载入新容器并运行，并不会像虚拟机那样装载一个新的操作系统进来。</p>
+<p>所有的容器共享同一系统内核， 这也就是容器被认为非常轻量化的原因。</p>
+<p>同样的原因，不像虚拟机， 你不须为容器预分配大量的内存空间， 因为它不是运行新的整个的操作系统。 这使得在一个操作系统主机上，可以同时运行成百上千个容器应用， 在运行完整操作系统的虚拟机上，进行这么多的并行沙箱实验是不可能的。</p>
+<h3 id="29如何使-docker-适应多种运行环境">29、如何使 Docker 适应多种运行环境？</h3>
+<p>您必然想改变您的 Docker 应用配置以更适应现实运行环境的变化。下面包含一些修改建议：</p>
+<ul>
+<li>移除应用代码中对任何固定存储卷的绑定，由于代码驻留在容器内部，而不能从外部进行修正。</li>
+<li>绑定应用端口到主机上的不同端口</li>
+<li>差异化设置环境变量 （例如： 减少日志冗余或者使能发电子邮件）</li>
+<li>设定重启策略（例如： restart: always ）， 避免长时间宕机</li>
+<li>加入额外的服务（例如： log aggregator）</li>
+</ul>
+<p>由于以上原因， 您更需要一个 Compose 配置文件，大概叫 production.yml ，它配置了恰当的产品整合服务。 这个配置文件只需包含您选择的合适的原始 Compose 配置文件中，你改动的部分。<code>docker-compose -f docker-com</code></p>
+<h3 id="30为什么-docker-compose-采取的是并不等待前面依赖服务项的容器启动就绪后再启动的组合容器启动策略">30、为什么 Docker compose 采取的是并不等待前面依赖服务项的容器启动就绪后再启动的组合容器启动策略？</h3>
+<p>Docker 的 Compose 配置总是以依赖启动序列来启动或停止 Compose 中的服务容器， 依赖启动序列是由 Compose 配置文件中的 depends_on ， links ，volumes_from 和 network_mode: &ldquo;service : &hellip;&rdquo; 等这些配置指令所确定的。</p>
+<p>然而， Compose 启动中， 各容器的启动并不等待其依赖容器（这必定是你整个应用中的某个依赖的服务或应用）启动就绪后才启动。使用这种策略较好的理由如下：</p>
+<p>等待一个数据库服务（举例）就绪这样的问题， 在大型分布式系统中仅是相比其它大问题的某些小问题。 在实际发布产品运维中， 您的数据库服务会由于各种原因，或者迁移宿主机导致其不可访问。 您发布的产品需要有应对这样状况的弹性。</p>
+<p>掌控这些， 开发设计您的应用， 使其在访问数据库失效的情况下， 能够试图重连数据库， 直至其连接到数据库为止。</p>
+<p>最佳的解决方案是在您的应用代码中检查是否有应对意外的发生，无论是任何原因导致的启动或连接失效都应考虑在内。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-03 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" data-title="容器" data-hashtags="容器"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" data-hashtag="容器"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" data-title="容器"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" data-title="容器"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E5%AE%B9%E5%99%A8/" data-title="容器"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="prev" rel="prev" title="微服务"><i class="fas fa-angle-left fa-fw"></i>微服务</a>
+            <a href="/redis/" class="next" rel="next" title="redis">redis<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

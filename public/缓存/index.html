@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>缓存 - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="缓存" />
+<meta property="og:description" content="缓存如何实现高性能 缓存如何实现高并发 3、Redis 和 Memcached 的区别 Redis 拥有更多的数据结构和丰富的数据操作 Redis 内存利用率高于 Memcached Redis 是单线程，Memcach" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
+<meta property="article:modified_time" content="2022-11-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="缓存"/>
+<meta name="twitter:description" content="缓存如何实现高性能 缓存如何实现高并发 3、Redis 和 Memcached 的区别 Redis 拥有更多的数据结构和丰富的数据操作 Redis 内存利用率高于 Memcached Redis 是单线程，Memcach"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" /><link rel="prev" href="https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/" /><link rel="next" href="https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "缓存",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E7%BC%93%E5%AD%98\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "缓存","wordcount":  1856 ,
+        "url": "https:\/\/jefofrank.xyz\/%E7%BC%93%E5%AD%98\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">缓存</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%93%E5%AD%98/"><i class="far fa-folder fa-fw"></i>缓存</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1856 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#缓存如何实现高性能">缓存如何实现高性能</a></li>
+    <li><a href="#缓存如何实现高并发">缓存如何实现高并发</a></li>
+    <li><a href="#3redis-和-memcached-的区别">3、Redis 和 Memcached 的区别</a></li>
+    <li><a href="#4用缓存可能出现的问题">4、用缓存可能出现的问题</a></li>
+    <li><a href="#5当查询缓存报错怎么提高可用性">5、当查询缓存报错，怎么提高可用性？</a></li>
+    <li><a href="#6如果避免缓存穿透的问题">6、如果避免缓存”穿透”的问题？</a></li>
+    <li><a href="#7如何避免缓存雪崩的问题">7、如何避免缓存“雪崩”的问题？</a></li>
+    <li><a href="#8如果避免缓存击穿的问题">8、如果避免缓存“击穿”的问题？</a></li>
+    <li><a href="#9什么是缓存预热如何实现缓存预热">9、什么是缓存预热？如何实现缓存预热？</a></li>
+    <li><a href="#10缓存数据的淘汰策略有哪些">10、缓存数据的淘汰策略有哪些？</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="缓存如何实现高性能">缓存如何实现高性能</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225928.png" /></p>
+<h2 id="缓存如何实现高并发">缓存如何实现高并发</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118230020.png" /></p>
+<h2 id="3redis-和-memcached-的区别">3、Redis 和 Memcached 的区别</h2>
+<p>Redis 拥有更多的数据结构和丰富的数据操作
+Redis 内存利用率高于 Memcached
+Redis 是单线程，Memcached 是多线程，在存储大数据的情况下，Redis 比
+Memcached 稍有逊色
+Memcached 没有原生的集群模式，Redis 官方支持 Redis Cluster 集群模式</p>
+<h2 id="4用缓存可能出现的问题">4、用缓存可能出现的问题</h2>
+<p>⚫ 数据不一致
+⚫ 缓存雪崩
+⚫ 缓存穿透
+⚫ 缓存并发竞争</p>
+<h2 id="5当查询缓存报错怎么提高可用性">5、当查询缓存报错，怎么提高可用性？</h2>
+<p>缓存可以极大的ᨀ高查询性能，但是缓存数据丢失和缓存不可用不能影响应用
+的正常工作。因此，一般情况下，如果缓存出现异常，需要手动捕获这个异
+常，并且记录日志，并且从数据库查询数据返回给用户，而不应该导致业务不
+可用。</p>
+<h2 id="6如果避免缓存穿透的问题">6、如果避免缓存”穿透”的问题？</h2>
+<p>缓存穿透，是指查询一个一定不存在的数据，由于缓存是不命中时被动写，并
+且处于容错考虑，如果从 DB 查不到数据则不写入缓存，这将导致这个不存在
+的数据每次请求都要到 DB 去查询，失去了缓存的意义。
+如何解决</p>
+<p>有两种方案可以解决：
+方案一，缓存空对象。 
+当从 DB 查询数据为空，我们仍然将这个空结果进行缓存，具体的值需要使用
+特殊的标识，能和真正缓存的数据区分开。另外，需要设置较短的过期时间，
+一般建议不要超过 5 分钟。
+方案二，BloomFilter 布隆过滤器。 
+在缓存服务的基础上，构建 BloomFilter 数据结构，在 BloomFilter 中存储
+对应的 KEY 是否存在，如果存在，说明该 KEY 对应的值不为空。</p>
+<h2 id="7如何避免缓存雪崩的问题">7、如何避免缓存“雪崩”的问题？</h2>
+<p>缓存雪崩
+缓存雪崩，是指缓存由于某些原因无法ᨀ供服务( 例如，缓存挂掉了 )，所有
+请求全部达到 DB 中，导致 DB 负荷大增，最终挂掉的情况。
+如何解决
+预防和解决缓存雪崩的问题，可以从以下多个方面进行共同着手。
+1）缓存高可用：通过搭建缓存的高可用，避免缓存挂掉导致无法ᨀ供服务的
+情况，从而降低出现缓存雪崩的情况。假设我们使用 Redis 作为缓存，则可以
+使用 Redis Sentinel 或 Redis Cluster 实现高可用。
+2）本地缓存：如果使用本地缓存时，即使分布式缓存挂了，也可以将 DB 查
+询到的结果缓存到本地，避免后续请求全部到达 DB 中。如果我们使用 JVM ，
+则可以使用 Ehcache、Guava Cache 实现本地缓存的功能。</p>
+<h2 id="8如果避免缓存击穿的问题">8、如果避免缓存“击穿”的问题？</h2>
+<p>缓存击穿
+缓存击穿，是指某个极度“热点”数据在某个时间点过期时，恰好在这个时间
+点对这个 KEY 有大量的并发请求过来，这些请求发现缓存过期一般都会从 DB 
+加载数据并回设到缓存，但是这个时候大并发的请求可能会瞬间 DB 压垮。
+对于一些设置了过期时间的 KEY ，如果这些 KEY 可能会在某些时间点被超高
+并发地访问，是一种非常“热点”的数据。这个时候，需要考虑这个问题。
+区别： 
+⚫ 和缓存“雪崩“”的区别在于，前者针对某一 KEY 缓存，后者则是很多
+KEY 。
+⚫ 和缓存“穿透“”的区别在于，这个 KEY 是真实存在对应的值的。</p>
+<p>如何解决
+有两种方案可以解决：
+1）方案一，使用互斥锁。请求发现缓存不存在后，去查询 DB 前，使用分布
+式锁，保证有且只有一个线程去查询 DB ，并更新到缓存。
+2）方案二，手动过期。缓存上从不设置过期时间，功能上将过期时间存在 KEY 
+对应的 VALUE 里。流程如下：
+⚫ 1、获取缓存。通过 VALUE 的过期时间，判断是否过期。如果未过期，则
+直接返回；如果已过期，继续往下执行。
+⚫ 2、通过一个后台的异步线程进行缓存的构建，也就是“手动”过期。通过
+后台的异步线程，保证有且只有一个线程去查询 DB。
+⚫ 3、同时，虽然 VALUE 已经过期，还是直接返回。通过这样的方式，保证
+服务的可用性，虽然损失了一定的时效性。</p>
+<h2 id="9什么是缓存预热如何实现缓存预热">9、什么是缓存预热？如何实现缓存预热？</h2>
+<p>缓存预热
+在刚启动的缓存系统中，如果缓存中没有任何数据，如果依靠用户请求的方式
+重建缓存数据，那么对数据库的压力非常大，而且系统的性能开销也是巨大
+的。
+此时，最好的策略是启动时就把热点数据加载好。这样，用户请求时，直接读
+取的就是缓存的数据，而无需去读取 DB 重建缓存数据。举个例子，热门的或
+者推荐的商品，需要ᨀ前预热到缓存中。</p>
+<p>如何实现
+一般来说，有如下几种方式来实现：
+数据量不大时，项目启动时，自动进行初始化。
+写个修复数据脚本，手动执行该脚本。
+写个管理界面，可以手动点击，预热对应的数据到缓存中。</p>
+<h2 id="10缓存数据的淘汰策略有哪些">10、缓存数据的淘汰策略有哪些？</h2>
+<p>除了缓存服务器自带的缓存自动失效策略之外，我们还可以根据具体的业务需
+求进行自定义的“手动”缓存淘汰，常见的策略有两种：
+1、定时去清理过期的缓存。
+2、当有用户请求过来时，再判断这个请求所用到的缓存是否过期，过期的话
+就去底层系统得到新数据并更新缓存。
+两者各有优劣，第一种的缺点是维护大量缓存的 key 是比较麻烦的，第二种
+的缺点就是每次用户请求过来都要判断缓存失效，逻辑相对比较复杂！
+具体用哪种方案，大家可以根据自己的应用场景来权衡。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-03 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" data-title="缓存" data-hashtags="缓存"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" data-hashtag="缓存"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" data-title="缓存"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" data-title="缓存"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E7%BC%93%E5%AD%98/" data-title="缓存"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E8%AE%A1%E7%BD%91/" class="prev" rel="prev" title="计网"><i class="fas fa-angle-left fa-fw"></i>计网</a>
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="next" rel="next" title="微服务">微服务<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

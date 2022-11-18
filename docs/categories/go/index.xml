@@ -10,7 +10,7 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/goetc/</guid>
-    <description><![CDATA[Go 熟悉Go，了解Map，Slice，Channel，GMP模型调度器，GC垃圾回收等底层原理 slice 切片和数组的区别？ 数据类型不同。这是从数据结构]]></description>
+    <description><![CDATA[Go 其他 和其他语言对比 3、Go 程序中的包是什么？ 6、 如何在运行时检查变量类型？ go包初始化顺序 12、Go Convey 是什么？一般用来做什么？ new make atomic 原子操]]></description>
 </item><item>
     <title>Effective_go</title>
     <link>https://jefofrank.xyz/effective_go/</link>

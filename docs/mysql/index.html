@@ -6,17 +6,17 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>MYSQL - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="MYSQL" />
-<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别" />
+<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/mysql/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
-<meta property="article:modified_time" content="2022-11-05T22:53:50+08:00" />
+<meta property="article:modified_time" content="2022-11-16T23:14:30+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="MYSQL"/>
-<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL 约束有哪几种？ 5. MySQL 中的 varchar 和 char 有什么区别"/>
+<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/mysql\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  27473 ,
-        "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-05T22:53:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  29163 ,
+        "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-16T23:14:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">MYSQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>MYSQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 27473 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 55 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29163 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 59 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -130,6 +130,7 @@
     <li><a href="#mysql基础">mysql基础</a>
       <ul>
         <li><a href="#1-数据库的三范式是什么">1. 数据库的三范式是什么？</a></li>
+        <li><a href="#2mysql-有关权限的表都有哪几个">2、MySQL 有关权限的表都有哪几个？</a></li>
         <li><a href="#2-mysql-支持哪些存储引擎">2. MySQL 支持哪些存储引擎?</a></li>
         <li><a href="#3-超键候选键主键外键分别是什么">3. 超键、候选键、主键、外键分别是什么？</a></li>
         <li><a href="#4-sql-约束有哪几种">4. SQL 约束有哪几种？</a></li>
@@ -184,6 +185,7 @@
               </ul>
             </li>
             <li><a href="#7-什么是mysql的-binlog">7. 什么是MySQL的 binlog？</a></li>
+            <li><a href="#mysql-的-binlog-有有几种录入格式分别有什么区别">MySQL 的 Binlog 有有几种录入格式？分别有什么区别？</a></li>
             <li><a href="#8-在事务中可以混合使用存储引擎吗"><strong>8. 在事务中可以混合使用存储引擎吗？</strong></a></li>
             <li><a href="#9-mysql中是如何实现事务隔离的">9. MySQL中是如何实现事务隔离的?</a></li>
             <li><a href="#10-什么是-mvcc">10. 什么是 MVCC？</a></li>
@@ -192,6 +194,7 @@
         </li>
         <li><a href="#锁">锁</a>
           <ul>
+            <li><a href="#9mysql-中有哪几种锁">9、MySQL 中有哪几种锁？</a></li>
             <li><a href="#1-为什么要加锁">1. 为什么要加锁?</a></li>
             <li><a href="#2-按照锁的粒度分数据库锁有哪些">2. 按照锁的粒度分数据库锁有哪些？</a></li>
             <li><a href="#3-从锁的类别上分mysql都有哪些锁呢">3. 从锁的类别上分MySQL都有哪些锁呢？</a></li>
@@ -251,29 +254,27 @@
     <li><a href="#4-mysql-用索引和不用索引的时间复杂度">4. MySQL 用索引和不用索引的时间复杂度</a></li>
     <li><a href="#5-mysql的锁的实现">5. MySQL的锁的实现</a></li>
     <li><a href="#6-mysql-的隔离级别">6. MySQL 的隔离级别</a></li>
-    <li><a href="#redis">Redis</a>
+    <li><a href="#其他">其他</a>
       <ul>
-        <li><a href="#应用场景">应用场景</a></li>
-        <li><a href="#单线程的redis为什么快">单线程的Redis为什么快</a></li>
-        <li><a href="#redis-的数据结构及使用场景">Redis 的数据结构及使用场景</a></li>
-        <li><a href="#redis-的数据过期策略">Redis 的数据过期策略</a></li>
-        <li><a href="#redis的set和setnx">Redis的set和setnx</a></li>
-        <li><a href="#redis的lru具体实现">Redis的LRU具体实现：</a></li>
-        <li><a href="#redis如何发现热点key">Redis如何发现热点key</a></li>
-        <li><a href="#redis的热点key解决方案">Redis的热点key解决方案</a></li>
-        <li><a href="#如何解决-redis-缓存雪崩问题">如何解决 Redis 缓存雪崩问题</a></li>
-        <li><a href="#如何解决-redis-缓存穿透问题">如何解决 Redis 缓存穿透问题</a></li>
-        <li><a href="#redis的持久化机制">Redis的持久化机制</a></li>
-        <li><a href="#redis的事务">Redis的事务</a></li>
-        <li><a href="#redis事务相关命令">Redis事务相关命令</a></li>
-        <li><a href="#redis和-memcached-的区别">Redis和 memcached 的区别</a></li>
-        <li><a href="#redis的几种集群模式">Redis的几种集群模式</a></li>
-        <li><a href="#redis的哨兵模式">Redis的哨兵模式</a></li>
-        <li><a href="#redis的rehash">Redis的rehash</a></li>
-        <li><a href="#redis的hash表被扩展的条件">Redis的hash表被扩展的条件</a></li>
-        <li><a href="#redis并发竞争key的解决方案">Redis并发竞争key的解决方案</a></li>
-        <li><a href="#redis与mysql双写一致性方案">Redis与Mysql双写一致性方案</a></li>
-        <li><a href="#redis的管道pipeline">Redis的管道pipeline</a></li>
+        <li><a href="#14myisam-表类型将在哪里存储并且还提供其存储格式">14、MyISAM 表类型将在哪里存储，并且还提供其存储格式？</a></li>
+        <li><a href="#15mysql-里记录货币用什么字段类型好">15、MySQL 里记录货币用什么字段类型好</a></li>
+        <li><a href="#16创建索引时需要注意什么">16、创建索引时需要注意什么？</a></li>
+        <li><a href="#17使用索引查询一定能提高查询的性能吗为什么">17、使用索引查询一定能提高查询的性能吗？为什么</a></li>
+        <li><a href="#18百万级别或以上的数据如何删除">18、百万级别或以上的数据如何删除</a></li>
+        <li><a href="#19什么是最左前缀原则什么是最左匹配原则">19、什么是最左前缀原则？什么是最左匹配原则</a></li>
+        <li><a href="#20什么是聚簇索引何时使用聚簇索引与非聚簇索引">20、什么是聚簇索引？何时使用聚簇索引与非聚簇索引</a></li>
+        <li><a href="#21mysql-连接器">21、MySQL 连接器</a></li>
+        <li><a href="#22mysql-查询缓存">22、MySQL 查询缓存</a></li>
+        <li><a href="#23mysql-分析器">23、MySQL 分析器</a></li>
+        <li><a href="#24mysql-优化器">24、MySQL 优化器</a></li>
+        <li><a href="#25mysql-执行器">25、MySQL 执行器</a></li>
+        <li><a href="#26什么是临时表何时删除临时表">26、什么是临时表，何时删除临时表？</a></li>
+        <li><a href="#27谈谈-sql-优化的经验">27、谈谈 SQL 优化的经验</a></li>
+        <li><a href="#28什么叫外链接">28、什么叫外链接？</a></li>
+        <li><a href="#29什么叫内链接">29、什么叫内链接？</a></li>
+        <li><a href="#30使用-union-和-union-all-时需要注意些什么">30、使用 union 和 union all 时需要注意些什么？</a></li>
+        <li><a href="#31myisam-存储引擎的特点">31、MyISAM 存储引擎的特点</a></li>
+        <li><a href="#32innodb-存储引擎的特点">32、InnoDB 存储引擎的特点</a></li>
       </ul>
     </li>
   </ul>
@@ -282,6 +283,7 @@
 <li><a href="#mysql%e5%9f%ba%e7%a1%80" rel="">mysql基础</a>
 <ul>
 <li><a href="#1-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e4%b8%89%e8%8c%83%e5%bc%8f%e6%98%af%e4%bb%80%e4%b9%88" rel="">1. 数据库的三范式是什么？</a></li>
+<li><a href="#2mysql-%e6%9c%89%e5%85%b3%e6%9d%83%e9%99%90%e7%9a%84%e8%a1%a8%e9%83%bd%e6%9c%89%e5%93%aa%e5%87%a0%e4%b8%aa" rel="">2、MySQL 有关权限的表都有哪几个？</a></li>
 <li><a href="#2-mysql-%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e" rel="">2. MySQL 支持哪些存储引擎?</a></li>
 <li><a href="#3-%e8%b6%85%e9%94%ae%e5%80%99%e9%80%89%e9%94%ae%e4%b8%bb%e9%94%ae%e5%a4%96%e9%94%ae%e5%88%86%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">3. 超键、候选键、主键、外键分别是什么？</a></li>
 <li><a href="#4-sql-%e7%ba%a6%e6%9d%9f%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d" rel="">4. SQL 约束有哪几种？</a></li>
@@ -336,6 +338,7 @@
 </ul>
 </li>
 <li><a href="#7-%e4%bb%80%e4%b9%88%e6%98%afmysql%e7%9a%84-binlog" rel="">7. 什么是MySQL的 binlog？</a></li>
+<li><a href="#mysql-%e7%9a%84-binlog-%e6%9c%89%e6%9c%89%e5%87%a0%e7%a7%8d%e5%bd%95%e5%85%a5%e6%a0%bc%e5%bc%8f%e5%88%86%e5%88%ab%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">MySQL 的 Binlog 有有几种录入格式？分别有什么区别？</a></li>
 <li><a href="#8-%e5%9c%a8%e4%ba%8b%e5%8a%a1%e4%b8%ad%e5%8f%af%e4%bb%a5%e6%b7%b7%e5%90%88%e4%bd%bf%e7%94%a8%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e5%90%97" rel=""><strong>8. 在事务中可以混合使用存储引擎吗？</strong></a></li>
 <li><a href="#9-mysql%e4%b8%ad%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e4%ba%8b%e5%8a%a1%e9%9a%94%e7%a6%bb%e7%9a%84" rel="">9. MySQL中是如何实现事务隔离的?</a></li>
 <li><a href="#10-%e4%bb%80%e4%b9%88%e6%98%af-mvcc" rel="">10. 什么是 MVCC？</a></li>
@@ -344,6 +347,7 @@
 </li>
 <li><a href="#%e9%94%81" rel="">锁</a>
 <ul>
+<li><a href="#9mysql-%e4%b8%ad%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d%e9%94%81" rel="">9、MySQL 中有哪几种锁？</a></li>
 <li><a href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%8a%a0%e9%94%81" rel="">1. 为什么要加锁?</a></li>
 <li><a href="#2-%e6%8c%89%e7%85%a7%e9%94%81%e7%9a%84%e7%b2%92%e5%ba%a6%e5%88%86%e6%95%b0%e6%8d%ae%e5%ba%93%e9%94%81%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">2. 按照锁的粒度分数据库锁有哪些？</a></li>
 <li><a href="#3-%e4%bb%8e%e9%94%81%e7%9a%84%e7%b1%bb%e5%88%ab%e4%b8%8a%e5%88%86mysql%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e9%94%81%e5%91%a2" rel="">3. 从锁的类别上分MySQL都有哪些锁呢？</a></li>
@@ -403,39 +407,43 @@
 <li><a href="#4-mysql-%e7%94%a8%e7%b4%a2%e5%bc%95%e5%92%8c%e4%b8%8d%e7%94%a8%e7%b4%a2%e5%bc%95%e7%9a%84%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6" rel="">4. MySQL 用索引和不用索引的时间复杂度</a></li>
 <li><a href="#5-mysql%e7%9a%84%e9%94%81%e7%9a%84%e5%ae%9e%e7%8e%b0" rel="">5. MySQL的锁的实现</a></li>
 <li><a href="#6-mysql-%e7%9a%84%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" rel="">6. MySQL 的隔离级别</a></li>
-<li><a href="#redis" rel="">Redis</a>
+<li><a href="#%e5%85%b6%e4%bb%96" rel="">其他</a>
 <ul>
-<li><a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" rel="">应用场景</a></li>
-<li><a href="#%e5%8d%95%e7%ba%bf%e7%a8%8b%e7%9a%84redis%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bf%ab" rel="">单线程的Redis为什么快</a></li>
-<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" rel="">Redis 的数据结构及使用场景</a></li>
-<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%87%e6%9c%9f%e7%ad%96%e7%95%a5" rel="">Redis 的数据过期策略</a></li>
-<li><a href="#redis%e7%9a%84set%e5%92%8csetnx" rel="">Redis的set和setnx</a></li>
-<li><a href="#redis%e7%9a%84lru%e5%85%b7%e4%bd%93%e5%ae%9e%e7%8e%b0" rel="">Redis的LRU具体实现：</a></li>
-<li><a href="#redis%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e7%83%ad%e7%82%b9key" rel="">Redis如何发现热点key</a></li>
-<li><a href="#redis%e7%9a%84%e7%83%ad%e7%82%b9key%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis的热点key解决方案</a></li>
-<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存雪崩问题</a></li>
-<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存穿透问题</a></li>
-<li><a href="#redis%e7%9a%84%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6" rel="">Redis的持久化机制</a></li>
-<li><a href="#redis%e7%9a%84%e4%ba%8b%e5%8a%a1" rel="">Redis的事务</a></li>
-<li><a href="#redis%e4%ba%8b%e5%8a%a1%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" rel="">Redis事务相关命令</a></li>
-<li><a href="#redis%e5%92%8c-memcached-%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">Redis和 memcached 的区别</a></li>
-<li><a href="#redis%e7%9a%84%e5%87%a0%e7%a7%8d%e9%9b%86%e7%be%a4%e6%a8%a1%e5%bc%8f" rel="">Redis的几种集群模式</a></li>
-<li><a href="#redis%e7%9a%84%e5%93%a8%e5%85%b5%e6%a8%a1%e5%bc%8f" rel="">Redis的哨兵模式</a></li>
-<li><a href="#redis%e7%9a%84rehash" rel="">Redis的rehash</a></li>
-<li><a href="#redis%e7%9a%84hash%e8%a1%a8%e8%a2%ab%e6%89%a9%e5%b1%95%e7%9a%84%e6%9d%a1%e4%bb%b6" rel="">Redis的hash表被扩展的条件</a></li>
-<li><a href="#redis%e5%b9%b6%e5%8f%91%e7%ab%9e%e4%ba%89key%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis并发竞争key的解决方案</a></li>
-<li><a href="#redis%e4%b8%8emysql%e5%8f%8c%e5%86%99%e4%b8%80%e8%87%b4%e6%80%a7%e6%96%b9%e6%a1%88" rel="">Redis与Mysql双写一致性方案</a></li>
-<li><a href="#redis%e7%9a%84%e7%ae%a1%e9%81%93pipeline" rel="">Redis的管道pipeline</a></li>
+<li><a href="#14myisam-%e8%a1%a8%e7%b1%bb%e5%9e%8b%e5%b0%86%e5%9c%a8%e5%93%aa%e9%87%8c%e5%ad%98%e5%82%a8%e5%b9%b6%e4%b8%94%e8%bf%98%e6%8f%90%e4%be%9b%e5%85%b6%e5%ad%98%e5%82%a8%e6%a0%bc%e5%bc%8f" rel="">14、MyISAM 表类型将在哪里存储，并且还提供其存储格式？</a></li>
+<li><a href="#15mysql-%e9%87%8c%e8%ae%b0%e5%bd%95%e8%b4%a7%e5%b8%81%e7%94%a8%e4%bb%80%e4%b9%88%e5%ad%97%e6%ae%b5%e7%b1%bb%e5%9e%8b%e5%a5%bd" rel="">15、MySQL 里记录货币用什么字段类型好</a></li>
+<li><a href="#16%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95%e6%97%b6%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" rel="">16、创建索引时需要注意什么？</a></li>
+<li><a href="#17%e4%bd%bf%e7%94%a8%e7%b4%a2%e5%bc%95%e6%9f%a5%e8%af%a2%e4%b8%80%e5%ae%9a%e8%83%bd%e6%8f%90%e9%ab%98%e6%9f%a5%e8%af%a2%e7%9a%84%e6%80%a7%e8%83%bd%e5%90%97%e4%b8%ba%e4%bb%80%e4%b9%88" rel="">17、使用索引查询一定能提高查询的性能吗？为什么</a></li>
+<li><a href="#18%e7%99%be%e4%b8%87%e7%ba%a7%e5%88%ab%e6%88%96%e4%bb%a5%e4%b8%8a%e7%9a%84%e6%95%b0%e6%8d%ae%e5%a6%82%e4%bd%95%e5%88%a0%e9%99%a4" rel="">18、百万级别或以上的数据如何删除</a></li>
+<li><a href="#19%e4%bb%80%e4%b9%88%e6%98%af%e6%9c%80%e5%b7%a6%e5%89%8d%e7%bc%80%e5%8e%9f%e5%88%99%e4%bb%80%e4%b9%88%e6%98%af%e6%9c%80%e5%b7%a6%e5%8c%b9%e9%85%8d%e5%8e%9f%e5%88%99" rel="">19、什么是最左前缀原则？什么是最左匹配原则</a></li>
+<li><a href="#20%e4%bb%80%e4%b9%88%e6%98%af%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%bd%95%e6%97%b6%e4%bd%bf%e7%94%a8%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%8e%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95" rel="">20、什么是聚簇索引？何时使用聚簇索引与非聚簇索引</a></li>
+<li><a href="#21mysql-%e8%bf%9e%e6%8e%a5%e5%99%a8" rel="">21、MySQL 连接器</a></li>
+<li><a href="#22mysql-%e6%9f%a5%e8%af%a2%e7%bc%93%e5%ad%98" rel="">22、MySQL 查询缓存</a></li>
+<li><a href="#23mysql-%e5%88%86%e6%9e%90%e5%99%a8" rel="">23、MySQL 分析器</a></li>
+<li><a href="#24mysql-%e4%bc%98%e5%8c%96%e5%99%a8" rel="">24、MySQL 优化器</a></li>
+<li><a href="#25mysql-%e6%89%a7%e8%a1%8c%e5%99%a8" rel="">25、MySQL 执行器</a></li>
+<li><a href="#26%e4%bb%80%e4%b9%88%e6%98%af%e4%b8%b4%e6%97%b6%e8%a1%a8%e4%bd%95%e6%97%b6%e5%88%a0%e9%99%a4%e4%b8%b4%e6%97%b6%e8%a1%a8" rel="">26、什么是临时表，何时删除临时表？</a></li>
+<li><a href="#27%e8%b0%88%e8%b0%88-sql-%e4%bc%98%e5%8c%96%e7%9a%84%e7%bb%8f%e9%aa%8c" rel="">27、谈谈 SQL 优化的经验</a></li>
+<li><a href="#28%e4%bb%80%e4%b9%88%e5%8f%ab%e5%a4%96%e9%93%be%e6%8e%a5" rel="">28、什么叫外链接？</a></li>
+<li><a href="#29%e4%bb%80%e4%b9%88%e5%8f%ab%e5%86%85%e9%93%be%e6%8e%a5" rel="">29、什么叫内链接？</a></li>
+<li><a href="#30%e4%bd%bf%e7%94%a8-union-%e5%92%8c-union-all-%e6%97%b6%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%ba%9b%e4%bb%80%e4%b9%88" rel="">30、使用 union 和 union all 时需要注意些什么？</a></li>
+<li><a href="#31myisam-%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%9a%84%e7%89%b9%e7%82%b9" rel="">31、MyISAM 存储引擎的特点</a></li>
+<li><a href="#32innodb-%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%9a%84%e7%89%b9%e7%82%b9" rel="">32、InnoDB 存储引擎的特点</a></li>
 </ul>
 </li>
 </ul>
 <h2 id="mysql基础">mysql基础</h2>
 <h3 id="1-数据库的三范式是什么">1. 数据库的三范式是什么？</h3>
-<ul>
-<li>第一范式：强调的是列的原子性，即数据库表的每一列都是不可分割的原子数据项。</li>
-<li>第二范式：要求实体的属性完全依赖于主关键字。所谓完全 依赖是指不能存在仅依赖主关键字一部分的属性。</li>
-<li>第三范式：任何非主属性不依赖于其它非主属性。</li>
-</ul>
+<p>⚫ 第一范式：每个列都不可以再拆分。
+⚫ 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分。
+⚫ 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。</p>
+<p>在设计数据库结构的时候，要尽量遵守三范式，如果不遵守，必须有足够的理由。比如性能。事实上我们经常会为了性能而妥协数据库的设计。</p>
+<h3 id="2mysql-有关权限的表都有哪几个">2、MySQL 有关权限的表都有哪几个？</h3>
+<p>MySQL 服务器通过权限表来控制用户对数据库的访问，权限表存放在 MySQL 数据库里，由 mysql_install_db 脚本初始化。这些权限表分别 user，db，table_priv，columns_priv 和 host。下面分别介绍一下这些表的结构和内容：</p>
+<p>⚫ user 权限表：记录允许连接到服务器的用户帐号信息，里面的权限是全局级的。
+⚫ db 权限表：记录各个帐号在各个数据库上的操作权限。
+⚫ table_priv 权限表：记录数据表级的操作权限。
+⚫ columns_priv 权限表：记录数据列级的操作权限。
+⚫ host 权限表：配合 db 权限表对给定主机上数据库级操作权限作更细致的控制。这个权限表不受 GRANT 和 REVOKE 语句的影响。</p>
 <h3 id="2-mysql-支持哪些存储引擎">2. MySQL 支持哪些存储引擎?</h3>
 <p>MySQL 支持多种存储引擎,比如 InnoDB,MyISAM,Memory,Archive 等等.在大多数的情况下,直接选择使用 InnoDB 引擎都是最合适的,InnoDB 也是 MySQL 的默认存储引擎。</p>
 <p>MyISAM 和 InnoDB 的区别有哪些：</p>
@@ -447,6 +455,18 @@
 <li>InnoDB 不保存表的具体行数，MyISAM 用一个变量保存了整个表的行数。</li>
 <li>MyISAM 采用表级锁(table-level locking)；InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁。</li>
 </ul>
+<p>他们存储引擎的区别：</p>
+<ul>
+<li>锁粒度方面：由于锁粒度不同，InnoDB 比 MyISAM 支持更高的并发;InnoDB 的锁粒度为行锁、MyISAM 的锁粒度为表锁、行锁需要对每一行进行加锁，所以锁的开销更大，但是能解决脏读和不可重复读的问题，相对来说也更容易发生死锁
+⚫ 可恢复性上：由于 InnoDB 是有事务日志的，所以在产生由于数据库崩溃等条件后，可以根据日志文件进行恢复。而 MyISAM 则没有事务日志。
+⚫ 查询性能上:MylSAM 要优于 InnoDB 因为 InnoDB 在查询过程中，是需要维护数据缓存，而且查询过程是先定位到行所在的数据块，然后在从数据块中定位到要查找的行;而 MyISAM 可以直接定位到数据所在的内存地址，可以直接找到数据。
+⚫ 表结构文件上:MyISAM 的表结构文件包括:frm(表结构定义),.MYI(索引),.MYD(数据);而 InnoDB 的表数据文件为:ibd 和 frm(表结构定义)。</li>
+</ul>
+<p>他们索引的区别：
+⚫ InnoDB 索引是聚簇索引，MyISAM 索引是非聚簇索引。
+⚫ InnoDB 的主键索引的叶子节点存储着行数据，因此主键索引非常高效。
+⚫ MyISAM 索引的叶子节点存储的是行数据地址，需要再寻址一次才能得到数据。
+⚫ InnoDB 非主键索引的叶子节点存储的是主键和其他带索引的列数据，因此查询时做到覆盖索引会非常高效。</p>
 <h3 id="3-超键候选键主键外键分别是什么">3. 超键、候选键、主键、外键分别是什么？</h3>
 <ul>
 <li>超键：在关系中能唯一标识元组的属性集称为关系模式的超键。一个属性可以为作为一个超键，多个属性组合在一起也可以作为一个超键。超键包含候选键和主键。</li>
@@ -463,6 +483,11 @@
 <li>CHECK: 用于控制字段的值范围。</li>
 </ul>
 <h3 id="5-mysql-中的-varchar-和-char-有什么区别">5. MySQL 中的 varchar 和 char 有什么区别？</h3>
+<p>⚫ char 和 varchar 类型在存储和检索方面有所不同
+⚫ char 列长度固定为创建表时声明的长度，长度值范围是 1 到 255
+76
+⚫ 当 char 值被存储时，它们被用空格填充到特定长度，检索 char 值时需删
+除尾随空格。</p>
 <p>char 是一个定长字段,假如申请了<code>char(10)</code>的空间,那么无论实际存储多少内容.该字段都占用 10 个字符,而 varchar 是变长的,也就是说申请的只是最大长度,占用的空间为实际字符长度+1,最后一个字符存储使用了多长的空间.</p>
 <p>在检索效率上来讲,char &gt; varchar,因此在使用中,如果确定某个字段的值的长度,可以使用 char,否则应该尽量使用 varchar.例如存储用户 MD5 加密后的密码,则应该使用 char。</p>
 <h3 id="6-mysql中-in-和-exists-区别">6. MySQL中 in 和 exists 区别</h3>
@@ -519,17 +544,52 @@ not in 和not exists：如果查询语句使用了not in，那么内外表都进
 <li>空间方面：索引需要占物理空间。</li>
 </ul>
 <h4 id="3-mysql有哪几种索引类型">3. MySQL有哪几种索引类型？</h4>
-<p>1、从存储结构上来划分：BTree索引（B-Tree或B+Tree索引），Hash索引，full-index全文索引，R-Tree索引。这里所描述的是索引存储时保存的形式，</p>
-<p>2、从应用层次来分：普通索引，唯一索引，复合索引。</p>
-<ul>
-<li>普通索引：即一个索引只包含单个列，一个表可以有多个单列索引</li>
-<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
-<li>复合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并</li>
-<li>聚簇索引(聚集索引)：并不是一种单独的索引类型，而是一种数据存储方式。具体细节取决于不同的实现，InnoDB的聚簇索引其实就是在同一个结构中保存了B-Tree索引(技术上来说是B+Tree)和数据行。</li>
-<li>非聚簇索引： 不是聚簇索引，就是非聚簇索引</li>
-</ul>
-<p>3、根据中数据的物理顺序与键值的逻辑（索引）顺序关系： 聚集索引，非聚集索引。</p>
-<h4 id="4-说一说索引的底层实现">4. 说一说索引的底层实现？</h4>
+<p>主键索引: 
+数据列不允许重复，不允许为 NULL，一个表只能有一个主键。</p>
+<p>唯一索引: 
+数据列不允许重复，允许为 NULL 值，一个表允许多个列创建唯一索引。
+⚫ 可以通过 ALTER TABLE table_name ADD UNIQUE (column); 创建唯一索
+引。
+⚫ 可以通过 ALTER TABLE table_name ADD UNIQUE (column1,column2); 创
+建唯一组合索引。</p>
+<p>普通索引: 
+基本的索引类型，没有唯一性的限制，允许为 NULL 值。
+⚫ 可以通过 ALTER TABLE table_name ADD INDEX index_name (column);创建
+普通索引
+⚫ 可以通过 ALTER TABLE table_name ADD INDEX index_name(column1, 
+column2, column3);创建组合索引。</p>
+<p>全文索引：是目前搜索引擎使用的一种关键技术。
+⚫ 可以通过 ALTER TABLE table_name ADD FULLTEXT (column);创建全文索
+引。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">1、从存储结构上来划分：BTree索引（B-Tree或B+Tree索引），Hash索引，full-index全文索引，R-Tree索引。这里所描述的是索引存储时保存的形式，
+
+2、从应用层次来分：普通索引，唯一索引，复合索引。
+
+- 普通索引：即一个索引只包含单个列，一个表可以有多个单列索引
+- 唯一索引：索引列的值必须唯一，但允许有空值
+- 复合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并
+- 聚簇索引(聚集索引)：并不是一种单独的索引类型，而是一种数据存储方式。具体细节取决于不同的实现，InnoDB的聚簇索引其实就是在同一个结构中保存了B-Tree索引(技术上来说是B+Tree)和数据行。
+- 非聚簇索引： 不是聚簇索引，就是非聚簇索引
+
+3、根据中数据的物理顺序与键值的逻辑（索引）顺序关系： 聚集索引，非聚集索引。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="4-说一说索引的底层实现">4. 说一说索引的底层实现？</h4>
 <p><strong>Hash索引</strong></p>
 <p>基于<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e5%93%88%e5%b8%8c%e8%a1%a8" target="_blank" rel="noopener noreffer">哈希表</a>实现，只有精确匹配索引所有列的查询才有效，对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码（hash code），并且Hash索引将所有的哈希码存储在索引中，同时在索引表中保存指向每个数据行的指针。</p>
 <blockquote>
@@ -910,6 +970,11 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <li><strong>row：</strong> 基于行的模式，记录的是行的变化，很安全。但是 binlog 会比其他两种模式大很多，在一些大表中清除大量数据时在 binlog 中会生成很多条语句，可能导致从库延迟变大。</li>
 <li><strong>mixed：</strong> 混合模式，根据语句来选用是 statement 还是 row 模式。</li>
 </ul>
+<h4 id="mysql-的-binlog-有有几种录入格式分别有什么区别">MySQL 的 Binlog 有有几种录入格式？分别有什么区别？</h4>
+<p>有三种格式，statement，row 和 mixed。
+⚫ statement 模式下，每一条会修改数据的 SQL 都会记录在 Binlog 中。不需要记录每一行的变化，减少了 Binlog 日志量，节约了 IO，ᨀ高性能。由于sql 的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。
+⚫ row 级别下，不记录 SQL 语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如 alter table)，因此这种模式的文件保存的信息太多，日志量太大。
+⚫ mixed，一种折中的方案，普通操作使用 statement 记录，当无法使用statement 的时候使用 row。</p>
 <h4 id="8-在事务中可以混合使用存储引擎吗"><strong>8. 在事务中可以混合使用存储引擎吗？</strong></h4>
 <p>尽量不要在同一个事务中使用多种存储引擎，MySQL服务器层不管理事务，事务是由下层的存储引擎实现的。</p>
 <p>如果在事务中混合使用了事务型和非事务型的表（例如InnoDB和MyISAM表）,在正常提交的情况下不会有什么问题。</p>
@@ -949,6 +1014,13 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p>InnoDB 每一行数据都有一个隐藏的回滚指针，用于指向该行修改前的最后一个历史版本，这个历史版本存放在 undo log 中。如果要执行更新操作，会将原记录放入 undo log 中，并通过隐藏的回滚指针指向 undo log 中的原记录。其它事务此时需要查询时，就是查询 undo log 中这行数据的最后一个历史版本。</p>
 <p>MVCC 最大的好处是读不加锁，读写不冲突，极大地增加了 MySQL 的并发性。通过 MVCC，保证了事务 ACID 中的 I（隔离性）特性。</p>
 <h3 id="锁">锁</h3>
+<h4 id="9mysql-中有哪几种锁">9、MySQL 中有哪几种锁？</h4>
+<p>⚫ 表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概
+率最高，并发度最低。
+⚫ 行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概
+率最低，并发度也最高。
+⚫ 页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界
+于表锁和行锁之间，并发度一般。</p>
 <h4 id="1-为什么要加锁">1. 为什么要加锁?</h4>
 <p>当多个用户并发地存取数据时，在<a href="https://cloud.tencent.com/solution/database?from=10680" target="_blank" rel="noopener noreffer">数据库</a>中就会产生多个事务同时存取同一数据的情况。若对并发操作不加控制就可能会读取和存储不正确的数据，破坏数据库的一致性。</p>
 <p>保证多用户环境下保证数据库完整性和一致性。</p>
@@ -1297,138 +1369,217 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 </tr>
 </tbody>
 </table>
-<h2 id="redis">Redis</h2>
-<h3 id="应用场景">应用场景</h3>
-<ol>
-<li>缓存</li>
-<li>共享Session</li>
-<li>消息队列系统</li>
-<li>分布式锁</li>
-</ol>
-<h3 id="单线程的redis为什么快">单线程的Redis为什么快</h3>
-<ol>
-<li>纯内存操作</li>
-<li>单线程操作，避免了频繁的上下文切换</li>
-<li>合理高效的数据结构</li>
-<li>采用了非阻塞I/O多路复用机制（有一个文件描述符同时监听多个文件描述符是否有数据到来）</li>
-</ol>
-<h3 id="redis-的数据结构及使用场景">Redis 的数据结构及使用场景</h3>
-<ol>
-<li>String字符串:字符串类型是 Redis 最基础的数据结构，首先键都是字符串类型，而且 其他几种数据结构都是在字符串类型基础上构建的，我们常使用的 set key value 命令就是字符串。常用在缓存、计数、共享Session、限速等。</li>
-<li>Hash哈希:在Redis中，哈希类型是指键值本身又是一个键值对结构，哈希可以用来存放用户信息，比如实现购物车。</li>
-<li>List列表（双向链表）:列表（list）类型是用来存储多个有序的字符串。可以做简单的消息队列的功能。</li>
-<li>Set集合：集合（set）类型也是用来保存多个的字符串元素，但和列表类型不一 样的是，集合中不允许有重复元素，并且集合中的元素是无序的，不能通过索引下标获取元素。利用 Set 的交集、并集、差集等操作，可以计算共同喜好，全部的喜好，自己独有的喜好等功能。</li>
-<li>Sorted Set有序集合（跳表实现）：Sorted Set 多了一个权重参数 Score，集合中的元素能够按 Score 进行排列。可以做排行榜应用，取 TOP N 操作。</li>
-</ol>
-<h3 id="redis-的数据过期策略">Redis 的数据过期策略</h3>
-<p>Redis 中数据过期策略采用定期删除+惰性删除策略</p>
-<ul>
-<li>定期删除策略：Redis 启用一个定时器定时监视所有的 key，判断key是否过期，过期的话就删除。这种策略可以保证过期的 key 最终都会被删除，但是也存在严重的缺点：每次都遍历内存中所有的数据，非常消耗 CPU 资源，并且当 key 已过期，但是定时器还处于未唤起状态，这段时间内 key 仍然可以用。</li>
-<li>惰性删除策略：在获取 key 时，先判断 key 是否过期，如果过期则删除。这种方式存在一个缺点：如果这个 key 一直未被使用，那么它一直在内存中，其实它已经过期了，会浪费大量的空间。</li>
-<li>这两种策略天然的互补，结合起来之后，定时删除策略就发生了一些改变，不在是每次扫描全部的 key 了，而是随机抽取一部分 key 进行检查，这样就降低了对 CPU 资源的损耗，惰性删除策略互补了为检查到的key，基本上满足了所有要求。但是有时候就是那么的巧，既没有被定时器抽取到，又没有被使用，这些数据又如何从内存中消失？没关系，还有内存淘汰机制，当内存不够用时，内存淘汰机制就会上场。淘汰策略分为：
-<ol>
-<li>当内存不足以容纳新写入数据时，新写入操作会报错。（Redis 默认策略）</li>
-<li>当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 Key。（LRU推荐使用）</li>
-<li>当内存不足以容纳新写入数据时，在键空间中，随机移除某个 Key。</li>
-<li>当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 Key。这种情况一般是把 Redis 既当缓存，又做持久化存储的时候才用。</li>
-<li>当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个 Key。</li>
-<li>当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的 Key 优先移除。</li>
-</ol>
-</li>
-</ul>
-<h3 id="redis的set和setnx">Redis的set和setnx</h3>
-<p>Redis中setnx不支持设置过期时间，做分布式锁时要想避免某一客户端中断导致死锁，需设置lock过期时间，在高并发时 setnx与 expire 不能实现原子操作，如果要用，得在程序代码上显示的加锁。使用SET代替SETNX ，相当于SETNX+EXPIRE实现了原子性，不必担心SETNX成功，EXPIRE失败的问题。</p>
-<h3 id="redis的lru具体实现">Redis的LRU具体实现：</h3>
-<p>传统的LRU是使用栈的形式，每次都将最新使用的移入栈顶，但是用栈的形式会导致执行select *的时候大量非热点数据占领头部数据，所以需要改进。Redis每次按key获取一个值的时候，都会更新value中的lru字段为当前秒级别的时间戳。Redis初始的实现算法很简单，随机从dict中取出五个key,淘汰一个lru字段值最小的。在3.0的时候，又改进了一版算法，首先第一次随机选取的key都会放入一个pool中(pool的大小为16),pool中的key是按lru大小顺序排列的。接下来每次随机选取的keylru值必须小于pool中最小的lru才会继续放入，直到将pool放满。放满之后，每次如果有新的key需要放入，需要将pool中lru最大的一个key取出。淘汰的时候，直接从pool中选取一个lru最小的值然后将其淘汰。</p>
-<h3 id="redis如何发现热点key">Redis如何发现热点key</h3>
-<ol>
-<li>凭借经验，进行预估：例如提前知道了某个活动的开启，那么就将此Key作为热点Key。</li>
-<li>服务端收集：在操作redis之前，加入一行代码进行数据统计。</li>
-<li>抓包进行评估：Redis使用TCP协议与客户端进行通信，通信协议采用的是RESP，所以自己写程序监听端口也能进行拦截包进行解析。</li>
-<li>在proxy层，对每一个 redis 请求进行收集上报。</li>
-<li>Redis自带命令查询：Redis4.0.4版本提供了redis-cli –hotkeys就能找出热点Key。（如果要用Redis自带命令查询时，要<strong>注意</strong>需要先把内存逐出策略设置为allkeys-lfu或者volatile-lfu，否则会返回错误。进入Redis中使用config set maxmemory-policy allkeys-lfu即可。）</li>
-</ol>
-<h3 id="redis的热点key解决方案">Redis的热点key解决方案</h3>
-<ol>
-<li>服务端缓存：即将热点数据缓存至服务端的内存中.(利用Redis自带的消息通知机制来保证Redis和服务端热点Key的数据一致性，对于热点Key客户端建立一个监听，当热点Key有更新操作的时候，服务端也随之更新。)</li>
-<li>备份热点Key：即将热点Key+随机数，随机分配至Redis其他节点中。这样访问热点key的时候就不会全部命中到一台机器上了。</li>
-</ol>
-<h3 id="如何解决-redis-缓存雪崩问题">如何解决 Redis 缓存雪崩问题</h3>
-<ol>
-<li>使用 Redis 高可用架构：使用 Redis 集群来保证 Redis 服务不会挂掉</li>
-<li>缓存时间不一致，给缓存的失效时间，加上一个随机值，避免集体失效</li>
-<li>限流降级策略：有一定的备案，比如个性推荐服务不可用了，换成热点数据推荐服务</li>
-</ol>
-<h3 id="如何解决-redis-缓存穿透问题">如何解决 Redis 缓存穿透问题</h3>
-<ol>
-<li>在接口做校验</li>
-<li>存null值（缓存击穿加锁,或设置不过期）</li>
-<li>布隆过滤器拦截： 将所有可能的查询key 先映射到布隆过滤器中，查询时先判断key是否存在布隆过滤器中，存在才继续向下执行，如果不存在，则直接返回。布隆过滤器将值进行多次哈希bit存储，布隆过滤器说某个元素在，可能会被误判。布隆过滤器说某个元素不在，那么一定不在。</li>
-</ol>
-<h3 id="redis的持久化机制">Redis的持久化机制</h3>
-<p>Redis为了保证效率，数据缓存在了内存中，但是会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件中，以保证数据的持久化。Redis的持久化策略有两种：</p>
-<ol>
-<li>RDB：快照形式是直接把内存中的数据保存到一个dump的文件中，定时保存，保存策略。当Redis需要做持久化时，Redis会fork一个子进程，子进程将数据写到磁盘上一个临时RDB文件中。当子进程完成写临时文件后，将原来的RDB替换掉。</li>
-<li>AOF：把所有的对Redis的服务器进行修改的命令都存到一个文件里，命令的集合。</li>
-</ol>
-<p>使用AOF做持久化，每一个写命令都通过write函数追加到appendonly.aof中。aof的默认策略是每秒钟fsync一次，在这种配置下，就算发生故障停机，也最多丢失一秒钟的数据。
-缺点是对于相同的数据集来说，AOF的文件体积通常要大于RDB文件的体积。根据所使用的fsync策略，AOF的速度可能会慢于RDB。
-Redis默认是快照RDB的持久化方式。对于主从同步来说，主从刚刚连接的时候，进行全量同步（RDB）；全同步结束后，进行增量同步(AOF)。</p>
-<h3 id="redis的事务">Redis的事务</h3>
-<ol>
-<li>Redis 事务的本质是一组命令的集合。事务支持一次执行多个命令，一个事务中所有命令都会被序列化。在事务执行过程，会按照顺序串行化执行队列中的命令，其他客户端提交的命令请求不会插入到事务执行命令序列中。总结说：redis事务就是一次性、顺序性、排他性的执行一个队列中的一系列命令。</li>
-<li>Redis事务没有隔离级别的概念，批量操作在发送 EXEC 命令前被放入队列缓存，并不会被实际执行，也就不存在事务内的查询要看到事务里的更新，事务外查询不能看到。</li>
-<li>Redis中，单条命令是原子性执行的，但事务不保证原子性，且没有回滚。事务中任意命令执行失败，其余的命令仍会被执行。</li>
-</ol>
-<h3 id="redis事务相关命令">Redis事务相关命令</h3>
-<ol>
-<li>watch key1 key2 &hellip; : 监视一或多个key,如果在事务执行之前，被监视的key被其他命令改动，则事务被打断（类似乐观锁）</li>
-<li>multi : 标记一个事务块的开始（queued）</li>
-<li>exec : 执行所有事务块的命令（一旦执行exec后，之前加的监控锁都会被取消掉）</li>
-<li>discard : 取消事务，放弃事务块中的所有命令</li>
-<li>unwatch : 取消watch对所有key的监控</li>
-</ol>
-<h3 id="redis和-memcached-的区别">Redis和 memcached 的区别</h3>
-<ol>
-<li>存储方式上：memcache会把数据全部存在内存之中，断电后会挂掉，数据不能超过内存大小。redis有部分数据存在硬盘上，这样能保证数据的持久性。</li>
-<li>数据支持类型上：memcache对数据类型的支持简单，只支持简单的key-value，，而redis支持五种数据类型。</li>
-<li>用底层模型不同：它们之间底层实现方式以及与客户端之间通信的应用协议不一样。redis直接自己构建了VM机制，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求。</li>
-<li>value的大小：redis可以达到1GB，而memcache只有1MB。</li>
-</ol>
-<h3 id="redis的几种集群模式">Redis的几种集群模式</h3>
-<ol>
-<li>主从复制</li>
-<li>哨兵模式</li>
-<li>cluster模式</li>
-</ol>
-<h3 id="redis的哨兵模式">Redis的哨兵模式</h3>
-<p>哨兵是一个分布式系统,在主从复制的基础上你可以在一个架构中运行多个哨兵进程,这些进程使用流言协议来接收关于Master是否下线的信息,并使用投票协议来决定是否执行自动故障迁移,以及选择哪个Slave作为新的Master。</p>
-<p>每个哨兵会向其它哨兵、master、slave定时发送消息,以确认对方是否活着,如果发现对方在指定时间(可配置)内未回应,则暂时认为对方已挂(所谓的”主观认为宕机”)。</p>
-<p>若“哨兵群“中的多数sentinel,都报告某一master没响应,系统才认为该master&quot;彻底死亡&quot;(即:客观上的真正down机),通过一定的vote算法,从剩下的slave节点中,选一台提升为master,然后自动修改相关配置。</p>
-<h3 id="redis的rehash">Redis的rehash</h3>
-<p>Redis的rehash 操作并不是一次性、集中式完成的，而是分多次、渐进式地完成的，redis会维护维持一个索引计数器变量rehashidx来表示rehash的进度。</p>
-<p>这种渐进式的 rehash 避免了集中式rehash带来的庞大计算量和内存操作，但是需要<strong>注意</strong>的是redis在进行rehash的时候，正常的访问请求可能需要做多要访问两次hashtable（ht[0]， ht[1]），例如键值被rehash到新ht1，则需要先访问ht0，如果ht0中找不到，则去ht1中找。</p>
-<h3 id="redis的hash表被扩展的条件">Redis的hash表被扩展的条件</h3>
-<ol>
-<li>哈希表中保存的key数量超过了哈希表的大小.</li>
-<li>Redis服务器目前没有在执行BGSAVE命令（rdb）或BGREWRITEAOF命令，并且哈希表的负载因子大于等于1.</li>
-<li>Redis服务器目前在执行BGSAVE命令（rdb）或BGREWRITEAOF命令，并且哈希表的负载因子大于等于5.(负载因子=哈希表已保存节点数量 / 哈希表大小，当哈希表的负载因子小于0.1时，对哈希表执行收缩操作。)</li>
-</ol>
-<h3 id="redis并发竞争key的解决方案">Redis并发竞争key的解决方案</h3>
-<ol>
-<li>分布式锁+时间戳</li>
-<li>利用消息队列</li>
-</ol>
-<h3 id="redis与mysql双写一致性方案">Redis与Mysql双写一致性方案</h3>
-<p>先更新数据库，再删缓存。数据库的读操作的速度远快于写操作的，所以脏数据很难出现。可以对异步延时删除策略，保证读请求完成以后，再进行删除操作。</p>
-<h3 id="redis的管道pipeline">Redis的管道pipeline</h3>
-<p>对于单线程阻塞式的Redis，Pipeline可以满足批量的操作，把多个命令连续的发送给Redis Server，然后一一解析响应结果。Pipelining可以提高批量处理性能，提升的原因主要是TCP连接中减少了“交互往返”的时间。pipeline 底层是通过把所有的操作封装成流，redis有定义自己的出入输出流。在 sync() 方法执行操作，每次请求放在队列里面，解析响应包。</p>
+<h2 id="其他">其他</h2>
+<h3 id="14myisam-表类型将在哪里存储并且还提供其存储格式">14、MyISAM 表类型将在哪里存储，并且还提供其存储格式？</h3>
+<p>每个 MyISAM 表格以三种格式存储在磁盘上：
+⚫ “.frm”文件 存储表定义
+⚫ 数据文件具有“.MYD”（MYData）扩展名
+⚫ 索引文件具有“.MYI”（MYIndex）扩展名</p>
+<h3 id="15mysql-里记录货币用什么字段类型好">15、MySQL 里记录货币用什么字段类型好</h3>
+<p>NUMERIC 和 DECIMAL 类型被 MySQL 实现为同样的类型，这在 SQL92 标准允许。
+他们被用于保存值，该值的准确精度是极其重要的值，例如与金钱有关的数
+据。当声明一个类是这些类型之一时，精度和规模的能被(并且通常是)指定。
+例如：
+salary DECIMAL(9,2)
+在这个例子中，9(precision)代表将被用于存储值的总的小数位数，而
+2(scale)代表将被用于存储小数点后的位数。
+因此，在这种情况下，能被存储在 salary 列中的值的范围是从-9999999.99 到
+9999999.99。</p>
+<h3 id="16创建索引时需要注意什么">16、创建索引时需要注意什么？</h3>
+<p>⚫ 非空字段：应该指定列为 NOT NULL，除非你想存储 NULL。在 MySQL 中，含
+有空值的列很难进行查询优化，因为它们使得索引、索引的统计信息以及
+比较运算更加复杂。应该用 0、一个特殊的值或者一个空串代替空值；
+⚫ 取值离散大的字段：（变量各个取值之间的差异程度）的列放到联合索引
+的前面，可以通过 count()函数查看字段的差异值，返回值越大说明字段的
+唯一值越多字段的离散程度高；
+⚫ 索引字段越小越好：数据库的数据存储以页为单位一页存储的数据越多一
+次 I/O 操作获取的数据越大效率越高。</p>
+<h3 id="17使用索引查询一定能提高查询的性能吗为什么">17、使用索引查询一定能提高查询的性能吗？为什么</h3>
+<p>通常，通过索引查询数据比全表扫᧿要快。但是我们也必须注意到它的代价。
+索引需要空间来存储，也需要定期维护， 每当有记录在表中增减或索引列被修
+改时，索引本身也会被修改。 这意味着每条记录的 INSERT，DELETE，UPDATE
+将为此多付出 4，5 次的磁盘 I/O。 因为索引需要额外的存储空间和处理，那
+些不必要的索引反而会使查询反应时间变慢。使用索引查询不一定能ᨀ高查询
+性能，索引范围查询(INDEX RANGE SCAN)适用于两种情况:
+⚫ 基于一个范围的检索，一般查询返回结果集小于表中记录数的 30%
+⚫ 基于非唯一性索引的检索</p>
+<h3 id="18百万级别或以上的数据如何删除">18、百万级别或以上的数据如何删除</h3>
+<p>关于索引：由于索引需要额外的维护成本，因为索引文件是单独存在的文件,所
+以当我们对数据的增加,修改,删除,都会产生额外的对索引文件的操作,这些操
+作需要消耗额外的 IO,会降低增/改/删的执行效率。所以，在我们删除数据库
+百万级别数据的时候，查询 MySQL 官方手册得知删除数据的速度和创建的索引
+数量是成正比的。
+⚫ 所以我们想要删除百万数据的时候可以先删除索引（此时大概耗时三分多
+钟）
+⚫ 然后删除其中无用数据（此过程需要不到两分钟）
+⚫ 删除完成后重新创建索引(此时数据较少了)创建索引也非常快，约十分钟
+左右。
+⚫ 与之前的直接删除绝对是要快速很多，更别说万一删除中断,一切删除会回
+滚。那更是坑了。</p>
+<h3 id="19什么是最左前缀原则什么是最左匹配原则">19、什么是最左前缀原则？什么是最左匹配原则</h3>
+<p>顾名思义，就是最左优先，在创建多列索引时，要根据业务需求，where 子句
+中使用最频繁的一列放在最左边。
+最左前缀匹配原则，非常重要的原则，MySQL 会一直向右匹配直到遇到范围查
+询(&gt;、&lt;、between、like)就停止匹配，比如 a = 1 and b = 2 and c &gt; 3 and 
+d = 4 如果建立(a,b,c,d)顺序的索引，d 是用不到索引的，如果建立
+(a,b,d,c)的索引则都可以用到，a,b,d 的顺序可以任意调整。
+=和 in 可以乱序，比如 a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任
+意顺序，MySQL 的查询优化器会帮你优化成索引可以识别的形式。</p>
+<h3 id="20什么是聚簇索引何时使用聚簇索引与非聚簇索引">20、什么是聚簇索引？何时使用聚簇索引与非聚簇索引</h3>
+<p>⚫ 聚簇索引：将数据存储与索引放到了一块，找到索引也就找到了数据
+⚫ 非聚簇索引：将数据存储于索引分开结构，索引结构的叶子节点指向了数
+据的对应行，myisam 通过 key_buffer 把索引先缓存到内存中，当需要访问
+数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找
+到磁盘相应数据，这也就是为什么索引不在 key buffer 命中时，速度慢的
+原因。</p>
+<h3 id="21mysql-连接器">21、MySQL 连接器</h3>
+<p>首先需要在 MySQL 客户端登陆才能使用，所以需要 个连接器 来连接用户和
+MySQL 数据库，我们 一般是使用
+mysql-u 用户名-p 密码
+来进行 MySQL 登陆，和服务端建立连接。在完成 TCP 握手后，连接器会根据你
+输入的用户名和密码验证你的登录身份。如果用户名或者密码错误，MySQL 就
+会ᨀ示 Access denied for user，来结束执行。如果登录成功后，MySQL 会根
+据权限表中的记录来判定你的权限。</p>
+<h3 id="22mysql-查询缓存">22、MySQL 查询缓存</h3>
+<p>连接完成后，你就可以执行 SQL 语句了，这行逻辑就会来到第二步:查询缓存。
+MySQL 在得到一个执行请求后，会首先去查询缓存 中查找，是否执行过这条
+SQL 语句，之前执行过的语句以及结果会以 key-value 对的形式，被直接放在
+内存中。key 是查询语句，value 是查询的结果。
+如果通过 key 能够查找到这条 SQL 语句，就直接妾返回 SQL 的执行结果。
+如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果
+就会被放入查询缓存中。
+可以看到，如果查询命中缓存，MySQL 不需要执行后面的复杂操作，就可以直
+接返回结果，效率会很高。</p>
+<h3 id="23mysql-分析器">23、MySQL 分析器</h3>
+<p>如果没有命中查询，就开始执行真正的 SQL 语句。
+⚫ 首先，MySQL 会根据你写的 SQL 语句进行解析，分析器会先做词法分析，你
+写的 SQL 就是由多个字符串和空格组成的一条 SQL 语句，MySQL 需要识别出
+里面的字符串是什么，代表什么。
+⚫ 然后进行语法分析，根据词法分析的结果，语法分析器会根据语法规则，
+判断你输入的这个 SQL 语句是否满足 MySQL 语法。如果 SQL 语句不正确，
+就会ᨀ示 You have an error in your SQL syntax。</p>
+<h3 id="24mysql-优化器">24、MySQL 优化器</h3>
+<p>经过分析器的词法分析和语法分析后，你这条 SQL 就合法了，MySQL 就知道你
+要做什么了。但是在执行前，还需要进行优化器的处理，优化器会判断你使用
+了哪种索引，使用了何种连接，优化器的作用就是确定效率最高的执行方案。</p>
+<h3 id="25mysql-执行器">25、MySQL 执行器</h3>
+<p>MySQL 通过分析器知道了你的 SQL 语句是否合法，你想要做什么操作，通过优
+化器知道了该怎么做效率最高，然后就进入了执行阶段，开始执行这条 SQL 语
+句在执行阶段，MySQL 首先会判断你有没有执行这条语句的权限，没有权限的
+话，就会返回没有权限的错误。如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎ᨀ供的接口。对于有索引
+的表，执行的逻辑也差不多。</p>
+<h3 id="26什么是临时表何时删除临时表">26、什么是临时表，何时删除临时表？</h3>
+<p>什么是临时表?MySQL 在执行 SQL 语句的过程中 通常会临时创建一些存储中间
+结果集的表，临时 表只对当前连接可见，在连接关闭时，临时表会被删除并
+释放所有表空间。
+临时表分为两种:一种是内存临时表，一种是磁盘临时表，什么区别呢?内存临
+时表使用的是 MEMORY 存储引擎，而临时表采用的是 MylSAM 存储引擎。
+MySQL 会在下面这几种情况产生临时表。
+⚫ 使用 UNION 查询:UNION 有两种，一种是 UNION，一种是 UNION ALL，它们
+都用于联合查询;区别是使用 UNION 会去掉两个表中的重复数据，相当于对
+结果集做了一下 去重(distinct)。使用 UNIONALL，则不会排重，返回所有
+的行。使用 UNION 查询会产生临时表。
+⚫ 使用 TEMPTABLE 算法或者是 UNION 查询中的视图。TEMPTABLE 算法是一种创
+建临时表的算法，它是将结果放置到临时表中，意味这要 MySQL 要先创建
+好一个临时表，然后将结果放到临时表中去，然后再使用这个临时表进行
+相应的查询。
+⚫ ORDER BY 和 GROUPBY 的子句不一样时也会产生临时表。
+⚫ DISTINCT 查询并且加上 ORDER BY 时;
+⚫ SQL 中用到 SQL_SMALL_RESULT 选项时;如果查询结果比较小的时候，可以加
+上 SQL SMALL RESULT 来优化，产生临时表
+⚫ FROM 中的子查询;
+⚫ EXPLAIN 查看执行计划结果的 Extra 列中，如果使用 Using Temporary 就
+表示会用到临时表。</p>
+<h3 id="27谈谈-sql-优化的经验">27、谈谈 SQL 优化的经验</h3>
+<p>⚫ 查询语句无论是使用哪种判断条件等于、小于、大于，WHERE 左侧的条件
+查询字段不要使用函数或者表达式
+⚫ 使用 EXPLAIN 命令优化你的 SELECT 查询，对于复杂、效率低的 SQL 语
+句，我们通常是使用 explainsql 来分析这条 SQL 语句，这样方便我们分
+析，进行优化。
+⚫ 当你的 SELECT 查询语句只需要使用一条记录时，要使用 LIMIT 1。不要
+直接使用 SELECT*，而应该使用具体需要查询的表字段，因为使用 EXPLAIN
+进行分析时，SELECT&quot;使用的是全表扫᧿，也就是 type =all 。
+⚫ 为每一张表设置一个 ID 属性。
+⚫ 避免在 MHERE 字句中对字段进行 NULL 
+⚫ 判断避免在 WHERE 中使用!或&gt;操作符
+⚫ 使用 BETWEEN AND 替代 IN
+⚫ 为搜索字段创建索引
+⚫ 选择正确的存储引擎，InnoDB、MyISAM、MEMORY 等
+⚫ 使用 LIKE%abc%不会走索引，而使用 LIKE abc%会走索引。
+⚫ 对于枚举类型的字段(即有固定罗列值的字段)，建议使用 ENUM 而不是
+VARCHAR，如性别、星期、类型、类别等。
+⚫ 拆分大的 DELETE 或 INSERT 语句
+⚫ 选择合适的字段类型，选择标准是尽可能小、尽可能定长、尽可能使用整
+数。
+⚫ 字段设计尽可能使用 NOT NULL
+⚫ 进行水平切割或者垂直分割</p>
+<h3 id="28什么叫外链接">28、什么叫外链接？</h3>
+<p>外连接分为三种，分别是是左外连接(LEFT OUTER J0IN 或 LEFT JOIN 右外连
+接(RIGHT OUTER JOIN 或 RIC GHT JOIN、全外连接(FULL OUTER JOIN 
+或 FULLJOIN)。
+左外连接:又称为左连接，这种连接方式会显示左表不符合条件的数据行，右边
+不符合条件的数据行直接显示 NULL。
+右外连接:也被称为右连接，他与左连接相对，这种连接方式会显示右表不符合
+条件的数据行，左表不符合条件的数据行直接显示 NULL</p>
+<h3 id="29什么叫内链接">29、什么叫内链接？</h3>
+<p>结合两个表中相同的字段，返回关联字段相符的记录就是内链接。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221118225406.png" /></p>
+<h3 id="30使用-union-和-union-all-时需要注意些什么">30、使用 union 和 union all 时需要注意些什么？</h3>
+<p>通过 union 连接的 SQL 分别单独取出的列数必须相同。
+使用 union 时，多个相等的行将会被合并，由于合升比较耗时，一般不直接使
+用 union 进行合并，而是通常采用 union all 进行合并。</p>
+<h3 id="31myisam-存储引擎的特点">31、MyISAM 存储引擎的特点</h3>
+<p>在 5.1 版本之前，MyISAM 是 MySQL 的默认存储引擎，MylSAM 并发性比较差，使
+用的场景比较少主要特点是:
+⚫ 不支持事务操作，ACID 的特性也就不存在了，这一设计是为了性能和效率
+考虑的，
+⚫ 不支持外键操作，如果强行增加外键，MySQL 不会报错，只不过外键不起作
+用。
+⚫ MyISAM 默认的锁粒度是表级锁，所以并发性能比较差，加锁比较快，锁冲
+突比较少，不太容易发生死锁的情况。
+⚫ MyISAM 会在磁盘上存储三个文件，文件名和表名相同，扩展名分别是
+frm(存储表定义)、MYD(MYData，存储数据)、MYI(MyIndex，存储索引)。
+这里需要特别注意的是 MyISAM 只缓存 索引文件，并不缓存数据文件。
+⚫ MyISAM 支持的索引类型有全局索引(Full-Text)、B-Tree 索引、R-Tree 索
+引
+{ Full-Text 索引:它的出现是为了解决针对文本的模糊查询效率较低的
+问题。
+{ B-Tree 索引:所有的索引节点都按照平衡树的数据结构来存储，所有的
+索引数据节点都在叶节点
+{ R-Tree 索引:它的存储方式和 B-Tree 索引有一些区别，主要设计用于
+存储空间和多维数据的字段做索引目前的 MySQL 版本仅支持 geometry
+类型的字段作索引，相对于 BTREE,RTREE 的优势在于范围查找。
+⚫ 数据库所在主机如果宕机，MyISAM 的数据文件容易损坏，而且难以恢复。
+⚫ 增删改查性能方面:SELECT 性能较高，适用于查询较多的情况</p>
+<h3 id="32innodb-存储引擎的特点">32、InnoDB 存储引擎的特点</h3>
+<p>自从 MySQL5.1 之后，默认的存储引擎变成了 InnoDB 存储引擎，相对于
+MylSAM，InnoDB 存储引擎有了较大的改变，它的主要特点是</p>
+<p>支持事务操作，具有事务 ACID 隔离特性，默认的隔离级别是可重复读
+(repetable-read)、通过 MVCC(并发版本控制)来实现的。能够解决 脏读
+和 不可重复读 的问题。 InnoDB 支持外键操作。
+⚫ InnoDB 默认的锁粒度行级锁，并发性能比较好，会发生死锁的情况。
+⚫ 和 MyISAM 一样的是，InnoDB 存储引擎也有 frm 文件存储表结构定义，但是
+不同的是，InnoDB 的表数据与索引数据是存储在一起的，都位于 B+数的叶
+子节点上，而 MylSAM 的表数据和索引数据是分开的。
+⚫ InnoDB 有安全的日志文件，这个日志文件用于恢复因数据库崩溃或其他情
+况导致的数据丢失问题，保证数据的一致性。
+⚫ InnoDB 和 MylSAM 支持的索引类型相同，但具体实现因为文件结构的不同有
+很大差异。
+⚫ 增删改查性能方面，果执行大量的增删改操作，推荐使用 InnoDB 存储引
+擎，它在删除操作时是对行删除，不会重建表。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2022-11-05 22:53:50&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/88fc4fc412939da40c025a342dcc121672d967c9" target="_blank" title="commit by AdagioForSummerWind(2152343764@qq.com) 88fc4fc412939da40c025a342dcc121672d967c9: autofeat">
-                                    <i class="fas fa-hashtag fa-fw"></i>88fc4fc</a></span>
+                <span>更新于 2022-11-16 23:14:30&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/a762a68332fc097d138835ab1d3037f5116c8c80" target="_blank" title="commit by AdagioForSummerWind(2152343764@qq.com) a762a68332fc097d138835ab1d3037f5116c8c80: autofeat">
+                                    <i class="fas fa-hashtag fa-fw"></i>a762a68</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>

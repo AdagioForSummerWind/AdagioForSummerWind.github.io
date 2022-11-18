@@ -16,7 +16,7 @@ draft: true
 
 冒泡排序，直接选择排序，直接插入排序被认为是初级的排序算法。中等规模用希尔排序，大规模排序使用快排、归并、堆排序这些高级排序算法。快排综合性能最好，甚至成为了很多编程库内置的排序算法。
 ## 冒泡
-自己实现时忘记考虑某一轮两两比较时已经排好序的情况，属实生疏了。时间复杂度一般是$O(n^2)$。冒泡排序是效率较低的排序算法，可以说是最慢的排序算法了，我们只需知道它是什么，在实际编程中一定不能使用如此之慢的排序算法!
+时间复杂度一般是$O(n^2)$。冒泡排序是效率较低的排序算法，可以说是最慢的排序算法了，我们只需知道它是什么，在实际编程中一定不能使用如此之慢的排序算法!
 ## 选择
 效率同样低下的排序算法。可以在每次循环选择时既选择最小的数，也选择最大的数，以减少循环次数达到优化的目的。工程上同样避免使用。
 ## 插入
@@ -27,7 +27,59 @@ draft: true
 数列中的有序性越高，插入排序的性能越高，因为待排序数组有序性越高，插入排序比较的次数越少。
 
 数据规模较大时，效率也低。
+```go
+func insertionSortList(head *ListNode) *ListNode {
+    if head == nil {
+        return nil
+    }
+    dummyHead := &ListNode{Next: head}
+    lastSorted, curr := head, head.Next
+    for curr != nil {
+        if lastSorted.Val <= curr.Val {
+            lastSorted = lastSorted.Next
+        } else {
+            prev := dummyHead
+            for prev.Next.Val <= curr.Val {
+                prev = prev.Next
+            }
+            lastSorted.Next = curr.Next
+            curr.Next = prev.Next
+            prev.Next = curr
+        }
+        curr = lastSorted.Next
+    }
+    return dummyHead.Next
+}
 
+```
+
+```go
+func insertionSortList(head *ListNode)*ListNode{
+    if head == nil {
+        return nil
+    }
+    dummyHead := &ListNode{Next: head}
+
+    lastSorted, curr := head, head.Next
+    for curr != nil {
+        if lastSorted.Val <= curr.Val {
+            lastSorted = lastSorted.Next            
+        } else {
+            prev := dummyHead
+            for prev.Next.Val <= curr.Val {
+                prev = prev.Next
+            }
+            lastSorted.Next = curr.Next
+            curr.Next = prev.Next
+            prev.Next = curr
+        }
+        curr = lastSorted.Next
+
+    }
+    return dummyHead.Next
+}
+
+```
 ## 希尔
 一个美国人1959年发明的，希尔排序是直接插入排序的改进版本。因为直接插入排序对那些几乎已经排好序的数列来说，排序效率极高，达到了 O(n) 的线性复杂度，但是每次只能将数据移动一位。**希尔排序创造性的可以将数据移动 n 位，然后将 n 一直缩小，缩到与直接插入排序一样为 1**
 
@@ -188,6 +240,91 @@ draft: true
 解析：很多人以为这样子是尾递归。其实这样的快排写法是伪装的尾递归，不是真正的尾递归，因为有for 循环，不是直接 return QuickSort ，递归还是不断地压栈，栈的层次仍然不断地增长。但是，因为先让规模小的部分排序，栈的深度大大减少，程序栈最深不会超过 logn 层，这样堆栈最坏空间复杂度从 O(n) 降为 O(logn) 。这种优化也是一种很好的优化，因为栈的层数减少了，对于排序十亿个整数，也只要： log(100 00000000)=29.897 ，占用的堆栈层数最多 30 层，比不进行优化，可能出现的 O(n) 常数层好很多。
 
 非递归写法仅仅是将之前的递归栈转化为自己维持的手工栈。
+
+```go
+package main
+
+import "fmt"
+
+var swapcnt int
+
+func main() {
+	arr := []int{2, 3, 4, 5, 1}
+	//idx := Swap(arr, 0, len(arr))
+	//fmt.Println(idx, arr)
+	myquickSort(arr, 0, len(arr)-1)
+	fmt.Println(arr)
+	fmt.Println(swapcnt)
+}
+
+func Swap(arr []int, l, r int) int {
+	idx := l
+	pivot := arr[r]
+	for i := l; i <= r; i++ {
+		if arr[i] <= pivot {
+			if idx != i {
+				arr[idx], arr[i] = arr[i], arr[idx]
+				swapcnt += 1
+			}
+			idx += 1
+		}
+	}
+	return idx - 1
+}
+
+func myquickSort(nums []int, l, r int) {
+	if l < r {
+		m := Swap(nums, l, r)
+		myquickSort(nums, l, m-1)
+		myquickSort(nums, m+1, r)
+	}
+}
+
+func quickSort(nums []int, l, r int) { //[l,r]
+	if l < r {
+		m := partition(nums, l, r)
+		quickSort(nums, l, m-1)
+		quickSort(nums, m+1, r)
+	}
+}
+
+func partition(nums []int, l int, r int) int {
+	key := nums[r]
+	i, j := l, l
+	for j < r {
+		if nums[j] < key {
+			nums[i], nums[j] = nums[j], nums[i]
+			i++
+		}
+		j++
+	}
+	nums[i], nums[r] = nums[r], nums[i]
+	return i
+}
+
+
+// 解决栈溢问题
+func qsort(arr []int, left, right int) {
+	if left > right {
+		return
+	}
+	pivot := arr[right]
+	i, j := left, right
+	for i < j {
+		for i < j && pivot < arr[j] {
+			j--
+		}
+		for i < j && pivot >= arr[i] {
+			i++
+		}
+		arr[i], arr[j] = arr[j], arr[i]
+	}
+	qsort(arr, left, i-1)
+	qsort(arr, i+1, right)
+}
+
+
+```
 ## 内置库使用快排的原因
 首先堆排序，归并排序最好最坏时间复杂度都是： O(nlogn) ，而快速排序最坏的时间复杂度是： O(n^2) ，但是很多编程语言内置的排序算法使用的仍然是快速排序，这是为什么？
 1. 这个问题有偏颇，选择排序算法要看具体的场景， Linux 内核用的排序算法就是堆排序，而Java 对于数量比较多的复杂对象排序，内置排序使用的是归并排序，只是一般情况下，快速排序更快。

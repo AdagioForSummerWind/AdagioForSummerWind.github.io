@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>微服务 - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+        <description>微服务 - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="self" type="application/rss+xml" /><item>
+    <title>微服务</title>
+    <link>https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+    <description><![CDATA[微服务 1、您对微服务有何了解？ 微服务，又称微服务架构，是一种架构风格，它将应用程序构建为以业务领域为模型的小型自治服务集合。 通俗地说，你必须]]></description>
+</item></channel>
+</rss>
