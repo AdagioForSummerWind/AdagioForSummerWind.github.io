@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  5051 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  5054 ,
         "url": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/","datePublished": "2022-06-28T15:30:06+08:00","dateModified": "2022-08-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">interview-zj</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/interview/"><i class="far fa-folder fa-fw"></i>interview</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5051 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5054 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -173,7 +173,7 @@
 <h2 id="epollselectpoll-区别">epoll、select、poll 区别</h2>
 <p>select 机制刚开始的时候，需要把 fd_set 从<code>用户空间拷贝到内核空间</code>，并且检测的 fd 数是有限制的，由 <code>FD_SETSIZE</code> 设置，一般是1024。<code>数组实现</code>。</p>
 <p>poll 的实现和 select 非常相似，只是描述 fd集合 的方式不同，poll使用 <code>pollfd结构 </code>而不是 select的 fd_set 结构，其他的都差不多。<code>链表实现</code>。</p>
-<p>epol l引入了 <code>epoll_ctl系统调用</code>，将高频调用的 epoll_wait 和低频的 epoll_ctl 隔离开。epoll_ctl 通过(EPOLL_CTL_ADD、EPOLL_CTL_MOD、EPOLL_CTL_DEL)三个操作来分散对需要监控的fds集合的修改，做到了有变化才变更，<strong>将select或poll高频、大块内存拷贝(集中处理)变成epoll_ctl的低频、小块内存的拷贝(分散处理)，避免了大量的内存拷贝。</strong> epoll使用 <code>红黑树</code> 来组织监控的fds集合</p>
+<p>epoll引入了 <code>epoll_ctl系统调用</code>，将高频调用的 epoll_wait 和低频的 epoll_ctl 隔离开。epoll_ctl 通过(EPOLL_CTL_ADD、EPOLL_CTL_MOD、EPOLL_CTL_DEL)三个操作来分散对需要监控的fds集合的修改，做到了有变化才变更，<strong>将select或poll高频、大块内存拷贝(集中处理)变成epoll_ctl的低频、小块内存的拷贝(分散处理)，避免了大量的内存拷贝。</strong> epoll使用 <code>红黑树</code> 来组织监控的fds集合</p>
 <h2 id="epoll-的水平触发和边缘触发的区别">epoll 的水平触发和边缘触发的区别</h2>
 <p>Edge Triggered (ET) 边沿触发：</p>
 <ol>

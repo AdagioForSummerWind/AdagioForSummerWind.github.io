@@ -20,11 +20,11 @@ draft: false
 ## 一面
 ##  epoll、select、poll 区别
 
-select 机制刚开始的时候，需要把 fd_set 从`用户空间拷贝到内核空间`，并且检测的 fd 数是有限制的，由 `FD_SETSIZE` 设置，一般是1024。`数组实现`。
+select 机制刚开始的时候，需要把 fd_set 从`用户空间拷贝到内核空间`，并且检测的 fd 数是有限制的，由 `FD_SETSIZE` 设置，一般是1024。`数组实现`。	
 
 poll 的实现和 select 非常相似，只是描述 fd集合 的方式不同，poll使用 `pollfd结构 `而不是 select的 fd_set 结构，其他的都差不多。`链表实现`。
 
-epol l引入了 `epoll_ctl系统调用`，将高频调用的 epoll_wait 和低频的 epoll_ctl 隔离开。epoll_ctl 通过(EPOLL_CTL_ADD、EPOLL_CTL_MOD、EPOLL_CTL_DEL)三个操作来分散对需要监控的fds集合的修改，做到了有变化才变更，**将select或poll高频、大块内存拷贝(集中处理)变成epoll_ctl的低频、小块内存的拷贝(分散处理)，避免了大量的内存拷贝。** epoll使用 `红黑树` 来组织监控的fds集合
+epoll引入了 `epoll_ctl系统调用`，将高频调用的 epoll_wait 和低频的 epoll_ctl 隔离开。epoll_ctl 通过(EPOLL_CTL_ADD、EPOLL_CTL_MOD、EPOLL_CTL_DEL)三个操作来分散对需要监控的fds集合的修改，做到了有变化才变更，**将select或poll高频、大块内存拷贝(集中处理)变成epoll_ctl的低频、小块内存的拷贝(分散处理)，避免了大量的内存拷贝。** epoll使用 `红黑树` 来组织监控的fds集合
 
 ##  epoll 的水平触发和边缘触发的区别
 

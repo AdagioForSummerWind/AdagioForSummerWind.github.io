@@ -49,6 +49,13 @@
     <guid>https://jefofrank.xyz/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
     <description><![CDATA[微服务 1、您对微服务有何了解？ 微服务，又称微服务架构，是一种架构风格，它将应用程序构建为以业务领域为模型的小型自治服务集合。 通俗地说，你必须]]></description>
 </item><item>
+    <title>消息队列</title>
+    <link>https://jefofrank.xyz/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid>
+    <description><![CDATA[1、Kafka 是什么？主要应用场景有哪些？ Kafka 是一个分布式流式处理平台。 流平台具有三个关键功能： ⚫ 消息队列：发布和订阅消息流，这个功能类似于消]]></description>
+</item><item>
     <title>缓存</title>
     <link>https://jefofrank.xyz/%E7%BC%93%E5%AD%98/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/interesting_talk_linux/</guid>
     <description><![CDATA[趣谈Linux操作系统 入门准备 开篇词 | 为什么要学习Linux操作系统？ 刘超 2019-03-25 我们大学里上过操作系统的课，而且每天都在用操作系统，为什么还要专]]></description>
-</item><item>
-    <title>Redis_geek</title>
-    <link>https://jefofrank.xyz/redis_geek/</link>
-    <pubDate>Wed, 20 Jul 2022 23:45:02 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/redis_geek/</guid>
-    <description><![CDATA[开篇词 | 这样学Redis，才能技高一筹 蒋德钧 2020-08-03 作为键值数据库，Redis 的应用非常广泛，如果你是后端工程师，我猜你出去面试，八成都会被问到与]]></description>
 </item></channel>
 </rss>
