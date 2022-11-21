@@ -1549,6 +1549,38 @@ func repeatedSubstringPattern(s string) bool {
 
 ## 双指针法
 双指针法（快慢指针法）在数组和链表的操作中是非常常见的，很多考察数组、链表、字符串等操作的面试题，都使用双指针法。
+### 接雨水
+输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+输出：6
+
+```go
+func trap(height []int) (ans int) {
+    left, right := 0, len(height)-1
+    leftMax, rightMax := 0, 0
+    for left < right {
+        leftMax = max(leftMax, height[left])
+        rightMax = max(rightMax, height[right])
+        if height[left] < height[right] {
+            ans += leftMax - height[left]
+            left++
+        } else {
+            ans += rightMax - height[right]
+            right--
+        }
+    }
+    return
+}
+
+func max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+```
+也可以用动态规划。
+
+
 ### 移除元素
 
 给你一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，并返回移除后数组的新长度。

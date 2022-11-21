@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/algorithm_carl\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data structure","wordcount":  57638 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data structure","wordcount":  57758 ,
         "url": "https:\/\/jefofrank.xyz\/algorithm_carl\/","datePublished": "2022-01-06T08:17:33+08:00","dateModified": "2022-10-29T21:27:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Algorithm_carl</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coding/"><i class="far fa-folder fa-fw"></i>Coding</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 08:17:33">2022-01-06 08:17:33</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 57638 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 08:17:33">2022-01-06 08:17:33</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 57758 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 116 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -190,6 +190,7 @@
     </li>
     <li><a href="#双指针法">双指针法</a>
       <ul>
+        <li><a href="#接雨水">接雨水</a></li>
         <li><a href="#移除元素-1">移除元素</a></li>
         <li><a href="#反转字符串-1">反转字符串</a></li>
         <li><a href="#替换空格-1">替换空格</a></li>
@@ -3095,6 +3096,62 @@ canConstruct(&ldquo;aa&rdquo;, &ldquo;aab&rdquo;) -&gt; true</p>
 </div>
 </div><h2 id="双指针法">双指针法</h2>
 <p>双指针法（快慢指针法）在数组和链表的操作中是非常常见的，很多考察数组、链表、字符串等操作的面试题，都使用双指针法。</p>
+<h3 id="接雨水">接雨水</h3>
+<p>输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+输出：6</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">trap</span><span class="p">(</span><span class="nx">height</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">ans</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">height</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="nx">leftMax</span><span class="p">,</span> <span class="nx">rightMax</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">left</span> <span class="p">&lt;</span> <span class="nx">right</span> <span class="p">{</span>
+        <span class="nx">leftMax</span> <span class="p">=</span> <span class="nf">max</span><span class="p">(</span><span class="nx">leftMax</span><span class="p">,</span> <span class="nx">height</span><span class="p">[</span><span class="nx">left</span><span class="p">])</span>
+        <span class="nx">rightMax</span> <span class="p">=</span> <span class="nf">max</span><span class="p">(</span><span class="nx">rightMax</span><span class="p">,</span> <span class="nx">height</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nx">height</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">height</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="p">{</span>
+            <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">leftMax</span> <span class="o">-</span> <span class="nx">height</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span>
+            <span class="nx">left</span><span class="o">++</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">rightMax</span> <span class="o">-</span> <span class="nx">height</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span>
+            <span class="nx">right</span><span class="o">--</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">max</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">b</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以用动态规划。</p>
 <h3 id="移除元素-1">移除元素</h3>
 <p>给你一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，并返回移除后数组的新长度。</p>
 <p>不要使用额外的数组空间，你必须仅使用 $O(1)$ 额外空间并原地修改输入数组。</p>

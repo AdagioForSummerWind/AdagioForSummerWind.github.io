@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/goetc\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go","wordcount":  16907 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go","wordcount":  16928 ,
         "url": "https:\/\/jefofrank.xyz\/goetc\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-18T23:15:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">go</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 16907 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 16928 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 34 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -143,7 +143,6 @@
           <ul>
             <li><a href="#原子操作">原子操作</a></li>
             <li><a href="#13原子操作和锁的区别">13、原子操作和锁的区别</a></li>
-            <li><a href="#13原子操作和锁的区别-1">13、原子操作和锁的区别</a></li>
             <li><a href="#14什么是-cas">14、什么是 CAS</a></li>
           </ul>
         </li>
@@ -151,7 +150,6 @@
           <ul>
             <li><a href="#21golang-slice-的底层实现">21、Golang Slice 的底层实现</a></li>
             <li><a href="#切片和数组的区别">切片和数组的区别？</a></li>
-            <li><a href="#为什么切片的应用比数组多">为什么切片的应用比数组多？</a></li>
             <li><a href="#切片的访问的复杂度">切片的访问的复杂度？</a></li>
             <li><a href="#切片的扩容机制">切片的扩容机制？</a></li>
             <li><a href="#为什么切片底层不用链表">为什么切片底层不用链表？</a></li>
@@ -281,7 +279,6 @@
 <ul>
 <li><a href="#%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c" rel="">原子操作</a></li>
 <li><a href="#13%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c%e5%92%8c%e9%94%81%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">13、原子操作和锁的区别</a></li>
-<li><a href="#13%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c%e5%92%8c%e9%94%81%e7%9a%84%e5%8c%ba%e5%88%ab-1" rel="">13、原子操作和锁的区别</a></li>
 <li><a href="#14%e4%bb%80%e4%b9%88%e6%98%af-cas" rel="">14、什么是 CAS</a></li>
 </ul>
 </li>
@@ -289,7 +286,6 @@
 <ul>
 <li><a href="#21golang-slice-%e7%9a%84%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" rel="">21、Golang Slice 的底层实现</a></li>
 <li><a href="#%e5%88%87%e7%89%87%e5%92%8c%e6%95%b0%e7%bb%84%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">切片和数组的区别？</a></li>
-<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%88%87%e7%89%87%e7%9a%84%e5%ba%94%e7%94%a8%e6%af%94%e6%95%b0%e7%bb%84%e5%a4%9a" rel="">为什么切片的应用比数组多？</a></li>
 <li><a href="#%e5%88%87%e7%89%87%e7%9a%84%e8%ae%bf%e9%97%ae%e7%9a%84%e5%a4%8d%e6%9d%82%e5%ba%a6" rel="">切片的访问的复杂度？</a></li>
 <li><a href="#%e5%88%87%e7%89%87%e7%9a%84%e6%89%a9%e5%ae%b9%e6%9c%ba%e5%88%b6" rel="">切片的扩容机制？</a></li>
 <li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%88%87%e7%89%87%e5%ba%95%e5%b1%82%e4%b8%8d%e7%94%a8%e9%93%be%e8%a1%a8" rel="">为什么切片底层不用链表？</a></li>
@@ -416,7 +412,43 @@
 <p>包 (pkg) 是 Go 工作区中包含 Go 源文件或其他包的目录。每个 Go 源文件都属于一个包</p>
 <h4 id="6-如何在运行时检查变量类型">6、 如何在运行时检查变量类型？</h4>
 <p>类型开关(Type Switch)是在运行时检查变量类型的最佳方式。类型开关按类型而不是值来评估变量。每个 Switch 至少包含一个 case 用作条件语句，如果没有一个 case 为真，则执行 default。</p>
-<h4 id="go包初始化顺序">go包初始化顺序</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">do</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+ <span class="k">switch</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Twice %v is %v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">v</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+ <span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%q is %v bytes long\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
+ <span class="k">default</span><span class="p">:</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;I don&#39;t know about type %T!\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+ <span class="nf">do</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+ <span class="nf">do</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+ <span class="nf">do</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="go包初始化顺序">go包初始化顺序</h4>
 <p><strong>从main包开始按照深度优先初始化main包的依赖包，初始化一个包时的顺序是初始化依赖包、常量、变量、init()，回到main包时同样初始化常量、变量、init()，再执行main()函数。</strong></p>
 <h4 id="12go-convey-是什么一般用来做什么">12、Go Convey 是什么？一般用来做什么？</h4>
 <ul>
@@ -429,17 +461,13 @@
 make 初始化一个引用类型的实例</p>
 <h3 id="atomic">atomic</h3>
 <h4 id="原子操作">原子操作</h4>
-<p>原子操作即是进行过程中不能被中断的操作，针对某个值的原子操作在被进行的过程中，CPU 绝不会再去进行其他的针对该值的操作。为了实现这样的严谨性，原子操作仅会由一个独立的 CPU 指令代表和完成。原子操作是无锁的，常常直接通过 CPU 指令直接实现。 事实上，其它同步技术的实现常常依赖于原子操作。</p>
+<p>原子操作即是进行过程中不能被中断的操作，针对某个值的原子操作在被进行的过程中，CPU 绝不会再去进行其他的针对该值的操作。为了实现这样的严谨性，原子操作仅会由一个独立的 CPU 指令代表和完成。原子操作是无锁的，<strong>常常直接通过 CPU 指令直接实现</strong>。 事实上，其它同步技术的实现常常依赖于原子操作。</p>
 <h4 id="13原子操作和锁的区别">13、原子操作和锁的区别</h4>
-<p>原子操作由底层硬件支持，而锁则由操作系统的调度器实现。锁应当用来保护一段逻辑，对于一个变量更新的保护。原子操作通常执行上会更有效率，并且更能利用计算机多核的优势，如果要更新的是一个复合对象，则应当使用 atomic.Value 封装好的实现。</p>
-<h4 id="13原子操作和锁的区别-1">13、原子操作和锁的区别</h4>
 <p>原子操作由底层硬件支持，而锁则由操作系统的调度器实现。
 锁应当用来保护一段逻辑，对于一个变量更新的保护。
-原子操作通常执行上会更有效率，并且更能利用计算机多核的优势，如果要更
-新的是一个复合对象，则应当使用 atomic.Value 封装好的实现。</p>
+原子操作通常执行上会更有效率，并且更能利用计算机多核的优势，如果要更新的是一个复合对象，则应当使用 atomic.Value 封装好的实现。</p>
 <h4 id="14什么是-cas">14、什么是 CAS</h4>
-<p>CAS 的全称为 Compare And Swap，直译就是比较交换。是一条 CPU 的原子指令，其作用是让 CPU 先进行比较两个值是否相等，然后原子地更新某个位置的
-值，其实现方式是给予硬件平台的汇编指令，在 intel 的 CPU 中，使用的cmpxchg 指令，就是说 CAS 是靠硬件实现的，从而在硬件层面提升效率。</p>
+<p>CAS 的全称为 Compare And Swap，直译就是比较交换。是一条 <strong>CPU 的原子指令</strong>，其作用是<strong>让 CPU 先进行比较两个值是否相等，然后原子地更新某个位置的值，其实现方式是给予硬件平台的汇编指令</strong>，在 intel 的 CPU 中，使用的cmpxchg 指令，就是说 CAS 是靠硬件实现的，从而在硬件层面提升效率。</p>
 <p>简述过程是这样： 
 假设包含 3 个参数内存位置(V)、预期原值(A)和新值(B)。V 表示要更新变量的值，E 表示预期值，N 表示新值。仅当 V 值等于 E 值时，才会将 V 的值设为 N，如果 V 值和 E 值不同，则说明已经有其他线程在做更新，则当前线程什么都不做，最后 CAS 返回当前 V 的真实值。CAS 操作时抱着乐观的态度进行的，它总是认为自己可以成功完成操作。基于这样的原理，CAS 操作即使没有锁，也可以发现其他线程对于当前线程的干扰。</p>
 <h3 id="slice">slice</h3>
@@ -454,8 +482,6 @@ make 初始化一个引用类型的实例</p>
 <h4 id="切片和数组的区别">切片和数组的区别？</h4>
 <p>数据类型不同。这是从数据结构上决定的，因为数组的数据结构只有元素类型和长度，而切片的数据结构是一个结构体，结构体有一个指向数组的指针，长度和容量，所以切片是一个引用类型而不是像数组一样的不可变的值类型。</p>
 <p>额外一点说，在 go 中虽然函数传递中是值传递的，但是由于切片的数据结构中的结构体里面包含了指针，所以函数传递的时候会将指针的值拷贝走，从结果来说会操作到同一个切片。</p>
-<h4 id="为什么切片的应用比数组多">为什么切片的应用比数组多？</h4>
-<p>在日常业务上，更需要存储一个可变的序列。业务中有一个确定的长度序列的场景是比较少的，或者说要确定一个序列的长度是会需要做额外的操作损耗性能的。</p>
 <h4 id="切片的访问的复杂度">切片的访问的复杂度？</h4>
 <p>切片的底层实现是一块连续的内存地址，所以能进行 O(1) 的随机访问元素。 具体的源码都是在编译时编译好（类似于 内存地址=元素类型*下标，不在此处细究。</p>
 <h4 id="切片的扩容机制">切片的扩容机制？</h4>
@@ -468,7 +494,8 @@ make 初始化一个引用类型的实例</p>
 <hr>
 <h3 id="map">map</h3>
 <h4 id="25golang-map-底层实现">25、Golang Map 底层实现</h4>
-<p>Golang 中 map 的底层实现是一个散列表，因此实现 map 的过程实际上就是实现散表的过程。在这个散列表中，主要出现的结构体有两个，一个叫 hmap(a header for a go map)，一个叫 bmap(a bucket for a Go map，通常叫其bucket)。</p>
+<p>Golang 中 map 的底层实现是一个散列表，因此实现 map 的过程实际上就是实现散表的过程。在这个散列表中，主要出现的结构体有两个，一个叫 hmap(a header for a go map,包含一些信息比如键值对数量，指向哈希桶数组的指针等等)，一个叫 bmap(a bucket for a Go map，通常叫其bucket,Go map 的一个哈希桶，一个桶最多存放8个键值对)。</p>
+<p><strong>当往map中存储一个kv对时，通过k获取hash值，hash值的低八位和bucket数组长度取余，定位到在数组中的那个下标，hash值的高八位存储在bucket中的tophash中，用来快速判断key是否存在，当一个bucket满时，通过overfolw指针链接到下一个bucket。</strong></p>
 <h4 id="map-的扩容机制">map 的扩容机制？</h4>
 <p>分为了翻倍扩容、等量扩容。还有确定了要扩容后，使用的是渐进式扩容去避免性能抖动。</p>
 <p>扩容的触发条件有两个，状态装载因子超过 6.5（现在的桶装在的元素超过 80 %），也就是元素太多了，或者溢出桶太多（逻辑是判断现在桶的总数是否超过 map 结构体中的设置值，如果超过说明太多溢出桶），也就是太多元素被删除，元素非常稀疏。 前者会使用翻倍扩容，会申请现有翻倍的空间。当有读操作时仍会访问旧桶，当有插入或者删除操作的时候会将旧桶分流到两个新桶。后者会使用等倍扩容，重新申请一块和现有大小相同的新桶，也是使用渐进式扩容在插入或者删除操作中进行。</p>
