@@ -5,7 +5,7 @@ lastmod: 2022-01-08
 tags: [tips]
 categories: [2022]
 slug: CMD Vs Powershell Vs Bash
-draft: true
+draft: false
 ---
 
 # CMD Vs Powershell Vs Bash

@@ -10,6 +10,6 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/os/</guid>
-    <description><![CDATA[熟悉操作系统内存管理、进程线程、死锁等知识 操作系统 进程和线程 2、协程与线程的区别？ 3、并发和并行有什么区别？ 4、进程与线程的切换流程？ 5、为]]></description>
+    <description><![CDATA[熟悉操作系统内存管理、进程线程、死锁等知识 操作系统 进程和线程 2、协程与线程的区别？ 3、并发和并行有什么区别？ 虚拟内存，页表，TLB 4、进程与]]></description>
 </item></channel>
 </rss>

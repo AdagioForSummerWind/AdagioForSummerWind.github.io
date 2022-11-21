@@ -7,6 +7,10 @@ categories: [Coding]
 slug: algo_sort
 draft: true
 ---
+
+> https://segmentfault.com/a/1190000039668324
+> https://www.cnblogs.com/onepixel/p/7674659.html
+
 # 排序算法
 ![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20220220204617.png)
 
@@ -17,8 +21,47 @@ draft: true
 冒泡排序，直接选择排序，直接插入排序被认为是初级的排序算法。中等规模用希尔排序，大规模排序使用快排、归并、堆排序这些高级排序算法。快排综合性能最好，甚至成为了很多编程库内置的排序算法。
 ## 冒泡
 时间复杂度一般是$O(n^2)$。冒泡排序是效率较低的排序算法，可以说是最慢的排序算法了，我们只需知道它是什么，在实际编程中一定不能使用如此之慢的排序算法!
+```go
+// 冒泡排序 (bubble sort)
+package sorts
+
+func bubbleSort(arr []int) []int {
+    swapped := true
+    for swapped {
+        swapped = false
+        for i := 0; i < len(arr)-1; i++ {
+            if arr[i+1] < arr[i] {
+                arr[i+1], arr[i] = arr[i], arr[i+1]
+                swapped = true
+            }
+        }
+    }
+    return arr
+}
+```
 ## 选择
 效率同样低下的排序算法。可以在每次循环选择时既选择最小的数，也选择最大的数，以减少循环次数达到优化的目的。工程上同样避免使用。
+```go
+// 选择排序 (selection sort)
+package sorts
+
+func SelectionSort(arr []int) []int {
+
+    for i := 0; i < len(arr); i++ {
+        min := i
+        for j := i + 1; j < len(arr); j++ {
+            if arr[j] < arr[min] {
+                min = j
+            }
+        }
+
+        tmp := arr[i]
+        arr[i] = arr[min]
+        arr[min] = tmp
+    }
+    return arr
+}
+```
 ## 插入
 时间复杂度：$O(n)-O(n^2)$
 
@@ -50,33 +93,26 @@ func insertionSortList(head *ListNode) *ListNode {
     }
     return dummyHead.Next
 }
-
 ```
-
 ```go
-func insertionSortList(head *ListNode)*ListNode{
-    if head == nil {
-        return nil
-    }
-    dummyHead := &ListNode{Next: head}
+// 插入排序 (insertion sort)
 
-    lastSorted, curr := head, head.Next
-    for curr != nil {
-        if lastSorted.Val <= curr.Val {
-            lastSorted = lastSorted.Next            
-        } else {
-            prev := dummyHead
-            for prev.Next.Val <= curr.Val {
-                prev = prev.Next
+func insertSort(a []int)[]int{
+    for i:=1;i<len(a)&&a[i]>0;i++{
+        j,temp:=i-1,a[i]
+        for a[i]>a[j] {
+            if j==0 {
+                j--
+                break
             }
-            lastSorted.Next = curr.Next
-            curr.Next = prev.Next
-            prev.Next = curr
+            j--
         }
-        curr = lastSorted.Next
-
+        for x:=i-1;x>j;x--{
+            a[x+1]=a[x]
+        }
+        a[j+1]=temp
     }
-    return dummyHead.Next
+    return a
 }
 
 ```
@@ -99,7 +135,21 @@ func insertionSortList(head *ListNode)*ListNode{
 不同的分组增量序列，有不同的时间复杂度。**Hibbard 增量序列： 1，3，7，···，2n−1 是被证明可广泛应用的分组序列，时间复杂度为： Θ(n^1.5) 。**
 
 希尔排序的时间复杂度大约在这个范围： O(n^1.3)~O(n^2) ，具体还无法用数学来严格证明它。
+```go
+// 希尔排序 (shell sort)
+package sorts
 
+func ShellSort(arr []int) []int {
+    for d := int(len(arr) / 2); d > 0; d /= 2 { 
+        for i := d; i < len(arr); i++ {
+            for j := i; j >= d && arr[j-d] > arr[j]; j -= d {
+                arr[j], arr[j-d] = arr[j-d], arr[j]
+            }
+        }
+    }
+    return arr
+}
+```
 
 ## 归并
 分治法
@@ -138,6 +188,93 @@ func insertionSortList(head *ListNode)*ListNode{
 
 **归并排序是唯一一个有稳定性保证的高级排序算法，某些时候，为了寻求大规模数据下排序前后，相同元素位置不变，可以使用归并排序。**
 
+```go
+// 归并排序 (merge sort)
+package sorts
+
+func merge(a []int, b []int) []int {
+
+    var r = make([]int, len(a)+len(b))
+    var i = 0
+    var j = 0
+
+    for i < len(a) && j < len(b) {
+
+        if a[i] <= b[j] {
+            r[i+j] = a[i]
+            i++
+        } else {
+            r[i+j] = b[j]
+            j++
+        }
+
+    }
+
+    for i < len(a) {
+        r[i+j] = a[i]
+        i++
+    }
+    for j < len(b) {
+        r[i+j] = b[j]
+        j++
+    }
+
+    return r
+
+}
+
+// Mergesort 合并两个数组
+func Mergesort(items []int) []int {
+
+    if len(items) < 2 {
+        return items
+
+    }
+
+    var middle = len(items) / 2
+    var a = Mergesort(items[:middle])
+    var b = Mergesort(items[middle:])
+    return merge(a, b)
+
+}
+```
+```go
+func MergeSort(nums []int) []int {
+    return mergeSort(nums)
+}
+func mergeSort(nums []int) []int {
+    if len(nums) <= 1 {
+        return nums
+    }
+    // 分治法：divide 分为两段
+    mid := len(nums) / 2
+    left := mergeSort(nums[:mid])
+    right := mergeSort(nums[mid:])
+    // 合并两段数据
+    result := merge(left, right)
+    return result
+}
+func merge(left, right []int) (result []int) {
+    // 两边数组合并游标
+    l := 0
+    r := 0
+    // 注意不能越界
+    for l < len(left) && r < len(right) {
+        // 谁小合并谁
+        if left[l] > right[r] {
+            result = append(result, right[r])
+            r++
+        } else {
+            result = append(result, left[l])
+            l++
+        }
+    }
+    // 剩余部分合并
+    result = append(result, left[l:]...)
+    result = append(result, right[r:]...)
+    return
+}
+```
 ## 优先队列及堆
 堆排序属于选择类排序算法。
 
@@ -184,6 +321,54 @@ func insertionSortList(head *ListNode)*ListNode{
 - 构建最大堆步骤：
     - 先对最底部的所有非叶子节点进行下沉，即这些非叶子节点与它们的儿子节点比较，较大的儿子和父亲交换位置。
     - 接着从次二层开始的非叶子节点重复这个操作，直到到达根节点最大堆就构建好了
+
+
+```go
+// 堆排序 (heap sort)
+package sorts
+
+type maxHeap struct {
+    slice    []int
+    heapSize int
+}
+
+func buildMaxHeap(slice []int) maxHeap {
+    h := maxHeap{slice: slice, heapSize: len(slice)}
+    for i := len(slice) / 2; i >= 0; i-- {
+        h.MaxHeapify(i)
+    }
+    return h
+}
+
+func (h maxHeap) MaxHeapify(i int) {
+    l, r := 2*i+1, 2*i+2
+    max := i
+
+    if l < h.size() && h.slice[l] > h.slice[max] {
+        max = l
+    }
+    if r < h.size() && h.slice[r] > h.slice[max] {
+        max = r
+    }
+    if max != i {
+        h.slice[i], h.slice[max] = h.slice[max], h.slice[i]
+        h.MaxHeapify(max)
+    }
+}
+
+func (h maxHeap) size() int { return h.heapSize } 
+
+func HeapSort(slice []int) []int {
+    h := buildMaxHeap(slice)
+    for i := len(h.slice) - 1; i >= 1; i-- {
+        h.slice[0], h.slice[i] = h.slice[i], h.slice[0]
+        h.heapSize--
+        h.MaxHeapify(0)
+    }
+    return h.slice
+}
+```
+
 ## 快速
 亦使用了分治法。
 
@@ -325,6 +510,88 @@ func qsort(arr []int, left, right int) {
 
 
 ```
+
+
+```go
+// 三向切分快速排序 (quick sort)
+package sorts
+
+import (
+    "math/rand"
+)
+
+func QuickSort(arr []int) []int {
+
+    if len(arr) <= 1 {
+        return arr
+    }
+
+    pivot := arr[rand.Intn(len(arr))]
+
+    lowPart := make([]int, 0, len(arr))
+    highPart := make([]int, 0, len(arr))
+    middlePart := make([]int, 0, len(arr))
+
+    for _, item := range arr {
+        switch {
+        case item < pivot:
+            lowPart = append(lowPart, item)
+        case item == pivot:
+            middlePart = append(middlePart, item)
+        case item > pivot:
+            highPart = append(highPart, item)
+        }
+    }
+
+    lowPart = QuickSort(lowPart)
+    highPart = QuickSort(highPart)
+
+    lowPart = append(lowPart, middlePart...)
+    lowPart = append(lowPart, highPart...)
+
+    return lowPart
+}
+```
+
+```go
+func QuickSort(nums []int) []int {
+    // 思路：把一个数组分为左右两段，左段小于右段
+    quickSort(nums, 0, len(nums)-1)
+    return nums
+
+}
+// 原地交换，所以传入交换索引
+func quickSort(nums []int, start, end int) {
+    if start < end {
+        // 分治法：divide
+        pivot := partition(nums, start, end)
+        quickSort(nums, 0, pivot-1)
+        quickSort(nums, pivot+1, end)
+    }
+}
+// 分区
+func partition(nums []int, start, end int) int {
+    // 选取最后一个元素作为基准pivot
+    p := nums[end]
+    i := start
+    // 最后一个值就是基准所以不用比较
+    for j := start; j < end; j++ {
+        if nums[j] < p {
+            swap(nums, i, j)
+            i++
+        }
+    }
+    // 把基准值换到中间
+    swap(nums, i, end)
+    return i
+}
+// 交换两个元素
+func swap(nums []int, i, j int) {
+    t := nums[i]
+    nums[i] = nums[j]
+    nums[j] = t
+}
+```
 ## 内置库使用快排的原因
 首先堆排序，归并排序最好最坏时间复杂度都是： O(nlogn) ，而快速排序最坏的时间复杂度是： O(n^2) ，但是很多编程语言内置的排序算法使用的仍然是快速排序，这是为什么？
 1. 这个问题有偏颇，选择排序算法要看具体的场景， Linux 内核用的排序算法就是堆排序，而Java 对于数量比较多的复杂对象排序，内置排序使用的是归并排序，只是一般情况下，快速排序更快。
@@ -341,3 +608,66 @@ func qsort(arr []int, left, right int) {
 在 Golang 中，标准库 sort 中对切片进行稳定排序：会先按照 20 个元素的范围，对整个切片分段进行插入排序，因为小数组插入排序效率高，然后再对这些已排好序的小数组进行归并排序。其中归并排序还使用了原地排序，节约了辅助空间。
 
 快速排序限制程序栈的层数为： 2*ceil(log(n+1)) ，当递归超过该层时表示程序栈过深，那么转为堆排序。
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 堆排序
+```go
+package main
+
+func HeapSort(a []int) []int {
+    // 1、无序数组a
+    // 2、将无序数组a构建为一个大根堆
+    for i := len(a)/2 - 1; i >= 0; i-- {
+        sink(a, i, len(a))
+    }
+    // 3、交换a[0]和a[len(a)-1]
+    // 4、然后把前面这段数组继续下沉保持堆结构，如此循环即可
+    for i := len(a) - 1; i >= 1; i-- {
+        // 从后往前填充值
+        swap(a, 0, i)
+        // 前面的长度也减一
+        sink(a, 0, i)
+    }
+    return a
+}
+func sink(a []int, i int, length int) {
+    for {
+        // 左节点索引(从0开始，所以左节点为i*2+1)
+        l := i*2 + 1
+        // 右节点索引
+        r := i*2 + 2
+        // idx保存根、左、右三者之间较大值的索引
+        idx := i
+        // 存在左节点，左节点值较大，则取左节点
+        if l < length && a[l] > a[idx] {
+            idx = l
+        }
+        // 存在右节点，且值较大，取右节点
+        if r < length && a[r] > a[idx] {
+            idx = r
+        }
+        // 如果根节点较大，则不用下沉
+        if idx == i {
+            break
+        }
+        // 如果根节点较小，则交换值，并继续下沉
+        swap(a, i, idx)
+        // 继续下沉idx节点
+        i = idx
+    }
+}
+func swap(a []int, i, j int) {
+    a[i], a[j] = a[j], a[i]
+}
+```

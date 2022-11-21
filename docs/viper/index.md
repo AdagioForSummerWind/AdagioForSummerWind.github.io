@@ -1,12 +1,5 @@
----
-title: "Viper"
-date: 2022-11-19T19:02:19+08:00
-lastmod: 2022-11-19
-tags: [tools]
-categories: [tools]
-slug: viper
-draft: true
----
+# Viper
+
 
 
 ### 配置解析神器：Viper 使用介绍
@@ -85,7 +78,7 @@ func main() {
     viper.SetConfigType("yaml") // 如果配置文件名中没有文件扩展名，则需要指定配置文件的格式，告诉viper以何种格式解析文件
   } else {
     viper.AddConfigPath(".")          // 把当前目录加入到配置文件的搜索路径中
-    viper.AddConfigPath("$HOME/.iam") // 配置文件搜索路径，可以设置多个配置文件搜索路径
+    viper.AddConfigPath("$DYTT_ROOT/config") // 配置文件搜索路径，可以设置多个配置文件搜索路径
     viper.SetConfigName("config")     // 配置文件名称（没有文件扩展名）
   }
 
@@ -102,7 +95,7 @@ Viper 支持设置多个配置文件搜索路径，需要**注意**添加搜索�
 如果通过搜索的方式查找配置文件，则需要**注意**，SetConfigName 设置的配置文件名是不带扩展名的，在搜索时 Viper 会在文件名之后追加文件扩展名，并尝试搜索所有支持的扩展类型。
 
 
-监听和重新读取配置文件。Viper 支持在运行时让应用程序实时读取配置文件，也就是热加载配置。可以通过 WatchConfig 函数热加载配置。在调用 WatchConfig 函数之前，需要确保已经添加了配置文件的搜索路径。另外，还可以为 Viper 提供一个回调函数，以便在每次发生更改时运行。这里我也给你个示例：
+监听和重新读取配置文件。Viper 支持在运行时让应用程序实时读取配置文件，也就是热加载配置。可以通过 WatchConfig 函数热加载配置。在调用 WatchConfig 函数之前，需要确保已经添加了配置文件的搜索路径。另外，还可以为 Viper 提供一个回调函数，以便在每次发生更改时运行。这里是个示例：
 
 
 ```go
@@ -112,7 +105,7 @@ viper.OnConfigChange(func(e fsnotify.Event) {
   fmt.Println("Config file changed:", e.Name)
 })
 ```
-我不**建议**在实际开发中使用热加载功能，因为即使配置热加载了，程序中的代码也不一定会热加载。例如：修改了服务监听端口，但是服务没有重启，这时候服务还是监听在老的端口上，会造成不一致。
+在实际开发中并不建议使用热加载功能，因为即使配置热加载了，程序中的代码也不一定会热加载。例如：修改了服务监听端口，但是服务没有重启，这时候服务还是监听在老的端口上，会造成不一致。
 
 
 设置配置值。我们可以通过 viper.Set() 函数来显式设置配置：
