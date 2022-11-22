@@ -1,6 +1,6 @@
 # WaitGroup 实现原理
 
-# WaitGroup 实现原理记录
+# WaitGroup 实现原理
 源码：
 ```go
 // go1.18 D:\Go1.18\src\sync\waitgroup.go

@@ -1,13 +1,13 @@
 ---
 title: "WaitGroup 实现原理"
-date: 2022-11-19T19:02:19+08:00
-lastmod: 2022-11-19
+date: 2022-06-19T19:02:19+08:00
+lastmod: 2022-06-19
 tags: [go]
 categories: [go]
 slug: WaitGroup
 draft: false
 ---
-# WaitGroup 实现原理记录
+# WaitGroup 实现原理
 源码：
 ```go
 // go1.18 D:\Go1.18\src\sync\waitgroup.go
