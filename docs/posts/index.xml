@@ -12,6 +12,13 @@
     <guid>https://jefofrank.xyz/viper/</guid>
     <description><![CDATA[配置解析神器：Viper 使用介绍 几乎所有的后端服务，都需要一些配置项来配置我们的服务，一些小型的项目，配置不是很多，可以选择只通过命令行参数]]></description>
 </item><item>
+    <title>WaitGroup 实现原理</title>
+    <link>https://jefofrank.xyz/waitgroup/</link>
+    <pubDate>Sat, 19 Nov 2022 19:02:19 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/waitgroup/</guid>
+    <description><![CDATA[WaitGroup 实现原理记录 源码： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60]]></description>
+</item><item>
     <title>go</title>
     <link>https://jefofrank.xyz/goetc/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/%E7%BC%93%E5%AD%98/</guid>
     <description><![CDATA[缓存如何实现高性能 缓存如何实现高并发 3、Redis 和 Memcached 的区别 Redis 拥有更多的数据结构和丰富的数据操作 Redis 内存利用率高于 Memcached Redis 是单线程，Memcach]]></description>
-</item><item>
-    <title>计网</title>
-    <link>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</link>
-    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/%E8%AE%A1%E7%BD%91/</guid>
-    <description><![CDATA[计网 Get和Post区别 Http请求的完全过程 计算机网络的五层模型 TCP/IP 四层协议栈 OSI七层： tcp和udp区别 tcp和udp的优点 三次握手 为什]]></description>
 </item></channel>
 </rss>

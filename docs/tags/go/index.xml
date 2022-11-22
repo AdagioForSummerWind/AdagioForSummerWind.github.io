@@ -4,7 +4,14 @@
         <link>https://jefofrank.xyz/tags/go/</link>
         <description>go - 标签 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/go/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 19 Nov 2022 19:02:19 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>WaitGroup 实现原理</title>
+    <link>https://jefofrank.xyz/waitgroup/</link>
+    <pubDate>Sat, 19 Nov 2022 19:02:19 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/waitgroup/</guid>
+    <description><![CDATA[WaitGroup 实现原理记录 源码： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60]]></description>
+</item><item>
     <title>go</title>
     <link>https://jefofrank.xyz/goetc/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
