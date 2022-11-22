@@ -155,10 +155,10 @@ func (wg *WaitGroup) Wait() {
 }
 ```
 
-- WaitGroup 底层是一个结构体，逻辑上包含两个关键属性，`state`( `counter` 和 `waiter` 构成) 和 `sema` ，由`state1` `state2` 两个字段得到，考虑到内存对齐以及并发安全 对不同位数 OS 有着不同的设计
+- `WaitGroup` 底层是一个结构体，逻辑上包含两个关键属性，`state`( `counter` 和 `waiter` 构成) 和 `sema` ，由`state1` `state2` 两个字段得到，考虑到内存对齐以及并发安全 对不同位数 OS 有着不同的设计
 - `counter` 代表目前尚未调用的`WaitGroup.Done()` 的 `groutine` 的个数。`WaitGroup.Add(n)` 将会导致 `counter += n`, 而 `WaitGroup.Done()` 将导致 `counter--`。
 - `waiter` 代表目前已调用 `WaitGroup.Wait()` 的 `goroutine` 的个数。
-- `sema` 对应于 `golang` 中 `runtime` 内部的信号量的实现。`WaitGroup` 中会用到 `sema` 的两个相关函数，`runtime_Semacquire` 和 `runtime_Semrelease`。`runtime_Semacquire` 表示增加一个信号量，并挂起 当前 goroutine。`runtime_Semrelease` 表示减少一个信号量，并唤醒 sema 上其中一个正在等待的 goroutine。
+- `sema` 对应于 `golang` 中 `runtime` 内部的信号量的实现。`WaitGroup` 中会用到 `sema` 的两个相关函数，`runtime_Semacquire` 和 `runtime_Semrelease`。`runtime_Semacquire` 表示增加一个信号量，并挂起 当前 `goroutine` 。`runtime_Semrelease` 表示减少一个信号量，并唤醒 sema 上其中一个正在等待的 `goroutine`。
 - 对于64位对齐的情况，`state` 就是字段 `state1` 的值，`sema` 就是字段 `state2` 的值
 - 对于32位对齐的情况，`state` 是字段 `state1` 的低32位加上`state2` ，`sema` 是 `state1` 的高32位。
 
