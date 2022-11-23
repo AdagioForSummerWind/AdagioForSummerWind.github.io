@@ -1,5 +1,5 @@
 ---
-title: "OS"
+title: "Linux"
 date: 2022-11-03T23:45:02+08:00
 lastmod: 2022-11-03
 tags: [Linux]

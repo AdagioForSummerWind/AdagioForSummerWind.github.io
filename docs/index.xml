@@ -21,6 +21,13 @@
     <guid>https://jefofrank.xyz/k8s/</guid>
     <description><![CDATA[60道常见的Kubernetes面试题总结 简述etcd及其特点 简述etcd适应的场景 简述什么是Kubernetes 简述Kubernetes和]]></description>
 </item><item>
+    <title>Linux</title>
+    <link>https://jefofrank.xyz/linux/</link>
+    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/linux/</guid>
+    <description><![CDATA[linux linux 基础 1. 什么是Linux 2. Windows和Linux的区别 3. Unix和Linux有什么区别？ 4. 什么是 Linux 内核？ 5. Linux的基本组件是什么？]]></description>
+</item><item>
     <title>MongoDB</title>
     <link>https://jefofrank.xyz/mongodb/</link>
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
@@ -34,13 +41,6 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/mysql/</guid>
     <description><![CDATA[mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL]]></description>
-</item><item>
-    <title>OS</title>
-    <link>https://jefofrank.xyz/linux/</link>
-    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/linux/</guid>
-    <description><![CDATA[linux linux 基础 1. 什么是Linux 2. Windows和Linux的区别 3. Unix和Linux有什么区别？ 4. 什么是 Linux 内核？ 5. Linux的基本组件是什么？]]></description>
 </item><item>
     <title>OS</title>
     <link>https://jefofrank.xyz/os/</link>
