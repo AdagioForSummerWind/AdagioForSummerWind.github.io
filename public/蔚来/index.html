@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="文章目录 ​ ​一面​​ ​ ​1. channel 缓冲与非缓冲​​ ​ ​2. mysql引擎​​ ​ ​3. 索引如何建立？​​ ​ ​4. linux 如何看进程​​ ​ ​5. redis 字符串的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="文章目录 ​ ​一面​​ ​ ​1. channel 缓冲与非缓冲​​ ​ ​2. mysql引擎​​ ​ ​3. 索引如何建立？​​ ​ ​4. linux 如何看进程​​ ​ ​5. redis 字符串的"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" /><link rel="next" href="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E8%94%9A%E6%9D%A5\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  7486 ,
+        "url": "https:\/\/jefofrank.xyz\/%E8%94%9A%E6%9D%A5\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7486 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#文章目录">文章目录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#一面">一面</a>
+      <ul>
+        <li><a href="#1-channel-缓冲与非缓冲">1. channel 缓冲与非缓冲</a></li>
+        <li><a href="#2-mysql引擎">2. mysql引擎</a></li>
+        <li><a href="#3-索引如何建立">3. 索引如何建立？</a></li>
+        <li><a href="#4-linux-如何看进程">4. linux 如何看进程</a></li>
+        <li><a href="#5-redis-字符串的底层">5. redis 字符串的底层</a></li>
+        <li><a href="#6-线程池理解">6. 线程池理解</a></li>
+        <li><a href="#7-线程池的拒绝策略">7. 线程池的拒绝策略</a></li>
+        <li><a href="#8悲观锁乐观锁">8.悲观锁，乐观锁</a></li>
+        <li><a href="#9-http-各个版本的区别">9. HTTP 各个版本的区别</a></li>
+        <li><a href="#10-http20之前怎么实现服务器推送机制">10. HTTP2.0之前怎么实现服务器推送机制？</a></li>
+        <li><a href="#11-websocket有了解过吗">11. websocket有了解过吗？</a></li>
+        <li><a href="#12-什么时候可能产生内存泄漏">12. 什么时候可能产生内存泄漏？</a></li>
+        <li><a href="#13-页面置换算法有哪些">13. 页面置换算法有哪些？</a></li>
+        <li><a href="#14-内存映射">14. 内存映射?</a></li>
+        <li><a href="#算法最长公共子串">算法：最长公共子串</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-二面">2. 二面</a>
+      <ul>
+        <li><a href="#1-讲讲aes加密">1. 讲讲AES加密</a></li>
+        <li><a href="#2-那rsa有了解过吗">2. 那RSA有了解过吗</a></li>
+        <li><a href="#3-怎么理解公私钥以及签名">3. 怎么理解公私钥，以及签名</a></li>
+        <li><a href="#4-我看你用到了mq那这个rabbitmq消息会丢失吗">4. 我看你用到了MQ，那这个rabbitmq消息会丢失吗？</a>
+          <ul>
+            <li><a href="#发送方确认模式">发送方确认模式</a></li>
+            <li><a href="#接收方确认机制">接收方确认机制</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-mysql-乱序insert和有序insert区别补充-针对innodb引擎">5. MYSQL 乱序insert和有序insert区别？补充 针对innoDB引擎。</a></li>
+        <li><a href="#6-哈夫曼树有了解吗">6. 哈夫曼树有了解吗？</a></li>
+        <li><a href="#7-讲讲用户态和内核态">7. 讲讲用户态和内核态？</a></li>
+        <li><a href="#8-用户态和内核态切换都做了什么">8. 用户态和内核态切换都做了什么？</a></li>
+        <li><a href="#9-如何避免频繁的用户态和内核态的切换">9. 如何避免频繁的用户态和内核态的切换？</a></li>
+        <li><a href="#10-为什么频繁加锁会引起较多的上下文切换">10. 为什么频繁加锁会引起较多的上下文切换？</a></li>
+        <li><a href="#算法滑动窗口最大值">算法：滑动窗口最大值</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="文章目录">文章目录</h4>
+<ul>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_4" target="_blank" rel="noopener noreffer">​一面​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#1_channel__6" target="_blank" rel="noopener noreffer">​1. channel 缓冲与非缓冲​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#2_mysql_18" target="_blank" rel="noopener noreffer">​2. mysql引擎​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#3__30" target="_blank" rel="noopener noreffer">​3. 索引如何建立？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#4_linux__39" target="_blank" rel="noopener noreffer">​4. linux 如何看进程​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#5_redis__45" target="_blank" rel="noopener noreffer">​5. redis 字符串的底层​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#6__64" target="_blank" rel="noopener noreffer">​6. 线程池理解​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#7__67" target="_blank" rel="noopener noreffer">​7. 线程池的拒绝策略​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#8_72" target="_blank" rel="noopener noreffer">​8.悲观锁，乐观锁​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#9_HTTP__79" target="_blank" rel="noopener noreffer">​9. HTTP 各个版本的区别​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#10_HTTP20_97" target="_blank" rel="noopener noreffer">​10. HTTP2.0之前怎么实现服务器推送机制？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#11_websocket_100" target="_blank" rel="noopener noreffer">​11. websocket有了解过吗？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#12__103" target="_blank" rel="noopener noreffer">​12. 什么时候可能产生内存泄漏？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#13__106" target="_blank" rel="noopener noreffer">​13. 页面置换算法有哪些？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#14__108" target="_blank" rel="noopener noreffer">​14. 内存映射?​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_112" target="_blank" rel="noopener noreffer">​算法：最长公共子串​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#2__114" target="_blank" rel="noopener noreffer">​2. 二面​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#1_AES_117" target="_blank" rel="noopener noreffer">​1. 讲讲AES加密​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#2_RSA_157" target="_blank" rel="noopener noreffer">​2. 那RSA有了解过吗​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#3__188" target="_blank" rel="noopener noreffer">​3. 怎么理解公私钥，以及签名​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#4_MQrabbitmq_205" target="_blank" rel="noopener noreffer">​4. 我看你用到了MQ，那这个rabbitmq消息会丢失吗？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_208" target="_blank" rel="noopener noreffer">​发送方确认模式​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_218" target="_blank" rel="noopener noreffer">​接收方确认机制​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#5_MYSQL_insertinsert_innoDB_230" target="_blank" rel="noopener noreffer">​5. MYSQL 乱序insert和有序insert区别？补充 针对innoDB引擎。​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#6__246" target="_blank" rel="noopener noreffer">​6. 哈夫曼树有了解吗？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#7__249" target="_blank" rel="noopener noreffer">​7. 讲讲用户态和内核态？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#8__257" target="_blank" rel="noopener noreffer">​8. 用户态和内核态切换都做了什么？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#9__268" target="_blank" rel="noopener noreffer">​9. 如何避免频繁的用户态和内核态的切换？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#10__275" target="_blank" rel="noopener noreffer">​10. 为什么频繁加锁会引起较多的上下文切换？​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_281" target="_blank" rel="noopener noreffer">​算法：滑动窗口最大值​</a>​</p>
+</li>
+<li>
+<p>​ <a href="https://blog.51cto.com/u_15314183/5760127#_284" target="_blank" rel="noopener noreffer">​参考链接​</a>​</p>
+</li>
+</ul>
+<blockquote>
+<p>蔚来感觉更多是tob…面试问的也是偏业务</p>
+</blockquote>
+<h2 id="一面">一面</h2>
+<blockquote>
+<p>先聊项目，再谈八股</p>
+</blockquote>
+<h3 id="1-channel-缓冲与非缓冲">1. channel 缓冲与非缓冲</h3>
+<p>登录后复制</p>
+<p>c := make(chan Type, n)</p>
+<ul>
+<li>当缓冲区参数不是 0 的时候。<strong>协程将不会阻塞除非缓冲区被填满</strong>。</li>
+<li>当缓冲区满了之后，想要再往缓冲区发送数据只有等到有其他协程从缓冲区接收数据， 此时的发送协程是阻塞的。</li>
+<li>有一点需要注意， 读缓冲区的操作是渴望式读取，意味着一旦读操作开始它将读取缓冲区所有数据，直到缓冲区为空。</li>
+<li>​<code>​**读操作的协程将不会阻塞直到缓冲区为空。**​</code>​</li>
+</ul>
+<p><strong>非缓冲可以实现读写同步</strong></p>
+<h3 id="2-mysql引擎">2. mysql引擎</h3>
+<p>MySQL存储引擎有很多，但我们常讨论的是​<code>​InnoDB、MyISAM​</code>​这两个引擎。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123162420.png" /></p>
+<h3 id="3-索引如何建立">3. 索引如何建立？</h3>
+<ol>
+<li>我们一般会选择唯一性的字段来建立索引，<strong>唯一性索引的值是唯一的，可以更快速的通过该索引来确定某条记录</strong></li>
+<li>为经常需要排序、分组和联合操作的字段建立索引，排序操作会浪费很多时间。如果为其建立索引，可以有效地避免排序操作。</li>
+<li>为常作为查询条件的字段建立索引</li>
+<li>尽量使用前缀来索引。例如，​<code>​TEXT和BLOG类型的字段，进行全文检索会很浪费时间。​</code>​<strong>如果只检索字段的前面的若干个字符，这样可以提高检索速度。</strong></li>
+<li>最左前缀匹配原则，非常重要的原则，<strong>mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配</strong></li>
+<li>= 和 in 可以乱序，mysql的查询优化器会优化成索引可以识别的形式。</li>
+</ol>
+<h3 id="4-linux-如何看进程">4. linux 如何看进程</h3>
+<ol>
+<li>ps aux ：ps命令用于报告当前系统的进程状态。</li>
+<li>ps -elf ：-e：显示系统内的所有进程信息，-l：使用长（long）格式显示进程信息，-f：使用完整的（full）格式显示进程信息。</li>
+<li>top</li>
+<li>pstree -aup</li>
+</ol>
+<h3 id="5-redis-字符串的底层">5. redis 字符串的底层</h3>
+<p>Redis 的底层是C语言，但是其实Redis并没有使用C语言传统的字符串表示，而是自己构建了一种名为​<code>​简单动态字符串(simple dynamic string，SDS)​</code>​的抽象类型，并将SDS用作Redis的默认字符串表示。</p>
+<p>每个 ​<code>​sds.h/sdshdr​</code>​ 结构表示一个SDS值</p>
+<p>登录后复制</p>
+<p>struct sdshdr{<br>
+int len; // 记录buf数组中已使用字节的数量<br>
+// 等于SDS所保存字符串的长度<br>
+int free; // 记录buf数组中未使用字节的数量<br>
+char buf[];// 字符数组，用于保存字符串<br>
+}</p>
+<ul>
+<li>1.</li>
+<li>2.</li>
+<li>3.</li>
+<li>4.</li>
+<li>5.</li>
+<li>6.</li>
+</ul>
+<p><strong>SDS 示例</strong></p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_golang" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>sds示例</h2><p>【Golang开发面经】蔚来（两轮技术面）_golang</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004934_6349931ed63fb43155.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">sds示例</figcaption>
+    </figure></p>
+<ul>
+<li>free 属性的值为0，表示这个SDS没有分配任何未使用空间</li>
+<li>len 属性的值为7，表示这个SDS保存了一个七字节长的字符串</li>
+<li>buf 属性是一个char类型的数组，数组的前七个字节分别保存了FANONEA中的这几个字符，最后一个字节则保留了空字符 ‘\0’ 。</li>
+</ul>
+<p>SDS 遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间<strong>不计 算再SDS的 len 属性里面</strong>，<strong>并且为空字符分配额外的1字节空间</strong>，以及添加空字符串末尾等操作，都是SDS函数自动完成的。</p>
+<h3 id="6-线程池理解">6. 线程池理解</h3>
+<p>线程池由​<code>​任务队列和工作线程组成​</code>​​，它可以​<code>​重用线程来避免线程创建的开销​</code>​，**在任务过多时通过排队避免创建过多线程来减少系统资源消耗和竞争，**确保任务有序完成。</p>
+<h3 id="7-线程池的拒绝策略">7. 线程池的拒绝策略</h3>
+<p>我们一般有两种使用拒绝策略的方式：</p>
+<ol>
+<li>​<code>​默认的拒绝策略AbortPolicy​</code>​ ，默认的拒绝策略可以及时的让系统抛出异常从而帮助开发人员定位问题。</li>
+<li>​<code>​自定义拒绝策略 ​</code>​，通过持久化磁盘或者消息队列的方式，把被拒绝的任务交给负载相对较低的服务器处理，保证任务能100%被处理。</li>
+</ol>
+<h3 id="8悲观锁乐观锁">8.悲观锁，乐观锁</h3>
+<p>乐观锁与悲观锁只是一种思想。</p>
+<p>乐观锁认为在​<code>​本线程操作特定数据时不会有其它线程执行操作​</code>​，所以它不会去在一开始就给数据加锁，<strong>只是在提交修改的时候去验证数据是否被其它线程修改了。</strong> 类似 MVCC</p>
+<p>而悲观锁认为​<code>​在操作特定数据的过程中一定有其它线程去操作这条数据​</code>​，所以从操作这条数据开始就给数据加上排他锁，一直到操作完成才释放。</p>
+<h3 id="9-http-各个版本的区别">9. HTTP 各个版本的区别</h3>
+<p>HTTP 1.0 ：</p>
+<ul>
+<li>请求方式新增了POST，DELETE，PUT，HEADER等方式</li>
+<li>扩充了传输内容格式，图片、音视频资源、二进制等都可以进行传输</li>
+</ul>
+<p>HTTP 1.1：</p>
+<ul>
+<li>长连接：新增Connection字段，可以设置 keep-alive 值保持连接不断开</li>
+<li>管道化：​<code>​基于上面长连接的基础，管道化可以不等第一个请求响应继续发送后面的请求，但响应的顺序还是按照请求的顺序返回​</code>​</li>
+<li>缓存处理：新增字段cache-control</li>
+<li>断点传输</li>
+</ul>
+<p>HTTP2.0：</p>
+<ul>
+<li>二进制分帧</li>
+<li>多路复用： ​<code>​**在共享TCP链接的基础上同时发送请求和响应**​</code>​</li>
+<li>头部压缩</li>
+<li>服务器推送：服务器可以额外的向客户端推送资源，而无需客户端明确的请求</li>
+</ul>
+<h3 id="10-http20之前怎么实现服务器推送机制">10. HTTP2.0之前怎么实现服务器推送机制？</h3>
+<p>HTTP 1.1 默认保持长连接，数据传输完成保持tcp连接不断开，继续用这个通道传输数据。</p>
+<h3 id="11-websocket有了解过吗">11. websocket有了解过吗？</h3>
+<p>是一个基于TCP的长链接，常用于进行IM即时通讯。</p>
+<h3 id="12-什么时候可能产生内存泄漏">12. 什么时候可能产生内存泄漏？</h3>
+<p>如果发送内存逃逸，就有可能内存泄漏，比如分配在栈上的内存逃逸到了堆上。又或者垃圾回收没回收到这个内存。</p>
+<h3 id="13-页面置换算法有哪些">13. 页面置换算法有哪些？</h3>
+<p>先进先出(FIFO)页面置换算法、最近最久未使用(LRU)置换算法、最佳置换算法(OPT)、时钟(CLOCK)置换算法</p>
+<h3 id="14-内存映射">14. 内存映射?</h3>
+<p><strong>在虚拟内存实现和内存管理单元中，内存映射是指页面表，这些页面表存储特定进程的虚拟记忆的布局与该空间与物理内存地址的关系之间的映射。</strong> 可以用虚拟内存来映射到到真实的内存管理单元中。</p>
+<h3 id="算法最长公共子串">算法：最长公共子串</h3>
+<h2 id="2-二面">2. 二面</h2>
+<blockquote>
+<p>还是聊项目，再谈八股</p>
+</blockquote>
+<h3 id="1-讲讲aes加密">1. 讲讲AES加密</h3>
+<p>作为DES的替代算法，AES (Advanced Encryption Standard) 在设计上满足以下标准：</p>
+<ul>
+<li>和DES一样，能有效抵御所有已知攻击；</li>
+<li>加密算法易于现有软硬件平台的实现，且加解密过程效率优于DES；</li>
+<li>具有典型的对称分组加密算法特性，以快速混淆和扩散为设计原则，本质是轮函数过程的循环。</li>
+</ul>
+<p>AES的数据分组长度统一为128位，而密钥空间可根据需要采用128位、192位和256位三种不同长度。和大多数分组加密算法不一样AES的轮函数并没有采用Feistel结构设计，而是使用了3个不同的可逆均匀变换。</p>
+<p>AES 对称加密主要步骤包括：</p>
+<ol>
+<li>​<code>​密钥扩展（Key Expansion）​</code>​，使用密钥扩展算法将128位用户主密钥扩展成R个轮密钥；</li>
+<li>​<code>​初始轮（Init Round）​</code>​，即为轮密钥加；</li>
+<li>​<code>​重复轮（Rounds）​</code>​，每一轮包括：字节替换（SubBytes），行移位（Shift Rows），列混合（Mix Columns），轮密钥加（Add Round Key）四个步骤；</li>
+<li>​<code>​最终轮（Final Round）​</code>​，最终轮比重复轮少了列混合的步骤。</li>
+</ol>
+<p>接下来就具体讲讲这个加密的过程：</p>
+<p>密钥扩展：目的是将一个128位的密钥扩展10次变成11个128位的秘钥来用于接下来的轮密钥加操作。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_后端_02" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_后端_02</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931f0fef177499.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>字节替换：将被替换的字节按照高4位做x坐标，低4位做y坐标在sBox中找到替换到的字节表示。sBox是通过一种特定的（求有限域内各元素的乘法逆元和仿射变换的）方式得到的16*16的矩阵，就比如是4f这个字节在sBox中就是第4行第15列的字节0x84代替0X4f。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_开发语言_03" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_开发语言_03</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931f4798790146.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>行移位：接下来是行移位，第一行不变，第二行左移1个字节，第三行左移2个字节，第四行左移3个字节。解密时的行移就是相反的，第一行还是不变，第二行左移3个字节，第三行左移2个字节，第四行左移1个字节。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_golang_04" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_golang_04</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931f752b942694.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>列混合： AES算法中最复杂的部分，它混合了输入的每一列，使得输入的每个字节都会影响到输出的四个字节。分别将当前组中的每一列乘一个固定矩阵，这里的矩阵乘法和一般的矩阵乘法不同，就像下面这张图一样，乘的结果在相加时用的是异或运算，最后用结果取代原字节序列。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_用户态_05" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_用户态_05</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931f946bd84809.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>轮密钥加：就是将列混合得到的结果中的每一列分别与密钥中的每一列做异或，然后取代原字节序列，实现也很简单，就是一个异或操作。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_golang_06" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_golang_06</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931fc500521451.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>完整加/解密流程：</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_golang_07" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_golang_07</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004935_6349931fe861127265.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<h3 id="2-那rsa有了解过吗">2. 那RSA有了解过吗</h3>
+<p>对称加密算法在加密和解密时使用的是同一个秘钥；而非对称加密算法需要两个密钥来进行加密和解密，这两个密钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。常用的​<code>​非对称加密算法有RSA、DSA和ECDSA​</code>​。下面就以非对称加密算法RSA作为例子。</p>
+<p>非对称算法的在应用的过程如下，假设发送方向接收方发送消息（明文）：<br>
+　　1、接收方生成​​<code>​公钥和私钥，公钥公开，私钥保留；​</code>​​ 　　2、发送方将要发送的消息采用​<code>​公钥加密​</code>​，得到密文，然后将​<code>​密文发送给接收方​</code>​；<br>
+　　3、接收方收到密文后，用自己的​<code>​私钥进行解密​</code>​，获得明文。</p>
+<p>可以看出，非对称加密解决了​<code>​对称加密密钥传输​</code>​的问题。</p>
+<p>下图就是生成公私钥的具体流程</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_用户态_08" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_用户态_08</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004936_63499320154c976247.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>由于RSA算法的本质是数字的运算，因此我们在对字符串进行加密时，需要先将字符串数值化，可以借助Ascii码，unicode编码，utf-8编码等将字符串转化成数字。​<code>​需要特别注意转换后的数字X需要小于密钥组中的N，如果字符串转换后的数字大于N则需要进行拆分，这也是在数据量大时我们使用对称加密算法来尽心加密内容，用非对称加密来加密密钥的原因。​</code>​</p>
+<p>加密过程满足：</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_golang_09" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_golang_09</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004936_6349932038b7026725.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>解密过程：我们获得密文Y后哦，开始解密，过程如下</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" title="【Golang开发面经】蔚来（两轮技术面）_数据_10" data-thumbnail="https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】蔚来（两轮技术面）_数据_10</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184"
+            data-srcset="https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184, https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 1.5x, https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark%2csize_16%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=/format%2cwebp/resize%2cm_fixed%2cw_1184 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/15004936_634993205602743027.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>上述过程涉及到了欧拉定理和费尔马小定理在这里就不过多描述。接下来我们讨论一下这个RSA算法的安全性，这个算法是否安全可靠？</p>
+<ol>
+<li>由于ed≡1 (mod φ(N))，只有知道e和φ(N)，才能算出d，e是公钥匙，所以需要知道​<code>​φ(N)​</code>​就可以。</li>
+<li>根据欧拉函数 φ(N)=(P-1)(Q-1)，只有知道​<code>​P和Q​</code>​，才能算出φ(N)。</li>
+<li>​<code>​N=pq，只有将N进行因数分解​</code>​，才能算出P和Q。</li>
+</ol>
+<p>所以，<strong>如果大数N可以被因数分解，私钥D就可以算出，从而破解密文。</strong> 大整数的因数分解是极其困难的，属于NPC问题，除了暴力破解没有很好的解决方案，目前人类分解的最大长度的二进制数为768位，1024位的长度目前尚未破解，因此1024长度的二进制密钥是安全的。所以RSA算法的安全性取决于大整数分解的难度，目前RSA算法可以支持4096位密钥长度，分解难度超乎想象，即使借助于量子计算机难</p>
+<h3 id="3-怎么理解公私钥以及签名">3. 怎么理解公私钥，以及签名</h3>
+<p>公钥相等于是公开的钥匙，私钥相当于是自己的钥匙。公钥和私钥是成对的，它们互相解密。</p>
+<p>除了保证数据的安全传输之外，公钥体系的另一个用途就是对数据进行签名。通常 <strong>“数字签名”是用来验证发送方的身份并帮助保护数据的完整性。</strong></p>
+<p>例如：一个发送者 A 想要传些资料给大家，用自己的私钥对资料加密，即签名。这样一来，所有收到资料的人都可以用发送者的公钥进行验证，便可确认资料是由 A 发出来的了。（因为只有Ａ使用私钥签名得到的信息，才能用这个公钥来解） 采用数字签名，可以确认两点：</p>
+<ol>
+<li>保证信息是由​<code>​签名者自己签名发送的，签名者不能否认或难以否认​</code>​。</li>
+<li>保证信息​<code>​自签发后到收到为止未曾作过任何修改​</code>​。</li>
+</ol>
+<p>之所以可以确认这两点，是因为用公钥可以解密的必然是用对应的私钥加的密，而​<code>​私钥只有签名者持有​</code>​。</p>
+<p>总结就是：<br>
+公钥加密，私钥解密。<br>
+私钥数字签名，公钥验证。</p>
+<h3 id="4-我看你用到了mq那这个rabbitmq消息会丢失吗">4. 我看你用到了MQ，那这个rabbitmq消息会丢失吗？</h3>
+<p>会，但是我们可以保证消息不丢失。</p>
+<h4 id="发送方确认模式">发送方确认模式</h4>
+<p>将信道设置成​<code>​confirm模式（发送方确认模式）​</code>​，则所有在信道上发布的消息都会被指派一个唯一ID。一旦消息被投递到目的队列后，或者消息被写入磁盘后，信道会发送一个确认给生产者（包括消息的ID）。</p>
+<p>如果RabbitMQ发生内部错误从而导致消息丢失，会发送一条nack消息。</p>
+<p>发送方确认模式是<strong>异步</strong>的，生产者应用程序在等待确认的同时，可以继续发送消息。</p>
+<p>当确认消息到达生产者应用程序，生产者应用的回调方法就会被触发来处理确认消息。</p>
+<h4 id="接收方确认机制">接收方确认机制</h4>
+<p>消费者接受每一条消息后都必须进行确认，只要有消费者确认了消息，MQ才能安全的把消息从队列中删除。</p>
+<p>这里并没有用到<strong>超时机制</strong>，MQ仅通过 Consumer 的连接中断来确认是否需要重新发送消息。也就是说，只要连接不中断，RabbitMQ给了Consumer足够长的时间来处理消息。保证了数据的最终一致性。</p>
+<p>还有几种情况：</p>
+<ul>
+<li>如果消费者接受到消息，在确认之前断开了连接或取消订阅，RabbitMQ会认为消息没有被分发，然后重新分发给下一个订阅的消费者。（可能存在消费重复的隐患，需要去重）</li>
+<li>如果消费者接受到消息却没有确认消息，连接也未断开，则 RabbitMQ 认为该消费者繁忙。则不会给该消费者分发更多的消息。</li>
+</ul>
+<h3 id="5-mysql-乱序insert和有序insert区别补充-针对innodb引擎">5. MYSQL 乱序insert和有序insert区别？补充 针对innoDB引擎。</h3>
+<p>首先来看顺序插入的情况。如果主键是顺序的，<strong>所以InnoDB会把每插入的记录存储在上一条记录的后面。当达到页的最大填充因子时（InnoDB默认的最大填充因子是15/16，流出不封空间用于以后可能产生的修改），下一条记录就会写入新的页中。</strong> 一旦数据按照这种顺序的的方式插入，主键就会近似于被顺序的记录填满。这是正常的情况。</p>
+<p>再来看随机插入的情况，比如使用了uuid聚簇索引的表插入数据。因为新插入的值是随机，​<code>​可能比上一个插入的主键值大，也可能小​</code>​，所以InnoDB<strong>无法简单的总是把新的记录插入到索引的最后</strong>，也就是​<code>​说插入的位置很有可能是在现有数据的中间​</code>​。这往往会导致性能恶化。</p>
+<p>这种随机插入方式可能会有以下缺点：</p>
+<ol>
+<li>写入的目标页可能不在​<code>​内存缓存区​</code>​​，那么插入记录的时候需要先从磁盘读取目标页到内存中。这会导致大量的随机IO。如果是顺序插入，由于是插入到上一个记录的后面，则大多数情况下（不需要开辟新页的情况）​<code>​磁盘页是已经加载到内存​</code>​了的。</li>
+<li>因为写入是乱序的，InnoDB 可能需要​<code>​不断的的做页分裂操作​</code>​​，以便为新的行分配空间。而页分裂会导致​<code>​移动大量的数据​</code>​，而且一次分裂至少要修改三个页而不是一个页。</li>
+<li>由于频繁的分页，页面会变得稀疏并被不规则的填充，最后会导致​<code>​数据碎片​</code>​。</li>
+</ol>
+<p>所以，当把随机值载入到聚簇索引后，最好做一次optimize table来重建表并优化页的填充。很费性能…</p>
+<p>当然随机插入也不是一无是处。比如对于高并发的场景，<strong>如果按主键顺序插入可能会造成明显的争用。</strong> 因为所有的插入都是上一次记录的后面，所以主键的上边界就会成为热点，这可能会导致​<code>​间隙锁竞争​</code>​。如果是随机插入的话，因为插入的地方可能都不一样，所以竞争就是少一点。</p>
+<h3 id="6-哈夫曼树有了解吗">6. 哈夫曼树有了解吗？</h3>
+<p>哈夫曼树我的了解仅限于这是一种​<code>​带权路径长度最短的二叉树​</code>​。</p>
+<h3 id="7-讲讲用户态和内核态">7. 讲讲用户态和内核态？</h3>
+<blockquote>
+<p><strong>用户空间中的代码被限制了只能使用一个局部的内存空间，我们说这些程序在用户态（User Mode） 执行。<br>
+内核空间中的代码可以访问所有内存，我们称这些程序在内核态（Kernal Mode） 执行。</strong></p>
+</blockquote>
+<p>内核程序执行在内核态（Kernal Mode），用户程序执行在用户态（User Mode）。当发生系统调用时，用户态的程序发起系统调用。因为系统调用中牵扯特权指令，​<code>​用户态程序权限不足，因此会中断执行，也就是 Trap（Trap 是一种中断）。​</code>​</p>
+<p>发生中断后，当前 CPU 执行的程序会中断，跳转到中断处理程序。​<code>​内核程序开始执行，也就是开始处理系统调用。​</code>​ 内核处理完成后，主动触发 Trap，这样会再次发生中断，切换回用户态工作。</p>
+<h3 id="8-用户态和内核态切换都做了什么">8. 用户态和内核态切换都做了什么？</h3>
+<p>当发生用户态到内核态的切换时，会发生如下过程 <strong>（本质上是从“用户程序”切换到“内核程序”）</strong></p>
+<ol>
+<li>设置处理器至内核态。</li>
+<li>保存当前寄存器（栈指针、程序计数器、通用寄存器）。</li>
+<li>将栈指针设置指向内核栈地址。</li>
+<li>将程序计数器设置为一个事先约定的地址上，该地址上存放的是系统调用处理程序的起始地址。</li>
+</ol>
+<p>而之后从内核态返回用户态时，又会进行类似的工作。</p>
+<h3 id="9-如何避免频繁的用户态和内核态的切换">9. 如何避免频繁的用户态和内核态的切换？</h3>
+<ol>
+<li>减少线程切换，比如锁的并发编程，有锁的话，不断地释放和加锁会引起较多地上下文切换</li>
+<li>CAS算法，避免阻塞现场。</li>
+<li>使用协程，在单线程中实现多任务地调度，并在单线程里维持多喝任务间地切换。</li>
+</ol>
+<h3 id="10-为什么频繁加锁会引起较多的上下文切换">10. 为什么频繁加锁会引起较多的上下文切换？</h3>
+<p>Synchronized 是通过对象内部的一个叫做监视器锁（monitor）来实现的。</p>
+<p>但是监视器锁本质又是<strong>依赖于底层的操作系统的Mutex Lock来实现的。</strong> 但是由于使用​<code>​Mutex Lock需要将当前线程挂起并从用户态切换到内核态来执行，这种切换的代价是非常昂贵的因此​</code>​​，这种依赖于操作系统 Mutex Lock 所实现的锁我们称之为​<code>​重量级锁​</code>​。</p>
+<h3 id="算法滑动窗口最大值">算法：滑动窗口最大值</h3>
+<h2 id="参考链接">参考链接</h2>
+<p>[1].https://zhuanlan.zhihu.com/p/88963084<br>
+[2].https://songlee24.github.io/2015/05/03/public-key-and-private-key/</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/%E7%9F%A5%E4%B9%8E/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

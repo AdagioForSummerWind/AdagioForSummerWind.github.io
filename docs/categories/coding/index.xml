@@ -25,12 +25,5 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/create_type/</guid>
     <description><![CDATA[创建型设计模式 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。 创建型模式主要解决对象的创建问题，封装复]]></description>
-</item><item>
-    <title>Algorithm_carl</title>
-    <link>https://jefofrank.xyz/algorithm_carl/</link>
-    <pubDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/algorithm_carl/</guid>
-    <description><![CDATA[学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素]]></description>
 </item></channel>
 </rss>

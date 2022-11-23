@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="文章目录 ​​写在前面​​ ​​笔试​​ ​​一面​​ ​​进程和线程的区别？​​ ​​虚拟地址是什么？​​ ​​内存分段分页讲讲？​​ ​​http 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="文章目录 ​​写在前面​​ ​​笔试​​ ​​一面​​ ​​进程和线程的区别？​​ ​​虚拟地址是什么？​​ ​​内存分段分页讲讲？​​ ​​http 1."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" /><link rel="prev" href="https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/" /><link rel="next" href="https://jefofrank.xyz/l.-360/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E7%9F%A5%E4%B9%8E\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3820 ,
+        "url": "https:\/\/jefofrank.xyz\/%E7%9F%A5%E4%B9%8E\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3820 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#文章目录">文章目录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#写在前面">写在前面</a></li>
+    <li><a href="#笔试">笔试</a></li>
+    <li><a href="#一面">一面</a>
+      <ul>
+        <li><a href="#进程和线程的区别">进程和线程的区别？</a></li>
+        <li><a href="#虚拟地址是什么">虚拟地址是什么？</a></li>
+        <li><a href="#内存分段分页讲讲">内存分段分页讲讲？</a></li>
+        <li><a href="#http-101120-区别">http 1.0，1.1，2.0 区别？</a></li>
+        <li><a href="#post和get的区别">post和get的区别</a></li>
+        <li><a href="#tcp-连接是怎么样的">TCP 连接是怎么样的？</a></li>
+        <li><a href="#为什么是三次断开为什么是四次">为什么是三次？断开为什么是四次？</a>
+          <ul>
+            <li><a href="#三次握手">三次握手</a></li>
+            <li><a href="#四次挥手">四次挥手</a></li>
+          </ul>
+        </li>
+        <li><a href="#2msl有什么用">2MSL有什么用？</a></li>
+        <li><a href="#chan用过吧对一个关闭的-chan-读写会怎么样">chan用过吧？对一个关闭的 chan 读写会怎么样？</a></li>
+        <li><a href="#redis-缓存击穿-雪崩有了解过吗">redis 缓存击穿 ？雪崩？有了解过吗？</a></li>
+        <li><a href="#跳表说一下">跳表说一下？</a></li>
+        <li><a href="#算法最长公共子串">算法：最长公共子串</a></li>
+      </ul>
+    </li>
+    <li><a href="#二面">二面</a>
+      <ul>
+        <li><a href="#用两个协程打印交替打印a1b2c3d4e5">用两个协程打印交替打印A1B2C3D4E5…</a></li>
+        <li><a href="#慢查询如何排查">慢查询如何排查？</a></li>
+        <li><a href="#es-用过是吧简单说一下原理">es 用过是吧？简单说一下原理？</a></li>
+        <li><a href="#mysql-索引结构和其他数据结构对比">mysql 索引结构？和其他数据结构对比？</a></li>
+        <li><a href="#讲讲-聚集索引-和-非聚集索引">讲讲 聚集索引 和 非聚集索引？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="文章目录">文章目录</h4>
+<ul>
+<li>
+<p>​​写在前面​​</p>
+</li>
+<li>
+<p>​​笔试​​</p>
+</li>
+<li>
+<p>​​一面​​</p>
+</li>
+<li>
+<p>​​进程和线程的区别？​​</p>
+</li>
+<li>
+<p>​​虚拟地址是什么？​​</p>
+</li>
+<li>
+<p>​​内存分段分页讲讲？​​</p>
+</li>
+<li>
+<p>​​http 1.0，1.1，2.0 区别？​​</p>
+</li>
+<li>
+<p>​​post和get的区别​​</p>
+</li>
+<li>
+<p>​​TCP 连接是怎么样的？​​</p>
+</li>
+<li>
+<p>​​为什么是三次？断开为什么是四次？​​</p>
+</li>
+<li>
+<p>​​三次握手​​</p>
+</li>
+<li>
+<p>​​四次挥手​​</p>
+</li>
+<li>
+<p>​​2MSL有什么用？​​</p>
+</li>
+<li>
+<p>​​chan用过吧？对一个关闭的 chan 读写会怎么样？​​</p>
+</li>
+<li>
+<p>​​redis 缓存击穿 ？雪崩？有了解过吗？​​</p>
+</li>
+<li>
+<p>​​跳表说一下？​​</p>
+</li>
+<li>
+<p>​​算法：最长公共子串​​</p>
+</li>
+<li>
+<p>​​二面​​</p>
+</li>
+<li>
+<p>​​用两个协程打印交替打印A1B2C3D4E5&hellip;.​​</p>
+</li>
+<li>
+<p>​​慢查询如何排查？​​</p>
+</li>
+<li>
+<p>​​es 用过是吧？简单说一下原理？​​</p>
+</li>
+<li>
+<p>​​mysql 索引结构？和其他数据结构对比？​​</p>
+</li>
+<li>
+<p>​​讲讲 聚集索引 和 非聚集索引？​​</p>
+</li>
+<li>
+<p>​​参考链接​​</p>
+</li>
+</ul>
+<h2 id="写在前面">写在前面</h2>
+<blockquote>
+<p>知乎面试下来感觉还行吧，毕竟知乎挺小的，不过也是挺注重基础的，面试官水平也很好。</p>
+</blockquote>
+<h2 id="笔试">笔试</h2>
+<p>略</p>
+<h2 id="一面">一面</h2>
+<h3 id="进程和线程的区别">进程和线程的区别？</h3>
+<p>进程是<strong>操作系统资源分配的基本单位、而线程是任务调度和执行的基本单位。</strong></p>
+<p>每个进程都有独立的代码和数据空间，程序之间的切换会有较大的开销；</p>
+<p>线程可以看做​<code>​轻量级的进程​</code>​​，同一类​<code>​线程共享代码和数据空间​</code>​​，每个线程都有自己​<code>​独立的运行栈​</code>​​和​<code>​程序计数器​</code>​。线程之间切换的开销小。</p>
+<h3 id="虚拟地址是什么">虚拟地址是什么？</h3>
+<p>虚拟地址空间划分为多个​<code>​固定大小的虚拟页(VP)​</code>​，物理地址空间 (DRAM内存) 划分为多个固定大小的物理页(PP)，虚拟页和物理页的大小是一样的，通常为4KB。</p>
+<p>对于进程来说，使用的都是虚拟地址。</p>
+<p>每个进程维护一个单独的页表。</p>
+<p>页表是一种数组结构，存放着各虚拟页的状态，是否映射，是否缓存。</p>
+<h3 id="内存分段分页讲讲">内存分段分页讲讲？</h3>
+<p><strong>分段：将程序分为代码段、数据段、堆栈段等；</strong><br>
+分段地址通过段表，转换成线性地址； 分段地址包括段号和段内地址； 段表，包括短号、段长、基址；</p>
+<p><strong>分页：将段分成均匀的小块，通过页表映射物理内存；</strong><br>
+分页机制就是将虚拟地址空间分为大小相等的页；物理地址空间也分为若干个物理块（页框）；页和页框大小相等。实现离散分配； 分页机制的实现需要 MMU 硬件实现；负责分页地址转换； 页大小（粒度）太大浪费；太小，影响分配效率。</p>
+<h3 id="http-101120-区别">http 1.0，1.1，2.0 区别？</h3>
+<p>HTTP1.0：中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准。</p>
+<p>HTTP1.1：</p>
+<ol>
+<li>在请求头引入了range头域，它允许只请求资源的某个部分，方便了开发者自由的选择以便于充分利用带宽和连接。</li>
+<li>新增了多个错误状态响应码，如：413</li>
+<li>长连接</li>
+</ol>
+<p>HTTP2.0：</p>
+<ol>
+<li>新的二进制格式</li>
+<li>多路复用：​<code>​发出的多个请求可以在同一个连接上并行处理，当请求数量较大时，不会因为某一个请求任务过重而导致其他任务无法正常执行​</code>​</li>
+<li>头部数据压缩：encoder 以减少需要传输的 header 大小</li>
+</ol>
+<h3 id="post和get的区别">post和get的区别</h3>
+<p>GET用于获取信息，是幂等的，且可缓存。</p>
+<p>POST用于修改服务器上的数据，非幂等，不可缓存。</p>
+<h3 id="tcp-连接是怎么样的">TCP 连接是怎么样的？</h3>
+<h3 id="为什么是三次断开为什么是四次">为什么是三次？断开为什么是四次？</h3>
+<h4 id="三次握手">三次握手</h4>
+<p>因为通信的前提是确保双方都是​<code>​接收和发送信息是正常​</code>​​的。<br>
+三次握手是为了<strong>建立可靠的数据传输通道</strong>，<br>
+第一次握手就是​​<code>​让 接收方 知道 发送方 有发送信息的能力​</code>​​ 第二次握手就是​<code>​让 发送方 知道 接收方 有发送和接受信息的能力​</code>​ 第三次握手就是​<code>​让 接收方 知道 发送方 有接受信息的能力​</code>​</p>
+<h4 id="四次挥手">四次挥手</h4>
+<p>四次挥手则是为了保证等数据完成的被接收完再关闭连接。</p>
+<p>既然提到需要保证数据完整的传输完，那就需要保证双方 ​<code>​**都达到关闭连接的条件才能断开。**​</code>​</p>
+<p>第一次挥手：客户端​<code>​发起关闭连接​</code>​的请求给服务端；</p>
+<p>第二次挥手：服务端收到关闭请求的时候可能这个时候数据还没发送完，所以服务端会先回复一个​<code>​确认报文​</code>​​，表示​<code>​自己知道客户端想要关闭连接了​</code>​，但是因为数据还没传输完，所以还需要等待；</p>
+<p>第三次挥手：当数据传输完了，服务端会主动发送一个​<code>​ FIN 报文​</code>​​，告诉客户端，表示数据​<code>​已经发送完了​</code>​​，服务端这边​<code>​准备关闭连接了​</code>​。</p>
+<p>第四次挥手：当客户端收到服务端的 FIN 报文过后，会回复一个​<code>​ ACK 报文​</code>​，告诉服务端自己知道了，再等待一会就关闭连接。</p>
+<h3 id="2msl有什么用">2MSL有什么用？</h3>
+<p>2MSL 即两倍的 MSL，TCP 的 TIME_WAIT 状态也称为 2MSL 等待状态，当 TCP 的一端发起主动关闭，在发出最后一个 ACK 包后，<strong>即第3次握手完成后发送了第四次握手的 ACK 包后就进入了 TIME_WAIT 状态，必须在此状态上停留两倍的 MSL 时间，等待 2MSL 时间主要目的是怕最后一个 ACK 包对方没收到，</strong> 那么对方在超时后将重发第三次握手的FIN包，主动关闭端接到重发的 FIN包 后可以再发一个 ACK应答包。</p>
+<h3 id="chan用过吧对一个关闭的-chan-读写会怎么样">chan用过吧？对一个关闭的 chan 读写会怎么样？</h3>
+<ul>
+<li>空chan</li>
+</ul>
+<ol>
+<li>读会读取到该chan类型的​<code>​零值​</code>​。</li>
+<li>写会直接写到chan中。</li>
+</ol>
+<ul>
+<li>关闭的chan</li>
+</ul>
+<ol>
+<li>读已经关闭的 chan 能一直读到东西，但是读到的内容根据通道内关闭前是否有元素而不同。​<code>​**如果有元素，就继续读剩下的元素，如果没有就是这个chan类型的零值，比如整型是 int，字符串是&quot;&quot;** ​</code>​。</li>
+<li>写已经关闭的 chan 会 panic。因为源码上面就是这样写的，可以看​<code>​src/runtime/chan.go​</code>​</li>
+</ol>
+<h3 id="redis-缓存击穿-雪崩有了解过吗">redis 缓存击穿 ？雪崩？有了解过吗？</h3>
+<p>其实对于这些缓冲击穿，缓冲穿透，缓存雪崩都是由于中译之后比较容易混淆，如果我们还原回英文，那么就会很容易理解了。</p>
+<ul>
+<li>缓存穿透：​<code>​cache penetration​</code>​​。表示程序要访问的缓存key不在 ​<code>​缓存 key 的取值范围​</code>​ 里。</li>
+<li>缓存击穿：​<code>​hotspot invalid​</code>​​。表示缓存数据失效了。和 ​<code>​cache penetration​</code>​ 的区别是缓存的 key 还是存在的，只是这个 key 的数据失效了。</li>
+<li>缓存雪崩：​<code>​cache avalanche​</code>​。表示大量缓存都失效了，像雪崩一样。</li>
+</ul>
+<h3 id="跳表说一下">跳表说一下？</h3>
+<p>Redis 的跳跃表由 ​<code>​redis.h/zskiplistNode​</code>​​ 和 ​<code>​redis.h/zskiplist​</code>​​ 两个结构定义，其中 ​<code>​zskiplistNode​</code>​​ 结构用于表示跳跃表节点，而 ​<code>​zskiplist​</code>​ 结构则用于保存跳跃表节点的相关信息，比如节点的数量，以及指向表头节点和表尾节点的指针等等。</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" title="【Golang开发面经】知乎（两轮技术面）_缓存" data-thumbnail="https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】知乎（两轮技术面）_缓存</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp"
+            data-srcset="https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp, https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 1.5x, https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/30084931_635dca1b156e114077.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>上图中展示了一个跳跃表示例，最左边的就是 zskiplist 结构。</p>
+<ul>
+<li>header：指向跳跃表的表头节点。</li>
+<li>tail：指向跳跃表的表尾节点。</li>
+<li>level：记录目前跳跃表内，层数​<code>​最大的那个节点的层数​</code>​。</li>
+<li>记录跳跃表的长度，也就是，跳跃表目前包含节点的数量。</li>
+<li>层（level）：节点中用L1、L2、L3等字样标记节点的各个层，L1表示第一层，L2代表第二层，以此类推。每层都带有两个属性：​<code>​前进指针和跨度​</code>​。<strong>前进指针用于方位位于表尾方向的其他节点。而跨度则记录了前进指针所指向节点和当前节点的距离。</strong></li>
+<li>后退（backward）指针： ​<code>​**节点中用BW字样标记的后退指针，他指向当前节点的前一个节点。后退指针在程序从表尾向表头遍历时使用。**​</code>​</li>
+<li>分值(score)：各个节点中的 1.0、2.0、3.0是节点所保存的分值。在跳跃表中，节点按各个所保存的分值从小到大排序。</li>
+<li>成员对象(obj)：各个节点中的o1，o2 和 o3 是节点所保存的成员对象。</li>
+</ul>
+<h3 id="算法最长公共子串">算法：最长公共子串</h3>
+<h2 id="二面">二面</h2>
+<p>一上来就做题，难受，做完题就聊项目，聊完项目就聊聊八股。</p>
+<h3 id="用两个协程打印交替打印a1b2c3d4e5">用两个协程打印交替打印A1B2C3D4E5…</h3>
+<p>用​<code>​两个 chan ＋一个 wg​</code>​来控制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;sync&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+  <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="nx">chNumber</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+  <span class="nx">chLetter</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+  <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span>
+  <span class="nx">index</span> <span class="o">:=</span> <span class="mi">0</span>
+  <span class="nx">a</span> <span class="o">:=</span> <span class="s">&#34;abcdefghijklmnopqrskuvwxyz&#34;</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">{</span>
+      <span class="k">select</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">chNumber</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+        <span class="nx">i</span><span class="o">++</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+        <span class="nx">i</span><span class="o">++</span>
+        <span class="nx">chLetter</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+        <span class="k">break</span>
+      <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}()</span>
+
+  <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">{</span>
+      <span class="k">select</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">chLetter</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nx">index</span> <span class="p">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+          <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+          <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">index</span><span class="p">]))</span>
+        <span class="nx">index</span><span class="o">++</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">index</span><span class="p">]))</span>
+        <span class="nx">index</span><span class="o">++</span>
+        <span class="nx">chNumber</span><span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+        <span class="k">break</span>
+      <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}(</span><span class="o">&amp;</span><span class="nx">wg</span><span class="p">)</span>
+  <span class="nx">chNumber</span><span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+  <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="慢查询如何排查">慢查询如何排查？</h3>
+<p>可以先检查索引，再看看我们的 sql语句 是否足够性能好。<br>
+然后可以用 pprof 进行检测，排查慢的逻辑并优化。</p>
+<h3 id="es-用过是吧简单说一下原理">es 用过是吧？简单说一下原理？</h3>
+<p>ES是一个搜索引擎，我所知道的是用到了倒排索引来进行检测的。</p>
+<h3 id="mysql-索引结构和其他数据结构对比">mysql 索引结构？和其他数据结构对比？</h3>
+<p>B 树</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" title="【Golang开发面经】知乎（两轮技术面）_缓存_02" data-thumbnail="https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】知乎（两轮技术面）_缓存_02</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp"
+            data-srcset="https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp, https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 1.5x, https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/30084931_635dca1b0bab296242.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<p>B+树</p>
+<p><figure><a class="lightgallery" href="https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" title="【Golang开发面经】知乎（两轮技术面）_数据_03" data-thumbnail="https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" data-sub-html="<h2>在这里插入图片描述</h2><p>【Golang开发面经】知乎（两轮技术面）_数据_03</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp"
+            data-srcset="https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp, https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 1.5x, https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark%2csize_14%2ctext_QDUxQ1RP5Y2a5a6i%2ccolor_FFFFFF%2ct_30%2cg_se%2cx_10%2cy_10%2cshadow_20%2ctype_ZmFuZ3poZW5naGVpdGk=%2cx-oss-process=image/resize%2cm_fixed%2cw_1184/format%2cwebp 2x"
+            data-sizes="auto"
+            alt="https://s2.51cto.com/images/blog/202210/30084931_635dca1b2888580184.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=,x-oss-process=image/resize,m_fixed,w_1184/format,webp" />
+    </a><figcaption class="image-caption">在这里插入图片描述</figcaption>
+    </figure></p>
+<ol>
+<li>B+ 树内节点不存储数据，所有 data 存储在叶节点导致查询时间复杂度固定为​<code>​log (n)​</code>​​。而 B-树 查询时间复杂度不固定，与 key 在树中的位置有关，最好为 ​<code>​O(1)​</code>​。</li>
+<li>B+ 树叶节点两两相连可大大增加区间访问性，可使用在范围查询等，而 B- 树 每个节点 key 和 data 在一起，则无法区间查找。同时我们访问某数据后，可以将​<code>​相近的数据预读进内存​</code>​​，这是利用了​<code>​空间局部性​</code>​。</li>
+<li>B+ 树更适合​<code>​外部存储​</code>​。由于内节点无 data 域，每个节点能索引的范围更大更精确。</li>
+</ol>
+<h3 id="讲讲-聚集索引-和-非聚集索引">讲讲 聚集索引 和 非聚集索引？</h3>
+<p>聚簇索引：将<strong>数据存储与索引放到了一块，找到索引也就找到了数据。</strong></p>
+<p>非聚簇索引：​<code>​将数据存储于索引分开结构，索引结构的叶子节点指向了数据的对应行，myisam通过key_buffer把索引先缓存到内存中，当需要访问数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找到磁盘相应数据，​</code>​这也就是为什么索引不在key buffer命中时，速度慢的原因。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E8%94%9A%E6%9D%A5/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/l.-360/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

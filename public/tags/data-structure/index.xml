@@ -4,12 +4,26 @@
         <link>https://jefofrank.xyz/tags/data-structure/</link>
         <description>data structure - 标签 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/data-structure/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Feb 2022 19:52:33 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/data-structure/" rel="self" type="application/rss+xml" /><item>
+    <title>Algorithm_find</title>
+    <link>https://jefofrank.xyz/algorithm_find/</link>
+    <pubDate>Sun, 20 Feb 2022 19:52:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/algorithm_find/</guid>
+    <description><![CDATA[查找算法 哈希表：散列查找 二叉查找树 AVL树（平衡二叉搜索树） 2-3树和左倾红黑树 2-3-4树和普通红黑树 参考 查找算法 散列查找：也称哈希查找，]]></description>
+</item><item>
+    <title>Algorithm_sort</title>
+    <link>https://jefofrank.xyz/algorithm_sort/</link>
+    <pubDate>Sun, 20 Feb 2022 19:52:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/algorithm_sort/</guid>
+    <description><![CDATA[排序算法 冒泡 选择 插入 希尔 归并 优先队列及堆 快速 内置库使用快排的原因 堆排序 https://segmentfault.com/a/1190000039668324 https://www.cnblogs.com/onepixel/p/7674659.html 排序算法 稳定性概念 定义：能保证两个相等的数，经过排序之后，其在序列]]></description>
+</item><item>
     <title>Algorithm_carl</title>
     <link>https://jefofrank.xyz/algorithm_carl/</link>
     <pubDate>Thu, 06 Jan 2022 08:17:33 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/algorithm_carl/</guid>
-    <description><![CDATA[学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素]]></description>
+    <description><![CDATA[数组 数组基础 二分查找 移除元素 有序数组的平方 长度最小的子数组 螺旋矩阵II 总结 链表 链表理论基础 移除链表元素 设计链表 翻转链表 两两交换链表中的节点 删]]></description>
 </item></channel>
 </rss>

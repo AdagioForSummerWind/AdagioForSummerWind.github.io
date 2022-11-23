@@ -3,10 +3,22 @@ title: "Algorithm_sort"
 date: 2022-02-20T19:52:01+08:00
 lastmod: 2022-02-20
 tags: [data structure]
-categories: [Coding]
+categories: [MS]
 slug: algo_sort
-draft: true
+draft: false
 ---
+
+- [排序算法](#排序算法)
+  - [冒泡](#冒泡)
+  - [选择](#选择)
+  - [插入](#插入)
+  - [希尔](#希尔)
+  - [归并](#归并)
+  - [优先队列及堆](#优先队列及堆)
+  - [快速](#快速)
+  - [内置库使用快排的原因](#内置库使用快排的原因)
+  - [堆排序](#堆排序)
+
 
 > https://segmentfault.com/a/1190000039668324
 > https://www.cnblogs.com/onepixel/p/7674659.html

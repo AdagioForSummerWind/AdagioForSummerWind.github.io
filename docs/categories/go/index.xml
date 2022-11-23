@@ -4,14 +4,7 @@
         <link>https://jefofrank.xyz/categories/go/</link>
         <description>Go - 分类 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/go/" rel="self" type="application/rss+xml" /><item>
-    <title>go</title>
-    <link>https://jefofrank.xyz/goetc/</link>
-    <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://jefofrank.xyz/goetc/</guid>
-    <description><![CDATA[Go 其他 和其他语言对比 3、Go 程序中的包是什么？ 6、 如何在运行时检查变量类型？ go包初始化顺序 12、Go Convey 是什么？一般用来做什么？ new make atomic 原子操]]></description>
-</item><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Jun 2022 19:02:19 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/go/" rel="self" type="application/rss+xml" /><item>
     <title>WaitGroup 实现原理</title>
     <link>https://jefofrank.xyz/waitgroup/</link>
     <pubDate>Sun, 19 Jun 2022 19:02:19 &#43;0800</pubDate>

@@ -10,6 +10,6 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid>
-    <description><![CDATA[1、Kafka 是什么？主要应用场景有哪些？ Kafka 是一个分布式流式处理平台。 流平台具有三个关键功能： 消息队列：发布和订阅消息流，这个功能类似于消息]]></description>
+    <description><![CDATA[消息队列 为什么需要消息队列 Kafka的文件存储机制 Kafka 如何保证可靠性 Kafka消息是采用Pull模式，还是Push模式 Kafka是如何实现高吞]]></description>
 </item></channel>
 </rss>

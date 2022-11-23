@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>redis - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="redis" />
-<meta property="og:description" content="Redis 1、什么是 Redis? Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。 Redis 与其他 key - value 缓存产品有以下三个特点： Redis 支持数据的持久化，可以将内存中" />
+<meta property="og:description" content="Redis 1、什么是 Redis? Redis 优势： Redis 与其他 key-value 存储有什么不同？ 应用场景 单线程的Redis为什么快 Redis 的数据结构及使用场景 3、使用 Redis 有哪些好处？ 4、Redis" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/redis/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="redis"/>
-<meta name="twitter:description" content="Redis 1、什么是 Redis? Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。 Redis 与其他 key - value 缓存产品有以下三个特点： Redis 支持数据的持久化，可以将内存中"/>
+<meta name="twitter:description" content="Redis 1、什么是 Redis? Redis 优势： Redis 与其他 key-value 存储有什么不同？ 应用场景 单线程的Redis为什么快 Redis 的数据结构及使用场景 3、使用 Redis 有哪些好处？ 4、Redis"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/redis\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "redis","wordcount":  12171 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "redis","wordcount":  13270 ,
         "url": "https:\/\/jefofrank.xyz\/redis\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-18T23:15:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -114,9 +114,9 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">redis</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="far fa-folder fa-fw"></i>redis</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 12171 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 25 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 13270 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 27 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -195,7 +195,75 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="redis">Redis</h2>
+            </div><div class="content" id="content"><ul>
+<li><a href="#redis" rel="">Redis</a>
+<ul>
+<li><a href="#1%e4%bb%80%e4%b9%88%e6%98%af-redis" rel="">1、什么是 Redis?</a></li>
+<li><a href="#redis-%e4%bc%98%e5%8a%bf" rel="">Redis 优势：</a></li>
+<li><a href="#redis-%e4%b8%8e%e5%85%b6%e4%bb%96-key-value-%e5%ad%98%e5%82%a8%e6%9c%89%e4%bb%80%e4%b9%88%e4%b8%8d%e5%90%8c" rel="">Redis 与其他 key-value 存储有什么不同？</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" rel="">应用场景</a></li>
+<li><a href="#%e5%8d%95%e7%ba%bf%e7%a8%8b%e7%9a%84redis%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bf%ab" rel="">单线程的Redis为什么快</a></li>
+<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" rel="">Redis 的数据结构及使用场景</a></li>
+<li><a href="#3%e4%bd%bf%e7%94%a8-redis-%e6%9c%89%e5%93%aa%e4%ba%9b%e5%a5%bd%e5%a4%84" rel="">3、使用 Redis 有哪些好处？</a></li>
+<li><a href="#4redis-%e7%9b%b8%e6%af%94-memcached-%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bc%98%e5%8a%bf" rel="">4、Redis 相比 Memcached 有哪些优势？</a></li>
+<li><a href="#5memcache-%e4%b8%8e-redis-%e7%9a%84%e5%8c%ba%e5%88%ab%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">5、Memcache 与 Redis 的区别都有哪些？</a></li>
+<li><a href="#6redis-%e6%98%af%e5%8d%95%e8%bf%9b%e7%a8%8b%e5%8d%95%e7%ba%bf%e7%a8%8b%e7%9a%84" rel="">6、Redis 是单进程单线程的？</a></li>
+<li><a href="#7%e4%b8%80%e4%b8%aa%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%80%bc%e8%83%bd%e5%ad%98%e5%82%a8%e6%9c%80%e5%a4%a7%e5%ae%b9%e9%87%8f%e6%98%af%e5%a4%9a%e5%b0%91" rel="">7、一个字符串类型的值能存储最大容量是多少？</a></li>
+<li><a href="#8redis-%e7%9a%84%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6%e6%98%af%e4%bb%80%e4%b9%88%e5%90%84%e8%87%aa%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">8、Redis 的持久化机制是什么？各自的优缺点？</a></li>
+<li><a href="#9redis-%e5%b8%b8%e8%a7%81%e6%80%a7%e8%83%bd%e9%97%ae%e9%a2%98%e5%92%8c%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">9、Redis 常见性能问题和解决方案：</a></li>
+<li><a href="#10redis-%e8%bf%87%e6%9c%9f%e9%94%ae%e7%9a%84%e5%88%a0%e9%99%a4%e7%ad%96%e7%95%a5" rel="">10、Redis 过期键的删除策略？</a></li>
+<li><a href="#11redis-%e7%9a%84%e5%9b%9e%e6%94%b6%e7%ad%96%e7%95%a5%e6%b7%98%e6%b1%b0%e7%ad%96%e7%95%a5" rel="">11、Redis 的回收策略（淘汰策略）?</a></li>
+<li><a href="#12%e4%b8%ba%e4%bb%80%e4%b9%88-redis-%e9%9c%80%e8%a6%81%e6%8a%8a%e6%89%80%e6%9c%89%e6%95%b0%e6%8d%ae%e6%94%be%e5%88%b0%e5%86%85%e5%ad%98%e4%b8%ad" rel="">12、为什么 Redis 需要把所有数据放到内存中？</a></li>
+<li><a href="#13redis-%e7%9a%84%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6%e4%ba%86%e8%a7%a3%e4%b9%88" rel="">13、Redis 的同步机制了解么？</a></li>
+<li><a href="#14pipeline-%e6%9c%89%e4%bb%80%e4%b9%88%e5%a5%bd%e5%a4%84%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e7%94%a8-pipeline" rel="">14、Pipeline 有什么好处，为什么要用 Pipeline？</a></li>
+<li><a href="#15%e6%98%af%e5%90%a6%e4%bd%bf%e7%94%a8%e8%bf%87-redis-%e9%9b%86%e7%be%a4%e9%9b%86%e7%be%a4%e7%9a%84%e5%8e%9f%e7%90%86%e6%98%af%e4%bb%80%e4%b9%88" rel="">15、是否使用过 Redis 集群，集群的原理是什么？</a></li>
+<li><a href="#16redis-%e9%9b%86%e7%be%a4%e6%96%b9%e6%a1%88%e4%bb%80%e4%b9%88%e6%83%85%e5%86%b5%e4%b8%8b%e4%bc%9a%e5%af%bc%e8%87%b4%e6%95%b4%e4%b8%aa%e9%9b%86%e7%be%a4%e4%b8%8d%e5%8f%af%e7%94%a8" rel="">16、Redis 集群方案什么情况下会导致整个集群不可用？</a></li>
+<li><a href="#17redis-%e6%94%af%e6%8c%81%e7%9a%84-java-%e5%ae%a2%e6%88%b7%e7%ab%af%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e5%ae%98%e6%96%b9%e6%8e%a8%e8%8d%90%e7%94%a8%e5%93%aa%e4%b8%aa" rel="">17、Redis 支持的 Java 客户端都有哪些？官方推荐用哪个？</a></li>
+<li><a href="#18jedis-%e4%b8%8e-redisson-%e5%af%b9%e6%af%94%e6%9c%89%e4%bb%80%e4%b9%88%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">18、Jedis 与 Redisson 对比有什么优缺点？</a></li>
+<li><a href="#19redis-%e5%a6%82%e4%bd%95%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81%e5%8f%8a%e9%aa%8c%e8%af%81%e5%af%86%e7%a0%81" rel="">19、Redis 如何设置密码及验证密码？</a></li>
+<li><a href="#20%e8%af%b4%e8%af%b4-redis-%e5%93%88%e5%b8%8c%e6%a7%bd%e7%9a%84%e6%a6%82%e5%bf%b5" rel="">20、说说 Redis 哈希槽的概念？</a></li>
+<li><a href="#21redis-%e9%9b%86%e7%be%a4%e7%9a%84%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6%e6%a8%a1%e5%9e%8b%e6%98%af%e6%80%8e%e6%a0%b7%e7%9a%84" rel="">21、Redis 集群的主从复制模型是怎样的？</a></li>
+<li><a href="#22redis-%e9%9b%86%e7%be%a4%e4%bc%9a%e6%9c%89%e5%86%99%e6%93%8d%e4%bd%9c%e4%b8%a2%e5%a4%b1%e5%90%97%e4%b8%ba%e4%bb%80%e4%b9%88" rel="">22、Redis 集群会有写操作丢失吗？为什么？</a></li>
+<li><a href="#23redis-%e9%9b%86%e7%be%a4%e4%b9%8b%e9%97%b4%e6%98%af%e5%a6%82%e4%bd%95%e5%a4%8d%e5%88%b6%e7%9a%84" rel="">23、Redis 集群之间是如何复制的？</a></li>
+<li><a href="#24redis-%e9%9b%86%e7%be%a4%e6%9c%80%e5%a4%a7%e8%8a%82%e7%82%b9%e4%b8%aa%e6%95%b0%e6%98%af%e5%a4%9a%e5%b0%91" rel="">24、Redis 集群最大节点个数是多少？</a></li>
+<li><a href="#25redis-%e9%9b%86%e7%be%a4%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9%e6%95%b0%e6%8d%ae%e5%ba%93" rel="">25、Redis 集群如何选择数据库？</a></li>
+<li><a href="#26%e6%80%8e%e4%b9%88%e6%b5%8b%e8%af%95-redis-%e7%9a%84%e8%bf%9e%e9%80%9a%e6%80%a7" rel="">26、怎么测试 Redis 的连通性</a></li>
+<li><a href="#27%e6%80%8e%e4%b9%88%e7%90%86%e8%a7%a3-redis-%e4%ba%8b%e5%8a%a1" rel="">27、怎么理解 Redis 事务？</a></li>
+<li><a href="#28redis-%e4%ba%8b%e5%8a%a1%e7%9b%b8%e5%85%b3%e7%9a%84%e5%91%bd%e4%bb%a4%e6%9c%89%e5%93%aa%e5%87%a0%e4%b8%aa" rel="">28、Redis 事务相关的命令有哪几个？</a></li>
+<li><a href="#29redis-key-%e7%9a%84%e8%bf%87%e6%9c%9f%e6%97%b6%e9%97%b4%e5%92%8c%e6%b0%b8%e4%b9%85%e6%9c%89%e6%95%88%e5%88%86%e5%88%ab%e6%80%8e%e4%b9%88%e8%ae%be%e7%bd%ae" rel="">29、Redis key 的过期时间和永久有效分别怎么设置？</a></li>
+<li><a href="#30redis-%e5%a6%82%e4%bd%95%e5%81%9a%e5%86%85%e5%ad%98%e4%bc%98%e5%8c%96" rel="">30、Redis 如何做内存优化？</a></li>
+<li><a href="#31redis-%e5%9b%9e%e6%94%b6%e8%bf%9b%e7%a8%8b%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c%e7%9a%84" rel="">31、Redis 回收进程如何工作的？</a></li>
+<li><a href="#32%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e5%8a%9e%e6%b3%95%e5%8f%af%e4%bb%a5%e9%99%8d%e4%bd%8e-redis-%e7%9a%84%e5%86%85%e5%ad%98%e4%bd%bf%e7%94%a8%e6%83%85%e5%86%b5%e5%91%a2" rel="">32、都有哪些办法可以降低 Redis 的内存使用情况呢？</a></li>
+<li><a href="#33redis-%e7%9a%84%e5%86%85%e5%ad%98%e7%94%a8%e5%ae%8c%e4%ba%86%e4%bc%9a%e5%8f%91%e7%94%9f%e4%bb%80%e4%b9%88" rel="">33、Redis 的内存用完了会发生什么？</a></li>
+<li><a href="#34%e4%b8%80%e4%b8%aa-redis-%e5%ae%9e%e4%be%8b%e6%9c%80%e5%a4%9a%e8%83%bd%e5%ad%98%e6%94%be%e5%a4%9a%e5%b0%91%e7%9a%84-keys-listset" rel="">34、一个 Redis 实例最多能存放多少的 keys？ List、Set、</a></li>
+<li><a href="#35mysql-%e9%87%8c%e6%9c%89-2000w-%e6%95%b0%e6%8d%aeredis-%e4%b8%ad%e5%8f%aa%e5%ad%98-20w-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81-redis-%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e9%83%bd%e6%98%af%e7%83%ad%e7%82%b9%e6%95%b0%e6%8d%ae" rel="">35、MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据？</a></li>
+<li><a href="#36redis-%e6%9c%80%e9%80%82%e5%90%88%e7%9a%84%e5%9c%ba%e6%99%af" rel="">36、Redis 最适合的场景？</a></li>
+<li><a href="#37%e5%81%87%e5%a6%82-redis-%e9%87%8c%e9%9d%a2%e6%9c%89-1-%e4%ba%bf%e4%b8%aa-key%e5%85%b6%e4%b8%ad%e6%9c%89-10w-%e4%b8%aa-key-%e6%98%af%e4%bb%a5%e6%9f%90%e4%b8%aa%e5%9b%ba%e5%ae%9a%e7%9a%84%e5%b7%b2%e7%9f%a5%e7%9a%84%e5%89%8d%e7%bc%80%e5%bc%80%e5%a4%b4%e7%9a%84%e5%a6%82%e6%9e%9c%e5%b0%86%e5%ae%83%e4%bb%ac%e5%85%a8%e9%83%a8%e6%89%be%e5%87%ba%e6%9d%a5" rel="">37、假如 Redis 里面有 1 亿个 key，其中有 10w 个 key 是以某个固定的已知的前缀开头的，如果将它们全部找出来？</a></li>
+<li><a href="#38%e5%a6%82%e6%9e%9c%e6%9c%89%e5%a4%a7%e9%87%8f%e7%9a%84-key-%e9%9c%80%e8%a6%81%e8%ae%be%e7%bd%ae%e5%90%8c%e4%b8%80%e6%97%b6%e9%97%b4%e8%bf%87%e6%9c%9f%e4%b8%80%e8%88%ac%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" rel="">38、如果有大量的 key 需要设置同一时间过期，一般需要注意什么？</a></li>
+<li><a href="#39%e4%bd%bf%e7%94%a8%e8%bf%87-redis-%e5%81%9a%e5%bc%82%e6%ad%a5%e9%98%9f%e5%88%97%e4%b9%88%e4%bd%a0%e6%98%af%e6%80%8e%e4%b9%88%e7%94%a8%e7%9a%84" rel="">39、使用过 Redis 做异步队列么，你是怎么用的？</a></li>
+<li><a href="#40%e4%bd%bf%e7%94%a8%e8%bf%87-redis-%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81%e4%b9%88%e5%ae%83%e6%98%af%e4%bb%80%e4%b9%88%e5%9b%9e%e4%ba%8b" rel="">40、使用过 Redis 分布式锁么，它是什么回事</a></li>
+<li><a href="#redis-%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%87%e6%9c%9f%e7%ad%96%e7%95%a5" rel="">Redis 的数据过期策略</a></li>
+<li><a href="#redis%e7%9a%84set%e5%92%8csetnx" rel="">Redis的set和setnx</a></li>
+<li><a href="#redis%e7%9a%84lru%e5%85%b7%e4%bd%93%e5%ae%9e%e7%8e%b0" rel="">Redis的LRU具体实现：</a></li>
+<li><a href="#redis%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e7%83%ad%e7%82%b9key" rel="">Redis如何发现热点key</a></li>
+<li><a href="#redis%e7%9a%84%e7%83%ad%e7%82%b9key%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis的热点key解决方案</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存雪崩问题</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3-redis-%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f%e9%97%ae%e9%a2%98" rel="">如何解决 Redis 缓存穿透问题</a></li>
+<li><a href="#redis%e7%9a%84%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6" rel="">Redis的持久化机制</a></li>
+<li><a href="#redis%e7%9a%84%e4%ba%8b%e5%8a%a1" rel="">Redis的事务</a></li>
+<li><a href="#redis%e4%ba%8b%e5%8a%a1%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" rel="">Redis事务相关命令</a></li>
+<li><a href="#redis%e5%92%8c-memcached-%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">Redis和 memcached 的区别</a></li>
+<li><a href="#redis%e7%9a%84%e5%87%a0%e7%a7%8d%e9%9b%86%e7%be%a4%e6%a8%a1%e5%bc%8f" rel="">Redis的几种集群模式</a></li>
+<li><a href="#redis%e7%9a%84%e5%93%a8%e5%85%b5%e6%a8%a1%e5%bc%8f" rel="">Redis的哨兵模式</a></li>
+<li><a href="#redis%e7%9a%84rehash" rel="">Redis的rehash</a></li>
+<li><a href="#redis%e7%9a%84hash%e8%a1%a8%e8%a2%ab%e6%89%a9%e5%b1%95%e7%9a%84%e6%9d%a1%e4%bb%b6" rel="">Redis的hash表被扩展的条件</a></li>
+<li><a href="#redis%e5%b9%b6%e5%8f%91%e7%ab%9e%e4%ba%89key%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" rel="">Redis并发竞争key的解决方案</a></li>
+<li><a href="#redis%e4%b8%8emysql%e5%8f%8c%e5%86%99%e4%b8%80%e8%87%b4%e6%80%a7%e6%96%b9%e6%a1%88" rel="">Redis与Mysql双写一致性方案</a></li>
+<li><a href="#redis%e7%9a%84%e7%ae%a1%e9%81%93pipeline" rel="">Redis的管道pipeline</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="redis">Redis</h2>
 <h3 id="1什么是-redis">1、什么是 Redis?</h3>
 <p>Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。</p>
 <p>Redis 与其他 key - value 缓存产品有以下三个特点：</p>

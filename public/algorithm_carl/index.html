@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Algorithm_carl - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="Algorithm_carl" />
-<meta property="og:description" content="学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素" />
+<meta property="og:description" content="数组 数组基础 二分查找 移除元素 有序数组的平方 长度最小的子数组 螺旋矩阵II 总结 链表 链表理论基础 移除链表元素 设计链表 翻转链表 两两交换链表中的节点 删" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/algorithm_carl/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-06T08:17:33+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="Algorithm_carl"/>
-<meta name="twitter:description" content="学习代码随想录笔记 数组 数组基础 数组是存放在连续内存空间上的相同类型数据的集合。 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素"/>
+<meta name="twitter:description" content="数组 数组基础 二分查找 移除元素 有序数组的平方 长度最小的子数组 螺旋矩阵II 总结 链表 链表理论基础 移除链表元素 设计链表 翻转链表 两两交换链表中的节点 删"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/algorithm_carl\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data structure","wordcount":  57758 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data structure","wordcount":  58998 ,
         "url": "https:\/\/jefofrank.xyz\/algorithm_carl\/","datePublished": "2022-01-06T08:17:33+08:00","dateModified": "2022-11-21T21:56:34+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -114,9 +114,9 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Algorithm_carl</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coding/"><i class="far fa-folder fa-fw"></i>Coding</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 08:17:33">2022-01-06 08:17:33</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 57758 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 116 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-06 08:17:33">2022-01-06 08:17:33</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 58998 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 118 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -382,7 +382,262 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><blockquote>
+            </div><div class="content" id="content"><ul>
+<li><a href="#%e6%95%b0%e7%bb%84" rel="">数组</a>
+<ul>
+<li><a href="#%e6%95%b0%e7%bb%84%e5%9f%ba%e7%a1%80" rel="">数组基础</a></li>
+<li><a href="#%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be" rel="">二分查找</a></li>
+<li><a href="#%e7%a7%bb%e9%99%a4%e5%85%83%e7%b4%a0" rel="">移除元素</a></li>
+<li><a href="#%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9" rel="">有序数组的平方</a></li>
+<li><a href="#%e9%95%bf%e5%ba%a6%e6%9c%80%e5%b0%8f%e7%9a%84%e5%ad%90%e6%95%b0%e7%bb%84" rel="">长度最小的子数组</a></li>
+<li><a href="#%e8%9e%ba%e6%97%8b%e7%9f%a9%e9%98%b5ii" rel="">螺旋矩阵II</a></li>
+<li><a href="#%e6%80%bb%e7%bb%93" rel="">总结</a></li>
+</ul>
+</li>
+<li><a href="#%e9%93%be%e8%a1%a8" rel="">链表</a>
+<ul>
+<li><a href="#%e9%93%be%e8%a1%a8%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80" rel="">链表理论基础</a></li>
+<li><a href="#%e7%a7%bb%e9%99%a4%e9%93%be%e8%a1%a8%e5%85%83%e7%b4%a0" rel="">移除链表元素</a></li>
+<li><a href="#%e8%ae%be%e8%ae%a1%e9%93%be%e8%a1%a8" rel="">设计链表</a></li>
+<li><a href="#%e7%bf%bb%e8%bd%ac%e9%93%be%e8%a1%a8" rel="">翻转链表</a></li>
+<li><a href="#%e4%b8%a4%e4%b8%a4%e4%ba%a4%e6%8d%a2%e9%93%be%e8%a1%a8%e4%b8%ad%e7%9a%84%e8%8a%82%e7%82%b9" rel="">两两交换链表中的节点</a></li>
+<li><a href="#%e5%88%a0%e9%99%a4%e9%93%be%e8%a1%a8%e7%9a%84%e5%80%92%e6%95%b0%e7%ac%acn%e4%b8%aa%e8%8a%82%e7%82%b9" rel="">删除链表的倒数第N个节点</a></li>
+<li><a href="#%e9%93%be%e8%a1%a8%e7%9b%b8%e4%ba%a4" rel="">链表相交</a></li>
+<li><a href="#%e7%8e%af%e5%bd%a2%e9%93%be%e8%a1%a8ii" rel="">环形链表II</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0lru%e7%bc%93%e5%ad%98%e6%b7%98%e6%b1%b0%e7%ae%97%e6%b3%95" rel="">如何实现LRU缓存淘汰算法?</a></li>
+<li><a href="#%e9%93%be%e8%a1%a8%e7%bb%93%e6%9e%84" rel="">链表结构</a></li>
+</ul>
+</li>
+<li><a href="#%e5%93%88%e5%b8%8c%e8%a1%a8" rel="">哈希表</a>
+<ul>
+<li><a href="#%e5%93%88%e5%b8%8c%e8%a1%a8%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80" rel="">哈希表理论基础</a></li>
+<li><a href="#%e6%9c%89%e6%95%88%e7%9a%84%e5%ad%97%e6%af%8d%e5%bc%82%e4%bd%8d%e8%af%8d" rel="">有效的字母异位词</a></li>
+<li><a href="#%e4%b8%a4%e4%b8%aa%e6%95%b0%e7%bb%84%e7%9a%84%e4%ba%a4%e9%9b%86" rel="">两个数组的交集</a></li>
+<li><a href="#%e5%bf%ab%e4%b9%90%e6%95%b0" rel="">快乐数</a></li>
+<li><a href="#%e4%b8%a4%e6%95%b0%e4%b9%8b%e5%92%8c" rel="">两数之和</a></li>
+<li><a href="#%e5%9b%9b%e6%95%b0%e7%9b%b8%e5%8a%a0ii" rel="">四数相加II</a></li>
+<li><a href="#%e8%b5%8e%e9%87%91%e4%bf%a1" rel="">赎金信</a></li>
+<li><a href="#%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c" rel="">三数之和</a></li>
+<li><a href="#%e5%9b%9b%e6%95%b0%e4%b9%8b%e5%92%8c" rel="">四数之和</a></li>
+</ul>
+</li>
+<li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2" rel="">字符串</a>
+<ul>
+<li><a href="#%e5%8f%8d%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2" rel="">反转字符串</a>
+<ul>
+<li><a href="#i" rel="">I</a></li>
+<li><a href="#ii" rel="">II</a></li>
+</ul>
+</li>
+<li><a href="#%e6%9b%bf%e6%8d%a2%e7%a9%ba%e6%a0%bc" rel="">替换空格</a></li>
+<li><a href="#%e7%bf%bb%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%87%8c%e7%9a%84%e5%8d%95%e8%af%8d" rel="">翻转字符串里的单词</a></li>
+<li><a href="#%e5%b7%a6%e6%97%8b%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2" rel="">左旋转字符串</a></li>
+<li><a href="#%e5%ae%9e%e7%8e%b0strstr" rel="">实现strStr()</a>
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afkmp" rel="">什么是KMP</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%89%8d%e7%bc%80%e8%a1%a8%e4%b8%8enext%e6%95%b0%e7%bb%84" rel="">什么是前缀表与next数组</a></li>
+<li><a href="#%e5%89%8d%e7%bc%80%e8%a1%a8%e7%bb%9f%e4%b8%80%e5%87%8f%e4%b8%80%e4%b9%8b%e5%90%8e%e7%9a%84next%e6%95%b0%e7%bb%84" rel="">前缀表统一减一之后的next数组：</a></li>
+<li><a href="#%e5%89%8d%e7%bc%80%e8%a1%a8%e4%b8%8d%e5%87%8f%e4%b8%80%e7%9a%84next%e6%95%b0%e7%bb%84" rel="">前缀表不减一的next数组：</a></li>
+<li><a href="#kmp%e6%80%bb%e7%bb%93" rel="">kmp总结</a></li>
+</ul>
+</li>
+<li><a href="#%e9%87%8d%e5%a4%8d%e7%9a%84%e5%ad%90%e5%ad%97%e7%ac%a6%e4%b8%b2" rel="">重复的子字符串</a></li>
+</ul>
+</li>
+<li><a href="#%e5%8f%8c%e6%8c%87%e9%92%88%e6%b3%95" rel="">双指针法</a>
+<ul>
+<li><a href="#%e6%8e%a5%e9%9b%a8%e6%b0%b4" rel="">接雨水</a></li>
+<li><a href="#%e7%a7%bb%e9%99%a4%e5%85%83%e7%b4%a0-1" rel="">移除元素</a></li>
+<li><a href="#%e5%8f%8d%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2-1" rel="">反转字符串</a></li>
+<li><a href="#%e6%9b%bf%e6%8d%a2%e7%a9%ba%e6%a0%bc-1" rel="">替换空格</a></li>
+<li><a href="#%e7%bf%bb%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%87%8c%e7%9a%84%e5%8d%95%e8%af%8d-1" rel="">翻转字符串里的单词</a></li>
+<li><a href="#%e7%bf%bb%e8%bd%ac%e9%93%be%e8%a1%a8-1" rel="">翻转链表</a></li>
+<li><a href="#%e5%88%a0%e9%99%a4%e9%93%be%e8%a1%a8%e7%9a%84%e5%80%92%e6%95%b0%e7%ac%acn%e4%b8%aa%e8%8a%82%e7%82%b9-1" rel="">删除链表的倒数第N个节点</a></li>
+<li><a href="#%e9%93%be%e8%a1%a8%e7%9b%b8%e4%ba%a4-1" rel="">链表相交</a></li>
+<li><a href="#%e7%8e%af%e5%bd%a2%e9%93%be%e8%a1%a8ii-1" rel="">环形链表II</a></li>
+<li><a href="#%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c-1" rel="">三数之和</a></li>
+<li><a href="#%e5%9b%9b%e6%95%b0%e4%b9%8b%e5%92%8c-1" rel="">四数之和</a></li>
+<li><a href="#%e5%8f%8c%e6%8c%87%e9%92%88%e6%80%bb%e7%bb%93" rel="">双指针总结</a></li>
+</ul>
+</li>
+<li><a href="#%e6%a0%88%e5%92%8c%e9%98%9f%e5%88%97" rel="">栈和队列</a>
+<ul>
+<li><a href="#%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80c" rel="">理论基础(c++)</a></li>
+<li><a href="#%e7%94%a8%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97" rel="">用栈实现队列</a></li>
+<li><a href="#%e7%94%a8%e9%98%9f%e5%88%97%e5%ae%9e%e7%8e%b0%e6%a0%88" rel="">用队列实现栈</a></li>
+<li><a href="#%e6%9c%89%e6%95%88%e7%9a%84%e6%8b%ac%e5%8f%b7" rel="">有效的括号</a></li>
+<li><a href="#%e5%88%a0%e9%99%a4%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e6%89%80%e6%9c%89%e7%9b%b8%e9%82%bb%e9%87%8d%e5%a4%8d%e9%a1%b9" rel="">删除字符串中的所有相邻重复项</a></li>
+<li><a href="#%e9%80%86%e6%b3%a2%e5%85%b0%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc" rel="">逆波兰表达式求值</a></li>
+<li><a href="#%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e6%9c%80%e5%a4%a7%e5%80%bc" rel="">滑动窗口最大值</a></li>
+<li><a href="#%e5%89%8dk%e4%b8%aa%e9%ab%98%e9%a2%91%e5%85%83%e7%b4%a0" rel="">前K个高频元素</a></li>
+</ul>
+</li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">二叉树</a>
+<ul>
+<li><a href="#%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80" rel="">理论基础</a></li>
+<li><a href="#%e9%80%92%e5%bd%92%e9%81%8d%e5%8e%86" rel="">递归遍历</a></li>
+<li><a href="#%e8%bf%ad%e4%bb%a3%e9%81%8d%e5%8e%86" rel="">迭代遍历</a></li>
+<li><a href="#%e7%bb%9f%e4%b8%80%e8%bf%ad%e4%bb%a3" rel="">统一迭代</a></li>
+<li><a href="#%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86" rel="">层序遍历</a></li>
+<li><a href="#102%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86" rel="">102.二叉树的层序遍历</a></li>
+<li><a href="#107%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e6%ac%a1%e9%81%8d%e5%8e%86ii" rel="">107.二叉树的层次遍历II</a></li>
+<li><a href="#199%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%8f%b3%e8%a7%86%e5%9b%be" rel="">199.二叉树的右视图</a></li>
+<li><a href="#637%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%b9%b3%e5%9d%87%e5%80%bc" rel="">637.二叉树的层平均值</a></li>
+<li><a href="#429n%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86" rel="">429.N叉树的层序遍历</a></li>
+<li><a href="#515%e5%9c%a8%e6%af%8f%e4%b8%aa%e6%a0%91%e8%a1%8c%e4%b8%ad%e6%89%be%e6%9c%80%e5%a4%a7%e5%80%bc" rel="">515.在每个树行中找最大值</a></li>
+<li><a href="#116%e5%a1%ab%e5%85%85%e6%af%8f%e4%b8%aa%e8%8a%82%e7%82%b9%e7%9a%84%e4%b8%8b%e4%b8%80%e4%b8%aa%e5%8f%b3%e4%be%a7%e8%8a%82%e7%82%b9%e6%8c%87%e9%92%88" rel="">116.填充每个节点的下一个右侧节点指针</a></li>
+<li><a href="#117%e5%a1%ab%e5%85%85%e6%af%8f%e4%b8%aa%e8%8a%82%e7%82%b9%e7%9a%84%e4%b8%8b%e4%b8%80%e4%b8%aa%e5%8f%b3%e4%be%a7%e8%8a%82%e7%82%b9%e6%8c%87%e9%92%88ii" rel="">117.填充每个节点的下一个右侧节点指针II</a></li>
+<li><a href="#104%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6" rel="">104.二叉树的最大深度</a></li>
+<li><a href="#111%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%b0%8f%e6%b7%b1%e5%ba%a6" rel="">111.二叉树的最小深度</a></li>
+<li><a href="#%e7%bf%bb%e8%bd%ac%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">翻转二叉树</a></li>
+<li><a href="#%e5%af%b9%e7%a7%b0%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">对称二叉树</a></li>
+<li><a href="#%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6" rel="">最大深度</a></li>
+<li><a href="#%e6%9c%80%e5%b0%8f%e6%b7%b1%e5%ba%a6" rel="">最小深度</a></li>
+<li><a href="#%e5%ae%8c%e5%85%a8%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e8%8a%82%e7%82%b9%e4%b8%aa%e6%95%b0" rel="">完全二叉树的节点个数</a></li>
+<li><a href="#%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">平衡二叉树</a></li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%89%80%e6%9c%89%e8%b7%af%e5%be%84" rel="">二叉树的所有路径</a></li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%80%92%e5%bd%92%e5%9b%9e%e6%ba%af" rel="">二叉树的递归+回溯</a></li>
+<li><a href="#%e5%b7%a6%e5%8f%b6%e5%ad%90%e4%b9%8b%e5%92%8c" rel="">左叶子之和</a></li>
+<li><a href="#%e6%89%be%e6%a0%91%e5%b7%a6%e4%b8%8b%e8%a7%92%e7%9a%84%e5%80%bc" rel="">找树左下角的值</a></li>
+<li><a href="#%e8%b7%af%e5%be%84%e6%80%bb%e5%92%8c" rel="">路径总和</a></li>
+<li><a href="#%e4%bb%8e%e4%b8%ad%e5%ba%8f%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86%e5%ba%8f%e5%88%97%e6%9e%84%e9%80%a0%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">从中序、后序遍历序列构造二叉树</a></li>
+<li><a href="#%e6%9c%80%e5%a4%a7%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">最大二叉树</a></li>
+<li><a href="#%e5%90%88%e5%b9%b6%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">合并二叉树</a></li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91" rel="">二叉搜索树</a></li>
+<li><a href="#%e6%90%9c%e7%b4%a2" rel="">搜索</a></li>
+<li><a href="#%e9%aa%8c%e8%af%81" rel="">验证</a></li>
+<li><a href="#%e6%9c%80%e5%b0%8f%e7%bb%9d%e5%af%b9%e5%b7%ae" rel="">最小绝对差</a></li>
+<li><a href="#%e4%bc%97%e6%95%b0" rel="">众数</a></li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e6%9c%80%e8%bf%91%e5%85%ac%e5%85%b1%e7%a5%96%e5%85%88" rel="">二叉树最近公共祖先</a></li>
+<li><a href="#%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e6%9c%80%e8%bf%91%e5%85%ac%e5%85%b1%e7%a5%96%e5%85%88" rel="">二叉搜索树的最近公共祖先</a></li>
+<li><a href="#%e6%8f%92%e5%85%a5%e6%93%8d%e4%bd%9c" rel="">插入操作</a></li>
+<li><a href="#%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9" rel="">删除节点</a></li>
+<li><a href="#%e4%bf%ae%e5%89%aa" rel="">修剪</a></li>
+<li><a href="#%e5%b0%86%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e8%bd%ac%e5%8c%96%e4%b8%ba%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91" rel="">将有序数组转化为二叉搜索树</a></li>
+<li><a href="#%e6%8a%8a%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e8%bd%ac%e5%8c%96%e4%b8%ba%e7%b4%af%e5%8a%a0%e6%a0%91" rel="">把二叉搜索树转化为累加树</a></li>
+</ul>
+</li>
+<li><a href="#%e5%9b%9e%e6%ba%af%e7%ae%97%e6%b3%95" rel="">回溯算法</a>
+<ul>
+<li><a href="#%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80-1" rel="">理论基础</a></li>
+<li><a href="#%e7%bb%84%e5%90%88%e9%97%ae%e9%a2%98%e5%8f%8a%e5%85%b6%e4%bc%98%e5%8c%96" rel="">*组合问题及其优化</a></li>
+<li><a href="#%e7%bb%84%e5%90%88%e6%80%bb%e5%92%8ciii" rel="">组合总和III</a></li>
+<li><a href="#%e7%94%b5%e8%af%9d%e5%8f%b7%e7%a0%81%e7%9a%84%e5%ad%97%e6%af%8d%e7%bb%84%e5%90%88" rel="">电话号码的字母组合</a></li>
+<li><a href="#%e7%bb%84%e5%90%88%e6%80%bb%e5%92%8c" rel="">组合总和</a></li>
+<li><a href="#%e7%bb%84%e5%90%88%e6%80%bb%e5%92%8cii" rel="">组合总和II</a></li>
+<li><a href="#%e5%88%86%e5%89%b2%e5%9b%9e%e6%96%87%e4%b8%b2" rel="">分割回文串</a></li>
+<li><a href="#%e5%a4%8d%e5%8e%9fip%e5%9c%b0%e5%9d%80" rel="">复原IP地址</a></li>
+<li><a href="#%e5%ad%90%e9%9b%86%e9%97%ae%e9%a2%98" rel="">子集问题</a></li>
+<li><a href="#%e5%ad%90%e9%9b%86ii" rel="">子集II</a></li>
+<li><a href="#%e9%80%92%e5%a2%9e%e5%ad%90%e5%ba%8f%e5%88%97" rel="">递增子序列</a></li>
+<li><a href="#%e5%85%a8%e6%8e%92%e5%88%97" rel="">全排列</a></li>
+<li><a href="#%e5%85%a8%e6%8e%92%e5%88%97ii" rel="">全排列II</a></li>
+<li><a href="#%e5%9b%9e%e6%ba%af%e7%ae%97%e6%b3%95%e5%8e%bb%e9%87%8d%e9%97%ae%e9%a2%98%e7%9a%84%e5%8f%a6%e4%b8%80%e7%a7%8d%e5%86%99%e6%b3%95" rel="">回溯算法去重问题的另一种写法</a></li>
+<li><a href="#%e9%87%8d%e6%96%b0%e5%ae%89%e6%8e%92%e8%a1%8c%e7%a8%8b" rel="">重新安排行程</a></li>
+<li><a href="#n%e7%9a%87%e5%90%8e" rel="">N皇后</a></li>
+<li><a href="#%e8%a7%a3%e6%95%b0%e7%8b%ac" rel="">解数独</a></li>
+</ul>
+</li>
+<li><a href="#%e8%b4%aa%e5%bf%83%e7%ae%97%e6%b3%95" rel="">贪心算法</a>
+<ul>
+<li><a href="#%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80-2" rel="">理论基础</a></li>
+<li><a href="#%e5%88%86%e5%8f%91%e9%a5%bc%e5%b9%b2" rel="">分发饼干</a></li>
+<li><a href="#%e6%91%86%e5%8a%a8%e5%ba%8f%e5%88%97" rel="">摆动序列</a></li>
+<li><a href="#%e6%9c%80%e5%a4%a7%e5%ad%90%e5%ba%8f%e5%92%8c" rel="">最大子序和</a></li>
+<li><a href="#%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8%e7%9a%84%e6%9c%80%e4%bd%b3%e6%97%b6%e6%9c%baii" rel="">买卖股票的最佳时机II</a></li>
+<li><a href="#%e8%b7%b3%e8%b7%83%e6%b8%b8%e6%88%8f" rel="">跳跃游戏</a>
+<ul>
+<li><a href="#i-1" rel="">I</a></li>
+<li><a href="#ii-1" rel="">II</a></li>
+</ul>
+</li>
+<li><a href="#k%e6%ac%a1%e5%8f%96%e5%8f%8d%e5%90%8e%e6%9c%80%e5%a4%a7%e5%8c%96%e7%9a%84%e6%95%b0%e7%bb%84%e5%92%8c" rel="">K次取反后最大化的数组和</a></li>
+<li><a href="#%e5%8a%a0%e6%b2%b9%e7%ab%99" rel="">加油站</a></li>
+<li><a href="#%e5%88%86%e5%8f%91%e7%b3%96%e6%9e%9c" rel="">分发糖果</a></li>
+<li><a href="#%e6%9f%a0%e6%aa%ac%e6%b0%b4%e6%89%be%e9%9b%b6" rel="">柠檬水找零</a></li>
+<li><a href="#%e6%a0%b9%e6%8d%ae%e8%ba%ab%e9%ab%98%e9%87%8d%e5%bb%ba%e9%98%9f%e5%88%97" rel="">根据身高重建队列</a></li>
+<li><a href="#%e7%94%a8%e6%9c%80%e5%b0%91%e6%95%b0%e9%87%8f%e7%9a%84%e7%ae%ad%e5%bc%95%e7%88%86%e6%b0%94%e7%90%83" rel="">用最少数量的箭引爆气球</a></li>
+<li><a href="#%e6%97%a0%e9%87%8d%e5%8f%a0%e5%8c%ba%e9%97%b4" rel="">无重叠区间</a></li>
+<li><a href="#%e5%88%92%e5%88%86%e5%ad%97%e6%af%8d%e5%8c%ba%e9%97%b4" rel="">划分字母区间</a></li>
+<li><a href="#%e5%90%88%e5%b9%b6%e5%8c%ba%e9%97%b4" rel="">合并区间</a></li>
+<li><a href="#%e5%8d%95%e8%b0%83%e9%80%92%e5%a2%9e%e7%9a%84%e6%95%b0%e5%ad%97" rel="">单调递增的数字</a></li>
+<li><a href="#%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8%e7%9a%84%e6%9c%80%e4%bd%b3%e6%97%b6%e6%9c%ba%e5%90%ab%e6%89%8b%e7%bb%ad%e8%b4%b9" rel="">买卖股票的最佳时机含手续费</a></li>
+<li><a href="#%e7%9b%91%e6%8e%a7%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">监控二叉树</a></li>
+</ul>
+</li>
+<li><a href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" rel="">动态规划</a>
+<ul>
+<li><a href="#%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80-3" rel="">理论基础</a></li>
+<li><a href="#%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%95%b0" rel="">斐波那契数</a></li>
+<li><a href="#%e7%88%ac%e6%a5%bc%e6%a2%af" rel="">爬楼梯</a>
+<ul>
+<li><a href="#%e4%bd%bf%e7%94%a8%e6%9c%80%e5%b0%8f%e8%8a%b1%e8%b4%b9%e7%88%ac%e6%a5%bc%e6%a2%af" rel="">使用最小花费爬楼梯</a></li>
+</ul>
+</li>
+<li><a href="#%e4%b8%8d%e5%90%8c%e8%b7%af%e5%be%84" rel="">不同路径</a>
+<ul>
+<li><a href="#i-2" rel="">I</a></li>
+<li><a href="#ii-2" rel="">II</a></li>
+</ul>
+</li>
+<li><a href="#%e6%95%b4%e6%95%b0%e6%8b%86%e5%88%86" rel="">整数拆分</a></li>
+<li><a href="#%e4%b8%8d%e5%90%8c%e7%9a%84%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91" rel="">不同的二叉搜索树</a></li>
+<li><a href="#0-1%e8%83%8c%e5%8c%85%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80" rel="">0-1背包理论基础</a>
+<ul>
+<li><a href="#i-3" rel="">I</a></li>
+<li><a href="#ii-3" rel="">II</a></li>
+</ul>
+</li>
+<li><a href="#%e5%88%86%e5%89%b2%e7%ad%89%e5%92%8c%e5%ad%90%e9%9b%86" rel="">分割等和子集</a></li>
+<li><a href="#%e6%9c%80%e5%90%8e%e4%b8%80%e5%9d%97%e7%9f%b3%e5%a4%b4%e7%9a%84%e9%87%8d%e9%87%8fii" rel="">最后一块石头的重量II</a></li>
+<li><a href="#%e7%9b%ae%e6%a0%87%e5%92%8c" rel="">目标和</a></li>
+<li><a href="#%e4%b8%80%e5%92%8c%e9%9b%b6" rel="">一和零</a></li>
+<li><a href="#%e5%ae%8c%e5%85%a8%e8%83%8c%e5%8c%85%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80" rel="">完全背包理论基础</a></li>
+<li><a href="#%e9%9b%b6%e9%92%b1%e5%85%91%e6%8d%a2ii" rel="">零钱兑换II</a></li>
+<li><a href="#%e7%bb%84%e5%90%88%e6%80%bb%e5%92%8civ" rel="">组合总和（IV）</a></li>
+<li><a href="#%e7%88%ac%e6%a5%bc%e6%a2%af%e8%bf%9b%e9%98%b6" rel="">爬楼梯（进阶）</a></li>
+<li><a href="#%e9%9b%b6%e9%92%b1%e5%85%91%e6%8d%a2" rel="">零钱兑换</a></li>
+<li><a href="#%e5%ae%8c%e5%85%a8%e5%b9%b3%e6%96%b9%e6%95%b0" rel="">完全平方数</a></li>
+<li><a href="#%e5%8d%95%e8%af%8d%e6%8b%86%e5%88%86" rel="">单词拆分</a></li>
+<li><a href="#%e6%89%93%e5%ae%b6%e5%8a%ab%e8%88%8d" rel="">打家劫舍</a>
+<ul>
+<li><a href="#i-4" rel="">I</a></li>
+<li><a href="#ii-4" rel="">II</a></li>
+</ul>
+</li>
+<li><a href="#iii" rel="">III</a></li>
+<li><a href="#%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8%e7%9a%84%e6%9c%80%e4%bd%b3%e6%97%b6%e6%9c%ba" rel="">买卖股票的最佳时机</a>
+<ul>
+<li><a href="#i-5" rel="">I</a></li>
+<li><a href="#ii-5" rel="">II</a></li>
+<li><a href="#iii-1" rel="">III</a></li>
+<li><a href="#iv" rel="">IV</a></li>
+<li><a href="#%e6%9c%80%e4%bd%b3%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8%e6%97%b6%e6%9c%ba%e5%90%ab%e5%86%b7%e5%86%bb%e6%9c%9f" rel="">最佳买卖股票时机含冷冻期</a></li>
+<li><a href="#%e6%9c%80%e4%bd%b3%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8%e6%97%b6%e6%9c%ba%e5%90%ab%e6%89%8b%e7%bb%ad%e8%b4%b9" rel="">最佳买卖股票时机含手续费</a></li>
+</ul>
+</li>
+<li><a href="#%e8%82%a1%e7%a5%a8%e9%97%ae%e9%a2%98%e6%80%bb%e7%bb%93" rel="">股票问题总结</a></li>
+<li><a href="#%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97" rel="">最长上升子序列</a></li>
+<li><a href="#%e6%9c%80%e9%95%bf%e8%bf%9e%e7%bb%ad%e9%80%92%e5%a2%9e%e5%ba%8f%e5%88%97" rel="">最长连续递增序列</a></li>
+<li><a href="#%e6%9c%80%e9%95%bf%e9%87%8d%e5%a4%8d%e5%ad%90%e6%95%b0%e7%bb%84" rel="">最长重复子数组</a></li>
+<li><a href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97" rel="">最长公共子序列</a></li>
+<li><a href="#%e4%b8%8d%e7%9b%b8%e4%ba%a4%e7%9a%84%e7%ba%bf" rel="">不相交的线</a></li>
+<li><a href="#%e6%9c%80%e5%a4%a7%e5%ad%90%e5%ba%8f%e5%92%8c-1" rel="">最大子序和</a></li>
+<li><a href="#%e5%88%a4%e6%96%ad%e5%ad%90%e5%ba%8f%e5%88%97" rel="">判断子序列</a></li>
+<li><a href="#%e4%b8%8d%e5%90%8c%e7%9a%84%e5%ad%90%e5%ba%8f%e5%88%97" rel="">不同的子序列</a></li>
+<li><a href="#%e4%b8%a4%e4%b8%aa%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e5%88%a0%e9%99%a4%e6%93%8d%e4%bd%9c" rel="">两个字符串的删除操作</a></li>
+<li><a href="#%e7%bc%96%e8%be%91%e8%b7%9d%e7%a6%bb" rel="">编辑距离</a></li>
+<li><a href="#%e7%bc%96%e8%be%91%e8%b7%9d%e7%a6%bb%e6%80%bb%e7%bb%93" rel="">编辑距离总结</a></li>
+<li><a href="#%e5%9b%9e%e6%96%87%e5%ad%90%e4%b8%b2" rel="">回文子串</a></li>
+<li><a href="#%e6%9c%80%e9%95%bf%e5%9b%9e%e6%96%87%e5%ad%90%e5%ba%8f%e5%88%97" rel="">最长回文子序列</a></li>
+<li><a href="#dp%e6%80%bb%e7%bb%93" rel="">DP总结</a></li>
+<li><a href="#%e5%bc%80%e7%af%87%e8%af%8d%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a4%a7%e5%8e%82%e9%83%bd%e7%88%b1%e8%80%83%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" rel="">开篇词｜为什么大厂都爱考动态规划？</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%a0%b7%e7%9a%84%e9%97%ae%e9%a2%98%e5%ba%94%e8%af%a5%e4%bd%bf%e7%94%a8%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" rel="">什么样的问题应该使用动态规划？</a></li>
+<li><a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e9%9d%a2%e8%af%95%e9%a2%98%e4%b8%b2%e7%83%a7" rel="">常见的动态规划面试题串烧</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
 <p>学习<a href="https://programmercarl.com/" target="_blank" rel="noopener noreffer">代码随想录</a>笔记</p>
 </blockquote>
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->

@@ -20,7 +20,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/mysql/" /><link rel="prev" href="https://jefofrank.xyz/os/" /><link rel="next" href="https://jefofrank.xyz/goetc/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/mysql/" /><link rel="prev" href="https://jefofrank.xyz/linux/" /><link rel="next" href="https://jefofrank.xyz/mongodb/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/mysql\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  29129 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  29088 ,
         "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-19T20:56:38+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -114,8 +114,8 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">MYSQL</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>MYSQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29129 字&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29088 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 59 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -298,7 +298,7 @@
 <li><a href="#2-%e7%b4%a2%e5%bc%95%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">2. 索引有哪些优缺点？</a></li>
 <li><a href="#3-mysql%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d%e7%b4%a2%e5%bc%95%e7%b1%bb%e5%9e%8b" rel="">3. MySQL有哪几种索引类型？</a></li>
 <li><a href="#4-%e8%af%b4%e4%b8%80%e8%af%b4%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" rel="">4. 说一说索引的底层实现？</a></li>
-<li>[5. 为什么索引结构默认使用B+Tree，而不是B-Tree，Hash，二叉树，<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e7%ba%a2%e9%bb%91%e6%a0%91" target="_blank" rel="noopener noreffer">红黑树</a>？](#5-为什么索引结构默认使用btree而不是b-treehash二叉树红黑树)</li>
+<li><a href="#5-%e4%b8%ba%e4%bb%80%e4%b9%88%e7%b4%a2%e5%bc%95%e7%bb%93%e6%9e%84%e9%bb%98%e8%ae%a4%e4%bd%bf%e7%94%a8btree%e8%80%8c%e4%b8%8d%e6%98%afb-treehash%e4%ba%8c%e5%8f%89%e6%a0%91%e7%ba%a2%e9%bb%91%e6%a0%91" rel="">5. 为什么索引结构默认使用B+Tree，而不是B-Tree，Hash，二叉树，红黑树？</a></li>
 <li><a href="#6-%e8%ae%b2%e4%b8%80%e8%ae%b2%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%8e%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95" rel="">6. 讲一讲聚簇索引与非聚簇索引？</a></li>
 <li><a href="#7-%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%80%e5%ae%9a%e4%bc%9a%e5%9b%9e%e8%a1%a8%e6%9f%a5%e8%af%a2%e5%90%97" rel="">7. 非聚簇索引一定会回表查询吗？</a></li>
 <li><a href="#8-%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e4%b8%ad%e7%9a%84%e9%a1%ba%e5%ba%8f" rel="">8. 联合索引是什么？为什么需要<strong>注意</strong>联合索引中的顺序？</a></li>
@@ -1532,8 +1532,8 @@ MySQL 会在下面这几种情况产生临时表。</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/os/" class="prev" rel="prev" title="OS"><i class="fas fa-angle-left fa-fw"></i>OS</a>
-            <a href="/goetc/" class="next" rel="next" title="go">go<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/linux/" class="prev" rel="prev" title="OS"><i class="fas fa-angle-left fa-fw"></i>OS</a>
+            <a href="/mongodb/" class="next" rel="next" title="MongoDB">MongoDB<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

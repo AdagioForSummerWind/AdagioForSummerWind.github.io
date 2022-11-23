@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>OS - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="OS" />
+<meta property="og:description" content="linux linux 基础 1. 什么是Linux 2. Windows和Linux的区别 3. Unix和Linux有什么区别？ 4. 什么是 Linux 内核？ 5. Linux的基本组件是什么？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/linux/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
+<meta property="article:modified_time" content="2022-11-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content="OS"/>
+<meta name="twitter:description" content="linux linux 基础 1. 什么是Linux 2. Windows和Linux的区别 3. Unix和Linux有什么区别？ 4. 什么是 Linux 内核？ 5. Linux的基本组件是什么？"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/linux/" /><link rel="prev" href="https://jefofrank.xyz/os/" /><link rel="next" href="https://jefofrank.xyz/mysql/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "OS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/linux\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Linux","wordcount":  24405 ,
+        "url": "https:\/\/jefofrank.xyz\/linux\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">OS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 24405 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 49 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#linux">linux</a>
+      <ul>
+        <li><a href="#linux-基础">linux 基础</a>
+          <ul>
+            <li><a href="#1-什么是linux">1. 什么是Linux</a></li>
+            <li><a href="#2-windows和linux的区别">2. Windows和Linux的区别</a></li>
+            <li><a href="#3-unix和linux有什么区别">3. Unix和Linux有什么区别？</a></li>
+            <li><a href="#4-什么是-linux-内核">4. 什么是 Linux 内核？</a></li>
+            <li><a href="#5-linux的基本组件是什么">5. Linux的基本组件是什么？</a></li>
+            <li><a href="#6-linux-的体系结构">6. Linux 的体系结构</a>
+              <ul>
+                <li><a href="#为什么-linux-体系结构要分为用户空间和内核空间的原因">为什么 Linux 体系结构要分为用户空间和内核空间的原因？</a></li>
+              </ul>
+            </li>
+            <li><a href="#7-bash和dos之间的基本区别是什么">7. BASH和DOS之间的基本区别是什么？</a></li>
+            <li><a href="#8-linux-开机启动过程">8. Linux 开机启动过程？</a></li>
+            <li><a href="#9-linux系统缺省的运行级别">9. Linux系统缺省的运行级别？</a></li>
+            <li><a href="#10-linux-使用的进程间通信方式">10. Linux 使用的进程间通信方式？</a></li>
+            <li><a href="#11-linux-有哪些系统日志文件">11. Linux 有哪些系统日志文件？</a></li>
+            <li><a href="#12-linux系统安装多个桌面环境有帮助吗">12. Linux系统安装多个桌面环境有帮助吗？</a></li>
+            <li><a href="#13-什么是交换空间">13. 什么是交换空间？</a></li>
+            <li><a href="#14-什么是root帐户">14. 什么是root帐户</a></li>
+            <li><a href="#15-什么是lilo">15. 什么是LILO？</a></li>
+            <li><a href="#16-什么是bash">16. 什么是BASH？</a></li>
+            <li><a href="#17-什么是cli">17. 什么是CLI？</a></li>
+            <li><a href="#18-什么是gui">18. 什么是GUI？</a></li>
+            <li><a href="#20-gnu项目的重要性是什么">20. GNU项目的重要性是什么？</a></li>
+          </ul>
+        </li>
+        <li><a href="#磁盘目录文件">磁盘、目录、文件</a>
+          <ul>
+            <li><a href="#21-简单-linux-文件系统">21. 简单 Linux 文件系统？</a></li>
+            <li><a href="#22-linux-的目录结构是怎样的">22. Linux 的目录结构是怎样的？</a></li>
+            <li><a href="#23-什么是-inode-">23. 什么是 inode ？</a></li>
+            <li><a href="#24-什么是硬链接和软链接">24. 什么是硬链接和软链接？</a></li>
+            <li><a href="#25-raid-是什么">25. RAID 是什么?</a></li>
+            <li><a href="#26-一台-linux-系统初始化环境后需要做一些什么安全工作">26. 一台 Linux 系统初始化环境后需要做一些什么安全工作？</a></li>
+            <li><a href="#27-什么叫-cc-攻击什么叫-ddos-攻击">27. 什么叫 CC 攻击？什么叫 DDOS 攻击？</a></li>
+            <li><a href="#28-什么是网站数据库注入">28. 什么是网站数据库注入？</a></li>
+            <li><a href="#29-shell-脚本是什么">29. Shell 脚本是什么？</a></li>
+            <li><a href="#30如何选择-linux-操作系统版本">30.如何选择 Linux 操作系统版本?</a></li>
+            <li><a href="#31-如何规划一台-linux-主机步骤是怎样">31. 如何规划一台 Linux 主机，步骤是怎样？</a></li>
+            <li><a href="#32-请问当用户反馈网站访问慢你会如何处理">32. 请问当用户反馈网站访问慢，你会如何处理？</a></li>
+            <li><a href="#针对网站访问慢怎么去排查">针对网站访问慢，怎么去排查？</a></li>
+            <li><a href="#33-linux-性能调优都有哪几种方法">33. Linux 性能调优都有哪几种方法？</a></li>
+          </ul>
+        </li>
+        <li><a href="#34-基本命令">34. 基本命令</a></li>
+        <li><a href="#进程">进程</a>
+          <ul>
+            <li><a href="#1进程和线程的区别">1.进程和线程的区别?</a></li>
+            <li><a href="#2协程与线程的区别">2.协程与线程的区别?</a></li>
+            <li><a href="#并发与并行的区别是什么">并发与并行的区别是什么？</a></li>
+            <li><a href="#4进程与线程的切换流程">4.进程与线程的切换流程?</a></li>
+            <li><a href="#12进程调度策略有哪几种">12.进程调度策略有哪几种?</a></li>
+            <li><a href="#进程有哪些状态">进程有哪些状态?</a></li>
+            <li><a href="#什么是用户态和内核态">什么是用户态和内核态?</a></li>
+          </ul>
+        </li>
+        <li><a href="#讲一讲io多路复用">讲一讲IO多路复用?</a>
+          <ul>
+            <li><a href="#selectpoll-和epoll之间的区别">select、poll 和epoll之间的区别?</a></li>
+          </ul>
+        </li>
+        <li><a href="#软链接和硬链接有什么区别">软链接和硬链接有什么区别?</a></li>
+        <li><a href="#中断的处理过程">中断的处理过程?</a></li>
+        <li><a href="#11-linux里如何查看一个想知道的进程">1.1 Linux里如何查看一个想知道的进程？</a></li>
+        <li><a href="#12-linux里如何查看带有关键字的日志文件">1.2 Linux里如何查看带有关键字的日志文件？</a></li>
+        <li><a href="#13-说说你对grep命令的了解">1.3 说说你对grep命令的了解？</a></li>
+        <li><a href="#14-linux修改主机名的命令是什么">1.4 Linux修改主机名的命令是什么？</a></li>
+        <li><a href="#15-linux开机自动执行命令如何实现">1.5 Linux开机自动执行命令如何实现？</a></li>
+        <li><a href="#16-linux查看内存的命令是什么">1.6 Linux查看内存的命令是什么？</a></li>
+        <li><a href="#17-free命令有哪些选项">1.7 free命令有哪些选项？</a></li>
+        <li><a href="#18-linux中压缩文件的命令是什么">1.8 Linux中压缩文件的命令是什么？</a></li>
+        <li><a href="#19-linux查询连接数的命令是什么">1.9 Linux查询连接数的命令是什么？</a></li>
+        <li><a href="#110-linux中top命令有哪些参数">1.10 Linux中top命令有哪些参数？</a></li>
+        <li><a href="#111-linux中如何通过端口查进程如何通过进程查端口">1.11 Linux中，如何通过端口查进程，如何通过进程查端口？</a></li>
+        <li><a href="#112-请你说说ping命令">1.12 请你说说ping命令？</a></li>
+        <li><a href="#113-什么是协程">1.13 什么是协程？</a></li>
+        <li><a href="#114-为什么协程比线程切换的开销小">1.14 为什么协程比线程切换的开销小？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li><a href="#linux" rel="">linux</a>
+<ul>
+<li><a href="#linux-%e5%9f%ba%e7%a1%80" rel="">linux 基础</a>
+<ul>
+<li><a href="#1-%e4%bb%80%e4%b9%88%e6%98%aflinux" rel="">1. 什么是Linux</a></li>
+<li><a href="#2-windows%e5%92%8clinux%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">2. Windows和Linux的区别</a></li>
+<li><a href="#3-unix%e5%92%8clinux%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">3. Unix和Linux有什么区别？</a></li>
+<li><a href="#4-%e4%bb%80%e4%b9%88%e6%98%af-linux-%e5%86%85%e6%a0%b8" rel="">4. 什么是 Linux 内核？</a></li>
+<li><a href="#5-linux%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e4%bb%b6%e6%98%af%e4%bb%80%e4%b9%88" rel="">5. Linux的基本组件是什么？</a></li>
+<li><a href="#6-linux-%e7%9a%84%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84" rel="">6. Linux 的体系结构</a>
+<ul>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88-linux-%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e8%a6%81%e5%88%86%e4%b8%ba%e7%94%a8%e6%88%b7%e7%a9%ba%e9%97%b4%e5%92%8c%e5%86%85%e6%a0%b8%e7%a9%ba%e9%97%b4%e7%9a%84%e5%8e%9f%e5%9b%a0" rel="">为什么 Linux 体系结构要分为用户空间和内核空间的原因？</a></li>
+</ul>
+</li>
+<li><a href="#7-bash%e5%92%8cdos%e4%b9%8b%e9%97%b4%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">7. BASH和DOS之间的基本区别是什么？</a></li>
+<li><a href="#8-linux-%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e8%bf%87%e7%a8%8b" rel="">8. Linux 开机启动过程？</a></li>
+<li><a href="#9-linux%e7%b3%bb%e7%bb%9f%e7%bc%ba%e7%9c%81%e7%9a%84%e8%bf%90%e8%a1%8c%e7%ba%a7%e5%88%ab" rel="">9. Linux系统缺省的运行级别？</a></li>
+<li><a href="#10-linux-%e4%bd%bf%e7%94%a8%e7%9a%84%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1%e6%96%b9%e5%bc%8f" rel="">10. Linux 使用的进程间通信方式？</a></li>
+<li><a href="#11-linux-%e6%9c%89%e5%93%aa%e4%ba%9b%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6" rel="">11. Linux 有哪些系统日志文件？</a></li>
+<li><a href="#12-linux%e7%b3%bb%e7%bb%9f%e5%ae%89%e8%a3%85%e5%a4%9a%e4%b8%aa%e6%a1%8c%e9%9d%a2%e7%8e%af%e5%a2%83%e6%9c%89%e5%b8%ae%e5%8a%a9%e5%90%97" rel="">12. Linux系统安装多个桌面环境有帮助吗？</a></li>
+<li><a href="#13-%e4%bb%80%e4%b9%88%e6%98%af%e4%ba%a4%e6%8d%a2%e7%a9%ba%e9%97%b4" rel="">13. 什么是交换空间？</a></li>
+<li><a href="#14-%e4%bb%80%e4%b9%88%e6%98%afroot%e5%b8%90%e6%88%b7" rel="">14. 什么是root帐户</a></li>
+<li><a href="#15-%e4%bb%80%e4%b9%88%e6%98%aflilo" rel="">15. 什么是LILO？</a></li>
+<li><a href="#16-%e4%bb%80%e4%b9%88%e6%98%afbash" rel="">16. 什么是BASH？</a></li>
+<li><a href="#17-%e4%bb%80%e4%b9%88%e6%98%afcli" rel="">17. 什么是CLI？</a></li>
+<li><a href="#18-%e4%bb%80%e4%b9%88%e6%98%afgui" rel="">18. 什么是GUI？</a></li>
+<li><a href="#20-gnu%e9%a1%b9%e7%9b%ae%e7%9a%84%e9%87%8d%e8%a6%81%e6%80%a7%e6%98%af%e4%bb%80%e4%b9%88" rel="">20. GNU项目的重要性是什么？</a></li>
+</ul>
+</li>
+<li><a href="#%e7%a3%81%e7%9b%98%e7%9b%ae%e5%bd%95%e6%96%87%e4%bb%b6" rel="">磁盘、目录、文件</a>
+<ul>
+<li><a href="#21-%e7%ae%80%e5%8d%95-linux-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" rel="">21. 简单 Linux 文件系统？</a></li>
+<li><a href="#22-linux-%e7%9a%84%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84%e6%98%af%e6%80%8e%e6%a0%b7%e7%9a%84" rel="">22. Linux 的目录结构是怎样的？</a></li>
+<li><a href="#23-%e4%bb%80%e4%b9%88%e6%98%af-inode-" rel="">23. 什么是 inode ？</a></li>
+<li><a href="#24-%e4%bb%80%e4%b9%88%e6%98%af%e7%a1%ac%e9%93%be%e6%8e%a5%e5%92%8c%e8%bd%af%e9%93%be%e6%8e%a5" rel="">24. 什么是硬链接和软链接？</a></li>
+<li><a href="#25-raid-%e6%98%af%e4%bb%80%e4%b9%88" rel="">25. RAID 是什么?</a></li>
+<li><a href="#26-%e4%b8%80%e5%8f%b0-linux-%e7%b3%bb%e7%bb%9f%e5%88%9d%e5%a7%8b%e5%8c%96%e7%8e%af%e5%a2%83%e5%90%8e%e9%9c%80%e8%a6%81%e5%81%9a%e4%b8%80%e4%ba%9b%e4%bb%80%e4%b9%88%e5%ae%89%e5%85%a8%e5%b7%a5%e4%bd%9c" rel="">26. 一台 Linux 系统初始化环境后需要做一些什么安全工作？</a></li>
+<li><a href="#27-%e4%bb%80%e4%b9%88%e5%8f%ab-cc-%e6%94%bb%e5%87%bb%e4%bb%80%e4%b9%88%e5%8f%ab-ddos-%e6%94%bb%e5%87%bb" rel="">27. 什么叫 CC 攻击？什么叫 DDOS 攻击？</a></li>
+<li><a href="#28-%e4%bb%80%e4%b9%88%e6%98%af%e7%bd%91%e7%ab%99%e6%95%b0%e6%8d%ae%e5%ba%93%e6%b3%a8%e5%85%a5" rel="">28. 什么是网站数据库注入？</a></li>
+<li><a href="#29-shell-%e8%84%9a%e6%9c%ac%e6%98%af%e4%bb%80%e4%b9%88" rel="">29. Shell 脚本是什么？</a></li>
+<li><a href="#30%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9-linux-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%89%88%e6%9c%ac" rel="">30.如何选择 Linux 操作系统版本?</a></li>
+<li><a href="#31-%e5%a6%82%e4%bd%95%e8%a7%84%e5%88%92%e4%b8%80%e5%8f%b0-linux-%e4%b8%bb%e6%9c%ba%e6%ad%a5%e9%aa%a4%e6%98%af%e6%80%8e%e6%a0%b7" rel="">31. 如何规划一台 Linux 主机，步骤是怎样？</a></li>
+<li><a href="#32-%e8%af%b7%e9%97%ae%e5%bd%93%e7%94%a8%e6%88%b7%e5%8f%8d%e9%a6%88%e7%bd%91%e7%ab%99%e8%ae%bf%e9%97%ae%e6%85%a2%e4%bd%a0%e4%bc%9a%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86" rel="">32. 请问当用户反馈网站访问慢，你会如何处理？</a></li>
+<li><a href="#%e9%92%88%e5%af%b9%e7%bd%91%e7%ab%99%e8%ae%bf%e9%97%ae%e6%85%a2%e6%80%8e%e4%b9%88%e5%8e%bb%e6%8e%92%e6%9f%a5" rel="">针对网站访问慢，怎么去排查？</a></li>
+<li><a href="#33-linux-%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98%e9%83%bd%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" rel="">33. Linux 性能调优都有哪几种方法？</a></li>
+</ul>
+</li>
+<li><a href="#34-%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4" rel="">34. 基本命令</a></li>
+<li><a href="#%e8%bf%9b%e7%a8%8b" rel="">进程</a>
+<ul>
+<li><a href="#1%e8%bf%9b%e7%a8%8b%e5%92%8c%e7%ba%bf%e7%a8%8b%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">1.进程和线程的区别?</a></li>
+<li><a href="#2%e5%8d%8f%e7%a8%8b%e4%b8%8e%e7%ba%bf%e7%a8%8b%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">2.协程与线程的区别?</a></li>
+<li><a href="#%e5%b9%b6%e5%8f%91%e4%b8%8e%e5%b9%b6%e8%a1%8c%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">并发与并行的区别是什么？</a></li>
+<li><a href="#4%e8%bf%9b%e7%a8%8b%e4%b8%8e%e7%ba%bf%e7%a8%8b%e7%9a%84%e5%88%87%e6%8d%a2%e6%b5%81%e7%a8%8b" rel="">4.进程与线程的切换流程?</a></li>
+<li><a href="#12%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6%e7%ad%96%e7%95%a5%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d" rel="">12.进程调度策略有哪几种?</a></li>
+<li><a href="#%e8%bf%9b%e7%a8%8b%e6%9c%89%e5%93%aa%e4%ba%9b%e7%8a%b6%e6%80%81" rel="">进程有哪些状态?</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e7%94%a8%e6%88%b7%e6%80%81%e5%92%8c%e5%86%85%e6%a0%b8%e6%80%81" rel="">什么是用户态和内核态?</a></li>
+</ul>
+</li>
+<li><a href="#%e8%ae%b2%e4%b8%80%e8%ae%b2io%e5%a4%9a%e8%b7%af%e5%a4%8d%e7%94%a8" rel="">讲一讲IO多路复用?</a>
+<ul>
+<li><a href="#selectpoll-%e5%92%8cepoll%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">select、poll 和epoll之间的区别?</a></li>
+</ul>
+</li>
+<li><a href="#%e8%bd%af%e9%93%be%e6%8e%a5%e5%92%8c%e7%a1%ac%e9%93%be%e6%8e%a5%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">软链接和硬链接有什么区别?</a></li>
+<li><a href="#%e4%b8%ad%e6%96%ad%e7%9a%84%e5%a4%84%e7%90%86%e8%bf%87%e7%a8%8b" rel="">中断的处理过程?</a></li>
+<li><a href="#11-linux%e9%87%8c%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8b%e4%b8%80%e4%b8%aa%e6%83%b3%e7%9f%a5%e9%81%93%e7%9a%84%e8%bf%9b%e7%a8%8b" rel="">1.1 Linux里如何查看一个想知道的进程？</a></li>
+<li><a href="#12-linux%e9%87%8c%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8b%e5%b8%a6%e6%9c%89%e5%85%b3%e9%94%ae%e5%ad%97%e7%9a%84%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6" rel="">1.2 Linux里如何查看带有关键字的日志文件？</a></li>
+<li><a href="#13-%e8%af%b4%e8%af%b4%e4%bd%a0%e5%af%b9grep%e5%91%bd%e4%bb%a4%e7%9a%84%e4%ba%86%e8%a7%a3" rel="">1.3 说说你对grep命令的了解？</a></li>
+<li><a href="#14-linux%e4%bf%ae%e6%94%b9%e4%b8%bb%e6%9c%ba%e5%90%8d%e7%9a%84%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" rel="">1.4 Linux修改主机名的命令是什么？</a></li>
+<li><a href="#15-linux%e5%bc%80%e6%9c%ba%e8%87%aa%e5%8a%a8%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0" rel="">1.5 Linux开机自动执行命令如何实现？</a></li>
+<li><a href="#16-linux%e6%9f%a5%e7%9c%8b%e5%86%85%e5%ad%98%e7%9a%84%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" rel="">1.6 Linux查看内存的命令是什么？</a></li>
+<li><a href="#17-free%e5%91%bd%e4%bb%a4%e6%9c%89%e5%93%aa%e4%ba%9b%e9%80%89%e9%a1%b9" rel="">1.7 free命令有哪些选项？</a></li>
+<li><a href="#18-linux%e4%b8%ad%e5%8e%8b%e7%bc%a9%e6%96%87%e4%bb%b6%e7%9a%84%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" rel="">1.8 Linux中压缩文件的命令是什么？</a></li>
+<li><a href="#19-linux%e6%9f%a5%e8%af%a2%e8%bf%9e%e6%8e%a5%e6%95%b0%e7%9a%84%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" rel="">1.9 Linux查询连接数的命令是什么？</a></li>
+<li><a href="#111-linux%e4%b8%ad%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87%e7%ab%af%e5%8f%a3%e6%9f%a5%e8%bf%9b%e7%a8%8b%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87%e8%bf%9b%e7%a8%8b%e6%9f%a5%e7%ab%af%e5%8f%a3" rel="">1.11 Linux中，如何通过端口查进程，如何通过进程查端口？</a></li>
+<li><a href="#112-%e8%af%b7%e4%bd%a0%e8%af%b4%e8%af%b4ping%e5%91%bd%e4%bb%a4" rel="">1.12 请你说说ping命令？</a></li>
+<li><a href="#113-%e4%bb%80%e4%b9%88%e6%98%af%e5%8d%8f%e7%a8%8b" rel="">1.13 什么是协程？</a></li>
+<li><a href="#114-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%8d%8f%e7%a8%8b%e6%af%94%e7%ba%bf%e7%a8%8b%e5%88%87%e6%8d%a2%e7%9a%84%e5%bc%80%e9%94%80%e5%b0%8f" rel="">1.14 为什么协程比线程切换的开销小？</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="linux">linux</h2>
+<h3 id="linux-基础">linux 基础</h3>
+<h4 id="1-什么是linux">1. 什么是Linux</h4>
+<p>Linux是一套免费使用和自由传播的类似Unix操作系统，一般的WEB项目都是部署都是放在Linux 操作系统上面。 Linux是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系 统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了 Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+<h4 id="2-windows和linux的区别">2. Windows和Linux的区别</h4>
+<ul>
+<li>Windows是微软开发的操作系统，民用操作系统，可用于娱乐、影音、上网。 Windows操作系统 具有强大的日志记录系统和强大的桌面应用。好处是它可以帮我们实现非常多绚丽多彩的效果，可 以非常方便去进行娱乐、影音、上网。</li>
+<li>Linux的应用相对单纯很多，没有什么绚丽多彩的效果，因此Linux的性能是非常出色的，可以完 全针对机器的配置有针对性的优化，</li>
+<li>简单来说Windows适合普通用户进行娱乐办公使用，Linux适合软件开发部署</li>
+</ul>
+<h4 id="3-unix和linux有什么区别">3. Unix和Linux有什么区别？</h4>
+<ul>
+<li>Linux和Unix都是功能强大的操作系统，都是应用广泛的服务器操作系统，有很多相似之处，甚至 有一部分人错误地认为Unix和Linux操作系统是一样的，然而，事实并非如此，以下是两者的区 别。</li>
+</ul>
+<ol>
+<li>开源性 Linux是一款开源操作系统，不需要付费，即可使用；Unix是一款对源码实行知识产权保护的 传统商业软件，使用需要付费授权使用。</li>
+<li>跨平台性 Linux操作系统具有良好的跨平台性能，可运行在多种硬件平台上；Unix操作系统跨平台性能 较弱，大多需与硬件配套使用。</li>
+<li>可视化界面 Linux除了进行命令行操作，还有窗体管理系统；Unix只是命令行下的系统。</li>
+<li>硬件环境 Linux操作系统对硬件的要求较低，安装方法更易掌握；Unix对硬件要求比较苛刻，按照难度 较大。</li>
+<li>用户群体 Linux的用户群体很广泛，个人和企业均可使用；Unix的用户群体比较窄，多是安全性要求高 的大型企业使用，如银行、电信部门等，或者Unix硬件厂商使用，如Sun等。 相比于Unix操作系统，Linux操作系统更受广大计算机爱好者的喜爱，主要原因是Linux操作 系统具有Unix操作系统的全部功能，并且能够在普通PC计算机上实现全部的Unix特性，开源 免费的特性，更容易普及使用！</li>
+</ol>
+<h4 id="4-什么是-linux-内核">4. 什么是 Linux 内核？</h4>
+<p>Linux 系统的核心是内核。内核控制着计算机系统上的所有硬件和软件，在必要时分配硬件，并根 据需要执行软件。</p>
+<ol>
+<li>
+<p>系统内存管理</p>
+</li>
+<li>
+<p>应用程序管理</p>
+</li>
+<li>
+<p>硬件设备管理</p>
+</li>
+<li>
+<p>文件系统管理</p>
+</li>
+</ol>
+<h4 id="5-linux的基本组件是什么">5. Linux的基本组件是什么？</h4>
+<p>就像任何其他典型的操作系统一样，Linux拥有所有这些组件：内核，shell和GUI，系统实用程序 和应用程序。Linux比其他操作系统更具优势的是每个方面都附带其他功能，所有代码都可以免费 下载。</p>
+<h4 id="6-linux-的体系结构">6. Linux 的体系结构</h4>
+<p>从大的方面讲，Linux 体系结构可以分为两块：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220105104041.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220105104041.png, https://gitee.com/nateshao/images/raw/master/img/20220105104041.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220105104041.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220105104041.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220105104041.png" /></p>
+<ul>
+<li>用户空间(User Space) ：用户空间又包括用户的应用程序(User Applications)、C 库(C Library) 。</li>
+<li>内核空间(Kernel Space) ：内核空间又包括系统调用接口(System Call Interface)、内核(Kernel)、 平台架构相关的代码(Architecture-Dependent Kernel Code) 。</li>
+</ul>
+<h5 id="为什么-linux-体系结构要分为用户空间和内核空间的原因">为什么 Linux 体系结构要分为用户空间和内核空间的原因？</h5>
+<p>1、现代 CPU 实现了不同的工作模式，不同模式下 CPU 可以执行的指令和访问的寄存器不同。</p>
+<p>2、Linux 从 CPU 的角度出发，为了保护内核的安全，把系统分成了两部分。</p>
+<p>用户空间和内核空间是程序执行的两种不同的状态，我们可以通过两种方式完成用户空间到内核空 间的转移：</p>
+<ul>
+<li>系统调用；</li>
+<li>硬件中断。</li>
+</ul>
+<h4 id="7-bash和dos之间的基本区别是什么">7. BASH和DOS之间的基本区别是什么？</h4>
+<p>BASH和DOS控制台之间的主要区别在于3个方面：</p>
+<ul>
+<li>
+<p>BASH命令区分大小写，而DOS命令则不区分;</p>
+<ul>
+<li>在BASH下，/ character是目录分隔符，\作为转义字符。在DOS下，/用作命令参数分隔 符，\是目录分隔符</li>
+</ul>
+</li>
+<li>
+<p>DOS遵循命名文件中的约定，即8个字符的文件名后跟一个点，扩展名为3个字符。BASH没 有遵循这样的惯例。</p>
+</li>
+</ul>
+<h4 id="8-linux-开机启动过程">8. Linux 开机启动过程？</h4>
+<p>1、主机加电自检，加载 BIOS 硬件信息。</p>
+<p>2、读取 MBR 的引导文件(GRUB、LILO)。</p>
+<p>3、引导 Linux 内核。</p>
+<p>4、运行第一个进程 init (进程号永远为 1 )。</p>
+<p>5、进入相应的运行级别。</p>
+<p>6、运行终端，输入用户名和密码。</p>
+<h4 id="9-linux系统缺省的运行级别">9. Linux系统缺省的运行级别？</h4>
+<ul>
+<li>关机。</li>
+<li>单机用户模式。</li>
+<li>字符界面的多用户模式(不支持网络)。</li>
+<li>字符界面的多用户模式。</li>
+<li>未分配使用。</li>
+<li>图形界面的多用户模式。</li>
+<li>重启。</li>
+</ul>
+<h4 id="10-linux-使用的进程间通信方式">10. Linux 使用的进程间通信方式？</h4>
+<p>1、管道(pipe)、流管道(s_pipe)、有名管道(FIFO)。</p>
+<p>2、信号(signal) 。</p>
+<p>3、消息队列。</p>
+<p>4、共享内存。</p>
+<p>5、信号量。</p>
+<p>6、套接字(socket) 。</p>
+<h4 id="11-linux-有哪些系统日志文件">11. Linux 有哪些系统日志文件？</h4>
+<p>比较重要的是 /var/log/messages 日志文件。</p>
+<blockquote>
+<p>该日志文件是许多进程日志文件的汇总，从该文件可以看出任何入侵企图或成功的入侵。 另外，如果胖友的系统里有 ELK 日志集中收集，它也会被收集进去。</p>
+</blockquote>
+<h4 id="12-linux系统安装多个桌面环境有帮助吗">12. Linux系统安装多个桌面环境有帮助吗？</h4>
+<p>通常，一个桌面环境，如KDE或Gnome，足以在没有问题的情况下运行。尽管系统允许从一个环 境切换到另一个环境，但这对用户来说都是优先考虑的问题。有些程序在一个环境中工作而在另一 个环境中无法工作，因此它也可以被视为选择使用哪个环境的一个因素。</p>
+<h4 id="13-什么是交换空间">13. 什么是交换空间？</h4>
+<p>交换空间是Linux使用的一定空间，用于临时保存一些并发运行的程序。当RAM没有足够的内存来 容纳正在执行的所有程序时，就会发生这种情况。</p>
+<h4 id="14-什么是root帐户">14. 什么是root帐户</h4>
+<p>root帐户就像一个系统管理员帐户，允许你完全控制系统。你可以在此处创建和维护用户帐户，为 每个帐户分配不同的权限。每次安装Linux时都是默认帐户。</p>
+<h4 id="15-什么是lilo">15. 什么是LILO？</h4>
+<p>LILO是Linux的引导加载程序。它主要用于将Linux操作系统加载到主内存中，以便它可以开始运 行。</p>
+<h4 id="16-什么是bash">16. 什么是BASH？</h4>
+<p>BASH是Bourne Again SHell的缩写。它由Steve Bourne编写，作为原始Bourne Shell（由/ bin / sh表示）的替代品。它结合了原始版本的Bourne Shell的所有功能，以及其他功能，使其更容易 使用。从那以后，它已被改编为运行Linux的大多数系统的默认shell。</p>
+<h4 id="17-什么是cli">17. 什么是CLI？</h4>
+<ul>
+<li>
+<p>命令行界面（英语：command-line interface，缩写]：CLI）是在图形用户界面得到普及之前使 用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以 执行。也有人称之为字符用户界面（CUI）。</p>
+</li>
+<li>
+<p>通常认为，命令行界面（CLI）没有图形用户界面（GUI）那么方便用户操作。因为，命令行界面 的软件通常需要用户记忆操作的命令，但是，由于其本身的特点，命令行界面要较图形用户界面节 约计算机系统的资源。在熟记命令的前提下，使用命令行界面往往要较使用图形用户界面的操作速 度要快。所以，图形用户界面的操作系统中，都保留着可选的命令行界面。</p>
+</li>
+</ul>
+<h4 id="18-什么是gui">18. 什么是GUI？</h4>
+<ul>
+<li>
+<p>图形用户界面（Graphical User Interface，简称 GUI，又称图形用户接口）是指采用图形方式显 示的计算机操作用户界面。</p>
+</li>
+<li>
+<p>图形用户界面是一种人与计算机通信的界面显示格式，允许用户使用鼠标等输入设备操纵屏幕上的 图标或菜单选项，以选择命令、调用文件、启动程序或执行其它一些日常任务。与通过键盘输入文 本或字符命令来完成例行任务的字符界面相比，图形用户界面有许多优点。</p>
+</li>
+</ul>
+<h4 id="20-gnu项目的重要性是什么">20. GNU项目的重要性是什么？</h4>
+<p>这种所谓的自由软件运动具有多种优势，例如可以自由地运行程序以及根据你的需要自由学习和修 改程序。它还允许你将软件副本重新分发给其他人，以及自由改进软件并将其发布给公众。</p>
+<h3 id="磁盘目录文件">磁盘、目录、文件</h3>
+<h4 id="21-简单-linux-文件系统">21. 简单 Linux 文件系统？</h4>
+<p>在 Linux 操作系统中，所有被操作系统管理的资源，例如网络接口卡、磁盘驱动器、打印机、输入输出 设备、普通文件或是目录都被看作是一个文件。</p>
+<ul>
+<li>
+<p>也就是说在 Linux 系统中有一个重要的概念：一切都是文件。其实这是 Unix 哲学的一个体现，而 Linux 是重写 Unix 而来，所以这个概念也就传承了下来。在 Unix 系统中，把一切资源都看作是 文件，包括硬件设备。UNIX系统把每个硬件都看成是一个文件，通常称为设备文件，这样用户就 可以用读写文件的方式实现对硬件的访问。</p>
+</li>
+<li>
+<p>Linux 支持 5 种文件类型，如下图所示：</p>
+</li>
+</ul>
+<h4 id="22-linux-的目录结构是怎样的">22. Linux 的目录结构是怎样的？</h4>
+<p>Linux 文件系统的结构层次鲜明，就像一棵倒立的树，最顶层是其根目录：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220105160919.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220105160919.png, https://gitee.com/nateshao/images/raw/master/img/20220105160919.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220105160919.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220105160919.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220105160919.png" /></p>
+<p><strong>常见目录说明</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/nateshao/images/raw/master/img/20220105161045.png"
+        data-srcset="https://gitee.com/nateshao/images/raw/master/img/20220105161045.png, https://gitee.com/nateshao/images/raw/master/img/20220105161045.png 1.5x, https://gitee.com/nateshao/images/raw/master/img/20220105161045.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/nateshao/images/raw/master/img/20220105161045.png"
+        title="https://gitee.com/nateshao/images/raw/master/img/20220105161045.png" /></p>
+<h4 id="23-什么是-inode-">23. 什么是 inode ？</h4>
+<blockquote>
+<p>一般来说，面试不会问 inode 。但是 inode 是一个重要概念，是理解 Unix/Linux 文件系统和硬 盘储存的基础。</p>
+</blockquote>
+<ul>
+<li>理解inode，要从文件储存说起。</li>
+<li>文件储存在硬盘上，硬盘的最小存储单位叫做&quot;扇区&quot;（Sector）。每个扇区储存512字节（相当于 0.5KB）。</li>
+<li>操作系统读取硬盘的时候，不会一个个扇区地读取，这样效率太低，而是一次性连续读取多个扇 区，即一次性读取一个&quot;块&quot;（block）。这种由多个扇区组成的&quot;块&quot;，是文件存取的最小单 位。&ldquo;块&quot;的大小，最常见的是4KB，即连续八个 sector组成一个 block。</li>
+<li>文件数据都储存在&quot;块&quot;中，那么很显然，我们还必须找到一个地方储存文件的元信息，比如文件的 创建者、文件的创建日期、文件的大小等等。这种储存文件元信息的区域就叫做inode，中文译名 为&quot;索引节点&rdquo;。</li>
+<li>每一个文件都有对应的inode，里面包含了与该文件有关的一些信息。</li>
+</ul>
+<h4 id="24-什么是硬链接和软链接">24. 什么是硬链接和软链接？</h4>
+<p><strong>硬链接</strong>：由于 Linux 下的文件是通过索引节点(inode)来识别文件，硬链接可以认为是一个指针， 指向文件索引节点的指针，系统并不为它重新分配 inode 。每添加一个一个硬链接，文件的链接 数就加 1 。</p>
+<p>不足：</p>
+<ol>
+<li>不可以在不同文件系统的文件间建立链接；</li>
+<li>只有超级用户才可以为目录创建硬链接。</li>
+</ol>
+<p><strong>软链接</strong>：软链接克服了硬链接的不足，没有任何文件系统的限制，任何用户可以创建指向目录的符 号链接。因而现在更为广泛使用，它具有更大的灵活性，甚至可以跨越不同机器、不同网络对文件 进行链接。</p>
+<p>不足：因为链接文件包含有原文件的路径信息，所以当原文件从一个目录下移到其他目录 中，再访问链接文件，系统就找不到了，而硬链接就没有这个缺陷，你想怎么移就怎么移； 还有它要系统分配额外的空间用于建立新的索引节点和保存原文件的路径。</p>
+<h4 id="25-raid-是什么">25. RAID 是什么?</h4>
+<p>RAID 全称为独立磁盘冗余阵列(Redundant Array of Independent Disks)，基本思想就是把多个 相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大 的硬盘。RAID 通常被用在服务器电脑上，使用完全相同的硬盘组成一个逻辑扇区，因此操作系统 只会把它当做一个硬盘。 RAID 分为不同的等级，各个不同的等级均在数据可靠性及读写性能上做了不同的权衡。在实际应 用中，可以依据自己的实际需求选择不同的 RAID 方案。</p>
+<p>当然，因为很多公司都使用云服务，大家很难接触到 RAID 这个概念，更多的可能是普通云盘、 SSD 云盘酱紫的概念。</p>
+<h4 id="26-一台-linux-系统初始化环境后需要做一些什么安全工作">26. 一台 Linux 系统初始化环境后需要做一些什么安全工作？</h4>
+<p>1、添加普通用户登陆，禁止 root 用户登陆，更改 SSH 端口号。</p>
+<blockquote>
+<p>修改 SSH 端口不一定绝对哈。当然，如果要暴露在外网，建议改下。</p>
+</blockquote>
+<p>2、服务器使用密钥登陆，禁止密码登陆。</p>
+<p>3、开启防火墙，关闭 SElinux ，根据业务需求设置相应的防火墙规则。</p>
+<p>4、装 fail2ban 这种防止 SSH 暴力破击的软件。</p>
+<p>5、设置只允许公司办公网出口 IP 能登陆服务器(看公司实际需要) 也可以安装 VPN 等软件，只允许连接 VPN 到服务器上。</p>
+<p>6、修改历史命令记录的条数为 10 条。</p>
+<p>7、只允许有需要的服务器可以访问外网，其它全部禁止。</p>
+<p>8、做好软件层面的防护。</p>
+<ol>
+<li>设置 nginx_waf 模块防止 SQL 注入。</li>
+<li>把 Web 服务使用 www 用户启动，更改网站目录的所有者和所属组为 www 。</li>
+</ol>
+<h4 id="27-什么叫-cc-攻击什么叫-ddos-攻击">27. 什么叫 CC 攻击？什么叫 DDOS 攻击？</h4>
+<ul>
+<li>CC 攻击，主要是用来攻击页面的，模拟多个用户不停的对你的页面进行访问，从而使你的系统资 源消耗殆尽。</li>
+<li>DDOS 攻击，中文名叫分布式拒绝服务攻击，指借助服务器技术将多个计算机联合起来作为攻击 平台，来对一个或多个目标发动 DDOS 攻击。</li>
+</ul>
+<blockquote>
+<p>攻击，即是通过大量合法的请求占用大量网络资源，以达到瘫痪网络的目的。</p>
+</blockquote>
+<p>怎么预防 CC 攻击和 DDOS 攻击？</p>
+<ul>
+<li>
+<p>防 CC、DDOS 攻击，这些只能是用硬件防火墙做流量清洗，将攻击流量引入黑洞。</p>
+<blockquote>
+<p>流量清洗这一块，主要是买 ISP 服务商的防攻击的服务就可以，机房一般有空余流量，我们一般 是买服务，毕竟攻击不会是持续长时间。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="28-什么是网站数据库注入">28. 什么是网站数据库注入？</h4>
+<ul>
+<li>由于程序员的水平及经验参差不齐，大部分程序员在编写代码的时候，没有对用户输入数据的合法 性进行判断。</li>
+<li>应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想 得知的数据，这就是所谓的 SQL 注入。</li>
+<li>SQL注入，是从正常的 WWW 端口访问，而且表面看起来跟一般的 Web 页面访问没什么区别，如 果管理员没查看日志的习惯，可能被入侵很长时间都不会发觉。</li>
+</ul>
+<h4 id="29-shell-脚本是什么">29. Shell 脚本是什么？</h4>
+<p>一个 Shell 脚本是一个文本文件，包含一个或多个命令。作为系统管理员，我们经常需要使用多个 命令来完成一项任务，我们可以添加这些所有命令在一个文本文件(Shell 脚本)来完成这些日常工 作任务。</p>
+<h4 id="30如何选择-linux-操作系统版本">30.如何选择 Linux 操作系统版本?</h4>
+<p>一般来讲，桌面用户首选 Ubuntu ；服务器首选 RHEL 或 CentOS ，两者中首选 CentOS 。</p>
+<ul>
+<li>安全性要求较高，则选择 Debian 或者 FreeBSD 。</li>
+<li>需要使用数据库高级服务和电子邮件网络应用的用户可以选择 SUSE 。</li>
+<li>想要新技术新功能可以选择 Feddora ，Feddora 是 RHEL 和 CentOS 的一个测试版和预发布 版本。</li>
+<li>【重点】根据现有状况，绝大多数互联网公司选择 CentOS 。现在比较常用的是 6 系列，现 在市场占有大概一半左右。另外的原因是 CentOS 更侧重服务器领域，并且无版权约束。</li>
+<li>CentOS 7 系列，也慢慢使用的会比较多了。</li>
+</ul>
+<h4 id="31-如何规划一台-linux-主机步骤是怎样">31. 如何规划一台 Linux 主机，步骤是怎样？</h4>
+<p>1、确定机器是做什么用的，比如是做 WEB 、DB、还是游戏服务器。</p>
+<blockquote>
+<p>不同的用途，机器的配置会有所不同。</p>
+</blockquote>
+<p>2、确定好之后，就要定系统需要怎么安装，默认安装哪些系统、分区怎么做。</p>
+<p>3、需要优化系统的哪些参数，需要创建哪些用户等等的。</p>
+<h4 id="32-请问当用户反馈网站访问慢你会如何处理">32. 请问当用户反馈网站访问慢，你会如何处理？</h4>
+<p>有哪些方面的因素会导致网站网站访问慢？</p>
+<p><strong>1、服务器出口带宽不够用</strong></p>
+<ul>
+<li>本身服务器购买的出口带宽比较小。一旦并发量大的话，就会造成分给每个用户的出口 带宽就小，访问速度自然就会慢。</li>
+<li>跨运营商网络导致带宽缩减。例如，公司网站放在电信的网络上，那么客户这边对接是 长城宽带或联通，这也可能导致带宽的缩减。</li>
+</ul>
+<p><strong>2、服务器负载过大，导致响应不过来</strong></p>
+<p>可以从两个方面入手分析：</p>
+<ul>
+<li>分析系统负载，使用 w 命令或者 uptime 命令查看系统负载。如果负载很高，则使用 top 命令查看 CPU ，MEM 等占用情况，要么是 CPU 繁忙，要么是内存不够。</li>
+<li>如果这二者都正常，再去使用 sar 命令分析网卡流量，分析是不是遭到了攻击。一旦分 析出问题的原因，采取对应的措施解决，如决定要不要杀死一些进程，或者禁止一些访 问等。</li>
+</ul>
+<p><strong>3、数据库瓶颈</strong></p>
+<ul>
+<li>如果慢查询比较多。那么就要开发人员或 DBA 协助进行 SQL 语句的优化。</li>
+<li>如果数据库响应慢，考虑可以加一个数据库缓存，如 Redis 等。然后，也可以搭建 MySQL 主从，一台 MySQL 服务器负责写，其他几台从数据库负责读。</li>
+</ul>
+<p><strong>4、网站开发代码没有优化好</strong></p>
+<ul>
+<li>例如 SQL 语句没有优化，导致数据库读写相当耗时。</li>
+</ul>
+<h4 id="针对网站访问慢怎么去排查">针对网站访问慢，怎么去排查？</h4>
+<p>1、首先要确定是用户端还是服务端的问题。当接到用户反馈访问慢，那边自己立即访问网站看 看，如果自己这边访问快，基本断定是用户端问题，就需要耐心跟客户解释，协助客户解决问题。</p>
+<blockquote>
+<p>不要上来就看服务端的问题。一定要从源头开始，逐步逐步往下。</p>
+</blockquote>
+<p>2、如果访问也慢，那么可以利用浏览器的调试功能，看看加载那一项数据消耗时间过多，是图片 加载慢，还是某些数据加载慢。</p>
+<p>3、针对服务器负载情况。查看服务器硬件(网络、CPU、内存)的消耗情况。如果是购买的云主 机，比如阿里云，可以登录阿里云平台提供各方面的监控，比如 CPU、内存、带宽的使用情况。</p>
+<p>4、如果发现硬件资源消耗都不高，那么就需要通过查日志，比如看看 MySQL慢查询的日志，看 看是不是某条 SQL 语句查询慢，导致网站访问慢。</p>
+<p><strong>怎么去解决？</strong></p>
+<p>1、如果是出口带宽问题，那么久申请加大出口带宽。</p>
+<p>2、如果慢查询比较多，那么就要开发人员或 DBA 协助进行 SQL 语句的优化。</p>
+<p>3、如果数据库响应慢，考虑可以加一个数据库缓存，如 Redis 等等。然后也可以搭建MySQL 主 从，一台 MySQL 服务器负责写，其他几台从数据库负责读。</p>
+<p>4、申请购买 CDN 服务，加载用户的访问。</p>
+<p>5、如果访问还比较慢，那就需要从整体架构上进行优化咯。做到专角色专用，多台服务器提供同 一个服务。</p>
+<h4 id="33-linux-性能调优都有哪几种方法">33. Linux 性能调优都有哪几种方法？</h4>
+<p>1、Disabling daemons (关闭 daemons)。</p>
+<p>2、Shutting down the GUI (关闭 GUI)。</p>
+<p>3、Changing kernel parameters (改变内核参数)。</p>
+<p>4、Kernel parameters (内核参数)。</p>
+<p>5、Tuning the processor subsystem (处理器子系统调优)。</p>
+<p>6、Tuning the memory subsystem (内存子系统调优)。</p>
+<p>7、Tuning the file system (文件系统子系统调优)。</p>
+<p>8、Tuning the network subsystem（网络子系统调优)。</p>
+<h3 id="34-基本命令">34. 基本命令</h3>
+<p>cd （change directory：英文释义是改变目录）切换目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ../ <span class="p">;</span>跳到上级目录
+<span class="nb">cd</span> /opt <span class="p">;</span>不管现在到那直接跳到指定的opt文件夹中
+<span class="nb">cd</span> ~ <span class="p">;</span>切换当前用户的家目录。root用户的家目录就是root目录。
+</code></pre></td></tr></table>
+</div>
+</div><p>pwd （print working directory：显示当前工作目录的绝对路径）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">pwd</span>
+显示当前的绝对路径
+</code></pre></td></tr></table>
+</div>
+</div><p>ls （ls：list的缩写，查看列表）查看当前目录下的所有文件夹（ls 只列出文件名或目录名）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ls -a <span class="p">;</span>显示所有文件夹,隐藏文件也显示出来
+ls -R <span class="p">;</span>连同子目录一起列出来
+</code></pre></td></tr></table>
+</div>
+</div><p>ll （ll：list的缩写，查看列表详情）查看当前目录下的所有详细信息和文件夹（ll 结果是详细,有时间, 是否可读写等信息）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ll -a <span class="p">;</span>显示所有文件,隐藏文件也显示出来
+ll -R <span class="p">;</span>连同子目录内容一起列出来
+ll -h <span class="p">;</span>友好展示详情信息,可以看大小
+ll -al <span class="p">;</span>即能显示隐藏文件又能显示详细列表。
+</code></pre></td></tr></table>
+</div>
+</div><p>touch （touch：创建文件）创建文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">touch test.txt <span class="p">;</span>创建test.txt文件
+touch /opt/java/test.java <span class="p">;</span>在指定目录创建test.java文件
+</code></pre></td></tr></table>
+</div>
+</div><p>mkdir （mkdir：创建目录） 创建目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mkdir 文件夹名称 <span class="p">;</span>在此目录创建文件夹
+mkdir /opt/java/jdk <span class="p">;</span>在指定目录创建文件夹
+</code></pre></td></tr></table>
+</div>
+</div><p>cat （concatenate：显示或把多个文本文件连接起来）查看文件命令（可以快捷查看当前文件的内 容）（不能快速定位到最后一页）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat lj.log <span class="p">;</span>快捷查看文件命令
+Ctrl + c <span class="p">;</span>暂停显示文件
+Ctrl + d <span class="p">;</span>退出查看文件命令
+</code></pre></td></tr></table>
+</div>
+</div><p>more （more：更多的意思）分页查看文件命令（不能快速定位到最后一页）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">回车：向下n行，需要定义，默认为1行。
+空格键：向下滚动一屏或Ctrl+F
+B：返回上一层或Ctrl+B
+q：退出more
+</code></pre></td></tr></table>
+</div>
+</div><p>less （lese：较少的意思）分页查看文件命令（可以快速定位到最后一页）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">less -m 显示类似于more命令的百分比。
+less -N 显示每行的行号。<span class="o">(</span>大写的N<span class="o">)</span>
+两参数一起使用如：less -mN 文件名，如此可分页并显示行号。
+空格键：前下一页或page down。
+回车：向下一行。
+b：后退一页 或 page up。
+q：退出。
+d：前进半页。
+u：后退半页
+</code></pre></td></tr></table>
+</div>
+</div><p>tail（尾巴） 查看文件命令（看最后多少行）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">tail -10 <span class="p">;</span>文件名 看最后10行
+</code></pre></td></tr></table>
+</div>
+</div><p>cp（copy单词缩写，复制功能）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cp /opt/java/java.log /opt/logs/ <span class="p">;</span>把java.log 复制到/opt/logs/下
+cp /opt/java/java.log /opt/logs/aaa.log <span class="p">;</span>把java.log 复制到/opt/logs/下并且改名为
+aaa.log
+cp -r /opt/java /opt/logs <span class="p">;</span>把文件夹及内容复制到logs文件中
+</code></pre></td></tr></table>
+</div>
+</div><p>mv（move单词缩写，移动功能，该文件名称功能）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mv /opt/java/java.log /opt/mysql/ <span class="p">;</span>移动文件到mysql目录下
+mv java.log mysql.log <span class="p">;</span>把java.log改名为mysql.log
+</code></pre></td></tr></table>
+</div>
+</div><p>rm（remove：移除的意思）删除文件，或文件夹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">-f或--force 强制删除文件或目录。删除文件不包括文件夹的文件
+-r或-R或--recursive 递归处理，将指定目录下的所有文件及子目录一并删除。
+-rf 强制删除文件夹及内容
+rm 文件名 <span class="p">;</span>安全删除命令 （yes删除 no取消）
+rm -rf 强制删除文件夹及内容
+rm -rf * 删除当前目录下的所有内容。
+rm -rf /* 删除Linux系统根目录下所有的内容。系统将完蛋。
+</code></pre></td></tr></table>
+</div>
+</div><p>find （find：找到的意思）查找指定文件或目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">* 表示0~多个任意字符。
+find -name 文件名<span class="p">;</span>按照指定名称查找在当前目录下查找文件
+find / -name 文件名按照指定名称全局查找文件
+find -name <span class="s1">&#39;*文件名&#39;</span> <span class="p">;</span>任意前缀加上文件名在当前目录下查找文件
+find / -name <span class="s1">&#39;*文件名*&#39;</span> <span class="p">;</span>全局进行模糊查询带文件名的文件
+</code></pre></td></tr></table>
+</div>
+</div><p>vi （VIsual：视觉）文本编辑器 类似win的记事本 （操作类似于地下的vim命令，看底下vim 的操 作） vim （VI IMproved：改进版视觉）改进版文本编辑器 （不管是文件查看还是文件编辑 按 Shift + 上或 者下可以上下移动查看视角）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">输入”vim 文件名” 打开文件，刚刚时是”一般模式”。
+一般模式：可以浏览文件内容，可以进行文本快捷操作。如单行复制，多行复制，单行删除，多行删除，（退
+出）等。
+插入模式：可以编辑文件内容。
+底行模式：可以进行强制退出操作,不保存 :q!
+可以进行保存并退出操作 :wq
+按下”i”或”a”或”o”键，从”一般模式”，进入”插入模式（编辑模式）”。
+在编辑模式下按”Esc” 即可到一般模式
+在一般模式下按”:”，冒号进入底行模式。
+在一般模式下的快捷键
+dd <span class="p">;</span>删除一整行
+X <span class="p">;</span>向前删除 等同于windowns系统中的删除键
+x <span class="p">;</span>向后删除和大写x相反方向
+Ctrl + f <span class="p">;</span>向后看一页
+Ctrl + b <span class="p">;</span>向前看一页
+u <span class="p">;</span>撤销上一步操作
+/word <span class="p">;</span>向下查找word关键字 输入:n查找下一个,N查找上一个（不管是哪个查找都是全局查找 只不过
+n的方向相反）
+?log <span class="p">;</span>向上查找log关键字 输入:n查找上一个,N查找下一个
+:1,90s/redis/Redis/g <span class="p">;</span>把1-90行的redis替换为Redis。语法n1,n2s/原关键字/新关键字/g，n1
+代表其实行,n2代表结尾行,g是必须要的
+:0 <span class="p">;</span>光标移动到第一行
+:$ <span class="p">;</span>光标移动到最后一行
+:300 <span class="p">;</span>光标移动到300行,输入多少数字移动到多少行
+:w <span class="p">;</span>保存
+:w! <span class="p">;</span>强制保存
+:q <span class="p">;</span>退出
+:q! <span class="p">;</span>强制退出
+5dd <span class="p">;</span>删除后面5行,打一个参数为自己填写
+5x <span class="p">;</span>删除此光标后面5个字符
+d1G <span class="p">;</span>删除此光标之前的所有
+d0 <span class="p">;</span>从光标当前位置删除到此行的第一个位置
+yy <span class="p">;</span>复制
+p <span class="p">;</span>在光标的下面进行粘贴
+P <span class="p">;</span>在光标的上门进行粘贴
+</code></pre></td></tr></table>
+</div>
+</div><p>管道命令（把多个命令组合起来使用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">管道命令的语法：命令1 <span class="p">|</span> 命令2 <span class="p">|</span> 命令3。
+</code></pre></td></tr></table>
+</div>
+</div><p>grep （grep ：正则表达式）正则表达式，用于字符串的搜索工作(模糊查询)。不懂可以先过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">单独使用：
+grep String test.java ；在test.java文件中查找String的位置，返回整行
+一般此命令不会单独使用下面列几个常用的命令（地下通过管道命令组合起来使用）
+ps aux<span class="p">|</span>grep java ；查找带java关键字的进程
+ll <span class="p">|</span>grep java ；查找带java关键字的文件夹及文件
+</code></pre></td></tr></table>
+</div>
+</div><p>yum install -y lrzsz 命令（实现win到Linux文件互相简单上传文件）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#（实际上就是在Linux系统中下载了一个插件）下了了此安装包后就可以实现win系统到linux之间拉文件拉</span>
+文件
+<span class="c1">#等待下载完了就可以输入：</span>
+rz 从win系统中选择文件上传到Linux系统中
+sz 文件名 选择Linux系统的文件复制到win系统中
+</code></pre></td></tr></table>
+</div>
+</div><p>tar （解压 压缩 命令）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">常用的组合命令：
+-z 是否需要用gzip压缩。
+-c 建立一个压缩文件的参数指令<span class="o">(</span>create<span class="o">)</span> –压缩
+-x 解开一个压缩文件的参数指令<span class="o">(</span>extract<span class="o">)</span> –解压
+-v 压缩的过程中显示文件<span class="o">(</span>verbose<span class="o">)</span>
+-f 使用档名，在f之后要立即接档中<span class="o">(</span>file<span class="o">)</span>
+常用解压参数组合：zxvf
+常用压缩参数组合：zcvf
+解压命令：
+tar -zxvf redis-3.2.8.tar.gz ；解压到当前文件夹
+tar -zxvf redis-3.2.8.tar.gz -C /opt/java/ ；解压到指定目录
+压缩命令：（**注意** 语法有点反了，我反正每次都搞反）
+tar -zcvf redis-3.2.8.tar.gz redis-3.2.8/ <span class="p">;</span>语法 tar -zcvf 压缩后的名称 要压缩的
+文件
+tar -zcvf 压缩后的文件（可指定目录） 要压缩的文件（可指定目录）
+</code></pre></td></tr></table>
+</div>
+</div><p>ps （process status：进程状态，类似于windows的任务管理器）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">常用组合：ps -ef 标准的格式查看系统进程
+ps -aux BSD格式查看系统进程
+ps -aux<span class="p">|</span>grep redis BSD格式查看进程名称带有redis的系统进程（常用技巧）
+//显示进程的一些属性,需要了解（ps aux）
+USER //用户名
+PID //进程ID号,用来杀死进程的
+%CPU //进程占用的CPU的百分比
+%MEM //占用内存的的百分比
+VSZ //该进程使用的虚拟內存量（KB）
+RSS //该进程占用的固定內存量（KB）
+STAT //进程的状态
+START //该进程被触发启动时间
+TIME //该进程实际使用CPU运行的时间
+</code></pre></td></tr></table>
+</div>
+</div><p>clear 清屏命令。（强迫症患者使用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">kill</span> 命令用来中止一个进程。（要配合ps命令使用，配合pid关闭进程）
+（ps类似于打开任务管理器，kill类似于关闭进程）
+<span class="nb">kill</span> -5 进程的PID <span class="p">;</span>推荐,和平关闭进程
+<span class="nb">kill</span> -9 PID <span class="p">;</span>不推荐,强制杀死进程
+
+</code></pre></td></tr></table>
+</div>
+</div><p>ifconfig命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">用于查看和更改网络接口的地址和参数，包括IP地址、网络掩码、广播地址，使用权限是超级用户。（一般是
+用来查看的，很少更改）
+如果此命令输入无效，先输入yum -y install net-tools
+ifconfig
+</code></pre></td></tr></table>
+</div>
+</div><p>ping （用于检测与目标的连通性）语法：ping ip地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">测试：
+1、在Windows操作系统中cmdipconfig，查看本机IP地址：
+2、再到LInux系统中输入 ping ip地址
+（公司电脑，我就不暴露Ip了,没图片 自己去试）
+按Ctrl + C 可以停止测
+</code></pre></td></tr></table>
+</div>
+</div><p>free 命令 （显示系统内存）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#显示系统内存使用情况，包括物理内存、交互区内存(swap)和内核缓冲区内存。</span>
+-b 以Byte显示内存使用情况
+-k 以kb为单位显示内存使用情况
+-m 以mb为单位显示内存使用情况
+-g 以gb为单位显示内存使用情况
+-s&lt;间隔秒数&gt; 持续显示内存
+-t 显示内存使用
+</code></pre></td></tr></table>
+</div>
+</div><p>top 命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等</span>
+-c 显示完整的进程命令
+-s 保密模式
+-p &lt;进程号&gt; 指定进程显示
+-n &lt;次数&gt;循环显示
+</code></pre></td></tr></table>
+</div>
+</div><p>netstat 命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Linux netstat命令用于显示网络状态。</span>
+<span class="c1">#利用netstat指令可让你得知整个Linux系统的网络情况。</span>
+<span class="c1">#语法：</span>
+netstat <span class="o">[</span>-acCeFghilMnNoprstuvVwx<span class="o">][</span>-A&lt;网络类型&gt;<span class="o">][</span>--ip<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>file （可查看文件类型）</p>
+<p>file 文件名</p>
+<p>重启linux</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Linux centos 重启命令：reboot
+</code></pre></td></tr></table>
+</div>
+</div><p>关机linux</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Linux centos 关机命令：halt
+</code></pre></td></tr></table>
+</div>
+</div><p>同步时间命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ntpdate ntp1.aliyun.com
+</code></pre></td></tr></table>
+</div>
+</div><p>更改为北京时间命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre></td></tr></table>
+</div>
+</div><p>查看时间命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">date
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="进程">进程</h3>
+<ol>
+<li><strong>进程</strong>
+进程是系统进行资源分配和调度的一个独立单位。每个进程都有自己的独立内存空间，不同进程通过进程间通信来通信。由于进程比较重量，占据独立的内存，所以上下文进程间的切换开销(栈、寄器、虚拟内存、文件句柄等)比较大，但相对比较稳定安全。</li>
+<li><strong>线程</strong>
+线程是进程的一个实体，是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。线程间信主要通过共享内存，上下文切换很快，资源开销较少，但相比进程不够稳定容易丢失数据。</li>
+<li><strong>协程</strong>
+协程是一种用户态的轻量级线程，协程的调度完全由用户控制。协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈，直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。</li>
+</ol>
+<h4 id="1进程和线程的区别">1.进程和线程的区别?</h4>
+<p>一个程序至少有一个进程，一个进程至少有一个线程</p>
+<ul>
+<li><strong>从系统调度上看</strong>：进程是资源管理的基本单位，线程是程序执行的基本单位。</li>
+<li><strong>从上下文切换上看</strong>：线程上下文切换比进程上下文切换要快得多。</li>
+<li><strong>从系统开销上看</strong>：创建或撤销进程时，系统都要为之分配或回收系统资源，如内存空间，I/O设备等，OS所付出的开销显著大于在创建或撤销线程时的开销，进程切换的开销也远大于线程切换的开销。</li>
+</ul>
+<h4 id="2协程与线程的区别">2.协程与线程的区别?</h4>
+<ul>
+<li>
+<p>一个线程可以有多个协程，一个进程也可以有多个协程。线程和进程都是同步机制，而协程是异步机制。</p>
+</li>
+<li>
+<p><strong>协程是由程序自身控制</strong>，没有线程切换的开销，执行效率非常高</p>
+</li>
+<li>
+<p>协程<strong>不需要多线程的锁机制</strong>：<strong>在协程中控制共享资源不加锁</strong>，只需要判断状态就好了，所以执行效率比多线程高很多。</p>
+</li>
+<li>
+<p>线程是抢占式，而协程是非抢占式的。需要用户释放使用权切换到其他协程，因此同一时间其实只有一个协程拥有运行权，相当于单线程的能力。</p>
+</li>
+<li>
+<p>协程不被操作系统内核管理，而完全是由程序控制。线程是被分割的CPU资源，协程是组织好的代码流程，线程是协程的资源。但协程不会直接使用线程，协程直接利用的是执行器关联任意线程或线程池。</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg, https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220328113326.jpeg" /></p>
+<h4 id="并发与并行的区别是什么">并发与并行的区别是什么？</h4>
+<p>你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。</p>
+<p>你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。</p>
+<p>你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。</p>
+<p>并发的关键是你有处理多个任务的能力，不一定要同时。</p>
+<p>并行的关键是你有同时处理多个任务的能力。</p>
+<p>所以我认为它们最关键的点就是：<strong>是否是『同时』</strong>。</p>
+<h4 id="4进程与线程的切换流程">4.进程与线程的切换流程?</h4>
+<p>进程切换分两步:</p>
+<ol>
+<li>切换页表以使用新的地址空间，一旦去切换上下文，处理器中所有已经缓存的内存地址一瞬间都作废了。</li>
+<li>切换内核栈和硬件上下文。</li>
+</ol>
+<p>对于linux来说，线程和进程的最大区别就在于地址空间，对于线程切换，第1步是不需要做的，第2步是进程和线程切换都要做的。
+因为每个进程都有自己的虚拟地址空间，而线程是共享所在进程的虚拟地址空间的，因此同一个进程中的线程进行线程切换时不涉及虚拟地址空间的转换。</p>
+<h4 id="12进程调度策略有哪几种">12.进程调度策略有哪几种?</h4>
+<blockquote>
+<p>先来先服务，短作业优先，最短剩余时间优先，时间片轮转，优先级调度。</p>
+</blockquote>
+<ul>
+<li><strong>先来先服务</strong>：非抢占式的调度算法，按照请求的顺序进行调度。有利于长作业，但不利于短作业，因为短作业必须一 直等待前面的长作业执行完毕才能执行，而长作业又需要执行很长时间，造成了短作业等待时间过长。另外，对I/o密集型进程也不利，因为这种进程每次进行I/o操作之后又得重新排队。</li>
+<li>短作业优先：非抢占式的调度算法，按估计运行时间最短的顺序进行调度。长作业有可能会饿死，处于-直等待短作业执行完毕的状态。因为如果一直有短作业到来，那么长作业永远得不到调度。</li>
+<li>最短剩余时间优先：最短作业优先的抢占式版本，按剩余运行时间的顺序进行调度。 当一.个新的作业到达时，其整个运行时间与当前进程的剩余时间作比较。如果新的进程需要的时间更少，则挂起当前进程，运行新的进程。否则新的进程等待。</li>
+<li>时间片轮转：将所有就绪进程按FCFS的原则排成一一个队列，每次调度时，把CPU时间分配给队首进程，该进程可以执行一个时间片。当时间片用完时，由计时器发出时钟中断，调度程序便停止该进程的执行，并将它送往就绪队列的末尾，同时继续把CPU时间分配给队首的进程。时间片轮转算法的效率和时间片的大小有很大关系:因为进程切换都要保存进程的信息并且载入新进程的信息，如果时间片太小，会导致进程切换得太频繁，在进程切换上就会花过多时间。而如果时间片过长，那么实时性就不能得到保证。</li>
+<li>优先级调度：为每个进程分配一个优先级，按优先级进行调度。为了防止低优先级的进程永远等不到调度，可以随着时间的推移增加等待进程的优先级。</li>
+</ul>
+<h4 id="进程有哪些状态">进程有哪些状态?</h4>
+<p>进程一共有5种状态，分别是新建、就绪、运行、阻塞、终止。</p>
+<h4 id="什么是用户态和内核态">什么是用户态和内核态?</h4>
+<p>用户态和系统态是操作系统的两种运行状态:</p>
+<ul>
+<li>用户态：用户态运行的程序只能受限地访问内存，只能直接读取用户程序的数据，并且不允许访问外围设备，用户态下的CPU不允许独占，也就是说CPU能够被其他程序获取。</li>
+<li>内核态：内核态运行的程序可以访问计算机的任何数据和资源，不受限制，包括外围设备，比如网卡、硬盘等。处于内核态的CPU可以从一个程序切换到另外一个程序，并且占用CPU不会发生抢占情况。</li>
+</ul>
+<p>将操作系统的运行状态分为用户态和内核态，主要是为了对访问能力进行限制，防止随意进行一些比较危险的操作导致系统的崩溃，比如设置时钟、内存清理，这些都需要在内核态下完成。</p>
+<h3 id="讲一讲io多路复用">讲一讲IO多路复用?</h3>
+<p>IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程。IO多路复用适用如下场合:</p>
+<ul>
+<li>当客户处理多个描述字时(一般是交互式输入和网络套接口)，必须使用I/O复用。.</li>
+<li>当一个客户同时处理多个套接口时，而这种情况是可能的，但很少出现。</li>
+<li>如果一个TCP服务器既要处理监听套接口，又要处理已连接套接口，一般也要用到I/O复用。</li>
+<li>如果一个服务器即要处理TCP，又要处理UDP，一般要使用I/O复用。</li>
+<li>如果一个服务器要处理多个服务或多个协议，一般要使用I/O复用。</li>
+<li>与多进程和多线程技术相比，IO多路复用技术的最大优势是系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。</li>
+</ul>
+<hr>
+<p><strong>IO多路复用模型指的是：使用单个线程同时处理多个网络连接IO，他的原理就是select、poll、epoll不断轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程。该模型的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。</strong></p>
+<p>下面举一个例子，模拟一个tcp服务器处理30个客户socket。</p>
+<p>假设你是一个老师，让30个学生解答一道题目，然后检查学生做的是否正确，你有下面几个选择:</p>
+<ol>
+<li>
+<p>**(select)**第一种选择：<strong>按顺序逐个检查</strong>，先检查A，然后是B，之后是C、D。。。这中间如果有一个学生卡住，全班都会被耽误。这种模式就好比，你用循环挨个处理socket，根本不具有并发能力。</p>
+</li>
+<li>
+<p><strong>(poll)<strong>第二种选择：你</strong>创建30个分身</strong>，每个分身检查一个学生的答案是否正确。 这种类似于为每一个用户创建一个进程或者线程处理连接。</p>
+</li>
+<li>
+<p><strong>(select)<strong>第三种选择，你</strong>站在讲台上等，谁解答完谁举手</strong>。这时C、D举手，表示他们解答问题完毕，你下去依次检查C、D的答案，然后继续回到讲台上等。此时E、A又举手，然后去处理E和A。。。</p>
+</li>
+</ol>
+<p>这种就是IO复用模型，Linux下的select、poll和epoll就是干这个的。将用户socket对应的fd注册进epoll，然后epoll帮你监听哪些socket上有消息到达，这样就避免了大量的无用操作。此时的socket应该采用<strong>非阻塞模式</strong>。</p>
+<p>这样，整个过程只在调用select、poll、epoll这些调用的时候才会阻塞，收发客户消息是不会阻塞的，整个进程或者线程就被充分利用起来，这就是<strong>事件驱动</strong>，所谓的reactor模式。</p>
+<h4 id="selectpoll-和epoll之间的区别">select、poll 和epoll之间的区别?</h4>
+<ol>
+<li><strong>select：时间复杂度O(n)</strong>
+select仅仅知道有I/O事件发生，但并不知道是哪几个流，所以只能无差别轮询所有流，找出能读出数据或者写入数据的流，并对其进行操作。所以select具有O(n)的无差别轮询复杂度，同时处理的流越多，无差别轮询时间就越长。</li>
+<li><strong>poll：时间复杂度O(n)</strong>
+poll本质上和select没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个fd对应的设备状态，但是它没有最大连接数的限制，原因是它是基于链表来存储的。</li>
+<li><strong>epoll： 时间复杂度O(1)</strong>
+epoll可以理解为event poll，不同于忙轮询和无差别轮询，epoll 会把哪个流发生了怎样的I/O事件通知我们。所以说epoll实际上是事件驱动(每个事件关联上fd)的。</li>
+</ol>
+<p>select，poll，epoll都是IO多路复用的机制。l/O多路复用就是通过一种机制监视多个描述符，一旦某个描述符就绪(一般是读就绪或者写就绪)，就通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O,因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步l/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。</p>
+<h3 id="软链接和硬链接有什么区别">软链接和硬链接有什么区别?</h3>
+<ul>
+<li>
+<p>软链接可以理解成快捷方式，也清楚知道原文件在哪里。它和Windows下的快捷方式的作用是一样的，删除源文件，快捷方式也就无法使用了。</p>
+</li>
+<li>
+<p>硬链接可以看成一个备份，但并没有增加空间，因为文件就一个，这种可以防止源文件删除后不能使用问题；同时也有局限性，不能对目录和跨文件系统使用。</p>
+</li>
+</ul>
+<p>语法格式(ln)区别：</p>
+<p>　　硬链接：ln 源文件 链接名</p>
+<p>　　软链接：ln -s 源文件 链接名</p>
+<p>　　<strong>注意</strong>：链接的源文件路径要写绝对路径，否则会报错。</p>
+<h3 id="中断的处理过程">中断的处理过程?</h3>
+<ol>
+<li>保护现场：将当前执行程序的相关数据保存在寄存器中，然后入栈。</li>
+<li>开中断：以便执行中断时能响应较高级别的中断请求。</li>
+<li>中断处理</li>
+<li>关中断：保证恢复现场时不被新中断打扰</li>
+<li>恢复现场：从堆栈中按序取出程序数据，恢复中断前的执行状态。</li>
+</ol>
+<hr>
+<h3 id="11-linux里如何查看一个想知道的进程">1.1 Linux里如何查看一个想知道的进程？</h3>
+<p><strong>查看进程运行状态的指令</strong>：ps命令。“<strong>ps -aux | grep PID</strong>”，用来查看某PID进程状态</p>
+<blockquote>
+<p>ps使用示例  //显示当前所有进程   ps -A   //与grep联用查找某进程   ps -aux | grep apache    //查看进程运行状态、查看内存使用情况的指令均可使用top指令。 top</p>
+</blockquote>
+<h3 id="12-linux里如何查看带有关键字的日志文件">1.2 Linux里如何查看带有关键字的日志文件？</h3>
+<ol>
+<li><strong>cat 路径/文件名 | grep 关键词</strong></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## 返回test.log中包含http的所有行 cat test.log | grep &#34;http&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><strong>grep -i 关键词 路径/文件名</strong> （与方法一效果相同，不同写法而已）</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## 返回test.log中包含http的所有行(-i忽略大小写） grep -i &#34;http&#34; ./test.log </span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-说说你对grep命令的了解">1.3 说说你对grep命令的了解？</h3>
+<p>grep 命令。强大的文本搜索命令，grep(Global Regular Expression Print) 全局正则表达式搜索。</p>
+<p>grep 的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被引用，模板后的所有字符串被看作文件名。搜索的结果被送到标准输出，不影响原文件内容。</p>
+<h3 id="14-linux修改主机名的命令是什么">1.4 Linux修改主机名的命令是什么？</h3>
+<ol>
+<li>
+<p>如果只需要临时更改主机名，可以使用hostname命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo hostname &lt;new-hostname&gt; <span class="c1"># 例如: sudo hostname myDebian #myDebian为修改名</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果想永久改变主机名，可以使用hostnamectl命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo hostnamectl set-hostname myDebian <span class="c1">#myDebian为修改名</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="15-linux开机自动执行命令如何实现">1.5 Linux开机自动执行命令如何实现？</h3>
+<ol>
+<li>
+<p><strong>方法 #1 - 使用 cron 任务</strong></p>
+<p>除了常用格式（分 / 时 / 日 / 月 / 周）外，cron 调度器还支持 @reboot 指令。这个指令后面的参数是脚本（启动时要执行的那个脚本）的绝对路径。</p>
+<p>然而，这种方法需要<strong>注意</strong>两点：</p>
+<p>a)  cron 守护进程必须处于运行状态（通常情况下都会运行），同时</p>
+<p>b) 脚本或 crontab 文件必须包含需要的环境变量。</p>
+</li>
+<li>
+<p><strong>方法 #2 - 使用 /etc/rc.d/rc.local</strong></p>
+<p>这个方法对于 systemd-based 发行版 Linux 同样有效。不过，使用这个方法，需要授予 /etc/rc.d/rc.local 文件执行权限:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># chmod +x /etc/rc.d/rc.local</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后在这个文件底部添加脚本。</p>
+</li>
+</ol>
+<h3 id="16-linux查看内存的命令是什么">1.6 Linux查看内存的命令是什么？</h3>
+<p><strong>查看内存使用情况的指令</strong>：<strong>free命令</strong>。“<strong>free -m</strong>”，命令查看内存使用情况。</p>
+<p>查看进程运行状态、查看内存使用情况的指令均可使用<strong>top指令</strong>。</p>
+<ol>
+<li>
+<p><strong>free命令</strong></p>
+<p>Linux free命令用于<strong>显示内存状态</strong>。</p>
+<p>free指令会显示内存的使用情况，<strong>包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。</strong></p>
+<p>参数如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">-b 以Byte为单位显示内存使用情况。
+-k 以KB为单位显示内存使用情况。 
+-m 以MB为单位显示内存使用情况。 
+-h 以合适的单位显示内存使用情况，最大为三位数，自动计算对应的单位值。
+单位有:         
+<span class="nv">B</span> <span class="o">=</span> bytes         <span class="nv">K</span> <span class="o">=</span> kilos         <span class="nv">M</span> <span class="o">=</span> megas         <span class="nv">G</span> <span class="o">=</span> gigas         <span class="nv">T</span> <span class="o">=</span> teras -o 不显示缓冲区调节列。 -s&lt;间隔秒数&gt; 持续观察内存使用状况。 -t 显示内存总和列。 -V 显示版本信息。
+</code></pre></td></tr></table>
+</div>
+</div><p>实例:显示内存使用情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># free //显示内存使用信息</span>
+total used free shared buffers cached
+Mem: <span class="m">254772</span> <span class="m">184568</span> <span class="m">70204</span> <span class="m">0</span> <span class="m">5692</span> <span class="m">89892</span>
+-/+ buffers/cache: <span class="m">88984</span> <span class="m">165788</span>
+Swap: <span class="m">524280</span> <span class="m">65116</span> <span class="m">459164</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>top命令</p>
+</li>
+</ol>
+<p><strong>top</strong>命令。<strong>显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png"
+        title="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215436.png" /></p>
+<p><strong>前五行是当前系统情况整体的统计信息区。</strong></p>
+<ol>
+<li>
+<p>第一行，任务队列信息，同 uptime 命令的执行结果，具体参数说明情况如下:</p>
+<p>00:12:54 — 当前系统时间</p>
+<p>up ？days, 4:49 — 系统已经运行了？天4小时49分钟（在这期间系统没有重启过）</p>
+<p>21users — 当前有1个用户登录系统</p>
+<p>load average: 0.06, 0.02, 0.00 — load average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p>
+</li>
+<li>
+<p>第二行，Tasks — 任务（进程），具体信息说明如下:</p>
+<p>系统现在共有256个进程，其中处于运行中的有1个，177个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p>
+</li>
+<li>
+<p>第三行，cpu状态信息，具体属性说明如下:</p>
+<p>0.2%us — 用户空间占用CPU的百分比。</p>
+<p>0.2% sy — 内核空间占用CPU的百分比。</p>
+<p>0.0% ni — 改变过优先级的进程占用CPU的百分比</p>
+<p>99.5% id — 空闲CPU百分比</p>
+<p>0.0% wa — IO等待占用CPU的百分比</p>
+<p>0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比</p>
+<p>0.0% si — 软中断（Software Interrupts）占用CPU的百分比</p>
+</li>
+<li>
+<p>第四行，内存状态，具体信息如下:</p>
+<p>2017552 total — 物理内存总量</p>
+<p>720188 used — 使用中的内存总量</p>
+<p>197916 free — 空闲内存总量</p>
+<p>1099448 cached — 缓存的总量</p>
+</li>
+<li>
+<p>第五行，swap交换分区信息，具体信息说明如下:</p>
+<p>998396 total — 交换区总量</p>
+<p>989936 free — 空闲交换区总量</p>
+<p>8460 used — 使用的交换区总量</p>
+<p>1044136 cached — 缓冲的交换区总量</p>
+</li>
+</ol>
+<h3 id="17-free命令有哪些选项">1.7 free命令有哪些选项？</h3>
+<p>Linux free命令用于<strong>显示内存状态</strong>。</p>
+<p>free指令会显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。</p>
+<p>参数如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">-b 　以Byte为单位显示内存使用情况。
+-k 　以KB为单位显示内存使用情况。
+-m 　以MB为单位显示内存使用情况。
+-h 　以合适的单位显示内存使用情况，最大为三位数，自动计算对应的单位值。单位有:
+        <span class="nv">B</span> <span class="o">=</span> bytes
+        <span class="nv">K</span> <span class="o">=</span> kilos
+        <span class="nv">M</span> <span class="o">=</span> megas
+        <span class="nv">G</span> <span class="o">=</span> gigas
+        <span class="nv">T</span> <span class="o">=</span> teras
+-o 　不显示缓冲区调节列。
+-s&lt;间隔秒数&gt; 　持续观察内存使用状况。
+-t 　显示内存总和列。
+-V 　显示版本信息。
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>答案解析</strong></p>
+<p>实例：显示内存使用情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## free //显示内存使用信息</span>
+total used free shared buffers cached
+Mem: <span class="m">254772</span> <span class="m">184568</span> <span class="m">70204</span> <span class="m">0</span> <span class="m">5692</span> <span class="m">89892</span>
+-/+ buffers/cache: <span class="m">88984</span> <span class="m">165788</span>
+Swap: <span class="m">524280</span> <span class="m">65116</span> <span class="m">459164</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="18-linux中压缩文件的命令是什么">1.8 Linux中压缩文件的命令是什么？</h3>
+<p>Linux中压缩文件与解压文件的命令有：<strong>tar命令、gz命令、bz2命令、compress命令、zip命令、unzip命令</strong>。</p>
+<p><strong>答案解析</strong></p>
+<ol>
+<li>
+<p><strong>tar 命令详解</strong></p>
+<p>Linux tar（英文全拼：tape archive ）命令用于备份文件。</p>
+<p>tar 是用来建立，还原备份文件的工具程序，它可以加入，解开备份文件内的文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+tar <span class="o">[</span>-ABcdgGhiklmMoOpPrRsStuUvwWxzZ<span class="o">][</span>-b &lt;区块数目&gt;<span class="o">][</span>-C &lt;目的目录&gt;<span class="o">][</span>-f &lt;备份文件&gt;<span class="o">][</span>-F &lt;Script文件&gt;<span class="o">][</span>-K &lt;文件&gt;<span class="o">][</span>-L &lt;媒体容量&gt;<span class="o">][</span>-N &lt;日期时间&gt;<span class="o">][</span>-T &lt;范本文件&gt;<span class="o">][</span>-V &lt;卷册名称&gt;<span class="o">][</span>-X &lt;范本文件&gt;<span class="o">][</span>-&lt;设备编号&gt;&lt;存储密度&gt;<span class="o">][</span>--after-date<span class="o">=</span>&lt;日期时间&gt;<span class="o">][</span>--atime-preserve<span class="o">][</span>--backuup<span class="o">=</span>&lt;备份方式&gt;<span class="o">][</span>--checkpoint<span class="o">][</span>--concatenate<span class="o">][</span>--confirmation<span class="o">][</span>--delete<span class="o">][</span>--exclude<span class="o">=</span>&lt;范本样式&gt;<span class="o">][</span>--force-local<span class="o">][</span>--group<span class="o">=</span>&lt;群组名称&gt;<span class="o">][</span>--help<span class="o">][</span>--ignore-failed-read<span class="o">][</span>--new-volume-script<span class="o">=</span>&lt;Script文件&gt;<span class="o">][</span>--newer-mtime<span class="o">][</span>--no-recursion<span class="o">][</span>--null<span class="o">][</span>--numeric-owner<span class="o">][</span>--owner<span class="o">=</span>&lt;用户名称&gt;<span class="o">][</span>--posix<span class="o">][</span>--erve<span class="o">][</span>--preserve-order<span class="o">][</span>--preserve-permissions<span class="o">][</span>--record-size<span class="o">=</span>&lt;区块数目&gt;<span class="o">][</span>--recursive-unlink<span class="o">][</span>--remove-files<span class="o">][</span>--rsh-command<span class="o">=</span>&lt;执行指令&gt;<span class="o">][</span>--same-owner<span class="o">][</span>--suffix<span class="o">=</span>&lt;备份字尾字符串&gt;<span class="o">][</span>--totals<span class="o">][</span>--use-compress-program<span class="o">=</span>&lt;执行指令&gt;<span class="o">][</span>--version<span class="o">][</span>--volno-file<span class="o">=</span>&lt;编号文件&gt;<span class="o">][</span>文件或目录...<span class="o">]</span>
+
+//常用参数:
+//必要参数有如下:
+-A 新增压缩文件到已存在的压缩
+-c 建立新的压缩文件
+-d 记录文件的差别
+-r 添加文件到已经压缩的文件
+-u 添加改变了和现有的文件到已经存在的压缩文件
+-x 从压缩的文件中提取文件
+-t 显示压缩文件的内容
+-z 支持gzip解压文件
+-j 支持bzip2解压文件
+-Z 支持compress解压文件
+-v 显示操作过程
+-l 文件系统边界设置
+-k 保留原有文件不覆盖
+-m 保留文件不被覆盖
+-W 确认压缩文件的正确性
+
+//实例
+//1.压缩
+tar -cf hhh.tar hhh       //打包 hhh 文件为 hhh.tar
+tar -jcf hhh.tar.bz2 hhh  //压缩打包 hhh 文件为 hhh.tar.bz2
+tar -czf hhh.tar.gz hhh   //压缩 hhh 文件为 hhh.tar.gz
+tar -tzvf test.tar.gz     //列出压缩文件内容
+
+//2.解压文件  
+tar -tzvf test.tar.gz 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>gz命令详解</strong></p>
+<p>Linux gzip命令用于压缩文件。</p>
+<p>gzip是个使用广泛的压缩程序，文件经它压缩过后，其名称后面会多出&quot;.gz&quot;的扩展名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+gzip <span class="o">[</span>-acdfhlLnNqrtvV<span class="o">][</span>-S <span class="p">&amp;</span>lt<span class="p">;</span>压缩字尾字符串<span class="p">&amp;</span>gt<span class="p">;</span><span class="o">][</span>-<span class="p">&amp;</span>lt<span class="p">;</span>压缩效率<span class="p">&amp;</span>gt<span class="p">;</span><span class="o">][</span>--best/fast<span class="o">][</span>文件...<span class="o">]</span> 或 gzip <span class="o">[</span>-acdfhlLnNqrtvV<span class="o">][</span>-S <span class="p">&amp;</span>lt<span class="p">;</span>压缩字尾字符串<span class="p">&amp;</span>gt<span class="p">;</span><span class="o">][</span>-<span class="p">&amp;</span>lt<span class="p">;</span>压缩效率<span class="p">&amp;</span>gt<span class="p">;</span><span class="o">][</span>--best/fast<span class="o">][</span>目录<span class="o">]</span>
+
+//常用参数:
+-a或--ascii 　使用ASCII文字模式。
+-c或--stdout或--to-stdout 　把压缩后的文件输出到标准输出设备，不去更动原始文件。
+-d或--decompress或----uncompress 　解开压缩文件。
+-f或--force 　强行压缩文件。不理会文件名称或硬连接是否存在以及该文件是否为符号连接。
+-h或--help 　在线帮助。
+-l或--list 　列出压缩文件的相关信息。
+-L或--license 　显示版本与版权信息。
+-n或--no-name 　压缩文件时，不保存原来的文件名称及时间戳记。
+-N或--name 　压缩文件时，保存原来的文件名称及时间戳记。
+-q或--quiet 　不显示警告信息。
+-r或--recursive 　递归处理，将指定目录下的所有文件及子目录一并处理。
+-S&lt;压缩字尾字符串&gt;或----suffix&lt;压缩字尾字符串&gt; 　更改压缩字尾字符串。
+-t或--test 　测试压缩文件是否正确无误。
+-v或--verbose 　显示指令执行过程。
+-V或--version 　显示版本信息。
+-&lt;压缩效率&gt; 　压缩效率是一个介于1－9的数值，预设值为<span class="s2">&#34;6&#34;</span>，指定愈大的数值，压缩效率就会愈高。
+--best 　此参数的效果和指定<span class="s2">&#34;-9&#34;</span>参数相同。
+--fast 　此参数的效果和指定<span class="s2">&#34;-1&#34;</span>参数相同。
+
+//实例
+//1.压缩
+gzip *            //压缩目录下的所有文件
+
+//2.解压文件  
+gzip -dv *        //解压文件，并列出详细信息   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>bz2命令详解</strong></p>
+<p>bzip2(选项)（参数）:用于创建和管理.bz2格式的压缩包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+bzip2 源文件       //压缩不保留源文件
+bzip2 -k 源文件    //压缩保留源文件
+//**注意** bzip2 命令不能解压目录
+
+//常用参数:
+-c 将压缩与解压缩的结果送到标准输出
+-d 执行解压缩
+-f 在压缩或解压缩时，若输出文件与现有文件名相同，预设不会覆盖现有文件；使用该选项，可覆盖文件
+-k 在压缩或解压缩后，会删除原是文件；若要保留原是文件，使用该选项
+-v 压缩或解压缩文件时，显示详细的信息
+-z 强制执行压缩
+
+//实例
+//1.压缩
+bzip2 源文件       //压缩不保留源文件
+bzip2 -k 源文件    //压缩保留源文件
+
+//2.解压文件  
+bzip2 -d 源文件   //解压缩 -k 保留压缩文件
+bunzip2  源文件   //解压缩 -k 保留压缩文件      
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>compress命令详解</strong></p>
+<p>Linux compress命令是一个相当古老的 unix 档案压缩指令，压缩后的档案会加上一个 .Z 延伸档名以区别未压缩的档案，压缩后的档案可以以 uncompress 解压。若要将数个档案压成一个压缩档，必须先将档案 tar 起来再压缩。由于 gzip 可以产生更理想的压缩比例，一般人多已改用 gzip 为档案压缩工具。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+compress <span class="o">[</span>-dfvcV<span class="o">]</span> <span class="o">[</span>-b maxbits<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
+
+//常用参数:    
+-c 输出结果至标准输出设备（一般指荧幕）
+-f 强迫写入档案，若目的档已经存在，则会被覆盖 <span class="o">(</span>force<span class="o">)</span>
+-v 将程序执行的讯息印在荧幕上 <span class="o">(</span>verbose<span class="o">)</span>
+-b 设定共同字串数的上限，以位元计算，可以设定的值为 <span class="m">9</span> 至 <span class="m">16</span> bits 。由于值越大，能使用的共同字串就 越多，压缩比例就越大，所以一般使用预设值 <span class="m">16</span> bits <span class="o">(</span>bits<span class="o">)</span>
+-d 将压缩档解压缩
+-V 列出版本讯息    
+
+//实例
+//1.压缩
+compress -f source.dat   //将 source.dat 压缩成 source.dat.Z ，若 source.dat.Z 已经存在，内容则会被压缩档覆盖。    
+
+//2.解压文件  
+compress -d source.dat   //将 source.dat.Z 解压成 source.dat ，若档案已经存在，使用者按 y 以确定覆盖档案，若使用 -df 程序则会自动覆盖档案。 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>zip 命令详解</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+zip <span class="o">[</span>-AcdDfFghjJKlLmoqrSTuvVwXyz$<span class="o">][</span>-b &lt;工作目录&gt;<span class="o">][</span>-ll<span class="o">][</span>-n &lt;字尾字符串&gt;<span class="o">][</span>-t &lt;日期时间&gt;<span class="o">][</span>-&lt;压缩效率&gt;<span class="o">][</span>压缩文件<span class="o">][</span>文件...<span class="o">][</span>-i &lt;范本样式&gt;<span class="o">][</span>-x &lt;范本样式&gt;<span class="o">]</span>
+
+//常用参数:
+-m 将文件压缩并加入压缩文件后，删除原始文件，即把文件移到压缩文件中。
+-o 以压缩文件内拥有最新更改时间的文件为准，将压缩文件的更改时间设成和该文件相同。
+-q 不显示指令执行过程。
+-r 递归处理，将指定目录下的所有文件和子目录一并处理。
+-x&lt;范本样式&gt; 压缩时排除符合条件的文件。
+
+//实例:
+//将 /home/html/ 这个目录下所有文件和文件夹打包为当前目录下的 html.zip：
+zip -q -r html.zip /home/html
+
+//如果在我们在 /home/html 目录下，可以执行以下命令:
+zip -q -r html.zip *
+
+//从压缩文件 cp.zip 中删除文件 a.c
+zip -dv cp.zip a.c
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>unzip 命令详解</strong></p>
+<p>Linux unzip命令用于解压缩zip文件</p>
+<p>unzip为.zip压缩文件的解压缩程序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//命令格式:
+unzip <span class="o">[</span>-cflptuvz<span class="o">][</span>-agCjLMnoqsVX<span class="o">][</span>-P &lt;密码&gt;<span class="o">][</span>.zip文件<span class="o">][</span>文件<span class="o">][</span>-d &lt;目录&gt;<span class="o">][</span>-x &lt;文件&gt;<span class="o">]</span> 或 unzip <span class="o">[</span>-Z<span class="o">]</span>
+
+//常用参数:    
+-c 将解压缩的结果显示到屏幕上，并对字符做适当的转换。
+-f 更新现有的文件。
+-l 显示压缩文件内所包含的文件。
+-p 与-c参数类似，会将解压缩的结果显示到屏幕上，但不会执行任何的转换。
+-t 检查压缩文件是否正确。
+-u 与-f参数类似，但是除了更新现有的文件外，也会将压缩文件中的其他文件解压缩到目录中。
+-v 执行是时显示详细的信息。
+-z 仅显示压缩文件的备注文字。
+-a 对文本文件进行必要的字符转换。
+-b 不要对文本文件进行字符转换。
+-C 压缩文件中的文件名称区分大小写。
+-j 不处理压缩文件中原有的目录路径。
+-L 将压缩文件中的全部文件名改为小写。
+-M 将输出结果送到more程序处理。
+-n 解压缩时不要覆盖原有的文件。
+-o 不必先询问用户，unzip执行后覆盖原有文件。
+-P&lt;密码&gt; 使用zip的密码选项。
+-q 执行时不显示任何信息。
+-s 将文件名中的空白字符转换为底线字符。
+-V 保留VMS的文件版本信息。
+-X 解压缩时同时回存文件原来的UID/GID。
+<span class="o">[</span>.zip文件<span class="o">]</span> 指定.zip压缩文件。
+<span class="o">[</span>文件<span class="o">]</span> 指定要处理.zip压缩文件中的哪些文件。
+-d&lt;目录&gt; 指定文件解压缩后所要存储的目录。
+-x&lt;文件&gt; 指定不要处理.zip压缩文件中的哪些文件。
+-Z unzip -Z等于执行zipinfo指令。
+
+//实例
+unzip text.zip   //将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。    
+unzip -n text.zip -d /tmp  //查看压缩文件目录，但不解压。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="19-linux查询连接数的命令是什么">1.9 Linux查询连接数的命令是什么？</h3>
+<p><strong>参考回答</strong></p>
+<ol>
+<li>
+<p><strong>netstat</strong></p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//示例
+查看Web服务器（Nginx Apache）的并发请求数及其TCP连接状态:
+netstat -n <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
+
+解释:
+返回结果示例: 
+LAST_ACK <span class="m">5</span>   <span class="o">(</span>正在等待处理的请求数<span class="o">)</span> 
+SYN_RECV <span class="m">30</span> 
+ESTABLISHED <span class="m">1597</span> <span class="o">(</span>正常数据传输状态<span class="o">)</span> 
+FIN_WAIT1 <span class="m">51</span> 
+FIN_WAIT2 <span class="m">504</span> 
+TIME_WAIT <span class="m">1057</span> <span class="o">(</span>处理完毕，等待超时结束的请求数<span class="o">)</span> 
+
+状态:描述 
+CLOSED：无连接是活动的或正在进行 
+LISTEN：服务器在等待进入呼叫 
+SYN_RECV：一个连接请求已经到达，等待确认 
+SYN_SENT：应用已经开始，打开一个连接 
+ESTABLISHED：正常数据传输状态 
+FIN_WAIT1：应用说它已经完成 
+FIN_WAIT2：另一边已同意释放 
+ITMED_WAIT：等待所有分组死掉 
+CLOSING：两边同时尝试关闭 
+TIME_WAIT：另一边已初始化一个释放 
+LAST_ACK：等待所有分组死掉
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><strong>答案解析</strong></p>
+<p>无。</p>
+<h3 id="110-linux中top命令有哪些参数">1.10 Linux中top命令有哪些参数？</h3>
+<p><strong>参考回答</strong></p>
+<p><strong>top</strong>命令。显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等</p>
+<p><strong>参数</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">-d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。 
+-p 通过指定监控进程ID来仅仅监控某个进程的状态。 
+-q 该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。 
+-S 指定累计模式 
+-s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。 
+-i 使top不显示任何闲置或者僵死进程。 
+-c 显示整个命令行而不只是显示命令名 
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>答案解析</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215712.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215712.png, https://cdn.jsdelivr.net/gh/nateshao/images/20220328215712.png 1.5x, https://cdn.jsdelivr.net/gh/nateshao/images/20220328215712.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/nateshao/images/20220328215712.png"
+        title="img" /></p>
+<p><strong>前五行是当前系统情况整体的统计信息区。</strong></p>
+<ol>
+<li>
+<p>第一行，任务队列信息，同 uptime 命令的执行结果，具体参数说明情况如下:</p>
+<p>00:12:54 — 当前系统时间</p>
+<p>up ？days, 4:49 — 系统已经运行了？天4小时49分钟（在这期间系统没有重启过）</p>
+<p>21users — 当前有1个用户登录系统</p>
+<p>load average: 0.06, 0.02, 0.00 — load average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p>
+</li>
+<li>
+<p>第二行，Tasks — 任务（进程），具体信息说明如下:</p>
+<p>系统现在共有256个进程，其中处于运行中的有1个，177个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p>
+</li>
+<li>
+<p>第三行，cpu状态信息，具体属性说明如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">0.2%us — 用户空间占用CPU的百分比。
+
+0.2% sy — 内核空间占用CPU的百分比。
+
+0.0% ni — 改变过优先级的进程占用CPU的百分比
+
+99.5% id — 空闲CPU百分比
+
+0.0% wa — IO等待占用CPU的百分比
+
+0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比
+
+0.0% si — 软中断（Software Interrupts）占用CPU的百分比
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>第四行，内存状态，具体信息如下:</p>
+<p>2017552 total — 物理内存总量</p>
+<p>720188 used — 使用中的内存总量</p>
+<p>197916 free — 空闲内存总量</p>
+<p>1099448 cached — 缓存的总量</p>
+</li>
+<li>
+<p>第五行，swap交换分区信息，具体信息说明如下:</p>
+<p>998396 total — 交换区总量</p>
+<p>989936 free — 空闲交换区总量</p>
+<p>8460 used — 使用的交换区总量</p>
+<p>1044136 cached — 缓冲的交换区总量</p>
+</li>
+</ol>
+<h3 id="111-linux中如何通过端口查进程如何通过进程查端口">1.11 Linux中，如何通过端口查进程，如何通过进程查端口？</h3>
+<p><strong>参考回答</strong></p>
+<ol>
+<li>
+<p><strong>linux下通过进程名查看其占用端口</strong>: （1）先查看进程pid</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ps -ef <span class="p">|</span> grep 进程名
+</code></pre></td></tr></table>
+</div>
+</div><p>（2）通过pid查看占用端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">netstat -nap <span class="p">|</span> grep 进程pid
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>linux通过端口查看进程</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">netstat -nap <span class="p">|</span> grep 端口号
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="112-请你说说ping命令">1.12 请你说说ping命令？</h3>
+<p><strong>参考回答</strong></p>
+<p>Linux ping命令用于检测主机。</p>
+<p><strong>执行ping指令会使用ICMP传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。</strong></p>
+<p><strong>答案解析</strong></p>
+<p>语法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ping <span class="o">[</span>-dfnqrRv<span class="o">][</span>-c&lt;完成次数&gt;<span class="o">][</span>-i&lt;间隔秒数&gt;<span class="o">][</span>-I&lt;网络界面&gt;<span class="o">][</span>-l&lt;前置载入&gt;<span class="o">][</span>-p&lt;范本样式&gt;<span class="o">][</span>-s&lt;数据包大小&gt;<span class="o">][</span>-t&lt;存活数值&gt;<span class="o">][</span>主机名称或IP地址<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>参数说明:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">-d 使用Socket的SO_DEBUG功能。
+-c&lt;完成次数&gt; 设置完成要求回应的次数。
+-f 极限检测。
+-i&lt;间隔秒数&gt; 指定收发信息的间隔时间。
+-I&lt;网络界面&gt; 使用指定的网络接口送出数据包。
+-l&lt;前置载入&gt; 设置在送出要求信息之前，先行发出的数据包。
+-n 只输出数值。
+-p&lt;范本样式&gt; 设置填满数据包的范本样式。
+-q 不显示指令执行过程，开头和结尾的相关信息除外。
+-r 忽略普通的Routing Table，直接将数据包送到远端主机上。
+-R 记录路由过程。
+-s&lt;数据包大小&gt; 设置数据包的大小。
+-t&lt;存活数值&gt; 设置存活数值TTL的大小。
+-v 详细显示指令的执行过程。
+</code></pre></td></tr></table>
+</div>
+</div><p>实例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">检测是否与主机连通
+
+<span class="c1">## ping www.w3cschool.cc //ping主机</span>
+PING aries.m.alikunlun.com <span class="o">(</span>114.80.174.110<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.025 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.036 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.034 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.034 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">5</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.028 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">6</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.028 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">7</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.034 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">8</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.034 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">9</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.036 ms
+<span class="m">64</span> bytes from 114.80.174.110: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">10</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.041 ms
+
+--- aries.m.alikunlun.com ping statistics ---
+<span class="m">10</span> packets transmitted, <span class="m">30</span> received, 0% packet loss, <span class="nb">time</span> 29246ms
+rtt min/avg/max/mdev <span class="o">=</span> 0.021/0.035/0.078/0.011 ms
+
+//需要手动终止Ctrl+C
+指定接收包的次数
+
+<span class="c1">## ping -c 2 www.w3cschool.cc</span>
+PING aries.m.alikunlun.com <span class="o">(</span>114.80.174.120<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 114.80.174.120: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>6.18 ms
+<span class="m">64</span> bytes from 114.80.174.120: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>15.4 ms
+
+--- aries.m.alikunlun.com ping statistics ---
+<span class="m">2</span> packets transmitted, <span class="m">2</span> received, 0% packet loss, <span class="nb">time</span> 1016ms
+rtt min/avg/max/mdev <span class="o">=</span> 6.185/10.824/15.464/4.640 ms
+
+//收到两次包后，自动退出
+多参数使用
+
+<span class="c1">## ping -i 3 -s 1024 -t 255 g.cn //ping主机</span>
+PING g.cn <span class="o">(</span>203.208.37.104<span class="o">)</span> 1024<span class="o">(</span>1052<span class="o">)</span> bytes of data.
+<span class="m">1032</span> bytes from bg-in-f104.1e100.net <span class="o">(</span>203.208.37.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">0</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">243</span> <span class="nv">time</span><span class="o">=</span>62.5 ms
+<span class="m">1032</span> bytes from bg-in-f104.1e100.net <span class="o">(</span>203.208.37.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">243</span> <span class="nv">time</span><span class="o">=</span>63.9 ms
+<span class="m">1032</span> bytes from bg-in-f104.1e100.net <span class="o">(</span>203.208.37.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">243</span> <span class="nv">time</span><span class="o">=</span>61.9 ms
+
+--- g.cn ping statistics ---
+<span class="m">3</span> packets transmitted, <span class="m">3</span> received, 0% packet loss, <span class="nb">time</span> 6001ms
+rtt min/avg/max/mdev <span class="o">=</span> 61.959/62.843/63.984/0.894 ms, pipe <span class="m">2</span>
+<span class="o">[</span>root@linux ~<span class="o">]</span><span class="c1"># </span>
+
+//-i <span class="m">3</span> 发送周期为 3秒 -s 设置发送包的大小 -t 设置TTL值为 <span class="m">255</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="113-什么是协程">1.13 什么是协程？</h3>
+<p><strong>参考回答</strong></p>
+<p><strong>协程</strong>：协程是微线程，在子程序内部执行，可在子程序内部中断，转而执行别的子程序，在适当的时候再返回来接着执行。</p>
+<p><strong>答案解析</strong></p>
+<ol>
+<li>
+<p><strong>线程与协程的区别:</strong></p>
+<p>（1）协程执行效率极高。协程直接操作栈基本没有内核切换的开销，所以上下文的切换非常快，切换开销比线程更小。</p>
+<p>（2）协程不需要多线程的锁机制，因为多个协程从属于一个线程，不存在同时写变量冲突，效率比线程高。</p>
+<p>（3）一个线程可以有多个协程。</p>
+</li>
+<li>
+<p><strong>协程的优势:</strong></p>
+<p>（1）<strong>协程调用跟切换比线程效率高</strong>:协程执行效率极高。协程不需要多线程的锁机制，可以不加锁的访问全局变量，所以上下文的切换非常快。</p>
+<p>（2）<strong>协程占用内存少</strong>:执行协程只需要极少的栈内存（大概是4～5KB），而默认情况下，线程栈的大小为1MB。</p>
+<p>（3）<strong>切换开销更少</strong>:协程直接操作栈基本没有内核切换的开销，所以切换开销比线程少。</p>
+</li>
+</ol>
+<h3 id="114-为什么协程比线程切换的开销小">1.14 为什么协程比线程切换的开销小？</h3>
+<p><strong>参考回答</strong></p>
+<ol>
+<li>
+<p>协程执行效率极高。协程直接操作栈基本没有内核切换的开销，所以上下文的<strong>切换非常快</strong>，切换开销比线程更小。</p>
+</li>
+<li>
+<p>协程不需要多线程的锁机制，因为多个协程从属于一个线程，不存在同时写变量冲突，效率比线程高。<strong>避免了加锁解锁的开销。</strong></p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-03 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/linux/" data-title="OS" data-hashtags="Linux"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/linux/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/linux/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/linux/" data-title="OS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/linux/" data-title="OS"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/linux/" data-title="OS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os/" class="prev" rel="prev" title="OS"><i class="fas fa-angle-left fa-fw"></i>OS</a>
+            <a href="/mysql/" class="next" rel="next" title="MYSQL">MYSQL<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

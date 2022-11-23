@@ -11,5 +11,12 @@
     <author>作者</author>
     <guid>https://jefofrank.xyz/git/</guid>
     <description><![CDATA[└── .git ├── COMMIT_EDITMSG # 保存最新的commit message ├── config # 仓库的配置文件 ├── description # 仓库的描述信息，主要给gitweb使用 ├── HEAD # 指向当前分支 ├─]]></description>
+</item><item>
+    <title>Git</title>
+    <link>https://jefofrank.xyz/git_ms/</link>
+    <pubDate>Tue, 31 May 2022 14:55:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/git_ms/</guid>
+    <description><![CDATA[Q2. 什么是Git？ Git 是分布式版本控制系统（DVCS）。它可以跟踪文件的更改，并允许你恢复到任何特定版本的更改。 Git使用 C 语言编写。 GIT 很快，C]]></description>
 </item></channel>
 </rss>

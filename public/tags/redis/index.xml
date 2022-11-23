@@ -10,7 +10,7 @@
     <pubDate>Thu, 03 Nov 2022 23:45:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/redis/</guid>
-    <description><![CDATA[Redis 1、什么是 Redis? Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key-value 数据库。 Redis 与其他 key - value 缓存产品有以下三个特点： Redis 支持数据的持久化，可以将内存中]]></description>
+    <description><![CDATA[Redis 1、什么是 Redis? Redis 优势： Redis 与其他 key-value 存储有什么不同？ 应用场景 单线程的Redis为什么快 Redis 的数据结构及使用场景 3、使用 Redis 有哪些好处？ 4、Redis]]></description>
 </item><item>
     <title>Redis_geek</title>
     <link>https://jefofrank.xyz/redis_geek/</link>

@@ -3,10 +3,19 @@ title: "dytt"
 date: 2022-01-12T22:17:18+08:00
 lastmod: 2022-01-06
 tags: [dytt]
-categories: [fytt]
+categories: [MS]
 slug: Go_Data_Operation
-draft: true
+draft: false
 ---
+- [dytt](#dytt)
+  - [介绍一下项目的架构](#介绍一下项目的架构)
+  - [遇到了哪些困难，怎么解决的？](#遇到了哪些困难怎么解决的)
+  - [项目开发](#项目开发)
+  - [项目测试](#项目测试)
+  - [项目部署](#项目部署)
+  - [protobuff 的坑](#protobuff-的坑)
+
+
 # dytt
 ## 介绍一下项目的架构
 DYTT 是我做的一个基于 Gin 和 gRPC 开发的抖音后端项目，包括 API 网关以及一些业务服务，比如 用户 服务实现了用户登陆注册获取用户主页信息的接口。一个简单的流程就是，API 服务接受 RESTful 请求，路由交给相应的 handler 处理，handler 经过参数验证后又传给 RPC 客户端，然后 RPC 客户端通过 rpc 框架发送请求数据给某个服务，并接受响应数据，然后便继续将数据向上传，最后响应 json 序列化的数据。
@@ -22,10 +31,10 @@ DYTT 是我做的一个基于 Gin 和 gRPC 开发的抖音后端项目，包括 
    日志记录其实就是自己实现一个可以返回zap.Logger实例的 grpc-middleware ZapInterceptor 的拦截器函数， 认证的话采用了bearer令牌认证，bearer token 服务端根据密钥生成。客户端在请求服务端时，必须在请求头中包含Authorization: Bearer 。服务端收到请求后，进行解析并校验。使用bearer token是规范了与HTTP请求的对接，毕竟gRPC也可以同时支持HTTP请求。然后恢复的话把gRPC中的panic转成error，从而恢复程序。
 
 4. 使用 **JWT** 进行用户token的校验；
-   简单地实现了两个方法，创建 token 解析token
+   简单地实现了两个方法，创建 token 解析token，在用户注册或者登陆时创建token 在需要验证身份的时候进行解析验证
    
 5. 使用 **ETCD** 进行服务发现和服务注册；（https://blog.51cto.com/u_15314183/5457223）
-   服务实例以及一些工具函数、服务注册、服务发现
+   服务实例定义以及一些工具函数、服务注册、服务发现
    先构造一个etcd的结构体，包括名称、地址、版本、和权重（后续做降级熔断的话会用到），工具函数包括注册路径，判断一个服务是否存在之类的
    服务注册：定义注册对象结构体，存储全部的实例信息，包括连接超时时间，etcd服务，clientv3实例等，客户端实例的grant方法能创建lease租约,相当于一个TTL存活时间，用于对etcd客户端和服务端之间进行活性检测。在到达TTL时间之前，etcd服务端不会删除相关租约上绑定的键值对；超过TTL时间就会删除，需要在TTL到来之前续租才能实现etcd服务端和客户端之间的保活。具体注册服务的时候先定义一个node存放服务信息，然后调用Register进行注册。
    服务发现：构造服务发现结构体，用了grpc/resolver这个库做解析器，创建一个基于etcd的resolver。然后有一些操作，比如服务发现，watch机制，更新节点操作，同步获取所有地址信息
