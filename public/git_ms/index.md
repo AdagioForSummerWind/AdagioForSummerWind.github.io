@@ -1,5 +1,15 @@
 # Git
 
+- [Q2. 什么是Git？](#q2-什么是git)
+- [**4.Git和Github有什么区别？**](#4git和github有什么区别)
+- [命令](#命令)
+- [Q7. git pull 和 git fetch 有什么区别？](#q7-git-pull-和-git-fetch-有什么区别)
+- [Q9. 什么是 git stash?](#q9-什么是-git-stash)
+- [Q10. 什么是git stash drop？](#q10-什么是git-stash-drop)
+- [**37. 如何在不从文件系统中删除文件的情况下从 git 中删除文件？**](#37-如何在不从文件系统中删除文件的情况下从-git-中删除文件)
+- [**39. 告诉我 Git 中 HEAD、工作树和索引之间的区别。**](#39-告诉我-git-中-head工作树和索引之间的区别)
+- [**42. Git 中的 rebase 和 merge 有什么区别？**](#42-git-中的-rebase-和-merge-有什么区别)
+- [### **44. 什么是 git cherry-pick？**](#-44-什么是-git-cherry-pick)
 
 ![](https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221123201058.png)
 
