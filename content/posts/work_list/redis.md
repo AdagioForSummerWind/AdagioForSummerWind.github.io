@@ -70,6 +70,7 @@ draft: false
   - [Redis并发竞争key的解决方案](#redis并发竞争key的解决方案)
   - [Redis与Mysql双写一致性方案](#redis与mysql双写一致性方案)
   - [Redis的管道pipeline](#redis的管道pipeline)
+  - [内存淘汰算法实现](#内存淘汰算法实现)
 
 
 ##  Redis
@@ -140,9 +141,11 @@ Redis 是单进程单线程的，redis 利用队列技术将并发访问变为�
 ### 7、一个字符串类型的值能存储最大容量是多少？
 答：512M
 ### 8、Redis 的持久化机制是什么？各自的优缺点？
+https://github.com/lifei6671/interview-go/blob/master/base/redis-rdb.md
+
 Redis 提供两种持久化机制 RDB 和 AOF 机制：
 
-RDBRedis DataBase)持久化方式：
+RDB(Redis DataBase)持久化方式：
 是指用数据集快照的方式半持久化模式)记录 Redis 数据库的所有键值对,在某个时间点将数据写入一个临时文件，持久化结束后，用这个临时文件替换上次持久化的文件，达到数据恢复。
 
 优点： 
@@ -226,6 +229,8 @@ Redisson 的宗旨是促进使用者对 Redis 的关注分离，从而让使用�
 Redis 集群没有使用一致性 hash,而是引入了哈希槽的概念，Redis 集群 有16384 个哈希槽，每个 key 通过 CRC16 校验后对 16384 取模来决定放置哪个槽，集群的每个节点负责一部分 hash 槽。
 
 ### 21、Redis 集群的主从复制模型是怎样的？
+https://github.com/lifei6671/interview-go/blob/master/redis/redis-master-slave.md
+
 为了使在部分节点失败或者大部分节点无法通信的情况下集群仍然可用， 所以集群使用了主从复制模型,每个节点都会有 N-1 个复制品。
 ### 22、Redis 集群会有写操作丢失吗？为什么？
 Redis 并不能保证数据的强一致性，这意味这在实际中集群在特定的条件下可能会丢失写操作。
@@ -448,3 +453,5 @@ Redis的rehash 操作并不是一次性、集中式完成的，而是分多次�
 
 对于单线程阻塞式的Redis，Pipeline可以满足批量的操作，把多个命令连续的发送给Redis Server，然后一一解析响应结果。Pipelining可以提高批量处理性能，提升的原因主要是TCP连接中减少了“交互往返”的时间。pipeline 底层是通过把所有的操作封装成流，redis有定义自己的出入输出流。在 sync() 方法执行操作，每次请求放在队列里面，解析响应包。
 
+### 内存淘汰算法实现
+https://github.com/lifei6671/interview-go/blob/master/redis/redis-policy.md
