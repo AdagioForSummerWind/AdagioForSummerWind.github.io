@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  30313 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "计网","wordcount":  31657 ,
         "url": "https:\/\/jefofrank.xyz\/%E8%AE%A1%E7%BD%91\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">计网</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 30313 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 61 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 31657 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 64 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -230,6 +230,13 @@
             <li><a href="#cookie与session区别">cookie与session区别</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#常见的网络-io-模型">常见的网络 IO 模型</a>
+      <ul>
+        <li><a href="#阻塞-ioblocking-io">阻塞 IO（blocking IO）</a></li>
+        <li><a href="#io-多路复用io-multiplexing">IO 多路复用（IO multiplexing）</a></li>
+        <li><a href="#为什么说阻塞-io-和-io-多路复用最为常用">为什么说阻塞 IO 和 IO 多路复用最为常用？</a></li>
       </ul>
     </li>
     <li><a href="#参考">参考</a></li>
@@ -1732,6 +1739,27 @@
 <li>单个cookie保存的数据不能超过4K，session无此限制</li>
 <li>session一定时间内保存在服务器上，当访问增多，占用服务器性能，考虑到服务器性能方面，应 当使用cookie。</li>
 </ol>
+<h2 id="常见的网络-io-模型">常见的网络 IO 模型</h2>
+<p>那说到网络通信，就不得不提一下<strong>网络 IO 模型</strong>。为什么要讲网络 IO 模型呢？因为所谓的两台 PC 机之间的网络通信，实际上就是两台 PC 机对网络 IO 的操作。常见的网络 IO 模型分为四种：</p>
+<ul>
+<li>同步阻塞 IO（BIO）</li>
+<li>同步非阻塞 IO（NIO）</li>
+<li>IO 多路复用</li>
+<li>异步非阻塞 IO（AIO）</li>
+</ul>
+<p>在这四种 IO 模型中，只有 AIO 为异步 IO，其他都是同步 IO。其中，最常用的就是同步阻塞 IO 和 IO 多路复用，这一点通过了解它们的机制，你会 get 到。至于其他两种 IO 模型，并不常用。</p>
+<h3 id="阻塞-ioblocking-io">阻塞 IO（blocking IO）</h3>
+<p>同步阻塞 IO 是最简单、最常见的 IO 模型，在 Linux 中，默认情况下所有的 socket 都是 blocking 的，先看下操作流程。</p>
+<p>首先，应用进程发起 IO 系统调用后，应用进程被阻塞，转到内核空间处理。之后，内核开始等待数据，等待到数据之后，再将内核中的数据拷贝到用户内存中，整个 IO 处理完毕后返回进程。最后应用的进程解除阻塞状态，运行业务逻辑。</p>
+<p>这里我们可以看到，系统内核处理 IO 操作分为两个阶段——<strong>等待数据和拷贝数据</strong>。而在这两个阶段中，<strong>应用进程中 IO 操作的线程会一直都处于阻塞状态</strong>，如果是基于 Java 多线程开发，那么每一个 IO 操作都要占用线程，直至 IO 操作结束。</p>
+<h3 id="io-多路复用io-multiplexing">IO 多路复用（IO multiplexing）</h3>
+<p>多路复用 IO 是在高并发场景中使用最为广泛的一种 IO 模型，如 Java 的 NIO、Redis、Nginx 的底层实现就是此类 IO 模型的应用，经典的 Reactor 模式也是基于此类 IO 模型。</p>
+<p>那么什么是 IO 多路复用呢？通过字面上的理解，多路就是指多个通道，也就是多个网络连接的 IO，而复用就是指多个通道复用在一个复用器上。<strong>多个网络连接的 IO 可以注册到一个复用器（select）上</strong>。</p>
+<p>当用户进程调用了 select，那么整个进程会被阻塞。同时，内核会“监视”所有 select 负责的 socket，当任何一个 socket 中的数据准备好了，select 就会返回。这个时候用户进程再调用 read 操作，将数据从内核中拷贝到用户进程。</p>
+<p>这里我们可以看到，当用户进程发起了 select 调用，进程会被阻塞，当发现该 select 负责的 socket 有准备好的数据时才返回，之后才发起一次 read，整个流程要比阻塞 IO 要复杂，似乎也更浪费性能。但它最大的优势在于，<strong>用户可以在一个线程内同时处理多个 socket 的 IO 请求</strong>。用户可以注册多个 socket，然后不断地调用 select 读取被激活的 socket，即可达到在同一个线程内同时处理多个 IO 请求的目的。而<strong>在同步阻塞模型中，必须通过多线程的方式才能达到这个目的</strong>。</p>
+<h3 id="为什么说阻塞-io-和-io-多路复用最为常用">为什么说阻塞 IO 和 IO 多路复用最为常用？</h3>
+<p>了解完二者的机制，我们就可以回到起初的问题了——我为什么说阻塞 IO 和 IO 多路复用最为常用。对比这四种网络 IO 模型：阻塞 IO、非阻塞 IO、IO 多路复用、异步 IO。</p>
+<p>实际在网络 IO 的应用上，需要的是系统内核的支持以及编程语言的支持。在系统内核的支持上，现在大多数系统内核都会支持阻塞 IO、非阻塞 IO 和 IO 多路复用，但像信号驱动 IO、异步 IO，只有高版本的 Linux 系统内核才会支持。在编程语言上，无论 C++ 还是 Java，在高性能的网络编程框架的编写上，大多数都是基于 Reactor 模式，其中最为典型的便是 Java 的 Netty 框架，而 Reactor 模式是基于 IO 多路复用的。当然，<strong>在非高并发场景下，同步阻塞 IO 是最为常见的</strong>。综合来讲，<strong>在这四种常用的 IO 模型中，应用最多的、系统内核与编程语言支持最为完善的，便是阻塞 IO 和 IO 多路复用。这两种 IO 模型，已经可以满足绝大多数网络 IO 的应用场景。</strong></p>
 <h2 id="参考">参考</h2>
 <p><a href="https://baijiahao.baidu.com/s?id=1693383134922615393&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener noreffer">https://baijiahao.baidu.com/s?id=1693383134922615393&wfr=spider&for=pc</a></p>
 </div><div class="post-footer" id="post-footer">

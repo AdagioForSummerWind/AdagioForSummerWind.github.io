@@ -4,10 +4,10 @@
         <link>https://jefofrank.xyz/tags/tools/</link>
         <description>tools - 标签 - 绿叶律动</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
-            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 19 Sep 2022 19:02:19 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/tools/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 19 Sep 2022 10:02:29 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/tags/tools/" rel="self" type="application/rss+xml" /><item>
     <title>Viper</title>
     <link>https://jefofrank.xyz/viper/</link>
-    <pubDate>Mon, 19 Sep 2022 19:02:19 &#43;0800</pubDate>
+    <pubDate>Mon, 19 Sep 2022 10:02:29 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/viper/</guid>
     <description><![CDATA[配置解析神器：Viper 使用介绍 几乎所有的后端服务，都需要一些配置项来配置我们的服务，一些小型的项目，配置不是很多，可以选择只通过命令行参数]]></description>

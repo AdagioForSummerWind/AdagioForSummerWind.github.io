@@ -5,7 +5,7 @@ lastmod: 2022-01-06
 tags: [data structure]
 categories: [Coding]
 slug: dynamic programming
-draft: true
+draft: false
 ---
 > 学习[代码随想录](https://programmercarl.com/)笔记
 # 动态规划

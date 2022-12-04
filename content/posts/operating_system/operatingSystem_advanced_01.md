@@ -6663,9 +6663,7 @@ bool_t _destroy_kmsob_core(kmsobmgrhed_t *kmobmgrp, koblst_t *koblp, kmsob_t *km
     }
     return TRUE;
 }
-//
-```
-销毁内存对象容器
+//销毁内存对象容器
 bool_t _destroy_kmsob(kmsobmgrhed_t *kmobmgrp, koblst_t *koblp, kmsob_t *kmsp)
 {
     //看看能不能销毁

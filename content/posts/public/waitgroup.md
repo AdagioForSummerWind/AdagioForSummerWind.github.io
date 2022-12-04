@@ -1,6 +1,6 @@
 ---
 title: "WaitGroup 实现原理"
-date: 2022-06-19T19:02:19+08:00
+date: 2022-06-19T19:12:19+08:00
 lastmod: 2022-06-19
 tags: [go]
 categories: [go]
