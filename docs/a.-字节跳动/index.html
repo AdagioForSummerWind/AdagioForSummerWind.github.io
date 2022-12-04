@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>interview-zj - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="interview-zj" />
-<meta property="og:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 整体面试下来，感觉其实字节对于语言本身并没有很多的涉及，更加注重基础，比如数据结构与算" />
+<meta property="og:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 笔试 一面 epoll、select、poll 区别 epoll 的水平触发和边缘触发的区别 TCP 的流量控制" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-28T15:30:06+08:00" />
@@ -16,11 +16,11 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="interview-zj"/>
-<meta name="twitter:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 整体面试下来，感觉其实字节对于语言本身并没有很多的涉及，更加注重基础，比如数据结构与算"/>
+<meta name="twitter:description" content="【Golang开发面经】字节跳动（三轮技术面） 写在前面 笔试 一面 epoll、select、poll 区别 epoll 的水平触发和边缘触发的区别 TCP 的流量控制"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="prev" href="https://jefofrank.xyz/waitgroup/" /><link rel="next" href="https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" /><link rel="prev" href="https://jefofrank.xyz/waitgroup/" /><link rel="next" href="https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  5054 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  7940 ,
         "url": "https:\/\/jefofrank.xyz\/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8\/","datePublished": "2022-06-28T15:30:06+08:00","dateModified": "2022-08-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">interview-zj</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/interview/"><i class="far fa-folder fa-fw"></i>interview</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5054 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7940 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 16 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -159,9 +159,63 @@
     <li><a href="#场景题如果我有100g文件但是只有-500-m-的内存这些文件存着一行行的数字如何获取最小的10个">场景题：如果我有100G文件，但是只有 500 M 的内存，这些文件存着一行行的数字，如何获取最小的10个？</a></li>
     <li><a href="#算法最长有序括号常见题秒">算法：最长有序括号，常见题，秒</a></li>
     <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#8月24日字节跳动后端开发面经">8月24日字节跳动后端开发面经</a>
+      <ul>
+        <li><a href="#一面-1">一面</a></li>
+        <li><a href="#二面-72170min">二面 7.21（70min）</a></li>
+        <li><a href="#三面-72870min">三面 7.28（70min）</a></li>
+        <li><a href="#hr面-82-30min">HR面 8.2 （30min）</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="golang开发面经字节跳动三轮技术面">【Golang开发面经】字节跳动（三轮技术面）</h1>
+            </div><div class="content" id="content"><ul>
+<li><a href="#golang%e5%bc%80%e5%8f%91%e9%9d%a2%e7%bb%8f%e5%ad%97%e8%8a%82%e8%b7%b3%e5%8a%a8%e4%b8%89%e8%bd%ae%e6%8a%80%e6%9c%af%e9%9d%a2" rel="">【Golang开发面经】字节跳动（三轮技术面）</a>
+<ul>
+<li><a href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2" rel="">写在前面</a></li>
+<li><a href="#%e7%ac%94%e8%af%95" rel="">笔试</a></li>
+<li><a href="#%e4%b8%80%e9%9d%a2" rel="">一面</a></li>
+<li><a href="#epollselectpoll-%e5%8c%ba%e5%88%ab" rel="">epoll、select、poll 区别</a></li>
+<li><a href="#epoll-%e7%9a%84%e6%b0%b4%e5%b9%b3%e8%a7%a6%e5%8f%91%e5%92%8c%e8%be%b9%e7%bc%98%e8%a7%a6%e5%8f%91%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">epoll 的水平触发和边缘触发的区别</a></li>
+<li><a href="#tcp-%e7%9a%84%e6%b5%81%e9%87%8f%e6%8e%a7%e5%88%b6" rel="">TCP 的流量控制</a></li>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%9c%89%e4%ba%86%e6%b5%81%e9%87%8f%e6%8e%a7%e5%88%b6%e8%bf%98%e8%a6%81%e6%9c%89%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6" rel="">为什么有了流量控制还要有拥塞控制?</a></li>
+<li><a href="#tcp-%e4%b8%8d%e6%98%af%e5%8f%af%e9%9d%a0%e4%bc%a0%e8%be%93%e5%90%97%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e4%b8%a2%e5%8c%85%e5%91%a2" rel="">TCP 不是可靠传输吗？为什么会丢包呢？</a></li>
+<li><a href="#%e9%82%a3%e4%bd%a0%e4%bb%8b%e7%bb%8d%e4%b8%80%e4%b8%8b%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6%e7%9a%84%e7%ae%97%e6%b3%95" rel="">那你介绍一下拥塞控制的算法？</a></li>
+<li><a href="#%e8%bf%9b%e7%a8%8b%e7%ba%bf%e7%a8%8b%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">进程、线程的区别</a></li>
+<li><a href="#go%e9%87%8c%e9%9d%a2gmp%e6%a8%a1%e5%9e%8b%e6%98%af%e6%80%8e%e4%b9%88%e6%a0%b7%e7%9a%84" rel="">Go里面GMP模型是怎么样的？</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e6%97%8b%e8%bd%ac%e7%9f%a9%e9%98%b5%e7%89%9b%e5%ae%a2%e4%b8%8a%e5%86%99%e8%bf%87easy%e7%a7%92" rel="">算法：旋转矩阵，牛客上写过，easy，秒</a></li>
+<li><a href="#%e4%ba%8c%e9%9d%a2" rel="">二面</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e7%94%a8%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97" rel="">如何用栈实现队列</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e4%b8%80%e4%b8%aa%e9%93%be%e8%a1%a8%e6%9c%89%e6%b2%a1%e6%9c%89%e7%8e%af" rel="">如何判断一个链表有没有环？</a></li>
+<li><a href="#%e9%82%a3%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88%e4%b8%80%e5%ae%9a%e8%83%bd%e5%a4%9f%e7%9b%b8%e9%81%87" rel="">那为什么快慢指针一定能够相遇？</a></li>
+<li><a href="#%e4%bd%a0%e7%94%a8%e7%9a%84%e6%98%af-mysql-%e6%98%af%e5%90%a7%e9%82%a3-b%e6%a0%91-%e5%92%8c-b%e6%a0%91-%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af" rel="">你用的是 mysql 是吧，那 B树 和 B+树 的区别是？</a></li>
+<li><a href="#%e4%bb%8b%e7%bb%8d%e4%b8%80%e4%b8%8b%e6%ad%bb%e9%94%81%e4%ba%a7%e7%94%9f%e7%9a%84%e5%bf%85%e8%a6%81%e6%9d%a1%e4%bb%b6" rel="">介绍一下死锁产生的必要条件</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e4%ba%92%e6%96%a5%e9%94%81" rel="">如何实现互斥锁？</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e8%87%aa%e6%97%8b%e9%94%81" rel="">如何实现自旋锁？</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c%e7%a7%92" rel="">算法：三数之和。秒</a></li>
+<li><a href="#%e4%b8%89%e9%9d%a2" rel="">三面</a></li>
+<li><a href="#kafka-%e5%92%8c-%e5%85%b6%e4%bb%96%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e6%af%94%e5%a6%82-rocketmqrabbitmq-%e6%9c%89%e4%bb%80%e4%b9%88%e4%bc%98%e5%8a%bf" rel="">kafka 和 其他消息队列，比如 rocketmq，rabbitmq ，有什么优势？</a></li>
+<li><a href="#kafka%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e6%b6%88%e6%81%af%e4%b8%8d%e4%b8%a2%e5%a4%b1" rel="">kafka如何保证消息不丢失？</a></li>
+<li><a href="#https%e4%b8%ba%e4%bb%80%e4%b9%88%e6%98%af%e5%ae%89%e5%85%a8%e7%9a%84" rel="">https为什么是安全的？</a></li>
+<li><a href="#ssltls-%e6%98%af%e6%80%8e%e4%b9%88%e4%bf%9d%e8%af%81%e5%ae%89%e5%85%a8%e7%9a%84%e7%bb%8f%e8%bf%87%e5%87%a0%e6%ac%a1%e6%8f%a1%e6%89%8b" rel="">ssl/tls 是怎么保证安全的？经过几次握手？</a></li>
+<li><a href="#%e4%ba%8b%e5%8a%a1%e7%9a%84%e5%9b%9b%e5%a4%a7%e7%89%b9%e6%80%a7" rel="">事务的四大特性？</a></li>
+<li><a href="#%e7%94%a8%e8%bf%87%e5%93%aa%e4%ba%9b%e6%8e%92%e5%ba%8f" rel="">用过哪些排序？</a></li>
+<li><a href="#%e5%bf%ab%e6%8e%92%e4%b8%80%e5%ae%9a%e6%9c%80%e5%bf%ab%e5%90%97" rel="">快排一定最快吗？</a></li>
+<li><a href="#%e5%9c%ba%e6%99%af%e9%a2%98%e5%a6%82%e6%9e%9c%e6%88%91%e6%9c%89100g%e6%96%87%e4%bb%b6%e4%bd%86%e6%98%af%e5%8f%aa%e6%9c%89-500-m-%e7%9a%84%e5%86%85%e5%ad%98%e8%bf%99%e4%ba%9b%e6%96%87%e4%bb%b6%e5%ad%98%e7%9d%80%e4%b8%80%e8%a1%8c%e8%a1%8c%e7%9a%84%e6%95%b0%e5%ad%97%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96%e6%9c%80%e5%b0%8f%e7%9a%8410%e4%b8%aa" rel="">场景题：如果我有100G文件，但是只有 500 M 的内存，这些文件存着一行行的数字，如何获取最小的10个？</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e6%9c%80%e9%95%bf%e6%9c%89%e5%ba%8f%e6%8b%ac%e5%8f%b7%e5%b8%b8%e8%a7%81%e9%a2%98%e7%a7%92" rel="">算法：最长有序括号，常见题，秒</a></li>
+<li><a href="#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" rel="">参考链接</a></li>
+<li><a href="#8%e6%9c%8824%e6%97%a5%e5%ad%97%e8%8a%82%e8%b7%b3%e5%8a%a8%e5%90%8e%e7%ab%af%e5%bc%80%e5%8f%91%e9%9d%a2%e7%bb%8f" rel="">8月24日字节跳动后端开发面经</a>
+<ul>
+<li><a href="#%e4%b8%80%e9%9d%a2-1" rel="">一面</a></li>
+<li><a href="#%e4%ba%8c%e9%9d%a2-72170min" rel="">二面 7.21（70min）</a></li>
+<li><a href="#%e4%b8%89%e9%9d%a2-72870min" rel="">三面 7.28（70min）</a></li>
+<li><a href="#hr%e9%9d%a2-82-30min" rel="">HR面 8.2 （30min）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="golang开发面经字节跳动三轮技术面">【Golang开发面经】字节跳动（三轮技术面）</h1>
 <h2 id="写在前面">写在前面</h2>
 <blockquote>
 <p>整体面试下来，<strong><code>感觉其实字节对于语言本身并没有很多的涉及</code></strong>，更加注重基础，<strong>比如数据结构与算法，计算机网络，组成原理，操作系统，数据库等等</strong>，语言本身并没有涉及太多。</p>
@@ -472,6 +526,100 @@ B+树</p>
 <h2 id="参考链接">参考链接</h2>
 <p>[1] <a href="https://blog.csdn.net/weixin_35973945/article/details/124245495" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_35973945/article/details/124245495</a>
 [2] <a href="https://www.cnblogs.com/yaochunhui/p/14128777.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/yaochunhui/p/14128777.html</a></p>
+<h2 id="8月24日字节跳动后端开发面经">8月24日字节跳动后端开发面经</h2>
+<p>先讲一下时间线吧，7.7号投递 -&gt; 7.17一面 -&gt; 7.21二面 -&gt; 7.28三面 -&gt; 8.2HR面 -&gt; 8.13OC -&gt; 8.15意向</p>
+<p>因为楼主没有录屏，所以可能有些遗漏。
+一面 7.17（60min）</p>
+<p>一面的面试官给我留下了非常好的印象，面试开始时告诉我他有两个显示器，所以有时目光不会直视我，并且他会做一些必要的记录，如果我回答完他没有立即回应的话，希望我能理解。</p>
+<h3 id="一面-1">一面</h3>
+<p>1.自我介绍（介绍实习项目）
+2.根据我的实习项目对我进行提问，问的较为仔细，需要对自己的项目有较深的理解
+3.OSI7层网络了解吗？说说具体有哪些层，并且每一层起到什么作用？互相之间如何协作？
+4.应用层，传输层，网络层，数据链路层都有哪些协议？它们都起到了什么作用？
+5.MAC地址在传输过程中会改变吗？
+6.CSMA/CD协议作用于哪一层？如何工作的？如何降低碰撞几率的？
+7.TCP三次握手，四次挥手聊一聊？
+8.进程，线程，协程了解吗？说说他们的特性和区别。
+9.select，poll，epoll的区别？
+10.进程间的通信方式有哪些？共享存储的优点和缺点分别是什么？消息队列与管道相比有什么优势？
+11.JDK8默认使用的垃圾收集器有哪些？新生代为什么普遍采用复制算法？老年代为什么普遍采用标记清除算法？
+12.虽迟但到的算法题环节：
+（1）接雨水
+（2）链表每k个进行反转</p>
+<h3 id="二面-72170min">二面 7.21（70min）</h3>
+<p>1.自我介绍（介绍实习项目）
+2.也是针对项目进行提问，相较于一面更为深入，例如会问为什么选择使用这项技术？有没有和其他技术进行过对比？可扩展性如何？
+3.TCP和UDP区别是什么？TCP依据什么来保证可靠性？TCP是面向什么进行传输？
+4.HTTPS和HTTP的区别？HTTPS协议链接建立流程是什么？HTTPS中的S代表什么？介于拿两层之间起作用？对于应用层透明吗？
+5.数据链路层为网络层提供了哪些服务？ARP协议是哪一层的协议？
+6.ICMP报文能起到哪些作用？分别是如何起作用的？
+7.虚拟内存了解吗？有什么作用？
+8.讲讲请求分段，请求分页，请求段页的实现方式及使用场景
+9.请求分页的具体工作流程能不能讲讲呢？页面置换算法有哪些？（其中我说了LRU，结果后面算法题出的就是LRU😂）
+11.你平时喜欢使用什么关系型数据库呢？（回答的是mysql）
+12.mysql一般使用哪些引擎呢？
+13.Innodb和myisam的区别是什么呢？哪种情况下该使用innodb，哪种情况下使用myisam呢？为什么？
+14.当查询数据库时使用limit 10000，10有什么弊端？有什么好的解决方案吗？
+15.什么时候索引会失效？能够使用&gt;和&gt;=的时候你会使用哪一个？为什么？
+16.当查询条件有xx == null 时索引一定会失效吗？
+17.执行计划了解吗？
+18.智力题
+有36匹马，6赛道，每条赛道之间的名次不可知，只能获知单条赛道马的名次，问最少比多少次能知道前三名？
+19.算法题
+（1）LRU（后面又让改成带过期时间的LRU，我使用的惰性删除）
+（2）查找旋转数组（时间复杂度要求O(logn)）</p>
+<h3 id="三面-72870min">三面 7.28（70min）</h3>
+<p>前两面面试官询问Java方面的知识点比较少，三面面试官问的比较多
+1.自我介绍（ 介绍实习项目）
+2.针对实习项目和简历中的项目展开地毯式考察（花费大概25min）
+3.HashMap如何是如何实现的呢？JDK8HashMap的散列算法能不能从源码层面来介绍一下？为什么扩容是两倍呢？自己手写实现过HashMap吗？
+4.我看之前答垃圾收集器答的蛮好的，你能介绍一下CMS垃圾收集器的优缺点吗？为什么CMS会将serial old作为后备垃圾回收器？
+5.对象只会被分配到堆吗？（答：不是，还有可能会栈上分配）
+6.什么时候会进行栈上分配？
+7.ThreadLocal的作用？如何实现？会不会出现内存泄漏？如何避免内存泄漏？
+8.Spring AOP 的作用？如何实现的？
+9.Spring 自动注入如何实现？（这个涉及的方面就比较多，讲了好久）
+10.了解SSD的原理吗？（答：不知道，只知道磁盘，所以就讲了下磁盘存储原理和寻道算法）
+11.操作系统是如何判定内存访问越界的？
+12.访问越界后操作系用会如何进行处理？
+13.用户态转换到核心态的过程？
+14.进程切换过程？线程切换过程？
+15.当我们ping的时候发送的是什么包？
+16.TCP协议头部长度是使用哪个字段？如何计算的？
+17.TCP如何实现流量控制和拥塞控制？
+18.TCP的滑动窗口移动流程你能具体讲讲吗？
+19.当我们输入一个SQL查询语句时，mysql数据库引擎是如何执行并得到最终结果的？（答：先查询缓存-&gt;解析器-&gt;优化器）
+20.智力题
+（1） 一个桶能存储5升水，一个桶能存储3升水，如何操作能量出4升水？
+（2）两根质地不均匀的木头，从一端烧到另一端需要60分钟，如何操作能准确量出15分钟？
+21.算法题
+你之前说了解析器，那我现场出一道算法题吧，我会输入一个SQL语句，你需要将where后面的查询条件解析为一棵规则树
+例如：where (a == b and c == d) or (e == f or (g == h))
+我需要生成一棵树，结构为
+or</p>
+<ul>
+<li>and
+<ul>
+<li>a == b</li>
+<li>c == d</li>
+</ul>
+</li>
+<li>or
+<ul>
+<li>e == f</li>
+<li>g == h
+楼主运气比较好，肌肉记忆写出来了，面试官几个测试用例也通过了，算是有惊无险。</li>
+</ul>
+</li>
+</ul>
+<h3 id="hr面-82-30min">HR面 8.2 （30min）</h3>
+<p>询问实习期间的挑战和解决问题的思路，就拉拉家常，如实回答就好～。
+HR面完后，HR加了我微信，长达11天的审批流程后终于OC。
+总结
+总的来说，字节跳动后端开发考察具体语言知识是比较少的，计算机网络，操作系统原理考察的比较多。智力题也会进行考察可以事先准备下。算法题我的体验是每面都有一道Hard，不过是比较常见的（除了最后一面）。
+面试体验也十分的好，可能是我运气好，没有遇到故意刁难的面试官，特别是最后一面的面试官，一直在呵呵的笑（很友善），搞得我也一直在笑，哈哈。
+今年秋招十分的不容易，希望这篇面经能帮助到大家～</p>
+<p>对了，楼主base成都</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -496,7 +644,7 @@ B+树</p>
     </div>
 
     <div class="post-nav"><a href="/waitgroup/" class="prev" rel="prev" title="WaitGroup 实现原理"><i class="fas fa-angle-left fa-fw"></i>WaitGroup 实现原理</a>
-            <a href="/d.-%E6%BB%B4%E6%BB%B4/" class="next" rel="next" title="interview-dd">interview-dd<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/%E7%9F%A5%E4%B9%8E/" class="next" rel="next" title="interview-zhihu">interview-zhihu<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

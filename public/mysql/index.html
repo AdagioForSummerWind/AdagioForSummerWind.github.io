@@ -6,17 +6,17 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>MYSQL - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="MYSQL" />
-<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL" />
+<meta property="og:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 17. 如果某个表有近千万数据，CRUD比较慢，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/mysql/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-03T23:45:02+08:00" />
-<meta property="article:modified_time" content="2022-11-23T20:53:31+08:00" />
+<meta property="article:modified_time" content="2022-12-04T17:49:39+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="MYSQL"/>
-<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 3. 超键、候选键、主键、外键分别是什么？ 4. SQL"/>
+<meta name="twitter:description" content="mysql基础 1. 数据库的三范式是什么？ 2、MySQL 有关权限的表都有哪几个？ 2. MySQL 支持哪些存储引擎? 17. 如果某个表有近千万数据，CRUD比较慢，"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/mysql\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  29088 ,
-        "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-11-23T20:53:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MYSQL","wordcount":  35244 ,
+        "url": "https:\/\/jefofrank.xyz\/mysql\/","datePublished": "2022-11-03T23:45:02+08:00","dateModified": "2022-12-04T17:49:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">MYSQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ms/"><i class="far fa-folder fa-fw"></i>MS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 29088 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 59 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-03 23:45:02">2022-11-03 23:45:02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 35244 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 71 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -132,6 +132,12 @@
         <li><a href="#1-数据库的三范式是什么">1. 数据库的三范式是什么？</a></li>
         <li><a href="#2mysql-有关权限的表都有哪几个">2、MySQL 有关权限的表都有哪几个？</a></li>
         <li><a href="#2-mysql-支持哪些存储引擎">2. MySQL 支持哪些存储引擎?</a></li>
+        <li><a href="#17-如果某个表有近千万数据crud比较慢如何优化">17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</a>
+          <ul>
+            <li><a href="#分库分表">分库分表</a></li>
+            <li><a href="#索引优化">索引优化</a></li>
+          </ul>
+        </li>
         <li><a href="#3-超键候选键主键外键分别是什么">3. 超键、候选键、主键、外键分别是什么？</a></li>
         <li><a href="#4-sql-约束有哪几种">4. SQL 约束有哪几种？</a></li>
         <li><a href="#5-mysql-中的-varchar-和-char-有什么区别">5. MySQL 中的 varchar 和 char 有什么区别？</a></li>
@@ -144,16 +150,20 @@
             <li><a href="#1-索引是什么">1. 索引是什么？</a></li>
             <li><a href="#2-索引有哪些优缺点">2. 索引有哪些优缺点？</a></li>
             <li><a href="#3-mysql有哪几种索引类型">3. MySQL有哪几种索引类型？</a></li>
+            <li><a href="#如何写sql能够有效的使用到复合索引">如何写sql能够有效的使用到复合索引。</a></li>
             <li><a href="#4-说一说索引的底层实现">4. 说一说索引的底层实现？</a></li>
             <li><a href="#5-为什么索引结构默认使用btree而不是b-treehash二叉树httpswwwnowcodercomjumpsuper-jumpwordword二叉树红黑树httpswwwnowcodercomjumpsuper-jumpwordword红黑树">5. 为什么索引结构默认使用B+Tree，而不是B-Tree，Hash，<a href="https://www.nowcoder.com/jump/super-jump/word?word=%E4%BA%8C%E5%8F%89%E6%A0%91">二叉树</a>，<a href="https://www.nowcoder.com/jump/super-jump/word?word=%E7%BA%A2%E9%BB%91%E6%A0%91">红黑树</a>？</a></li>
             <li><a href="#6-讲一讲聚簇索引与非聚簇索引">6. 讲一讲聚簇索引与非聚簇索引？</a></li>
             <li><a href="#7-非聚簇索引一定会回表查询吗">7. 非聚簇索引一定会回表查询吗？</a></li>
             <li><a href="#8-联合索引是什么为什么需要注意联合索引中的顺序">8. 联合索引是什么？为什么需要<strong>注意</strong>联合索引中的顺序？</a></li>
+            <li><a href="#27-innodb引擎中的索引策略了解过吗">27. InnoDB引擎中的索引策略，了解过吗？</a></li>
             <li><a href="#9-讲一讲mysql的最左前缀原则">9. 讲一讲MySQL的最左前缀原则?</a></li>
             <li><a href="#10-讲一讲前缀索引">10. 讲一讲前缀索引？</a></li>
             <li><a href="#11-了解索引下推吗">11. 了解索引下推吗？</a></li>
             <li><a href="#12-怎么查看mysql语句有没有用到索引">12. 怎么查看MySQL语句有没有用到索引？</a></li>
             <li><a href="#13-为什么官方建议使用自增长主键作为索引">13. 为什么官方建议使用自增长主键作为索引？</a></li>
+            <li><a href="#20-数据库自增主键可能遇到什么问题">20. 数据库自增主键可能遇到什么问题。</a></li>
+            <li><a href="#9-如何选择合适的分布式主键方案呢">9. 如何选择合适的分布式主键方案呢？</a></li>
             <li><a href="#14-如何创建索引">14. 如何创建索引？</a></li>
             <li><a href="#15-创建索引时需要注意什么">15. 创建索引时需要<strong>注意</strong>什么？</a></li>
             <li><a href="#16-建索引的原则有哪些">16. 建索引的原则有哪些？</a></li>
@@ -178,6 +188,7 @@
             <li><a href="#3-说一下mysql-的四种隔离级别">3. 说一下MySQL 的四种隔离级别</a></li>
             <li><a href="#4-什么是脏读幻读不可重复读">4. 什么是脏读？幻读？不可重复读？</a></li>
             <li><a href="#5-事务的实现原理">5. 事务的实现原理</a></li>
+            <li><a href="#90---innodb的事务实现原理">90.   Innodb的事务实现原理？</a></li>
             <li><a href="#6-mysql事务日志介绍下">6. MySQL事务日志介绍下？</a>
               <ul>
                 <li><a href="#redo-log">redo log</a></li>
@@ -198,16 +209,19 @@
             <li><a href="#1-为什么要加锁">1. 为什么要加锁?</a></li>
             <li><a href="#2-按照锁的粒度分数据库锁有哪些">2. 按照锁的粒度分数据库锁有哪些？</a></li>
             <li><a href="#3-从锁的类别上分mysql都有哪些锁呢">3. 从锁的类别上分MySQL都有哪些锁呢？</a></li>
+            <li><a href="#12-在高并发情况下如何做到安全的修改同一行数据">12. 在高并发情况下，如何做到安全的修改同一行数据？</a></li>
             <li><a href="#4-数据库的乐观锁和悲观锁是什么怎么实现的">4. 数据库的乐观锁和悲观锁是什么？怎么实现的？</a></li>
+            <li><a href="#select-for-update-含义">select for update 含义</a></li>
             <li><a href="#5-innodb引擎的行锁是怎么实现的">5. InnoDB引擎的行锁是怎么实现的？</a></li>
             <li><a href="#6-什么是死锁怎么解决">6. 什么是死锁？怎么解决？</a></li>
             <li><a href="#7-隔离级别与锁的关系">7. 隔离级别与锁的关系</a></li>
             <li><a href="#8-优化锁方面的意见">8. 优化锁方面的意见？</a></li>
           </ul>
         </li>
-        <li><a href="#分库分表">分库分表</a>
+        <li><a href="#分库分表-1">分库分表</a>
           <ul>
             <li><a href="#1-为什么要分库分表">1. 为什么要分库分表？</a></li>
+            <li><a href="#分库分表方案">分库分表方案:</a></li>
             <li><a href="#2-用过哪些分库分表中间件不同的分库分表中间件都有什么优点和缺点">2. 用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？</a>
               <ul>
                 <li><a href="#cobar">cobar</a></li>
@@ -218,6 +232,7 @@
               </ul>
             </li>
             <li><a href="#3-如何对数据库如何进行垂直拆分或水平拆分的">3. 如何对数据库如何进行垂直拆分或水平拆分的？</a></li>
+            <li><a href="#分库分表可能遇到的问题">分库分表可能遇到的问题</a></li>
           </ul>
         </li>
         <li><a href="#读写分离主从同步复制">读写分离、主从同步（复制）</a>
@@ -226,12 +241,16 @@
             <li><a href="#2-mysql主从同步的目的为什么要做主从同步">2. MySQL主从同步的目的？为什么要做主从同步？</a></li>
             <li><a href="#3-如何实现mysql的读写分离">3. 如何实现MySQL的读写分离？</a></li>
             <li><a href="#4-mysql主从复制流程和原理">4. MySQL主从复制流程和原理？</a></li>
+            <li><a href="#主从同步延迟的原因">主从同步延迟的原因</a></li>
             <li><a href="#5-mysql主从同步延时问题如何解决">5. MySQL主从同步延时问题如何解决？</a></li>
           </ul>
         </li>
         <li><a href="#mysql优化">MySQL优化</a>
           <ul>
+            <li><a href="#日常工作中你是怎么优化sql的">日常工作中你是怎么优化SQL的？</a></li>
             <li><a href="#1-如何定位及优化sql语句的性能问题">1. 如何定位及优化SQL语句的性能问题？</a></li>
+            <li><a href="#怎么看执行计划explain如何理解其中各个字段的含义">怎么看执行计划（explain），如何理解其中各个字段的含义。</a></li>
+            <li><a href="#91-谈谈mysql的explain">91. 谈谈MySQL的Explain</a></li>
             <li><a href="#2-大表数据查询怎么优化">2. 大表数据查询，怎么优化</a></li>
             <li><a href="#3-超大分页怎么处理">3. 超大分页怎么处理?</a></li>
             <li><a href="#4-统计过慢查询吗对慢查询都怎么优化过">4. 统计过慢查询吗？对慢查询都怎么优化过？</a></li>
@@ -244,10 +263,11 @@
         </li>
       </ul>
     </li>
-    <li><a href="#1-内左右全连接">1. 内，左，右，全连接</a></li>
     <li><a href="#11-内连接">1.1 内连接</a></li>
+    <li><a href="#外连接">外连接</a></li>
     <li><a href="#12-左连接">1.2 左连接</a></li>
     <li><a href="#13-右连接">1.3 右连接</a></li>
+    <li><a href="#交叉连接">交叉连接</a></li>
     <li><a href="#14-全连接">1.4 全连接</a></li>
     <li><a href="#2-redoundobin-三大日志的用法">2. redo，undo，bin 三大日志的用法</a></li>
     <li><a href="#3-mvcc的理解">3. MVCC的理解</a></li>
@@ -263,6 +283,13 @@
         <li><a href="#18百万级别或以上的数据如何删除">18、百万级别或以上的数据如何删除</a></li>
         <li><a href="#19什么是最左前缀原则什么是最左匹配原则">19、什么是最左前缀原则？什么是最左匹配原则</a></li>
         <li><a href="#20什么是聚簇索引何时使用聚簇索引与非聚簇索引">20、什么是聚簇索引？何时使用聚簇索引与非聚簇索引</a></li>
+        <li><a href="#25-什么是数据库连接池为什么需要数据库连接池呢">25. 什么是数据库连接池?为什么需要数据库连接池呢?</a>
+          <ul>
+            <li><a href="#连接池基本原理">连接池基本原理：</a></li>
+            <li><a href="#应用程序和数据库建立连接的过程">应用程序和数据库建立连接的过程：</a></li>
+            <li><a href="#数据库连接池好处">数据库连接池好处：</a></li>
+          </ul>
+        </li>
         <li><a href="#21mysql-连接器">21、MySQL 连接器</a></li>
         <li><a href="#22mysql-查询缓存">22、MySQL 查询缓存</a></li>
         <li><a href="#23mysql-分析器">23、MySQL 分析器</a></li>
@@ -275,6 +302,29 @@
         <li><a href="#30使用-union-和-union-all-时需要注意些什么">30、使用 union 和 union all 时需要注意些什么？</a></li>
         <li><a href="#31myisam-存储引擎的特点">31、MyISAM 存储引擎的特点</a></li>
         <li><a href="#32innodb-存储引擎的特点">32、InnoDB 存储引擎的特点</a></li>
+        <li><a href="#28-数据库存储日期格式时如何考虑时区转换问题">28. 数据库存储日期格式时，如何考虑时区转换问题？</a></li>
+        <li><a href="#29-一条sql执行过长的时间你如何优化从哪些方面入手">29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？</a></li>
+        <li><a href="#30-mysql数据库服务器性能分析的方法命令有哪些">30. MYSQL数据库服务器性能分析的方法命令有哪些?</a></li>
+        <li><a href="#31-blob和text有什么区别">31. Blob和text有什么区别？</a></li>
+        <li><a href="#32--mysql里记录货币用什么字段类型比较好">32.  mysql里记录货币用什么字段类型比较好？</a></li>
+        <li><a href="#为什么要使用视图">为什么要使用视图？</a></li>
+        <li><a href="#什么是视图">什么是视图？</a></li>
+        <li><a href="#视图特点">视图特点：</a></li>
+        <li><a href="#视图的常见使用场景">视图的常见使用场景：</a></li>
+        <li><a href="#62--视图的优点缺点讲一下">62.  视图的优点，缺点，讲一下？</a></li>
+        <li><a href="#63--count1count-与-count列名-的区别">63.  count(1)、count(*) 与 count(列名) 的区别？</a></li>
+        <li><a href="#64--什么是游标">64.  什么是游标？</a></li>
+        <li><a href="#66--什么是触发器触发器的使用场景有哪些">66.  什么是触发器？触发器的使用场景有哪些？</a></li>
+        <li><a href="#67---mysql中都有哪些触发器">67.   MySQL中都有哪些触发器？</a></li>
+        <li><a href="#71--varchar50中50的涵义">71.  varchar(50)中50的涵义</a></li>
+        <li><a href="#72---mysql中int20和char20以及varchar20的区别">72.   mysql中int(20)和char(20)以及varchar(20)的区别</a></li>
+        <li><a href="#93--mysql中text数据类型的最大长度">93.  MySQL中TEXT数据类型的最大长度</a></li>
+        <li><a href="#73---dropdelete与truncate的区别">73.   drop、delete与truncate的区别</a></li>
+        <li><a href="#80-mysql自增主键用完了怎么办">80. mysql自增主键用完了怎么办？</a></li>
+        <li><a href="#81-字段为什么要求定义为not-null">81. 字段为什么要求定义为not null？</a></li>
+        <li><a href="#82--如果要存储用户的密码散列应该使用什么字段进行存储">82.  如果要存储用户的密码散列，应该使用什么字段进行存储？</a></li>
+        <li><a href="#86-mysql数据库cpu飙升的话要怎么处理呢">86. MySQL数据库cpu飙升的话，要怎么处理呢？</a></li>
+        <li><a href="#98--mysql如何获取当前日期">98.  MySQL如何获取当前日期？</a></li>
       </ul>
     </li>
   </ul>
@@ -285,6 +335,12 @@
 <li><a href="#1-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e4%b8%89%e8%8c%83%e5%bc%8f%e6%98%af%e4%bb%80%e4%b9%88" rel="">1. 数据库的三范式是什么？</a></li>
 <li><a href="#2mysql-%e6%9c%89%e5%85%b3%e6%9d%83%e9%99%90%e7%9a%84%e8%a1%a8%e9%83%bd%e6%9c%89%e5%93%aa%e5%87%a0%e4%b8%aa" rel="">2、MySQL 有关权限的表都有哪几个？</a></li>
 <li><a href="#2-mysql-%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e" rel="">2. MySQL 支持哪些存储引擎?</a></li>
+<li><a href="#17-%e5%a6%82%e6%9e%9c%e6%9f%90%e4%b8%aa%e8%a1%a8%e6%9c%89%e8%bf%91%e5%8d%83%e4%b8%87%e6%95%b0%e6%8d%aecrud%e6%af%94%e8%be%83%e6%85%a2%e5%a6%82%e4%bd%95%e4%bc%98%e5%8c%96" rel="">17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</a>
+<ul>
+<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8" rel="">分库分表</a></li>
+<li><a href="#%e7%b4%a2%e5%bc%95%e4%bc%98%e5%8c%96" rel="">索引优化</a></li>
+</ul>
+</li>
 <li><a href="#3-%e8%b6%85%e9%94%ae%e5%80%99%e9%80%89%e9%94%ae%e4%b8%bb%e9%94%ae%e5%a4%96%e9%94%ae%e5%88%86%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" rel="">3. 超键、候选键、主键、外键分别是什么？</a></li>
 <li><a href="#4-sql-%e7%ba%a6%e6%9d%9f%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d" rel="">4. SQL 约束有哪几种？</a></li>
 <li><a href="#5-mysql-%e4%b8%ad%e7%9a%84-varchar-%e5%92%8c-char-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">5. MySQL 中的 varchar 和 char 有什么区别？</a></li>
@@ -297,16 +353,20 @@
 <li><a href="#1-%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88" rel="">1. 索引是什么？</a></li>
 <li><a href="#2-%e7%b4%a2%e5%bc%95%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">2. 索引有哪些优缺点？</a></li>
 <li><a href="#3-mysql%e6%9c%89%e5%93%aa%e5%87%a0%e7%a7%8d%e7%b4%a2%e5%bc%95%e7%b1%bb%e5%9e%8b" rel="">3. MySQL有哪几种索引类型？</a></li>
+<li><a href="#%e5%a6%82%e4%bd%95%e5%86%99sql%e8%83%bd%e5%a4%9f%e6%9c%89%e6%95%88%e7%9a%84%e4%bd%bf%e7%94%a8%e5%88%b0%e5%a4%8d%e5%90%88%e7%b4%a2%e5%bc%95" rel="">如何写sql能够有效的使用到复合索引。</a></li>
 <li><a href="#4-%e8%af%b4%e4%b8%80%e8%af%b4%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" rel="">4. 说一说索引的底层实现？</a></li>
 <li><a href="#5-%e4%b8%ba%e4%bb%80%e4%b9%88%e7%b4%a2%e5%bc%95%e7%bb%93%e6%9e%84%e9%bb%98%e8%ae%a4%e4%bd%bf%e7%94%a8btree%e8%80%8c%e4%b8%8d%e6%98%afb-treehash%e4%ba%8c%e5%8f%89%e6%a0%91%e7%ba%a2%e9%bb%91%e6%a0%91" rel="">5. 为什么索引结构默认使用B+Tree，而不是B-Tree，Hash，二叉树，红黑树？</a></li>
 <li><a href="#6-%e8%ae%b2%e4%b8%80%e8%ae%b2%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%8e%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95" rel="">6. 讲一讲聚簇索引与非聚簇索引？</a></li>
 <li><a href="#7-%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%80%e5%ae%9a%e4%bc%9a%e5%9b%9e%e8%a1%a8%e6%9f%a5%e8%af%a2%e5%90%97" rel="">7. 非聚簇索引一定会回表查询吗？</a></li>
 <li><a href="#8-%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e4%b8%ad%e7%9a%84%e9%a1%ba%e5%ba%8f" rel="">8. 联合索引是什么？为什么需要<strong>注意</strong>联合索引中的顺序？</a></li>
+<li><a href="#27-innodb%e5%bc%95%e6%93%8e%e4%b8%ad%e7%9a%84%e7%b4%a2%e5%bc%95%e7%ad%96%e7%95%a5%e4%ba%86%e8%a7%a3%e8%bf%87%e5%90%97" rel="">27. InnoDB引擎中的索引策略，了解过吗？</a></li>
 <li><a href="#9-%e8%ae%b2%e4%b8%80%e8%ae%b2mysql%e7%9a%84%e6%9c%80%e5%b7%a6%e5%89%8d%e7%bc%80%e5%8e%9f%e5%88%99" rel="">9. 讲一讲MySQL的最左前缀原则?</a></li>
 <li><a href="#10-%e8%ae%b2%e4%b8%80%e8%ae%b2%e5%89%8d%e7%bc%80%e7%b4%a2%e5%bc%95" rel="">10. 讲一讲前缀索引？</a></li>
 <li><a href="#11-%e4%ba%86%e8%a7%a3%e7%b4%a2%e5%bc%95%e4%b8%8b%e6%8e%a8%e5%90%97" rel="">11. 了解索引下推吗？</a></li>
 <li><a href="#12-%e6%80%8e%e4%b9%88%e6%9f%a5%e7%9c%8bmysql%e8%af%ad%e5%8f%a5%e6%9c%89%e6%b2%a1%e6%9c%89%e7%94%a8%e5%88%b0%e7%b4%a2%e5%bc%95" rel="">12. 怎么查看MySQL语句有没有用到索引？</a></li>
 <li><a href="#13-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ae%98%e6%96%b9%e5%bb%ba%e8%ae%ae%e4%bd%bf%e7%94%a8%e8%87%aa%e5%a2%9e%e9%95%bf%e4%b8%bb%e9%94%ae%e4%bd%9c%e4%b8%ba%e7%b4%a2%e5%bc%95" rel="">13. 为什么官方建议使用自增长主键作为索引？</a></li>
+<li><a href="#20-%e6%95%b0%e6%8d%ae%e5%ba%93%e8%87%aa%e5%a2%9e%e4%b8%bb%e9%94%ae%e5%8f%af%e8%83%bd%e9%81%87%e5%88%b0%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98" rel="">20. 数据库自增主键可能遇到什么问题。</a></li>
+<li><a href="#9-%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9%e5%90%88%e9%80%82%e7%9a%84%e5%88%86%e5%b8%83%e5%bc%8f%e4%b8%bb%e9%94%ae%e6%96%b9%e6%a1%88%e5%91%a2" rel="">9. 如何选择合适的分布式主键方案呢？</a></li>
 <li><a href="#14-%e5%a6%82%e4%bd%95%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95" rel="">14. 如何创建索引？</a></li>
 <li><a href="#15-%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95%e6%97%b6%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" rel="">15. 创建索引时需要<strong>注意</strong>什么？</a></li>
 <li><a href="#16-%e5%bb%ba%e7%b4%a2%e5%bc%95%e7%9a%84%e5%8e%9f%e5%88%99%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">16. 建索引的原则有哪些？</a></li>
@@ -331,6 +391,7 @@
 <li><a href="#3-%e8%af%b4%e4%b8%80%e4%b8%8bmysql-%e7%9a%84%e5%9b%9b%e7%a7%8d%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" rel="">3. 说一下MySQL 的四种隔离级别</a></li>
 <li><a href="#4-%e4%bb%80%e4%b9%88%e6%98%af%e8%84%8f%e8%af%bb%e5%b9%bb%e8%af%bb%e4%b8%8d%e5%8f%af%e9%87%8d%e5%a4%8d%e8%af%bb" rel="">4. 什么是脏读？幻读？不可重复读？</a></li>
 <li><a href="#5-%e4%ba%8b%e5%8a%a1%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" rel="">5. 事务的实现原理</a></li>
+<li><a href="#90---innodb%e7%9a%84%e4%ba%8b%e5%8a%a1%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" rel="">90.   Innodb的事务实现原理？</a></li>
 <li><a href="#6-mysql%e4%ba%8b%e5%8a%a1%e6%97%a5%e5%bf%97%e4%bb%8b%e7%bb%8d%e4%b8%8b" rel="">6. MySQL事务日志介绍下？</a>
 <ul>
 <li><a href="#redo-log" rel="">redo log</a></li>
@@ -351,16 +412,19 @@
 <li><a href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%8a%a0%e9%94%81" rel="">1. 为什么要加锁?</a></li>
 <li><a href="#2-%e6%8c%89%e7%85%a7%e9%94%81%e7%9a%84%e7%b2%92%e5%ba%a6%e5%88%86%e6%95%b0%e6%8d%ae%e5%ba%93%e9%94%81%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">2. 按照锁的粒度分数据库锁有哪些？</a></li>
 <li><a href="#3-%e4%bb%8e%e9%94%81%e7%9a%84%e7%b1%bb%e5%88%ab%e4%b8%8a%e5%88%86mysql%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e9%94%81%e5%91%a2" rel="">3. 从锁的类别上分MySQL都有哪些锁呢？</a></li>
+<li><a href="#12-%e5%9c%a8%e9%ab%98%e5%b9%b6%e5%8f%91%e6%83%85%e5%86%b5%e4%b8%8b%e5%a6%82%e4%bd%95%e5%81%9a%e5%88%b0%e5%ae%89%e5%85%a8%e7%9a%84%e4%bf%ae%e6%94%b9%e5%90%8c%e4%b8%80%e8%a1%8c%e6%95%b0%e6%8d%ae" rel="">12. 在高并发情况下，如何做到安全的修改同一行数据？</a></li>
 <li><a href="#4-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e4%b9%90%e8%a7%82%e9%94%81%e5%92%8c%e6%82%b2%e8%a7%82%e9%94%81%e6%98%af%e4%bb%80%e4%b9%88%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" rel="">4. 数据库的乐观锁和悲观锁是什么？怎么实现的？</a></li>
+<li><a href="#select-for-update-%e5%90%ab%e4%b9%89" rel="">select for update 含义</a></li>
 <li><a href="#5-innodb%e5%bc%95%e6%93%8e%e7%9a%84%e8%a1%8c%e9%94%81%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" rel="">5. InnoDB引擎的行锁是怎么实现的？</a></li>
 <li><a href="#6-%e4%bb%80%e4%b9%88%e6%98%af%e6%ad%bb%e9%94%81%e6%80%8e%e4%b9%88%e8%a7%a3%e5%86%b3" rel="">6. 什么是死锁？怎么解决？</a></li>
 <li><a href="#7-%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab%e4%b8%8e%e9%94%81%e7%9a%84%e5%85%b3%e7%b3%bb" rel="">7. 隔离级别与锁的关系</a></li>
 <li><a href="#8-%e4%bc%98%e5%8c%96%e9%94%81%e6%96%b9%e9%9d%a2%e7%9a%84%e6%84%8f%e8%a7%81" rel="">8. 优化锁方面的意见？</a></li>
 </ul>
 </li>
-<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8" rel="">分库分表</a>
+<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8-1" rel="">分库分表</a>
 <ul>
 <li><a href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8" rel="">1. 为什么要分库分表？</a></li>
+<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e6%96%b9%e6%a1%88" rel="">分库分表方案:</a></li>
 <li><a href="#2-%e7%94%a8%e8%bf%87%e5%93%aa%e4%ba%9b%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e4%b8%ad%e9%97%b4%e4%bb%b6%e4%b8%8d%e5%90%8c%e7%9a%84%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e4%b8%ad%e9%97%b4%e4%bb%b6%e9%83%bd%e6%9c%89%e4%bb%80%e4%b9%88%e4%bc%98%e7%82%b9%e5%92%8c%e7%bc%ba%e7%82%b9" rel="">2. 用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？</a>
 <ul>
 <li><a href="#cobar" rel="">cobar</a></li>
@@ -371,6 +435,7 @@
 </ul>
 </li>
 <li><a href="#3-%e5%a6%82%e4%bd%95%e5%af%b9%e6%95%b0%e6%8d%ae%e5%ba%93%e5%a6%82%e4%bd%95%e8%bf%9b%e8%a1%8c%e5%9e%82%e7%9b%b4%e6%8b%86%e5%88%86%e6%88%96%e6%b0%b4%e5%b9%b3%e6%8b%86%e5%88%86%e7%9a%84" rel="">3. 如何对数据库如何进行垂直拆分或水平拆分的？</a></li>
+<li><a href="#%e5%88%86%e5%ba%93%e5%88%86%e8%a1%a8%e5%8f%af%e8%83%bd%e9%81%87%e5%88%b0%e7%9a%84%e9%97%ae%e9%a2%98" rel="">分库分表可能遇到的问题</a></li>
 </ul>
 </li>
 <li><a href="#%e8%af%bb%e5%86%99%e5%88%86%e7%a6%bb%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e5%a4%8d%e5%88%b6" rel="">读写分离、主从同步（复制）</a>
@@ -379,12 +444,16 @@
 <li><a href="#2-mysql%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e7%9a%84%e7%9b%ae%e7%9a%84%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%81%9a%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5" rel="">2. MySQL主从同步的目的？为什么要做主从同步？</a></li>
 <li><a href="#3-%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0mysql%e7%9a%84%e8%af%bb%e5%86%99%e5%88%86%e7%a6%bb" rel="">3. 如何实现MySQL的读写分离？</a></li>
 <li><a href="#4-mysql%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6%e6%b5%81%e7%a8%8b%e5%92%8c%e5%8e%9f%e7%90%86" rel="">4. MySQL主从复制流程和原理？</a></li>
+<li><a href="#%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e5%bb%b6%e8%bf%9f%e7%9a%84%e5%8e%9f%e5%9b%a0" rel="">主从同步延迟的原因</a></li>
 <li><a href="#5-mysql%e4%b8%bb%e4%bb%8e%e5%90%8c%e6%ad%a5%e5%bb%b6%e6%97%b6%e9%97%ae%e9%a2%98%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3" rel="">5. MySQL主从同步延时问题如何解决？</a></li>
 </ul>
 </li>
 <li><a href="#mysql%e4%bc%98%e5%8c%96" rel="">MySQL优化</a>
 <ul>
+<li><a href="#%e6%97%a5%e5%b8%b8%e5%b7%a5%e4%bd%9c%e4%b8%ad%e4%bd%a0%e6%98%af%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96sql%e7%9a%84" rel="">日常工作中你是怎么优化SQL的？</a></li>
 <li><a href="#1-%e5%a6%82%e4%bd%95%e5%ae%9a%e4%bd%8d%e5%8f%8a%e4%bc%98%e5%8c%96sql%e8%af%ad%e5%8f%a5%e7%9a%84%e6%80%a7%e8%83%bd%e9%97%ae%e9%a2%98" rel="">1. 如何定位及优化SQL语句的性能问题？</a></li>
+<li><a href="#%e6%80%8e%e4%b9%88%e7%9c%8b%e6%89%a7%e8%a1%8c%e8%ae%a1%e5%88%92explain%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%85%b6%e4%b8%ad%e5%90%84%e4%b8%aa%e5%ad%97%e6%ae%b5%e7%9a%84%e5%90%ab%e4%b9%89" rel="">怎么看执行计划（explain），如何理解其中各个字段的含义。</a></li>
+<li><a href="#91-%e8%b0%88%e8%b0%88mysql%e7%9a%84explain" rel="">91. 谈谈MySQL的Explain</a></li>
 <li><a href="#2-%e5%a4%a7%e8%a1%a8%e6%95%b0%e6%8d%ae%e6%9f%a5%e8%af%a2%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96" rel="">2. 大表数据查询，怎么优化</a></li>
 <li><a href="#3-%e8%b6%85%e5%a4%a7%e5%88%86%e9%a1%b5%e6%80%8e%e4%b9%88%e5%a4%84%e7%90%86" rel="">3. 超大分页怎么处理?</a></li>
 <li><a href="#4-%e7%bb%9f%e8%ae%a1%e8%bf%87%e6%85%a2%e6%9f%a5%e8%af%a2%e5%90%97%e5%af%b9%e6%85%a2%e6%9f%a5%e8%af%a2%e9%83%bd%e6%80%8e%e4%b9%88%e4%bc%98%e5%8c%96%e8%bf%87" rel="">4. 统计过慢查询吗？对慢查询都怎么优化过？</a></li>
@@ -397,10 +466,11 @@
 </li>
 </ul>
 </li>
-<li><a href="#1-%e5%86%85%e5%b7%a6%e5%8f%b3%e5%85%a8%e8%bf%9e%e6%8e%a5" rel="">1. 内，左，右，全连接</a></li>
 <li><a href="#11-%e5%86%85%e8%bf%9e%e6%8e%a5" rel="">1.1 内连接</a></li>
+<li><a href="#%e5%a4%96%e8%bf%9e%e6%8e%a5" rel="">外连接</a></li>
 <li><a href="#12-%e5%b7%a6%e8%bf%9e%e6%8e%a5" rel="">1.2 左连接</a></li>
 <li><a href="#13-%e5%8f%b3%e8%bf%9e%e6%8e%a5" rel="">1.3 右连接</a></li>
+<li><a href="#%e4%ba%a4%e5%8f%89%e8%bf%9e%e6%8e%a5" rel="">交叉连接</a></li>
 <li><a href="#14-%e5%85%a8%e8%bf%9e%e6%8e%a5" rel="">1.4 全连接</a></li>
 <li><a href="#2-redoundobin-%e4%b8%89%e5%a4%a7%e6%97%a5%e5%bf%97%e7%9a%84%e7%94%a8%e6%b3%95" rel="">2. redo，undo，bin 三大日志的用法</a></li>
 <li><a href="#3-mvcc%e7%9a%84%e7%90%86%e8%a7%a3" rel="">3. MVCC的理解</a></li>
@@ -416,6 +486,13 @@
 <li><a href="#18%e7%99%be%e4%b8%87%e7%ba%a7%e5%88%ab%e6%88%96%e4%bb%a5%e4%b8%8a%e7%9a%84%e6%95%b0%e6%8d%ae%e5%a6%82%e4%bd%95%e5%88%a0%e9%99%a4" rel="">18、百万级别或以上的数据如何删除</a></li>
 <li><a href="#19%e4%bb%80%e4%b9%88%e6%98%af%e6%9c%80%e5%b7%a6%e5%89%8d%e7%bc%80%e5%8e%9f%e5%88%99%e4%bb%80%e4%b9%88%e6%98%af%e6%9c%80%e5%b7%a6%e5%8c%b9%e9%85%8d%e5%8e%9f%e5%88%99" rel="">19、什么是最左前缀原则？什么是最左匹配原则</a></li>
 <li><a href="#20%e4%bb%80%e4%b9%88%e6%98%af%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%bd%95%e6%97%b6%e4%bd%bf%e7%94%a8%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e4%b8%8e%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95" rel="">20、什么是聚簇索引？何时使用聚簇索引与非聚簇索引</a></li>
+<li><a href="#25-%e4%bb%80%e4%b9%88%e6%98%af%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0%e5%91%a2" rel="">25. 什么是数据库连接池?为什么需要数据库连接池呢?</a>
+<ul>
+<li><a href="#%e8%bf%9e%e6%8e%a5%e6%b1%a0%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" rel="">连接池基本原理：</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%92%8c%e6%95%b0%e6%8d%ae%e5%ba%93%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a5%e7%9a%84%e8%bf%87%e7%a8%8b" rel="">应用程序和数据库建立连接的过程：</a></li>
+<li><a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0%e5%a5%bd%e5%a4%84" rel="">数据库连接池好处：</a></li>
+</ul>
+</li>
 <li><a href="#21mysql-%e8%bf%9e%e6%8e%a5%e5%99%a8" rel="">21、MySQL 连接器</a></li>
 <li><a href="#22mysql-%e6%9f%a5%e8%af%a2%e7%bc%93%e5%ad%98" rel="">22、MySQL 查询缓存</a></li>
 <li><a href="#23mysql-%e5%88%86%e6%9e%90%e5%99%a8" rel="">23、MySQL 分析器</a></li>
@@ -428,6 +505,29 @@
 <li><a href="#30%e4%bd%bf%e7%94%a8-union-%e5%92%8c-union-all-%e6%97%b6%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%ba%9b%e4%bb%80%e4%b9%88" rel="">30、使用 union 和 union all 时需要注意些什么？</a></li>
 <li><a href="#31myisam-%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%9a%84%e7%89%b9%e7%82%b9" rel="">31、MyISAM 存储引擎的特点</a></li>
 <li><a href="#32innodb-%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%9a%84%e7%89%b9%e7%82%b9" rel="">32、InnoDB 存储引擎的特点</a></li>
+<li><a href="#28-%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ad%98%e5%82%a8%e6%97%a5%e6%9c%9f%e6%a0%bc%e5%bc%8f%e6%97%b6%e5%a6%82%e4%bd%95%e8%80%83%e8%99%91%e6%97%b6%e5%8c%ba%e8%bd%ac%e6%8d%a2%e9%97%ae%e9%a2%98" rel="">28. 数据库存储日期格式时，如何考虑时区转换问题？</a></li>
+<li><a href="#29-%e4%b8%80%e6%9d%a1sql%e6%89%a7%e8%a1%8c%e8%bf%87%e9%95%bf%e7%9a%84%e6%97%b6%e9%97%b4%e4%bd%a0%e5%a6%82%e4%bd%95%e4%bc%98%e5%8c%96%e4%bb%8e%e5%93%aa%e4%ba%9b%e6%96%b9%e9%9d%a2%e5%85%a5%e6%89%8b" rel="">29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？</a></li>
+<li><a href="#30-mysql%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90%e7%9a%84%e6%96%b9%e6%b3%95%e5%91%bd%e4%bb%a4%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">30. MYSQL数据库服务器性能分析的方法命令有哪些?</a></li>
+<li><a href="#31-blob%e5%92%8ctext%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">31. Blob和text有什么区别？</a></li>
+<li><a href="#32--mysql%e9%87%8c%e8%ae%b0%e5%bd%95%e8%b4%a7%e5%b8%81%e7%94%a8%e4%bb%80%e4%b9%88%e5%ad%97%e6%ae%b5%e7%b1%bb%e5%9e%8b%e6%af%94%e8%be%83%e5%a5%bd" rel="">32.  mysql里记录货币用什么字段类型比较好？</a></li>
+<li><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8%e8%a7%86%e5%9b%be" rel="">为什么要使用视图？</a></li>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e8%a7%86%e5%9b%be" rel="">什么是视图？</a></li>
+<li><a href="#%e8%a7%86%e5%9b%be%e7%89%b9%e7%82%b9" rel="">视图特点：</a></li>
+<li><a href="#%e8%a7%86%e5%9b%be%e7%9a%84%e5%b8%b8%e8%a7%81%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" rel="">视图的常见使用场景：</a></li>
+<li><a href="#62--%e8%a7%86%e5%9b%be%e7%9a%84%e4%bc%98%e7%82%b9%e7%bc%ba%e7%82%b9%e8%ae%b2%e4%b8%80%e4%b8%8b" rel="">62.  视图的优点，缺点，讲一下？</a></li>
+<li><a href="#63--count1count-%e4%b8%8e-count%e5%88%97%e5%90%8d-%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">63.  count(1)、count(*) 与 count(列名) 的区别？</a></li>
+<li><a href="#64--%e4%bb%80%e4%b9%88%e6%98%af%e6%b8%b8%e6%a0%87" rel="">64.  什么是游标？</a></li>
+<li><a href="#66--%e4%bb%80%e4%b9%88%e6%98%af%e8%a7%a6%e5%8f%91%e5%99%a8%e8%a7%a6%e5%8f%91%e5%99%a8%e7%9a%84%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e6%9c%89%e5%93%aa%e4%ba%9b" rel="">66.  什么是触发器？触发器的使用场景有哪些？</a></li>
+<li><a href="#67---mysql%e4%b8%ad%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b%e8%a7%a6%e5%8f%91%e5%99%a8" rel="">67.   MySQL中都有哪些触发器？</a></li>
+<li><a href="#71--varchar50%e4%b8%ad50%e7%9a%84%e6%b6%b5%e4%b9%89" rel="">71.  varchar(50)中50的涵义</a></li>
+<li><a href="#72---mysql%e4%b8%adint20%e5%92%8cchar20%e4%bb%a5%e5%8f%8avarchar20%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">72.   mysql中int(20)和char(20)以及varchar(20)的区别</a></li>
+<li><a href="#93--mysql%e4%b8%adtext%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e7%9a%84%e6%9c%80%e5%a4%a7%e9%95%bf%e5%ba%a6" rel="">93.  MySQL中TEXT数据类型的最大长度</a></li>
+<li><a href="#73---dropdelete%e4%b8%8etruncate%e7%9a%84%e5%8c%ba%e5%88%ab" rel="">73.   drop、delete与truncate的区别</a></li>
+<li><a href="#80-mysql%e8%87%aa%e5%a2%9e%e4%b8%bb%e9%94%ae%e7%94%a8%e5%ae%8c%e4%ba%86%e6%80%8e%e4%b9%88%e5%8a%9e" rel="">80. mysql自增主键用完了怎么办？</a></li>
+<li><a href="#81-%e5%ad%97%e6%ae%b5%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e6%b1%82%e5%ae%9a%e4%b9%89%e4%b8%banot-null" rel="">81. 字段为什么要求定义为not null？</a></li>
+<li><a href="#82--%e5%a6%82%e6%9e%9c%e8%a6%81%e5%ad%98%e5%82%a8%e7%94%a8%e6%88%b7%e7%9a%84%e5%af%86%e7%a0%81%e6%95%a3%e5%88%97%e5%ba%94%e8%af%a5%e4%bd%bf%e7%94%a8%e4%bb%80%e4%b9%88%e5%ad%97%e6%ae%b5%e8%bf%9b%e8%a1%8c%e5%ad%98%e5%82%a8" rel="">82.  如果要存储用户的密码散列，应该使用什么字段进行存储？</a></li>
+<li><a href="#86-mysql%e6%95%b0%e6%8d%ae%e5%ba%93cpu%e9%a3%99%e5%8d%87%e7%9a%84%e8%af%9d%e8%a6%81%e6%80%8e%e4%b9%88%e5%a4%84%e7%90%86%e5%91%a2" rel="">86. MySQL数据库cpu飙升的话，要怎么处理呢？</a></li>
+<li><a href="#98--mysql%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96%e5%bd%93%e5%89%8d%e6%97%a5%e6%9c%9f" rel="">98.  MySQL如何获取当前日期？</a></li>
 </ul>
 </li>
 </ul>
@@ -473,6 +573,17 @@
 <li>MyISAM 索引的叶子节点存储的是行数据地址，需要再寻址一次才能得到数据。</li>
 <li>InnoDB 非主键索引的叶子节点存储的是主键和其他带索引的列数据，因此查询时做到覆盖索引会非常高效。</li>
 </ul>
+<h3 id="17-如果某个表有近千万数据crud比较慢如何优化">17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</h3>
+<h4 id="分库分表">分库分表</h4>
+<p>某个表有近千万数据，可以考虑优化表结构，分表（水平分表，垂直分表），当然，你这样回答，需要准备好面试官问你的分库分表相关问题呀，如</p>
+<ul>
+<li>分表方案（水平分表，垂直分表，切分规则hash等）</li>
+<li>分库分表中间件（Mycat，sharding-jdbc等）</li>
+<li>分库分表一些问题（事务问题？跨节点Join的问题）</li>
+<li>解决方案（分布式事务等）</li>
+</ul>
+<h4 id="索引优化">索引优化</h4>
+<p>除了分库分表，优化表结构，当然还有所以索引优化等方案~</p>
 <h3 id="3-超键候选键主键外键分别是什么">3. 超键、候选键、主键、外键分别是什么？</h3>
 <ul>
 <li>超键：在关系中能唯一标识元组的属性集称为关系模式的超键。一个属性可以为作为一个超键，多个属性组合在一起也可以作为一个超键。超键包含候选键和主键。</li>
@@ -603,7 +714,19 @@ column2, column3);创建组合索引。</li>
 3、根据中数据的物理顺序与键值的逻辑（索引）顺序关系： 聚集索引，非聚集索引。
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="4-说一说索引的底层实现">4. 说一说索引的底层实现？</h4>
+</div><h4 id="如何写sql能够有效的使用到复合索引">如何写sql能够有效的使用到复合索引。</h4>
+<p>复合索引，也叫组合索引，用户可以在多个列上建立索引,这种索引叫做复合索引。</p>
+<p>当我们创建一个组合索引的时候，如(k1,k2,k3)，相当于创建了（k1）、(k1,k2)和(k1,k2,k3)三个索引，这就是最左匹配原则。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">k1</span><span class="o">=</span><span class="n">A</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">k2</span><span class="o">=</span><span class="n">B</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">k3</span><span class="o">=</span><span class="n">D</span><span class="w"> 
+</span></code></pre></td></tr></table>
+</div>
+</div><p>有关于复合索引，我们需要关注查询Sql条件的顺序，确保最左匹配原则有效，同时可以删除不必要的冗余索引。</p>
+<h4 id="4-说一说索引的底层实现">4. 说一说索引的底层实现？</h4>
 <p><strong>Hash索引</strong></p>
 <p>基于<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e5%93%88%e5%b8%8c%e8%a1%a8" target="_blank" rel="noopener noreffer">哈希表</a>实现，只有精确匹配索引所有列的查询才有效，对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码（hash code），并且Hash索引将所有的哈希码存储在索引中，同时在索引表中保存指向每个数据行的指针。</p>
 <blockquote>
@@ -681,6 +804,13 @@ column2, column3);创建组合索引。</li>
 <p>具体原因为:</p>
 <p>MySQL使用索引时需要索引有序，假设现在建立了&quot;name，age，school&quot;的联合索引，那么索引的<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e6%8e%92%e5%ba%8f" target="_blank" rel="noopener noreffer">排序</a>为: 先按照name<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e6%8e%92%e5%ba%8f" target="_blank" rel="noopener noreffer">排序</a>，如果name相同，则按照age<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e6%8e%92%e5%ba%8f" target="_blank" rel="noopener noreffer">排序</a>，如果age的值也相等，则按照school进行<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e6%8e%92%e5%ba%8f" target="_blank" rel="noopener noreffer">排序</a>。</p>
 <p>当进行查询时，此时索引仅仅按照name严格有序，因此必须首先使用name字段进行等值查询，之后对于匹配到的列而言，其按照age字段严格有序，此时可以使用age字段用做索引查找，以此类推。因此在建立联合索引的时候应该<strong>注意</strong>索引列的顺序，一般情况下，将查询需求频繁或者字段选择性高的列放在前面。此外可以根据特例的查询或者表结构进行单独的调整。</p>
+<h4 id="27-innodb引擎中的索引策略了解过吗">27. InnoDB引擎中的索引策略，了解过吗？</h4>
+<ul>
+<li>覆盖索引</li>
+<li>最左前缀原则</li>
+<li>索引下推</li>
+<li>索引下推优化是 MySQL 5.6 引入的， 可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</li>
+</ul>
 <h4 id="9-讲一讲mysql的最左前缀原则">9. 讲一讲MySQL的最左前缀原则?</h4>
 <p>最左前缀原则就是最左优先，在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。
 mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
@@ -804,6 +934,17 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
         data-sizes="auto"
         alt="https://uploadfiles.nowcoder.com/files/20210413/540390845_1618325752674/java8-1562726251.gif"
         title="img" /></p>
+<h4 id="20-数据库自增主键可能遇到什么问题">20. 数据库自增主键可能遇到什么问题。</h4>
+<p>使用自增主键对数据库做分库分表，可能出现诸如主键重复等的问题。解决方案的话，简单点的话可以考虑使用UUID。自增主键会产生表锁，从而引发问题自增主键可能用完问题。</p>
+<h4 id="9-如何选择合适的分布式主键方案呢">9. 如何选择合适的分布式主键方案呢？</h4>
+<ul>
+<li>数据库自增长序列或字段。</li>
+<li>UUID。</li>
+<li>Redis生成ID</li>
+<li>Twitter的snowflake算法</li>
+<li>利用zookeeper生成唯一ID</li>
+<li>MongoDB的ObjectId</li>
+</ul>
 <h4 id="14-如何创建索引">14. 如何创建索引？</h4>
 <p>创建索引有三种方式。</p>
 <p>1、 在执行CREATE TABLE时创建索引</p>
@@ -855,6 +996,7 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <li>基于一个范围的检索，一般查询返回结果集小于表中记录数的30%。</li>
 <li>基于非唯一性索引的检索。</li>
 </ul>
+<p><strong>数据量少的不适合加索引、更新比较频繁的也不适合加索引、区分度低的字段不适合加索引（如性别）</strong></p>
 <h4 id="18-什么情况下不走索引索引失效">18. 什么情况下不走索引（索引失效）？</h4>
 <h5 id="1使用-或者--导致索引失效">1、使用!= 或者 &lt;&gt; 导致索引失效</h5>
 <h5 id="2类型不一致导致的索引失效">2、类型不一致导致的索引失效</h5>
@@ -951,12 +1093,24 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p>事务是基于重做日志文件(redo log)和回滚日志(undo log)实现的。</p>
 <p>每提交一个事务必须先将该事务的所有日志写入到重做日志文件进行持久化，数据库就可以通过重做日志来保证事务的原子性和持久性。</p>
 <p>每当有修改事务时，还会产生 undo log，如果需要回滚，则根据 undo log 的反向语句进行逻辑操作，比如 insert 一条记录就 delete 一条记录。undo log 主要实现数据库的一致性。</p>
+<h4 id="90---innodb的事务实现原理">90.   Innodb的事务实现原理？</h4>
+<ul>
+<li>原子性：是使用 undo log来实现的，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态。</li>
+<li>持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</li>
+<li>隔离性：通过锁以及MVCC,使事务相互隔离开。</li>
+<li>一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</li>
+</ul>
 <h4 id="6-mysql事务日志介绍下">6. MySQL事务日志介绍下？</h4>
 <p>innodb 事务日志包括 redo log 和 undo log。</p>
 <p>undo log 指事务开始之前，在操作任何数据之前，首先将需操作的数据备份到一个地方。redo log 指事务中操作的任何数据，将最新的数据备份到一个地方。</p>
 <p>事务日志的目的：实例或者介质失败，事务日志文件就能派上用场。</p>
 <h5 id="redo-log">redo log</h5>
-<p>redo log 不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入 redo 中。具体的落盘策略可以进行配置 。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启 MySQL 服务的时候，根据 redo log 进行重做，从而达到事务的未入磁盘数据进行持久化这一特性。RedoLog 是为了实现事务的持久性而出现的产物。</p>
+<ul>
+<li>重做日志</li>
+<li>redo log 不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入 redo 中。</li>
+<li>具体的落盘策略可以进行配置 。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启 MySQL 服务的时候，根据 redo log 进行重做，从而达到事务的未入磁盘数据进行持久化这一特性。</li>
+<li>RedoLog 是为了实现事务的持久性而出现的产物。</li>
+</ul>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -1073,15 +1227,30 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p>用上面的例子来说就是用户的行为有两种，一种是来看房，多个用户一起看房是可以接受的。 一种是真正的入住一晚，在这期间，无论是想入住的还是想看房的都不可以。</p>
 <p>锁的粒度取决于具体的存储引擎，InnoDB实现了行级锁，页级锁，表级锁。</p>
 <p>他们的加锁开销从大到小，并发能力也是从大到小。</p>
+<h4 id="12-在高并发情况下如何做到安全的修改同一行数据">12. 在高并发情况下，如何做到安全的修改同一行数据？</h4>
+<p>要安全的修改同一行数据，就要保证一个线程在修改时其它线程无法更新这行记录。一般有悲观锁和乐观锁两种方案~</p>
 <h4 id="4-数据库的乐观锁和悲观锁是什么怎么实现的">4. 数据库的乐观锁和悲观锁是什么？怎么实现的？</h4>
 <p>数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。乐观并发控制（乐观锁）和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。</p>
 <ul>
 <li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。在查询完数据的时候就把事务锁起来，直到提交事务。实现方式：使用数据库中的锁机制</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">User</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="err">‘</span><span class="n">jay</span><span class="err">’</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">update</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。在修改数据的时候把事务锁起来，通过version的方式来进行锁定。实现方式：乐一般会使用版本号机制或CAS<a href="https://www.nowcoder.com/jump/super-jump/word?word=%e7%ae%97%e6%b3%95" target="_blank" rel="noopener noreffer">算法</a>实现。</li>
 </ul>
 <p><strong>两种锁的使用场景</strong></p>
 <p>从上面对两种锁的介绍，我们知道两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下（多读场景），即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。</p>
 <p>但如果是多写的情况，一般会经常产生冲突，这就会导致上层应用会不断的进行retry，这样反倒是降低了性能，所以一般多写的场景下用悲观锁就比较合适。</p>
+<h4 id="select-for-update-含义">select for update 含义</h4>
+<p>select查询语句是不会加锁的，但是select for update除了有查询的作用外，还会加锁呢，而且它是悲观锁哦。至于加了是行锁还是表锁，这就要看是不是用了索引/主键啦。
+没用索引/主键的话就是表锁，否则就是是行锁。</p>
 <h4 id="5-innodb引擎的行锁是怎么实现的">5. InnoDB引擎的行锁是怎么实现的？</h4>
 <p>InnoDB是基于索引来完成行锁</p>
 <p>例: select * from tab_with_index where id = 1 for update;</p>
@@ -1093,6 +1262,12 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p>2、在同一个事务中，尽可能做到一次锁定所需要的所有资源，减少死锁产生概率；</p>
 <p>3、对于非常容易产生死锁的业务部分，可以尝试使用升级锁定颗粒度，通过表级锁定来减少死锁产生的概率；</p>
 <p>如果业务处理不好可以用分布式事务锁或者使用乐观锁</p>
+<p>我排查死锁的一般步骤是：</p>
+<ul>
+<li>查看死锁日志show engine innodb status;</li>
+<li>找出死锁Sql</li>
+<li>分析sql加锁情况</li>
+</ul>
 <h4 id="7-隔离级别与锁的关系">7. 隔离级别与锁的关系</h4>
 <p>在Read Uncommitted级别下，读取数据不需要加共享锁，这样就不会跟被修改的数据上的排他锁冲突</p>
 <p>在Read Committed级别下，读操作需要加共享锁，但是在语句执行完以后释放共享锁；</p>
@@ -1109,7 +1284,7 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <li>数据查询的时候不是必要，不要使用加锁。MySQL的MVCC可以实现事务中的查询不用加锁，优化事务性能：MVCC只在committed read（读提交）和 repeatable read （可重复读）两种隔离级别</li>
 <li>对于特定的事务，可以使用表锁来提高处理速度活着减少死锁的可能。</li>
 </ul>
-<h3 id="分库分表">分库分表</h3>
+<h3 id="分库分表-1">分库分表</h3>
 <h4 id="1-为什么要分库分表">1. 为什么要分库分表？</h4>
 <p><strong>分表</strong></p>
 <p>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，单表数据量太大，会极大影响你的 sql执行的性能，到了后面你的 sql 可能就跑的很慢了。一般来说，就以我的经验来看，单表到几百万的时候，性能就会相对差一些了，你就得分表了。</p>
@@ -1117,23 +1292,50 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p><strong>分库</strong></p>
 <p>分库就是你一个库一般我们经验而言，最多支撑到并发 2000，一定要扩容了，而且一个健康的单库并发值你最好保持在每秒 1000 左右，不要太大。那么你可以将一个库的数据拆分到多个库中，访问的时候就访问一个库好了。</p>
 <p>这就是所谓的分库分表。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://uploadfiles.nowcoder.com/images/20190919/56_1568900435177_29C080A5413E925FE3B3CCB4048AB99B"
-        data-srcset="https://uploadfiles.nowcoder.com/images/20190919/56_1568900435177_29C080A5413E925FE3B3CCB4048AB99B, https://uploadfiles.nowcoder.com/images/20190919/56_1568900435177_29C080A5413E925FE3B3CCB4048AB99B 1.5x, https://uploadfiles.nowcoder.com/images/20190919/56_1568900435177_29C080A5413E925FE3B3CCB4048AB99B 2x"
-        data-sizes="auto"
-        alt="https://uploadfiles.nowcoder.com/images/20190919/56_1568900435177_29C080A5413E925FE3B3CCB4048AB99B"
-        title="img" /></p>
+<h4 id="分库分表方案">分库分表方案:</h4>
+<ul>
+<li>水平分库：以字段为依据，按照一定策略（hash、range等），将一个库中的数据拆分到多个库中。</li>
+<li>水平分表：以字段为依据，按照一定策略（hash、range等），将一个表中的数据拆分到多个表中。</li>
+<li>垂直分库：以表为依据，按照业务归属不同，将不同的表拆分到不同的库中。</li>
+<li>垂直分表：以字段为依据，按照字段的活跃性，将表中字段拆到不同的表（主表和扩展表）中。</li>
+</ul>
 <h4 id="2-用过哪些分库分表中间件不同的分库分表中间件都有什么优点和缺点">2. 用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？</h4>
 <p>这个其实就是看看你了解哪些分库分表的中间件，各个中间件的优缺点是啥？然后你用过哪些分库分表的中间件。</p>
 <p>比较常见的包括：</p>
 <ul>
-<li>cobar</li>
-<li>TDDL</li>
-<li>atlas</li>
-<li>sharding-jdbc</li>
-<li>mycat</li>
+<li>
+<p>cobar</p>
+</li>
+<li>
+<p>TDDL</p>
+</li>
+<li>
+<p>atlas</p>
+</li>
+<li>
+<p>sharding-jdbc</p>
+</li>
+<li>
+<p>mycat</p>
+</li>
+<li>
+<p>sharding-jdbc（当当）</p>
+</li>
+<li>
+<p>Mycat</p>
+</li>
+<li>
+<p>TDDL（淘宝）</p>
+</li>
+<li>
+<p>Oceanus(58同城数据库中间件)</p>
+</li>
+<li>
+<p>vitess（谷歌开发的数据库中间件）</p>
+</li>
+<li>
+<p>Atlas(Qihoo 360)</p>
+</li>
 </ul>
 <h5 id="cobar">cobar</h5>
 <p>阿里 b2b 团队开发和开源的，属于 proxy 层方案。早些年还可以用，但是最近几年都没更新了，基本没啥人用，差不多算是被抛弃的状态吧。而且不支持读写分离、存储过程、跨库 join 和分页等操作。</p>
@@ -1171,6 +1373,15 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 </ul>
 <p>range 来分，好处在于说，扩容的时候很简单，因为你只要预备好，给每个月都准备一个库就可以了，到了一个新的月份的时候，自然而然，就会写新的库了；缺点，但是大部分的请求，都是访问最新的数据。实际生产用 range，要看场景。</p>
 <p>hash 分发，好处在于说，可以平均分配每个库的数据量和请求压力；坏处在于说扩容起来比较麻烦，会有一个数据迁移的过程，之前的数据需要重新计算 hash 值重新分配到不同的库或表</p>
+<h4 id="分库分表可能遇到的问题">分库分表可能遇到的问题</h4>
+<ul>
+<li>事务问题：需要用分布式事务</li>
+<li>跨节点Join的问题：解决这一问题可以分两次查询实现</li>
+<li>跨节点的count,order by,group by以及聚合函数问题：分别在各个节点上得到结果后在应用程序端进行合并。</li>
+<li>数据迁移，容量规划，扩容等问题</li>
+<li>ID问题：数据库被切分后，不能再依赖数据库自身的主键生成机制啦，最简单可以考虑UUID</li>
+<li>跨分片的排序分页问题（后台加大pagesize处理？）</li>
+</ul>
 <h3 id="读写分离主从同步复制">读写分离、主从同步（复制）</h3>
 <h4 id="1-什么是mysql主从同步">1. 什么是MySQL主从同步？</h4>
 <p>主从同步使得数据可以从一个数据库服务器复制到其他服务器上，在复制数据时，一个服务器充当主服务器（master），其余的服务器充当从服务器（slave）。</p>
@@ -1185,6 +1396,22 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <h4 id="3-如何实现mysql的读写分离">3. 如何实现MySQL的读写分离？</h4>
 <p>其实很简单，就是基于主从复制架构，简单来说，就搞一个主库，挂多个从库，然后我们就单单只是写主库，然后主库会自动把数据给同步到从库上去。</p>
 <h4 id="4-mysql主从复制流程和原理">4. MySQL主从复制流程和原理？</h4>
+<p>主从复制分了五个步骤进行：</p>
+<ul>
+<li>步骤一：主库的更新事件(update、insert、delete)被写到binlog</li>
+<li>步骤二：从库发起连接，连接到主库。</li>
+<li>步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。</li>
+<li>步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log</li>
+<li>步骤五：还会创建一个SQL线程，从relay log里面读取内容，从Exec_Master_Log_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png"
+        data-srcset="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png 1.5x, https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png 2x"
+        data-sizes="auto"
+        alt="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png"
+        title="https://raw.githubusercontent.com/JF-011101/Image_hosting_rep/main/20221204164917.png" /></li>
+</ul>
 <p>基本原理流程，是3个线程以及之间的关联</p>
 <p>主：binlog线程——记录下所有改变了数据库数据的语句，放进master上的binlog中；</p>
 <p>从：io线程——在使用start slave 之后，负责从master上拉取 binlog 内容，放进自己的relay log中；</p>
@@ -1203,13 +1430,35 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <p>第一步：master在每个事务更新数据完成之前，将该操作记录串行地写入到binlog文件中。</p>
 <p>第二步：salve开启一个I/O Thread，该线程在master打开一个普通连接，主要工作是binlog dump process。如果读取的进度已经跟上了master，就进入睡眠状态并等待master产生新的事件。I/O线程最终的目的是将这些事件写入到中继日志中。</p>
 <p>第三步：SQL Thread会读取中继日志，并顺序执行该日志中的SQL事件，从而与主数据库中的数据保持一致。</p>
+<h4 id="主从同步延迟的原因">主从同步延迟的原因</h4>
+<p>一个服务器开放Ｎ个链接给客户端来连接的，这样有会有大并发的更新操作, 但是从服务器的里面读取binlog的线程仅有一个，当某个SQL在从服务器上执行的时间稍长 或者由于某个SQL要进行锁表就会导致，主服务器的SQL大量积压，未被同步到从服务器里。这就导致了主从不一致， 也就是主从延迟。</p>
 <h4 id="5-mysql主从同步延时问题如何解决">5. MySQL主从同步延时问题如何解决？</h4>
-<p>MySQL 实际上在有两个同步机制，一个是半同步复制，用来 解决主库数据丢失问题；一个是并行复制，用来 解决主从同步延时问题。</p>
+<p>MySQL 实际上在有两个同步机制</p>
 <ul>
-<li>半同步复制，也叫 semi-sync 复制，指的就是主库写入 binlog 日志之后，就会将强制此时立即将数据同步到从库，从库将日志写入自己本地的 relay log 之后，接着会返回一个 ack 给主库，主库接收到至少一个从库的 ack 之后才会认为写操作完成了。</li>
-<li>并行复制，指的是从库开启多个线程，并行读取 relay log 中不同库的日志，然后并行重放不同库的日志，这是库级别的并行。</li>
+<li>
+<p>半同步复制，用来解决主库数据丢失问题；</p>
+</li>
+<li>
+<p>一个是并行复制，用来解决主从同步延时问题。</p>
+</li>
+<li>
+<p>半同步复制，也叫 semi-sync 复制，指的就是主库写入 binlog 日志之后，就会将强制此时立即将数据同步到从库，从库将日志写入自己本地的 relay log 之后，接着会返回一个 ack 给主库，主库接收到至少一个从库的 ack 之后才会认为写操作完成了。</p>
+</li>
+<li>
+<p>并行复制，指的是从库开启多个线程，并行读取 relay log 中不同库的日志，然后并行重放不同库的日志，这是库级别的并行。</p>
+</li>
 </ul>
 <h3 id="mysql优化">MySQL优化</h3>
+<h4 id="日常工作中你是怎么优化sql的">日常工作中你是怎么优化SQL的？</h4>
+<p>可以从这几个维度回答这个问题：</p>
+<ul>
+<li>加索引</li>
+<li>避免返回不必要的数据</li>
+<li>适当分批量进行</li>
+<li>优化sql结构</li>
+<li>分库分表</li>
+<li>读写分离</li>
+</ul>
 <h4 id="1-如何定位及优化sql语句的性能问题">1. 如何定位及优化SQL语句的性能问题？</h4>
 <p>对于低性能的SQL语句的定位，最重要也是最有效的方法就是使用执行计划，MySQL提供了explain命令来查看语句的执行计划。 我们知道，不管是哪种数据库，或者是哪种数据库引擎，在对一条SQL语句进行执行的过程中都会做很多相关的优化，对于查询语句，最重要的优化方式就是使用索引。</p>
 <p>而执行计划，就是显示数据库引擎对于SQL语句的执行的详细情况，其中包含了是否使用索引，使用什么索引，使用的索引的相关信息等。
@@ -1221,7 +1470,28 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
         data-sizes="auto"
         alt="https://uploadfiles.nowcoder.com/files/20210822/540390845_1629637247270/image-20210822204026552.png"
         title="image-20210822204026552" /></p>
-<h4 id="2-大表数据查询怎么优化">2. 大表数据查询，怎么优化</h4>
+<h4 id="怎么看执行计划explain如何理解其中各个字段的含义">怎么看执行计划（explain），如何理解其中各个字段的含义。</h4>
+<ul>
+<li><code>show status</code> 命令了解各种 sql 的执行频率</li>
+<li>通过慢查询日志定位那些执行效率较低的 sql 语句</li>
+<li><code>explain</code> 分析低效 sql 的执行计划（这点非常重要，日常开发中用它分析Sql，会大大降低Sql导致的线上事故）</li>
+</ul>
+<h4 id="91-谈谈mysql的explain">91. 谈谈MySQL的Explain</h4>
+<p>Explain 执行计划包含字段信息如下：分别是 id、select_type、table、partitions、type、possible_keys、key、key_len、ref、rows、filtered、Extra 等12个字段。
+我们重点关注的是type，它的属性排序如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">system</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="n">const</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">eq_ref</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">ref</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ref_or_null</span><span class="w"> </span><span class="o">&gt;</span><span class="w">
+</span><span class="w"></span><span class="n">index_merge</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">unique_subquery</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">index_subquery</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> 
+</span><span class="w"></span><span class="n">range</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">ALL</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-大表数据查询怎么优化">2. 大表数据查询，怎么优化</h4>
 <ul>
 <li>优化shema、sql语句+索引；</li>
 <li>第二加缓存，memcached, <a href="https://www.nowcoder.com/jump/super-jump/word?word=redis" target="_blank" rel="noopener noreffer">redis</a>；</li>
@@ -1302,16 +1572,19 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <li>缓存： 使用MySQL的缓存，另外对重量级、更新少的数据可以考虑；</li>
 <li>通过分库分表的方式进行优化，主要有垂直分表和水平分表。</li>
 </ul>
-<h2 id="1-内左右全连接">1. 内，左，右，全连接</h2>
 <h2 id="11-内连接">1.1 内连接</h2>
-<p>**内连接：inner join **</p>
+<p><strong>内连接：inner join</strong></p>
 <p>返回的是两个表之间的<code>交集</code></p>
+<h2 id="外连接">外连接</h2>
+<p><strong>外连接</strong>（outer join）：取得两张表中满足存在连接匹配关系的记录，以及某张表（或两张表）中不满足匹配关系的记录。</p>
 <h2 id="12-左连接">1.2 左连接</h2>
-<p>**内连接：left join **</p>
+<p><strong>内连接：left join</strong></p>
 <p>返回的是左表的内容，右边中不符合条件的内容不会显示。</p>
 <h2 id="13-右连接">1.3 右连接</h2>
-<p>**内连接：right join **</p>
+<p><strong>内连接：right join</strong></p>
 <p>返回的是右表的内容，左边中不符合条件的内容不会显示。</p>
+<h2 id="交叉连接">交叉连接</h2>
+<p>交叉连接（cross join）：显示两张表所有记录一一对应，没有匹配关系进行筛选，也被称为：笛卡尔积。</p>
 <h2 id="14-全连接">1.4 全连接</h2>
 <p>关键词：<strong>union / union all</strong></p>
 <ol>
@@ -1424,6 +1697,23 @@ mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)
 <li>聚簇索引：将数据存储与索引放到了一块，找到索引也就找到了数据</li>
 <li>非聚簇索引：将数据存储于索引分开结构，索引结构的叶子节点指向了数据的对应行，myisam 通过 key_buffer 把索引先缓存到内存中，当需要访问数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找到磁盘相应数据，这也就是为什么索引不在 key buffer 命中时，速度慢的原因。</li>
 </ul>
+<h3 id="25-什么是数据库连接池为什么需要数据库连接池呢">25. 什么是数据库连接池?为什么需要数据库连接池呢?</h3>
+<h4 id="连接池基本原理">连接池基本原理：</h4>
+<p>数据库连接池原理：在内部对象池中，维护一定数量的数据库连接，并对外暴露数据库连接的获取和返回方法。</p>
+<h4 id="应用程序和数据库建立连接的过程">应用程序和数据库建立连接的过程：</h4>
+<ul>
+<li>通过TCP协议的三次握手和数据库服务器建立连接</li>
+<li>发送数据库用户账号密码，等待数据库验证用户身份</li>
+<li>完成身份验证后，系统可以提交SQL语句到数据库执行</li>
+<li>把连接关闭，TCP四次挥手告别。</li>
+</ul>
+<h4 id="数据库连接池好处">数据库连接池好处：</h4>
+<ul>
+<li>资源重用 (连接复用)</li>
+<li>更快的系统响应速度</li>
+<li>新的资源分配手段
+统一的连接管理，避免数据库连接泄漏</li>
+</ul>
 <h3 id="21mysql-连接器">21、MySQL 连接器</h3>
 <p>首先需要在 MySQL 客户端登陆才能使用，所以需要 个连接器 来连接用户和MySQL 数据库，我们 一般是使用<code>mysql-u 用户名-p 密码</code>来进行 MySQL 登陆，和服务端建立连接。在完成 TCP 握手后，连接器会根据你输入的用户名和密码验证你的登录身份。如果用户名或者密码错误，MySQL 就会提示 Access denied for user，来结束执行。如果登录成功后，MySQL 会根据权限表中的记录来判定你的权限。</p>
 <h3 id="22mysql-查询缓存">22、MySQL 查询缓存</h3>
@@ -1499,6 +1789,13 @@ MySQL 会在下面这几种情况产生临时表。</p>
 <li>增删改查性能方面:SELECT 性能较高，适用于查询较多的情况</li>
 </ul>
 <h3 id="32innodb-存储引擎的特点">32、InnoDB 存储引擎的特点</h3>
+<p>四大特性：</p>
+<ul>
+<li>插入缓冲（insert buffer)</li>
+<li>二次写(double write)</li>
+<li>自适应哈希索引(ahi)</li>
+<li>预读(read ahead)</li>
+</ul>
 <p>自从 MySQL5.1 之后，默认的存储引擎变成了 InnoDB 存储引擎，相对于MylSAM，InnoDB 存储引擎有了较大的改变，它的主要特点是</p>
 <p>支持事务操作，具有事务 ACID 隔离特性，默认的隔离级别是可重复读(repetable-read)、通过 MVCC(并发版本控制)来实现的。能够解决 脏读和 不可重复读 的问题。 InnoDB 支持外键操作。</p>
 <ul>
@@ -1508,12 +1805,184 @@ MySQL 会在下面这几种情况产生临时表。</p>
 <li>InnoDB 和 MylSAM 支持的索引类型相同，但具体实现因为文件结构的不同有很大差异。</li>
 <li>增删改查性能方面，果执行大量的增删改操作，推荐使用 InnoDB 存储引擎，它在删除操作时是对行删除，不会重建表。</li>
 </ul>
+<h3 id="28-数据库存储日期格式时如何考虑时区转换问题">28. 数据库存储日期格式时，如何考虑时区转换问题？</h3>
+<ul>
+<li>datetime类型适合用来记录数据的原始的创建时间，修改记录中其他字段的值，datetime字段的值不会改变，除非手动修改它。</li>
+<li>timestamp类型适合用来记录数据的最后修改时间，只要修改了记录中其他字段的值，timestamp字段的值都会被自动更新。</li>
+</ul>
+<h3 id="29-一条sql执行过长的时间你如何优化从哪些方面入手">29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？</h3>
+<ul>
+<li>查看是否涉及多表和子查询，优化Sql结构，如去除冗余字段，是否可拆表等</li>
+<li>优化索引结构，看是否可以适当添加索引</li>
+<li>数量大的表，可以考虑进行分离/分表（如交易流水表）</li>
+<li>数据库主从分离，读写分离</li>
+<li>explain分析sql语句，查看执行计划，优化sql</li>
+<li>查看mysql执行日志，分析是否有其他方面的问题</li>
+</ul>
+<h3 id="30-mysql数据库服务器性能分析的方法命令有哪些">30. MYSQL数据库服务器性能分析的方法命令有哪些?</h3>
+<ul>
+<li>Show status, 一些值得监控的变量值：</li>
+</ul>
+<blockquote>
+<p>Bytes_received和Bytes_sent 和服务器之间来往的流量。
+Com_*服务器正在执行的命令。
+Created_*在查询执行期限间创建的临时表和文件。
+Handler_*存储引擎操作。
+Select_*不同类型的联接执行计划。
+Sort_*几种排序信息。</p>
+</blockquote>
+<ul>
+<li>Show profiles 是MySql用来分析当前会话SQL语句执行的资源消耗情况</li>
+</ul>
+<h3 id="31-blob和text有什么区别">31. Blob和text有什么区别？</h3>
+<ul>
+<li>Blob用于存储二进制数据，而Text用于存储大字符串。</li>
+<li>Blob值被视为二进制字符串（字节字符串）,它们没有字符集，并且排序和比较基于列值中的字节的数值。</li>
+<li>text值被视为非二进制字符串（字符字符串）。它们有一个字符集，并根据字符集的排序规则对值进行排序和比较。</li>
+</ul>
+<h3 id="32--mysql里记录货币用什么字段类型比较好">32.  mysql里记录货币用什么字段类型比较好？</h3>
+<ul>
+<li>货币在数据库中MySQL常用Decimal和Numric类型表示，这两种类型被MySQL实现为同样的类型。他们被用于保存与金钱有关的数据。</li>
+<li>salary DECIMAL(9,2)，9(precision)代表将被用于存储值的总的小数位数，而2(scale)代表将被用于存储小数点后的位数。存储在salary列中的值的范围是从-9999999.99到9999999.99。</li>
+<li>DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。</li>
+</ul>
+<h3 id="为什么要使用视图">为什么要使用视图？</h3>
+<p>为了提高复杂SQL语句的复用性和表操作的安全性，MySQL数据库管理系统提供了视图特性。</p>
+<h3 id="什么是视图">什么是视图？</h3>
+<p>视图是一个虚拟的表，是一个表中的数据经过某种筛选后的显示方式，视图由一个预定义的查询select语句组成。</p>
+<h3 id="视图特点">视图特点：</h3>
+<ul>
+<li>视图的列可以来自不同的表，是表的抽象和在逻辑意义上建立的新关系。</li>
+<li>视图是由基本表(实表)产生的表(虚表)。</li>
+<li>视图的建立和删除不影响基本表。</li>
+<li>对视图内容的更新(添加，删除和修改)直接影响基本表。</li>
+<li>当视图来自多个基本表时，不允许添加和删除数据。</li>
+</ul>
+<p><strong>视图用途：</strong> 简化sql查询，提高开发效率，兼容老的表结构。</p>
+<h3 id="视图的常见使用场景">视图的常见使用场景：</h3>
+<ul>
+<li>重用SQL语句；</li>
+<li>简化复杂的SQL操作。</li>
+<li>使用表的组成部分而不是整个表；</li>
+<li>保护数据</li>
+<li>更改数据格式和表示。视图可返回与底层表的表示和格式不同的数据。</li>
+</ul>
+<h3 id="62--视图的优点缺点讲一下">62.  视图的优点，缺点，讲一下？</h3>
+<ul>
+<li>查询简单化。视图能简化用户的操作</li>
+<li>数据安全性。视图使用户能以多种角度看待同一数据，能够对机密数据提供安全保护</li>
+<li>逻辑数据独立性。视图对重构数据库提供了一定程度的逻辑独立性</li>
+</ul>
+<h3 id="63--count1count-与-count列名-的区别">63.  count(1)、count(*) 与 count(列名) 的区别？</h3>
+<ul>
+<li>count(*)包括了所有的列，相当于行数，在统计结果的时候，不会忽略列值为NULL</li>
+<li>count(1)包括了忽略所有列，用1代表代码行，在统计结果的时候，不会忽略列值为NULL</li>
+<li>count(列名)只包括列名那一列，在统计结果的时候，会忽略列值为空（这里的空不是只空字符串或者0，而是表示null）的计数，即某个字段值为NULL时，不统计。</li>
+</ul>
+<h3 id="64--什么是游标">64.  什么是游标？</h3>
+<p>游标提供了一种对从表中检索出的数据进行操作的灵活手段，就本质而言，游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制。</p>
+<h3 id="66--什么是触发器触发器的使用场景有哪些">66.  什么是触发器？触发器的使用场景有哪些？</h3>
+<p>触发器，指一段代码，当触发某个事件时，自动执行这些代码。</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>可以通过数据库中的相关表实现级联更改。</li>
+<li>实时监控某张表中的某个字段的更改而需要做出相应的处理。</li>
+<li>例如可以生成某些业务的编号。</li>
+<li>注意不要滥用，否则会造成数据库及应用程序的维护困难。</li>
+</ul>
+<h3 id="67---mysql中都有哪些触发器">67.   MySQL中都有哪些触发器？</h3>
+<p>MySQL 数据库中有六种触发器：</p>
+<ul>
+<li>Before Insert</li>
+<li>After Insert</li>
+<li>Before Update</li>
+<li>After Update</li>
+<li>Before Delete</li>
+<li>After Delete</li>
+</ul>
+<h3 id="71--varchar50中50的涵义">71.  varchar(50)中50的涵义</h3>
+<p>字段最多存放 50 个字符
+如 varchar(50) 和 varchar(200) 存储 &ldquo;jay&rdquo; 字符串所占空间是一样的，后者在排序时会消耗更多内存</p>
+<h3 id="72---mysql中int20和char20以及varchar20的区别">72.   mysql中int(20)和char(20)以及varchar(20)的区别</h3>
+<ul>
+<li>int(20) 表示字段是int类型，显示长度是 20</li>
+<li>char(20)表示字段是固定长度字符串，长度为 20</li>
+<li>varchar(20) 表示字段是可变长度字符串，长度为 20</li>
+</ul>
+<h3 id="93--mysql中text数据类型的最大长度">93.  MySQL中TEXT数据类型的最大长度</h3>
+<ul>
+<li>TINYTEXT：256 bytes</li>
+<li>TEXT：65,535 bytes(64kb)</li>
+<li>MEDIUMTEXT：16,777,215 bytes(16MB)</li>
+<li>LONGTEXT：4,294,967,295 bytes(4GB)</li>
+</ul>
+<h3 id="73---dropdelete与truncate的区别">73.   drop、delete与truncate的区别</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>delete</th>
+<th>truncate</th>
+<th>drop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>DML</td>
+<td>DDL</td>
+<td>DDL</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>可回滚</td>
+<td>不可回滚</td>
+<td>不可回滚</td>
+</tr>
+<tr>
+<td>删除内容</td>
+<td>表结构还在，删除表的全部或者一部分数据行</td>
+<td>表结构还在，删除表中的所有数据</td>
+<td>从数据库中删除表，所有的数据行，索引和权限也会被删除</td>
+</tr>
+<tr>
+<td>删除速度</td>
+<td>删除速度慢，逐行删除</td>
+<td>删除速度快</td>
+<td>删除速度最快</td>
+</tr>
+</tbody>
+</table>
+<h3 id="80-mysql自增主键用完了怎么办">80. mysql自增主键用完了怎么办？</h3>
+<p>自增主键一般用int类型，一般达不到最大值，可以考虑提前分库分表的。</p>
+<p>自增ID用完后 一直都是最大值 如果标识了主键 则主键冲突</p>
+<h3 id="81-字段为什么要求定义为not-null">81. 字段为什么要求定义为not null？</h3>
+<p>null值会占用更多的字节，并且null有很多坑的。</p>
+<h3 id="82--如果要存储用户的密码散列应该使用什么字段进行存储">82.  如果要存储用户的密码散列，应该使用什么字段进行存储？</h3>
+<p>密码散列，盐，用户身份证号等固定长度的字符串，应该使用char而不是varchar来存储，这样可以节省空间且提高检索效率。</p>
+<h3 id="86-mysql数据库cpu飙升的话要怎么处理呢">86. MySQL数据库cpu飙升的话，要怎么处理呢？</h3>
+<p><strong>排查过程：</strong></p>
+<ul>
+<li>使用top 命令观察，确定是mysqld导致还是其他原因。</li>
+<li>如果是mysqld导致的，show processlist，查看session情况，确定是不是有消耗资源的sql在运行。</li>
+<li>找出消耗高的 sql，看看执行计划是否准确， 索引是否缺失，数据量是否太大。</li>
+</ul>
+<p><strong>处理：</strong></p>
+<ul>
+<li>kill 掉这些线程(同时观察 cpu 使用率是否下降)，</li>
+<li>进行相应的调整(比如说加索引、改 sql、改内存参数)</li>
+<li>重新跑这些 SQL。</li>
+</ul>
+<p><strong>其他情况：</strong></p>
+<p>也有可能是每个 sql 消耗资源并不多，但是突然之间，有大量的 session 连进来导致 cpu 飙升，这种情况就需要跟应用一起来分析为何连接数会激增，再做出相应的调整，比如说限制连接数等</p>
+<h3 id="98--mysql如何获取当前日期">98.  MySQL如何获取当前日期？</h3>
+<p>SELECT CURRENT_DATE();</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2022-11-23 20:53:31&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/729e819ead76fcbc8a7dc90bafdcf2363853e17a" target="_blank" title="commit by AdagioForSummerWind(2152343764@qq.com) 729e819ead76fcbc8a7dc90bafdcf2363853e17a: autofeat">
-                                    <i class="fas fa-hashtag fa-fw"></i>729e819</a></span>
+                <span>更新于 2022-12-04 17:49:39&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/e8f1c90ff5c98326c6bf8af25e61455ec0fe86e3" target="_blank" title="commit by AdagioForSummerWind(2152343764@qq.com) e8f1c90ff5c98326c6bf8af25e61455ec0fe86e3: autofeat">
+                                    <i class="fas fa-hashtag fa-fw"></i>e8f1c90</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>protocols - 分类 - 绿叶律动</title>
+        <link>https://jefofrank.xyz/categories/protocols/</link>
+        <description>protocols - 分类 - 绿叶律动</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2838264218@qq.com (Jefo)</managingEditor>
+            <webMaster>2838264218@qq.com (Jefo)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 19 Sep 2022 19:02:19 &#43;0800</lastBuildDate><atom:link href="https://jefofrank.xyz/categories/protocols/" rel="self" type="application/rss+xml" /><item>
+    <title>序列化协议JSON和Protobuf区别</title>
+    <link>https://jefofrank.xyz/json_and_protobuf/</link>
+    <pubDate>Mon, 19 Sep 2022 19:02:19 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/json_and_protobuf/</guid>
+    <description><![CDATA[Protobuf 是 Protocol buffers 的缩写。Protobuf 或 Protocol buffer 是由 Google 设计的，用于结构化数据的序列化和反序列化。它提供了一种更好的不同系统之间的通信方式，因为它比 XML 简]]></description>
+</item></channel>
+</rss>

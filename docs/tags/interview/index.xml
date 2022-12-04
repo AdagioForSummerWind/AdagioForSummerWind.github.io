@@ -17,14 +17,21 @@
     <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/221124/</guid>
-    <description><![CDATA[自我介绍 grpc协议 为什么json传输比protolbuf效率低,不是因为反射 http协议和rpc区别 etcd 是什么为什么用 redis 不行 进程与协程 mys]]></description>
+    <description><![CDATA[自我介绍 了解rust吗 grpc协议 为什么json传输比protobuf效率低,不是因为反射 http协议和rpc区别 etcd 是什么为什么用 redis 不行 进程]]></description>
+</item><item>
+    <title>interview-ali</title>
+    <link>https://jefofrank.xyz/%E9%98%BF%E9%87%8C/</link>
+    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E9%98%BF%E9%87%8C/</guid>
+    <description><![CDATA[✨阿里面经 通用面经 Java C/C++ Linux 计算机网络 前端 ✨阿里面经 本文档主要记录阿里面试的一些常见问题以及一些面试经验，按通用、Java、C++、前端、Lin]]></description>
 </item><item>
     <title>interview-bd</title>
     <link>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</link>
     <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/</guid>
-    <description><![CDATA[【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我]]></description>
+    <description><![CDATA[【Golang开发面经】百度（三轮技术面） 写在前面 笔试 一面 算法：判断是否为镜面二叉树 算法：二叉树的俯视图 一个协程被网络io卡住了，对应的线程]]></description>
 </item><item>
     <title>interview-bz</title>
     <link>https://jefofrank.xyz/b.-b%E7%AB%99/</link>
@@ -40,11 +47,32 @@
     <guid>https://jefofrank.xyz/d.-%E6%BB%B4%E6%BB%B4/</guid>
     <description><![CDATA[【Golang开发面经】滴滴（三轮技术面） 写在前面 滴滴面试赶紧感觉还行吧，挺注重基础的，很多时间都花在了挖项目上面，所以大家一定要很熟悉自己]]></description>
 </item><item>
-    <title>interview-zj</title>
-    <link>https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/</link>
+    <title>interview-dd</title>
+    <link>https://jefofrank.xyz/%E5%8D%8E%E4%B8%BA/</link>
     <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://jefofrank.xyz/a.-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/</guid>
-    <description><![CDATA[【Golang开发面经】字节跳动（三轮技术面） 写在前面 整体面试下来，感觉其实字节对于语言本身并没有很多的涉及，更加注重基础，比如数据结构与算]]></description>
+    <guid>https://jefofrank.xyz/%E5%8D%8E%E4%B8%BA/</guid>
+    <description><![CDATA[✨华为面经 通用面经 Java C/C++ Linux 计算机网络 ✨华为面经 本文档主要记录华为面试的一些常见问题以及一些面试经验，按通用、Java、C++、前端、Linux]]></description>
+</item><item>
+    <title>interview-mt</title>
+    <link>https://jefofrank.xyz/%E7%BE%8E%E5%9B%A2/</link>
+    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E7%BE%8E%E5%9B%A2/</guid>
+    <description><![CDATA[✨美团面经 通用面经 C/C++ Linux 计算机网络 前端 ✨美团面经 本文档主要记录美团面试的一些常见问题以及一些面试经验，按通用、Java、C++、前端、Linu]]></description>
+</item><item>
+    <title>interview-weilai</title>
+    <link>https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/</link>
+    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E8%94%9A%E6%9D%A5/</guid>
+    <description><![CDATA[文章目录 ​ ​一面​​ ​ ​1. channel 缓冲与非缓冲​​ ​ ​2. mysql引擎​​ ​ ​3. 索引如何建立？​​ ​ ​4. linux 如何看进程​​ ​ ​5. redis 字符串的]]></description>
+</item><item>
+    <title>interview-zhihu</title>
+    <link>https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/</link>
+    <pubDate>Tue, 28 Jun 2022 15:30:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://jefofrank.xyz/%E7%9F%A5%E4%B9%8E/</guid>
+    <description><![CDATA[文章目录 ​​写在前面​​ ​​笔试​​ ​​一面​​ ​​进程和线程的区别？​​ ​​虚拟地址是什么？​​ ​​内存分段分页讲讲？​​ ​​http 1.]]></description>
 </item></channel>
 </rss>

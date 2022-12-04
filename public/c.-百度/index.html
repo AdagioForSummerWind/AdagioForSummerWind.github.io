@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>interview-bd - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="interview-bd" />
-<meta property="og:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我" />
+<meta property="og:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 笔试 一面 算法：判断是否为镜面二叉树 算法：二叉树的俯视图 一个协程被网络io卡住了，对应的线程" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-28T15:30:06+08:00" />
@@ -16,11 +16,11 @@
 <meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
 
 <meta name="twitter:title" content="interview-bd"/>
-<meta name="twitter:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我"/>
+<meta name="twitter:description" content="【Golang开发面经】百度（三轮技术面） 写在前面 笔试 一面 算法：判断是否为镜面二叉树 算法：二叉树的俯视图 一个协程被网络io卡住了，对应的线程"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="prev" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="next" href="https://jefofrank.xyz/221124/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/c.-%E7%99%BE%E5%BA%A6/" /><link rel="prev" href="https://jefofrank.xyz/b.-b%E7%AB%99/" /><link rel="next" href="https://jefofrank.xyz/%E9%98%BF%E9%87%8C/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/c.-%E7%99%BE%E5%BA%A6\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  2328 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "interview","wordcount":  3513 ,
         "url": "https:\/\/jefofrank.xyz\/c.-%E7%99%BE%E5%BA%A6\/","datePublished": "2022-06-28T15:30:06+08:00","dateModified": "2022-08-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">interview-bd</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/interview/"><i class="far fa-folder fa-fw"></i>interview</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2328 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="busuanzi_container_page_pv">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28 15:30:06">2022-06-28 15:30:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3513 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
             </div>
@@ -145,9 +145,47 @@
     <li><a href="#讲讲redis的哨兵模式">讲讲redis的哨兵模式</a></li>
     <li><a href="#限流算法有哪些令牌桶算法怎么实现">限流算法有哪些？令牌桶算法怎么实现？</a></li>
     <li><a href="#算法交换二叉树左右节点">算法：交换二叉树左右节点</a></li>
+    <li><a href="#百度面经">✨百度面经</a></li>
+    <li><a href="#span-idcommon通用面经span"><span id="common">通用面经</span></a></li>
+    <li><a href="#span-idjavajavaspan"><span id="java">Java</span></a></li>
+    <li><a href="#span-idcppccspan"><span id="cpp">C/C++</span></a></li>
+    <li><a href="#span-idlinuxlinuxspan"><span id="linux">Linux</span></a></li>
+    <li><a href="#span-idnet计算机网络span"><span id="net">计算机网络</span></a></li>
+    <li><a href="#span-idfrontend前端span"><span id="frontend">前端</span></a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="golang开发面经百度三轮技术面">【Golang开发面经】百度（三轮技术面）</h1>
+            </div><div class="content" id="content"><ul>
+<li><a href="#golang%e5%bc%80%e5%8f%91%e9%9d%a2%e7%bb%8f%e7%99%be%e5%ba%a6%e4%b8%89%e8%bd%ae%e6%8a%80%e6%9c%af%e9%9d%a2" rel="">【Golang开发面经】百度（三轮技术面）</a>
+<ul>
+<li><a href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2" rel="">写在前面</a></li>
+<li><a href="#%e7%ac%94%e8%af%95" rel="">笔试</a></li>
+<li><a href="#%e4%b8%80%e9%9d%a2" rel="">一面</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e4%b8%ba%e9%95%9c%e9%9d%a2%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">算法：判断是否为镜面二叉树</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%bf%af%e8%a7%86%e5%9b%be" rel="">算法：二叉树的俯视图</a></li>
+<li><a href="#%e4%b8%80%e4%b8%aa%e5%8d%8f%e7%a8%8b%e8%a2%ab%e7%bd%91%e7%bb%9cio%e5%8d%a1%e4%bd%8f%e4%ba%86%e5%af%b9%e5%ba%94%e7%9a%84%e7%ba%bf%e7%a8%8b%e4%bc%9a%e4%b8%8d%e4%bc%9a%e5%8d%a1%e4%bd%8f" rel="">一个协程被网络io卡住了，对应的线程会不会卡住？</a></li>
+<li><a href="#go-%e9%87%8c%e9%9d%a2-make-%e5%92%8c-new-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" rel="">go 里面 make 和 new 有什么区别？</a></li>
+<li><a href="#map-%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" rel="">map 是怎么实现的？</a></li>
+<li><a href="#%e4%ba%8c%e9%9d%a2" rel="">二面</a></li>
+<li><a href="#go%e9%87%8c%e9%9d%a2-slice-%e5%92%8c-array-%e6%9c%89%e5%8c%ba%e5%88%ab%e5%90%97" rel="">go里面 slice 和 array 有区别吗？</a></li>
+<li><a href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f%e6%98%af%e7%a8%b3%e5%ae%9a%e7%9a%84%e5%90%97%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e6%98%af%e5%a4%9a%e5%b0%91" rel="">归并排序是稳定的吗？时间复杂度是多少？</a></li>
+<li><a href="#%e5%86%99%e4%b8%80%e4%b8%aa%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f%e5%90%a7" rel="">写一个归并排序吧</a></li>
+<li><a href="#%e7%a9%bachan%e5%92%8c%e5%85%b3%e9%97%ad%e7%9a%84chan%e8%bf%9b%e8%a1%8c%e8%af%bb%e5%86%99%e4%bc%9a%e6%80%8e%e4%b9%88%e6%a0%b7" rel="">空chan和关闭的chan进行读写会怎么样？</a></li>
+<li><a href="#%e4%b8%89%e9%9d%a2" rel="">三面</a></li>
+<li><a href="#%e8%ae%b2%e8%ae%b2redis%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0" rel="">讲讲redis分布式锁的设计与实现</a></li>
+<li><a href="#%e8%ae%b2%e8%ae%b2redis%e7%9a%84%e5%93%a8%e5%85%b5%e6%a8%a1%e5%bc%8f" rel="">讲讲redis的哨兵模式</a></li>
+<li><a href="#%e9%99%90%e6%b5%81%e7%ae%97%e6%b3%95%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bb%a4%e7%89%8c%e6%a1%b6%e7%ae%97%e6%b3%95%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0" rel="">限流算法有哪些？令牌桶算法怎么实现？</a></li>
+<li><a href="#%e7%ae%97%e6%b3%95%e4%ba%a4%e6%8d%a2%e4%ba%8c%e5%8f%89%e6%a0%91%e5%b7%a6%e5%8f%b3%e8%8a%82%e7%82%b9" rel="">算法：交换二叉树左右节点</a></li>
+<li><a href="#%e7%99%be%e5%ba%a6%e9%9d%a2%e7%bb%8f" rel="">✨百度面经</a></li>
+<li><a href="#%e9%80%9a%e7%94%a8%e9%9d%a2%e7%bb%8f" rel="">通用面经</a></li>
+<li><a href="#java" rel="">Java</a></li>
+<li><a href="#cc" rel="">C/C++</a></li>
+<li><a href="#linux" rel="">Linux</a></li>
+<li><a href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c" rel="">计算机网络</a></li>
+<li><a href="#%e5%89%8d%e7%ab%af" rel="">前端</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="golang开发面经百度三轮技术面">【Golang开发面经】百度（三轮技术面）</h1>
 <h2 id="写在前面">写在前面</h2>
 <blockquote>
 <p>百度一顿面试下来感觉挺不错的，面试官水平很高，不愧是互联网的黄埔军校，技术都很硬。可能是我项目讲的不好吧，最终挂了。</p>
@@ -426,6 +464,65 @@ array，是数组，是值类型，长度不可变。</p>
         alt="https://img-blog.csdnimg.cn/463bf84e97a940f1b180781197c1e8bb.png"
         title="在这里插入图片描述" /></p>
 <h2 id="算法交换二叉树左右节点">算法：交换二叉树左右节点</h2>
+<h2 id="百度面经">✨百度面经</h2>
+<p><a href="https://github.com/Mapshiny/CampusRecruit/blob/main/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/%E7%99%BE%E5%BA%A6/README.md?plain=1" target="_blank" rel="noopener noreffer">https://github.com/Mapshiny/CampusRecruit/blob/main/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/%E7%99%BE%E5%BA%A6/README.md?plain=1</a></p>
+<blockquote>
+<p>本文档主要记录百度面试的一些常见问题以及一些面试经验，按<a href="#common" rel="">通用</a>、<a href="#java" rel="">Java</a>、<a href="#cpp" rel="">C++</a>、<a href="#frontend" rel="">前端</a>、<a href="#linux" rel="">Linux</a>进行内容整理，希望能帮助到大家。</p>
+</blockquote>
+<h2 id="span-idcommon通用面经span"><span id="common">通用面经</span></h2>
+<ul>
+<li>项目中遇到了什么困难? 如何解决的?</li>
+<li>最近遇到过的困难？**注意：**不要小瞧这些生活问题，非常容易尬住回答不出！</li>
+<li>快速排序算法的原理是什么?</li>
+<li>Git</li>
+<li>介绍研究生期间的课题和项目</li>
+<li>实习内容</li>
+<li>哈希一般使用场景是什么，了解吗？</li>
+</ul>
+<h2 id="span-idjavajavaspan"><span id="java">Java</span></h2>
+<ul>
+<li>DAO层怎么开发的</li>
+<li>数据库表怎么设计的，表之间的关联怎么实现的</li>
+<li>项目里面用到了什么设计模式</li>
+<li>Kafka在项目里怎么用的</li>
+<li>Redis在项目里怎么用的，为什么用redis ？</li>
+<li>redis为什么这么快（从线程模型6.0之前和之后，多路复用select，poll和epoll，数据结构展开）</li>
+</ul>
+<h2 id="span-idcppccspan"><span id="cpp">C/C++</span></h2>
+<ul>
+<li>内存泄露，你是怎么定位的? gdb 调试定位到具体的模块，然后分析代码实现部分。</li>
+<li>malloc 和 new 区别？虚拟内存和物理内存</li>
+<li>左值右值</li>
+<li>内存对齐, 为什么要对齐？（计算机取数据按总线宽度进行取，一次取整个总线宽度的数据，对齐保证一次取完）</li>
+</ul>
+<h2 id="span-idlinuxlinuxspan"><span id="linux">Linux</span></h2>
+<ul>
+<li>Linux 下可以查看系统启动时间的命令 ？ 可以的命令：w，uptime，top；不可以的命令：ps。</li>
+<li>select, poll, epoll 的区别?</li>
+<li>查看进程的所有命令，根据文件名查找其所在目录，修改文件的权限</li>
+<li>线程和进程的区别</li>
+<li>线程之间如何通信的</li>
+</ul>
+<h2 id="span-idnet计算机网络span"><span id="net">计算机网络</span></h2>
+<ul>
+<li>粘包？Tcp是面向字节流的无边界协议</li>
+<li>http和https的区别？https是http的安全版，https需要证书，http不需要&hellip;TLS握手等</li>
+<li>拥塞控制和流量控制</li>
+<li>http状态码，知道的都说出来</li>
+<li>HTTP缓存了解吗？ 强缓存协商缓存区别？ last-midified有什么缺点？etag有什么缺点？</li>
+<li>HTTP2.0是如何解决“队头阻塞”的问题？</li>
+</ul>
+<h2 id="span-idfrontend前端span"><span id="frontend">前端</span></h2>
+<ul>
+<li>Webpack的loader和plugin的区别？</li>
+<li>前端监控了解吗？我以为是性能监控，面试官提醒是错误监控，然后我说了Vue中的三种方案</li>
+<li>webpack的source-map了解吗？</li>
+<li>HTTP长连接的缺点?为什么会有队头阻塞？</li>
+<li>说一下回流和重绘？</li>
+<li>CSS transform是如何减少回流和重绘的？ 回答了CSS3硬件加速</li>
+<li>那浏览器是如何开启硬件加速的呢？ 回答了浏览器多进程模型，GPU进程负责调度资源</li>
+<li>plugin在webpack中的内部运行机制了解吗？ 答了compiler事件钩子相关，但没说清楚，没达到面试官要求</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -450,7 +547,7 @@ array，是数组，是值类型，长度不可变。</p>
     </div>
 
     <div class="post-nav"><a href="/b.-b%E7%AB%99/" class="prev" rel="prev" title="interview-bz"><i class="fas fa-angle-left fa-fw"></i>interview-bz</a>
-            <a href="/221124/" class="next" rel="next" title="interview">interview<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/%E9%98%BF%E9%87%8C/" class="next" rel="next" title="interview-ali">interview-ali<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
