@@ -25,6 +25,6 @@ draft: true
 - [Lesson_15]()走进消息队列
 - [Lesson_16]()分布式定时任务
 - [Lesson_17]()认识存储&数据库
-- [Lesson_18]()深入理解ROBMS
+- [Lesson_18]()深入理解RDBMS
 - [Lesson_19]()Tos对象存储实战
 - [Lesson_20]()实操项目
