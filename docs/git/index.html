@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jefofrank.xyz\/git\/"
-        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "git","wordcount":  11565 ,
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "git","wordcount":  11859 ,
         "url": "https:\/\/jefofrank.xyz\/git\/","datePublished": "2022-05-31T14:55:58+08:00","dateModified": "2022-11-05T22:53:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-31 14:55:58">2022-05-31 14:55:58</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11565 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-31 14:55:58">2022-05-31 14:55:58</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11859 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="busuanzi_container_page_pv">
                     <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
                 </span>
@@ -129,6 +129,7 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#git-配置">git 配置</a></li>
         <li><a href="#git-tag">git tag</a></li>
         <li><a href="#git-merge">git merge</a></li>
         <li><a href="#git-rebase"><strong>git rebase</strong></a></li>
@@ -194,7 +195,41 @@ git pull：相当于是从远程获取最新版本并merge到本地</p>
 <p>注意：在 Git 2.23 版本中，引入了一个名为 git switch 的新命令，最终会取代 git checkout，因为 checkout 作为单个命令有点超载（它承载了很多独立的功能）。</p>
 <p>如果你想创建一个新的分支同时切换到新创建的分支的话，可以通过 git checkout -b <your-branch-name> 来实现。</p>
 <p>接下来咱们看看如何将两个分支合并到一起。就是说我们新建一个分支，在其上开发某个新功能，开发完成后再合并回主线。</p>
-<h3 id="git-tag">git tag</h3>
+<h3 id="git-配置">git 配置</h3>
+<p>配置 Git。我们直接执行如下命令配置 Git：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global user.name <span class="s2">&#34;JF-011101&#34;</span>    <span class="c1"># 用户名改成自己的</span>
+git config --global user.email <span class="s2">&#34;2838264218@qq.com&#34;</span>    <span class="c1"># 邮箱改成自己的</span>
+git config --global credential.helper store    <span class="c1"># 设置 Git，保存用户名和密码</span>
+git config --global core.longpaths <span class="nb">true</span> <span class="c1"># 解决 Git 中 &#39;Filename too long&#39; 的错误</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Git 中，我们会把非 ASCII 字符叫做 Unusual 字符。这类字符在 Git 输出到终端的时候默认是用 8 进制转义字符输出的（以防乱码），但现在的终端多数都支持直接显示非 ASCII 字符，所以我们可以关闭掉这个特性，具体的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global core.quotepath off
+</code></pre></td></tr></table>
+</div>
+</div><p>GitHub 限制最大只能克隆 100M 的单个文件，为了能够克隆大于 100M 的文件，我们还需要安装 Git Large File Storage，安装方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git lfs install --skip-repo
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="git-tag">git tag</h3>
 <p><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener noreffer">https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE</a></p>
 <h3 id="git-merge">git merge</h3>
 <div class="highlight"><div class="chroma">
@@ -531,6 +566,29 @@ git fetch origin :bugFix
 <p>pull 也可以用 source:destination 吗? 当然喽</p>
 <p>git pull origin main:foo
 它先在本地创建了一个叫 foo 的分支，从远程仓库中的 main 分支中下载提交记录，并合并到 foo，然后再 merge 到我们的当前检出的分支 bar 上。</p>
+<p>'&rsquo;'
+ssh-rsa AAAAB3NzaC1yc2E
+AAAADAQABAAABgQC95Cx07/
+jeLLFrSYSXWkrBefj1u2TUgPWwBVa
+/g/j+oCBPT1sQI3jNVRuGtnWpdHp
++ZyAS1+3lvPIThvYyomnFepRY/
+aqtV+3aqyRroq5e8QMF6ACeKhf
+H4FsVbkhaUxXRgIDWTgQ1BF9rsE
+qWqr9LHsn3UidGT40yGdrbDYFs+
+IG5Hbm8SdVhcq9wPNx/6RcctlTWq
+26Ptum84o4eXkOfDX9bQn3NgywNl
+H2qLeiVPI4uNdFSBFeaVcUaYs1Uc
+uGEZOVq3lEwvWqtPpRFvJW74Ptu0
+xogqe4zEPy0Duk8Bc2yAlo0pCpF6h
+7XOxWQRwErkbj1Gz53bTxCkFHD4d
+NuIAtY4dnTyP78NRmWEokMzYGFyd
+NgffcO/ZU2YaoFO9FlGAhRf3oBpPO
+Xd29fiBY0HaN5uRmJQWRgl2DuFumb
+zCoq7apbC/wGQoP5ALDA+fT5ngZyR
+CZFLWQTBfzkadpwMxfyZNq0Ok+nUr
+O1TvD520Ymyswg1EX0hZeIUQ9r4dE
+= ‘2838264218@bishe’
+'''</p>
 <h2 id="gitignore">gitignore</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/52885189" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/52885189</a></p>
 <h2 id="生成ssh密钥">生成ssh密钥</h2>
@@ -582,7 +640,7 @@ git fetch origin :bugFix
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
                 <span id="busuanzi_container_site_pv">
                     访问量 <span id="busuanzi_value_site_pv"></span> 次

@@ -773,7 +773,7 @@ java
 public class CreateOrderService {
 
   @Inject
-  private OrderDao orderDao; // 注入订单表的DAO
+  private OrderDao orderDao; // 注入订单表的DAO
   @Inject
   private ExecutorService executorService; //注入一个ExecutorService
 

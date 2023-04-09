@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="生产环境 生产质量的 Kubernetes 集群需要规划和准备。 如果你的 Kubernetes 集群是用来运行关键负载的，该集群必须被配置为弹性的（Resilient）。 本页面阐述你在安" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="生产环境 生产质量的 Kubernetes 集群需要规划和准备。 如果你的 Kubernetes 集群是用来运行关键负载的，该集群必须被配置为弹性的（Resilient）。 本页面阐述你在安"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" /><link rel="prev" href="https://jefofrank.xyz/%E5%BA%94%E7%94%A8/" /><link rel="next" href="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E7%BD%91%E7%BB%9C/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E5%85%A5%E9%97%A8\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  18089 ,
+        "url": "https:\/\/jefofrank.xyz\/%E5%85%A5%E9%97%A8\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 18089 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 37 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#生产环境">生产环境</a>
+      <ul>
+        <li><a href="#生产环境考量httpskubernetesiozh-cndocssetupproduction-environmentproduction-considerations">生产环境考量<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-considerations"></a></a></li>
+        <li><a href="#生产用集群安装httpskubernetesiozh-cndocssetupproduction-environmentproduction-cluster-setup">生产用集群安装<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-cluster-setup"></a></a>
+          <ul>
+            <li><a href="#生产用控制面httpskubernetesiozh-cndocssetupproduction-environmentproduction-control-plane">生产用控制面<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-control-plane"></a></a></li>
+            <li><a href="#生产用工作节点httpskubernetesiozh-cndocssetupproduction-environmentproduction-worker-nodes">生产用工作节点<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-worker-nodes"></a></a></li>
+            <li><a href="#生产级用户环境httpskubernetesiozh-cndocssetupproduction-environmentproduction-user-management">生产级用户环境<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-user-management"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#为负载资源设置约束httpskubernetesiozh-cndocssetupproduction-environmentset-limits-on-workload-resources">为负载资源设置约束<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#set-limits-on-workload-resources"></a></a></li>
+        <li><a href="#接下来httpskubernetesiozh-cndocssetupproduction-environmente68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+        <li><a href="#容器运行时">容器运行时</a>
+          <ul>
+            <li><a href="#安装和配置先决条件httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesinstall-and-configure-prerequisites">安装和配置先决条件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites"></a></a>
+              <ul>
+                <li><a href="#转发-ipv4-并让-iptables-看到桥接流量httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese8bdace58f91-ipv4-e5b9b6e8aea9-iptables-e79c8be588b0e6a1a5e68ea5e6b581e9878f">转发 IPv4 并让 iptables 看到桥接流量<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E8%BD%AC%E5%8F%91-ipv4-%E5%B9%B6%E8%AE%A9-iptables-%E7%9C%8B%E5%88%B0%E6%A1%A5%E6%8E%A5%E6%B5%81%E9%87%8F"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroup-drivers">cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroup-drivers"></a></a>
+              <ul>
+                <li><a href="#cgroupfs-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroupfs-cgroup-driver">cgroupfs 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroupfs-cgroup-driver"></a></a></li>
+                <li><a href="#systemd-cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimessystemd-cgroup-driver">systemd cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#systemd-cgroup-driver"></a></a></li>
+                <li><a href="#将-kubeadm-管理的集群迁移到-systemd-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese5b086-kubeadm-e7aea1e79086e79a84e99b86e7bea4e8bf81e7a7bbe588b0-systemd-e9a9b1e58aa8">将 kubeadm 管理的集群迁移到 <code>systemd</code> 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E5%B0%86-kubeadm-%E7%AE%A1%E7%90%86%E7%9A%84%E9%9B%86%E7%BE%A4%E8%BF%81%E7%A7%BB%E5%88%B0-systemd-%E9%A9%B1%E5%8A%A8"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#cri-版本支持httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescri-versions">CRI 版本支持<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-versions"></a></a></li>
+            <li><a href="#容器运行时httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese5aeb9e599a8e8bf90e8a18ce697b6">容器运行时<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6"></a></a>
+              <ul>
+                <li><a href="#containerdhttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescontainerd">containerd<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd"></a></a>
+                  <ul>
+                    <li><a href="#配置-systemd-cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescontainerd-systemd">配置 <code>systemd</code> cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd-systemd"></a></a></li>
+                    <li><a href="#重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-containerd">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-containerd"></a></a></li>
+                  </ul>
+                </li>
+                <li><a href="#cri-ohttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescri-o">CRI-O<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-o"></a></a>
+                  <ul>
+                    <li><a href="#cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroup-driver">cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroup-driver"></a></a></li>
+                    <li><a href="#重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-cri-o">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-cri-o"></a></a></li>
+                  </ul>
+                </li>
+                <li><a href="#docker-enginehttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesdocker">Docker Engine<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#docker"></a></a></li>
+                <li><a href="#mirantis-容器运行时httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesmcr">Mirantis 容器运行时<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#mcr"></a></a>
+                  <ul>
+                    <li><a href="#重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-cri-dockerd-mcr">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-cri-dockerd-mcr"></a></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#接下来httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#使用部署工具安装-kubernetes">使用部署工具安装 Kubernetes</a>
+          <ul>
+            <li><a href="#使用-kubeadm-引导集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/">使用 kubeadm 引导集群</a></a>
+              <ul>
+                <li><a href="#安装-kubeadmhttpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadminstall-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">安装 kubeadm</a></a></li>
+                <li><a href="#对-kubeadm-进行故障排查httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmtroubleshooting-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/">对 kubeadm 进行故障排查</a></a></li>
+                <li><a href="#使用-kubeadm-创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmcreate-cluster-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">使用 kubeadm 创建集群</a></a></li>
+                <li><a href="#使用-kubeadm-api-定制组件httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmcontrol-plane-flags"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/control-plane-flags/">使用 kubeadm API 定制组件</a></a></li>
+                <li><a href="#高可用拓扑选项httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmha-topology"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/ha-topology/">高可用拓扑选项</a></a></li>
+                <li><a href="#利用-kubeadm-创建高可用集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmhigh-availability"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/high-availability/">利用 kubeadm 创建高可用集群</a></a></li>
+                <li><a href="#使用-kubeadm-创建一个高可用-etcd-集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmsetup-ha-etcd-with-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/">使用 kubeadm 创建一个高可用 etcd 集群</a></a></li>
+                <li><a href="#使用-kubeadm-配置集群中的每个-kubelethttpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmkubelet-integration"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/kubelet-integration/">使用 kubeadm 配置集群中的每个 kubelet</a></a></li>
+                <li><a href="#使用-kubeadm-支持双协议栈httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmdual-stack-support"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/dual-stack-support/">使用 kubeadm 支持双协议栈</a></a></li>
+              </ul>
+            </li>
+            <li><a href="#使用-kops-安装-kuberneteshttpskubernetesiozh-cndocssetupproduction-environmenttoolskops"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/">使用 kOps 安装 Kubernetes</a></a>
+              <ul>
+                <li><a href="#准备开始httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+                <li><a href="#创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskopscreating-a-cluster">创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#creating-a-cluster"></a></a>
+                  <ul>
+                    <li><a href="#15-安装-kopshttpskubernetesiozh-cndocssetupproduction-environmenttoolskops1-5-e5ae89e8a385-kops">(1/5) 安装 kops<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#1-5-%E5%AE%89%E8%A3%85-kops"></a></a></li>
+                    <li><a href="#25-为你的集群创建一个-route53-域名httpskubernetesiozh-cndocssetupproduction-environmenttoolskops2-5-e4b8bae4bda0e79a84e99b86e7bea4e5889be5bbbae4b880e4b8aa-route53-e59f9fe5908d">(2/5) 为你的集群创建一个 route53 域名<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#2-5-%E4%B8%BA%E4%BD%A0%E7%9A%84%E9%9B%86%E7%BE%A4%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-route53-%E5%9F%9F%E5%90%8D"></a></a></li>
+                    <li><a href="#35-创建一个-s3-存储桶来存储集群状态httpskubernetesiozh-cndocssetupproduction-environmenttoolskops3-5-e5889be5bbbae4b880e4b8aa-s3-e5ad98e582a8e6a1b6e69da5e5ad98e582a8e99b86e7bea4e78ab6e68081">(3/5) 创建一个 S3 存储桶来存储集群状态<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#3-5-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-s3-%E5%AD%98%E5%82%A8%E6%A1%B6%E6%9D%A5%E5%AD%98%E5%82%A8%E9%9B%86%E7%BE%A4%E7%8A%B6%E6%80%81"></a></a></li>
+                    <li><a href="#45-建立你的集群配置httpskubernetesiozh-cndocssetupproduction-environmenttoolskops4-5-e5bbbae7ab8be4bda0e79a84e99b86e7bea4e9858de7bdae">(4/5) 建立你的集群配置<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#4-5-%E5%BB%BA%E7%AB%8B%E4%BD%A0%E7%9A%84%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"></a></a></li>
+                    <li><a href="#55-在-aws-中创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskops5-5-e59ca8-aws-e4b8ade5889be5bbbae99b86e7bea4">(5/5) 在 AWS 中创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#5-5-%E5%9C%A8-aws-%E4%B8%AD%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4"></a></a></li>
+                    <li><a href="#探索其他附加组件httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse68ea2e7b4a2e585b6e4bb96e99984e58aa0e7bb84e4bbb6">探索其他附加组件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E6%8E%A2%E7%B4%A2%E5%85%B6%E4%BB%96%E9%99%84%E5%8A%A0%E7%BB%84%E4%BB%B6"></a></a></li>
+                  </ul>
+                </li>
+                <li><a href="#清理httpskubernetesiozh-cndocssetupproduction-environmenttoolskopscleanup">清理<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#cleanup"></a></a></li>
+                <li><a href="#接下来httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#使用-kubespray-安装-kuberneteshttpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/">使用 Kubespray 安装 Kubernetes</a></a>
+              <ul>
+                <li><a href="#创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycreating-a-cluster">创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#creating-a-cluster"></a></a>
+                  <ul>
+                    <li><a href="#15满足下层设施要求httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray1-5-e6bba1e8b6b3e4b88be5b182e8aebee696bde8a681e6b182">（1/5）满足下层设施要求<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#1-5-%E6%BB%A1%E8%B6%B3%E4%B8%8B%E5%B1%82%E8%AE%BE%E6%96%BD%E8%A6%81%E6%B1%82"></a></a></li>
+                    <li><a href="#25编写清单文件httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray2-5-e7bc96e58699e6b885e58d95e69687e4bbb6">（2/5）编写清单文件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#2-5-%E7%BC%96%E5%86%99%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6"></a></a></li>
+                    <li><a href="#35规划集群部署httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray3-5-e8a784e58892e99b86e7bea4e983a8e7bdb2">（3/5）规划集群部署<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#3-5-%E8%A7%84%E5%88%92%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"></a></a></li>
+                    <li><a href="#45部署集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray4-5-e983a8e7bdb2e99b86e7bea4">（4/5）部署集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#4-5-%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4"></a></a></li>
+                    <li><a href="#55验证部署httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray5-5-e9aa8ce8af81e983a8e7bdb2">（5/5）验证部署<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#5-5-%E9%AA%8C%E8%AF%81%E9%83%A8%E7%BD%B2"></a></a></li>
+                  </ul>
+                </li>
+                <li><a href="#集群操作httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycluster-operations">集群操作<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#cluster-operations"></a></a>
+                  <ul>
+                    <li><a href="#扩展集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayscale-your-cluster">扩展集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#scale-your-cluster"></a></a></li>
+                    <li><a href="#升级集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayupgrade-your-cluster">升级集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#upgrade-your-cluster"></a></a></li>
+                  </ul>
+                </li>
+                <li><a href="#清理httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycleanup">清理<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#cleanup"></a></a></li>
+                <li><a href="#反馈httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayfeedback">反馈<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#feedback"></a></a></li>
+                <li><a href="#接下来httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraye68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#最佳实践">最佳实践</a>
+      <ul>
+        <li><a href="#大规模集群的注意事项httpskubernetesiozh-cndocssetupbest-practicescluster-large"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/">大规模集群的注意事项</a></a>
+          <ul>
+            <li><a href="#云供应商资源配额httpskubernetesiozh-cndocssetupbest-practicescluster-largequota-issues">云供应商资源配额<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#quota-issues"></a></a></li>
+            <li><a href="#控制面组件httpskubernetesiozh-cndocssetupbest-practicescluster-largecontrol-plane-components">控制面组件<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#control-plane-components"></a></a>
+              <ul>
+                <li><a href="#etcd-存储httpskubernetesiozh-cndocssetupbest-practicescluster-largeetcd-storage">etcd 存储<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#etcd-storage"></a></a></li>
+                <li><a href="#插件资源httpskubernetesiozh-cndocssetupbest-practicescluster-largeaddon-resources">插件资源<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#addon-resources"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#接下来httpskubernetesiozh-cndocssetupbest-practicescluster-largee68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#运行于多可用区环境httpskubernetesiozh-cndocssetupbest-practicesmultiple-zones"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/">运行于多可用区环境</a></a>
+          <ul>
+            <li><a href="#背景httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese8838ce699af">背景<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E8%83%8C%E6%99%AF"></a></a></li>
+            <li><a href="#控制面行为httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonescontrol-plane-behavior">控制面行为<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#control-plane-behavior"></a></a></li>
+            <li><a href="#节点行为httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesnode-behavior">节点行为<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#node-behavior"></a></a>
+              <ul>
+                <li><a href="#跨多个区分布节点httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesdistributing-nodes-across-zones">跨多个区分布节点<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#distributing-nodes-across-zones"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#为-pods-手动指定区httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese4b8ba-pods-e6898be58aa8e68c87e5ae9ae58cba">为 Pods 手动指定区<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E4%B8%BA-pods-%E6%89%8B%E5%8A%A8%E6%8C%87%E5%AE%9A%E5%8C%BA"></a></a></li>
+            <li><a href="#跨区的存储访问httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese8b7a8e58cbae79a84e5ad98e582a8e8aebfe997ae">跨区的存储访问<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E8%B7%A8%E5%8C%BA%E7%9A%84%E5%AD%98%E5%82%A8%E8%AE%BF%E9%97%AE"></a></a></li>
+            <li><a href="#网络httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesnetworking">网络<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#networking"></a></a></li>
+            <li><a href="#失效恢复httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesfault-recovery">失效恢复<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#fault-recovery"></a></a></li>
+            <li><a href="#接下来httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#校验节点设置httpskubernetesiozh-cndocssetupbest-practicesnode-conformance"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/">校验节点设置</a></a>
+          <ul>
+            <li><a href="#节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancenode-conformance-test">节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-conformance-test"></a></a></li>
+            <li><a href="#节点的前提条件httpskubernetesiozh-cndocssetupbest-practicesnode-conformancenode-prerequisite">节点的前提条件<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-prerequisite"></a></a></li>
+            <li><a href="#运行节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-node-conformance-test">运行节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test"></a></a></li>
+            <li><a href="#针对其他硬件体系结构运行节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-node-conformance-test-for-other-architectures">针对其他硬件体系结构运行节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test-for-other-architectures"></a></a></li>
+            <li><a href="#运行特定的测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-selected-test">运行特定的测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-selected-test"></a></a></li>
+            <li><a href="#注意事项httpskubernetesiozh-cndocssetupbest-practicesnode-conformancecaveats">注意事项<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#caveats"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#强制实施-pod-安全性标准httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standards"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/">强制实施 Pod 安全性标准</a></a>
+          <ul>
+            <li><a href="#使用内置的-pod-安全性准入控制器httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse4bdbfe794a8e58685e7bdaee79a84-pod-e5ae89e585a8e680a7e58786e585a5e68ea7e588b6e599a8">使用内置的 Pod 安全性准入控制器<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84-pod-%E5%AE%89%E5%85%A8%E6%80%A7%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%E5%99%A8"></a></a>
+              <ul>
+                <li><a href="#配置所有集群名字空间httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardsconfigure-all-cluster-namespaces">配置所有集群名字空间<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#configure-all-cluster-namespaces"></a></a></li>
+                <li><a href="#拥抱最小特权原则httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse68ba5e68ab1e69c80e5b08fe789b9e69d83e58e9fe58899">拥抱最小特权原则<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E6%8B%A5%E6%8A%B1%E6%9C%80%E5%B0%8F%E7%89%B9%E6%9D%83%E5%8E%9F%E5%88%99"></a></a></li>
+                <li><a href="#采用多种模式的策略httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse98787e794a8e5a49ae7a78de6a8a1e5bc8fe79a84e7ad96e795a5">采用多种模式的策略<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E9%87%87%E7%94%A8%E5%A4%9A%E7%A7%8D%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%AD%96%E7%95%A5"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#第三方替代方案httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardsthird-party-alternatives">第三方替代方案<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#third-party-alternatives"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#pki-证书和要求httpskubernetesiozh-cndocssetupbest-practicescertificates"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/">PKI 证书和要求</a></a>
+          <ul>
+            <li><a href="#集群是如何使用证书的httpskubernetesiozh-cndocssetupbest-practicescertificateshow-certificates-are-used-by-your-cluster">集群是如何使用证书的<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#how-certificates-are-used-by-your-cluster"></a></a></li>
+            <li><a href="#证书存放的位置httpskubernetesiozh-cndocssetupbest-practicescertificateswhere-certificates-are-stored">证书存放的位置<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#where-certificates-are-stored"></a></a></li>
+            <li><a href="#手动配置证书httpskubernetesiozh-cndocssetupbest-practicescertificatesconfigure-certificates-manually">手动配置证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#configure-certificates-manually"></a></a>
+              <ul>
+                <li><a href="#单根-cahttpskubernetesiozh-cndocssetupbest-practicescertificatessingle-root-ca">单根 CA<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#single-root-ca"></a></a></li>
+                <li><a href="#所有的证书httpskubernetesiozh-cndocssetupbest-practicescertificatesall-certificates">所有的证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#all-certificates"></a></a></li>
+                <li><a href="#证书路径httpskubernetesiozh-cndocssetupbest-practicescertificatescertificate-paths">证书路径<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#certificate-paths"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#为用户帐户配置证书httpskubernetesiozh-cndocssetupbest-practicescertificatesconfigure-certificates-for-user-accounts">为用户帐户配置证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#configure-certificates-for-user-accounts"></a></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="生产环境">生产环境</h2>
+<p>生产质量的 Kubernetes 集群需要规划和准备。 如果你的 Kubernetes 集群是用来运行关键负载的，该集群必须被配置为弹性的（Resilient）。 本页面阐述你在安装生产就绪的集群或将现有集群升级为生产用途时可以遵循的步骤。 如果你已经熟悉生产环境安装，因此只关注一些链接，则可以跳到<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#what-s-next" target="_blank" rel="noopener noreffer">接下来</a>节。</p>
+<h3 id="生产环境考量httpskubernetesiozh-cndocssetupproduction-environmentproduction-considerations">生产环境考量<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-considerations" target="_blank" rel="noopener noreffer"></a></h3>
+<p>通常，一个生产用 Kubernetes 集群环境与个人学习、开发或测试环境所使用的 Kubernetes 相比有更多的需求。 生产环境可能需要被很多用户安全地访问，需要提供一致的可用性，以及能够与需求变化相适配的资源。</p>
+<p>在你决定在何处运行你的生产用 Kubernetes 环境（在本地或者在云端）， 以及你希望承担或交由他人承担的管理工作量时， 需要考察以下因素如何影响你对 Kubernetes 集群的需求：</p>
+<ul>
+<li>
+<p><strong>可用性</strong>：一个单机的 Kubernetes <a href="https://kubernetes.io/zh-cn/docs/setup/#%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener noreffer">学习环境</a> 具有单点失效特点。创建高可用的集群则意味着需要考虑：</p>
+<ul>
+<li>将控制面与工作节点分开</li>
+<li>在多个节点上提供控制面组件的副本</li>
+<li>为针对集群的 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/#kube-apiserver" target="_blank" rel="noopener noreffer">API 服务器</a> 的流量提供负载均衡</li>
+<li>随着负载的合理需要，提供足够的可用的（或者能够迅速变为可用的）工作节点</li>
+</ul>
+</li>
+<li>
+<p><strong>规模</strong>：如果你预期你的生产用 Kubernetes 环境要承受固定量的请求， 你可能可以针对所需要的容量来一次性完成安装。 不过，如果你预期服务请求会随着时间增长，或者因为类似季节或者特殊事件的原因而发生剧烈变化， 你就需要规划如何处理请求上升时对控制面和工作节点的压力，或者如何缩减集群规模以减少未使用资源的消耗。</p>
+</li>
+<li>
+<p><strong>安全性与访问管理</strong>：在你自己的学习环境 Kubernetes 集群上，你拥有完全的管理员特权。 但是针对运行着重要工作负载的共享集群，用户账户不止一两个时， 就需要更细粒度的方案来确定谁或者哪些主体可以访问集群资源。 你可以使用基于角色的访问控制（<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/rbac/" target="_blank" rel="noopener noreffer">RBAC</a>） 和其他安全机制来确保用户和负载能够访问到所需要的资源， 同时确保工作负载及集群自身仍然是安全的。 你可以通过管理<a href="https://kubernetes.io/zh-cn/docs/concepts/policy/" target="_blank" rel="noopener noreffer">策略</a>和 <a href="https://kubernetes.io/zh-cn/docs/concepts/configuration/manage-resources-containers" target="_blank" rel="noopener noreffer">容器资源</a> 来针对用户和工作负载所可访问的资源设置约束。</p>
+</li>
+</ul>
+<p>在自行构建 Kubernetes 生产环境之前， 请考虑将这一任务的部分或者全部交给<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/turnkey-solutions" target="_blank" rel="noopener noreffer">云方案承包服务</a>提供商或者其他 <a href="https://kubernetes.io/zh-cn/partners/" target="_blank" rel="noopener noreffer">Kubernetes 合作伙伴</a>。选项有：</p>
+<ul>
+<li><strong>无服务</strong>：仅是在第三方设备上运行负载，完全不必管理集群本身。 你需要为 CPU 用量、内存和磁盘请求等付费。</li>
+<li><strong>托管控制面</strong>：让供应商决定集群控制面的规模和可用性，并负责打补丁和升级等操作。</li>
+<li><strong>托管工作节点</strong>：配置一个节点池来满足你的需要，由供应商来确保节点始终可用，并在需要的时候完成升级。</li>
+<li><strong>集成</strong>：有一些供应商能够将 Kubernetes 与一些你可能需要的其他服务集成， 这类服务包括存储、容器镜像仓库、身份认证方法以及开发工具等。</li>
+</ul>
+<p>无论你是自行构造一个生产用 Kubernetes 集群还是与合作伙伴一起协作， 请审阅下面章节以评估你的需求，因为这关系到你的集群的<strong>控制面</strong>、<strong>工作节点</strong>、<strong>用户访问</strong>以及<strong>负载资源</strong>。</p>
+<h3 id="生产用集群安装httpskubernetesiozh-cndocssetupproduction-environmentproduction-cluster-setup">生产用集群安装<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-cluster-setup" target="_blank" rel="noopener noreffer"></a></h3>
+<p>在生产质量的 Kubernetes 集群中，控制面用不同的方式来管理集群和可以分布到多个计算机上的服务。 每个工作节点则代表的是一个可配置来运行 Kubernetes Pod 的实体。</p>
+<h4 id="生产用控制面httpskubernetesiozh-cndocssetupproduction-environmentproduction-control-plane">生产用控制面<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-control-plane" target="_blank" rel="noopener noreffer"></a></h4>
+<p>最简单的 Kubernetes 集群中，整个控制面和工作节点服务都运行在同一台机器上。 你可以通过添加工作节点来提升环境运算能力，正如 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/" target="_blank" rel="noopener noreffer">Kubernetes 组件</a>示意图所示。 如果只需要集群在很短的一段时间内可用，或者可以在某些事物出现严重问题时直接丢弃， 这种配置可能符合你的需要。</p>
+<p>如果你需要一个更为持久的、高可用的集群，那么就需要考虑扩展控制面的方式。 根据设计，运行在一台机器上的单机控制面服务不是高可用的。 如果你认为保持集群的正常运行并需要确保它在出错时可以被修复是很重要的， 可以考虑以下步骤：</p>
+<ul>
+<li>
+<p><strong>选择部署工具</strong>：你可以使用类似 kubeadm、kops 和 kubespray 这类工具来部署控制面。 参阅<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/" target="_blank" rel="noopener noreffer">使用部署工具安装 Kubernetes</a> 以了解使用这类部署方法来完成生产就绪部署的技巧。 存在不同的<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/" target="_blank" rel="noopener noreffer">容器运行时</a> 可供你的部署采用。</p>
+</li>
+<li>
+<p><strong>管理证书</strong>：控制面服务之间的安全通信是通过证书来完成的。 证书是在部署期间自动生成的，或者你也可以使用自己的证书机构来生成它们。 参阅 <a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/" target="_blank" rel="noopener noreffer">PKI 证书和需求</a>了解细节。</p>
+</li>
+<li>
+<p><strong>为 API 服务器配置负载均衡</strong>：配置负载均衡器来将外部的 API 请求散布给运行在不同节点上的 API 服务实例。 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/create-external-load-balancer/" target="_blank" rel="noopener noreffer">创建外部负载均衡器</a>了解细节。</p>
+</li>
+<li>
+<p><strong>分离并备份 etcd 服务</strong>：etcd 服务可以运行于其他控制面服务所在的机器上， 也可以运行在不同的机器上以获得更好的安全性和可用性。 因为 etcd 存储着集群的配置数据，应该经常性地对 etcd 数据库进行备份， 以确保在需要的时候你可以修复该数据库。与配置和使用 etcd 相关的细节可参阅 <a href="https://kubernetes.io/https://etcd.io/docs/v3.5/faq/" target="_blank" rel="noopener noreffer">etcd FAQ</a>。 更多的细节可参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank" rel="noopener noreffer">为 Kubernetes 运维 etcd 集群</a> 和<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/" target="_blank" rel="noopener noreffer">使用 kubeadm 配置高可用的 etcd 集群</a>。</p>
+</li>
+<li>
+<p><strong>创建多控制面系统</strong>：为了实现高可用性，控制面不应被限制在一台机器上。 如果控制面服务是使用某 init 服务（例如 systemd）来运行的，每个服务应该至少运行在三台机器上。 不过，将控制面作为服务运行在 Kubernetes Pod 中可以确保你所请求的个数的服务始终保持可用。 调度器应该是可容错的，但不是高可用的。 某些部署工具会安装 <a href="https://raft.github.io/" target="_blank" rel="noopener noreffer">Raft</a> 票选算法来对 Kubernetes 服务执行领导者选举。 如果主节点消失，另一个服务会被选中并接手相应服务。</p>
+</li>
+<li>
+<p><strong>跨多个可用区</strong>：如果保持你的集群一直可用这点非常重要，可以考虑创建一个跨多个数据中心的集群； 在云环境中，这些数据中心被视为可用区。若干个可用区在一起可构成地理区域。 通过将集群分散到同一区域中的多个可用区内，即使某个可用区不可用，整个集群能够继续工作的机会也大大增加。 更多的细节可参阅<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/" target="_blank" rel="noopener noreffer">跨多个可用区运行</a>。</p>
+</li>
+<li>
+<p><strong>管理演进中的特性</strong>：如果你计划长时间保留你的集群，就需要执行一些维护其健康和安全的任务。 例如，如果你采用 kubeadm 安装的集群， 则有一些可以帮助你完成 <a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/" target="_blank" rel="noopener noreffer">证书管理</a> 和<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade" target="_blank" rel="noopener noreffer">升级 kubeadm 集群</a> 的指令。 参见<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster" target="_blank" rel="noopener noreffer">管理集群</a>了解一个 Kubernetes 管理任务的较长列表。</p>
+</li>
+</ul>
+<p>如要了解运行控制面服务时可使用的选项，可参阅 <a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-apiserver/" target="_blank" rel="noopener noreffer">kube-apiserver</a>、 <a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank" rel="noopener noreffer">kube-controller-manager</a> 和 <a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-scheduler/" target="_blank" rel="noopener noreffer">kube-scheduler</a> 组件参考页面。 如要了解高可用控制面的例子，可参阅<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/ha-topology/" target="_blank" rel="noopener noreffer">高可用拓扑结构选项</a>、 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/high-availability/" target="_blank" rel="noopener noreffer">使用 kubeadm 创建高可用集群</a> 以及<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank" rel="noopener noreffer">为 Kubernetes 运维 etcd 集群</a>。 关于制定 etcd 备份计划，可参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster" target="_blank" rel="noopener noreffer">对 etcd 集群执行备份</a>。</p>
+<h4 id="生产用工作节点httpskubernetesiozh-cndocssetupproduction-environmentproduction-worker-nodes">生产用工作节点<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-worker-nodes" target="_blank" rel="noopener noreffer"></a></h4>
+<p>生产质量的工作负载需要是弹性的；它们所依赖的其他组件（例如 CoreDNS）也需要是弹性的。 无论你是自行管理控制面还是让云供应商来管理，你都需要考虑如何管理工作节点 （有时也简称为<strong>节点</strong>）。</p>
+<ul>
+<li>
+<p><strong>配置节点</strong>：节点可以是物理机或者虚拟机。如果你希望自行创建和管理节点， 你可以安装一个受支持的操作系统，之后添加并运行合适的<a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/#node-components" target="_blank" rel="noopener noreffer">节点服务</a>。考虑：</p>
+<ul>
+<li>在安装节点时要通过配置适当的内存、CPU 和磁盘读写速率、存储容量来满足你的负载的需求。</li>
+<li>是否通用的计算机系统即足够，还是你有负载需要使用 GPU 处理器、Windows 节点或者 VM 隔离。</li>
+</ul>
+</li>
+<li>
+<p><strong>验证节点</strong>：参阅<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/" target="_blank" rel="noopener noreffer">验证节点配置</a>以了解如何确保节点满足加入到 Kubernetes 集群的需求。</p>
+</li>
+<li>
+<p><strong>添加节点到集群中</strong>：如果你自行管理你的集群，你可以通过安装配置你的机器， 之后或者手动加入集群，或者让它们自动注册到集群的 API 服务器。 参阅<a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/nodes/" target="_blank" rel="noopener noreffer">节点</a>节，了解如何配置 Kubernetes 以便以这些方式来添加节点。</p>
+</li>
+<li>
+<p><strong>扩缩节点</strong>：制定一个扩充集群容量的规划，你的集群最终会需要这一能力。 参阅<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/" target="_blank" rel="noopener noreffer">大规模集群考察事项</a> 以确定你所需要的节点数； 这一规模是基于你要运行的 Pod 和容器个数来确定的。 如果你自行管理集群节点，这可能意味着要购买和安装你自己的物理设备。</p>
+</li>
+<li>
+<p><strong>节点自动扩缩容</strong>：大多数云供应商支持 <a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#readme" target="_blank" rel="noopener noreffer">集群自动扩缩器（Cluster Autoscaler）</a> 以便替换不健康的节点、根据需求来增加或缩减节点个数。 参阅<a href="https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md" target="_blank" rel="noopener noreffer">常见问题</a> 了解自动扩缩器的工作方式，并参阅 <a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#deployment" target="_blank" rel="noopener noreffer">Deployment</a> 了解不同云供应商是如何实现集群自动扩缩器的。 对于本地集群，有一些虚拟化平台可以通过脚本来控制按需启动新节点。</p>
+</li>
+<li>
+<p><strong>安装节点健康检查</strong>：对于重要的工作负载，你会希望确保节点以及在节点上运行的 Pod 处于健康状态。 通过使用 <a href="https://kubernetes.io/zh-cn/docs/tasks/debug/debug-cluster/monitor-node-health/" target="_blank" rel="noopener noreffer">Node Problem Detector</a>， 你可以确保你的节点是健康的。</p>
+</li>
+</ul>
+<h4 id="生产级用户环境httpskubernetesiozh-cndocssetupproduction-environmentproduction-user-management">生产级用户环境<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#production-user-management" target="_blank" rel="noopener noreffer"></a></h4>
+<p>在生产环境中，情况可能不再是你或者一小组人在访问集群，而是几十上百人需要访问集群。 在学习环境或者平台原型环境中，你可能具有一个可以执行任何操作的管理账号。 在生产环境中，你会需要对不同名字空间具有不同访问权限级别的很多账号。</p>
+<p>建立一个生产级别的集群意味着你需要决定如何有选择地允许其他用户访问集群。 具体而言，你需要选择验证尝试访问集群的人的身份标识（身份认证）， 并确定他们是否被许可执行他们所请求的操作（鉴权）：</p>
+<ul>
+<li>
+<p><strong>认证（Authentication）</strong>：API 服务器可以使用客户端证书、持有者令牌、 身份认证代理或者 HTTP 基本认证机制来完成身份认证操作。 你可以选择你要使用的认证方法。通过使用插件， API 服务器可以充分利用你所在组织的现有身份认证方法， 例如 LDAP 或者 Kerberos。 关于认证 Kubernetes 用户身份的不同方法的描述， 可参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/" target="_blank" rel="noopener noreffer">身份认证</a>。</p>
+</li>
+<li>
+<p><strong>鉴权（Authorization）</strong>：当你准备为一般用户执行权限判定时， 你可能会需要在 RBAC 和 ABAC 鉴权机制之间做出选择。 参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authorization/" target="_blank" rel="noopener noreffer">鉴权概述</a>， 了解对用户账户（以及访问你的集群的服务账户）执行鉴权的不同模式。</p>
+<ul>
+<li>
+<p><strong>基于角色的访问控制</strong>（<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/rbac/" target="_blank" rel="noopener noreffer">RBAC</a>）： 让你通过为通过身份认证的用户授权特定的许可集合来控制集群访问。 访问许可可以针对某特定名字空间（Role）或者针对整个集群（ClusterRole）。 通过使用 RoleBinding 和 ClusterRoleBinding 对象，这些访问许可可以被关联到特定的用户身上。</p>
+</li>
+<li>
+<p><strong>基于属性的访问控制</strong>（<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/abac/" target="_blank" rel="noopener noreffer">ABAC</a>）： 让你能够基于集群中资源的属性来创建访问控制策略，基于对应的属性来决定允许还是拒绝访问。 策略文件的每一行都给出版本属性（apiVersion 和 kind）以及一个规约属性的映射， 用来匹配主体（用户或组）、资源属性、非资源属性（/version 或 /apis）和只读属性。 参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/abac/#examples" target="_blank" rel="noopener noreffer">示例</a>以了解细节。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>作为在你的生产用 Kubernetes 集群中安装身份认证和鉴权机制的负责人，要考虑的事情如下：</p>
+<ul>
+<li>
+<p><strong>设置鉴权模式</strong>：当 Kubernetes API 服务器（<a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/" target="_blank" rel="noopener noreffer">kube-apiserver</a>）启动时， 所支持的鉴权模式必须使用 <code>--authorization-mode</code> 标志配置。 例如，<code>kube-apiserver.yaml</code>（位于 <code>/etc/kubernetes/manifests</code> 下）中对应的标志可以设置为 <code>Node,RBAC</code>。 这样就会针对已完成身份认证的请求执行 Node 和 RBAC 鉴权。</p>
+</li>
+<li>
+<p><strong>创建用户证书和角色绑定（RBAC）</strong>：如果你在使用 RBAC 鉴权，用户可以创建由集群 CA 签名的 CertificateSigningRequest（CSR）。接下来你就可以将 Role 和 ClusterRole 绑定到每个用户身上。 参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/certificate-signing-requests/" target="_blank" rel="noopener noreffer">证书签名请求</a>了解细节。</p>
+</li>
+<li>
+<p><strong>创建组合属性的策略（ABAC）</strong>：如果你在使用 ABAC 鉴权， 你可以设置属性组合以构造策略对所选用户或用户组执行鉴权， 判定他们是否可访问特定的资源（例如 Pod）、名字空间或者 apiGroup。 进一步的详细信息可参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/abac/#examples" target="_blank" rel="noopener noreffer">示例</a>。</p>
+</li>
+<li>
+<p><strong>考虑准入控制器</strong>：针对指向 API 服务器的请求的其他鉴权形式还包括 <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#webhook-token-authentication" target="_blank" rel="noopener noreffer">Webhook 令牌认证</a>。 Webhook 和其他特殊的鉴权类型需要通过向 API 服务器添加<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/" target="_blank" rel="noopener noreffer">准入控制器</a>来启用。</p>
+</li>
+</ul>
+<h3 id="为负载资源设置约束httpskubernetesiozh-cndocssetupproduction-environmentset-limits-on-workload-resources">为负载资源设置约束<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#set-limits-on-workload-resources" target="_blank" rel="noopener noreffer"></a></h3>
+<p>生产环境负载的需求可能对 Kubernetes 的控制面内外造成压力。 在针对你的集群的负载执行配置时，要考虑以下条目：</p>
+<ul>
+<li>
+<p><strong>设置名字空间限制</strong>：为每个名字空间的内存和 CPU 设置配额。 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/manage-resources/" target="_blank" rel="noopener noreffer">管理内存、CPU 和 API 资源</a>以了解细节。 你也可以设置<a href="https://kubernetes.io/blog/2020/08/14/introducing-hierarchical-namespaces/" target="_blank" rel="noopener noreffer">层次化名字空间</a>来继承这类约束。</p>
+</li>
+<li>
+<p><strong>为 DNS 请求做准备</strong>：如果你希望工作负载能够完成大规模扩展，你的 DNS 服务也必须能够扩大规模。 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/dns-horizontal-autoscaling/" target="_blank" rel="noopener noreffer">自动扩缩集群中 DNS 服务</a>。</p>
+</li>
+<li>
+<p><strong>创建额外的服务账户</strong>：用户账户决定用户可以在集群上执行的操作，服务账号则定义的是在特定名字空间中 Pod 的访问权限。默认情况下，Pod 使用所在名字空间中的 default 服务账号。 参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/service-accounts-admin/" target="_blank" rel="noopener noreffer">管理服务账号</a>以了解如何创建新的服务账号。 例如，你可能需要：</p>
+<ul>
+<li>为 Pod 添加 Secret，以便 Pod 能够从某特定的容器镜像仓库拉取镜像。 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-service-account/" target="_blank" rel="noopener noreffer">为 Pod 配置服务账号</a>以获得示例。</li>
+<li>为服务账号设置 RBAC 访问许可。参阅<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/rbac/#service-account-permissions" target="_blank" rel="noopener noreffer">服务账号访问许可</a>了解细节。</li>
+</ul>
+</li>
+</ul>
+<h3 id="接下来httpskubernetesiozh-cndocssetupproduction-environmente68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h3>
+<ul>
+<li>
+<p>决定你是想自行构造自己的生产用 Kubernetes， 还是从某可用的<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/turnkey-solutions/" target="_blank" rel="noopener noreffer">云服务外包厂商</a>或 <a href="https://kubernetes.io/zh-cn/partners/" target="_blank" rel="noopener noreffer">Kubernetes 合作伙伴</a>获得集群。</p>
+</li>
+<li>
+<p>如果你决定自行构造集群，则需要规划如何处理<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/" target="_blank" rel="noopener noreffer">证书</a>并为类似 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/" target="_blank" rel="noopener noreffer">etcd</a> 和 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/ha-topology/" target="_blank" rel="noopener noreffer">API 服务器</a>这些功能组件配置高可用能力。</p>
+</li>
+<li>
+<p>选择使用 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/" target="_blank" rel="noopener noreffer">kubeadm</a>、 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/" target="_blank" rel="noopener noreffer">kops</a> 或 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/" target="_blank" rel="noopener noreffer">Kubespray</a> 作为部署方法。</p>
+</li>
+<li>
+<p>通过决定<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/" target="_blank" rel="noopener noreffer">身份认证</a>和<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authorization/" target="_blank" rel="noopener noreffer">鉴权</a>方法来配置用户管理。</p>
+</li>
+<li>
+<p>通过配置<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/manage-resources/" target="_blank" rel="noopener noreffer">资源限制</a>、 <a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/dns-horizontal-autoscaling/" target="_blank" rel="noopener noreffer">DNS 自动扩缩</a>和<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/service-accounts-admin/" target="_blank" rel="noopener noreffer">服务账号</a>来为应用负载作准备。</p>
+</li>
+</ul>
+<h3 id="容器运行时">容器运行时</h3>
+<p><strong>说明：</strong> 自 1.24 版起，Dockershim 已从 Kubernetes 项目中移除。阅读 <a href="https://kubernetes.io/zh-cn/dockershim" target="_blank" rel="noopener noreffer">Dockershim 移除的常见问题</a>了解更多详情。</p>
+<p>你需要在集群内每个节点上安装一个 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes" target="_blank" rel="noopener noreffer">容器运行时</a> 以使 Pod 可以运行在上面。本文概述了所涉及的内容并描述了与节点设置相关的任务。</p>
+<p>Kubernetes 1.26 要求你使用符合<a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/#container-runtime" target="_blank" rel="noopener noreffer">容器运行时接口</a>（CRI）的运行时。</p>
+<p>有关详细信息，请参阅 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-versions" target="_blank" rel="noopener noreffer">CRI 版本支持</a>。 本页简要介绍在 Kubernetes 中几个常见的容器运行时的用法。</p>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd" target="_blank" rel="noopener noreffer">containerd</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-o" target="_blank" rel="noopener noreffer">CRI-O</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#docker" target="_blank" rel="noopener noreffer">Docker Engine</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#mcr" target="_blank" rel="noopener noreffer">Mirantis Container Runtime</a></li>
+</ul>
+<p><strong>说明：</strong></p>
+<p>v1.24 之前的 Kubernetes 版本直接集成了 Docker Engine 的一个组件，名为 <strong>dockershim</strong>。 这种特殊的直接整合不再是 Kubernetes 的一部分 （这次删除被作为 v1.20 发行版本的一部分<a href="https://kubernetes.io/zh-cn/blog/2020/12/08/kubernetes-1-20-release-announcement/#dockershim-deprecation" target="_blank" rel="noopener noreffer">宣布</a>）。</p>
+<p>你可以阅读<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/migrating-from-dockershim/check-if-dockershim-removal-affects-you/" target="_blank" rel="noopener noreffer">检查 Dockershim 移除是否会影响你</a>以了解此删除可能会如何影响你。 要了解如何使用 dockershim 进行迁移， 请参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/migrating-from-dockershim/" target="_blank" rel="noopener noreffer">从 dockershim 迁移</a>。</p>
+<p>如果你正在运行 v1.26 以外的 Kubernetes 版本，查看对应版本的文档。</p>
+<h4 id="安装和配置先决条件httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesinstall-and-configure-prerequisites">安装和配置先决条件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites" target="_blank" rel="noopener noreffer"></a></h4>
+<p>以下步骤将通用设置应用于 Linux 上的 Kubernetes 节点。</p>
+<p>如果你确定不需要某个特定设置，则可以跳过它。</p>
+<p>有关更多信息，请参阅<a href="https://kubernetes.io/zh-cn/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#network-plugin-requirements" target="_blank" rel="noopener noreffer">网络插件要求</a>或特定容器运行时的文档。</p>
+<h5 id="转发-ipv4-并让-iptables-看到桥接流量httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese8bdace58f91-ipv4-e5b9b6e8aea9-iptables-e79c8be588b0e6a1a5e68ea5e6b581e9878f">转发 IPv4 并让 iptables 看到桥接流量<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E8%BD%AC%E5%8F%91-ipv4-%E5%B9%B6%E8%AE%A9-iptables-%E7%9C%8B%E5%88%B0%E6%A1%A5%E6%8E%A5%E6%B5%81%E9%87%8F" target="_blank" rel="noopener noreffer"></a></h5>
+<p>执行下述指令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat <span class="s">&lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+</span><span class="s">overlay
+</span><span class="s">br_netfilter
+</span><span class="s">EOF</span>
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+<span class="c1"># 设置所需的 sysctl 参数，参数在重新启动后保持不变</span>
+cat <span class="s">&lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+</span><span class="s">net.bridge.bridge-nf-call-iptables  = 1
+</span><span class="s">net.bridge.bridge-nf-call-ip6tables = 1
+</span><span class="s">net.ipv4.ip_forward                 = 1
+</span><span class="s">EOF</span>
+
+<span class="c1"># 应用 sysctl 参数而不重新启动</span>
+sudo sysctl --system
+</code></pre></td></tr></table>
+</div>
+</div><p>通过运行以下指令确认 <code>br_netfilter</code> 和 <code>overlay</code> 模块被加载：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">lsmod <span class="p">|</span> grep br_netfilter
+lsmod <span class="p">|</span> grep overlay
+</code></pre></td></tr></table>
+</div>
+</div><p>通过运行以下指令确认 <code>net.bridge.bridge-nf-call-iptables</code>、<code>net.bridge.bridge-nf-call-ip6tables</code> 和 <code>net.ipv4.ip_forward</code> 系统变量在你的 <code>sysctl</code> 配置中被设置为 1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroup-drivers">cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroup-drivers" target="_blank" rel="noopener noreffer"></a></h4>
+<p>在 Linux 上，<a href="https://kubernetes.io/zh-cn/docs/reference/glossary/?all=true#term-cgroup" target="_blank" rel="noopener noreffer">控制组（CGroup）</a>用于限制分配给进程的资源。</p>
+<p><a href="https://kubernetes.io/docs/reference/generated/kubelet" target="_blank" rel="noopener noreffer">kubelet</a> 和底层容器运行时都需要对接控制组来强制执行 <a href="https://kubernetes.io/zh-cn/docs/concepts/configuration/manage-resources-containers/" target="_blank" rel="noopener noreffer">为 Pod 和容器管理资源</a> 并为诸如 CPU、内存这类资源设置请求和限制。若要对接控制组，kubelet 和容器运行时需要使用一个 <strong>cgroup 驱动</strong>。 关键的一点是 kubelet 和容器运行时需使用相同的 cgroup 驱动并且采用相同的配置。</p>
+<p>可用的 cgroup 驱动有两个：</p>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroupfs-cgroup-driver" target="_blank" rel="noopener noreffer"><code>cgroupfs</code></a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#systemd-cgroup-driver" target="_blank" rel="noopener noreffer"><code>systemd</code></a></li>
+</ul>
+<h5 id="cgroupfs-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroupfs-cgroup-driver">cgroupfs 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroupfs-cgroup-driver" target="_blank" rel="noopener noreffer"></a></h5>
+<p><code>cgroupfs</code> 驱动是 kubelet 中默认的 cgroup 驱动。当使用 <code>cgroupfs</code> 驱动时， kubelet 和容器运行时将直接对接 cgroup 文件系统来配置 cgroup。</p>
+<p>当 <a href="https://www.freedesktop.org/wiki/Software/systemd/" target="_blank" rel="noopener noreffer">systemd</a> 是初始化系统时， <strong>不</strong> 推荐使用 <code>cgroupfs</code> 驱动，因为 systemd 期望系统上只有一个 cgroup 管理器。 此外，如果你使用 <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/cgroups" target="_blank" rel="noopener noreffer">cgroup v2</a>， 则应用 <code>systemd</code> cgroup 驱动取代 <code>cgroupfs</code>。</p>
+<h5 id="systemd-cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimessystemd-cgroup-driver">systemd cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#systemd-cgroup-driver" target="_blank" rel="noopener noreffer"></a></h5>
+<p>当某个 Linux 系统发行版使用 <a href="https://www.freedesktop.org/wiki/Software/systemd/" target="_blank" rel="noopener noreffer">systemd</a> 作为其初始化系统时，初始化进程会生成并使用一个 root 控制组（<code>cgroup</code>），并充当 cgroup 管理器。</p>
+<p>systemd 与 cgroup 集成紧密，并将为每个 systemd 单元分配一个 cgroup。 因此，如果你 <code>systemd</code> 用作初始化系统，同时使用 <code>cgroupfs</code> 驱动，则系统中会存在两个不同的 cgroup 管理器。</p>
+<p>同时存在两个 cgroup 管理器将造成系统中针对可用的资源和使用中的资源出现两个视图。某些情况下， 将 kubelet 和容器运行时配置为使用 <code>cgroupfs</code>、但为剩余的进程使用 <code>systemd</code> 的那些节点将在资源压力增大时变得不稳定。</p>
+<p>当 systemd 是选定的初始化系统时，缓解这个不稳定问题的方法是针对 kubelet 和容器运行时将 <code>systemd</code> 用作 cgroup 驱动。</p>
+<p>要将 <code>systemd</code> 设置为 cgroup 驱动，需编辑 <a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubelet-config-file/" target="_blank" rel="noopener noreffer"><code>KubeletConfiguration</code></a> 的 <code>cgroupDriver</code> 选项，并将其设置为 <code>systemd</code>。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kubelet.config.k8s.io/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">KubeletConfiguration</span><span class="w">
+</span><span class="w"></span><span class="nn">...</span><span class="w">
+</span><span class="w"></span><span class="nt">cgroupDriver</span><span class="p">:</span><span class="w"> </span><span class="l">systemd</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>如果你将 <code>systemd</code> 配置为 kubelet 的 cgroup 驱动，你也必须将 <code>systemd</code> 配置为容器运行时的 cgroup 驱动。 参阅容器运行时文档，了解指示说明。例如：</p>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd-systemd" target="_blank" rel="noopener noreffer">containerd</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-o" target="_blank" rel="noopener noreffer">CRI-O</a></li>
+</ul>
+<p><strong>注意：</strong></p>
+<p>注意：更改已加入集群的节点的 cgroup 驱动是一项敏感的操作。 如果 kubelet 已经使用某 cgroup 驱动的语义创建了 Pod，更改运行时以使用别的 cgroup 驱动，当为现有 Pod 重新创建 PodSandbox 时会产生错误。 重启 kubelet 也可能无法解决此类问题。</p>
+<p>如果你有切实可行的自动化方案，使用其他已更新配置的节点来替换该节点， 或者使用自动化方案来重新安装。</p>
+<h5 id="将-kubeadm-管理的集群迁移到-systemd-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese5b086-kubeadm-e7aea1e79086e79a84e99b86e7bea4e8bf81e7a7bbe588b0-systemd-e9a9b1e58aa8">将 kubeadm 管理的集群迁移到 <code>systemd</code> 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E5%B0%86-kubeadm-%E7%AE%A1%E7%90%86%E7%9A%84%E9%9B%86%E7%BE%A4%E8%BF%81%E7%A7%BB%E5%88%B0-systemd-%E9%A9%B1%E5%8A%A8" target="_blank" rel="noopener noreffer"></a></h5>
+<p>如果你希望将现有的由 kubeadm 管理的集群迁移到 <code>systemd</code> cgroup 驱动， 请按照<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/" target="_blank" rel="noopener noreffer">配置 cgroup 驱动</a>操作。</p>
+<h4 id="cri-版本支持httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescri-versions">CRI 版本支持<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-versions" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你的容器运行时必须至少支持 v1alpha2 版本的容器运行时接口。</p>
+<p>Kubernetes 1.26 默认使用 v1 版本的 CRI API。如果容器运行时不支持 v1 版本的 API， 则 kubelet 会回退到使用（已弃用的）v1alpha2 版本的 API。</p>
+<h4 id="容器运行时httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese5aeb9e599a8e8bf90e8a18ce697b6">容器运行时<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6" target="_blank" rel="noopener noreffer"></a></h4>
+<p><strong>说明：</strong> 本部分链接到提供 Kubernetes 所需功能的第三方项目。Kubernetes 项目作者不负责这些项目。此页面遵循<a href="https://github.com/cncf/foundation/blob/master/website-guidelines.md" target="_blank" rel="noopener noreffer">CNCF 网站指南</a>，按字母顺序列出项目。要将项目添加到此列表中，请在提交更改之前阅读<a href="https://kubernetes.io/docs/contribute/style/content-guide/#third-party-content" target="_blank" rel="noopener noreffer">内容指南</a>。</p>
+<h5 id="containerdhttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescontainerd">containerd<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd" target="_blank" rel="noopener noreffer"></a></h5>
+<p>本节概述了使用 containerd 作为 CRI 运行时的必要步骤。</p>
+<p>使用以下命令在系统上安装 Containerd：</p>
+<p>按照<a href="https://github.com/containerd/containerd/blob/main/docs/getting-started.md" target="_blank" rel="noopener noreffer">开始使用 containerd</a> 的说明进行操作。 创建有效的配置文件 <code>config.toml</code> 后返回此步骤。</p>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%e6%89%be%e5%88%b0-config-toml-%e6%96%87%e4%bb%b6-0" target="_blank" rel="noopener noreffer">Linux</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%e6%89%be%e5%88%b0-config-toml-%e6%96%87%e4%bb%b6-1" target="_blank" rel="noopener noreffer">Windows</a></li>
+</ul>
+<p>你可以在路径 <code>/etc/containerd/config.toml</code> 下找到此文件。</p>
+<p>你可以在路径 <code>C:\Program Files\containerd\config.toml</code> 下找到此文件。</p>
+<p>在 Linux 上，containerd 的默认 CRI 套接字是 <code>/run/containerd/containerd.sock</code>。 在 Windows 上，默认 CRI 端点是 <code>npipe://./pipe/containerd-containerd</code>。</p>
+<h6 id="配置-systemd-cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescontainerd-systemd">配置 <code>systemd</code> cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#containerd-systemd" target="_blank" rel="noopener noreffer"></a></h6>
+<p>结合 <code>runc</code> 使用 <code>systemd</code> cgroup 驱动，在 <code>/etc/containerd/config.toml</code> 中设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[plugins.&#34;io.containerd.grpc.v1.cri&#34;.containerd.runtimes.runc]
+  ...
+  [plugins.&#34;io.containerd.grpc.v1.cri&#34;.containerd.runtimes.runc.options]
+    SystemdCgroup = true
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你使用 <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/cgroups" target="_blank" rel="noopener noreffer">cgroup v2</a>，则推荐 <code>systemd</code> cgroup 驱动。</p>
+<p><strong>说明：</strong></p>
+<p>如果你从软件包（例如，RPM 或者 <code>.deb</code>）中安装 containerd，你可能会发现其中默认禁止了 CRI 集成插件。</p>
+<p>你需要启用 CRI 支持才能在 Kubernetes 集群中使用 containerd。 要确保 <code>cri</code> 没有出现在 <code>/etc/containerd/config.toml</code> 文件中 <code>disabled_plugins</code> 列表内。如果你更改了这个文件，也请记得要重启 <code>containerd</code>。</p>
+<p>如果你在初次安装集群后或安装 CNI 后遇到容器崩溃循环，则随软件包提供的 containerd 配置可能包含不兼容的配置参数。考虑按照 <a href="https://github.com/containerd/containerd/blob/main/docs/getting-started.md#advanced-topics" target="_blank" rel="noopener noreffer">getting-started.md</a> 中指定的 <code>containerd config default &gt; /etc/containerd/config.toml</code> 重置 containerd 配置，然后相应地设置上述配置参数。</p>
+<p>如果你应用此更改，请确保重新启动 containerd：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo systemctl restart containerd
+</code></pre></td></tr></table>
+</div>
+</div><p>当使用 kubeadm 时，请手动配置 <a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/#configuring-the-kubelet-cgroup-driver" target="_blank" rel="noopener noreffer">kubelet 的 cgroup 驱动</a>。</p>
+<h6 id="重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-containerd">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-containerd" target="_blank" rel="noopener noreffer"></a></h6>
+<p>在你的 <a href="https://github.com/containerd/containerd/blob/main/docs/cri/config.md" target="_blank" rel="noopener noreffer">containerd 配置</a>中， 你可以通过设置以下选项重载沙箱镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">plugins</span><span class="p">.</span><span class="s2">&#34;io.containerd.grpc.v1.cri&#34;</span><span class="p">]</span>
+  <span class="nx">sandbox_image</span> <span class="p">=</span> <span class="s2">&#34;registry.k8s.io/pause:3.2&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一旦你更新了这个配置文件，可能就同样需要重启 <code>containerd</code>：<code>systemctl restart containerd</code>。</p>
+<h5 id="cri-ohttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescri-o">CRI-O<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cri-o" target="_blank" rel="noopener noreffer"></a></h5>
+<p>本节包含安装 CRI-O 作为容器运行时的必要步骤。</p>
+<p>要安装 CRI-O，请按照 <a href="https://github.com/cri-o/cri-o/blob/main/install.md#readme" target="_blank" rel="noopener noreffer">CRI-O 安装说明</a>执行操作。</p>
+<h6 id="cgroup-驱动httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimescgroup-driver">cgroup 驱动<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#cgroup-driver" target="_blank" rel="noopener noreffer"></a></h6>
+<p>CRI-O 默认使用 systemd cgroup 驱动，这对你来说可能工作得很好。 要切换到 <code>cgroupfs</code> cgroup 驱动，请编辑 <code>/etc/crio/crio.conf</code> 或在 <code>/etc/crio/crio.conf.d/02-cgroup-manager.conf</code> 中放置一个插入式配置，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">crio</span><span class="p">.</span><span class="nx">runtime</span><span class="p">]</span>
+<span class="nx">conmon_cgroup</span> <span class="p">=</span> <span class="s2">&#34;pod&#34;</span>
+<span class="nx">cgroup_manager</span> <span class="p">=</span> <span class="s2">&#34;cgroupfs&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你还应该注意当使用 CRI-O 时，并且 CRI-O 的 cgroup 设置为 <code>cgroupfs</code> 时，必须将 <code>conmon_cgroup</code> 设置为值 <code>pod</code>。 通常需要保持 kubelet 的 cgroup 驱动配置（通常通过 kubeadm 完成）和 CRI-O 同步。</p>
+<p>对于 CRI-O，CRI 套接字默认为 <code>/var/run/crio/crio.sock</code>。</p>
+<h6 id="重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-cri-o">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-cri-o" target="_blank" rel="noopener noreffer"></a></h6>
+<p>在你的 <a href="https://github.com/cri-o/cri-o/blob/main/docs/crio.conf.5.md" target="_blank" rel="noopener noreffer">CRI-O 配置</a>中， 你可以设置以下配置值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">crio</span><span class="p">.</span><span class="nx">image</span><span class="p">]</span>
+<span class="nx">pause_image</span><span class="p">=</span><span class="s2">&#34;registry.k8s.io/pause:3.6&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这一设置选项支持动态配置重加载来应用所做变更：<code>systemctl reload crio</code>。 也可以通过向 <code>crio</code> 进程发送 <code>SIGHUP</code> 信号来实现。</p>
+<h5 id="docker-enginehttpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesdocker">Docker Engine<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#docker" target="_blank" rel="noopener noreffer"></a></h5>
+<p><strong>说明：</strong></p>
+<p>以下操作假设你使用 <a href="https://github.com/Mirantis/cri-dockerd" target="_blank" rel="noopener noreffer"><code>cri-dockerd</code></a> 适配器来将 Docker Engine 与 Kubernetes 集成。</p>
+<ol>
+<li>
+<p>在你的每个节点上，遵循<a href="https://docs.docker.com/engine/install/#server" target="_blank" rel="noopener noreffer">安装 Docker Engine</a> 指南为你的 Linux 发行版安装 Docker。</p>
+</li>
+<li>
+<p>按照源代码仓库中的说明安装 <a href="https://github.com/Mirantis/cri-dockerd" target="_blank" rel="noopener noreffer"><code>cri-dockerd</code></a>。</p>
+</li>
+</ol>
+<p>对于 <code>cri-dockerd</code>，默认情况下，CRI 套接字是 <code>/run/cri-dockerd.sock</code>。</p>
+<h5 id="mirantis-容器运行时httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesmcr">Mirantis 容器运行时<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#mcr" target="_blank" rel="noopener noreffer"></a></h5>
+<p><a href="https://docs.mirantis.com/mcr/20.10/overview.html" target="_blank" rel="noopener noreffer">Mirantis Container Runtime</a> (MCR) 是一种商用容器运行时，以前称为 Docker 企业版。 你可以使用 MCR 中包含的开源 <a href="https://github.com/Mirantis/cri-dockerd" target="_blank" rel="noopener noreffer"><code>cri-dockerd</code></a> 组件将 Mirantis Container Runtime 与 Kubernetes 一起使用。</p>
+<p>要了解有关如何安装 Mirantis Container Runtime 的更多信息， 请访问 <a href="https://docs.mirantis.com/mcr/20.10/install.html" target="_blank" rel="noopener noreffer">MCR 部署指南</a>。</p>
+<p>检查名为 <code>cri-docker.socket</code> 的 systemd 单元以找出 CRI 套接字的路径。</p>
+<h6 id="重载沙箱pause镜像httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimesoverride-pause-image-cri-dockerd-mcr">重载沙箱（pause）镜像<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#override-pause-image-cri-dockerd-mcr" target="_blank" rel="noopener noreffer"></a></h6>
+<p><code>cri-dockerd</code> 适配器能够接受指定用作 Pod 的基础容器的容器镜像（“pause 镜像”）作为命令行参数。 要使用的命令行参数是 <code>--pod-infra-container-image</code>。</p>
+<h4 id="接下来httpskubernetesiozh-cndocssetupproduction-environmentcontainer-runtimese68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h4>
+<p>除了容器运行时，你的集群还需要有效的<a href="https://kubernetes.io/zh-cn/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model" target="_blank" rel="noopener noreffer">网络插件</a>。</p>
+<h3 id="使用部署工具安装-kubernetes">使用部署工具安装 Kubernetes</h3>
+<hr>
+<h4 id="使用-kubeadm-引导集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/" target="_blank" rel="noopener noreffer">使用 kubeadm 引导集群</a></h4>
+<h5 id="安装-kubeadmhttpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadminstall-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/" target="_blank" rel="noopener noreffer">安装 kubeadm</a></h5>
+<h5 id="对-kubeadm-进行故障排查httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmtroubleshooting-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/" target="_blank" rel="noopener noreffer">对 kubeadm 进行故障排查</a></h5>
+<h5 id="使用-kubeadm-创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmcreate-cluster-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/" target="_blank" rel="noopener noreffer">使用 kubeadm 创建集群</a></h5>
+<h5 id="使用-kubeadm-api-定制组件httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmcontrol-plane-flags"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/control-plane-flags/" target="_blank" rel="noopener noreffer">使用 kubeadm API 定制组件</a></h5>
+<h5 id="高可用拓扑选项httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmha-topology"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/ha-topology/" target="_blank" rel="noopener noreffer">高可用拓扑选项</a></h5>
+<h5 id="利用-kubeadm-创建高可用集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmhigh-availability"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/high-availability/" target="_blank" rel="noopener noreffer">利用 kubeadm 创建高可用集群</a></h5>
+<h5 id="使用-kubeadm-创建一个高可用-etcd-集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmsetup-ha-etcd-with-kubeadm"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/" target="_blank" rel="noopener noreffer">使用 kubeadm 创建一个高可用 etcd 集群</a></h5>
+<h5 id="使用-kubeadm-配置集群中的每个-kubelethttpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmkubelet-integration"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/kubelet-integration/" target="_blank" rel="noopener noreffer">使用 kubeadm 配置集群中的每个 kubelet</a></h5>
+<h5 id="使用-kubeadm-支持双协议栈httpskubernetesiozh-cndocssetupproduction-environmenttoolskubeadmdual-stack-support"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/dual-stack-support/" target="_blank" rel="noopener noreffer">使用 kubeadm 支持双协议栈</a></h5>
+<h4 id="使用-kops-安装-kuberneteshttpskubernetesiozh-cndocssetupproduction-environmenttoolskops"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/" target="_blank" rel="noopener noreffer">使用 kOps 安装 Kubernetes</a></h4>
+<p>本篇快速入门介绍了如何在 AWS 上轻松安装 Kubernetes 集群。 本篇使用了一个名为 <a href="https://github.com/kubernetes/kops" target="_blank" rel="noopener noreffer"><code>kOps</code></a> 的工具。</p>
+<p><code>kOps</code> 是一个自动化的制备系统：</p>
+<ul>
+<li>全自动安装流程</li>
+<li>使用 DNS 识别集群</li>
+<li>自我修复：一切都在自动扩缩组中运行</li>
+<li>支持多种操作系统（Amazon Linux、Debian、Flatcar、RHEL、Rocky 和 Ubuntu）， 参考 <a href="https://github.com/kubernetes/kops/blob/master/docs/operations/images.md" target="_blank" rel="noopener noreffer">images.md</a>。</li>
+<li>支持高可用，参考 <a href="https://github.com/kubernetes/kops/blob/master/docs/operations/high_availability.md" target="_blank" rel="noopener noreffer">high_availability.md</a>。</li>
+<li>可以直接提供或者生成 terraform 清单，参考 <a href="https://github.com/kubernetes/kops/blob/master/docs/terraform.md" target="_blank" rel="noopener noreffer">terraform.md</a>。</li>
+</ul>
+<h5 id="准备开始httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h5>
+<ul>
+<li>你必须安装 <a href="https://kubernetes.io/zh-cn/docs/tasks/tools/" target="_blank" rel="noopener noreffer">kubectl</a>。</li>
+<li>你必须安装<a href="https://github.com/kubernetes/kops#installing" target="_blank" rel="noopener noreffer">安装</a> <code>kops</code> 到 64 位的（AMD64 和 Intel 64）设备架构上。</li>
+<li>你必须拥有一个 <a href="https://docs.aws.amazon.com/zh_cn/polly/latest/dg/setting-up.html" target="_blank" rel="noopener noreffer">AWS 账户</a>， 生成 <a href="https://docs.aws.amazon.com/zh_cn/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys" target="_blank" rel="noopener noreffer">IAM 秘钥</a> 并<a href="https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration" target="_blank" rel="noopener noreffer">配置</a> 该秘钥。IAM 用户需要<a href="https://github.com/kubernetes/kops/blob/master/docs/getting_started/aws.md#setup-iam-user" target="_blank" rel="noopener noreffer">足够的权限许可</a>。</li>
+</ul>
+<h5 id="创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskopscreating-a-cluster">创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#creating-a-cluster" target="_blank" rel="noopener noreffer"></a></h5>
+<h6 id="15-安装-kopshttpskubernetesiozh-cndocssetupproduction-environmenttoolskops1-5-e5ae89e8a385-kops">(1/5) 安装 kops<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#1-5-%E5%AE%89%E8%A3%85-kops" target="_blank" rel="noopener noreffer"></a></h6>
+<p>####### 安装<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E5%AE%89%E8%A3%85" target="_blank" rel="noopener noreffer"></a></p>
+<p>从<a href="https://github.com/kubernetes/kops/releases" target="_blank" rel="noopener noreffer">下载页面</a>下载 kops （从源代码构建也很方便）：</p>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#kops-installation-0" target="_blank" rel="noopener noreffer">macOS</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#kops-installation-1" target="_blank" rel="noopener noreffer">Linux</a></li>
+</ul>
+<p>使用下面的命令下载最新发布版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/<span class="k">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d <span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>/kops-darwin-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>要下载特定版本，使用特定的 kops 版本替换下面命令中的部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="k">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d <span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例如，要下载 kops v1.20.0，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/v1.20.0/kops-darwin-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>令 kops 二进制文件可执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chmod +x kops-darwin-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>将 kops 二进制文件移到你的 PATH 下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo mv kops-darwin-amd64 /usr/local/bin/kops
+</code></pre></td></tr></table>
+</div>
+</div><p>你也可以使用 <a href="https://brew.sh/" target="_blank" rel="noopener noreffer">Homebrew</a> 安装 kops：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">brew update <span class="o">&amp;&amp;</span> brew install kops
+</code></pre></td></tr></table>
+</div>
+</div><p>使用命令下载最新发布版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/<span class="k">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d <span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>/kops-linux-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>要下载 kops 的特定版本，用特定的 kops 版本替换下面命令中的部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="k">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d <span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例如，要下载 kops v1.20 版本，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/v1.20.0/kops-linux-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>令 kops 二进制文件可执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chmod +x kops-linux-amd64
+</code></pre></td></tr></table>
+</div>
+</div><p>将 kops 二进制文件移到 PATH 下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo mv kops-linux-amd64 /usr/local/bin/kops
+</code></pre></td></tr></table>
+</div>
+</div><p>你也可以使用 <a href="https://docs.brew.sh/Homebrew-on-Linux" target="_blank" rel="noopener noreffer">Homebrew</a> 来安装 kops。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">brew update <span class="o">&amp;&amp;</span> brew install kops
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="25-为你的集群创建一个-route53-域名httpskubernetesiozh-cndocssetupproduction-environmenttoolskops2-5-e4b8bae4bda0e79a84e99b86e7bea4e5889be5bbbae4b880e4b8aa-route53-e59f9fe5908d">(2/5) 为你的集群创建一个 route53 域名<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#2-5-%E4%B8%BA%E4%BD%A0%E7%9A%84%E9%9B%86%E7%BE%A4%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-route53-%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener noreffer"></a></h6>
+<p>kops 在集群内部和外部都使用 DNS 进行发现操作，这样你可以从客户端访问 kubernetes API 服务器。</p>
+<p>kops 对集群名称有明显的要求：它应该是有效的 DNS 名称。这样一来，你就不会再使集群混乱， 可以与同事明确共享集群，并且无需依赖记住 IP 地址即可访问集群。</p>
+<p>你可以，或许应该使用子域名来划分集群。作为示例，我们将使用域名 <code>useast1.dev.example.com</code>。 这样，API 服务器端点域名将为 <code>api.useast1.dev.example.com</code>。</p>
+<p>Route53 托管区域可以服务子域名。你的托管区域可能是 <code>useast1.dev.example.com</code>，还有 <code>dev.example.com</code> 甚至 <code>example.com</code>。 kops 可以与以上任何一种配合使用，因此通常你出于组织原因选择不同的托管区域。 例如，允许你在 <code>dev.example.com</code> 下创建记录，但不能在 <code>example.com</code> 下创建记录。</p>
+<p>假设你使用 <code>dev.example.com</code> 作为托管区域。你可以使用 <a href="https://docs.aws.amazon.com/zh_cn/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html" target="_blank" rel="noopener noreffer">正常流程</a> 或者使用诸如 <code>aws route53 create-hosted-zone --name dev.example.com --caller-reference 1</code> 之类的命令来创建该托管区域。</p>
+<p>然后，你必须在父域名中设置你的 DNS 记录，以便该域名中的记录可以被解析。 在这里，你将在 <code>example.com</code> 中为 <code>dev</code> 创建 DNS 记录。 如果它是根域名，则可以在域名注册机构配置 DNS 记录。 例如，你需要在购买 <code>example.com</code> 的地方配置 <code>example.com</code>。</p>
+<p>检查你的 route53 域已经被正确设置（这是导致问题的最常见原因！）。 如果你安装了 dig 工具，则可以通过运行以下步骤再次检查集群是否配置正确：</p>
+<p><code>dig NS dev.example.com</code></p>
+<p>你应该看到 Route53 分配了你的托管区域的 4 条 DNS 记录。</p>
+<h6 id="35-创建一个-s3-存储桶来存储集群状态httpskubernetesiozh-cndocssetupproduction-environmenttoolskops3-5-e5889be5bbbae4b880e4b8aa-s3-e5ad98e582a8e6a1b6e69da5e5ad98e582a8e99b86e7bea4e78ab6e68081">(3/5) 创建一个 S3 存储桶来存储集群状态<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#3-5-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-s3-%E5%AD%98%E5%82%A8%E6%A1%B6%E6%9D%A5%E5%AD%98%E5%82%A8%E9%9B%86%E7%BE%A4%E7%8A%B6%E6%80%81" target="_blank" rel="noopener noreffer"></a></h6>
+<p>kops 使你即使在安装后也可以管理集群。为此，它必须跟踪已创建的集群及其配置、所使用的密钥等。 此信息存储在 S3 存储桶中。S3 权限用于控制对存储桶的访问。</p>
+<p>多个集群可以使用同一 S3 存储桶，并且你可以在管理同一集群的同事之间共享一个 S3 存储桶 - 这比传递 kubecfg 文件容易得多。 但是有权访问 S3 存储桶的任何人都将拥有对所有集群的管理访问权限， 因此你不想在运营团队之外共享它。</p>
+<p>因此，通常每个运维团队都有一个 S3 存储桶（而且名称通常对应于上面托管区域的名称！）</p>
+<p>在我们的示例中，我们选择 <code>dev.example.com</code> 作为托管区域，因此我们选择 <code>clusters.dev.example.com</code> 作为 S3 存储桶名称。</p>
+<ul>
+<li>导出 <code>AWS_PROFILE</code> 文件（如果你需要选择一个配置文件用来使 AWS CLI 正常工作）</li>
+<li>使用 <code>aws s3 mb s3://clusters.dev.example.com</code> 创建 S3 存储桶</li>
+<li>你可以进行 <code>export KOPS_STATE_STORE=s3://clusters.dev.example.com</code> 操作， 然后 kops 将默认使用此位置。 我们建议将其放入你的 bash profile 文件或类似文件中。</li>
+</ul>
+<h6 id="45-建立你的集群配置httpskubernetesiozh-cndocssetupproduction-environmenttoolskops4-5-e5bbbae7ab8be4bda0e79a84e99b86e7bea4e9858de7bdae">(4/5) 建立你的集群配置<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#4-5-%E5%BB%BA%E7%AB%8B%E4%BD%A0%E7%9A%84%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener noreffer"></a></h6>
+<p>运行 <code>kops create cluster</code> 以创建你的集群配置：</p>
+<p><code>kops create cluster --zones=us-east-1c useast1.dev.example.com</code></p>
+<p>kops 将为你的集群创建配置。请注意，它<strong>仅</strong>创建配置，实际上并没有创建云资源。 你将在下一步中使用 <code>kops update cluster</code> 进行创建。 这使你有机会查看配置或进行更改。</p>
+<p>它打印出可用于进一步探索的命令：</p>
+<ul>
+<li>使用以下命令列出集群：<code>kops get cluster</code></li>
+<li>使用以下命令编辑该集群：<code>kops edit cluster useast1.dev.example.com</code></li>
+<li>使用以下命令编辑你的节点实例组：<code>kops edit ig --name = useast1.dev.example.com nodes</code></li>
+<li>使用以下命令编辑你的主实例组：<code>kops edit ig --name = useast1.dev.example.com master-us-east-1c</code></li>
+</ul>
+<p>如果这是你第一次使用 kops，请花几分钟尝试一下！实例组是一组实例，将被注册为 Kubernetes 节点。 在 AWS 上，这是通过 auto-scaling-groups 实现的。你可以有多个实例组。 例如，你可能想要混合了 Spot 实例和按需实例的节点，或者混合了 GPU 实例和非 GPU 实例的节点。</p>
+<h6 id="55-在-aws-中创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskops5-5-e59ca8-aws-e4b8ade5889be5bbbae99b86e7bea4">(5/5) 在 AWS 中创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#5-5-%E5%9C%A8-aws-%E4%B8%AD%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4" target="_blank" rel="noopener noreffer"></a></h6>
+<p>运行 <code>kops update cluster</code> 以在 AWS 中创建集群：</p>
+<p><code>kops update cluster useast1.dev.example.com --yes</code></p>
+<p>这需要几秒钟的时间才能运行，但实际上集群可能需要几分钟才能准备就绪。 每当更改集群配置时，都会使用 <code>kops update cluster</code> 工具。 它将在集群中应用你对配置进行的更改，根据需要重新配置 AWS 或者 Kubernetes。</p>
+<p>例如，在你运行 <code>kops edit ig nodes</code> 之后，然后运行 <code>kops update cluster --yes</code> 应用你的配置，有时你还必须运行 <code>kops rolling-update cluster</code> 立即回滚更新配置。</p>
+<p>如果没有 <code>--yes</code> 参数，<code>kops update cluster</code> 操作将向你显示其操作的预览效果。这对于生产集群很方便！</p>
+<h6 id="探索其他附加组件httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse68ea2e7b4a2e585b6e4bb96e99984e58aa0e7bb84e4bbb6">探索其他附加组件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E6%8E%A2%E7%B4%A2%E5%85%B6%E4%BB%96%E9%99%84%E5%8A%A0%E7%BB%84%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h6>
+<p>请参阅<a href="https://kubernetes.io/zh-cn/docs/concepts/cluster-administration/addons/" target="_blank" rel="noopener noreffer">附加组件列表</a>探索其他附加组件， 包括用于 Kubernetes 集群的日志记录、监视、网络策略、可视化和控制的工具。</p>
+<h5 id="清理httpskubernetesiozh-cndocssetupproduction-environmenttoolskopscleanup">清理<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#cleanup" target="_blank" rel="noopener noreffer"></a></h5>
+<ul>
+<li>删除集群：<code>kops delete cluster useast1.dev.example.com --yes</code></li>
+</ul>
+<h5 id="接下来httpskubernetesiozh-cndocssetupproduction-environmenttoolskopse68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h5>
+<ul>
+<li>了解有关 Kubernetes 的<a href="https://kubernetes.io/zh-cn/docs/concepts/" target="_blank" rel="noopener noreffer">概念</a>和 <a href="https://kubernetes.io/zh-cn/docs/reference/kubectl/" target="_blank" rel="noopener noreffer"><code>kubectl</code></a> 的更多信息。</li>
+<li>参阅 <code>kOps</code> <a href="https://kops.sigs.k8s.io/" target="_blank" rel="noopener noreffer">进阶用法</a> 获取教程、最佳实践和进阶配置选项。</li>
+<li>通过 Slack：<a href="https://github.com/kubernetes/kops#other-ways-to-communicate-with-the-contributors" target="_blank" rel="noopener noreffer">社区讨论</a> 参与 <code>kOps</code> 社区讨论。</li>
+<li>通过解决或提出一个 <a href="https://github.com/kubernetes/kops/issues" target="_blank" rel="noopener noreffer">GitHub Issue</a> 来为 <code>kOps</code> 做贡献。</li>
+</ul>
+<h4 id="使用-kubespray-安装-kuberneteshttpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray"><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/" target="_blank" rel="noopener noreffer">使用 Kubespray 安装 Kubernetes</a></h4>
+<p>此快速入门有助于使用 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener noreffer">Kubespray</a> 安装在 GCE、Azure、OpenStack、AWS、vSphere、Equinix Metal（曾用名 Packet）、Oracle Cloud Infrastructure（实验性）或 Baremetal 上托管的 Kubernetes 集群。</p>
+<p>Kubespray 是由若干 <a href="https://docs.ansible.com/" target="_blank" rel="noopener noreffer">Ansible</a> Playbook、 <a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ansible.md#inventory" target="_blank" rel="noopener noreffer">清单（inventory）</a>、 制备工具和通用 OS/Kubernetes 集群配置管理任务的领域知识组成的。</p>
+<p>Kubespray 提供：</p>
+<ul>
+<li>高可用性集群</li>
+<li>可组合属性（例如可选择网络插件）</li>
+<li>支持大多数流行的 Linux 发行版
+<ul>
+<li>Flatcar Container Linux</li>
+<li>Debian Bullseye、Buster、Jessie、Stretch</li>
+<li>Ubuntu 16.04、18.04、20.04、22.04</li>
+<li>CentOS/RHEL 7、8、9</li>
+<li>Fedora 35、36</li>
+<li>Fedora CoreOS</li>
+<li>openSUSE Leap 15.x/Tumbleweed</li>
+<li>Oracle Linux 7、8、9</li>
+<li>Alma Linux 8、9</li>
+<li>Rocky Linux 8、9</li>
+<li>Kylin Linux Advanced Server V10</li>
+<li>Amazon Linux 2</li>
+</ul>
+</li>
+<li>持续集成测试</li>
+</ul>
+<p>要选择最适合你的用例的工具，请阅读 <a href="https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/" target="_blank" rel="noopener noreffer">kubeadm</a> 和 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kops/" target="_blank" rel="noopener noreffer">kops</a> 之间的<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/comparisons.md" target="_blank" rel="noopener noreffer">这份比较</a>。</p>
+<h5 id="创建集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycreating-a-cluster">创建集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#creating-a-cluster" target="_blank" rel="noopener noreffer"></a></h5>
+<h6 id="15满足下层设施要求httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray1-5-e6bba1e8b6b3e4b88be5b182e8aebee696bde8a681e6b182">（1/5）满足下层设施要求<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#1-5-%E6%BB%A1%E8%B6%B3%E4%B8%8B%E5%B1%82%E8%AE%BE%E6%96%BD%E8%A6%81%E6%B1%82" target="_blank" rel="noopener noreffer"></a></h6>
+<p>按以下<a href="https://github.com/kubernetes-sigs/kubespray#requirements" target="_blank" rel="noopener noreffer">要求</a>来配置服务器：</p>
+<ul>
+<li><strong>Kubernetes</strong> 的最低版本要求为 V1.22</li>
+<li><strong>在将运行 Ansible 命令的计算机上安装 Ansible v2.11（或更高版本）、Jinja 2.11（或更高版本）和 python-netaddr</strong></li>
+<li>目标服务器必须<strong>能够访问 Internet</strong> 才能拉取 Docker 镜像。否则， 需要其他配置（<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/offline-environment.md" target="_blank" rel="noopener noreffer">请参见离线环境</a>）</li>
+<li>目标服务器配置为允许 <strong>IPv4 转发</strong></li>
+<li>如果针对 Pod 和 Service 使用 IPv6，则目标服务器配置为允许 <strong>IPv6 转发</strong></li>
+<li><strong>防火墙不是由 kubespray 管理的</strong>。你需要根据需求设置适当的规则策略。为了避免部署过程中出现问题，可以禁用防火墙。</li>
+<li>如果从非 root 用户帐户运行 kubespray，则应在目标服务器中配置正确的特权升级方法并指定 <code>ansible_become</code> 标志或命令参数 <code>--become</code> 或 <code>-b</code></li>
+</ul>
+<p>Kubespray 提供以下实用程序来帮助你设置环境：</p>
+<ul>
+<li>为以下云驱动提供的 <a href="https://www.terraform.io/" target="_blank" rel="noopener noreffer">Terraform</a> 脚本：
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/kubespray/tree/master/contrib/terraform/aws" target="_blank" rel="noopener noreffer">AWS</a></li>
+<li><a href="https://github.com/kubernetes-sigs/kubespray/tree/master/contrib/terraform/openstack" target="_blank" rel="noopener noreffer">OpenStack</a></li>
+<li><a href="https://github.com/kubernetes-sigs/kubespray/tree/master/contrib/terraform/metal" target="_blank" rel="noopener noreffer">Equinix Metal</a></li>
+</ul>
+</li>
+</ul>
+<h6 id="25编写清单文件httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray2-5-e7bc96e58699e6b885e58d95e69687e4bbb6">（2/5）编写清单文件<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#2-5-%E7%BC%96%E5%86%99%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h6>
+<p>设置服务器后，请创建一个 <a href="https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html" target="_blank" rel="noopener noreffer">Ansible 的清单文件</a>。 你可以手动执行此操作，也可以通过动态清单脚本执行此操作。有关更多信息，请参阅 “<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#building-your-own-inventory" target="_blank" rel="noopener noreffer">建立你自己的清单</a>”。</p>
+<h6 id="35规划集群部署httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray3-5-e8a784e58892e99b86e7bea4e983a8e7bdb2">（3/5）规划集群部署<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#3-5-%E8%A7%84%E5%88%92%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener noreffer"></a></h6>
+<p>Kubespray 能够自定义部署的许多方面：</p>
+<ul>
+<li>选择部署模式： kubeadm 或非 kubeadm</li>
+<li>CNI（网络）插件</li>
+<li>DNS 配置</li>
+<li>控制平面的选择：本机/可执行文件或容器化</li>
+<li>组件版本</li>
+<li>Calico 路由反射器</li>
+<li>组件运行时选项
+<ul>
+<li><a href="https://docs.docker.com/engine/" target="_blank" rel="noopener noreffer">Docker</a></li>
+<li><a href="https://containerd.io/docs/" target="_blank" rel="noopener noreffer">containerd</a></li>
+<li><a href="https://cri-o.io/#what-is-cri-o" target="_blank" rel="noopener noreffer">CRI-O</a></li>
+</ul>
+</li>
+<li>证书生成方式</li>
+</ul>
+<p>可以修改<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html" target="_blank" rel="noopener noreffer">变量文件</a>以进行 Kubespray 定制。 如果你刚刚开始使用 Kubespray，请考虑使用 Kubespray 默认设置来部署你的集群并探索 Kubernetes。</p>
+<h6 id="45部署集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray4-5-e983a8e7bdb2e99b86e7bea4">（4/5）部署集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#4-5-%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4" target="_blank" rel="noopener noreffer"></a></h6>
+<p>接下来，部署你的集群：</p>
+<p>使用 <a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#starting-custom-deployment" target="_blank" rel="noopener noreffer">ansible-playbook</a> 进行集群部署。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ansible-playbook -i your/inventory/inventory.ini cluster.yml -b -v <span class="se">\
+</span><span class="se"></span>  --private-key<span class="o">=</span>~/.ssh/private_key
+</code></pre></td></tr></table>
+</div>
+</div><p>大型部署（超过 100 个节点） 可能需要<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/large-deployments.md" target="_blank" rel="noopener noreffer">特定的调整</a>， 以获得最佳效果。</p>
+<h6 id="55验证部署httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespray5-5-e9aa8ce8af81e983a8e7bdb2">（5/5）验证部署<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#5-5-%E9%AA%8C%E8%AF%81%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener noreffer"></a></h6>
+<p>Kubespray 提供了一种使用 <a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/netcheck.md" target="_blank" rel="noopener noreffer">Netchecker</a> 验证 Pod 间连接和 DNS 解析的方法。 Netchecker 确保 netchecker-agents Pod 可以解析 DNS 请求， 并在默认命名空间内对每个请求执行 ping 操作。 这些 Pod 模仿其他工作负载类似的行为，并用作集群运行状况指示器。</p>
+<h5 id="集群操作httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycluster-operations">集群操作<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#cluster-operations" target="_blank" rel="noopener noreffer"></a></h5>
+<p>Kubespray 提供了其他 Playbook 来管理集群： <strong>scale</strong> 和 <strong>upgrade</strong>。</p>
+<h6 id="扩展集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayscale-your-cluster">扩展集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#scale-your-cluster" target="_blank" rel="noopener noreffer"></a></h6>
+<p>你可以通过运行 scale playbook 向集群中添加工作节点。有关更多信息， 请参见 “<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#adding-nodes" target="_blank" rel="noopener noreffer">添加节点</a>”。 你可以通过运行 remove-node playbook 来从集群中删除工作节点。有关更多信息， 请参见 “<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#remove-nodes" target="_blank" rel="noopener noreffer">删除节点</a>”。</p>
+<h6 id="升级集群httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayupgrade-your-cluster">升级集群<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#upgrade-your-cluster" target="_blank" rel="noopener noreffer"></a></h6>
+<p>你可以通过运行 upgrade-cluster Playbook 来升级集群。有关更多信息，请参见 “<a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/upgrades.md" target="_blank" rel="noopener noreffer">升级</a>”。</p>
+<h5 id="清理httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraycleanup">清理<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#cleanup" target="_blank" rel="noopener noreffer"></a></h5>
+<p>你可以通过 <a href="https://github.com/kubernetes-sigs/kubespray/blob/master/reset.yml" target="_blank" rel="noopener noreffer">reset playbook</a> 重置节点并清除所有与 Kubespray 一起安装的组件。</p>
+<p><strong>注意：</strong></p>
+<p>运行 reset playbook 时，请确保不要意外地将生产集群作为目标！</p>
+<h5 id="反馈httpskubernetesiozh-cndocssetupproduction-environmenttoolskubesprayfeedback">反馈<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#feedback" target="_blank" rel="noopener noreffer"></a></h5>
+<ul>
+<li>Slack 频道：<a href="https://kubernetes.slack.com/messages/kubespray/" target="_blank" rel="noopener noreffer">#kubespray</a> （你可以在<a href="https://slack.k8s.io/" target="_blank" rel="noopener noreffer">此处</a>获得邀请）。</li>
+<li><a href="https://github.com/kubernetes-sigs/kubespray/issues" target="_blank" rel="noopener noreffer">GitHub 问题</a>。</li>
+</ul>
+<h5 id="接下来httpskubernetesiozh-cndocssetupproduction-environmenttoolskubespraye68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubespray/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h5>
+<ul>
+<li>查看有关 Kubespray 的 <a href="https://github.com/kubernetes-sigs/kubespray/blob/master/docs/roadmap.md" target="_blank" rel="noopener noreffer">路线图</a>的计划工作。</li>
+<li>查阅有关 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener noreffer">Kubespray</a> 的更多信息。</li>
+</ul>
+<h2 id="最佳实践">最佳实践</h2>
+<hr>
+<h3 id="大规模集群的注意事项httpskubernetesiozh-cndocssetupbest-practicescluster-large"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/" target="_blank" rel="noopener noreffer">大规模集群的注意事项</a></h3>
+<p>集群是运行 Kubernetes 代理的、 由<a href="https://kubernetes.io/zh-cn/docs/reference/glossary/?all=true#term-control-plane" target="_blank" rel="noopener noreffer">控制平面</a>管理的一组 <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/nodes/" target="_blank" rel="noopener noreffer">节点</a>（物理机或虚拟机）。 Kubernetes v1.26 单个集群支持的最大节点数为 5,000。 更具体地说，Kubernetes 旨在适应满足以下<strong>所有</strong>标准的配置：</p>
+<ul>
+<li>每个节点的 Pod 数量不超过 110</li>
+<li>节点数不超过 5,000</li>
+<li>Pod 总数不超过 150,000</li>
+<li>容器总数不超过 300,000</li>
+</ul>
+<p>你可以通过添加或删除节点来扩展集群。集群扩缩的方式取决于集群的部署方式。</p>
+<h4 id="云供应商资源配额httpskubernetesiozh-cndocssetupbest-practicescluster-largequota-issues">云供应商资源配额<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#quota-issues" target="_blank" rel="noopener noreffer"></a></h4>
+<p>为避免遇到云供应商配额问题，在创建具有大规模节点的集群时，请考虑以下事项：</p>
+<ul>
+<li>请求增加云资源的配额，例如：
+<ul>
+<li>计算实例</li>
+<li>CPU</li>
+<li>存储卷</li>
+<li>使用中的 IP 地址</li>
+<li>数据包过滤规则集</li>
+<li>负载均衡数量</li>
+<li>网络子网</li>
+<li>日志流</li>
+</ul>
+</li>
+<li>由于某些云供应商限制了创建新实例的速度，因此通过分批启动新节点来控制集群扩展操作，并在各批之间有一个暂停。</li>
+</ul>
+<h4 id="控制面组件httpskubernetesiozh-cndocssetupbest-practicescluster-largecontrol-plane-components">控制面组件<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#control-plane-components" target="_blank" rel="noopener noreffer"></a></h4>
+<p>对于大型集群，你需要一个具有足够计算能力和其他资源的控制平面。</p>
+<p>通常，你将在每个故障区域运行一个或两个控制平面实例， 先垂直缩放这些实例，然后在到达下降点（垂直）后再水平缩放。</p>
+<p>你应该在每个故障区域至少应运行一个实例，以提供容错能力。 Kubernetes 节点不会自动将流量引向相同故障区域中的控制平面端点。 但是，你的云供应商可能有自己的机制来执行此操作。</p>
+<p>例如，使用托管的负载均衡器时，你可以配置负载均衡器发送源自故障区域 <strong>A</strong> 中的 kubelet 和 Pod 的流量， 并将该流量仅定向到也位于区域 <strong>A</strong> 中的控制平面主机。 如果单个控制平面主机或端点故障区域 <strong>A</strong> 脱机，则意味着区域 <strong>A</strong> 中的节点的所有控制平面流量现在都在区域之间发送。 在每个区域中运行多个控制平面主机能降低出现这种结果的可能性。</p>
+<h5 id="etcd-存储httpskubernetesiozh-cndocssetupbest-practicescluster-largeetcd-storage">etcd 存储<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#etcd-storage" target="_blank" rel="noopener noreffer"></a></h5>
+<p>为了提高大规模集群的性能，你可以将事件对象存储在单独的专用 etcd 实例中。</p>
+<p>在创建集群时，你可以（使用自定义工具）：</p>
+<ul>
+<li>启动并配置额外的 etcd 实例</li>
+<li>配置 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/#kube-apiserver" target="_blank" rel="noopener noreffer">API 服务器</a>，将它用于存储事件</li>
+</ul>
+<p>有关为大型集群配置和管理 etcd 的详细信息， 请参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank" rel="noopener noreffer">为 Kubernetes 运行 etcd 集群</a> 和使用 <a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/" target="_blank" rel="noopener noreffer">kubeadm 创建一个高可用 etcd 集群</a>。</p>
+<h5 id="插件资源httpskubernetesiozh-cndocssetupbest-practicescluster-largeaddon-resources">插件资源<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#addon-resources" target="_blank" rel="noopener noreffer"></a></h5>
+<p>Kubernetes <a href="https://kubernetes.io/zh-cn/docs/concepts/configuration/manage-resources-containers/" target="_blank" rel="noopener noreffer">资源限制</a> 有助于最大程度地减少内存泄漏的影响以及 Pod 和容器可能对其他组件的其他方式的影响。 这些资源限制适用于<a href="https://kubernetes.io/zh-cn/docs/concepts/cluster-administration/addons/" target="_blank" rel="noopener noreffer">插件</a>资源， 就像它们适用于应用程序工作负载一样。</p>
+<p>例如，你可以对日志组件设置 CPU 和内存限制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">  </span><span class="l">...</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fluentd-cloud-logging</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">fluent/fluentd-kubernetes-daemonset:v1</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">100m</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">200Mi</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>插件的默认限制通常基于从中小规模 Kubernetes 集群上运行每个插件的经验收集的数据。 插件在大规模集群上运行时，某些资源消耗常常比其默认限制更多。 如果在不调整这些值的情况下部署了大规模集群，则插件可能会不断被杀死，因为它们不断达到内存限制。 或者，插件可能会运行，但由于 CPU 时间片的限制而导致性能不佳。</p>
+<p>为避免遇到集群插件资源问题，在创建大规模集群时，请考虑以下事项：</p>
+<ul>
+<li>部分垂直扩展插件 —— 总有一个插件副本服务于整个集群或服务于整个故障区域。 对于这些附加组件，请在扩大集群时加大资源请求和资源限制。</li>
+<li>许多水平扩展插件 —— 你可以通过运行更多的 Pod 来增加容量——但是在大规模集群下， 可能还需要稍微提高 CPU 或内存限制。 VerticalPodAutoscaler 可以在 <strong>recommender</strong> 模式下运行， 以提供有关请求和限制的建议数字。</li>
+<li>一些插件在每个节点上运行一个副本，并由 DaemonSet 控制： 例如，节点级日志聚合器。与水平扩展插件的情况类似， 你可能还需要稍微提高 CPU 或内存限制。</li>
+</ul>
+<h4 id="接下来httpskubernetesiozh-cndocssetupbest-practicescluster-largee68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/cluster-large/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h4>
+<ul>
+<li>
+<p><code>VerticalPodAutoscaler</code> 是一种自定义资源，你可以将其部署到集群中，帮助你管理 Pod 的资源请求和资源限制。 了解有关 <a href="https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#readme" target="_blank" rel="noopener noreffer">Vertical Pod Autoscaler</a> 的更多信息，了解如何用它扩展集群组件（包括对集群至关重要的插件）的信息。</p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#readme" target="_blank" rel="noopener noreffer">集群自动扩缩器</a> 与许多云供应商集成在一起，帮助你在你的集群中，按照资源需求级别运行正确数量的节点。</p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/autoscaler/tree/master/addon-resizer#readme" target="_blank" rel="noopener noreffer">addon resizer</a> 可帮助你在集群规模变化时自动调整插件的大小。</p>
+</li>
+</ul>
+<h3 id="运行于多可用区环境httpskubernetesiozh-cndocssetupbest-practicesmultiple-zones"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/" target="_blank" rel="noopener noreffer">运行于多可用区环境</a></h3>
+<p>本页描述如何跨多个区（Zone）中运行集群。</p>
+<h4 id="背景httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese8838ce699af">背景<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E8%83%8C%E6%99%AF" target="_blank" rel="noopener noreffer"></a></h4>
+<p>Kubernetes 从设计上允许同一个 Kubernetes 集群跨多个失效区来运行， 通常这些区位于某个称作 <em>区域（region）</em> 逻辑分组中。 主要的云提供商都将区域定义为一组失效区的集合（也称作 <em>可用区（Availability Zones）</em>）， 能够提供一组一致的功能特性：每个区域内，各个可用区提供相同的 API 和服务。</p>
+<p>典型的云体系结构都会尝试降低某个区中的失效影响到其他区中服务的概率。</p>
+<h4 id="控制面行为httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonescontrol-plane-behavior">控制面行为<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#control-plane-behavior" target="_blank" rel="noopener noreffer"></a></h4>
+<p>所有的<a href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/#control-plane-components" target="_blank" rel="noopener noreffer">控制面组件</a> 都支持以一组可相互替换的资源池的形式来运行，每个组件都有多个副本。</p>
+<p>当你部署集群控制面时，应将控制面组件的副本跨多个失效区来部署。 如果可用性是一个很重要的指标，应该选择至少三个失效区，并将每个 控制面组件（API 服务器、调度器、etcd、控制器管理器）复制多个副本， 跨至少三个失效区来部署。如果你在运行云控制器管理器，则也应该将 该组件跨所选的三个失效区来部署。</p>
+<p><strong>说明：</strong></p>
+<p>Kubernetes 并不会为 API 服务器端点提供跨失效区的弹性。 你可以为集群 API 服务器使用多种技术来提升其可用性，包括使用 DNS 轮转、SRV 记录或者带健康检查的第三方负载均衡解决方案等等。</p>
+<h4 id="节点行为httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesnode-behavior">节点行为<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#node-behavior" target="_blank" rel="noopener noreffer"></a></h4>
+<p>Kubernetes 自动为负载资源（如<a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener noreffer">Deployment</a> 或 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/statefulset/" target="_blank" rel="noopener noreffer">StatefulSet</a>)） 跨集群中不同节点来部署其 Pods。 这种分布逻辑有助于降低失效带来的影响。</p>
+<p>节点启动时，每个节点上的 kubelet 会向 Kubernetes API 中代表该 kubelet 的 Node 对象 添加 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="noopener noreffer">标签</a>。 这些标签可能包含<a href="https://kubernetes.io/zh-cn/docs/reference/labels-annotations-taints/#topologykubernetesiozone" target="_blank" rel="noopener noreffer">区信息</a>。</p>
+<p>如果你的集群跨了多个可用区或者地理区域，你可以使用节点标签，结合 <a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/topology-spread-constraints/" target="_blank" rel="noopener noreffer">Pod 拓扑分布约束</a> 来控制如何在你的集群中多个失效域之间分布 Pods。这里的失效域可以是 地理区域、可用区甚至是特定节点。 这些提示信息使得<a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-scheduler/" target="_blank" rel="noopener noreffer">调度器</a> 能够更好地分布 Pods，以实现更好的可用性，降低因为某种失效给整个工作负载 带来的风险。</p>
+<p>例如，你可以设置一种约束，确保某个 StatefulSet 中的三个副本都运行在 不同的可用区中，只要其他条件允许。你可以通过声明的方式来定义这种约束， 而不需要显式指定每个工作负载使用哪些可用区。</p>
+<h5 id="跨多个区分布节点httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesdistributing-nodes-across-zones">跨多个区分布节点<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#distributing-nodes-across-zones" target="_blank" rel="noopener noreffer"></a></h5>
+<p>Kubernetes 的核心逻辑并不会帮你创建节点，你需要自行完成此操作，或者使用 类似 <a href="https://cluster-api.sigs.k8s.io/" target="_blank" rel="noopener noreffer">Cluster API</a> 这类工具来替你管理节点。</p>
+<p>使用类似 Cluster API 这类工具，你可以跨多个失效域来定义一组用做你的集群 工作节点的机器，以及当整个区的服务出现中断时如何自动治愈集群的策略。</p>
+<h4 id="为-pods-手动指定区httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese4b8ba-pods-e6898be58aa8e68c87e5ae9ae58cba">为 Pods 手动指定区<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E4%B8%BA-pods-%E6%89%8B%E5%8A%A8%E6%8C%87%E5%AE%9A%E5%8C%BA" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你可以应用<a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector" target="_blank" rel="noopener noreffer">节点选择算符约束</a> 到你所创建的 Pods 上，或者为 Deployment、StatefulSet 或 Job 这类工作负载资源 中的 Pod 模板设置此类约束。</p>
+<h4 id="跨区的存储访问httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese8b7a8e58cbae79a84e5ad98e582a8e8aebfe997ae">跨区的存储访问<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E8%B7%A8%E5%8C%BA%E7%9A%84%E5%AD%98%E5%82%A8%E8%AE%BF%E9%97%AE" target="_blank" rel="noopener noreffer"></a></h4>
+<p>当创建持久卷时，<code>PersistentVolumeLabel</code> <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/" target="_blank" rel="noopener noreffer">准入控制器</a> 会自动向那些链接到特定区的 PersistentVolume 添加区标签。 <a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-scheduler/" target="_blank" rel="noopener noreffer">调度器</a>通过其 <code>NoVolumeZoneConflict</code> 断言确保申领给定 PersistentVolume 的 Pods 只会 被调度到该卷所在的可用区。</p>
+<p>你可以为 PersistentVolumeClaim 指定<a href="https://kubernetes.io/zh-cn/docs/concepts/storage/storage-classes/" target="_blank" rel="noopener noreffer">StorageClass</a> 以设置该类中的存储可以使用的失效域（区）。 要了解如何配置能够感知失效域或区的 StorageClass，请参阅 <a href="https://kubernetes.io/zh-cn/docs/concepts/storage/storage-classes/#allowed-topologies" target="_blank" rel="noopener noreffer">可用的拓扑逻辑</a>。</p>
+<h4 id="网络httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesnetworking">网络<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#networking" target="_blank" rel="noopener noreffer"></a></h4>
+<p>Kubernetes 自身不提供与可用区相关的联网配置。 你可以使用<a href="https://kubernetes.io/zh-cn/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/" target="_blank" rel="noopener noreffer">网络插件</a> 来配置集群的联网，该网络解决方案可能拥有一些与可用区相关的元素。 例如，如果你的云提供商支持 <code>type=LoadBalancer</code> 的 Service，则负载均衡器 可能仅会将请求流量发送到运行在负责处理给定连接的负载均衡器组件所在的区。 请查阅云提供商的文档了解详细信息。</p>
+<p>对于自定义的或本地集群部署，也可以考虑这些因素 <a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreffer">Service</a> <a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/" target="_blank" rel="noopener noreffer">Ingress</a> 的行为， 包括处理不同失效区的方法，在很大程度上取决于你的集群是如何搭建的。</p>
+<h4 id="失效恢复httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonesfault-recovery">失效恢复<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#fault-recovery" target="_blank" rel="noopener noreffer"></a></h4>
+<p>在搭建集群时，你可能需要考虑当某区域中的所有失效区都同时掉线时，是否以及如何 恢复服务。例如，你是否要求在某个区中至少有一个节点能够运行 Pod？ 请确保任何对集群很关键的修复工作都不要指望集群中至少有一个健康节点。 例如：当所有节点都不健康时，你可能需要运行某个修复性的 Job， 该 Job 要设置特定的<a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/" target="_blank" rel="noopener noreffer">容忍度</a> 以便修复操作能够至少将一个节点恢复为可用状态。</p>
+<p>Kubernetes 对这类问题没有现成的解决方案；不过这也是要考虑的因素之一。</p>
+<h4 id="接下来httpskubernetesiozh-cndocssetupbest-practicesmultiple-zonese68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/multiple-zones/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h4>
+<p>要了解调度器如何在集群中放置 Pods 并遵从所配置的约束，可参阅 <a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/" target="_blank" rel="noopener noreffer">调度与驱逐</a>。</p>
+<h3 id="校验节点设置httpskubernetesiozh-cndocssetupbest-practicesnode-conformance"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/" target="_blank" rel="noopener noreffer">校验节点设置</a></h3>
+<ul>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-conformance-test" target="_blank" rel="noopener noreffer">节点一致性测试</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-prerequisite" target="_blank" rel="noopener noreffer">节点的前提条件</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test" target="_blank" rel="noopener noreffer">运行节点一致性测试</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test-for-other-architectures" target="_blank" rel="noopener noreffer">针对其他硬件体系结构运行节点一致性测试</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-selected-test" target="_blank" rel="noopener noreffer">运行特定的测试</a></li>
+<li><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#caveats" target="_blank" rel="noopener noreffer">注意事项</a></li>
+</ul>
+<h4 id="节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancenode-conformance-test">节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-conformance-test" target="_blank" rel="noopener noreffer"></a></h4>
+<p><strong>节点一致性测试</strong> 是一个容器化的测试框架，提供了针对节点的系统验证和功能测试。 测试验证节点是否满足 Kubernetes 的最低要求；通过测试的节点有资格加入 Kubernetes 集群。</p>
+<p>该测试主要检测节点是否满足 Kubernetes 的最低要求，通过检测的节点有资格加入 Kubernetes 集群。</p>
+<h4 id="节点的前提条件httpskubernetesiozh-cndocssetupbest-practicesnode-conformancenode-prerequisite">节点的前提条件<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#node-prerequisite" target="_blank" rel="noopener noreffer"></a></h4>
+<p>要运行节点一致性测试，节点必须满足与标准 Kubernetes 节点相同的前提条件。节点至少应安装以下守护程序：</p>
+<ul>
+<li>容器运行时 (Docker)</li>
+<li>Kubelet</li>
+</ul>
+<h4 id="运行节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-node-conformance-test">运行节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test" target="_blank" rel="noopener noreffer"></a></h4>
+<p>要运行节点一致性测试，请执行以下步骤：</p>
+<ol>
+<li>
+<p>得出 kubelet 的 <code>--kubeconfig</code> 的值；例如：<code>--kubeconfig=/var/lib/kubelet/config.yaml</code>。 由于测试框架启动了本地控制平面来测试 kubelet，因此使用 <code>http://localhost:8080</code> 作为API 服务器的 URL。 一些其他的 kubelet 命令行参数可能会被用到：</p>
+<ul>
+<li><code>--cloud-provider</code>：如果使用 <code>--cloud-provider=gce</code>，需要移除这个参数来运行测试。</li>
+</ul>
+</li>
+<li>
+<p>使用以下命令运行节点一致性测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># $CONFIG_DIR 是你 Kubelet 的 pod manifest 路径。</span>
+<span class="c1"># $LOG_DIR 是测试的输出路径。</span>
+sudo docker run -it --rm --privileged --net<span class="o">=</span>host <span class="se">\
+</span><span class="se"></span>  -v /:/rootfs -v <span class="nv">$CONFIG_DIR</span>:<span class="nv">$CONFIG_DIR</span> -v <span class="nv">$LOG_DIR</span>:/var/result <span class="se">\
+</span><span class="se"></span>  registry.k8s.io/node-test:0.2
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="针对其他硬件体系结构运行节点一致性测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-node-conformance-test-for-other-architectures">针对其他硬件体系结构运行节点一致性测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-node-conformance-test-for-other-architectures" target="_blank" rel="noopener noreffer"></a></h4>
+<p>Kubernetes 也为其他硬件体系结构的系统提供了节点一致性测试的 Docker 镜像：</p>
+<table>
+<thead>
+<tr>
+<th>架构</th>
+<th>镜像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amd64</td>
+<td>node-test-amd64</td>
+</tr>
+<tr>
+<td>arm</td>
+<td>node-test-arm</td>
+</tr>
+<tr>
+<td>arm64</td>
+<td>node-test-arm64</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行特定的测试httpskubernetesiozh-cndocssetupbest-practicesnode-conformancerunning-selected-test">运行特定的测试<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#running-selected-test" target="_blank" rel="noopener noreffer"></a></h4>
+<p>要运行特定测试，请使用你希望运行的测试的特定表达式覆盖环境变量 <code>FOCUS</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo docker run -it --rm --privileged --net<span class="o">=</span>host <span class="se">\
+</span><span class="se"></span>  -v /:/rootfs:ro -v <span class="nv">$CONFIG_DIR</span>:<span class="nv">$CONFIG_DIR</span> -v <span class="nv">$LOG_DIR</span>:/var/result <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">FOCUS</span><span class="o">=</span>MirrorPod <span class="se">\ </span><span class="c1"># Only run MirrorPod test</span>
+  registry.k8s.io/node-test:0.2
+</code></pre></td></tr></table>
+</div>
+</div><p>要跳过特定的测试，请使用你希望跳过的测试的常规表达式覆盖环境变量 <code>SKIP</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo docker run -it --rm --privileged --net<span class="o">=</span>host <span class="se">\
+</span><span class="se"></span>  -v /:/rootfs:ro -v <span class="nv">$CONFIG_DIR</span>:<span class="nv">$CONFIG_DIR</span> -v <span class="nv">$LOG_DIR</span>:/var/result <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">SKIP</span><span class="o">=</span>MirrorPod <span class="se">\ </span><span class="c1"># 运行除 MirrorPod 测试外的所有一致性测试内容</span>
+  registry.k8s.io/node-test:0.2
+</code></pre></td></tr></table>
+</div>
+</div><p>节点一致性测试是<a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-node/e2e-node-tests.md" target="_blank" rel="noopener noreffer">节点端到端测试</a>的容器化版本。</p>
+<p>默认情况下，它会运行所有一致性测试。</p>
+<p>理论上，只要合理地配置容器和挂载所需的卷，就可以运行任何的节点端到端测试用例。但是这里<strong>强烈建议只运行一致性测试</strong>，因为运行非一致性测试需要很多复杂的配置。</p>
+<h4 id="注意事项httpskubernetesiozh-cndocssetupbest-practicesnode-conformancecaveats">注意事项<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/node-conformance/#caveats" target="_blank" rel="noopener noreffer"></a></h4>
+<ul>
+<li>测试会在节点上遗留一些 Docker 镜像，包括节点一致性测试本身的镜像和功能测试相关的镜像。</li>
+<li>测试会在节点上遗留一些死的容器。这些容器是在功能测试的过程中创建的。</li>
+</ul>
+<h3 id="强制实施-pod-安全性标准httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standards"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/" target="_blank" rel="noopener noreffer">强制实施 Pod 安全性标准</a></h3>
+<p>本页提供实施 <a href="https://kubernetes.io/zh-cn/docs/concepts/security/pod-security-standards" target="_blank" rel="noopener noreffer">Pod 安全标准（Pod Security Standards）</a> 时的一些最佳实践。</p>
+<h4 id="使用内置的-pod-安全性准入控制器httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse4bdbfe794a8e58685e7bdaee79a84-pod-e5ae89e585a8e680a7e58786e585a5e68ea7e588b6e599a8">使用内置的 Pod 安全性准入控制器<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84-pod-%E5%AE%89%E5%85%A8%E6%80%A7%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%E5%99%A8" target="_blank" rel="noopener noreffer"></a></h4>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.25 [stable]</code></p>
+<p><a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/#podsecurity" target="_blank" rel="noopener noreffer">Pod 安全性准入控制器</a> 尝试替换已被废弃的 PodSecurityPolicies。</p>
+<h5 id="配置所有集群名字空间httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardsconfigure-all-cluster-namespaces">配置所有集群名字空间<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#configure-all-cluster-namespaces" target="_blank" rel="noopener noreffer"></a></h5>
+<p>完全未经配置的名字空间应该被视为集群安全模型中的重大缺陷。 我们建议花一些时间来分析在每个名字空间中执行的负载的类型， 并通过引用 Pod 安全性标准来确定每个负载的合适级别。 未设置标签的名字空间应该视为尚未被评估。</p>
+<p>针对所有名字空间中的所有负载都具有相同的安全性需求的场景， 我们提供了一个<a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/#applying-to-all-namespaces" target="_blank" rel="noopener noreffer">示例</a> 用来展示如何批量应用 Pod 安全性标签。</p>
+<h5 id="拥抱最小特权原则httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse68ba5e68ab1e69c80e5b08fe789b9e69d83e58e9fe58899">拥抱最小特权原则<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E6%8B%A5%E6%8A%B1%E6%9C%80%E5%B0%8F%E7%89%B9%E6%9D%83%E5%8E%9F%E5%88%99" target="_blank" rel="noopener noreffer"></a></h5>
+<p>在一个理想环境中，每个名字空间中的每个 Pod 都会满足 <code>restricted</code> 策略的需求。 不过，这既不可能也不现实，某些负载会因为合理的原因而需要特权上的提升。</p>
+<ul>
+<li>允许 <code>privileged</code> 负载的名字空间需要建立并实施适当的访问控制机制。</li>
+<li>对于运行在特权宽松的名字空间中的负载，需要维护其独特安全性需求的文档。 如果可能的话，要考虑如何进一步约束这些需求。</li>
+</ul>
+<h5 id="采用多种模式的策略httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardse98787e794a8e5a49ae7a78de6a8a1e5bc8fe79a84e7ad96e795a5">采用多种模式的策略<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#%E9%87%87%E7%94%A8%E5%A4%9A%E7%A7%8D%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%AD%96%E7%95%A5" target="_blank" rel="noopener noreffer"></a></h5>
+<p>Pod 安全性标准准入控制器的 <code>audit</code> 和 <code>warn</code> 模式（mode） 能够在不影响现有负载的前提下，让该控制器更方便地收集关于 Pod 的重要的安全信息。</p>
+<p>针对所有名字空间启用这些模式是一种好的实践，将它们设置为你最终打算 <code>enforce</code> 的 <em>期望的</em> 级别和版本。这一阶段中所生成的警告和审计注解信息可以帮助你到达这一状态。 如果你期望负载的作者能够作出变更以便适应期望的级别，可以启用 <code>warn</code> 模式。 如果你希望使用审计日志了监控和驱动变更，以便负载能够适应期望的级别，可以启用 <code>audit</code> 模式。</p>
+<p>当你将 <code>enforce</code> 模式设置为期望的取值时，这些模式在不同的场合下仍然是有用的：</p>
+<ul>
+<li>通过将 <code>warn</code> 设置为 <code>enforce</code> 相同的级别，客户可以在尝试创建无法通过合法检查的 Pod （或者包含 Pod 模板的资源）时收到警告信息。这些信息会帮助于更新资源使其合规。</li>
+<li>在将 <code>enforce</code> 锁定到特定的非最新版本的名字空间中，将 <code>audit</code> 和 <code>warn</code> 模式设置为 <code>enforce</code> 一样的级别而非 <code>latest</code> 版本， 这样可以方便看到之前版本所允许但当前最佳实践中被禁止的设置。</li>
+</ul>
+<h4 id="第三方替代方案httpskubernetesiozh-cndocssetupbest-practicesenforcing-pod-security-standardsthird-party-alternatives">第三方替代方案<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/enforcing-pod-security-standards/#third-party-alternatives" target="_blank" rel="noopener noreffer"></a></h4>
+<p><strong>说明：</strong> 本部分链接到提供 Kubernetes 所需功能的第三方项目。Kubernetes 项目作者不负责这些项目。此页面遵循<a href="https://github.com/cncf/foundation/blob/master/website-guidelines.md" target="_blank" rel="noopener noreffer">CNCF 网站指南</a>，按字母顺序列出项目。要将项目添加到此列表中，请在提交更改之前阅读<a href="https://kubernetes.io/docs/contribute/style/content-guide/#third-party-content" target="_blank" rel="noopener noreffer">内容指南</a>。</p>
+<p>Kubernetes 生态系统中也有一些其他强制实施安全设置的替代方案处于开发状态中：</p>
+<ul>
+<li><a href="https://github.com/kubewarden" target="_blank" rel="noopener noreffer">Kubewarden</a>.</li>
+<li><a href="https://kyverno.io/policies/" target="_blank" rel="noopener noreffer">Kyverno</a>.</li>
+<li><a href="https://github.com/open-policy-agent/gatekeeper" target="_blank" rel="noopener noreffer">OPA Gatekeeper</a>.</li>
+</ul>
+<p>采用 <em>内置的</em> 方案（例如 PodSecurity 准入控制器）还是第三方工具， 这一决策完全取决于你自己的情况。在评估任何解决方案时，对供应链的信任都是至关重要的。 最终，使用前述方案中的 <em>任何</em> 一种都好过放任自流。</p>
+<h3 id="pki-证书和要求httpskubernetesiozh-cndocssetupbest-practicescertificates"><a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/" target="_blank" rel="noopener noreffer">PKI 证书和要求</a></h3>
+<p>Kubernetes 需要 PKI 证书才能进行基于 TLS 的身份验证。如果你是使用 <a href="https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/" target="_blank" rel="noopener noreffer">kubeadm</a> 安装的 Kubernetes， 则会自动生成集群所需的证书。你还可以生成自己的证书。 例如，不将私钥存储在 API 服务器上，可以让私钥更加安全。此页面说明了集群必需的证书。</p>
+<h4 id="集群是如何使用证书的httpskubernetesiozh-cndocssetupbest-practicescertificateshow-certificates-are-used-by-your-cluster">集群是如何使用证书的<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#how-certificates-are-used-by-your-cluster" target="_blank" rel="noopener noreffer"></a></h4>
+<p>Kubernetes 需要 PKI 才能执行以下操作：</p>
+<ul>
+<li>Kubelet 的客户端证书，用于 API 服务器身份验证</li>
+<li>Kubelet <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#client-and-serving-certificates" target="_blank" rel="noopener noreffer">服务端证书</a>， 用于 API 服务器与 Kubelet 的会话</li>
+<li>API 服务器端点的证书</li>
+<li>集群管理员的客户端证书，用于 API 服务器身份认证</li>
+<li>API 服务器的客户端证书，用于和 Kubelet 的会话</li>
+<li>API 服务器的客户端证书，用于和 etcd 的会话</li>
+<li>控制器管理器的客户端证书或 kubeconfig，用于和 API 服务器的会话</li>
+<li>调度器的客户端证书或 kubeconfig，用于和 API 服务器的会话</li>
+<li><a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubernetes/configure-aggregation-layer/" target="_blank" rel="noopener noreffer">前端代理</a>的客户端及服务端证书</li>
+</ul>
+<p><strong>说明：</strong></p>
+<p>只有当你运行 kube-proxy 并要支持<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubernetes/setup-extension-api-server/" target="_blank" rel="noopener noreffer">扩展 API 服务器</a>时， 才需要 <code>front-proxy</code> 证书。</p>
+<p>etcd 还实现了双向 TLS 来对客户端和对其他对等节点进行身份验证。</p>
+<h4 id="证书存放的位置httpskubernetesiozh-cndocssetupbest-practicescertificateswhere-certificates-are-stored">证书存放的位置<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#where-certificates-are-stored" target="_blank" rel="noopener noreffer"></a></h4>
+<p>假如通过 kubeadm 安装 Kubernetes，大多数证书都存储在 <code>/etc/kubernetes/pki</code>。 本文档中的所有路径都是相对于该目录的，但用户账户证书除外，kubeadm 将其放在 <code>/etc/kubernetes</code> 中。</p>
+<h4 id="手动配置证书httpskubernetesiozh-cndocssetupbest-practicescertificatesconfigure-certificates-manually">手动配置证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#configure-certificates-manually" target="_blank" rel="noopener noreffer"></a></h4>
+<p>如果你不想通过 kubeadm 生成这些必需的证书，你可以使用一个单一的根 CA 来创建这些证书或者直接提供所有证书。 参见<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/certificates/" target="_blank" rel="noopener noreffer">证书</a>以进一步了解创建自己的证书机构。 关于管理证书的更多信息，请参见<a href="https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/" target="_blank" rel="noopener noreffer">使用 kubeadm 进行证书管理</a>。</p>
+<h5 id="单根-cahttpskubernetesiozh-cndocssetupbest-practicescertificatessingle-root-ca">单根 CA<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#single-root-ca" target="_blank" rel="noopener noreffer"></a></h5>
+<p>你可以创建由管理员控制的单根 CA。该根 CA 可以创建多个中间 CA，并将所有进一步的创建委托给 Kubernetes。</p>
+<p>需要这些 CA：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>默认 CN</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca.crt,key</td>
+<td>kubernetes-ca</td>
+<td>Kubernetes 通用 CA</td>
+</tr>
+<tr>
+<td>etcd/ca.crt,key</td>
+<td>etcd-ca</td>
+<td>与 etcd 相关的所有功能</td>
+</tr>
+<tr>
+<td>front-proxy-ca.crt,key</td>
+<td>kubernetes-front-proxy-ca</td>
+<td>用于<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubernetes/configure-aggregation-layer/" target="_blank" rel="noopener noreffer">前端代理</a></td>
+</tr>
+</tbody>
+</table>
+<p>上面的 CA 之外，还需要获取用于服务账户管理的密钥对，也就是 <code>sa.key</code> 和 <code>sa.pub</code>。</p>
+<p>下面的例子说明了上表中所示的 CA 密钥和证书文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">/etc/kubernetes/pki/ca.crt
+</span><span class="go">/etc/kubernetes/pki/ca.key
+</span><span class="go">/etc/kubernetes/pki/etcd/ca.crt
+</span><span class="go">/etc/kubernetes/pki/etcd/ca.key
+</span><span class="go">/etc/kubernetes/pki/front-proxy-ca.crt
+</span><span class="go">/etc/kubernetes/pki/front-proxy-ca.key
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="所有的证书httpskubernetesiozh-cndocssetupbest-practicescertificatesall-certificates">所有的证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#all-certificates" target="_blank" rel="noopener noreffer"></a></h5>
+<p>如果你不想将 CA 的私钥拷贝至你的集群中，你也可以自己生成全部的证书。</p>
+<p>需要这些证书：</p>
+<table>
+<thead>
+<tr>
+<th>默认 CN</th>
+<th>父级 CA</th>
+<th>O（位于 Subject 中）</th>
+<th>kind</th>
+<th>主机 (SAN)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kube-etcd</td>
+<td>etcd-ca</td>
+<td></td>
+<td>server, client</td>
+<td><code>&lt;hostname&gt;</code>, <code>&lt;Host_IP&gt;</code>, <code>localhost</code>, <code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td>kube-etcd-peer</td>
+<td>etcd-ca</td>
+<td></td>
+<td>server, client</td>
+<td><code>&lt;hostname&gt;</code>, <code>&lt;Host_IP&gt;</code>, <code>localhost</code>, <code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td>kube-etcd-healthcheck-client</td>
+<td>etcd-ca</td>
+<td></td>
+<td>client</td>
+<td></td>
+</tr>
+<tr>
+<td>kube-apiserver-etcd-client</td>
+<td>etcd-ca</td>
+<td>system:masters</td>
+<td>client</td>
+<td></td>
+</tr>
+<tr>
+<td>kube-apiserver</td>
+<td>kubernetes-ca</td>
+<td></td>
+<td>server</td>
+<td><code>&lt;hostname&gt;</code>, <code>&lt;Host_IP&gt;</code>, <code>&lt;advertise_IP&gt;</code>, <code>[1]</code></td>
+</tr>
+<tr>
+<td>kube-apiserver-kubelet-client</td>
+<td>kubernetes-ca</td>
+<td>system:masters</td>
+<td>client</td>
+<td></td>
+</tr>
+<tr>
+<td>front-proxy-client</td>
+<td>kubernetes-front-proxy-ca</td>
+<td></td>
+<td>client</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>[1]: 用来连接到集群的不同 IP 或 DNS 名 （就像 <a href="https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/" target="_blank" rel="noopener noreffer">kubeadm</a> 为负载均衡所使用的固定 IP 或 DNS 名：<code>kubernetes</code>、<code>kubernetes.default</code>、<code>kubernetes.default.svc</code>、 <code>kubernetes.default.svc.cluster</code>、<code>kubernetes.default.svc.cluster.local</code>）。</p>
+<p>其中 <code>kind</code> 对应一种或多种类型的 x509 密钥用途，也可记录在 <a href="https://kubernetes.io/zh-cn/docs/reference/kubernetes-api/authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" target="_blank" rel="noopener noreffer">CertificateSigningRequest</a> 类型的 <code>.spec.usages</code> 中：</p>
+<table>
+<thead>
+<tr>
+<th>kind</th>
+<th>密钥用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>数字签名、密钥加密、服务端认证</td>
+</tr>
+<tr>
+<td>client</td>
+<td>数字签名、密钥加密、客户端认证</td>
+</tr>
+</tbody>
+</table>
+<p><strong>说明：</strong></p>
+<p>上面列出的 Hosts/SAN 是推荐的配置方式；如果需要特殊安装，则可以在所有服务器证书上添加其他 SAN。</p>
+<p><strong>说明：</strong></p>
+<p>对于 kubeadm 用户：</p>
+<ul>
+<li>不使用私钥，将证书复制到集群 CA 的方案，在 kubeadm 文档中将这种方案称为外部 CA。</li>
+<li>如果将以上列表与 kubeadm 生成的 PKI 进行比较，你会注意到，如果使用外部 etcd，则不会生成 <code>kube-etcd</code>、<code>kube-etcd-peer</code> 和 <code>kube-etcd-healthcheck-client</code> 证书。</li>
+</ul>
+<h5 id="证书路径httpskubernetesiozh-cndocssetupbest-practicescertificatescertificate-paths">证书路径<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#certificate-paths" target="_blank" rel="noopener noreffer"></a></h5>
+<p>证书应放置在建议的路径中（以便 <a href="https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/" target="_blank" rel="noopener noreffer">kubeadm</a> 使用）。无论使用什么位置，都应使用给定的参数指定路径。</p>
+<table>
+<thead>
+<tr>
+<th>默认 CN</th>
+<th>建议的密钥路径</th>
+<th>建议的证书路径</th>
+<th>命令</th>
+<th>密钥参数</th>
+<th>证书参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>etcd-ca</td>
+<td>etcd/ca.key</td>
+<td>etcd/ca.crt</td>
+<td>kube-apiserver</td>
+<td></td>
+<td>--etcd-cafile</td>
+</tr>
+<tr>
+<td>kube-apiserver-etcd-client</td>
+<td>apiserver-etcd-client.key</td>
+<td>apiserver-etcd-client.crt</td>
+<td>kube-apiserver</td>
+<td>--etcd-keyfile</td>
+<td>--etcd-certfile</td>
+</tr>
+<tr>
+<td>kubernetes-ca</td>
+<td>ca.key</td>
+<td>ca.crt</td>
+<td>kube-apiserver</td>
+<td></td>
+<td>--client-ca-file</td>
+</tr>
+<tr>
+<td>kubernetes-ca</td>
+<td>ca.key</td>
+<td>ca.crt</td>
+<td>kube-controller-manager</td>
+<td>--cluster-signing-key-file</td>
+<td>--client-ca-file, &ndash;root-ca-file, &ndash;cluster-signing-cert-file</td>
+</tr>
+<tr>
+<td>kube-apiserver</td>
+<td>apiserver.key</td>
+<td>apiserver.crt</td>
+<td>kube-apiserver</td>
+<td>--tls-private-key-file</td>
+<td>--tls-cert-file</td>
+</tr>
+<tr>
+<td>kube-apiserver-kubelet-client</td>
+<td>apiserver-kubelet-client.key</td>
+<td>apiserver-kubelet-client.crt</td>
+<td>kube-apiserver</td>
+<td>--kubelet-client-key</td>
+<td>--kubelet-client-certificate</td>
+</tr>
+<tr>
+<td>front-proxy-ca</td>
+<td>front-proxy-ca.key</td>
+<td>front-proxy-ca.crt</td>
+<td>kube-apiserver</td>
+<td></td>
+<td>--requestheader-client-ca-file</td>
+</tr>
+<tr>
+<td>front-proxy-ca</td>
+<td>front-proxy-ca.key</td>
+<td>front-proxy-ca.crt</td>
+<td>kube-controller-manager</td>
+<td></td>
+<td>--requestheader-client-ca-file</td>
+</tr>
+<tr>
+<td>front-proxy-client</td>
+<td>front-proxy-client.key</td>
+<td>front-proxy-client.crt</td>
+<td>kube-apiserver</td>
+<td>--proxy-client-key-file</td>
+<td>--proxy-client-cert-file</td>
+</tr>
+<tr>
+<td>etcd-ca</td>
+<td>etcd/ca.key</td>
+<td>etcd/ca.crt</td>
+<td>etcd</td>
+<td></td>
+<td>--trusted-ca-file, &ndash;peer-trusted-ca-file</td>
+</tr>
+<tr>
+<td>kube-etcd</td>
+<td>etcd/server.key</td>
+<td>etcd/server.crt</td>
+<td>etcd</td>
+<td>--key-file</td>
+<td>--cert-file</td>
+</tr>
+<tr>
+<td>kube-etcd-peer</td>
+<td>etcd/peer.key</td>
+<td>etcd/peer.crt</td>
+<td>etcd</td>
+<td>--peer-key-file</td>
+<td>--peer-cert-file</td>
+</tr>
+<tr>
+<td>etcd-ca</td>
+<td></td>
+<td>etcd/ca.crt</td>
+<td>etcdctl</td>
+<td></td>
+<td>--cacert</td>
+</tr>
+<tr>
+<td>kube-etcd-healthcheck-client</td>
+<td>etcd/healthcheck-client.key</td>
+<td>etcd/healthcheck-client.crt</td>
+<td>etcdctl</td>
+<td>--key</td>
+<td>--cert</td>
+</tr>
+</tbody>
+</table>
+<p>注意事项同样适用于服务帐户密钥对：</p>
+<table>
+<thead>
+<tr>
+<th>私钥路径</th>
+<th>公钥路径</th>
+<th>命令</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sa.key</td>
+<td></td>
+<td>kube-controller-manager</td>
+<td>--service-account-private-key-file</td>
+</tr>
+<tr>
+<td></td>
+<td>sa.pub</td>
+<td>kube-apiserver</td>
+<td>--service-account-key-file</td>
+</tr>
+</tbody>
+</table>
+<p>下面的例子展示了自行生成所有密钥和证书时所需要提供的文件路径。 这些路径基于<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#certificate-paths" target="_blank" rel="noopener noreffer">前面的表格</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">/etc/kubernetes/pki/etcd/ca.key
+</span><span class="go">/etc/kubernetes/pki/etcd/ca.crt
+</span><span class="go">/etc/kubernetes/pki/apiserver-etcd-client.key
+</span><span class="go">/etc/kubernetes/pki/apiserver-etcd-client.crt
+</span><span class="go">/etc/kubernetes/pki/ca.key
+</span><span class="go">/etc/kubernetes/pki/ca.crt
+</span><span class="go">/etc/kubernetes/pki/apiserver.key
+</span><span class="go">/etc/kubernetes/pki/apiserver.crt
+</span><span class="go">/etc/kubernetes/pki/apiserver-kubelet-client.key
+</span><span class="go">/etc/kubernetes/pki/apiserver-kubelet-client.crt
+</span><span class="go">/etc/kubernetes/pki/front-proxy-ca.key
+</span><span class="go">/etc/kubernetes/pki/front-proxy-ca.crt
+</span><span class="go">/etc/kubernetes/pki/front-proxy-client.key
+</span><span class="go">/etc/kubernetes/pki/front-proxy-client.crt
+</span><span class="go">/etc/kubernetes/pki/etcd/server.key
+</span><span class="go">/etc/kubernetes/pki/etcd/server.crt
+</span><span class="go">/etc/kubernetes/pki/etcd/peer.key
+</span><span class="go">/etc/kubernetes/pki/etcd/peer.crt
+</span><span class="go">/etc/kubernetes/pki/etcd/healthcheck-client.key
+</span><span class="go">/etc/kubernetes/pki/etcd/healthcheck-client.crt
+</span><span class="go">/etc/kubernetes/pki/sa.key
+</span><span class="go">/etc/kubernetes/pki/sa.pub
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="为用户帐户配置证书httpskubernetesiozh-cndocssetupbest-practicescertificatesconfigure-certificates-for-user-accounts">为用户帐户配置证书<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#configure-certificates-for-user-accounts" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你必须手动配置以下管理员帐户和服务帐户：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>凭据名称</th>
+<th>默认 CN</th>
+<th>O (位于 Subject 中)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin.conf</td>
+<td>default-admin</td>
+<td>kubernetes-admin</td>
+<td>system:masters</td>
+</tr>
+<tr>
+<td>kubelet.conf</td>
+<td>default-auth</td>
+<td>system:node:<code>&lt;nodeName&gt;</code> （参阅注释）</td>
+<td>system:nodes</td>
+</tr>
+<tr>
+<td>controller-manager.conf</td>
+<td>default-controller-manager</td>
+<td>system:kube-controller-manager</td>
+<td></td>
+</tr>
+<tr>
+<td>scheduler.conf</td>
+<td>default-scheduler</td>
+<td>system:kube-scheduler</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>说明：</strong></p>
+<p><code>kubelet.conf</code> 中 <code>&lt;nodeName&gt;</code> 的值 <strong>必须</strong> 与 kubelet 向 apiserver 注册时提供的节点名称的值完全匹配。 有关更多详细信息，请阅读<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/node/" target="_blank" rel="noopener noreffer">节点授权</a>。</p>
+<ol>
+<li>
+<p>对于每个配置，请都使用给定的 CN 和 O 生成 x509 证书/密钥偶对。</p>
+</li>
+<li>
+<p>为每个配置运行下面的 <code>kubectl</code> 命令：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">KUBECONFIG=&lt;filename&gt; kubectl config set-cluster default-cluster --server=https://&lt;host ip&gt;:6443 --certificate-authority &lt;path-to-kubernetes-ca&gt; --embed-certs
+KUBECONFIG=&lt;filename&gt; kubectl config set-credentials &lt;credential-name&gt; --client-key &lt;path-to-key&gt;.pem --client-certificate &lt;path-to-cert&gt;.pem --embed-certs
+KUBECONFIG=&lt;filename&gt; kubectl config set-context default-system --cluster default-cluster --user &lt;credential-name&gt;
+KUBECONFIG=&lt;filename&gt; kubectl config use-context default-system
+</code></pre></td></tr></table>
+</div>
+</div><p>这些文件用途如下：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin.conf</td>
+<td>kubectl</td>
+<td>配置集群的管理员</td>
+</tr>
+<tr>
+<td>kubelet.conf</td>
+<td>kubelet</td>
+<td>集群中的每个节点都需要一份</td>
+</tr>
+<tr>
+<td>controller-manager.conf</td>
+<td>kube-controller-manager</td>
+<td>必需添加到 <code>manifests/kube-controller-manager.yaml</code> 清单中</td>
+</tr>
+<tr>
+<td>scheduler.conf</td>
+<td>kube-scheduler</td>
+<td>必需添加到 <code>manifests/kube-scheduler.yaml</code> 清单中</td>
+</tr>
+</tbody>
+</table>
+<p>下面是前表中所列文件的完整路径。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">/etc/kubernetes/admin.conf
+</span><span class="go">/etc/kubernetes/kubelet.conf
+</span><span class="go">/etc/kubernetes/controller-manager.conf
+</span><span class="go">/etc/kubernetes/scheduler.conf
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E5%85%A5%E9%97%A8/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%BA%94%E7%94%A8/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/%E4%BB%BB%E5%8A%A1-%E7%BD%91%E7%BB%9C/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

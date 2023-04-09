@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="TLS 了解如何使用传输层安全性（ TLS ）保护集群中的流量。 管理集群中的 TLS 认证 Kubernetes 提供 certificates.k8s.io API，可让你配置由你控制的证书颁发机构（CA） 签名的 TLS 证书。 你" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/tls/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="TLS 了解如何使用传输层安全性（ TLS ）保护集群中的流量。 管理集群中的 TLS 认证 Kubernetes 提供 certificates.k8s.io API，可让你配置由你控制的证书颁发机构（CA） 签名的 TLS 证书。 你"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/tls/" /><link rel="prev" href="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" /><link rel="next" href="https://jefofrank.xyz/temp/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/tls\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5773 ,
+        "url": "https:\/\/jefofrank.xyz\/tls\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5773 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#管理集群中的-tls-认证httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-cluster"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/">管理集群中的 TLS 认证</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#集群中的-tls-信任httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere99b86e7bea4e4b8ade79a84-tls-e4bfa1e4bbbb">集群中的 TLS 信任<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84-tls-%E4%BF%A1%E4%BB%BB"></a></a></li>
+        <li><a href="#请求证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere8afb7e6b182e8af81e4b9a6">请求证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E8%AF%B7%E6%B1%82%E8%AF%81%E4%B9%A6"></a></a></li>
+        <li><a href="#创建证书签名请求httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e7adbee5908de8afb7e6b182">创建证书签名请求<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E8%AF%B7%E6%B1%82"></a></a></li>
+        <li><a href="#创建证书签名请求csr对象发送到-kubernetes-apihttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e7adbee5908de8afb7e6b182-csr-e5afb9e8b1a1e58f91e98081e588b0-kubernetes-api">创建证书签名请求（CSR）对象发送到 Kubernetes API<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E8%AF%B7%E6%B1%82-csr-%E5%AF%B9%E8%B1%A1%E5%8F%91%E9%80%81%E5%88%B0-kubernetes-api"></a></a></li>
+        <li><a href="#批准证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clusterget-the-certificate-signing-request-approved">批准证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#get-the-certificate-signing-request-approved"></a></a></li>
+        <li><a href="#签名证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustersign-the-certificate-signing-request">签名证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#sign-the-certificate-signing-request"></a></a>
+          <ul>
+            <li><a href="#创建证书颁发机构httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e9a281e58f91e69cbae69e84">创建证书颁发机构<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E9%A2%81%E5%8F%91%E6%9C%BA%E6%9E%84"></a></a></li>
+            <li><a href="#颁发证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere9a281e58f91e8af81e4b9a6">颁发证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E9%A2%81%E5%8F%91%E8%AF%81%E4%B9%A6"></a></a></li>
+            <li><a href="#上传签名证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere4b88ae4bca0e7adbee5908de8af81e4b9a6">上传签名证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E4%B8%8A%E4%BC%A0%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#下载证书并使用它httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere4b88be8bdbde8af81e4b9a6e5b9b6e4bdbfe794a8e5ae83">下载证书并使用它<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E4%B8%8B%E8%BD%BD%E8%AF%81%E4%B9%A6%E5%B9%B6%E4%BD%BF%E7%94%A8%E5%AE%83"></a></a></li>
+        <li><a href="#批准证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clusterapproving-certificate-signing-requests">批准证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#approving-certificate-signing-requests"></a></a></li>
+        <li><a href="#给集群管理员的一个建议httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere7bb99e99b86e7bea4e7aea1e79086e59198e79a84e4b880e4b8aae5bbbae8aeae">给集群管理员的一个建议<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E7%BB%99%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86%E5%91%98%E7%9A%84%E4%B8%80%E4%B8%AA%E5%BB%BA%E8%AE%AE"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#手动轮换-ca-证书httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificates"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/">手动轮换 CA 证书</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificatese58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#手动轮换-ca-证书httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificatesrotate-the-ca-certificates-manually">手动轮换 CA 证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/#rotate-the-ca-certificates-manually"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#为-kubelet-配置证书轮换httpskubernetesiozh-cndocstaskstlscertificate-rotation"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/">为 kubelet 配置证书轮换</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstaskstlscertificate-rotatione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#概述httpskubernetesiozh-cndocstaskstlscertificate-rotatione6a682e8bfb0">概述<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E6%A6%82%E8%BF%B0"></a></a></li>
+        <li><a href="#启用客户端证书轮换httpskubernetesiozh-cndocstaskstlscertificate-rotatione590afe794a8e5aea2e688b7e7abafe8af81e4b9a6e8bdaee68da2">启用客户端证书轮换<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E5%90%AF%E7%94%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%81%E4%B9%A6%E8%BD%AE%E6%8D%A2"></a></a></li>
+        <li><a href="#理解证书轮换配置httpskubernetesiozh-cndocstaskstlscertificate-rotatione79086e8a7a3e8af81e4b9a6e8bdaee68da2e9858de7bdae">理解证书轮换配置<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E7%90%86%E8%A7%A3%E8%AF%81%E4%B9%A6%E8%BD%AE%E6%8D%A2%E9%85%8D%E7%BD%AE"></a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="tls">TLS</h1>
+<p>了解如何使用传输层安全性（ TLS ）保护集群中的流量。</p>
+<hr>
+<h2 id="管理集群中的-tls-认证httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-cluster"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/" target="_blank" rel="noopener noreffer">管理集群中的 TLS 认证</a></h2>
+<p>Kubernetes 提供 <code>certificates.k8s.io</code> API，可让你配置由你控制的证书颁发机构（CA） 签名的 TLS 证书。 你的工作负载可以使用这些 CA 和证书来建立信任。</p>
+<p><code>certificates.k8s.io</code> API使用的协议类似于 <a href="https://github.com/ietf-wg-acme/acme/" target="_blank" rel="noopener noreffer">ACME 草案</a>。</p>
+<p><strong>说明：</strong></p>
+<p>使用 <code>certificates.k8s.io</code> API 创建的证书由指定 <a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#configuring-your-cluster-to-provide-signing" target="_blank" rel="noopener noreffer">CA</a> 颁发。 将集群配置为使用集群根目录 CA 可以达到这个目的，但是你永远不要依赖这一假定。 不要以为这些证书将针对群根目录 CA 进行验证。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>你需要 <code>cfssl</code> 工具。 你可以从 <a href="https://github.com/cloudflare/cfssl/releases" target="_blank" rel="noopener noreffer">https://github.com/cloudflare/cfssl/releases</a> 下载 <code>cfssl</code>。</p>
+<p>本文中某些步骤使用 <code>jq</code> 工具。如果你没有 <code>jq</code>，你可以通过操作系统的软件源安装， 或者从 <a href="https://stedolan.github.io/jq/" target="_blank" rel="noopener noreffer">https://stedolan.github.io/jq/</a> 获取。</p>
+<h3 id="集群中的-tls-信任httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere99b86e7bea4e4b8ade79a84-tls-e4bfa1e4bbbb">集群中的 TLS 信任<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84-tls-%E4%BF%A1%E4%BB%BB" target="_blank" rel="noopener noreffer"></a></h3>
+<p>信任 Pod 中运行的应用程序所提供的<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#configuring-your-cluster-to-provide-signing" target="_blank" rel="noopener noreffer">自定义 CA</a> 通常需要一些额外的应用程序配置。 你需要将 CA 证书包添加到 TLS 客户端或服务器信任的 CA 证书列表中。 例如，你可以使用 Golang TLS 配置通过解析证书链并将解析的证书添加到 <a href="https://pkg.go.dev/crypto/tls#Config" target="_blank" rel="noopener noreffer"><code>tls.Config</code></a> 结构中的 <code>RootCAs</code> 字段中。</p>
+<p><strong>说明：</strong></p>
+<p>即使自定义 CA 证书可能包含在文件系统中（在 ConfigMap <code>kube-root-ca.crt</code> 中）， 除了验证内部 Kubernetes 端点之外，你不应将该证书颁发机构用于任何目的。 内部 Kubernetes 端点的一个示例是默认命名空间中名为 <code>kubernetes</code> 的服务。</p>
+<p>如果你想为你的工作负载使用自定义证书颁发机构，你应该单独生成该 CA， 并使用你的 Pod 有读权限的 <a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-pod-configmap" target="_blank" rel="noopener noreffer">ConfigMap</a> 分发该 CA 证书。</p>
+<h3 id="请求证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere8afb7e6b182e8af81e4b9a6">请求证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E8%AF%B7%E6%B1%82%E8%AF%81%E4%B9%A6" target="_blank" rel="noopener noreffer"></a></h3>
+<p>以下部分演示如何为通过 DNS 访问的 Kubernetes 服务创建 TLS 证书。</p>
+<p><strong>说明：</strong> 本教程使用 CFSSL：Cloudflare&rsquo;s PKI 和 TLS 工具包 <a href="https://blog.cloudflare.com/introducing-cfssl/" target="_blank" rel="noopener noreffer">点击此处</a>了解更多信息。</p>
+<h3 id="创建证书签名请求httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e7adbee5908de8afb7e6b182">创建证书签名请求<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E8%AF%B7%E6%B1%82" target="_blank" rel="noopener noreffer"></a></h3>
+<p>通过运行以下命令生成私钥和证书签名请求（或 CSR）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat <span class="s">&lt;&lt;EOF | cfssl genkey - | cfssljson -bare server
+</span><span class="s">{
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;my-svc.my-namespace.svc.cluster.local&#34;,
+</span><span class="s">    &#34;my-pod.my-namespace.pod.cluster.local&#34;,
+</span><span class="s">    &#34;192.0.2.24&#34;,
+</span><span class="s">    &#34;10.0.34.2&#34;
+</span><span class="s">  ],
+</span><span class="s">  &#34;CN&#34;: &#34;my-pod.my-namespace.pod.cluster.local&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;ecdsa&#34;,
+</span><span class="s">    &#34;size&#34;: 256
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>192.0.2.24</code> 是服务的集群 IP，<code>my-svc.my-namespace.svc.cluster.local</code> 是服务的 DNS 名称，<code>10.0.34.2</code> 是 Pod 的 IP，而 <code>my-pod.my-namespace.pod.cluster.local</code> 是 Pod 的 DNS 名称。 你能看到的输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">2022/02/01 11:45:32 [INFO] generate received request
+2022/02/01 11:45:32 [INFO] received CSR
+2022/02/01 11:45:32 [INFO] generating key: ecdsa-256
+2022/02/01 11:45:32 [INFO] encoded CSR
+</code></pre></td></tr></table>
+</div>
+</div><p>此命令生成两个文件；它生成包含 PEM 编码 <a href="https://tools.ietf.org/html/rfc2986" target="_blank" rel="noopener noreffer">PKCS#10</a> 证书请求的 <code>server.csr</code>， 以及 PEM 编码密钥的 <code>server-key.pem</code>，用于待生成的证书。</p>
+<h3 id="创建证书签名请求csr对象发送到-kubernetes-apihttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e7adbee5908de8afb7e6b182-csr-e5afb9e8b1a1e58f91e98081e588b0-kubernetes-api">创建证书签名请求（CSR）对象发送到 Kubernetes API<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E8%AF%B7%E6%B1%82-csr-%E5%AF%B9%E8%B1%A1%E5%8F%91%E9%80%81%E5%88%B0-kubernetes-api" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你可以使用以下命令创建 CSR 清单（YAML 格式），并发送到 API 服务器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat <span class="s">&lt;&lt;EOF | kubectl apply -f -
+</span><span class="s">apiVersion: certificates.k8s.io/v1
+</span><span class="s">kind: CertificateSigningRequest
+</span><span class="s">metadata:
+</span><span class="s">  name: my-svc.my-namespace
+</span><span class="s">spec:
+</span><span class="s">  request: $(cat server.csr | base64 | tr -d &#39;\n&#39;)
+</span><span class="s">  signerName: example.com/serving
+</span><span class="s">  usages:
+</span><span class="s">  - digital signature
+</span><span class="s">  - key encipherment
+</span><span class="s">  - server auth
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>请注意，在步骤 1 中创建的 <code>server.csr</code> 文件是 base64 编码并存储在 <code>.spec.request</code> 字段中的。你还要求提供 “digital signature（数字签名）”， “密钥加密（key encipherment）” 和 “服务器身份验证（server auth）” 密钥用途， 由 <code>example.com/serving</code> 示例签名程序签名的证书。 你也可以要求使用特定的 <code>signerName</code>。更多信息可参阅 <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/certificate-signing-requests/#signers" target="_blank" rel="noopener noreffer">支持的签署者名称</a>。</p>
+<p>在 API server 中可以看到这些 CSR 处于 Pending 状态。执行下面的命令你将可以看到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl describe csr my-svc.my-namespace
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Name:                   my-svc.my-namespace
+Labels:                 &lt;none&gt;
+Annotations:            &lt;none&gt;
+CreationTimestamp:      Tue, 01 Feb 2022 11:49:15 -0500
+Requesting User:        yourname@example.com
+Signer:                 example.com/serving
+Status:                 Pending
+Subject:
+        Common Name:    my-pod.my-namespace.pod.cluster.local
+        Serial Number:
+Subject Alternative Names:
+        DNS Names:      my-pod.my-namespace.pod.cluster.local
+                        my-svc.my-namespace.svc.cluster.local
+        IP Addresses:   192.0.2.24
+                        10.0.34.2
+Events: &lt;none&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="批准证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clusterget-the-certificate-signing-request-approved">批准证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#get-the-certificate-signing-request-approved" target="_blank" rel="noopener noreffer"></a></h3>
+<p><a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/certificate-signing-requests/" target="_blank" rel="noopener noreffer">证书签名请求</a> 的批准或者是通过自动批准过程完成的，或由集群管理员一次性完成。 如果你被授权批准证书请求，你可以使用 <code>kubectl</code> 来手动完成此操作；例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl certificate approve my-svc.my-namespace
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">certificatesigningrequest.certificates.k8s.io/my-svc.my-namespace approved
+</code></pre></td></tr></table>
+</div>
+</div><p>你现在应该能看到如下输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME                  AGE   SIGNERNAME            REQUESTOR              REQUESTEDDURATION   CONDITION
+my-svc.my-namespace   10m   example.com/serving   yourname@example.com   &lt;none&gt;              Approved
+</code></pre></td></tr></table>
+</div>
+</div><p>这意味着证书请求已被批准，并正在等待请求的签名者对其签名。</p>
+<h3 id="签名证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustersign-the-certificate-signing-request">签名证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#sign-the-certificate-signing-request" target="_blank" rel="noopener noreffer"></a></h3>
+<p>接下来，你将扮演证书签署者的角色，颁发证书并将其上传到 API 服务器。</p>
+<p>签名者通常会使用其 <code>signerName</code> 查看对象的 CertificateSigningRequest API， 检查它们是否已被批准，为这些请求签署证书，并使用已颁发的证书更新 API 对象状态。</p>
+<h4 id="创建证书颁发机构httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere5889be5bbbae8af81e4b9a6e9a281e58f91e69cbae69e84">创建证书颁发机构<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E9%A2%81%E5%8F%91%E6%9C%BA%E6%9E%84" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你需要授权在新证书上提供数字签名。</p>
+<p>首先，通过运行以下命令创建签名证书：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat <span class="s">&lt;&lt;EOF | cfssl gencert -initca - | cfssljson -bare ca
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;My Example Signer&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你应该看到类似于以下的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">2022/02/01 11:50:39 [INFO] generating a new CA key and certificate from CSR
+2022/02/01 11:50:39 [INFO] generate received request
+2022/02/01 11:50:39 [INFO] received CSR
+2022/02/01 11:50:39 [INFO] generating key: rsa-2048
+2022/02/01 11:50:39 [INFO] encoded CSR
+2022/02/01 11:50:39 [INFO] signed certificate with serial number 263983151013686720899716354349605500797834580472
+</code></pre></td></tr></table>
+</div>
+</div><p>这会产生一个证书颁发机构密钥文件（<code>ca-key.pem</code>）和证书（<code>ca.pem</code>）。</p>
+<h4 id="颁发证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere9a281e58f91e8af81e4b9a6">颁发证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E9%A2%81%E5%8F%91%E8%AF%81%E4%B9%A6" target="_blank" rel="noopener noreffer"></a></h4>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/tls/server-signing-config.json" target="_blank" rel="noopener noreffer"><code>tls/server-signing-config.json</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy tls/server-signing-config.json to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy tls/server-signing-config.json to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;signing&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;usages&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;digital signature&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;key encipherment&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;server auth&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;expiry&#34;</span><span class="p">:</span> <span class="s2">&#34;876000h&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;ca_constraint&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;is_ca&#34;</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>server-signing-config.json</code> 签名配置、证书颁发机构密钥文件和证书来签署证书请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr my-svc.my-namespace -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.request}&#39;</span> <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  base64 --decode <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  cfssl sign -ca ca.pem -ca-key ca-key.pem -config server-signing-config.json - <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  cfssljson -bare ca-signed-server
+</code></pre></td></tr></table>
+</div>
+</div><p>你应该看到类似于以下的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">2022/02/01 11:52:26 [INFO] signed certificate with serial number 576048928624926584381415936700914530534472870337
+</code></pre></td></tr></table>
+</div>
+</div><p>这会生成一个签名的服务证书文件，<code>ca-signed-server.pem</code>。</p>
+<h4 id="上传签名证书httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere4b88ae4bca0e7adbee5908de8af81e4b9a6">上传签名证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E4%B8%8A%E4%BC%A0%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6" target="_blank" rel="noopener noreffer"></a></h4>
+<p>最后，在 API 对象的状态中填充签名证书：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr my-svc.my-namespace -o json <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  jq <span class="s1">&#39;.status.certificate = &#34;&#39;</span><span class="k">$(</span>base64 ca-signed-server.pem <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span><span class="k">)</span><span class="s1">&#39;&#34;&#39;</span> <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  kubectl replace --raw /apis/certificates.k8s.io/v1/certificatesigningrequests/my-svc.my-namespace/status -f -
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>说明：</strong></p>
+<p>这使用命令行工具 <a href="https://stedolan.github.io/jq/" target="_blank" rel="noopener noreffer"><code>jq</code></a> 在 <code>.status.certificate</code> 字段中填充 base64 编码的内容。 如果你没有 <code>jq</code> 工具，你还可以将 JSON 输出保存到文件中，手动填充此字段，然后上传结果文件。</p>
+<p>批准 CSR 并上传签名证书后，运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr
+</code></pre></td></tr></table>
+</div>
+</div><p>输入类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME                  AGE   SIGNERNAME            REQUESTOR              REQUESTEDDURATION   CONDITION
+my-svc.my-namespace   20m   example.com/serving   yourname@example.com   &lt;none&gt;              Approved,Issued
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="下载证书并使用它httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere4b88be8bdbde8af81e4b9a6e5b9b6e4bdbfe794a8e5ae83">下载证书并使用它<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E4%B8%8B%E8%BD%BD%E8%AF%81%E4%B9%A6%E5%B9%B6%E4%BD%BF%E7%94%A8%E5%AE%83" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在，作为请求用户，你可以通过运行以下命令下载颁发的证书并将其保存到 <code>server.crt</code> 文件中：</p>
+<p>CSR 被签署并获得批准后，你应该看到以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr my-svc.my-namespace -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.certificate}&#39;</span> <span class="se">\
+</span><span class="se"></span>    <span class="p">|</span> base64 --decode &gt; server.crt
+</code></pre></td></tr></table>
+</div>
+</div><p>现在你可以将 <code>server.crt</code> 和 <code>server-key.pem</code> 填充到 <a href="https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/" target="_blank" rel="noopener noreffer">Secret</a> 中， 稍后你可以将其挂载到 Pod 中（例如，用于提供 HTTPS 的网络服务器）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create secret tls server --cert server.crt --key server-key.pem
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">secret/server created
+</code></pre></td></tr></table>
+</div>
+</div><p>最后，你可以将 <code>ca.pem</code> 填充到 <a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank" rel="noopener noreffer">ConfigMap</a> 并将其用作信任根来验证服务证书：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create configmap example-serving-ca --from-file ca.crt<span class="o">=</span>ca.pem
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">configmap/example-serving-ca created
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="批准证书签名请求csrhttpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clusterapproving-certificate-signing-requests">批准证书签名请求（CSR）<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#approving-certificate-signing-requests" target="_blank" rel="noopener noreffer"></a></h3>
+<p>Kubernetes 管理员（具有适当权限）可以使用 <code>kubectl certificate approve</code> 和 <code>kubectl certificate deny</code> 命令手动批准（或拒绝）证书签名请求（CSR）。 但是，如果你打算大量使用此 API，则可以考虑编写自动化的证书控制器。</p>
+<p><strong>注意：</strong></p>
+<p>批准证书 CSR 的能力决定了在你的环境中谁信任谁。 不应广泛或轻率地授予批准 CSR 的能力。</p>
+<p>在授予 <code>approve</code> 权限之前，你应该确保自己充分了解批准人的验证要求<strong>和</strong>颁发特定证书的后果。</p>
+<p>无论上述机器或人使用 kubectl，“批准者”的作用是验证 CSR 满足如下两个要求：</p>
+<ol>
+<li>CSR 的 subject 控制用于签署 CSR 的私钥。这解决了伪装成授权主体的第三方的威胁。 在上述示例中，此步骤将验证该 Pod 控制了用于生成 CSR 的私钥。</li>
+<li>CSR 的 subject 被授权在请求的上下文中执行。 这点用于处理不期望的主体被加入集群的威胁。 在上述示例中，此步骤将是验证该 Pod 是否被允许加入到所请求的服务中。</li>
+</ol>
+<p>当且仅当满足这两个要求时，审批者应该批准 CSR，否则拒绝 CSR。</p>
+<p>有关证书批准和访问控制的更多信息， 请阅读<a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/certificate-signing-requests/" target="_blank" rel="noopener noreffer">证书签名请求</a>参考页。</p>
+<h3 id="给集群管理员的一个建议httpskubernetesiozh-cndocstaskstlsmanaging-tls-in-a-clustere7bb99e99b86e7bea4e7aea1e79086e59198e79a84e4b880e4b8aae5bbbae8aeae">给集群管理员的一个建议<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/managing-tls-in-a-cluster/#%E7%BB%99%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86%E5%91%98%E7%9A%84%E4%B8%80%E4%B8%AA%E5%BB%BA%E8%AE%AE" target="_blank" rel="noopener noreffer"></a></h3>
+<p>本页面假设已经为 certificates API 配置了签名者。 Kubernetes 控制器管理器提供了一个签名者的默认实现。要启用它，请为控制器管理器设置 <code>--cluster-signing-cert-file</code> 和 <code>--cluster-signing-key-file</code> 参数， 使之取值为你的证书机构的密钥对的路径。</p>
+<h2 id="手动轮换-ca-证书httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificates"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/" target="_blank" rel="noopener noreffer">手动轮换 CA 证书</a></h2>
+<p>本页展示如何手动轮换证书机构（CA）证书。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificatese58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li>
+<p><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></p>
+</li>
+<li>
+<p><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></p>
+</li>
+<li>
+<p>要了解 Kubernetes 中用户认证的更多信息，参阅 <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication" target="_blank" rel="noopener noreffer">认证</a>；</p>
+</li>
+<li>
+<p>要了解与 CA 证书最佳实践有关的更多信息， 参阅<a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#single-root-ca" target="_blank" rel="noopener noreffer">单根 CA</a>。</p>
+</li>
+</ul>
+<h3 id="手动轮换-ca-证书httpskubernetesiozh-cndocstaskstlsmanual-rotation-of-ca-certificatesrotate-the-ca-certificates-manually">手动轮换 CA 证书<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/manual-rotation-of-ca-certificates/#rotate-the-ca-certificates-manually" target="_blank" rel="noopener noreffer"></a></h3>
+<p><strong>注意：</strong></p>
+<p>确保备份你的证书目录、配置文件以及其他必要文件。</p>
+<p>这里的方法假定 Kubernetes 的控制面通过运行多个 API 服务器以高可用配置模式运行。 另一假定是 API 服务器可体面地终止，因而客户端可以彻底地与一个 API 服务器断开 连接并连接到另一个 API 服务器。</p>
+<p>如果集群中只有一个 API 服务器，则在 API 服务器重启期间会经历服务中断期。</p>
+<ol>
+<li>
+<p>将新的 CA 证书和私钥（例如：<code>ca.crt</code>、<code>ca.key</code>、<code>front-proxy-ca.crt</code> 和 <code>front-proxy-client.key</code>）分发到所有控制面节点，放在其 Kubernetes 证书目录下。</p>
+</li>
+<li>
+<p>更新 <a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank" rel="noopener noreffer">kube-controller-manager</a> 的 <code>--root-ca-file</code> 标志，使之同时包含老的和新的 CA，之后重启 kube-controller-manager。</p>
+<p>自此刻起，所创建的所有<a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-service-account/" target="_blank" rel="noopener noreffer">ServiceAccount</a> 都会获得同时包含老的 CA 和新的 CA 的 Secret。</p>
+<p><strong>说明：</strong></p>
+<p>kube-controller-manager 标志 <code>--client-ca-file</code> 和 <code>--cluster-signing-cert-file</code> 所引用的文件不能是 CA 证书包。如果这些标志和 <code>--root-ca-file</code> 指向同一个 <code>ca.crt</code> 包文件 （包含老的和新的 CA 证书），你将会收到出错信息。 要解决这个问题，可以将新的 CA 证书复制到单独的文件中，并将 <code>--client-ca-file</code> 和 <code>--cluster-signing-cert-file</code> 标志指向该副本。一旦 <code>ca.crt</code> 不再是证书包文件， 就可以恢复有问题的标志指向 <code>ca.crt</code> 并删除该副本。</p>
+<p>kubeadm 的 <a href="https://github.com/kubernetes/kubeadm/issues/1350" target="_blank" rel="noopener noreffer">Issue 1350</a> 在跟踪一个导致 kube-controller-manager 无法接收 CA 证书包的问题。</p>
+</li>
+<li>
+<p>等待该控制器管理器更新服务账号 Secret 中的 <code>ca.crt</code>，使之同时包含老的和新的 CA 证书。</p>
+<p>如果在 API 服务器使用新的 CA 之前启动了新的 Pod，这些新的 Pod 也会获得此更新并且同时信任老的和新的 CA 证书。</p>
+</li>
+<li>
+<p>重启所有使用集群内配置的 Pod（例如：kube-proxy、CoreDNS 等），以便这些 Pod 能够使用与 ServiceAccount 相关联的 Secret 中的、已更新的证书机构数据。</p>
+<ul>
+<li>确保 CoreDNS、kube-proxy 和其他使用集群内配置的 Pod 都正按预期方式工作。</li>
+</ul>
+</li>
+<li>
+<p>将老的和新的 CA 都追加到 <code>kube-apiserver</code> 配置的 <code>--client-ca-file</code> 和 <code>--kubelet-certificate-authority</code> 标志所指的文件。</p>
+</li>
+<li>
+<p>将老的和新的 CA 都追加到 <code>kube-scheduler</code> 配置的 <code>--client-ca-file</code> 标志所指的文件。</p>
+</li>
+<li>
+<p>通过替换 <code>client-certificate-data</code> 和 <code>client-key-data</code> 中的内容，更新用户账号的证书。</p>
+<p>有关为独立用户账号创建证书的更多信息，可参阅 <a href="https://kubernetes.io/zh-cn/docs/setup/best-practices/certificates/#configure-certificates-for-user-accounts" target="_blank" rel="noopener noreffer">为用户帐号配置证书</a>。</p>
+<p>另外，还要更新 kubeconfig 文件中的 <code>certificate-authority-data</code> 节， 使之包含 Base64 编码的老的和新的证书机构数据。</p>
+</li>
+<li>
+<p>更新 <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/cloud-controller/" target="_blank" rel="noopener noreffer">云控制器管理器（Cloud Controller Manager）</a> 的 <code>--root-ca-file</code> 标志值，使之同时包含老的和新的 CA，之后重新启动 cloud-controller-manager。</p>
+<p><strong>说明：</strong></p>
+<p>如果你的集群中不包含 cloud-controller-manager，你可以略过这一步。</p>
+</li>
+<li>
+<p>遵循下列步骤执行滚动更新</p>
+<ol>
+<li>
+<p>重新启动所有其他<a href="https://kubernetes.io/zh-cn/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/" target="_blank" rel="noopener noreffer">被聚合的 API 服务器</a> 或者 Webhook 处理程序，使之信任新的 CA 证书。</p>
+</li>
+<li>
+<p>在所有节点上更新 kubelet 配置中的 <code>clientCAFile</code> 所指文件以及 <code>kubelet.conf</code> 中的 <code>certificate-authority-data</code> 并重启 kubelet 以同时使用老的和新的 CA 证书。</p>
+<p>如果你的 kubelet 并未使用客户端证书轮换，则在所有节点上更新 <code>kubelet.conf</code> 中 <code>client-certificate-data</code> 和 <code>client-key-data</code> 以及 kubelet 客户端证书文件（通常位于 <code>/var/lib/kubelet/pki</code> 目录下）</p>
+</li>
+<li>
+<p>使用用新的 CA 签名的证书 （<code>apiserver.crt</code>、<code>apiserver-kubelet-client.crt</code> 和 <code>front-proxy-client.crt</code>） 来重启 API 服务器。 你可以使用现有的私钥，也可以使用新的私钥。 如果你改变了私钥，则要将更新的私钥也放到 Kubernetes 证书目录下。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  由于集群中的 Pod 既信任老的 CA 也信任新的 CA，Pod 中的客户端会经历短暂的连接断开状态，
+</code></pre></td></tr></table>
+</div>
+</div><p>之后再使用新的 CA 所签名的证书连接到新的 API 服务器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  * 重启 kube-scheduler 以使用并信任新的
+ CA 证书。
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>确保控制面组件的日志中没有 TLS 相关的错误信息。</li>
+</ul>
+<p><strong>说明：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="w">  </span><span class="err">要使用</span><span class="w"> </span><span class="o">`</span><span class="n">openssl</span><span class="o">`</span><span class="w"> </span><span class="err">命令行为集群生成新的证书和私钥，可参阅</span><span class="w">
+</span><span class="w">  </span><span class="p">[</span><span class="err">证书（</span><span class="o">`</span><span class="n">openssl</span><span class="o">`</span><span class="err">）</span><span class="p">](</span><span class="o">/</span><span class="n">zh</span><span class="o">-</span><span class="n">cn</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span><span class="n">administer</span><span class="o">-</span><span class="n">cluster</span><span class="o">/</span><span class="n">certificates</span><span class="o">/</span><span class="c1">#openssl)。
+</span><span class="c1"></span><span class="w">  </span><span class="err">你也可以使用</span><span class="p">[</span><span class="o">`</span><span class="n">cfssl</span><span class="o">`</span><span class="p">](</span><span class="o">/</span><span class="n">zh</span><span class="o">-</span><span class="n">cn</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span><span class="n">administer</span><span class="o">-</span><span class="n">cluster</span><span class="o">/</span><span class="n">certificates</span><span class="o">/</span><span class="c1">#cfssl).
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>为 Daemonset 和 Deployment 添加注解，从而触发较安全的滚动更新，替换 Pod。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="k">for</span> namespace in <span class="k">$(</span>kubectl get namespace -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> name in <span class="k">$(</span>kubectl get deployments -n <span class="nv">$namespace</span> -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+        kubectl patch deployment -n <span class="si">${</span><span class="nv">namespace</span><span class="si">}</span> <span class="si">${</span><span class="nv">name</span><span class="si">}</span> -p <span class="s1">&#39;{&#34;spec&#34;:{&#34;template&#34;:{&#34;metadata&#34;:{&#34;annotations&#34;:{&#34;ca-rotation&#34;: &#34;1&#34;}}}}}&#39;</span><span class="p">;</span>
+    <span class="k">done</span>
+    <span class="k">for</span> name in <span class="k">$(</span>kubectl get daemonset -n <span class="nv">$namespace</span> -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+        kubectl patch daemonset -n <span class="si">${</span><span class="nv">namespace</span><span class="si">}</span> <span class="si">${</span><span class="nv">name</span><span class="si">}</span> -p <span class="s1">&#39;{&#34;spec&#34;:{&#34;template&#34;:{&#34;metadata&#34;:{&#34;annotations&#34;:{&#34;ca-rotation&#34;: &#34;1&#34;}}}}}&#39;</span><span class="p">;</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>说明：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  要限制应用可能受到的并发干扰数量，
+  可以参阅[配置 Pod 干扰预算](/zh-cn/docs/tasks/run-application/configure-pdb/)。
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  取决于你在如何使用 StatefulSet，你可能需要对其执行类似的滚动替换操作。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果你的集群使用启动引导令牌来添加节点，则需要更新 <code>kube-public</code> 名字空间下的 ConfigMap <code>cluster-info</code>，使之包含新的 CA 证书。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">base64_encoded_ca</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>base64 -w0 /etc/kubernetes/pki/ca.crt<span class="k">)</span><span class="s2">&#34;</span>
+
+kubectl get cm/cluster-info --namespace kube-public -o yaml <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>   /bin/sed <span class="s2">&#34;s/\(certificate-authority-data:\).*/\1 </span><span class="si">${</span><span class="nv">base64_encoded_ca</span><span class="si">}</span><span class="s2">/&#34;</span> <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>   kubectl apply -f -
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>验证集群的功能正常。</p>
+<ol>
+<li>
+<p>检查控制面组件以及 <code>kubelet</code> 和 <code>kube-proxy</code> 的日志，确保其中没有抛出 TLS 错误， 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/debug/debug-cluster/#looking-at-logs" target="_blank" rel="noopener noreffer">查看日志</a>。</p>
+</li>
+<li>
+<p>验证被聚合的 API 服务器的日志，以及所有使用集群内配置的 Pod 的日志。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>完成集群功能的检查之后：</p>
+<ol>
+<li>
+<p>更新所有的服务账号令牌，使之仅包含新的 CA 证书。</p>
+<ul>
+<li>使用集群内 kubeconfig 的 Pod 最终也需要被重启，以获得新的服务账号 Secret 数据，这样就不会有 Pod 再依赖老的集群 CA。</li>
+</ul>
+</li>
+<li>
+<p>从 kubeconfig 文件和 <code>--client-ca-file</code> 以及 <code>--root-ca-file</code> 标志所指向的文件 中去除老的 CA 数据，之后重启控制面组件。</p>
+</li>
+<li>
+<p>在每个节点上，移除 <code>clientCAFile</code> 标志所指向的文件，以删除老的 CA 数据，并从 kubelet kubeconfig 文件中去掉老的 CA，重启 kubelet。 你应该用滚动更新的方式来执行这一步骤的操作。</p>
+<p>如果你的集群允许你执行这一变更，你也可以通过替换节点而不是重新配置节点的方式来将其上线。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="为-kubelet-配置证书轮换httpskubernetesiozh-cndocstaskstlscertificate-rotation"><a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/" target="_blank" rel="noopener noreffer">为 kubelet 配置证书轮换</a></h2>
+<p>本文展示如何在 kubelet 中启用并配置证书轮换。</p>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.19 [stable]</code></p>
+<h3 id="准备开始httpskubernetesiozh-cndocstaskstlscertificate-rotatione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<ul>
+<li>要求 Kubernetes 1.8.0 或更高的版本</li>
+</ul>
+<h3 id="概述httpskubernetesiozh-cndocstaskstlscertificate-rotatione6a682e8bfb0">概述<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E6%A6%82%E8%BF%B0" target="_blank" rel="noopener noreffer"></a></h3>
+<p>Kubelet 使用证书进行 Kubernetes API 的认证。 默认情况下，这些证书的签发期限为一年，所以不需要太频繁地进行更新。</p>
+<p>Kubernetes 包含特性 <a href="https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/" target="_blank" rel="noopener noreffer">kubelet 证书轮换</a>， 在当前证书即将过期时， 将自动生成新的秘钥，并从 Kubernetes API 申请新的证书。 一旦新的证书可用，它将被用于与 Kubernetes API 间的连接认证。</p>
+<h3 id="启用客户端证书轮换httpskubernetesiozh-cndocstaskstlscertificate-rotatione590afe794a8e5aea2e688b7e7abafe8af81e4b9a6e8bdaee68da2">启用客户端证书轮换<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E5%90%AF%E7%94%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%81%E4%B9%A6%E8%BD%AE%E6%8D%A2" target="_blank" rel="noopener noreffer"></a></h3>
+<p><code>kubelet</code> 进程接收 <code>--rotate-certificates</code> 参数，该参数决定 kubelet 在当前使用的 证书即将到期时，是否会自动申请新的证书。</p>
+<p><code>kube-controller-manager</code> 进程接收 <code>--cluster-signing-duration</code> 参数 （在 1.19 版本之前为 <code>--experimental-cluster-signing-duration</code>），用来 控制签发证书的有效期限。</p>
+<h3 id="理解证书轮换配置httpskubernetesiozh-cndocstaskstlscertificate-rotatione79086e8a7a3e8af81e4b9a6e8bdaee68da2e9858de7bdae">理解证书轮换配置<a href="https://kubernetes.io/zh-cn/docs/tasks/tls/certificate-rotation/#%E7%90%86%E8%A7%A3%E8%AF%81%E4%B9%A6%E8%BD%AE%E6%8D%A2%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener noreffer"></a></h3>
+<p>当 kubelet 启动时，如被配置为自举（使用<code>--bootstrap-kubeconfig</code> 参数），kubelet 会使用其初始证书连接到 Kubernetes API ，并发送证书签名的请求。 可以通过以下方式查看证书签名请求的状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get csr
+</code></pre></td></tr></table>
+</div>
+</div><p>最初，来自节点上 kubelet 的证书签名请求处于 <code>Pending</code> 状态。 如果证书签名请求满足特定条件， 控制器管理器会自动批准，此时请求会处于 <code>Approved</code> 状态。 接下来，控制器管理器会签署证书， 证书的有效期限由 <code>--cluster-signing-duration</code> 参数指定，签署的证书会被附加到证书签名请求中。</p>
+<p>Kubelet 会从 Kubernetes API 取回签署的证书，并将其写入磁盘，存储位置通过 <code>--cert-dir</code> 参数指定。 然后 kubelet 会使用新的证书连接到 Kubernetes API。</p>
+<p>当签署的证书即将到期时，kubelet 会使用 Kubernetes API，自动发起新的证书签名请求。 该请求会发生在证书的有效时间剩下 30% 到 10% 之间的任意时间点。 同样地，控制器管理器会自动批准证书请求，并将签署的证书附加到证书签名请求中。 Kubelet 会从 Kubernetes API 取回签署的证书，并将其写入磁盘。 然后它会更新与 Kubernetes API 的连接，使用新的证书重新连接到 Kubernetes API。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/tls/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/tls/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/tls/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/tls/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/tls/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/tls/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/temp/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

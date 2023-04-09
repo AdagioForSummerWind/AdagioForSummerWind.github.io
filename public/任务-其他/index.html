@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="调度 GPU 配置和调度 GPU 成一类资源以供集群中节点使用。 特性状态： Kubernetes v1.26 [stable] Kubernetes 支持使用设备插件来跨集群中的不同节点管理 AMD 和 NVIDIA GPU（图形处理单元），目前" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="调度 GPU 配置和调度 GPU 成一类资源以供集群中节点使用。 特性状态： Kubernetes v1.26 [stable] Kubernetes 支持使用设备插件来跨集群中的不同节点管理 AMD 和 NVIDIA GPU（图形处理单元），目前"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" /><link rel="prev" href="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E7%AE%A1%E7%90%86%E9%9B%86%E7%BE%A4%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" /><link rel="next" href="https://jefofrank.xyz/tls/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  4829 ,
+        "url": "https:\/\/jefofrank.xyz\/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4829 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#调度-gpu">调度 GPU</a>
+      <ul>
+        <li><a href="#使用设备插件httpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpususing-device-plugins">使用设备插件<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#using-device-plugins"></a></a></li>
+        <li><a href="#集群内存在不同类型的-gpuhttpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpusclusters-containing-different-types-of-gpus">集群内存在不同类型的 GPU<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#clusters-containing-different-types-of-gpus"></a></a></li>
+        <li><a href="#自动节点标签httpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpusnode-labeller">自动节点标签<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#node-labeller"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#管理巨页hugepages">管理巨页（HugePages）</a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksmanage-hugepagesscheduling-hugepagese58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-hugepages/scheduling-hugepages/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#apihttpskubernetesiozh-cndocstasksmanage-hugepagesscheduling-hugepagesapi">API<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-hugepages/scheduling-hugepages/#api"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#用插件扩展-kubectl">用插件扩展 kubectl</a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#安装-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse5ae89e8a385-kubectl-e68f92e4bbb6">安装 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%AE%89%E8%A3%85-kubectl-%E6%8F%92%E4%BB%B6"></a></a>
+          <ul>
+            <li><a href="#发现插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58f91e78eb0e68f92e4bbb6">发现插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%8F%91%E7%8E%B0%E6%8F%92%E4%BB%B6"></a></a>
+              <ul>
+                <li><a href="#限制httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse99990e588b6">限制<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E9%99%90%E5%88%B6"></a></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#编写-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse7bc96e58699-kubectl-e68f92e4bbb6">编写 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E7%BC%96%E5%86%99-kubectl-%E6%8F%92%E4%BB%B6"></a></a>
+          <ul>
+            <li><a href="#示例插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse7a4bae4be8be68f92e4bbb6">示例插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E7%A4%BA%E4%BE%8B%E6%8F%92%E4%BB%B6"></a></a></li>
+            <li><a href="#使用插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse4bdbfe794a8e68f92e4bbb6">使用插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6"></a></a></li>
+            <li><a href="#命名插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse591bde5908de68f92e4bbb6">命名插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%91%BD%E5%90%8D%E6%8F%92%E4%BB%B6"></a></a>
+              <ul>
+                <li><a href="#参数和标记处理httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58f82e695b0e5928ce6a087e8aeb0e5a484e79086">参数和标记处理<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%8F%82%E6%95%B0%E5%92%8C%E6%A0%87%E8%AE%B0%E5%A4%84%E7%90%86"></a></a></li>
+                <li><a href="#带有破折号和下划线的名称httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse5b8a6e69c89e7a0b4e68a98e58fb7e5928ce4b88be58892e7babfe79a84e5908de7a7b0">带有破折号和下划线的名称<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%B8%A6%E6%9C%89%E7%A0%B4%E6%8A%98%E5%8F%B7%E5%92%8C%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E5%90%8D%E7%A7%B0"></a></a></li>
+                <li><a href="#命名冲突和弊端httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse591bde5908de586b2e7aa81e5928ce5bc8ae7abaf">命名冲突和弊端<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%91%BD%E5%90%8D%E5%86%B2%E7%AA%81%E5%92%8C%E5%BC%8A%E7%AB%AF"></a></a></li>
+                <li><a href="#调用最长的可执行文件名httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse8b083e794a8e69c80e995bfe79a84e58fafe689a7e8a18ce69687e4bbb6e5908d">调用最长的可执行文件名<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E8%B0%83%E7%94%A8%E6%9C%80%E9%95%BF%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%90%8D"></a></a></li>
+              </ul>
+            </li>
+            <li><a href="#检查插件警告httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse6a380e69fa5e68f92e4bbb6e8ada6e5918a">检查插件警告<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E6%A3%80%E6%9F%A5%E6%8F%92%E4%BB%B6%E8%AD%A6%E5%91%8A"></a></a></li>
+            <li><a href="#使用命令行运行时包httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsusing-the-command-line-runtime-package">使用命令行运行时包<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#using-the-command-line-runtime-package"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#分发-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58886e58f91-kubectl-e68f92e4bbb6">分发 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%88%86%E5%8F%91-kubectl-%E6%8F%92%E4%BB%B6"></a></a>
+          <ul>
+            <li><a href="#krewhttpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-krew">Krew<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-krew"></a></a></li>
+            <li><a href="#原生的与特定平台的包管理httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-native">原生的与特定平台的包管理<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-native"></a></a></li>
+            <li><a href="#源代码httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-source-code">源代码<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-source-code"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#接下来httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E6%8E%A5%E4%B8%8B%E6%9D%A5"></a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="调度-gpu">调度 GPU</h2>
+<p>配置和调度 GPU 成一类资源以供集群中节点使用。</p>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.26 [stable]</code></p>
+<p>Kubernetes 支持使用<a href="https://kubernetes.io/zh-cn/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/" target="_blank" rel="noopener noreffer">设备插件</a>来跨集群中的不同节点管理 AMD 和 NVIDIA GPU（图形处理单元），目前处于<strong>稳定</strong>状态。</p>
+<p>本页介绍用户如何使用 GPU 以及当前存在的一些限制。</p>
+<h3 id="使用设备插件httpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpususing-device-plugins">使用设备插件<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#using-device-plugins" target="_blank" rel="noopener noreffer"></a></h3>
+<p>Kubernetes 实现了设备插件（Device Plugin），让 Pod 可以访问类似 GPU 这类特殊的硬件功能特性。</p>
+<p><strong>说明：</strong> 本部分链接到提供 Kubernetes 所需功能的第三方项目。Kubernetes 项目作者不负责这些项目。此页面遵循<a href="https://github.com/cncf/foundation/blob/master/website-guidelines.md" target="_blank" rel="noopener noreffer">CNCF 网站指南</a>，按字母顺序列出项目。要将项目添加到此列表中，请在提交更改之前阅读<a href="https://kubernetes.io/docs/contribute/style/content-guide/#third-party-content" target="_blank" rel="noopener noreffer">内容指南</a>。</p>
+<p>作为集群管理员，你要在节点上安装来自对应硬件厂商的 GPU 驱动程序，并运行来自 GPU 厂商的对应设备插件。以下是一些厂商说明的链接：</p>
+<ul>
+<li><a href="https://github.com/RadeonOpenCompute/k8s-device-plugin#deployment" target="_blank" rel="noopener noreffer">AMD</a></li>
+<li><a href="https://intel.github.io/intel-device-plugins-for-kubernetes/cmd/gpu_plugin/README.html" target="_blank" rel="noopener noreffer">Intel</a></li>
+<li><a href="https://github.com/NVIDIA/k8s-device-plugin#quick-start" target="_blank" rel="noopener noreffer">NVIDIA</a></li>
+</ul>
+<p>一旦你安装了插件，你的集群就会暴露一个自定义可调度的资源，例如 <code>amd.com/gpu</code> 或 <code>nvidia.com/gpu</code>。</p>
+<p>你可以通过请求这个自定义的 GPU 资源在你的容器中使用这些 GPU，其请求方式与请求 <code>cpu</code> 或 <code>memory</code> 时相同。 不过，在如何指定自定义设备的资源请求方面存在一些限制。</p>
+<ul>
+<li>GPU 只能在 <code>limits</code> 部分指定，这意味着：
+<ul>
+<li>你可以指定 GPU 的 <code>limits</code> 而不指定其 <code>requests</code>，因为 Kubernetes 将默认使用限制 值作为请求值。</li>
+<li>你可以同时指定 <code>limits</code> 和 <code>requests</code>，不过这两个值必须相等。</li>
+<li>你不可以仅指定 <code>requests</code> 而不指定 <code>limits</code>。</li>
+</ul>
+</li>
+</ul>
+<p>以下是一个 Pod 请求 GPU 的示例清单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-vector-add</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-vector-add</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;registry.example/example-vector-add:v42&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">gpu-vendor.example/example-gpu</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c"># 请求 1 个 GPU</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集群内存在不同类型的-gpuhttpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpusclusters-containing-different-types-of-gpus">集群内存在不同类型的 GPU<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#clusters-containing-different-types-of-gpus" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果集群内部的不同节点上有不同类型的 NVIDIA GPU， 那么你可以使用<a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/assign-pods-nodes/" target="_blank" rel="noopener noreffer">节点标签和节点选择器</a>来将 Pod 调度到合适的节点上。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 为你的节点加上它们所拥有的加速器类型的标签</span>
+kubectl label nodes node1 <span class="nv">accelerator</span><span class="o">=</span>example-gpu-x100
+kubectl label nodes node2 <span class="nv">accelerator</span><span class="o">=</span>other-gpu-k915
+</code></pre></td></tr></table>
+</div>
+</div><p>这个标签键 <code>accelerator</code> 只是一个例子；如果你愿意，可以使用不同的标签键。</p>
+<h3 id="自动节点标签httpskubernetesiozh-cndocstasksmanage-gpusscheduling-gpusnode-labeller">自动节点标签<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-gpus/scheduling-gpus/#node-labeller" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果你在使用 AMD GPU，你可以部署 <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin/tree/master/cmd/k8s-node-labeller" target="_blank" rel="noopener noreffer">Node Labeller</a>， 它是一个 <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/controller/" target="_blank" rel="noopener noreffer">控制器</a>， 会自动给节点打上 GPU 设备属性标签。</p>
+<p>对于 NVIDIA GPU，<a href="https://github.com/NVIDIA/gpu-feature-discovery/blob/main/README.md" target="_blank" rel="noopener noreffer">GPU feature discovery</a> 提供了类似功能。</p>
+<h2 id="管理巨页hugepages">管理巨页（HugePages）</h2>
+<p>将大页配置和管理为集群中的可调度资源。</p>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.26 [stable]</code></p>
+<p>Kubernetes 支持在 Pod 应用中使用预先分配的巨页。本文描述了用户如何使用巨页，以及当前的限制。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksmanage-hugepagesscheduling-hugepagese58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-hugepages/scheduling-hugepages/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<ol>
+<li>为了使节点能够上报巨页容量，Kubernetes 节点必须预先分配巨页。每个节点能够预先分配多种规格的巨页。</li>
+</ol>
+<p>节点会自动发现全部巨页资源，并作为可供调度的资源进行上报。</p>
+<h3 id="apihttpskubernetesiozh-cndocstasksmanage-hugepagesscheduling-hugepagesapi">API<a href="https://kubernetes.io/zh-cn/docs/tasks/manage-hugepages/scheduling-hugepages/#api" target="_blank" rel="noopener noreffer"></a></h3>
+<p>用户可以通过在容器级别的资源需求中使用资源名称 <code>hugepages-&lt;size&gt;</code> 来使用巨页，其中的 size 是特定节点上支持的以整数值表示的最小二进制单位。 例如，如果一个节点支持 2048KiB 和 1048576KiB 页面大小，它将公开可调度的资源 <code>hugepages-2Mi</code> 和 <code>hugepages-1Gi</code>。与 CPU 或内存不同，巨页不支持过量使用（overcommit）。 注意，在请求巨页资源时，还必须请求内存或 CPU 资源。</p>
+<p>同一 Pod 的 spec 中可能会消耗不同尺寸的巨页。在这种情况下，它必须对所有挂载卷使用 <code>medium: HugePages-&lt;hugepagesize&gt;</code> 标识。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">huge-pages-example</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">fedora:latest</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">sleep</span><span class="w">
+</span><span class="w">    </span>- <span class="l">inf</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/hugepages-2Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage-2mi</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/hugepages-1Gi</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage-1gi</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">hugepages-2Mi</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">        </span><span class="nt">hugepages-1Gi</span><span class="p">:</span><span class="w"> </span><span class="l">2Gi</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage-2mi</span><span class="w">
+</span><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l">HugePages-2Mi</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage-1gi</span><span class="w">
+</span><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l">HugePages-1Gi</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Pod 只有在请求同一大小的巨页时才使用 <code>medium：HugePages</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">huge-pages-example</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">fedora:latest</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">sleep</span><span class="w">
+</span><span class="w">    </span>- <span class="l">inf</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/hugepages</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">hugepages-2Mi</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugepage</span><span class="w">
+</span><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l">HugePages</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>巨页的资源请求值必须等于其限制值。该条件在指定了资源限制，而没有指定请求的情况下默认成立。</li>
+<li>巨页是被隔离在 pod 作用域的，因此每个容器在 spec 中都对 cgroup 沙盒有自己的限制。</li>
+<li>巨页可用于 EmptyDir 卷，不过 EmptyDir 卷所使用的巨页数量不能够超出 Pod 请求的巨页数量。</li>
+<li>通过带有 <code>SHM_HUGETLB</code> 的 <code>shmget()</code> 使用巨页的应用，必须运行在一个与 <code>proc/sys/vm/hugetlb_shm_group</code> 匹配的补充组下。</li>
+<li>通过 ResourceQuota 资源，可以使用 <code>hugepages-&lt;size&gt;</code> 标记控制每个命名空间下的巨页使用量， 类似于使用 <code>cpu</code> 或 <code>memory</code> 来控制其他计算资源。</li>
+</ul>
+<h2 id="用插件扩展-kubectl">用插件扩展 kubectl</h2>
+<p>通过创建和安装 kubectl 插件扩展 kubectl。</p>
+<p>本指南演示了如何为 <a href="https://kubernetes.io/zh-cn/docs/reference/kubectl/kubectl/" target="_blank" rel="noopener noreffer">kubectl</a> 安装和编写扩展。 通过将核心 <code>kubectl</code> 命令看作与 Kubernetes 集群交互的基本构建块， 集群管理员可以将插件视为一种利用这些构建块创建更复杂行为的方法。 插件用新的子命令扩展了 <code>kubectl</code>，允许新的和自定义的特性不包括在 <code>kubectl</code> 的主要发行版中。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你需要安装一个可用的 <code>kubectl</code> 可执行文件。</p>
+<h3 id="安装-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse5ae89e8a385-kubectl-e68f92e4bbb6">安装 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%AE%89%E8%A3%85-kubectl-%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h3>
+<p>插件是一个独立的可执行文件，名称以 <code>kubectl-</code> 开头。 要安装插件，将其可执行文件移动到 <code>PATH</code> 中的任何位置。</p>
+<p>你也可以使用 <a href="https://krew.dev/" target="_blank" rel="noopener noreffer">Krew</a> 来发现和安装开源的 kubectl 插件。 Krew 是一个由 Kubernetes SIG CLI 社区维护的插件管理器。</p>
+<p><strong>注意：</strong> Krew <a href="https://krew.sigs.k8s.io/plugins/" target="_blank" rel="noopener noreffer">插件索引</a> 所维护的 kubectl 插件并未经过安全性审查。 你要了解安装和运行第三方插件的安全风险，因为它们本质上时是一些在你的机器上 运行的程序。</p>
+<h4 id="发现插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58f91e78eb0e68f92e4bbb6">发现插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%8F%91%E7%8E%B0%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h4>
+<p><code>kubectl</code> 提供一个命令 <code>kubectl plugin list</code>，用于搜索 <code>PATH</code> 查找有效的插件可执行文件。 执行此命令将遍历 <code>PATH</code> 中的所有文件。任何以 <code>kubectl-</code> 开头的可执行文件都将在这个命令的输出中<strong>以它们在 <code>PATH</code> 中出现的顺序</strong>显示。 任何以 <code>kubectl-</code> 开头的文件如果<code>不可执行</code>，都将包含一个警告。 对于任何相同的有效插件文件，都将包含一个警告。</p>
+<p>你可以使用 <a href="https://krew.dev/" target="_blank" rel="noopener noreffer">Krew</a> 从社区策划的<a href="https://krew.sigs.k8s.io/plugins/" target="_blank" rel="noopener noreffer">插件索引</a> 中发现和安装 <code>kubectl</code> 插件。</p>
+<h5 id="限制httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse99990e588b6">限制<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E9%99%90%E5%88%B6" target="_blank" rel="noopener noreffer"></a></h5>
+<p>目前无法创建覆盖现有 <code>kubectl</code> 命令的插件。 例如，创建一个插件 <code>kubectl-version</code> 将导致该插件永远不会被执行， 因为现有的 <code>kubectl version</code> 命令总是优先于它执行。 由于这个限制，也不可能使用插件将新的子命令添加到现有的 <code>kubectl</code> 命令中。 例如，通过将插件命名为 <code>kubectl-create-foo</code> 来添加子命令 <code>kubectl create foo</code> 将导致该插件被忽略。</p>
+<p>对于任何试图这样做的有效插件 <code>kubectl plugin list</code> 的输出中将显示警告。</p>
+<h3 id="编写-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse7bc96e58699-kubectl-e68f92e4bbb6">编写 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E7%BC%96%E5%86%99-kubectl-%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你可以用任何编程语言或脚本编写插件，允许你编写命令行命令。</p>
+<p>不需要安装插件或预加载，插件可执行程序从 <code>kubectl</code> 二进制文件接收继承的环境， 插件根据其名称确定它希望实现的命令路径。 例如，名为 <code>kubectl-foo</code> 的插件提供了命令 <code>kubectl foo</code>。 必须将插件的可执行文件安装在 <code>PATH</code> 中的某个位置。</p>
+<h4 id="示例插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse7a4bae4be8be68f92e4bbb6">示例插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E7%A4%BA%E4%BE%8B%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="c1"># 可选的参数处理</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;version&#34;</span> <span class="o">]]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;1.0.0&#34;</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="c1"># 可选的参数处理</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;config&#34;</span> <span class="o">]]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="nv">$KUBECONFIG</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;I am a plugin named kubectl-foo&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="使用插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse4bdbfe794a8e68f92e4bbb6">使用插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h4>
+<p>要使用某插件，先要使其可执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo chmod +x ./kubectl-foo
+</code></pre></td></tr></table>
+</div>
+</div><p>并将它放在你的 <code>PATH</code> 中的任何地方：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo mv ./kubectl-foo /usr/local/bin
+</code></pre></td></tr></table>
+</div>
+</div><p>你现在可以调用你的插件作为 <code>kubectl</code> 命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl foo
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">I am a plugin named kubectl-foo
+</code></pre></td></tr></table>
+</div>
+</div><p>所有参数和标记按原样传递给可执行文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl foo version
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">1.0.0
+</code></pre></td></tr></table>
+</div>
+</div><p>所有环境变量也按原样传递给可执行文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>~/.kube/config
+kubectl foo config
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/home/&lt;user&gt;/.kube/config
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/kube/config kubectl foo config
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/etc/kube/config
+</code></pre></td></tr></table>
+</div>
+</div><p>此外，传递给插件的第一个参数总是调用它的位置的绝对路径（在上面的例子中，<code>$0</code> 将等于 <code>/usr/local/bin/kubectl-foo</code>）。</p>
+<h4 id="命名插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse591bde5908de68f92e4bbb6">命名插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%91%BD%E5%90%8D%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h4>
+<p>如上面的例子所示，插件根据文件名确定要实现的命令路径，插件所针对的命令路径中的每个子命令都由破折号（<code>-</code>）分隔。 例如，当用户调用命令 <code>kubectl foo bar baz</code> 时，希望调用该命令的插件的文件名为 <code>kubectl-foo-bar-baz</code>。</p>
+<h5 id="参数和标记处理httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58f82e695b0e5928ce6a087e8aeb0e5a484e79086">参数和标记处理<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%8F%82%E6%95%B0%E5%92%8C%E6%A0%87%E8%AE%B0%E5%A4%84%E7%90%86" target="_blank" rel="noopener noreffer"></a></h5>
+<p><strong>说明：</strong></p>
+<p>插件机制<strong>不会</strong>为插件进程创建任何定制的、特定于插件的值或环境变量。</p>
+<p>较老的插件机制会提供环境变量（例如 <code>KUBECTL_PLUGINS_CURRENT_NAMESPACE</code>）；这种机制已被废弃。</p>
+<p>kubectl 插件必须解析并检查传递给它们的所有参数。 参阅<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#using-the-command-line-runtime-package" target="_blank" rel="noopener noreffer">使用命令行运行时包</a>了解针对 插件开发人员的 Go 库的细节。</p>
+<p>这里是一些用户调用你的插件的时候提供额外标志和参数的场景。 这些场景时基于上述案例中的 <code>kubectl-foo-bar-baz</code> 插件的。</p>
+<p>如果你运行 <code>kubectl foo bar baz arg1 --flag=value arg2</code>，kubectl 的插件机制将首先尝试找到 最长可能名称的插件，在本例中是 <code>kubectl-foo-bar-baz-arg1</code>。 当没有找到这个插件时，kubectl 就会将最后一个以破折号分隔的值视为参数（在本例中为 <code>arg1</code>）， 并尝试找到下一个最长的名称 <code>kubectl-foo-bar-baz</code>。 在找到具有此名称的插件后，它将调用该插件，并在其名称之后将所有参数和标志传递给插件进程。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建一个插件</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;#!/bin/bash\n\necho &#34;My first command-line argument was $1&#34;&#39;</span> &gt; kubectl-foo-bar-baz
+sudo chmod +x ./kubectl-foo-bar-baz
+
+<span class="c1"># 将插件放到 PATH 下完成&#34;安装&#34;</span>
+sudo mv ./kubectl-foo-bar-baz /usr/local/bin
+
+<span class="c1"># 确保 kubectl 能够识别我们的插件</span>
+kubectl plugin list
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The following kubectl-compatible plugins are available:
+
+/usr/local/bin/kubectl-foo-bar-baz
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 测试通过 &#34;kubectl&#34; 命令来调用我们的插件时可行的</span>
+<span class="c1"># 即使我们给插件传递一些额外的参数或标志</span>
+kubectl foo bar baz arg1 --meaningless-flag<span class="o">=</span><span class="nb">true</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">My first command-line argument was arg1
+</code></pre></td></tr></table>
+</div>
+</div><p>正如你所看到的，你的插件是基于用户指定的 <code>kubectl</code> 命令找到的， 所有额外的参数和标记都是按原样传递给插件可执行文件的。</p>
+<h5 id="带有破折号和下划线的名称httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse5b8a6e69c89e7a0b4e68a98e58fb7e5928ce4b88be58892e7babfe79a84e5908de7a7b0">带有破折号和下划线的名称<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%B8%A6%E6%9C%89%E7%A0%B4%E6%8A%98%E5%8F%B7%E5%92%8C%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E5%90%8D%E7%A7%B0" target="_blank" rel="noopener noreffer"></a></h5>
+<p>虽然 <code>kubectl</code> 插件机制在插件文件名中使用破折号（<code>-</code>）分隔插件处理的子命令序列， 但是仍然可以通过在文件名中使用下划线（<code>_</code>）来创建命令行中包含破折号的插件命令。</p>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建文件名中包含下划线的插件</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;#!/bin/bash\n\necho &#34;I am a plugin with a dash in my name&#34;&#39;</span> &gt; ./kubectl-foo_bar
+sudo chmod +x ./kubectl-foo_bar
+  
+<span class="c1"># 将插件放到 PATH 下</span>
+sudo mv ./kubectl-foo_bar /usr/local/bin
+
+<span class="c1"># 现在可以通过 kubectl 来调用插件</span>
+kubectl foo-bar
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">I am a plugin with a dash in my name
+</code></pre></td></tr></table>
+</div>
+</div><p>请注意，在插件文件名中引入下划线并不会阻止你使用 <code>kubectl foo_bar</code> 之类的命令。 可以使用破折号（<code>-</code>）或下划线（<code>_</code>）调用上面示例中的命令:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 我们的插件也可以用破折号来调用</span>
+kubectl foo-bar
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">I am a plugin with a dash in my name
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 你也可以使用下划线来调用我们的定制命令</span>
+kubectl foo_bar
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">I am a plugin with a dash in my name
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="命名冲突和弊端httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse591bde5908de586b2e7aa81e5928ce5bc8ae7abaf">命名冲突和弊端<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%91%BD%E5%90%8D%E5%86%B2%E7%AA%81%E5%92%8C%E5%BC%8A%E7%AB%AF" target="_blank" rel="noopener noreffer"></a></h5>
+<p>可以在 <code>PATH</code> 的不同位置提供多个文件名相同的插件， 例如，给定一个 <code>PATH</code> 为: <code>PATH=/usr/local/bin/plugins:/usr/local/bin/moreplugins</code>， 在 <code>/usr/local/bin/plugins</code> 和 <code>/usr/local/bin/moreplugins</code> 中可以存在一个插件 <code>kubectl-foo</code> 的副本，这样 <code>kubectl plugin list</code> 命令的输出就是:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PATH</span><span class="o">=</span>/usr/local/bin/plugins:/usr/local/bin/moreplugins kubectl plugin list
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The following kubectl-compatible plugins are available:
+  
+/usr/local/bin/plugins/kubectl-foo
+/usr/local/bin/moreplugins/kubectl-foo
+  - warning: /usr/local/bin/moreplugins/kubectl-foo is overshadowed by a similarly named plugin: /usr/local/bin/plugins/kubectl-foo
+  
+error: one plugin warning was found
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的场景中 <code>/usr/local/bin/moreplugins/kubectl-foo</code> 下的警告告诉你这个插件永远不会被执行。 相反，首先出现在你 <code>PATH</code> 中的可执行文件 <code>/usr/local/bin/plugins/kubectl-foo</code> 总是首先被 <code>kubectl</code> 插件机制找到并执行。</p>
+<p>解决这个问题的一种方法是你确保你希望与 <code>kubectl</code> 一起使用的插件的位置总是在你的 <code>PATH</code> 中首先出现。 例如，如果你总是想使用 <code>/usr/local/bin/moreplugins/kubectl foo</code>， 那么在调用 <code>kubectl</code> 命令 <code>kubectl foo</code> 时，你只需将路径的值更改为 <code>/usr/local/bin/moreplugins:/usr/local/bin/plugins</code>。</p>
+<h5 id="调用最长的可执行文件名httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse8b083e794a8e69c80e995bfe79a84e58fafe689a7e8a18ce69687e4bbb6e5908d">调用最长的可执行文件名<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E8%B0%83%E7%94%A8%E6%9C%80%E9%95%BF%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%90%8D" target="_blank" rel="noopener noreffer"></a></h5>
+<p>对于插件文件名而言还有另一种弊端，给定用户 <code>PATH</code> 中的两个插件 <code>kubectl-foo-bar</code> 和 <code>kubectl-foo-bar-baz</code>， <code>kubectl</code> 插件机制总是为给定的用户命令选择尽可能长的插件名称。下面的一些例子进一步的说明了这一点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 对于给定的 kubectl 命令，最长可能文件名的插件是被优先选择的</span>
+kubectl foo bar baz
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plugin kubectl-foo-bar-baz is executed
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl foo bar
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plugin kubectl-foo-bar is executed
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl foo bar baz buz
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plugin kubectl-foo-bar-baz is executed, with &#34;buz&#34; as its first argument
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl foo bar buz
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plugin kubectl-foo-bar is executed, with &#34;buz&#34; as its first argument
+</code></pre></td></tr></table>
+</div>
+</div><p>这种设计选择确保插件子命令可以跨多个文件实现，如果需要，这些子命令可以嵌套在&quot;父&quot;插件命令下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ls ./plugin_command_tree
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl-parent
+kubectl-parent-subcommand
+kubectl-parent-subcommand-subsubcommand
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="检查插件警告httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse6a380e69fa5e68f92e4bbb6e8ada6e5918a">检查插件警告<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E6%A3%80%E6%9F%A5%E6%8F%92%E4%BB%B6%E8%AD%A6%E5%91%8A" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你可以使用前面提到的 <code>kubectl plugin list</code> 命令来确保你的插件可以被 <code>kubectl</code> 看到， 并且验证没有警告防止它被称为 <code>kubectl</code> 命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl plugin list
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The following kubectl-compatible plugins are available:
+  
+test/fixtures/pkg/kubectl/plugins/kubectl-foo
+/usr/local/bin/kubectl-foo
+  - warning: /usr/local/bin/kubectl-foo is overshadowed by a similarly named plugin: test/fixtures/pkg/kubectl/plugins/kubectl-foo
+plugins/kubectl-invalid
+  - warning: plugins/kubectl-invalid identified as a kubectl plugin, but it is not executable
+
+error: 2 plugin warnings were found
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="使用命令行运行时包httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsusing-the-command-line-runtime-package">使用命令行运行时包<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#using-the-command-line-runtime-package" target="_blank" rel="noopener noreffer"></a></h4>
+<p>如果你在编写 kubectl 插件，而且你选择使用 Go 语言，你可以利用 <a href="https://github.com/kubernetes/cli-runtime" target="_blank" rel="noopener noreffer">cli-runtime</a> 工具库。</p>
+<p>这些库提供了一些辅助函数，用来解析和更新用户的 <a href="https://kubernetes.io/zh-cn/docs/concepts/configuration/organize-cluster-access-kubeconfig/" target="_blank" rel="noopener noreffer">kubeconfig</a> 文件，向 API 服务器发起 REST 风格的请求，或者将参数绑定到某配置上， 抑或将其打印输出。</p>
+<p>关于 CLI Runtime 仓库所提供的工具的使用实例，可参考 <a href="https://github.com/kubernetes/sample-cli-plugin" target="_blank" rel="noopener noreffer">CLI 插件示例</a> 项目。</p>
+<h3 id="分发-kubectl-插件httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse58886e58f91-kubectl-e68f92e4bbb6">分发 kubectl 插件<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E5%88%86%E5%8F%91-kubectl-%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果你开发了一个插件给别人使用，你应该考虑如何为其封装打包、如何分发软件 以及将来的更新到用户。</p>
+<h4 id="krewhttpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-krew">Krew<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-krew" target="_blank" rel="noopener noreffer"></a></h4>
+<p><a href="https://krew.dev/" target="_blank" rel="noopener noreffer">Krew</a> 提供了一种对插件进行打包和分发的跨平台方式。 基于这种方式，你会在所有的目标平台（Linux、Windows、macOS 等）使用同一 种打包形式，包括为用户提供更新。 Krew 也维护一个<a href="https://krew.sigs.k8s.io/plugins/" target="_blank" rel="noopener noreffer">插件索引（plugin index）</a> 以便其他人能够发现你的插件并安装之。</p>
+<h4 id="原生的与特定平台的包管理httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-native">原生的与特定平台的包管理<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-native" target="_blank" rel="noopener noreffer"></a></h4>
+<p>另一种方式是，你可以使用传统的包管理器（例如 Linux 上 的 <code>apt</code> 或 <code>yum</code>， Windows 上的 Chocolatey、macOs 上的 Homebrew）。 只要能够将新的可执行文件放到用户的 <code>PATH</code> 路径上某处，这种包管理器就符合需要。 作为一个插件作者，如果你选择这种方式来分发，你就需要自己来管理和更新 你的 kubectl 插件的分发包，包括所有平台和所有发行版本。</p>
+<h4 id="源代码httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginsdistributing-source-code">源代码<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#distributing-source-code" target="_blank" rel="noopener noreffer"></a></h4>
+<p>你也可以发布你的源代码，例如，发布为某个 Git 仓库。 如果你选择这条路线，希望使用该插件的用户必须取回代码、配置一个构造环境 （如果需要编译的话）并部署该插件。 如果你也提供编译后的软件包，或者使用 Krew，那就会大大简化安装过程了。</p>
+<h3 id="接下来httpskubernetesiozh-cndocstasksextend-kubectlkubectl-pluginse68ea5e4b88be69da5">接下来<a href="https://kubernetes.io/zh-cn/docs/tasks/extend-kubectl/kubectl-plugins/#%E6%8E%A5%E4%B8%8B%E6%9D%A5" target="_blank" rel="noopener noreffer"></a></h3>
+<ul>
+<li>查看 CLI 插件库示例，查看用 Go 编写的插件的<a href="https://github.com/kubernetes/sample-cli-plugin" target="_blank" rel="noopener noreffer">详细示例</a></li>
+<li>如有任何问题，请随时联系 <a href="https://github.com/kubernetes/community/tree/master/sig-cli" target="_blank" rel="noopener noreffer">SIG CLI 团队</a></li>
+<li>了解 <a href="https://krew.dev/" target="_blank" rel="noopener noreffer">Krew</a>，一个 kubectl 插件管理器。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E4%BB%BB%E5%8A%A1-%E5%85%B6%E4%BB%96/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E4%BB%BB%E5%8A%A1-%E7%AE%A1%E7%90%86%E9%9B%86%E7%BE%A4%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/tls/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

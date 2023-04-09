@@ -1,0 +1,2489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - 绿叶律动</title><meta name="Description" content="绿叶律动"><meta property="og:title" content="" />
+<meta property="og:description" content="运行 Jobs 使用并行处理运行 Jobs。 使用 CronJob 运行自动化任务 本页演示如何使用 Kubernetes CronJob 对象运行自动化任务。 准备开始 你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" /><meta property="og:image" content="https://jefofrank.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jefofrank.xyz/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="运行 Jobs 使用并行处理运行 Jobs。 使用 CronJob 运行自动化任务 本页演示如何使用 Kubernetes CronJob 对象运行自动化任务。 准备开始 你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" /><link rel="prev" href="https://jefofrank.xyz/%E9%85%8D%E7%BD%AEpod%E5%92%8C%E5%AE%B9%E5%99%A8/" /><link rel="next" href="https://jefofrank.xyz/%E8%AE%BF%E9%97%AE%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jefofrank.xyz\/%E8%BF%90%E8%A1%8Cjobs\/"
+        },"image": ["https:\/\/jefofrank.xyz\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  11839 ,
+        "url": "https:\/\/jefofrank.xyz\/%E8%BF%90%E8%A1%8Cjobs\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Jefo","logo": "https:\/\/jefofrank.xyz\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jefo"
+            },"description": ""
+    }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193031966-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193031966-2');
+</script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> All posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="绿叶律动"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="直接搜索更方便^-^" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">All posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jf-011101" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jf-011101" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jefo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01 00:00:00">0001-01-01 00:00:00</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11839 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 24 分钟&nbsp;<span id="busuanzi_container_page_pv">
+                    <i class="far fa-eye fa-fw"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;次阅读量</span>
+                </span>
+            </div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用-cronjob-运行自动化任务httpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobs"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/">使用 CronJob 运行自动化任务</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#创建-cronjobhttpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobscreating-a-cron-job">创建 CronJob<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#creating-a-cron-job"></a></a></li>
+        <li><a href="#删除-cronjobhttpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobsdeleting-a-cronjob">删除 CronJob<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#deleting-a-cronjob"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#使用工作队列进行粗粒度并行处理httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queue"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/">使用工作队列进行粗粒度并行处理</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuee58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#启动消息队列服务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuestarting-a-message-queue-service">启动消息队列服务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#starting-a-message-queue-service"></a></a></li>
+        <li><a href="#测试消息队列服务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuetesting-the-message-queue-service">测试消息队列服务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#testing-the-message-queue-service"></a></a></li>
+        <li><a href="#为队列增加任务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuefilling-the-queue-with-tasks">为队列增加任务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#filling-the-queue-with-tasks"></a></a></li>
+        <li><a href="#创建镜像httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuecreate-an-image">创建镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#create-an-image"></a></a></li>
+        <li><a href="#定义-jobhttpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuedefining-a-job">定义 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#defining-a-job"></a></a></li>
+        <li><a href="#运行-jobhttpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuerunning-the-job">运行 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#running-the-job"></a></a></li>
+        <li><a href="#替代方案httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuealternatives">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#alternatives"></a></a></li>
+        <li><a href="#友情提醒httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuecaveats">友情提醒<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#caveats"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#带-pod-间通信的-jobhttpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communication"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/">带 Pod 间通信的 Job</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicatione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#启动带-pod-间通信的-jobhttpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicationstarting-a-job-with-pod-to-pod-communication">启动带 Pod 间通信的 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#starting-a-job-with-pod-to-pod-communication"></a></a>
+          <ul>
+            <li><a href="#示例httpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicationexample">示例<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#example"></a></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#使用工作队列进行精细的并行处理httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queue"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/">使用工作队列进行精细的并行处理</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#启动-redishttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee590afe58aa8-redis">启动 Redis<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%90%AF%E5%8A%A8-redis"></a></a></li>
+        <li><a href="#使用任务填充队列httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee4bdbfe794a8e4bbbbe58aa1e5a1abe58585e9989fe58897">使用任务填充队列<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1%E5%A1%AB%E5%85%85%E9%98%9F%E5%88%97"></a></a></li>
+        <li><a href="#创建镜像httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee5889be5bbbae9959ce5838f">创建镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F"></a></a>
+          <ul>
+            <li><a href="#push-镜像httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuepush-e9959ce5838f">Push 镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#push-%E9%95%9C%E5%83%8F"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#定义一个-jobhttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee5ae9ae4b989e4b880e4b8aa-job">定义一个 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA-job"></a></a></li>
+        <li><a href="#运行-jobhttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee8bf90e8a18c-job">运行 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E8%BF%90%E8%A1%8C-job"></a></a></li>
+        <li><a href="#替代方案httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee69bbfe4bba3e696b9e6a188">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#使用索引作业完成静态工作分配下的并行处理httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-static"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/">使用索引作业完成静态工作分配下的并行处理</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-statice58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#选择一种方法httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-staticchoose-an-approach">选择一种方法<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#choose-an-approach"></a></a></li>
+        <li><a href="#定义索引作业httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-staticdefine-an-indexed-job">定义索引作业<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#define-an-indexed-job"></a></a></li>
+        <li><a href="#执行-job-running-the-jobhttpskubernetesiozh-cndocstasksjobindexed-parallel-processing-statice689a7e8a18c-job-running-the-job">执行 Job {running-the-job}<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#%E6%89%A7%E8%A1%8C-job-running-the-job"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#使用展开的方式进行并行处理httpskubernetesiozh-cndocstasksjobparallel-processing-expansion"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/">使用展开的方式进行并行处理</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobparallel-processing-expansione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#基于模板创建-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansioncreate-jobs-based-on-a-template">基于模板创建 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#create-jobs-based-on-a-template"></a></a>
+          <ul>
+            <li><a href="#基于模板创建清单httpskubernetesiozh-cndocstasksjobparallel-processing-expansione59fbae4ba8ee6a8a1e69dbfe5889be5bbbae6b885e58d95">基于模板创建清单<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%E6%B8%85%E5%8D%95"></a></a></li>
+            <li><a href="#基于清单创建-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansione59fbae4ba8ee6b885e58d95e5889be5bbba-job">基于清单创建 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%9F%BA%E4%BA%8E%E6%B8%85%E5%8D%95%E5%88%9B%E5%BB%BA-job"></a></a></li>
+            <li><a href="#清理httpskubernetesiozh-cndocstasksjobparallel-processing-expansioncleanup-1">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#cleanup-1"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#使用高级模板参数httpskubernetesiozh-cndocstasksjobparallel-processing-expansione4bdbfe794a8e9ab98e7baa7e6a8a1e69dbfe58f82e695b0">使用高级模板参数<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E4%BD%BF%E7%94%A8%E9%AB%98%E7%BA%A7%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0"></a></a>
+          <ul>
+            <li><a href="#清理httpskubernetesiozh-cndocstasksjobparallel-processing-expansioncleanup-2">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#cleanup-2"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#在真实负载中使用-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansionusing-jobs-in-real-workloads">在真实负载中使用 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#using-jobs-in-real-workloads"></a></a></li>
+        <li><a href="#job-和-pod-上的标签httpskubernetesiozh-cndocstasksjobparallel-processing-expansionjob-e5928c-pod-e4b88ae79a84e6a087e7adbe">Job 和 Pod 上的标签<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#job-%E5%92%8C-pod-%E4%B8%8A%E7%9A%84%E6%A0%87%E7%AD%BE"></a></a></li>
+        <li><a href="#替代方案httpskubernetesiozh-cndocstasksjobparallel-processing-expansione69bbfe4bba3e696b9e6a188">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88"></a></a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-pod-失效策略处理可重试和不可重试的-pod-失效httpskubernetesiozh-cndocstasksjobpod-failure-policy"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/">使用 Pod 失效策略处理可重试和不可重试的 Pod 失效</a></a>
+      <ul>
+        <li><a href="#准备开始httpskubernetesiozh-cndocstasksjobpod-failure-policye58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"></a></a></li>
+        <li><a href="#使用-pod-失效策略以避免不必要的-pod-重试httpskubernetesiozh-cndocstasksjobpod-failure-policyusing-pod-failure-policy-to-avoid-unecessary-pod-retries">使用 Pod 失效策略以避免不必要的 Pod 重试<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#using-pod-failure-policy-to-avoid-unecessary-pod-retries"></a></a>
+          <ul>
+            <li><a href="#清理httpskubernetesiozh-cndocstasksjobpod-failure-policye6b885e79086">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E6%B8%85%E7%90%86"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#使用-pod-失效策略来忽略-pod-干扰httpskubernetesiozh-cndocstasksjobpod-failure-policyusing-pod-failure-policy-to-ignore-pod-disruptions">使用 Pod 失效策略来忽略 Pod 干扰<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#using-pod-failure-policy-to-ignore-pod-disruptions"></a></a>
+          <ul>
+            <li><a href="#清理httpskubernetesiozh-cndocstasksjobpod-failure-policye6b885e79086-1">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E6%B8%85%E7%90%86-1"></a></a></li>
+          </ul>
+        </li>
+        <li><a href="#替代方案httpskubernetesiozh-cndocstasksjobpod-failure-policyalternatives">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#alternatives"></a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="运行-jobs">运行 Jobs</h1>
+<p>使用并行处理运行 Jobs。</p>
+<hr>
+<h2 id="使用-cronjob-运行自动化任务httpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobs"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/" target="_blank" rel="noopener noreffer">使用 CronJob 运行自动化任务</a></h2>
+<p>本页演示如何使用 Kubernetes <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/cron-jobs/" target="_blank" rel="noopener noreffer">CronJob</a> 对象运行自动化任务。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobse58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<ul>
+<li>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="创建-cronjobhttpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobscreating-a-cron-job">创建 CronJob<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#creating-a-cron-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>CronJob 需要一个配置文件。 以下是针对一个 CronJob 的清单，该 CronJob 每分钟运行一个简单的演示任务：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/cronjob.yaml" target="_blank" rel="noopener noreffer"><code>application/job/cronjob.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/cronjob.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/cronjob.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CronJob</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;* * * * *&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">jobTemplate</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
+</span><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox:1.28</span><span class="w">
+</span><span class="w">            </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">IfNotPresent</span><span class="w">
+</span><span class="w">            </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="l">/bin/sh</span><span class="w">
+</span><span class="w">            </span>- -<span class="l">c</span><span class="w">
+</span><span class="w">            </span>- <span class="l">date; echo Hello from the Kubernetes cluster</span><span class="w">
+</span><span class="w">          </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>执行以下命令以运行此 CronJob 示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/application/job/cronjob.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cronjob.batch/hello created
+</code></pre></td></tr></table>
+</div>
+</div><p>创建好 CronJob 后，使用下面的命令来获取其状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get cronjob hello
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        &lt;none&gt;          10s
+</code></pre></td></tr></table>
+</div>
+</div><p>就像你从命令返回结果看到的那样，CronJob 还没有调度或执行任何任务。大约需要一分钟任务才能创建好。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get <span class="nb">jobs</span> --watch
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME               COMPLETIONS   DURATION   AGE
+hello-4111706356   0/1                      0s
+hello-4111706356   0/1           0s         0s
+hello-4111706356   1/1           5s         5s
+</code></pre></td></tr></table>
+</div>
+</div><p>现在你已经看到了一个运行中的任务被 “hello” CronJob 调度。 你可以停止监视这个任务，然后再次查看 CronJob 就能看到它调度任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get cronjob hello
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        50s             75s
+</code></pre></td></tr></table>
+</div>
+</div><p>你应该能看到 <code>hello</code> CronJob 在 <code>LAST SCHEDULE</code> 声明的时间点成功地调度了一次任务。 目前有 0 个活跃的任务，这意味着任务执行完毕或者执行失败。</p>
+<p>现在，找到最后一次调度任务创建的 Pod 并查看一个 Pod 的标准输出。</p>
+<p><strong>说明：</strong> Job 名称与 Pod 名称不同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在你的系统上将 &#34;hello-4111706356&#34; 替换为 Job 名称</span>
+<span class="nv">pods</span><span class="o">=</span><span class="k">$(</span>kubectl get pods --selector<span class="o">=</span>job-name<span class="o">=</span>hello-4111706356 --output<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>查看 Pod 日志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl logs <span class="nv">$pods</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Fri Feb 22 11:02:09 UTC 2019
+Hello from the Kubernetes cluster
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="删除-cronjobhttpskubernetesiozh-cndocstasksjobautomated-tasks-with-cron-jobsdeleting-a-cronjob">删除 CronJob<a href="https://kubernetes.io/zh-cn/docs/tasks/job/automated-tasks-with-cron-jobs/#deleting-a-cronjob" target="_blank" rel="noopener noreffer"></a></h3>
+<p>当你不再需要 CronJob 时，可以用 <code>kubectl delete cronjob &lt;cronjob name&gt;</code> 删掉它：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl delete cronjob hello
+</code></pre></td></tr></table>
+</div>
+</div><p>删除 CronJob 会清除它创建的所有任务和 Pod，并阻止它创建额外的任务。 你可以查阅<a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/garbage-collection/" target="_blank" rel="noopener noreffer">垃圾收集</a>。</p>
+<h2 id="使用工作队列进行粗粒度并行处理httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queue"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/" target="_blank" rel="noopener noreffer">使用工作队列进行粗粒度并行处理</a></h2>
+<p>本例中，我们会运行包含多个并行工作进程的 Kubernetes Job。</p>
+<p>本例中，每个 Pod 一旦被创建，会立即从任务队列中取走一个工作单元并完成它，然后将工作单元从队列中删除后再退出。</p>
+<p>下面是本次示例的主要步骤：</p>
+<ol>
+<li>
+<p><strong>启动一个消息队列服务</strong>。 本例中，我们使用 RabbitMQ，你也可以用其他的消息队列服务。 在实际工作环境中，你可以创建一次消息队列服务然后在多个任务中重复使用。</p>
+</li>
+<li>
+<p><strong>创建一个队列，放上消息数据</strong>。 每个消息表示一个要执行的任务。本例中，每个消息是一个整数值。 我们将基于这个整数值执行很长的计算操作。</p>
+</li>
+<li>
+<p><strong>启动一个在队列中执行这些任务的 Job</strong>。 该 Job 启动多个 Pod。每个 Pod 从消息队列中取走一个任务，处理任务，然后退出。</p>
+</li>
+</ol>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuee58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>要熟悉 Job 基本用法（非并行的），请参考 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a>。</p>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<h3 id="启动消息队列服务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuestarting-a-message-queue-service">启动消息队列服务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#starting-a-message-queue-service" target="_blank" rel="noopener noreffer"></a></h3>
+<p>本例使用了 RabbitMQ，但你可以更改该示例，使用其他 AMQP 类型的消息服务。</p>
+<p>在实际工作中，在集群中一次性部署某个消息队列服务，之后在很多 Job 中复用，包括需要长期运行的服务。</p>
+<p>按下面的方法启动 RabbitMQ：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.3/examples/celery-rabbitmq/rabbitmq-service.yaml
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">service &#34;rabbitmq-service&#34; created
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.3/examples/celery-rabbitmq/rabbitmq-controller.yaml
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">replicationcontroller &#34;rabbitmq-controller&#34; created
+</code></pre></td></tr></table>
+</div>
+</div><p>我们仅用到 <a href="https://github.com/kubernetes/kubernetes/tree/release-1.3/examples/celery-rabbitmq" target="_blank" rel="noopener noreffer">celery-rabbitmq 示例</a>中描述的部分功能。</p>
+<h3 id="测试消息队列服务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuetesting-the-message-queue-service">测试消息队列服务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#testing-the-message-queue-service" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在，我们可以试着访问消息队列。我们将会创建一个临时的可交互的 Pod， 在它上面安装一些工具，然后用队列做实验。</p>
+<p>首先创建一个临时的可交互的 Pod：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建一个临时的可交互的 Pod</span>
+kubectl run -i --tty temp --image ubuntu:18.04
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Waiting for pod default/temp-loe07 to be running, status is Pending, pod ready: false
+... [ previous line repeats several times .. hit return when it stops ] ...
+</code></pre></td></tr></table>
+</div>
+</div><p>请注意你的 Pod 名称和命令提示符将会不同。</p>
+<p>接下来安装 <code>amqp-tools</code>，这样我们就能用消息队列了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 安装一些工具</span>
+root@temp-loe07:/# apt-get update
+.... <span class="o">[</span> lots of output <span class="o">]</span> ....
+root@temp-loe07:/# apt-get install -y curl ca-certificates amqp-tools python dnsutils
+.... <span class="o">[</span> lots of output <span class="o">]</span> ....
+</code></pre></td></tr></table>
+</div>
+</div><p>后续，我们将制作一个包含这些包的 Docker 镜像。</p>
+<p>接着，我们将要验证可以发现 RabbitMQ 服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># 请注意 rabbitmq-service 拥有一个由 Kubernetes 提供的 DNS 名称：
+
+root@temp-loe07:/# nslookup rabbitmq-service
+Server:        10.0.0.10
+Address:    10.0.0.10#53
+
+Name:    rabbitmq-service.default.svc.cluster.local
+Address: 10.0.147.152
+
+# 你的 IP 地址会不同
+</code></pre></td></tr></table>
+</div>
+</div><p>如果 Kube-DNS 没有正确安装，上一步可能会出错。 你也可以在环境变量中找到服务 IP。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># env | grep RABBIT | grep HOST
+RABBITMQ_SERVICE_SERVICE_HOST=10.0.147.152
+
+# 你的 IP 地址会有所不同
+</code></pre></td></tr></table>
+</div>
+</div><p>接着我们将要确认可以创建队列，并能发布消息和消费消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下一行，rabbitmq-service 是访问 rabbitmq-service 的主机名。5672是 rabbitmq 的标准端口。</span>
+
+root@temp-loe07:/# <span class="nb">export</span> <span class="nv">BROKER_URL</span><span class="o">=</span>amqp://guest:guest@rabbitmq-service:5672
+
+<span class="c1"># 如果上一步中你不能解析 &#34;rabbitmq-service&#34;，可以用下面的命令替换：</span>
+<span class="c1"># root@temp-loe07:/# BROKER_URL=amqp://guest:guest@$RABBITMQ_SERVICE_SERVICE_HOST:5672</span>
+
+<span class="c1"># 现在创建队列：</span>
+
+root@temp-loe07:/# /usr/bin/amqp-declare-queue --url<span class="o">=</span><span class="nv">$BROKER_URL</span> -q foo -d foo
+
+<span class="c1"># 向它推送一条消息:</span>
+
+root@temp-loe07:/# /usr/bin/amqp-publish --url<span class="o">=</span><span class="nv">$BROKER_URL</span> -r foo -p -b Hello
+
+<span class="c1"># 然后取回它.</span>
+
+root@temp-loe07:/# /usr/bin/amqp-consume --url<span class="o">=</span><span class="nv">$BROKER_URL</span> -q foo -c <span class="m">1</span> cat <span class="o">&amp;&amp;</span> <span class="nb">echo</span>
+Hello
+root@temp-loe07:/#
+</code></pre></td></tr></table>
+</div>
+</div><p>最后一个命令中，<code>amqp-consume</code> 工具从队列中取走了一个消息，并把该消息传递给了随机命令的标准输出。 在这种情况下，<code>cat</code> 会打印它从标准输入中读取的字符，echo 会添加回车符以便示例可读。</p>
+<h3 id="为队列增加任务httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuefilling-the-queue-with-tasks">为队列增加任务<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#filling-the-queue-with-tasks" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在让我们给队列增加一些任务。在我们的示例中，任务是多个待打印的字符串。</p>
+<p>实践中，消息的内容可以是：</p>
+<ul>
+<li>待处理的文件名</li>
+<li>程序额外的参数</li>
+<li>数据库表的关键字范围</li>
+<li>模拟任务的配置参数</li>
+<li>待渲染的场景的帧序列号</li>
+</ul>
+<p>本例中，如果有大量的数据需要被 Job 的所有 Pod 读取，典型的做法是把它们放在一个共享文件系统中， 如 NFS（Network File System 网络文件系统），并以只读的方式挂载到所有 Pod，或者 Pod 中的程序从类似 HDFS （Hadoop Distributed File System 分布式文件系统）的集群文件系统中读取。</p>
+<p>例如，我们创建队列并使用 amqp 命令行工具向队列中填充消息。实践中，你可以写个程序来利用 amqp 客户端库来填充这些队列。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">/usr/bin/amqp-declare-queue --url<span class="o">=</span><span class="nv">$BROKER_URL</span> -q job1  -d job1
+<span class="k">for</span> f in apple banana cherry date fig grape lemon melon
+<span class="k">do</span>
+  /usr/bin/amqp-publish --url<span class="o">=</span><span class="nv">$BROKER_URL</span> -r job1 -p -b <span class="nv">$f</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样，我们给队列中填充了 8 个消息。</p>
+<h3 id="创建镜像httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuecreate-an-image">创建镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#create-an-image" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在我们可以创建一个做为 Job 来运行的镜像。</p>
+<p>我们将用 <code>amqp-consume</code> 实用程序从队列中读取消息并运行实际的程序。 这里给出一个非常简单的示例程序：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/rabbitmq/worker.py" target="_blank" rel="noopener noreffer"><code>application/job/rabbitmq/worker.py</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/rabbitmq/worker.py to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/rabbitmq/worker.py to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Just prints standard out and sleeps for 10 seconds.</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Processing &#34;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>赋予脚本执行权限:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chmod +x worker.py
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，编译镜像。如果你在用源代码树，那么切换到目录 <code>examples/job/work-queue-1</code>。 否则的话，创建一个临时目录，切换到这个目录。下载 <a href="https://kubernetes.io/examples/application/job/rabbitmq/Dockerfile" target="_blank" rel="noopener noreffer">Dockerfile</a> 和 <a href="https://kubernetes.io/examples/application/job/rabbitmq/worker.py" target="_blank" rel="noopener noreffer">worker.py</a>。 无论哪种情况，都可以用下面的命令编译镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker build -t job-wq-1 .
+</code></pre></td></tr></table>
+</div>
+</div><p>对于 <a href="https://hub.docker.com/" target="_blank" rel="noopener noreffer">Docker Hub</a>, 给你的应用镜像打上标签， 标签为你的用户名，然后用下面的命令推送到 Hub。用你的 Hub 用户名替换 <code>&lt;username&gt;</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker tag job-wq-1 &lt;username&gt;/job-wq-1
+docker push &lt;username&gt;/job-wq-1
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你在用<a href="https://cloud.google.com/tools/container-registry/" target="_blank" rel="noopener noreffer">谷歌容器仓库</a>， 用你的项目 ID 作为标签打到你的应用镜像上，然后推送到 GCR。 用你的项目 ID 替换 <code>&lt;project&gt;</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker tag job-wq-1 gcr.io/&lt;project&gt;/job-wq-1
+gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-1
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="定义-jobhttpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuedefining-a-job">定义 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#defining-a-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>这里给出一个 Job 定义 YAML 文件。你将需要拷贝一份 Job 并编辑该镜像以匹配你使用的名称，保存为 <code>./job.yaml</code>。</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/rabbitmq/job.yaml" target="_blank" rel="noopener noreffer"><code>application/job/rabbitmq/job.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/rabbitmq/job.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/rabbitmq/job.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-wq-1</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">8</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-wq-1</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">c</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/&lt;project&gt;/job-wq-1</span><span class="w">
+</span><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">BROKER_URL</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">amqp://guest:guest@rabbitmq-service:5672</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">QUEUE</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">job1</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>本例中，每个 Pod 使用队列中的一个消息然后退出。 这样，Job 的完成计数就代表了完成的工作项的数量。 本例中我们设置 <code>.spec.completions: 8</code>，因为我们放了 8 项内容在队列中。</p>
+<h3 id="运行-jobhttpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuerunning-the-job">运行 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#running-the-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在我们运行 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f ./job.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以等待 Job 在某个超时时间后成功：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 状况名称的检查不区分大小写</span>
+kubectl <span class="nb">wait</span> --for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span><span class="nb">complete</span> --timeout<span class="o">=</span>300s job/job-wq-1
+</code></pre></td></tr></table>
+</div>
+</div><p>接下来查看 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl describe jobs/job-wq-1
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Name:             job-wq-1
+Namespace:        default
+Selector:         controller-uid=41d75705-92df-11e7-b85e-fa163ee3c11f
+Labels:           controller-uid=41d75705-92df-11e7-b85e-fa163ee3c11f
+                  job-name=job-wq-1
+Annotations:      &lt;none&gt;
+Parallelism:      2
+Completions:      8
+Start Time:       Wed, 06 Sep 2017 16:42:02 +0800
+Pods Statuses:    0 Running / 8 Succeeded / 0 Failed
+Pod Template:
+  Labels:       controller-uid=41d75705-92df-11e7-b85e-fa163ee3c11f
+                job-name=job-wq-1
+  Containers:
+   c:
+    Image:      gcr.io/causal-jigsaw-637/job-wq-1
+    Port:
+    Environment:
+      BROKER_URL:       amqp://guest:guest@rabbitmq-service:5672
+      QUEUE:            job1
+    Mounts:             &lt;none&gt;
+  Volumes:              &lt;none&gt;
+Events:
+  FirstSeen  LastSeen   Count    From    SubobjectPath    Type      Reason              Message
+  ─────────  ────────   ─────    ────    ─────────────    ──────    ──────              ───────
+  27s        27s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-hcobb
+  27s        27s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-weytj
+  27s        27s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-qaam5
+  27s        27s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-b67sr
+  26s        26s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-xe5hj
+  15s        15s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-w2zqe
+  14s        14s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-d6ppa
+  14s        14s        1        {job }                   Normal    SuccessfulCreate    Created pod: job-wq-1-p17e0
+</code></pre></td></tr></table>
+</div>
+</div><p>该 Job 的所有 Pod 都已成功。耶！</p>
+<h3 id="替代方案httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuealternatives">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#alternatives" target="_blank" rel="noopener noreffer"></a></h3>
+<p>本文所讲述的处理方法的好处是你不需要修改你的 &ldquo;worker&rdquo; 程序使其知道工作队列的存在。</p>
+<p>本文所描述的方法需要你运行一个消息队列服务。如果不方便运行消息队列服务， 你也许会考虑另外一种<a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/#job-patterns" target="_blank" rel="noopener noreffer">任务模式</a>。</p>
+<p>本文所述的方法为每个工作项创建了一个 Pod。 如果你的工作项仅需数秒钟，为每个工作项创建 Pod 会增加很多的常规消耗。 可以考虑另外的方案请参考<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/" target="_blank" rel="noopener noreffer">示例</a>， 这种方案可以实现每个 Pod 执行多个工作项。</p>
+<p>示例中，我们使用 <code>amqp-consume</code> 从消息队列读取消息并执行我们真正的程序。 这样的好处是你不需要修改你的程序使其知道队列的存在。 要了解怎样使用客户端库和工作队列通信， 请参考<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/" target="_blank" rel="noopener noreffer">不同的示例</a>。</p>
+<h3 id="友情提醒httpskubernetesiozh-cndocstasksjobcoarse-parallel-processing-work-queuecaveats">友情提醒<a href="https://kubernetes.io/zh-cn/docs/tasks/job/coarse-parallel-processing-work-queue/#caveats" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果设置的完成数量小于队列中的消息数量，会导致一部分消息项不会被执行。</p>
+<p>如果设置的完成数量大于队列中的消息数量，当队列中所有的消息都处理完成后， Job 也会显示为未完成。Job 将创建 Pod 并阻塞等待消息输入。</p>
+<p>当发生下面两种情况时，即使队列中所有的消息都处理完了，Job 也不会显示为完成状态：</p>
+<ul>
+<li>在 amqp-consume 命令拿到消息和容器成功退出之间的时间段内，执行杀死容器操作；</li>
+<li>在 kubelet 向 api-server 传回 Pod 成功运行之前，发生节点崩溃。</li>
+</ul>
+<h2 id="带-pod-间通信的-jobhttpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communication"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/" target="_blank" rel="noopener noreffer">带 Pod 间通信的 Job</a></h2>
+<p>在此例中，你将以<a href="https://kubernetes.io/blog/2021/04/19/introducing-indexed-jobs/" target="_blank" rel="noopener noreffer">索引完成模式</a>运行一个 Job， 并通过配置使得该 Job 所创建的各 Pod 之间可以使用 Pod 主机名而不是 Pod IP 地址进行通信。</p>
+<p>某 Job 内的 Pod 之间可能需要通信。每个 Pod 中运行的用户工作负载可以查询 Kubernetes API 服务器以获知其他 Pod 的 IP，但使用 Kubernetes 内置的 DNS 解析会更加简单。</p>
+<p>索引完成模式下的 Job 自动将 Pod 的主机名设置为 <code>${jobName}-${completionIndex}</code> 的格式。 你可以使用此格式确定性地构建 Pod 主机名并启用 Pod 通信，无需创建到 Kubernetes 控制平面的客户端连接来通过 API 请求获取 Pod 主机名/IP。</p>
+<p>此配置可用于需要 Pod 联网但不想依赖 Kubernetes API 服务器网络连接的使用场景。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicatione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你应该已熟悉了 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a> 的基本用法。</p>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>你的 Kubernetes 服务器版本必须不低于版本 v1.21. 要获知版本信息，请输入 <code>kubectl version</code>.</p>
+<p><strong>说明：</strong></p>
+<p>如果你正在使用 MiniKube 或类似的工具， 你可能需要采取<a href="https://minikube.sigs.k8s.io/docs/handbook/addons/ingress-dns/" target="_blank" rel="noopener noreffer">额外的步骤</a>来确保你拥有 DNS。</p>
+<h3 id="启动带-pod-间通信的-jobhttpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicationstarting-a-job-with-pod-to-pod-communication">启动带 Pod 间通信的 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#starting-a-job-with-pod-to-pod-communication" target="_blank" rel="noopener noreffer"></a></h3>
+<p>要在某 Job 中启用使用 Pod 主机名的 Pod 间通信，你必须执行以下操作：</p>
+<ol>
+<li>
+<p>对于 Job 所创建的那些 Pod， 使用一个有效的标签选择算符创建<a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#headless-services" target="_blank" rel="noopener noreffer">无头服务</a>。 该无头服务必须位于与该 Job 相同的名字空间内。 实现这一目的的一种简单的方式是使用 <code>job-name: &lt;任务名称&gt;</code> 作为选择算符， 因为 <code>job-name</code> 标签将由 Kubernetes 自动添加。 此配置将触发 DNS 系统为运行 Job 的 Pod 创建其主机名的记录。</p>
+</li>
+<li>
+<p>通过将以下值包括到你的 Job 模板规约中，针对该 Job 的 Pod，将无头服务配置为其子域服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">subdomain</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;无头服务的名称&gt;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="示例httpskubernetesiozh-cndocstasksjobjob-with-pod-to-pod-communicationexample">示例<a href="https://kubernetes.io/zh-cn/docs/tasks/job/job-with-pod-to-pod-communication/#example" target="_blank" rel="noopener noreffer"></a></h4>
+<p>以下是启用通过 Pod 主机名来完成 Pod 间通信的 Job 示例。 只有在使用主机名成功 ping 通所有 Pod 之后，此 Job 才会结束。</p>
+<p><strong>说明：</strong></p>
+<p>在以下示例中的每个 Pod 中执行的 Bash 脚本中，如果需要从名字空间外到达 Pod， Pod 主机名也可以带有该名字空间作为前缀。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">headless-svc</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w"> </span><span class="c"># clusterIP 必须为 None 以创建无头服务</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">job-name</span><span class="p">:</span><span class="w"> </span><span class="l">example-job</span><span class="w"> </span><span class="c"># 必须与 Job 名称匹配</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-job</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span><span class="nt">completionMode</span><span class="p">:</span><span class="w"> </span><span class="l">Indexed</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">subdomain</span><span class="p">:</span><span class="w"> </span><span class="l">headless-svc</span><span class="w"> </span><span class="c"># 必须与 Service 名称匹配</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-workload</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">bash:latest</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">bash</span><span class="w">
+</span><span class="w">        </span>- -<span class="l">c</span><span class="w">
+</span><span class="w">        </span>- <span class="p">|</span><span class="sd">
+</span><span class="sd">          for i in 0 1 2
+</span><span class="sd">          do
+</span><span class="sd">            gotStatus=&#34;-1&#34;
+</span><span class="sd">            wantStatus=&#34;0&#34;             
+</span><span class="sd">            while [ $gotStatus -ne $wantStatus ]
+</span><span class="sd">            do                                       
+</span><span class="sd">              ping -c 1 example-job-${i}.headless-svc &gt; /dev/null 2&gt;&amp;1
+</span><span class="sd">              gotStatus=$?                
+</span><span class="sd">              if [ $gotStatus -ne $wantStatus ]; then
+</span><span class="sd">                echo &#34;Failed to ping pod example-job-${i}.headless-svc, retrying in 1 second...&#34;
+</span><span class="sd">                sleep 1
+</span><span class="sd">              fi
+</span><span class="sd">            done                                                         
+</span><span class="sd">            echo &#34;Successfully pinged pod: example-job-${i}.headless-svc&#34;
+</span><span class="sd">          done          </span><span class="w">          
+</span></code></pre></td></tr></table>
+</div>
+</div><p>应用上述示例之后，使用 <code>&lt;Pod 主机名&gt;.&lt;无头服务名&gt;</code> 通过网络到达彼此。 你应看到类似以下的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl logs example-job-0-qws42
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Failed to ping pod example-job-0.headless-svc, retrying in 1 second...
+Successfully pinged pod: example-job-0.headless-svc
+Successfully pinged pod: example-job-1.headless-svc
+Successfully pinged pod: example-job-2.headless-svc
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>说明：</strong></p>
+<p>谨记此例中使用的 <code>&lt;Pod 主机名&gt;.&lt;无头服务名称&gt;</code> 名称格式不适用于设置为 <code>None</code> 或 <code>Default</code> 的 DNS 策略。 你可以在<a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy" target="_blank" rel="noopener noreffer">此处</a>了解有关 Pod DNS 策略的更多信息。</p>
+<h2 id="使用工作队列进行精细的并行处理httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queue"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/" target="_blank" rel="noopener noreffer">使用工作队列进行精细的并行处理</a></h2>
+<p>在这个例子中，我们会运行一个 Kubernetes Job，其中的 Pod 会运行多个并行工作进程。</p>
+<p>在这个例子中，当每个 Pod 被创建时，它会从一个任务队列中获取一个工作单元，处理它，然后重复，直到到达队列的尾部。</p>
+<p>下面是这个示例的步骤概述：</p>
+<ol>
+<li>
+<p><strong>启动存储服务用于保存工作队列。</strong> 在这个例子中，我们使用 Redis 来存储工作项。 在上一个例子中，我们使用了 RabbitMQ。 在这个例子中，由于 AMQP 不能为客户端提供一个良好的方法来检测一个有限长度的工作队列是否为空， 我们使用了 Redis 和一个自定义的工作队列客户端库。 在实践中，你可能会设置一个类似于 Redis 的存储库，并将其同时用于多项任务或其他事务的工作队列。</p>
+</li>
+<li>
+<p><strong>创建一个队列，然后向其中填充消息。</strong> 每个消息表示一个将要被处理的工作任务。 在这个例子中，消息是一个我们将用于进行长度计算的整数。</p>
+</li>
+<li>
+<p><strong>启动一个 Job 对队列中的任务进行处理</strong>。这个 Job 启动了若干个 Pod。 每个 Pod 从消息队列中取出一个工作任务，处理它，然后重复，直到到达队列的尾部。</p>
+</li>
+</ol>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>熟悉基本的、非并行的 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a>。</p>
+<h3 id="启动-redishttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee590afe58aa8-redis">启动 Redis<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%90%AF%E5%8A%A8-redis" target="_blank" rel="noopener noreffer"></a></h3>
+<p>对于这个例子，为了简单起见，我们将启动一个单实例的 Redis。 了解如何部署一个可伸缩、高可用的 Redis 例子，请查看 <a href="https://github.com/kubernetes/examples/tree/master/guestbook" target="_blank" rel="noopener noreffer">Redis 示例</a></p>
+<p>你也可以直接下载如下文件：</p>
+<ul>
+<li><a href="https://kubernetes.io/examples/application/job/redis/redis-pod.yaml" target="_blank" rel="noopener noreffer"><code>redis-pod.yaml</code></a></li>
+<li><a href="https://kubernetes.io/examples/application/job/redis/redis-service.yaml" target="_blank" rel="noopener noreffer"><code>redis-service.yaml</code></a></li>
+<li><a href="https://kubernetes.io/examples/application/job/redis/Dockerfile" target="_blank" rel="noopener noreffer"><code>Dockerfile</code></a></li>
+<li><a href="https://kubernetes.io/examples/application/job/redis/job.yaml" target="_blank" rel="noopener noreffer"><code>job.yaml</code></a></li>
+<li><a href="https://kubernetes.io/examples/application/job/redis/rediswq.py" target="_blank" rel="noopener noreffer"><code>rediswq.py</code></a></li>
+<li><a href="https://kubernetes.io/examples/application/job/redis/worker.py" target="_blank" rel="noopener noreffer"><code>worker.py</code></a></li>
+</ul>
+<h3 id="使用任务填充队列httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee4bdbfe794a8e4bbbbe58aa1e5a1abe58585e9989fe58897">使用任务填充队列<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1%E5%A1%AB%E5%85%85%E9%98%9F%E5%88%97" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在，让我们往队列里添加一些 “任务”。在这个例子中，我们的任务是一些将被打印出来的字符串。</p>
+<p>启动一个临时的可交互的 Pod 用于运行 Redis 命令行界面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl run -i --tty temp --image redis --command <span class="s2">&#34;/bin/sh&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Waiting for pod default/redis2-c7h78 to be running, status is Pending, pod ready: false
+Hit enter for command prompt
+</code></pre></td></tr></table>
+</div>
+</div><p>现在按回车键，启动 Redis 命令行界面，然后创建一个存在若干个工作项的列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># redis-cli -h redis</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;apple&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;banana&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;cherry&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">3</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;date&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">4</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;fig&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">5</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;grape&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">6</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;lemon&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">7</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;melon&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">8</span>
+redis:6379&gt; rpush job2 <span class="s2">&#34;orange&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">9</span>
+redis:6379&gt; lrange job2 <span class="m">0</span> -1
+1<span class="o">)</span> <span class="s2">&#34;apple&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;banana&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;cherry&#34;</span>
+4<span class="o">)</span> <span class="s2">&#34;date&#34;</span>
+5<span class="o">)</span> <span class="s2">&#34;fig&#34;</span>
+6<span class="o">)</span> <span class="s2">&#34;grape&#34;</span>
+7<span class="o">)</span> <span class="s2">&#34;lemon&#34;</span>
+8<span class="o">)</span> <span class="s2">&#34;melon&#34;</span>
+9<span class="o">)</span> <span class="s2">&#34;orange&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因此，这个键为 <code>job2</code> 的列表就是我们的工作队列。</p>
+<p>注意：如果你还没有正确地配置 Kube DNS，你可能需要将上面的第一步改为 <code>redis-cli -h $REDIS_SERVICE_HOST</code>。</p>
+<h3 id="创建镜像httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee5889be5bbbae9959ce5838f">创建镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在我们已经准备好创建一个我们要运行的镜像。</p>
+<p>我们会使用一个带有 Redis 客户端的 Python 工作程序从消息队列中读出消息。</p>
+<p>这里提供了一个简单的 Redis 工作队列客户端库，名为 rediswq.py (<a href="https://kubernetes.io/examples/application/job/redis/rediswq.py" target="_blank" rel="noopener noreffer">下载</a>)。</p>
+<p>Job 中每个 Pod 内的 “工作程序” 使用工作队列客户端库获取工作。具体如下：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/redis/worker.py" target="_blank" rel="noopener noreffer"><code>application/job/redis/worker.py</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/redis/worker.py to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/redis/worker.py to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">rediswq</span>
+
+<span class="n">host</span><span class="o">=</span><span class="s2">&#34;redis&#34;</span>
+<span class="c1"># 如果你未在运行 Kube-DNS，请取消下面两行的注释</span>
+<span class="c1"># import os</span>
+<span class="c1"># host = os.getenv(&#34;REDIS_SERVICE_HOST&#34;)</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">rediswq</span><span class="o">.</span><span class="n">RedisWQ</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;job2&#34;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Worker with sessionID: &#34;</span> <span class="o">+</span>  <span class="n">q</span><span class="o">.</span><span class="n">sessionID</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Initial queue state: empty=&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">()))</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+  <span class="n">item</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">lease</span><span class="p">(</span><span class="n">lease_secs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">itemstr</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Working on &#34;</span> <span class="o">+</span> <span class="n">itemstr</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 将你的实际工作放在此处来取代 sleep</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Waiting for work&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Queue empty, exiting&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你也可以下载 <a href="https://kubernetes.io/examples/application/job/redis/worker.py" target="_blank" rel="noopener noreffer"><code>worker.py</code></a>、 <a href="https://kubernetes.io/examples/application/job/redis/rediswq.py" target="_blank" rel="noopener noreffer"><code>rediswq.py</code></a> 和 <a href="https://kubernetes.io/examples/application/job/redis/Dockerfile" target="_blank" rel="noopener noreffer"><code>Dockerfile</code></a> 文件。然后构建镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker build -t job-wq-2 .
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="push-镜像httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuepush-e9959ce5838f">Push 镜像<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#push-%E9%95%9C%E5%83%8F" target="_blank" rel="noopener noreffer"></a></h4>
+<p>对于 <a href="https://hub.docker.com/" target="_blank" rel="noopener noreffer">Docker Hub</a>，请先用你的用户名给镜像打上标签， 然后使用下面的命令 push 你的镜像到仓库。请将 <code>&lt;username&gt;</code> 替换为你自己的 Hub 用户名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker tag job-wq-2 &lt;username&gt;/job-wq-2
+docker push &lt;username&gt;/job-wq-2
+</code></pre></td></tr></table>
+</div>
+</div><p>你需要将镜像 push 到一个公共仓库或者 <a href="https://kubernetes.io/zh-cn/docs/concepts/containers/images/" target="_blank" rel="noopener noreffer">配置集群访问你的私有仓库</a>。</p>
+<p>如果你使用的是 <a href="https://cloud.google.com/tools/container-registry/" target="_blank" rel="noopener noreffer">Google Container Registry</a>， 请先用你的 project ID 给你的镜像打上标签，然后 push 到 GCR 。请将 <code>&lt;project&gt;</code> 替换为你自己的 project ID。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker tag job-wq-2 gcr.io/&lt;project&gt;/job-wq-2
+gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-2
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="定义一个-jobhttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee5ae9ae4b989e4b880e4b8aa-job">定义一个 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>这是 Job 定义：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/redis/job.yaml" target="_blank" rel="noopener noreffer"><code>application/job/redis/job.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/redis/job.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/redis/job.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-wq-2</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-wq-2</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">c</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/myproject/job-wq-2</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>请确保将 Job 模板中的 <code>gcr.io/myproject</code> 更改为你自己的路径。</p>
+<p>在这个例子中，每个 Pod 处理了队列中的多个项目，直到队列中没有项目时便退出。 因为是由工作程序自行检测工作队列是否为空，并且 Job 控制器不知道工作队列的存在， 这依赖于工作程序在完成工作时发出信号。 工作程序以成功退出的形式发出信号表示工作队列已经为空。 所以，只要有任意一个工作程序成功退出，控制器就知道工作已经完成了，所有的 Pod 将很快会退出。 因此，我们将 Job 的完成计数（Completion Count）设置为 1。 尽管如此，Job 控制器还是会等待其它 Pod 完成。</p>
+<h3 id="运行-jobhttpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee8bf90e8a18c-job">运行 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E8%BF%90%E8%A1%8C-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在运行这个 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f ./job.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>稍等片刻，然后检查这个 Job。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl describe jobs/job-wq-2
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Name:             job-wq-2
+Namespace:        default
+Selector:         controller-uid=b1c7e4e3-92e1-11e7-b85e-fa163ee3c11f
+Labels:           controller-uid=b1c7e4e3-92e1-11e7-b85e-fa163ee3c11f
+                  job-name=job-wq-2
+Annotations:      &lt;none&gt;
+Parallelism:      2
+Completions:      &lt;unset&gt;
+Start Time:       Mon, 11 Jan 2016 17:07:59 -0800
+Pods Statuses:    1 Running / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:       controller-uid=b1c7e4e3-92e1-11e7-b85e-fa163ee3c11f
+                job-name=job-wq-2
+  Containers:
+   c:
+    Image:              gcr.io/exampleproject/job-wq-2
+    Port:
+    Environment:        &lt;none&gt;
+    Mounts:             &lt;none&gt;
+  Volumes:              &lt;none&gt;
+Events:
+  FirstSeen    LastSeen    Count    From            SubobjectPath    Type        Reason            Message
+  ---------    --------    -----    ----            -------------    --------    ------            -------
+  33s          33s         1        {job-controller }                Normal      SuccessfulCreate  Created pod: job-wq-2-lglf8
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以等待 Job 成功，等待时长有超时限制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 状况名称的检查不区分大小写</span>
+kubectl <span class="nb">wait</span> --for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span><span class="nb">complete</span> --timeout<span class="o">=</span>300s job/job-wq-2
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl logs pods/job-wq-2-7r7b2
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Worker with sessionID: bbd72d0a-9e5c-4dd6-abf6-416cc267991f
+Initial queue state: empty=False
+Working on banana
+Working on date
+Working on lemon
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以看到，其中的一个 Pod 处理了若干个工作单元。</p>
+<h3 id="替代方案httpskubernetesiozh-cndocstasksjobfine-parallel-processing-work-queuee69bbfe4bba3e696b9e6a188">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/fine-parallel-processing-work-queue/#%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果你不方便运行一个队列服务或者修改你的容器用于运行一个工作队列，你可以考虑其它的 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/#job-patterns" target="_blank" rel="noopener noreffer">Job 模式</a>。</p>
+<p>如果你有持续的后台处理业务，那么可以考虑使用 <code>ReplicaSet</code> 来运行你的后台业务， 和运行一个类似 <a href="https://github.com/resque/resque" target="_blank" rel="noopener noreffer">https://github.com/resque/resque</a> 的后台处理库。</p>
+<h2 id="使用索引作业完成静态工作分配下的并行处理httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-static"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/" target="_blank" rel="noopener noreffer">使用索引作业完成静态工作分配下的并行处理</a></h2>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.24 [stable]</code></p>
+<p>在此示例中，你将运行一个使用多个并行工作进程的 Kubernetes Job。 每个 worker 都是在自己的 Pod 中运行的不同容器。 Pod 具有控制平面自动设置的<strong>索引编号（index number）</strong>， 这些编号使得每个 Pod 能识别出要处理整个任务的哪个部分。</p>
+<p>Pod 索引在<a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/annotations/" target="_blank" rel="noopener noreffer">注解</a> <code>batch.kubernetes.io/job-completion-index</code> 中呈现，具体表示为一个十进制值字符串。 为了让容器化的任务进程获得此索引，你可以使用 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/downward-api/" target="_blank" rel="noopener noreffer">downward API</a> 机制发布注解的值。为方便起见， 控制平面自动设置 Downward API 以在 <code>JOB_COMPLETION_INDEX</code> 环境变量中公开索引。</p>
+<p>以下是此示例中步骤的概述：</p>
+<ol>
+<li><strong>定义使用带索引完成信息的 Job 清单</strong>。 Downward API 使你可以将 Pod 索引注解作为环境变量或文件传递给容器。</li>
+<li><strong>根据该清单启动一个带索引（<code>Indexed</code>）的 Job</strong>。</li>
+</ol>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-statice58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你应该已经熟悉 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a> 的基本的、非并行的用法。</p>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>你的 Kubernetes 服务器版本必须不低于版本 v1.21. 要获知版本信息，请输入 <code>kubectl version</code>.</p>
+<h3 id="选择一种方法httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-staticchoose-an-approach">选择一种方法<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#choose-an-approach" target="_blank" rel="noopener noreffer"></a></h3>
+<p>要从工作程序访问工作项，你有几个选项：</p>
+<ol>
+<li>读取 <code>JOB_COMPLETION_INDEX</code> 环境变量。Job <a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/controller/" target="_blank" rel="noopener noreffer">控制器</a> 自动将此变量链接到包含完成索引的注解。</li>
+<li>读取包含完整索引的文件。</li>
+<li>假设你无法修改程序，你可以使用脚本包装它， 该脚本使用上述任意方法读取索引并将其转换为程序可以用作输入的内容。</li>
+</ol>
+<p>对于此示例，假设你选择了选项 3 并且想要运行 <a href="https://man7.org/linux/man-pages/man1/rev.1.html" target="_blank" rel="noopener noreffer">rev</a> 实用程序。 这个程序接受一个文件作为参数并按逆序打印其内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">rev data.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>你将使用 <a href="https://hub.docker.com/_/busybox" target="_blank" rel="noopener noreffer"><code>busybox</code></a> 容器镜像中的 <code>rev</code> 工具。</p>
+<p>由于这只是一个例子，每个 Pod 只做一小部分工作（反转一个短字符串）。 例如，在实际工作负载中，你可能会创建一个表示基于场景数据制作 60 秒视频任务的 Job 。 此视频渲染 Job 中的每个工作项都将渲染该视频剪辑的特定帧。 索引完成意味着 Job 中的每个 Pod 都知道通过从剪辑开始计算帧数，来确定渲染和发布哪一帧。</p>
+<h3 id="定义索引作业httpskubernetesiozh-cndocstasksjobindexed-parallel-processing-staticdefine-an-indexed-job">定义索引作业<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#define-an-indexed-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>这是一个使用 <code>Indexed</code> 完成模式的示例 Job 清单：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/indexed-job.yaml" target="_blank" rel="noopener noreffer"><code>application/job/indexed-job.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/indexed-job.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/indexed-job.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;indexed-job&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span><span class="nt">completionMode</span><span class="p">:</span><span class="w"> </span><span class="l">Indexed</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">      </span><span class="nt">initContainers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;input&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;docker.io/library/bash&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;bash&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;-c&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="p">|</span><span class="sd">
+</span><span class="sd">          items=(foo bar baz qux xyz)
+</span><span class="sd">          echo ${items[$JOB_COMPLETION_INDEX]} &gt; /input/data.txt          </span><span class="w">          
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/input</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">input</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;worker&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;docker.io/library/busybox&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;rev&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;/input/data.txt&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/input</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">input</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">input</span><span class="w">
+</span><span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>在上面的示例中，你使用 Job 控制器为所有容器设置的内置 <code>JOB_COMPLETION_INDEX</code> 环境变量。 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/init-containers/" target="_blank" rel="noopener noreffer">Init 容器</a> 将索引映射到一个静态值，并将其写入一个文件，该文件通过 <a href="https://kubernetes.io/zh-cn/docs/concepts/storage/volumes/#emptydir" target="_blank" rel="noopener noreffer">emptyDir 卷</a> 与运行 worker 的容器共享。或者，你可以 <a href="https://kubernetes.io/zh-cn/docs/tasks/inject-data-application/environment-variable-expose-pod-information/" target="_blank" rel="noopener noreffer">通过 Downward API 定义自己的环境变量</a> 将索引发布到容器。你还可以选择从 <a href="https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank" rel="noopener noreffer">包含 ConfigMap 的环境变量或文件</a> 加载值列表。</p>
+<p>或者也可以直接 <a href="https://kubernetes.io/zh-cn/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/#store-pod-fields" target="_blank" rel="noopener noreffer">使用 Downward API 将注解值作为卷文件传递</a>， 如下例所示：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/indexed-job-vol.yaml" target="_blank" rel="noopener noreffer"><code>application/job/indexed-job-vol.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/indexed-job-vol.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/indexed-job-vol.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;indexed-job&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span><span class="nt">completionMode</span><span class="p">:</span><span class="w"> </span><span class="l">Indexed</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;worker&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;docker.io/library/busybox&#39;</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;rev&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;/input/data.txt&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/input</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">input</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">input</span><span class="w">
+</span><span class="w">        </span><span class="nt">downwardAPI</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">items</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;data.txt&#34;</span><span class="w">
+</span><span class="w">            </span><span class="nt">fieldRef</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span><span class="nt">fieldPath</span><span class="p">:</span><span class="w"> </span><span class="l">metadata.annotations[&#39;batch.kubernetes.io/job-completion-index&#39;]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="执行-job-running-the-jobhttpskubernetesiozh-cndocstasksjobindexed-parallel-processing-statice689a7e8a18c-job-running-the-job">执行 Job {running-the-job}<a href="https://kubernetes.io/zh-cn/docs/tasks/job/indexed-parallel-processing-static/#%E6%89%A7%E8%A1%8C-job-running-the-job" target="_blank" rel="noopener noreffer"></a></h3>
+<p>现在执行 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 使用第一种方法（依赖于 $JOB_COMPLETION_INDEX）</span>
+kubectl apply -f https://kubernetes.io/examples/application/job/indexed-job.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>当你创建此 Job 时，控制平面会创建一系列 Pod，你指定的每个索引都会运行一个 Pod。 <code>.spec.parallelism</code> 的值决定了一次可以运行多少个 Pod， 而 <code>.spec.completions</code> 决定了 Job 总共创建了多少个 Pod。</p>
+<p>因为 <code>.spec.parallelism</code> 小于 <code>.spec.completions</code>， 所以控制平面在启动更多 Pod 之前，将等待第一批的某些 Pod 完成。</p>
+<p>你可以等待 Job 成功，等待时间可以设置超时限制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 状况名称的检查不区分大小写</span>
+kubectl <span class="nb">wait</span> --for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span><span class="nb">complete</span> --timeout<span class="o">=</span>300s job/indexed-job
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，描述 Job 并检查它是否成功。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl describe jobs/indexed-job
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Name:              indexed-job
+Namespace:         default
+Selector:          controller-uid=bf865e04-0b67-483b-9a90-74cfc4c3e756
+Labels:            controller-uid=bf865e04-0b67-483b-9a90-74cfc4c3e756
+                   job-name=indexed-job
+Annotations:       &lt;none&gt;
+Parallelism:       3
+Completions:       5
+Start Time:        Thu, 11 Mar 2021 15:47:34 +0000
+Pods Statuses:     2 Running / 3 Succeeded / 0 Failed
+Completed Indexes: 0-2
+Pod Template:
+  Labels:  controller-uid=bf865e04-0b67-483b-9a90-74cfc4c3e756
+           job-name=indexed-job
+  Init Containers:
+   input:
+    Image:      docker.io/library/bash
+    Port:       &lt;none&gt;
+    Host Port:  &lt;none&gt;
+    Command:
+      bash
+      -c
+      items=(foo bar baz qux xyz)
+      echo ${items[$JOB_COMPLETION_INDEX]} &gt; /input/data.txt
+
+    Environment:  &lt;none&gt;
+    Mounts:
+      /input from input (rw)
+  Containers:
+   worker:
+    Image:      docker.io/library/busybox
+    Port:       &lt;none&gt;
+    Host Port:  &lt;none&gt;
+    Command:
+      rev
+      /input/data.txt
+    Environment:  &lt;none&gt;
+    Mounts:
+      /input from input (rw)
+  Volumes:
+   input:
+    Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+    Medium:
+    SizeLimit:  &lt;unset&gt;
+Events:
+  Type    Reason            Age   From            Message
+  ----    ------            ----  ----            -------
+  Normal  SuccessfulCreate  4s    job-controller  Created pod: indexed-job-njkjj
+  Normal  SuccessfulCreate  4s    job-controller  Created pod: indexed-job-9kd4h
+  Normal  SuccessfulCreate  4s    job-controller  Created pod: indexed-job-qjwsz
+  Normal  SuccessfulCreate  1s    job-controller  Created pod: indexed-job-fdhq5
+  Normal  SuccessfulCreate  1s    job-controller  Created pod: indexed-job-ncslj
+</code></pre></td></tr></table>
+</div>
+</div><p>在此示例中，你使用每个索引的自定义值运行 Job。 你可以检查其中一个 Pod 的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl logs indexed-job-fdhq5 <span class="c1"># 更改它以匹配来自该 Job 的 Pod 的名称</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">xuq
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用展开的方式进行并行处理httpskubernetesiozh-cndocstasksjobparallel-processing-expansion"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/" target="_blank" rel="noopener noreffer">使用展开的方式进行并行处理</a></h2>
+<p>本任务展示基于一个公共的模板运行多个<a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Jobs</a>。 你可以用这种方法来并行执行批处理任务。</p>
+<p>在本任务示例中，只有三个工作条目：<em>apple</em>、<em>banana</em> 和 <em>cherry</em>。 示例任务处理每个条目时打印一个字符串之后结束。</p>
+<p>参考<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#using-jobs-in-real-workloads" target="_blank" rel="noopener noreffer">在真实负载中使用 Job</a>了解更适用于真实使用场景的模式。</p>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobparallel-processing-expansione58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你应先熟悉基本的、非并行的 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a> 的用法。</p>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>任务中的基本模板示例要求安装命令行工具 <code>sed</code>。 要使用较高级的模板示例，你需要安装 <a href="https://www.python.org/" target="_blank" rel="noopener noreffer">Python</a>， 并且要安装 Jinja2 模板库。</p>
+<p>一旦 Python 已经安装好，你可以运行下面的命令安装 Jinja2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pip install --user jinja2
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="基于模板创建-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansioncreate-jobs-based-on-a-template">基于模板创建 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#create-jobs-based-on-a-template" target="_blank" rel="noopener noreffer"></a></h3>
+<p>首先，将以下作业模板下载到名为 <code>job-tmpl.yaml</code> 的文件中。</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples/application/job/job-tmpl.yaml" target="_blank" rel="noopener noreffer"><code>application/job/job-tmpl.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy application/job/job-tmpl.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy application/job/job-tmpl.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">process-item-$ITEM</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">jobgroup</span><span class="p">:</span><span class="w"> </span><span class="l">jobexample</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">jobexample</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">jobgroup</span><span class="p">:</span><span class="w"> </span><span class="l">jobexample</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">c</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox:1.28</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;echo Processing item $ITEM &amp;&amp; sleep 5&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"> <span class="c1"># 使用 curl 下载 job-tmpl.yaml</span>
+curl -L -s -O https://k8s.io/examples/application/job/job-tmpl.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>你所下载的文件不是一个合法的 Kubernetes <a href="https://kubernetes.io/zh-cn/docs/reference/glossary/?all=true#term-manifest" target="_blank" rel="noopener noreffer">清单</a>。 这里的模板只是 Job 对象的 yaml 表示，其中包含一些占位符，在使用它之前需要被填充。 <code>$ITEM</code> 语法对 Kubernetes 没有意义。</p>
+<h4 id="基于模板创建清单httpskubernetesiozh-cndocstasksjobparallel-processing-expansione59fbae4ba8ee6a8a1e69dbfe5889be5bbbae6b885e58d95">基于模板创建清单<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%E6%B8%85%E5%8D%95" target="_blank" rel="noopener noreffer"></a></h4>
+<p>下面的 Shell 代码片段使用 <code>sed</code> 将字符串 <code>$ITEM</code> 替换为循环变量，并将结果 写入到一个名为 <code>jobs</code> 的临时目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 展开模板文件到多个文件中，每个文件对应一个要处理的条目</span>
+mkdir ./jobs
+<span class="k">for</span> i in apple banana cherry
+<span class="k">do</span>
+  cat job-tmpl.yaml <span class="p">|</span> sed <span class="s2">&#34;s/\$ITEM/</span><span class="nv">$i</span><span class="s2">/&#34;</span> &gt; ./jobs/job-<span class="nv">$i</span>.yaml
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>检查上述脚本的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ls jobs/
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">job-apple.yaml
+job-banana.yaml
+job-cherry.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以使用任何一种模板语言（例如：Jinja2、ERB），或者编写一个程序来 生成 Job 清单。</p>
+<h4 id="基于清单创建-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansione59fbae4ba8ee6b885e58d95e5889be5bbba-job">基于清单创建 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E5%9F%BA%E4%BA%8E%E6%B8%85%E5%8D%95%E5%88%9B%E5%BB%BA-job" target="_blank" rel="noopener noreffer"></a></h4>
+<p>接下来用一个 kubectl 命令创建所有的 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f ./jobs
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">job.batch/process-item-apple created
+job.batch/process-item-banana created
+job.batch/process-item-cherry created
+</code></pre></td></tr></table>
+</div>
+</div><p>现在检查 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get <span class="nb">jobs</span> -l <span class="nv">jobgroup</span><span class="o">=</span>jobexample
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME                  COMPLETIONS   DURATION   AGE
+process-item-apple    1/1           14s        22s
+process-item-banana   1/1           12s        21s
+process-item-cherry   1/1           12s        20s
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 kubectl 的 <code>-l</code> 选项可以仅选择属于当前 Job 组的对象 （系统中可能存在其他不相关的 Job）。</p>
+<p>你可以使用相同的 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="noopener noreffer">标签选择算符</a> 来过滤 Pods：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl get pods -l <span class="nv">jobgroup</span><span class="o">=</span>jobexample
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NAME                        READY     STATUS      RESTARTS   AGE
+process-item-apple-kixwv    0/1       Completed   0          4m
+process-item-banana-wrsf7   0/1       Completed   0          4m
+process-item-cherry-dnfu9   0/1       Completed   0          4m
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以用下面的命令查看所有 Job 的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl logs -f -l <span class="nv">jobgroup</span><span class="o">=</span>jobexample
+</code></pre></td></tr></table>
+</div>
+</div><p>输出类似于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Processing item apple
+Processing item banana
+Processing item cherry
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="清理httpskubernetesiozh-cndocstasksjobparallel-processing-expansioncleanup-1">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#cleanup-1" target="_blank" rel="noopener noreffer"></a></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 删除所创建的 Job</span>
+<span class="c1"># 集群会自动清理 Job 对应的 Pod</span>
+kubectl delete job -l <span class="nv">jobgroup</span><span class="o">=</span>jobexample
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用高级模板参数httpskubernetesiozh-cndocstasksjobparallel-processing-expansione4bdbfe794a8e9ab98e7baa7e6a8a1e69dbfe58f82e695b0">使用高级模板参数<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E4%BD%BF%E7%94%A8%E9%AB%98%E7%BA%A7%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0" target="_blank" rel="noopener noreffer"></a></h3>
+<p>在<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#create-jobs-based-on-a-template" target="_blank" rel="noopener noreffer">第一个例子</a>中，模板的每个示例都有一个参数 而该参数也用在 Job 名称中。不过，对象 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/names/#names" target="_blank" rel="noopener noreffer">名称</a> 被限制只能使用某些字符。</p>
+<p>这里的略微复杂的例子使用 <a href="https://palletsprojects.com/p/jinja/" target="_blank" rel="noopener noreffer">Jinja 模板语言</a> 来生成清单，并基于清单来生成对象，每个 Job 都有多个参数。</p>
+<p>在本任务中，你将会使用一个一行的 Python 脚本，将模板转换为一组清单文件。</p>
+<p>首先，复制下面的 Job 对象模板到一个名为 <code>job.yaml.jinja2</code> 的文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{% set params = [{ &#34;name&#34;: &#34;apple&#34;, &#34;url&#34;: &#34;http://dbpedia.org/resource/Apple&#34;, },
+                  { &#34;name&#34;: &#34;banana&#34;, &#34;url&#34;: &#34;http://dbpedia.org/resource/Banana&#34;, },
+                  { &#34;name&#34;: &#34;cherry&#34;, &#34;url&#34;: &#34;http://dbpedia.org/resource/Cherry&#34; }]
+%}
+{% for p in params %}
+{% set name = p[&#34;name&#34;] %}
+{% set url = p[&#34;url&#34;] %}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jobexample-{{ name }}
+  labels:
+    jobgroup: jobexample
+spec:
+  template:
+    metadata:
+      name: jobexample
+      labels:
+        jobgroup: jobexample
+    spec:
+      containers:
+      - name: c
+        image: busybox:1.28
+        command: [&#34;sh&#34;, &#34;-c&#34;, &#34;echo Processing URL {{ url }} &amp;&amp; sleep 5&#34;]
+      restartPolicy: Never
+{% endfor %}
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的模板使用 python 字典列表（第 1-4 行）定义每个作业对象的参数。 然后使用 for 循环为每组参数（剩余行）生成一个作业 yaml 对象。 我们利用了多个 YAML 文档（这里的 Kubernetes 清单）可以用 <code>---</code> 分隔符连接的事实。 我们可以将输出直接传递给 kubectl 来创建对象。</p>
+<p>接下来我们用单行的 Python 程序将模板展开。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">alias</span> <span class="nv">render_template</span><span class="o">=</span><span class="s1">&#39;python -c &#34;from jinja2 import Template; import sys; print(Template(sys.stdin.read()).render());&#34;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>render_template</code> 将参数和模板转换成一个 YAML 文件，其中包含 Kubernetes 资源清单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 此命令需要之前定义的别名</span>
+cat job.yaml.jinja2 <span class="p">|</span> render_template &gt; jobs.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以查看 <code>jobs.yaml</code> 以验证 <code>render_template</code> 脚本是否正常工作。</p>
+<p>当你对输出结果比较满意时，可以用管道将其输出发送给 kubectl，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat job.yaml.jinja2 <span class="p">|</span> render_template <span class="p">|</span> kubectl apply -f -
+</code></pre></td></tr></table>
+</div>
+</div><p>Kubernetes 接收清单文件并执行你所创建的 Job。</p>
+<h4 id="清理httpskubernetesiozh-cndocstasksjobparallel-processing-expansioncleanup-2">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#cleanup-2" target="_blank" rel="noopener noreffer"></a></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 删除所创建的 Job</span>
+<span class="c1"># 集群会自动清理 Job 对应的 Pod</span>
+kubectl delete job -l <span class="nv">jobgroup</span><span class="o">=</span>jobexample
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="在真实负载中使用-jobhttpskubernetesiozh-cndocstasksjobparallel-processing-expansionusing-jobs-in-real-workloads">在真实负载中使用 Job<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#using-jobs-in-real-workloads" target="_blank" rel="noopener noreffer"></a></h3>
+<p>在真实的负载中，每个 Job 都会执行一些重要的计算，例如渲染电影的一帧， 或者处理数据库中的若干行。这时，<code>$ITEM</code> 参数将指定帧号或行范围。</p>
+<p>在此任务中，你运行一个命令通过取回 Pod 的日志来收集其输出。 在真实应用场景中，Job 的每个 Pod 都会在结束之前将其输出写入到某持久性存储中。 你可以为每个 Job 指定 PersistentVolume 卷，或者使用其他外部存储服务。 例如，如果你在渲染视频帧，你可能会使用 HTTP 协议将渲染完的帧数据 用 &lsquo;PUT&rsquo; 请求发送到某 URL，每个帧使用不同的 URl。</p>
+<h3 id="job-和-pod-上的标签httpskubernetesiozh-cndocstasksjobparallel-processing-expansionjob-e5928c-pod-e4b88ae79a84e6a087e7adbe">Job 和 Pod 上的标签<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#job-%E5%92%8C-pod-%E4%B8%8A%E7%9A%84%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你创建了 Job 之后，Kubernetes 自动为 Job 的 Pod 添加 <a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="noopener noreffer">标签</a>，以便能够将一个 Job 的 Pod 与另一个 Job 的 Pod 区分开来。</p>
+<p>在本例中，每个 Job 及其 Pod 模板有一个标签: <code>jobgroup=jobexample</code>。</p>
+<p>Kubernetes 自身对标签名 <code>jobgroup</code> 没有什么要求。 为创建自同一模板的所有 Job 使用同一标签使得我们可以方便地同时操作组中的所有作业。 在<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#create-jobs-based-on-a-template" target="_blank" rel="noopener noreffer">第一个例子</a>中，你使用模板来创建了若干 Job。 模板确保每个 Pod 都能够获得相同的标签，这样你可以用一条命令检查这些模板化 Job 所生成的全部 Pod。</p>
+<p><strong>说明：</strong> 标签键 <code>jobgroup</code> 没什么特殊的，也不是保留字。 你可以选择你自己的标签方案。 如果愿意，有一些<a href="https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/common-labels/#labels" target="_blank" rel="noopener noreffer">建议的标签</a> 可供使用。</p>
+<h3 id="替代方案httpskubernetesiozh-cndocstasksjobparallel-processing-expansione69bbfe4bba3e696b9e6a188">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/parallel-processing-expansion/#%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88" target="_blank" rel="noopener noreffer"></a></h3>
+<p>如果你有计划创建大量 Job 对象，你可能会发现：</p>
+<ul>
+<li>即使使用标签，管理这么多 Job 对象也很麻烦。</li>
+<li>如果你一次性创建很多 Job，很可能会给 Kubernetes 控制面带来很大压力。 一种替代方案是，Kubernetes API 可能对请求施加速率限制，通过 429 返回 状态值临时拒绝你的请求。</li>
+<li>你可能会受到 Job 相关的<a href="https://kubernetes.io/zh-cn/docs/concepts/policy/resource-quotas/" target="_blank" rel="noopener noreffer">资源配额</a> 限制：如果你在一个批量请求中触发了太多的任务，API 服务器会永久性地拒绝你的某些请求。</li>
+</ul>
+<p>还有一些其他<a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/#job-patterns" target="_blank" rel="noopener noreffer">作业模式</a> 可供选择，这些模式都能用来处理大量任务而又不会创建过多的 Job 对象。</p>
+<p>你也可以考虑编写自己的<a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/controller/" target="_blank" rel="noopener noreffer">控制器</a> 来自动管理 Job 对象。</p>
+<h2 id="使用-pod-失效策略处理可重试和不可重试的-pod-失效httpskubernetesiozh-cndocstasksjobpod-failure-policy"><a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/" target="_blank" rel="noopener noreffer">使用 Pod 失效策略处理可重试和不可重试的 Pod 失效</a></h2>
+<p><strong>特性状态：</strong> <code>Kubernetes v1.26 [beta]</code></p>
+<p>本文向你展示如何结合默认的 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job#pod-backoff-failure-policy" target="_blank" rel="noopener noreffer">Pod 回退失效策略</a>来使用 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job#pod-failure-policy" target="_blank" rel="noopener noreffer">Pod 失效策略</a>， 以改善 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a> 内处理容器级别或 Pod 级别的失效。</p>
+<p>Pod 失效策略的定义可以帮助你：</p>
+<ul>
+<li>避免不必要的 Pod 重试，以更好地利用计算资源。</li>
+<li>避免由于 Pod 干扰（例如<a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/pod-priority-preemption/#preemption" target="_blank" rel="noopener noreffer">抢占</a>、 <a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/api-eviction/" target="_blank" rel="noopener noreffer">API 发起的驱逐</a>或基于<a href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/" target="_blank" rel="noopener noreffer">污点</a>的驱逐） 而造成的 Job 失败。</li>
+</ul>
+<h3 id="准备开始httpskubernetesiozh-cndocstasksjobpod-failure-policye58786e5a487e5bc80e5a78b">准备开始<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener noreffer"></a></h3>
+<p>你应该已熟悉了 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener noreffer">Job</a> 的基本用法。</p>
+<p>你必须拥有一个 Kubernetes 的集群，同时你的 Kubernetes 集群必须带有 kubectl 命令行工具。 建议在至少有两个节点的集群上运行本教程，且这些节点不作为控制平面主机。 如果你还没有集群，你可以通过 <a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/" target="_blank" rel="noopener noreffer">Minikube</a> 构建一个你自己的集群，或者你可以使用下面任意一个 Kubernetes 工具构建：</p>
+<ul>
+<li><a href="https://killercoda.com/playgrounds/scenario/kubernetes" target="_blank" rel="noopener noreffer">Killercoda</a></li>
+<li><a href="http://labs.play-with-k8s.com/" target="_blank" rel="noopener noreffer">玩转 Kubernetes</a></li>
+</ul>
+<p>你的 Kubernetes 服务器版本必须不低于版本 v1.25. 要获知版本信息，请输入 <code>kubectl version</code>.</p>
+<h3 id="使用-pod-失效策略以避免不必要的-pod-重试httpskubernetesiozh-cndocstasksjobpod-failure-policyusing-pod-failure-policy-to-avoid-unecessary-pod-retries">使用 Pod 失效策略以避免不必要的 Pod 重试<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#using-pod-failure-policy-to-avoid-unecessary-pod-retries" target="_blank" rel="noopener noreffer"></a></h3>
+<p>借用以下示例，你可以学习在 Pod 失效表明有一个不可重试的软件漏洞时如何使用 Pod 失效策略来避免不必要的 Pod 重启。</p>
+<p>首先，基于配置创建一个 Job：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples//controllers/job-pod-failure-policy-failjob.yaml" target="_blank" rel="noopener noreffer"><code>/controllers/job-pod-failure-policy-failjob.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy /controllers/job-pod-failure-policy-failjob.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy /controllers/job-pod-failure-policy-failjob.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-pod-failure-policy-failjob</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">8</span><span class="w">
+</span><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/library/bash:5</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;bash&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- -<span class="l">c</span><span class="w">
+</span><span class="w">        </span>- <span class="l">echo &#34;Hello world! I&#39;m going to exit with 42 to simulate a software bug.&#34; &amp;&amp; sleep 30 &amp;&amp; exit 42</span><span class="w">
+</span><span class="w">  </span><span class="nt">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">6</span><span class="w">
+</span><span class="w">  </span><span class="nt">podFailurePolicy</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">FailJob</span><span class="w">
+</span><span class="w">      </span><span class="nt">onExitCodes</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">containerName</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span><span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l">In</span><span class="w">
+</span><span class="w">        </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="m">42</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>运行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl create -f job-pod-failure-policy-failjob.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>大约 30 秒后，整个 Job 应被终止。通过运行以下命令来查看 Job 的状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl get <span class="nb">jobs</span> -l job-name<span class="o">=</span>job-pod-failure-policy-failjob -o yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Job 状态中，看到一个任务状况为 <code>Failed</code>，其 <code>reason</code> 字段等于 <code>PodFailurePolicy</code>。 此外，<code>message</code> 字段包含有关 Job 终止更详细的信息，例如： <code>Container main for pod default/job-pod-failure-policy-failjob-8ckj8 failed with exit code 42 matching FailJob rule at index 0</code>。</p>
+<p>为了比较，如果 Pod 失效策略被禁用，将会让 Pod 重试 6 次，用时至少 2 分钟。</p>
+<h4 id="清理httpskubernetesiozh-cndocstasksjobpod-failure-policye6b885e79086">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E6%B8%85%E7%90%86" target="_blank" rel="noopener noreffer"></a></h4>
+<p>删除你创建的 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl delete jobs/job-pod-failure-policy-failjob
+</code></pre></td></tr></table>
+</div>
+</div><p>集群自动清理这些 Pod。</p>
+<h3 id="使用-pod-失效策略来忽略-pod-干扰httpskubernetesiozh-cndocstasksjobpod-failure-policyusing-pod-failure-policy-to-ignore-pod-disruptions">使用 Pod 失效策略来忽略 Pod 干扰<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#using-pod-failure-policy-to-ignore-pod-disruptions" target="_blank" rel="noopener noreffer"></a></h3>
+<p>通过以下示例，你可以学习如何使用 Pod 失效策略将 Pod 重试计数器朝着 <code>.spec.backoffLimit</code> 限制递增来忽略 Pod 干扰。</p>
+<p><strong>注意：</strong></p>
+<p>这个示例的时机比较重要，因此你可能需要在执行之前阅读这些步骤。 为了触发 Pod 干扰，重要的是在 Pod 在其上运行时（自 Pod 调度后的 90 秒内）腾空节点。</p>
+<ol>
+<li>
+<p>基于配置创建 Job：</p>
+<p><a href="https://raw.githubusercontent.com/kubernetes/website/main/content/zh-cn/examples//controllers/job-pod-failure-policy-ignore.yaml" target="_blank" rel="noopener noreffer"><code>/controllers/job-pod-failure-policy-ignore.yaml</code></a> <figure><a class="lightgallery" href="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" title="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-thumbnail="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" data-sub-html="<h2>Copy /controllers/job-pod-failure-policy-ignore.yaml to clipboard</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg"
+            data-srcset="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 1.5x, https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg 2x"
+            data-sizes="auto"
+            alt="https://d33wubrfki0l68.cloudfront.net/0901162ab78eb4ff2e9e5dc8b17c3824befc91a6/44ccd/images/copycode.svg" />
+    </a><figcaption class="image-caption">Copy /controllers/job-pod-failure-policy-ignore.yaml to clipboard</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w">   </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w">   </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-pod-failure-policy-ignore</span><span class="w">
+</span><span class="w">   </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span><span class="w">     </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">     </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">       </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">         </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">         </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">         </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span><span class="w">           </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/library/bash:5</span><span class="w">
+</span><span class="w">           </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;bash&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">           </span><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w">           </span>- -<span class="l">c</span><span class="w">
+</span><span class="w">           </span>- <span class="l">echo &#34;Hello world! I&#39;m going to exit with 0 (success).&#34; &amp;&amp; sleep 90 &amp;&amp; exit 0</span><span class="w">
+</span><span class="w">     </span><span class="nt">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">     </span><span class="nt">podFailurePolicy</span><span class="p">:</span><span class="w">
+</span><span class="w">       </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">       </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">Ignore</span><span class="w">
+</span><span class="w">         </span><span class="nt">onPodConditions</span><span class="p">:</span><span class="w">
+</span><span class="w">         </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">DisruptionTarget</span><span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="l">kubectl create -f job-pod-failure-policy-ignore.yaml</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>运行以下这条命令检查将 Pod 调度到的 <code>nodeName</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">nodeName</span><span class="o">=</span><span class="k">$(</span>kubectl get pods -l job-name<span class="o">=</span>job-pod-failure-policy-ignore -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].spec.nodeName}&#39;</span><span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>腾空该节点以便在 Pod 完成任务之前将其驱逐（90 秒内）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl drain nodes/<span class="nv">$nodeName</span> --ignore-daemonsets --grace-period<span class="o">=</span><span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看 <code>.status.failed</code> 以检查针对 Job 的计数器未递增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl get <span class="nb">jobs</span> -l job-name<span class="o">=</span>job-pod-failure-policy-ignore -o yaml
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>解除节点的保护：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl uncordon nodes/<span class="nv">$nodeName</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>Job 恢复并成功完成。</p>
+<p>为了比较，如果 Pod 失效策略被禁用，Pod 干扰将使得整个 Job 终止（随着 <code>.spec.backoffLimit</code> 设置为 0）。</p>
+<h4 id="清理httpskubernetesiozh-cndocstasksjobpod-failure-policye6b885e79086-1">清理<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#%E6%B8%85%E7%90%86-1" target="_blank" rel="noopener noreffer"></a></h4>
+<p>删除你创建的 Job：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">kubectl delete jobs/job-pod-failure-policy-ignore
+</code></pre></td></tr></table>
+</div>
+</div><p>集群自动清理 Pod。</p>
+<h3 id="替代方案httpskubernetesiozh-cndocstasksjobpod-failure-policyalternatives">替代方案<a href="https://kubernetes.io/zh-cn/docs/tasks/job/pod-failure-policy/#alternatives" target="_blank" rel="noopener noreffer"></a></h3>
+<p>通过指定 Job 的 <code>.spec.backoffLimit</code> 字段，你可以完全依赖 <a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job#pod-backoff-failure-policy" target="_blank" rel="noopener noreffer">Pod 回退失效策略</a>。 然而在许多情况下，难题在于如何找到一个平衡，为 <code>.spec.backoffLimit</code> 设置一个较小的值以避免不必要的 Pod 重试， 同时这个值又足以确保 Job 不会因 Pod 干扰而终止。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01 00:00:00</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://jefofrank.xyz/%E8%BF%90%E8%A1%8Cjobs/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E9%85%8D%E7%BD%AEpod%E5%92%8C%E5%AE%B9%E5%99%A8/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/%E8%AE%BF%E9%97%AE%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jf-011101" target="_blank">Jefo</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/">赣ICP备2022007470号-1</a></span></br>
+                <span id="busuanzi_container_site_pv">
+                    访问量 <span id="busuanzi_value_site_pv"></span> 次
+                </span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                </span>
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2021;
+                        var startMonth = 3;
+                        var startDate = 27;
+                        var startHour = 19;
+                        var startMinute = 15;
+                        var startSecond = 11;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                    <span id="sitetime">载入运行时间...</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://jefos-blog.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"绿叶律动","id-2":"绿叶律动"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"J0OW8CCKJZ","algoliaIndex":"JF-2","algoliaSearchKey":"3b4a19e831c95174aca4c03fcdf95f5c","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

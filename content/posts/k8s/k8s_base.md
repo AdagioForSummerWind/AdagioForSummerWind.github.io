@@ -17,7 +17,7 @@ draft: false
 你一定听说过 Kubernetes 吧，也许更熟悉一点的，是许多人总挂在嘴边的缩写——“K8s”。自从 2013 年 Docker 诞生以来，容器一跃成为了 IT 界最热门的话题。而 Kubernetes 则趁着容器的“东风”，借助 Google 和 CNCF 的强力“背书”，击败了 Docker Swarm 和 Apache Mesos，成为了“容器编排”领域的王者至尊。
 
 
-换一个更通俗易懂的说法，那就是：现在 Kubernetes 已经没有了实际意义上的竞争对手，它的地位就如同 Linux 一样，成为了事实上的云原生操作系统，是构建现代应用的基石。毕竟，现代应用是什么？是微服务，是服务网格，这些统统要围绕着容器来开发、部署和运行，而使用容器就必然要用到容器编排技术，在现在只有唯一的选项，那就是 Kubernetes。不管你是研发、测试、还是运维，不管你是前台、后台、还是中台，不管你用的是 C++、Java 还是 Python，不管你是搞数据库、区块链、还是人工智能，不管你是从事网站、电商、还是音视频，在这个“云原生”时代，Kubernetes 都是一个绕不过去的产品，是我们工作中迟早要面对的“坎儿”。
+换一个更通俗易懂的说法，那就是：**现在 Kubernetes 已经没有了实际意义上的竞争对手，它的地位就如同 Linux 一样，成为了事实上的云原生操作系统，是构建现代应用的基石**。毕竟，现代应用是什么？是**微服务，是服务网格，这些统统要围绕着容器来开发、部署和运行，而使用容器就必然要用到容器编排技术**，在现在只有唯一的选项，那就是 Kubernetes。不管你是研发、测试、还是运维，不管你是前台、后台、还是中台，不管你用的是 C++、Java 还是 Python，不管你是搞数据库、区块链、还是人工智能，不管你是从事网站、电商、还是音视频，在这个“云原生”时代，Kubernetes 都是一个绕不过去的产品，是我们工作中迟早要面对的“坎儿”。
 
 你也许会有疑惑：我现在的工作和“云”毫不沾边，而且 Kubernetes 都“火”了这么久，现在才开始学，会不会有点晚了？值不值呢？这里我就要引用一句老话了：“艺多不压身”，还有另一句：“机遇总是偏爱有准备的人”。“云原生”已经是现在 IT 界的普遍共识，是未来的大势所趋。也许这个“浪潮”暂时还没有打到你这里来，但一旦它真正来临，只有你提前做好了知识储备，才能够迎难而进，站上浪头成为“弄潮儿”，否则就可能会被“拍在沙滩上”。
 
@@ -53,7 +53,7 @@ Docker、Containerd、K8s、K3s、MicroK8s、Minikube……这么多项目，该
 
 第三，课程会以实战为导向，强调眼手脑结合，鼓励你多动手、多实际操作，我认为这是这个课程最大的特点。Kubernetes 一般每年都会发布一个大版本，大版本又会有很多的小版本，每个版本都会持续改进功能特性，但一味求新，不符合当前的实际情况，毕竟生产环境里稳定是最重要的。所以，我就选择了今年（2022 年）初发布的 Kubernetes 1.23.3，它是最后一个支持 Docker 的大版本，承上启下，具有很多的新特性，同时也保留了足够的历史兼容性，非常适合用来学习 Kubernetes。
 
-在课程里，我会先从 Docker 开始，陆续用 minikube、kubeadm 搭建单机和多机的 Kubernetes 集群环境，在讲解概念的同时，还会给出大量的 docker、kubectl 操作命令，让你能够看完课程后立即上手演练，用实际操作来强化学习效果。
+在课程里，我会先**从 Docker 开始，陆续用 minikube、kubeadm 搭建单机和多机的 Kubernetes 集群环境**，在讲解概念的同时，还会给出大量的 docker、kubectl 操作命令，让你能够看完课程后立即上手演练，用实际操作来强化学习效果。
 
 第四，具体到每一节课上，我不会“贪大求全”，而是会“短小精悍”，做减法而不是加法，力争每节课只聚焦在一个知识点。
 
@@ -70,9 +70,9 @@ Docker、Containerd、K8s、K3s、MicroK8s、Minikube……这么多项目，该
 
 课前准备 在正式学习前首先有一节课前准备，这也是我写专栏的惯例了，会跟你说一下我们学习的实验环境，用虚拟机软件搭建出一个 Linux 系统，为零基础的同学扫除一些非常简单但是其他地方可能没有讲到的后顾之忧。
 
-入门篇 我会用最流行的 Docker 来讲解 Kubernetes 的基础技术：容器，让你了解它的基本原理，熟悉常用的 Docker 命令，能够轻松地拉取、构建镜像，运行容器，能够使用容器在本机搭建开发测试环境。初级篇在具备了容器的知识之后，我们就可以来学习 Kubernetes 了，用的是单机环境 minikube。你会了解为什么容器会发展到容器编排，Kubernetes 解决了什么问题，它的基本架构是什么样子的，再学习 YAML 语言、核心对象 Pod，还有离线业务对象 Job/CronJob、配置信息对象 ConfigMap/Secret。
+入门篇 **我会用最流行的 Docker 来讲解 Kubernetes 的基础技术**：容器，让你了解它的基本原理，熟悉常用的 Docker 命令，能够轻松地拉取、构建镜像，运行容器，能够使用容器在本机搭建开发测试环境。初级篇在具备了容器的知识之后，我们就可以来**学习 Kubernetes 了，用的是单机环境 minikube**。你会了解为什么容器会发展到容器编排，Kubernetes 解决了什么问题，它的基本架构是什么样子的，再学习 YAML 语言、核心对象 Pod，还有离线业务对象 Job/CronJob、配置信息对象 ConfigMap/Secret。
 
-中级篇 我们会在“初级篇”的基础上更进一步，使用 kubeadm 搭建出一个多节点的集群，模拟真实的生产环境，并介绍 Kubernetes 里的 4 个重要概念：Deployment、DaemonSet、Service、Ingress。学习了这些对象，你就能够明白 Kubernetes 的优点、特点是什么，知道为什么它能够一统天下，成为云原生时代的操作系统。
+中级篇 我们会在“初级篇”的基础上更进一步，**使用 kubeadm 搭建出一个多节点的集群，模拟真实的生产环境，并介绍 Kubernetes 里的 4 个重要概念：Deployment、DaemonSet、Service、Ingress**。学习了这些对象，你就能够明白 Kubernetes 的优点、特点是什么，知道为什么它能够一统天下，成为云原生时代的操作系统。
 
 高级篇 经过前面几个模块的学习，你就已经对 Kubernetes 有了比较全面的认识了，所以我会再讲解一些深层次知识点和高级应用技巧，包括持久化存储、有状态的对象、应用的滚动更新和自动伸缩、容器和节点的管理等等。
 
@@ -101,7 +101,7 @@ Docker、Containerd、K8s、K3s、MicroK8s、Minikube……这么多项目，该
 我们先讲适用面广的 VirtualBox。VirtualBox 是 Oracle 推出的一款虚拟机软件，历史很悠久，一直坚持免费政策，使用条款上也没有什么限制，是一个难得的精品软件。VirtualBox 支持 Windows 和 macOS，但有一个小缺点，它只能运行在 Intel（x86_64）芯片上，不支持 Apple 新出的 M1（arm64/aarch64）芯片，这导致它无法在新款 Mac 上使用，不得不说是一大遗憾。所以，如果你手里是 Apple M1 Mac，就只能选择其他的虚拟机软件了。在 macOS 上，虚拟机最出名的应该是 Parallel Desktop 和 VMWare Fusion 这两个了，都需要付费。这里我比较推荐 VMWare Fusion。不过对于 VMWare Fusion 来说，它对 M1 的支持进展比较迟缓，所以在正式的付费版出来之前，公布了一个“技术预览版”，是完全免费的，而且功能、性能也比较好，虽然有使用时间的限制（大约 300 天），但对于我们的学习来说是足够了。这里我给出 VirtualBox（https://www.virtualbox.org/wiki/Downloads）和 VMWare Fusion（https://communities.vmware.com/t5/Fusion-for-Apple-Silicon-Tech/ct-p/3022）的网址，你可以课后去看一下，尽快下载。
 
 ### 选择哪种 Linux 发行版
-有了虚拟机软件之后，我们就要在上面安装操作系统，在这方面毫无疑问只能是 Linux，因为 Kubernetes 只能运行在 Linux 之上。不过麻烦的是，Linux 世界又分裂成很多不同的发行版，流行的有 CentOS/Fedora、 Ubuntu/Debian、SUSE 等等，没有一个占据绝对统治地位的系统。
+有了虚拟机软件之后，我们就要在上面安装操作系统，在这方面毫无疑问只能是 Linux，因为 **Kubernetes 只能运行在 Linux 之上**。不过麻烦的是，Linux 世界又分裂成很多不同的发行版，流行的有 CentOS/Fedora、 Ubuntu/Debian、SUSE 等等，没有一个占据绝对统治地位的系统。
 
 ![img](https://static001.geekbang.org/resource/image/70/06/701a9e9a7757be4198f0e9d5a7175406.jpg?wh=662x628)
 
@@ -187,23 +187,93 @@ ip addr
 俗话说：“万事开头难”，对于 Kubernetes 这个庞大而陌生的领域来说更是如此，如何迈出学习的第一步非常关键，所以，今天我们先从最简单、最基本的知识入手，聊聊最流行的容器技术 Docker，先搭建实验环境，再动手操作一下，进而破除它的神秘感。
 
 ### Docker 的诞生
-现在我们都已经对 Container、Kubernetes 这些技术名词耳熟能详了，但你知道这一切的开端——Docker，第一次在世界上的亮相是什么样子的吗？九年前，也就是 2013 年 3 月 15 日，在北美的圣克拉拉市召开了一场 Python 开发者社区的主题会议 PyCon，研究和探讨各种 Python 开发技术和应用，与我们常说的“云”“PaaS”“SaaS”根本毫不相关。在当天的会议日程快结束时，有一个“闪电演讲”（lighting talk）的小环节。其中有一位开发者，用了 5 分钟的时间，做了题为 “The future of Linux Containers” 的演讲，不过临近末尾因为超时而被主持人赶下了台，场面略显尴尬（你可以在这里回看这段具有历史意义的视频）。
+现在我们都已经对 Container、Kubernetes 这些技术名词耳熟能详了，但你知道这一切的开端——Docker，第一次在世界上的亮相是什么样子的吗？九年前，也就是 2013 年 3 月 15 日，在北美的圣克拉拉市召开了一场 Python 开发者社区的主题会议 PyCon，研究和探讨各种 Python 开发技术和应用，与我们常说的“云”“PaaS”“SaaS”根本毫不相关。在当天的会议日程快结束时，有一个“闪电演讲”（lighting talk）的小环节。其中有一位开发者，用了 5 分钟的时间，做了题为 “The future of Linux Containers” 的演讲，不过临近末尾因为超时而被主持人赶下了台，场面略显尴尬（你可以在[这里](https://www.youtube.com/watch?v=wW9CAH9nSLs)回看这段具有历史意义的视频）。
 
 
 相信你一定猜到了，这个只有短短 5 分钟的技术演示，就是我们目前所看到的、席卷整个业界的云原生大潮的开端。正是在这段演讲里，Solomon Hykes（dotCloud 公司，也就是 Docker 公司的创始人）首次向全世界展示了 Docker 技术。5 分钟的时间非常短，但演讲里却包含了几个现在已经普及，但当时却非常新奇的概念，比如容器、镜像、隔离运行进程等，信息量非常大。PyCon2013 大会之后，许多人都意识到了容器的价值和重要性，发现它能够解决困扰了云厂商多年的打包、部署、管理、运维等问题，Docker 也就迅速流行起来，成为了 GitHub 上的明星项目。然后在几个月的时间里，Docker 更是吸引了 Amazon、Google、Red Hat 等大公司的关注，这些公司利用自身的技术背景，纷纷在容器概念上大做文章，最终成就了我们今天所看到的至尊王者 Kubernetes 的出现。
 
 
 ### Docker 的形态
-好了，下面我们就要来一个“情境再现”，在我们的 Linux 虚拟机上搭建一个容器运行环境，模拟一下当年 Solomon Hykes 初次展示 Docker 的场景。当然，如今的 Docker 经过了九年的发展，已经远不是当初的“吴下阿蒙”了，不过最核心的那些概念和操作还是保持了一贯性，没有太大的变化。首先，我们需要对 Docker 的形态有所了解。目前使用 Docker 基本上有两个选择：Docker Desktop 和 Docker Engine。
+好了，下面我们就要来一个“情境再现”，在我们的 Linux 虚拟机上搭建一个容器运行环境，模拟一下当年 Solomon Hykes 初次展示 Docker 的场景。当然，如今的 Docker 经过了九年的发展，已经远不是当初的“吴下阿蒙”了，不过最核心的那些概念和操作还是保持了一贯性，没有太大的变化。首先，我们需要对 **Docker 的形态**有所了解。目前使用 Docker 基本上有两个选择：**Docker Desktop 和 Docker Engine。**
 
-
-Docker Desktop 是专门针对个人使用而设计的，支持 Mac 和 Windows 快速安装，具有直观的图形界面，还集成了许多周边工具，方便易用。不过，我个人不是太推荐使用 Docker Desktop，原因有两个。第一个，它是商业产品，难免会带有 Docker 公司的“私人气息”，有一些自己的、非通用的东西，不利于我们后续的 Kubernetes 学习。第二个，它只是对个人学习免费，受条款限制不能商用，我们在日常工作中难免会“踩到雷区”。Docker Engine 则和 Docker Desktop 正好相反，完全免费，但只能在 Linux 上运行，只能使用命令行操作，缺乏辅助工具，需要我们自己动手 DIY 运行环境。不过要是较起真来，它才是 Docker 当初的真正形态，“血脉”最纯正，也是现在各个公司在生产环境中实际使用的 Docker 产品，毕竟机房里 99% 的服务器跑的都是 Linux。所以，在接下来的学习过程里，我推荐使用 Docker Engine，之后在本专栏内，如果没有什么特别的声明，Docker 这个词通常指的就是 Docker Engine。
+Docker Desktop 是专门针对个人使用而设计的，支持 Mac 和 Windows 快速安装，具有直观的图形界面，还集成了许多周边工具，方便易用。不过，我个人不是太推荐使用 Docker Desktop，原因有两个。第一个，它是**商业产品**，难免会带有 Docker 公司的“私人气息”，有一些自己的、非通用的东西，不利于我们后续的 Kubernetes 学习。第二个，它只是对个人学习免费，**受条款限制不能商用**，我们在日常工作中难免会“踩到雷区”。Docker Engine 则和 Docker Desktop 正好相反，完**全免费，但只能在 Linux 上运行，只能使用命令行操作，缺乏辅助工具，需要我们自己动手 DIY 运行环境**。不过要是较起真来，它才是 Docker 当初的真正形态，“血脉”最纯正，也是现在各个公司在生产环境中实际使用的 Docker 产品，毕竟机房里 99% 的服务器跑的都是 Linux。所以，在接下来的学习过程里，我推荐使用 Docker Engine，之后在本专栏内，如果没有什么特别的声明，Docker 这个词通常指的就是 Docker Engine。
 
 ### Docker 的安装
 在课前准备里，我们已经在 Linux 虚拟机里安装了一些常用软件，用的是 Ubuntu 的包管理工具 apt，所以，我们仍然可以使用同样的方式来安装 Docker。先让我们尝试输入命令 docker ，会得到“命令未找到”的提示，还有如何安装的建议：
+```
+Command 'docker' not found, but can be installed with:
+sudo apt install docker.io
+```
+所以，你只需要按照系统的提示，“照葫芦画瓢”输入命令，安装 docker.io 就可以了。为了方便，你还可以使用 -y 参数来避免确认，实现自动化操作：
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
+
+```
+sudo apt install -y docker.io #安装Docker Engine
+```
+刚才说过，Docker Engine 不像 Docker Desktop 那样可以安装后就直接使用，必须要做一些手工调整才能用起来，所以你还要在安装完毕后执行下面的两条命令：
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
 
 
-……
+```
+sudo service docker start         #启动docker服务
+sudo usermod -aG docker ${USER}   #当前用户加入docker组
+```
+
+第一个 service docker start 是启动 Docker 的后台服务，第二个 usermod -aG 是把当前的用户加入 Docker 的用户组。这是因为操作 Docker 必须要有 root 权限，而直接使用 root 用户不够安全，加入 Docker 用户组是一个比较好的选择，这也是 Docker 官方推荐的做法。当然，如果只是为了图省事，你也可以直接切换到 root 用户来操作 Docker。上面的三条命令执行完之后，我们还需要退出系统（命令 exit ），再重新登录一次，这样才能让修改用户组的命令 usermod 生效。现在我们就可以来验证 Docker 是否安装成功了，使用的命令是 docker version 和 docker info。docker version 会输出 Docker 客户端和服务器各自的版本信息：
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
+![https://static001.geekbang.org/resource/image/fa/f9/fa0088c858d63d6b423155f854a1ddf9.png?wh=1262x1746](https://static001.geekbang.org/resource/image/fa/f9/fa0088c858d63d6b423155f854a1ddf9.png?wh=1262x1746)
+
+
+下面是我从中摘出的比较关键的版本号和系统信息。可以看到，我使用的是 Docker Engine 20.10.12，系统是 Linux，硬件架构是 arm64，也就是 Apple M1：
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
+
+```
+Client:
+ Version:           20.10.12
+ OS/Arch:           linux/arm64
+Server:
+ Engine:
+  Version:          20.10.12
+  OS/Arch:          linux/arm64
+```
+docker info 会显示当前 Docker 系统相关的信息，例如 CPU、内存、容器数量、镜像数量、容器运行时、存储文件系统等等，这里我也摘录了一部分：
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
+
+```
+
+Server:
+ Containers: 1
+  Running: 0
+  Paused: 0
+  Stopped: 1
+ Images: 8
+ Server Version: 20.10.12
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+ Cgroup Driver: systemd
+ Default Runtime: runc
+ Kernel Version: 5.13.0-19-generic
+ Operating System: Ubuntu Jammy Jellyfish (development branch)
+ OSType: linux
+ Architecture: aarch64
+ CPUs: 2
+ Total Memory: 3.822GiB
+ Docker Root Dir: /var/lib/docker
+```
+
+docker info 显示的这些信息，对于我们了解 Docker 的内部运行状态非常有用，比如在这里，你就能够看到当前有一个容器处于停止状态，有 8 个镜像，存储用的文件系统是 overlay2，Linux 内核是 5.13，操作系统是 Ubuntu 22.04 Jammy Jellyfish，硬件是 aarch64，两个 CPU，内存 4G。
+
+极客时间版权所有: https://time.geekbang.org/column/article/528619
+
+
+
+
+
 
 ### Docker 的使用
 现在，我们已经有了可用的 Docker 运行环境，就可以来重现 9 年前 Solomon Hykes 的那场简短的技术演示了。首先，我们使用命令 docker ps，它会列出当前系统里运行的容器，就像我们在 Linux 系统里使用 ps 命令列出运行的进程一样。注意，所有的 Docker 操作都是这种形式：以 docker 开始，然后是一个具体的子命令，之前的 docker version 和 docker info 也遵循了这样的规则。你还可以用 help 或者 --help 来获取帮助信息，查看命令清单和更详细的说明。
@@ -1688,5 +1758,4250 @@ kubectl get pod
 Pod 是 Kubernetes 的最小调度单元，但为了保持它的独立性，不应该向它添加多余的功能。Kubernetes 为离线业务提供了 Job 和 CronJob 两种 API 对象，分别处理“临时任务”和“定时任务”。Job 的关键字段是 spec.template，里面定义了用来运行业务的 Pod 模板，其他的重要字段有 completions、parallelism 等CronJob 的关键字段是 spec.jobTemplate 和 spec.schedule，分别定义了 Job 模板和定时运行的规则。
 
 
+## 14｜ConfigMap/Secret：怎样配置、定制我的应用
+Chrono 2022-07-22
+前两节课里我们学习了 Kubernetes 里的三种 API 对象：Pod、Job 和 CronJob，虽然还没有讲到更高级的其他对象，但使用它们也可以在集群里编排运行一些实际的业务了。
+不过想让业务更顺利地运行，有一个问题不容忽视，那就是应用的配置管理。
+配置文件，你应该有所了解吧，通常来说应用程序都会有一个，它把运行时需要的一些参数从代码中分离出来，让我们在实际运行的时候能更方便地调整优化，比如说 Nginx 有 nginx.conf、Redis 有 redis.conf、MySQL 有 my.cnf 等等。
+我们在“入门篇”里学习容器技术的时候讲过，可以选择两种管理配置文件的方式。第一种是编写 Dockerfile，用 COPY 指令把配置文件打包到镜像里；第二种是在运行时使用 docker cp 或者 docker run -v，把本机的文件拷贝进容器。
+但这两种方式都存在缺陷。第一种方法相当于是在镜像里固定了配置文件，不好修改，不灵活，第二种方法则显得有点“笨拙”，不适合在集群中自动化运维管理。
+对于这个问题 Kubernetes 有它自己的解决方案，你也应该能够猜得到，当然还是使用 YAML 语言来定义 API 对象，再组合起来实现动态配置。
+今天我就来讲解 Kubernetes 里专门用来管理配置信息的两种对象：ConfigMap 和 Secret，使用它们来灵活地配置、定制我们的应用。
+### ConfigMap/Secret
+首先你要知道，应用程序有很多类别的配置信息，但从数据安全的角度来看可以分成两类：
+一类是明文配置，也就是不保密，可以任意查询修改，比如服务端口、运行参数、文件路径等等。
+另一类则是机密配置，由于涉及敏感信息需要保密，不能随便查看，比如密码、密钥、证书等等。
+这两类配置信息本质上都是字符串，只是由于安全性的原因，在存放和使用方面有些差异，所以 Kubernetes 也就定义了两个 API 对象，ConfigMap 用来保存明文配置，Secret 用来保存秘密配置。
+### 什么是 ConfigMap
+先来看 ConfigMap，我们仍然可以用命令 kubectl create 来创建一个它的 YAML 样板。注意，它有简写名字“cm”，所以命令行里没必要写出它的全称：
+export out="--dry-run=client -o yaml"        # 定义Shell变量
+kubectl create cm info $out
+得到的样板文件大概是这个样子：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: info
+```
+
+你可能会有点惊讶，ConfigMap 的 YAML 和之前我们学过的 Pod、Job 不一样，除了熟悉的“apiVersion”“kind”“metadata”，居然就没有其他的了，最重要的字段“spec”哪里去了？这是因为 ConfigMap 存储的是配置数据，是静态的字符串，并不是容器，所以它们就不需要用“spec”字段来说明运行时的“规格”。
+既然 ConfigMap 要存储数据，我们就需要用另一个含义更明确的字段“data”。
+要生成带有“data”字段的 YAML 样板，你需要在 kubectl create 后面多加一个参数 --from-literal ，表示从字面值生成一些数据：
+kubectl create cm info --from-literal=k=v $out
+注意，因为在 ConfigMap 里的数据都是 Key-Value 结构，所以 --from-literal 参数需要使用 k=v 的形式。
+把 YAML 样板文件修改一下，再多增添一些 Key-Value，就得到了一个比较完整的 ConfigMap 对象：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: info
+data:
+  count: '10'
+  debug: 'on'
+  path: '/etc/systemd'
+  greeting: |
+    say hello to kubernetes.
+```
+
+现在就可以使用 kubectl apply 把这个 YAML 交给 Kubernetes，让它创建 ConfigMap 对象了：
+
+```
+kubectl apply -f cm.yml
+```
+
+创建成功后，我们还是可以用 kubectl get、kubectl describe 来查看 ConfigMap 的状态：
+
+```
+kubectl get cm
+kubectl describe cm info
+```
+
+![https://static001.geekbang.org/resource/image/a6/78/a61239d55a93a5cd9da7148297d22878.png?wh=782x184](https://static001.geekbang.org/resource/image/a6/78/a61239d55a93a5cd9da7148297d22878.png?wh=782x184)
+![https://static001.geekbang.org/resource/image/34/48/343c94dacb9f872721597e99b346b148.png?wh=1042x1272](https://static001.geekbang.org/resource/image/34/48/343c94dacb9f872721597e99b346b148.png?wh=1042x1272)
+你可以看到，现在 ConfigMap 的 Key-Value 信息就已经存入了 etcd 数据库，后续就可以被其他 API 对象使用。
+
+### 什么是 Secret
+了解了 ConfigMap 对象，我们再来看 Secret 对象就会容易很多，它和 ConfigMap 的结构和用法很类似，不过在 Kubernetes 里 Secret 对象又细分出很多类，比如：
+访问私有镜像仓库的认证信息
+身份识别的凭证信息
+HTTPS 通信的证书和私钥
+一般的机密信息（格式由用户自行解释）
+前几种我们现在暂时用不到，所以就只使用最后一种，创建 YAML 样板的命令是 kubectl create secret generic ，同样，也要使用参数 --from-literal 给出 Key-Value 值：
+
+```
+kubectl create secret generic user --from-literal=name=root $out
+
+```
+
+得到的 Secret 对象大概是这个样子：
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: user
+data:
+  name: cm9vdA==
+```
+
+Secret 对象第一眼的感觉和 ConfigMap 非常相似，只是“kind”字段由“ConfigMap”变成了“Secret”，后面同样也是“data”字段，里面也是 Key-Value 的数据。
+不过，既然它的名字是 Secret，我们就不能像 ConfigMap 那样直接保存明文了，需要对数据“做点手脚”。你会发现，这里的“name”值是一串“乱码”，而不是刚才在命令行里写的明文“root”。
+这串“乱码”就是 Secret 与 ConfigMap 的不同之处，不让用户直接看到原始数据，起到一定的保密作用。不过它的手法非常简单，只是做了 Base64 编码，根本算不上真正的加密，所以我们完全可以绕开 kubectl，自己用 Linux 小工具“base64”来对数据编码，然后写入 YAML 文件，比如：
+
+```
+echo -n "123456" | base64
+MTIzNDU2
+```
+
+要注意这条命令里的 echo ，必须要加参数 -n 去掉字符串里隐含的换行符，否则 Base64 编码出来的字符串就是错误的。
+我们再来重新编辑 Secret 的 YAML，为它添加两个新的数据，方式可以是参数 --from-literal 自动编码，也可以是自己手动编码：
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: user
+data:
+  name: cm9vdA==  # root
+  pwd: MTIzNDU2   # 123456
+  db: bXlzcWw=    # mysql
+```
+
+接下来的创建和查看对象操作和 ConfigMap 是一样的，使用 kubectl apply、kubectl get、kubectl describe：
+
+```
+kubectl apply  -f secret.yml
+kubectl get secret
+kubectl describe secret user
+```
+
+![https://static001.geekbang.org/resource/image/0f/10/0f769ba725d1006c1cb98ed9003d7210.png?wh=1838x250](https://static001.geekbang.org/resource/image/0f/10/0f769ba725d1006c1cb98ed9003d7210.png?wh=1838x250)
+![https://static001.geekbang.org/resource/image/59/6c/59ac74796771897e0246a4532789076c.png?wh=1138x782](https://static001.geekbang.org/resource/image/59/6c/59ac74796771897e0246a4532789076c.png?wh=1138x782)
+这样一个存储敏感信息的 Secret 对象也就创建好了，而且因为它是保密的，使用 kubectl describe 不能直接看到内容，只能看到数据的大小，你可以和 ConfigMap 对比一下。
+
+### 如何使用
+现在通过编写 YAML 文件，我们创建了 ConfigMap 和 Secret 对象，该怎么在 Kubernetes 里应用它们呢？
+因为 ConfigMap 和 Secret 只是一些存储在 etcd 里的字符串，所以如果想要在运行时产生效果，就必须要以某种方式“注入”到 Pod 里，让应用去读取。在这方面的处理上 Kubernetes 和 Docker 是一样的，也是两种途径：环境变量和加载文件。
+先看比较简单的环境变量。
+### 如何以环境变量的方式使用 ConfigMap/Secret
+在前面讲 Pod 的时候，说过描述容器的字段“containers”里有一个“env”，它定义了 Pod 里容器能够看到的环境变量。
+当时我们只使用了简单的“value”，把环境变量的值写“死”在了 YAML 里，实际上它还可以使用另一个“valueFrom”字段，从 ConfigMap 或者 Secret 对象里获取值，这样就实现了把配置信息以环境变量的形式注入进 Pod，也就是配置与应用的解耦。
+由于“valueFrom”字段在 YAML 里的嵌套层次比较深，初次使用最好看一下 kubectl explain 对它的说明：
+
+```
+kubectl explain pod.spec.containers.env.valueFrom
+
+```
+
+“valueFrom”字段指定了环境变量值的来源，可以是“configMapKeyRef”或者“secretKeyRef”，然后你要再进一步指定应用的 ConfigMap/Secret 的“name”和它里面的“key”，要当心的是这个“name”字段是 API 对象的名字，而不是 Key-Value 的名字。
+下面我就把引用了 ConfigMap 和 Secret 对象的 Pod 列出来，给你做个示范，为了提醒你注意，我把“env”字段提到了前面：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-pod
+spec:
+  containers:
+
+  - env:
+    - name: COUNT
+      valueFrom:
+        configMapKeyRef:
+          name: info
+          key: count
+    - name: GREETING
+      valueFrom:
+        configMapKeyRef:
+          name: info
+          key: greeting
+    - name: USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: user
+          key: name
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: user
+          key: pwd
+      image: busybox
+      name: busy
+      imagePullPolicy: IfNotPresent
+      command: ["/bin/sleep", "300"]
+```
+
+这个 Pod 的名字是“env-pod”，镜像是“busybox”，执行命令 sleep 睡眠 300 秒，我们可以在这段时间里使用命令 kubectl exec 进入 Pod 观察环境变量。
+你需要重点关注的是它的“env”字段，里面定义了 4 个环境变量，COUNT、GREETING、USERNAME、PASSWORD。
+对于明文配置数据， COUNT、GREETING 引用的是 ConfigMap 对象，所以使用字段“configMapKeyRef”，里面的“name”是 ConfigMap 对象的名字，也就是之前我们创建的“info”，而“key”字段分别是“info”对象里的 count 和 greeting。
+同样的对于机密配置数据， USERNAME、PASSWORD 引用的是 Secret 对象，要使用字段“secretKeyRef”，再用“name”指定 Secret 对象的名字 user，用“key”字段应用它里面的 name 和 pwd 。
+这段解释确实是有点绕口令的感觉，因为 ConfigMap 和 Secret 在 Pod 里的组合关系不像 Job/CronJob 那么简单直接，所以我还是用画图来表示它们的引用关系：
+![https://static001.geekbang.org/resource/image/06/9d/0663d692b33c1dee5b08e486d271b69d.jpg?wh=1920x1661](https://static001.geekbang.org/resource/image/06/9d/0663d692b33c1dee5b08e486d271b69d.jpg?wh=1920x1661)
+从这张图你就应该能够比较清楚地看出 Pod 与 ConfigMap、Secret 的“松耦合”关系，它们不是直接嵌套包含，而是使用“KeyRef”字段间接引用对象，这样，同一段配置信息就可以在不同的对象之间共享。
+弄清楚了环境变量的注入方式之后，让我们用 kubectl apply 创建 Pod，再用 kubectl exec 进入 Pod，验证环境变量是否生效：
+
+```
+kubectl apply -f env-pod.yml
+kubectl exec -it env-pod -- sh
+echo $COUNT
+echo $GREETING
+echo $USERNAME $PASSWORD
+```
+
+![https://static001.geekbang.org/resource/image/6f/bb/6f0f711de995010498b6807709a811bb.png?wh=1202x660](https://static001.geekbang.org/resource/image/6f/bb/6f0f711de995010498b6807709a811bb.png?wh=1202x660)
+这张截图就显示了 Pod 的运行结果，可以看到在 Pod 里使用 echo 命令确实输出了我们在两个 YAML 里定义的配置信息，也就证明 Pod 对象成功组合了 ConfigMap 和 Secret 对象。
+以环境变量的方式使用 ConfigMap/Secret 还是比较简单的，下面来看第二种加载文件的方式。
+
+### 如何以 Volume 的方式使用 ConfigMap/Secret
+Kubernetes 为 Pod 定义了一个“Volume”的概念，可以翻译成是“存储卷”。如果把 Pod 理解成是一个虚拟机，那么 Volume 就相当于是虚拟机里的磁盘。
+我们可以为 Pod“挂载（mount）”多个 Volume，里面存放供 Pod 访问的数据，这种方式有点类似 docker run -v，虽然用法复杂了一些，但功能也相应强大一些。
+在 Pod 里挂载 Volume 很容易，只需要在“spec”里增加一个“volumes”字段，然后再定义卷的名字和引用的 ConfigMap/Secret 就可以了。要注意的是 Volume 属于 Pod，不属于容器，所以它和字段“containers”是同级的，都属于“spec”。
+下面让我们来定义两个 Volume，分别引用 ConfigMap 和 Secret，名字是 cm-vol 和 sec-vol：
+
+```
+spec:
+  volumes:
+
+  - name: cm-vol
+    configMap:
+      name: info
+  - name: sec-vol
+    secret:
+      secretName: user
+```
+
+有了 Volume 的定义之后，就可以在容器里挂载了，这要用到“volumeMounts”字段，正如它的字面含义，可以把定义好的 Volume 挂载到容器里的某个路径下，所以需要在里面用“mountPath”“name”明确地指定挂载路径和 Volume 的名字。
+
+```
+containers:
+
+  - volumeMounts:
+    - mountPath: /tmp/cm-items
+      name: cm-vol
+    - mountPath: /tmp/sec-items
+      name: sec-vol
+```
+
+把“volumes”和“volumeMounts”字段都写好之后，配置信息就可以加载成文件了。这里我还是画了图来表示它们的引用关系：
+![https://static001.geekbang.org/resource/image/9d/yy/9d3258da1f40554ae88212db2b4yybyy.jpg?wh=1920x1630](https://static001.geekbang.org/resource/image/9d/yy/9d3258da1f40554ae88212db2b4yybyy.jpg?wh=1920x1630)
+你可以看到，挂载 Volume 的方式和环境变量又不太相同。环境变量是直接引用了 ConfigMap/Secret，而 Volume 又多加了一个环节，需要先用 Volume 引用 ConfigMap/Secret，然后在容器里挂载 Volume，有点“兜圈子”“弯弯绕”。
+这种方式的好处在于：以 Volume 的概念统一抽象了所有的存储，不仅现在支持 ConfigMap/Secret，以后还能够支持临时卷、持久卷、动态卷、快照卷等许多形式的存储，扩展性非常好。
+现在我把 Pod 的完整 YAML 描述列出来，然后使用 kubectl apply 创建它：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: vol-pod
+spec:
+volumes:
+
+  - name: cm-vol
+    configMap:
+      name: info
+  - name: sec-vol
+    secret:
+      secretName: user
+      containers:
+  - volumeMounts:
+    - mountPath: /tmp/cm-items
+      name: cm-vol
+    - mountPath: /tmp/sec-items
+      name: sec-vol
+      image: busybox
+      name: busy
+      imagePullPolicy: IfNotPresent
+      command: ["/bin/sleep", "300"]
+```
+
+创建之后，我们还是用 kubectl exec 进入 Pod，看看配置信息被加载成了什么形式：
+
+```
+kubectl apply -f vol-pod.yml
+kubectl get pod
+kubectl exec -it vol-pod -- sh
+```
+
+![https://static001.geekbang.org/resource/image/9f/67/9fdc3a7bafcfa0fa277b7c7bed891967.png?wh=1192x728](https://static001.geekbang.org/resource/image/9f/67/9fdc3a7bafcfa0fa277b7c7bed891967.png?wh=1192x728)
+你会看到，ConfigMap 和 Secret 都变成了目录的形式，而它们里面的 Key-Value 变成了一个个的文件，而文件名就是 Key。
+因为这种形式上的差异，以 Volume 的方式来使用 ConfigMap/Secret，就和环境变量不太一样。环境变量用法简单，更适合存放简短的字符串，而 Volume 更适合存放大数据量的配置文件，在 Pod 里加载成文件后让应用直接读取使用。
+
+### 小结
+好了，今天我们学习了两种在 Kubernetes 里管理配置信息的 API 对象 ConfigMap 和 Secret，它们分别代表了明文信息和机密敏感信息，存储在 etcd 里，在需要的时候可以注入 Pod 供 Pod 使用。
+简单小结一下今天的要点：
+ConfigMap 记录了一些 Key-Value 格式的字符串数据，描述字段是“data”，不是“spec”。
+Secret 与 ConfigMap 很类似，也使用“data”保存字符串数据，但它要求数据必须是 Base64 编码，起到一定的保密效果。
+在 Pod 的“env.valueFrom”字段中可以引用 ConfigMap 和 Secret，把它们变成应用可以访问的环境变量。
+在 Pod 的“spec.volumes”字段中可以引用 ConfigMap 和 Secret，把它们变成存储卷，然后在“spec.containers.volumeMounts”字段中加载成文件的形式。
+ConfigMap 和 Secret 对存储数据的大小没有限制，但小数据用环境变量比较适合，大数据应该用存储卷，可根据具体场景灵活应用。
 
 
+## 15｜实战演练：玩转Kubernetes（1）
+经过两个星期的学习，到今天我们的“初级篇”也快要结束了。
+和之前的“入门篇”一样，在这次课里，我也会对前面学过的知识做一个比较全面的回顾，毕竟 Kubernetes 领域里有很多新名词、新术语、新架构，知识点多且杂，这样的总结复习就更有必要。
+接下来我还是先简要列举一下“初级篇”里讲到的 Kubernetes 要点，然后再综合运用这些知识，演示一个实战项目——还是搭建 WordPress 网站，不过这次不是在 Docker 里，而是在 Kubernetes 集群里。
+
+### Kubernetes 技术要点回顾
+
+容器技术开启了云原生的大潮，但成熟的容器技术，到生产环境的应用部署的时候，却显得“步履维艰”。因为容器只是针对单个进程的隔离和封装，而实际的应用场景却是要求许多的应用进程互相协同工作，其中的各种关系和需求非常复杂，在容器这个技术层次很难掌控。
+为了解决这个问题，容器编排（Container Orchestration）就出现了，它可以说是以前的运维工作在云原生世界的落地实践，本质上还是在集群里调度管理应用程序，只不过管理的主体由人变成了计算机，管理的目标由原生进程变成了容器和镜像。
+而现在，容器编排领域的王者就是——Kubernetes。
+Kubernetes 源自 Borg 系统，它凝聚了 Google 的内部经验和 CNCF 的社区智慧，所以战胜了竞争对手 Apache Mesos 和 Docker Swarm，成为了容器编排领域的事实标准，也成为了云原生时代的基础操作系统，学习云原生就必须要掌握 Kubernetes。
+（10 讲）Kubernetes 的 Master/Node 架构是它具有自动化运维能力的关键，也对我们的学习至关重要，这里我再用另一张参考架构图来简略说明一下它的运行机制（图片来源）：
+![https://static001.geekbang.org/resource/image/f4/05/f429ca7114eebf140632409f3fbcbb05.png?wh=1475x852](https://static001.geekbang.org/resource/image/f4/05/f429ca7114eebf140632409f3fbcbb05.png?wh=1475x852)
+Kubernetes 把集群里的计算资源定义为节点（Node），其中又划分成控制面和数据面两类。
+控制面是 Master 节点，负责管理集群和运维监控应用，里面的核心组件是 apiserver、etcd、scheduler、controller-manager。
+数据面是 Worker 节点，受 Master 节点的管控，里面的核心组件是 kubelet、kube-proxy、container-runtime。
+此外，Kubernetes 还支持插件机制，能够灵活扩展各项功能，常用的插件有 DNS 和 Dashboard。
+为了更好地管理集群和业务应用，Kubernetes 从现实世界中抽象出了许多概念，称为“API 对象”，描述这些对象就需要使用 YAML 语言。
+YAML 是 JSON 的超集，但语法更简洁，表现能力更强，更重要的是它以“声明式”来表述对象的状态，不涉及具体的操作细节，这样 Kubernetes 就能够依靠存储在 etcd 里集群的状态信息，不断地“调控”对象，直至实际状态与期望状态相同，这个过程就是 Kubernetes 的自动化运维管理（11 讲）。
+Kubernetes 里有很多的 API 对象，其中最核心的对象是“Pod”，它捆绑了一组存在密切协作关系的容器，容器之间共享网络和存储，在集群里必须一起调度一起运行。通过 Pod 这个概念，Kubernetes 就简化了对容器的管理工作，其他的所有任务都是通过对 Pod 这个最小单位的再包装来实现的（12 讲）。
+除了核心的 Pod 对象，基于“单一职责”和“对象组合”这两个基本原则，我们又学习了 4 个比较简单的 API 对象，分别是 Job/CronJob 和 ConfigMap/Secret。
+Job/CronJob 对应的是离线作业，它们逐层包装了 Pod，添加了作业控制和定时规则（13 讲）。
+ConfigMap/Secret 对应的是配置信息，需要以环境变量或者存储卷的形式注入进 Pod，然后进程才能在运行时使用（14 讲）。
+和 Docker 类似，Kubernetes 也提供一个客户端工具，名字叫“kubectl”，它直接与 Master 节点的 apiserver 通信，把 YAML 文件发送给 RESTful 接口，从而触发 Kubernetes 的对象管理工作流程。
+kubectl 的命令很多，查看自带文档可以用 api-resources、explain ，查看对象状态可以用 get、describe、logs ，操作对象可以用 run、apply、exec、delete 等等（09 讲)。
+使用 YAML 描述 API 对象也有固定的格式，必须写的“头字段”是“apiVersion”“kind”“metadata”，它们表示对象的版本、种类和名字等元信息。实体对象如 Pod、Job、CronJob 会再有“spec”字段描述对象的期望状态，最基本的就是容器信息，非实体对象如 ConfigMap、Secret 使用的是“data”字段，记录一些静态的字符串信息。
+好了，“初级篇”里的 Kubernetes 知识要点我们就基本总结完了，如果你发现哪部分不太清楚，可以课后再多复习一下前面的课程加以巩固。
+
+### WordPress 网站基本架构
+
+下面我们就在 Kubernetes 集群里再搭建出一个 WordPress 网站，用的镜像还是“入门篇”里的那三个应用：WordPress、MariaDB、Nginx，不过当时我们是直接以容器的形式来使用它们，现在要改成 Pod 的形式，让它们运行在 Kubernetes 里。
+我还是画了一张简单的架构图，来说明这个系统的内部逻辑关系：
+
+![img](https://static001.geekbang.org/resource/image/3d/cc/3d9d09078f1200a84c63a7cea2f40bcc.jpg?wh=1920x865)
+
+从这张图中你可以看到，网站的大体架构是没有变化的，毕竟应用还是那三个，它们的调用依赖关系也必然没有变化。
+那么 Kubernetes 系统和 Docker 系统的区别又在哪里呢？
+关键就在对应用的封装和网络环境这两点上。
+现在 WordPress、MariaDB 这两个应用被封装成了 Pod（由于它们都是在线业务，所以 Job/CronJob 在这里派不上用场），运行所需的环境变量也都被改写成 ConfigMap，统一用“声明式”来管理，比起 Shell 脚本更容易阅读和版本化管理。
+另外，Kubernetes 集群在内部维护了一个自己的专用网络，这个网络和外界隔离，要用特殊的“端口转发”方式来传递数据，还需要在集群之外用 Nginx 反向代理这个地址，这样才能实现内外沟通，对比 Docker 的直接端口映射，这里略微麻烦了一些。
+
+### WordPress 网站搭建步骤
+
+了解基本架构之后，接下来我们就逐步搭建这个网站系统，总共需要 4 步。
+第一步当然是要编排 MariaDB 对象，它的具体运行需求可以参考“入门篇”的实战演练课，这里我就不再重复了。
+MariaDB 需要 4 个环境变量，比如数据库名、用户名、密码等，在 Docker 里我们是在命令行里使用参数 --env，而在 Kubernetes 里我们就应该使用 ConfigMap，为此需要定义一个 maria-cm 对象：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maria-cm
+data:
+  DATABASE: 'db'
+  USER: 'wp'
+  PASSWORD: '123'
+  ROOT_PASSWORD: '123'
+```
+
+然后我们定义 Pod 对象 maria-pod，把配置信息注入 Pod，让 MariaDB 运行时从环境变量读取这些信息：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: maria-pod
+  labels:
+    app: wordpress
+    role: database
+spec:
+  containers:
+
+  - image: mariadb:10
+    name: maria
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 3306
+      envFrom:
+    - prefix: 'MARIADB_'
+      configMapRef:
+        name: maria-cm
+```
+
+注意这里我们使用了一个新的字段“envFrom”，这是因为 ConfigMap 里的信息比较多，如果用 env.valueFrom 一个个地写会非常麻烦，容易出错，而 envFrom 可以一次性地把 ConfigMap 里的字段全导入进 Pod，并且能够指定变量名的前缀（即这里的 MARIADB_），非常方便。
+使用 kubectl apply 创建这个对象之后，可以用 kubectl get pod 查看它的状态，如果想要获取 IP 地址需要加上参数 -o wide ：
+
+```
+kubectl apply -f mariadb-pod.yml
+kubectl get pod -o wide
+```
+
+![img](https://static001.geekbang.org/resource/image/3f/98/3fb0242f97c782f79ecf8ba845c81798.png?wh=1788x362)
+
+现在数据库就成功地在 Kubernetes 集群里跑起来了，IP 地址是“172.17.0.2”，注意这个地址和 Docker 的不同，是 Kubernetes 里的私有网段。
+接着是第二步，编排 WordPress 对象，还是先用 ConfigMap 定义它的环境变量：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wp-cm
+data:
+  HOST: '172.17.0.2'
+  USER: 'wp'
+  PASSWORD: '123'
+  NAME: 'db'
+```
+
+在这个 ConfigMap 里要注意的是“HOST”字段，它必须是 MariaDB Pod 的 IP 地址，如果不写正确 WordPress 会无法正常连接数据库。
+然后我们再编写 WordPress 的 YAML 文件，为了简化环境变量的设置同样使用了 envFrom：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wp-pod
+  labels:
+    app: wordpress
+    role: website
+spec:
+  containers:
+
+  - image: wordpress:5
+    name: wp-pod
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 80
+      envFrom:
+    - prefix: 'WORDPRESS_DB_'
+      configMapRef:
+        name: wp-cm
+```
+
+接着还是用 kubectl apply 创建对象，kubectl get pod 查看它的状态：
+
+```
+kubectl apply -f wp-pod.yml
+kubectl get pod -o wide
+```
+
+![https://static001.geekbang.org/resource/image/d5/de/d5e8c09e70e90179d651bf3c28abc0de.png?wh=1562x426](https://static001.geekbang.org/resource/image/d5/de/d5e8c09e70e90179d651bf3c28abc0de.png?wh=1562x426)
+
+第三步是为 WordPress Pod 映射端口号，让它在集群外可见。
+因为 Pod 都是运行在 Kubernetes 内部的私有网段里的，外界无法直接访问，想要对外暴露服务，需要使用一个专门的 kubectl port-forward 命令，它专门负责把本机的端口映射到在目标对象的端口号，有点类似 Docker 的参数 -p，经常用于 Kubernetes 的临时调试和测试。
+下面我就把本地的“8080”映射到 WordPress Pod 的“80”，kubectl 会把这个端口的所有数据都转发给集群内部的 Pod：
+
+```
+kubectl port-forward wp-pod 8080:80 &
+```
+
+![img](https://static001.geekbang.org/resource/image/d4/be/d445d205ae6f8c966200ffa9ba7f29be.png?wh=1366x240)
+
+注意在命令的末尾我使用了一个 & 符号，让端口转发工作在后台进行，这样就不会阻碍我们后续的操作。
+如果想关闭端口转发，需要敲命令 fg ，它会把后台的任务带回到前台，然后就可以简单地用“Ctrl + C”来停止转发了。
+第四步是创建反向代理的 Nginx，让我们的网站对外提供服务。
+这是因为 WordPress 网站使用了 URL 重定向，直接使用“8080”会导致跳转故障，所以为了让网站正常工作，我们还应该在 Kubernetes 之外启动 Nginx 反向代理，保证外界看到的仍然是“80”端口号。（这里的细节和我们的课程关系不大，感兴趣的同学可以留言提问讨论)
+Nginx 的配置文件和第 7 讲基本一样，只是目标地址变成了“127.0.0.1:8080”，它就是我们在第三步里用 kubectl port-forward 命令创建的本地地址：
+
+```
+server {
+  listen 80;
+  default_type text/html;
+  location / {
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+      proxy_pass http://127.0.0.1:8080;
+  }
+}
+```
+
+然后我们用 docker run -v 命令加载这个配置文件，以容器的方式启动这个 Nginx 代理：
+
+```
+docker run -d --rm \
+    --net=host \
+    -v /tmp/proxy.conf:/etc/nginx/conf.d/default.conf \
+    nginx:alpine
+```
+
+![img](https://static001.geekbang.org/resource/image/9f/51/9f2b16fb58dbe0a358e26042565f9851.png?wh=1920x238)
+
+有了 Nginx 的反向代理之后，我们就可以打开浏览器，输入本机的“127.0.0.1”或者是虚拟机的 IP 地址（我这里仍然是“http://192.168.10.208”)，看到 WordPress 的界面：
+
+![img](https://static001.geekbang.org/resource/image/73/f4/735552be9cf6d45ac41a001252ayyef4.png?wh=1524x1858)
+
+你也可以在 Kubernetes 里使用命令 kubectl logs 查看 WordPress、MariaDB 等 Pod 的运行日志，来验证它们是否已经正确地响应了请求：
+
+![img](https://static001.geekbang.org/resource/image/84/62/8498c598e6f3142d490218601acdbc62.png?wh=1920x809)
+
+### 使用 Dashboard 管理 Kubernetes
+
+到这里 WordPress 网站就搭建成功了，我们的主要任务也算是完成了，不过我还想再带你看看 Kubernetes 的图形管理界面，也就是 Dashboard，看看不用命令行该怎么管理 Kubernetes。
+启动 Dashboard 的命令你还记得吗，在第 10 节课里讲插件的时候曾经说过，需要用 minikube，命令是：
+
+```
+minikube dashboard
+
+```
+
+它会自动打开浏览器界面，显示出当前 Kubernetes 集群里的工作负载：
+
+![img](https://static001.geekbang.org/resource/image/53/59/536eeb176a7737c9ed815c10af0fcf59.png?wh=1920x1022)
+
+点击任意一个 Pod 的名字，就会进入管理界面，可以看到 Pod 的详细信息，而右上角有 4 个很重要的功能，分别可以查看日志、进入 Pod 内部、编辑 Pod 和删除 Pod，相当于执行 logs、exec、edit、delete 命令，但要比命令行要直观友好的多：
+
+![img](https://static001.geekbang.org/resource/image/d5/28/d5e5131bfb1d6aae2f026177bf283628.png?wh=1920x781)
+
+比如说，我点击了第二个按钮，就会在浏览器里开启一个 Shell 窗口，直接就是 Pod 的内部 Linux 环境，在里面可以输入任意的命令，无论是查看状态还是调试都很方便：
+
+![img](https://static001.geekbang.org/resource/image/46/4c/466c67a48616c946505242d0796ed74c.png?wh=1820x1240)
+
+ConfigMap/Secret 等对象也可以在这里任意查看或编辑：
+
+![img](https://static001.geekbang.org/resource/image/de/22/defyybc05ed793b7966e1f6b68018022.png?wh=1312x976)
+
+Dashboard 里的可操作的地方还有很多，这里我只是一个非常简单的介绍。虽然你也许已经习惯了使用键盘和命令行，但偶尔换一换口味，改用鼠标和图形界面来管理 Kubernetes 也是件挺有意思的事情，有机会不妨尝试一下。
+
+### 小结
+
+好了，作为“初级篇”的最后一节课，今天我们回顾了一下 Kubernetes 的知识要点，我还是画一份详细的思维导图，帮助你课后随时复习总结。
+
+![img](https://static001.geekbang.org/resource/image/87/1f/87a1d338340c8ca771a97d0fyy4b611f.jpg?wh=1920x1877)
+
+这节课里我们使用 Kubernetes 搭建了 WordPress 网站，和第 7 讲里的 Docker 比较起来，我们应用了容器编排技术，以“声明式”的 YAML 来描述应用的状态和它们之间的关系，而不会列出详细的操作步骤，这就降低了我们的心智负担——调度、创建、监控等杂事都交给 Kubernetes 处理，我们只需“坐享其成”。
+虽然我们朝着云原生的方向迈出了一大步，不过现在我们的容器编排还不够完善，Pod 的 IP 地址还必须手工查找填写，缺少自动的服务发现机制，另外对外暴露服务的方式还很原始，必须要依赖集群外部力量的帮助。
+所以，我们的学习之旅还将继续，在接下来的“中级篇”里，会开始研究更多的 API 对象，来解决这里遇到的问题。
+
+
+## 16｜视频：初级篇实操总结
+https://time.geekbang.org/column/article/534688
+
+
+## 17｜更真实的云原生：实际搭建多节点的Kubernetes集群
+
+到今天，你学习这个专栏的进度就已经过半了，在前面的“入门篇”我们了解了 Docker 和容器技术，在“初级篇”我们掌握了 Kubernetes 的基本对象、原理和操作方法，一路走下来收获很多。
+现在你应该对 Kubernetes 和容器编排有了一些初步的认识，那么接下来，让我们继续深入研究 Kubernetes 的其他 API 对象，也就是那些在 Docker 中不存在的但对云计算、集群管理至关重要的概念。
+不过在那之前，我们还需要有一个比 minikube 更真实的 Kubernetes 环境，它应该是一个多节点的 Kubernetes 集群，这样更贴近现实中的生产系统，能够让我们尽快地拥有实际的集群使用经验。
+所以在今天的这节课里，我们就来暂时忘掉 minikube，改用 kubeadm（https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/）搭建出一个新的 Kubernetes 集群，一起来看看更真实的云原生环境。
+
+### 什么是 kubeadm
+
+前面的几节课里我们使用的都是 minikube，它非常简单易用，不需要什么配置工作，就能够在单机环境里创建出一个功能完善的 Kubernetes 集群，给学习、开发、测试都带来了极大的便利。
+不过 minikube 还是太“迷你”了，方便的同时也隐藏了很多细节，离真正生产环境里的计算集群有一些差距，毕竟许多需求、任务只有在多节点的大集群里才能够遇到，相比起来，minikube 真的只能算是一个“玩具”。
+那么，多节点的 Kubernetes 集群是怎么从无到有地创建出来的呢？
+第 10 讲说过 Kubernetes 是很多模块构成的，而实现核心功能的组件像 apiserver、etcd、scheduler 等本质上都是可执行文件，所以也可以采用和其他系统差不多的方式，使用 Shell 脚本或者 Ansible 等工具打包发布到服务器上。
+不过 Kubernetes 里的这些组件的配置和相互关系实在是太复杂了，用 Shell、Ansible 来部署的难度很高，需要具有相当专业的运维管理知识才能配置、搭建好集群，而且即使这样，搭建的过程也非常麻烦。
+为了简化 Kubernetes 的部署工作，让它能够更“接地气”，社区里就出现了一个专门用来在集群中安装 Kubernetes 的工具，名字就叫“kubeadm”，意思就是“Kubernetes 管理员”。![img](https://static001.geekbang.org/resource/image/f2/88/f27c7938cba21215621ac33635d63288.jpg?wh=1044x640)
+
+kubeadm，原理和 minikube 类似，也是用容器和镜像来封装 Kubernetes 的各种组件，但它的目标不是单机部署，而是要能够轻松地在集群环境里部署 Kubernetes，并且让这个集群接近甚至达到生产级质量。
+而在保持这个高水准的同时，kubeadm 还具有了和 minikube 一样的易用性，只要很少的几条命令，如 init、join、upgrade、reset 就能够完成 Kubernetes 集群的管理维护工作，这让它不仅适用于集群管理员，也适用于开发、测试人员。
+
+### 实验环境的架构是什么样的
+
+在使用 kubeadm 搭建实验环境之前，我们先来看看集群的架构设计，也就是说要准备好集群所需的硬件设施。
+这里我画了一张系统架构图，图里一共有 3 台主机，当然它们都是使用虚拟机软件 VirtualBox/VMWare 虚拟出来的，下面我来详细说明一下：![img](https://static001.geekbang.org/resource/image/yy/3e/yyf5db64d398b4d5dyyd5e8e23ece53e.jpg?wh=1920x1294)
+
+所谓的多节点集群，要求服务器应该有两台或者更多，为了简化我们只取最小值，所以这个 Kubernetes 集群就只有两台主机，一台是 Master 节点，另一台是 Worker 节点。当然，在完全掌握了 kubeadm 的用法之后，你可以在这个集群里添加更多的节点。
+Master 节点需要运行 apiserver、etcd、scheduler、controller-manager 等组件，管理整个集群，所以对配置要求比较高，至少是 2 核 CPU、4GB 的内存。![img](https://static001.geekbang.org/resource/image/d1/3c/d19a8ceafd4db10a5yy35c623384ba3c.png?wh=1504x920)
+
+而 Worker 节点没有管理工作，只运行业务应用，所以配置可以低一些，为了节省资源我给它分配了 1 核 CPU 和 1GB 的内存，可以说是低到不能再低了。![img](https://static001.geekbang.org/resource/image/ee/f3/eeee60b6e29d7b6c4c74f913ac663ef3.png?wh=1504x1024)
+
+基于模拟生产环境的考虑，在 Kubernetes 集群之外还需要有一台起辅助作用的服务器。
+它的名字叫 Console，意思是控制台，我们要在上面安装命令行工具 kubectl，所有对 Kubernetes 集群的管理命令都是从这台主机发出去的。这也比较符合实际情况，因为安全的原因，集群里的主机部署好之后应该尽量少直接登录上去操作。
+要提醒你的是，Console 这台主机只是逻辑上的概念，不一定要是独立，你在实际安装部署的时候完全可以复用之前 minikube 的虚拟机，或者直接使用 Master/Worker 节点作为控制台。
+这 3 台主机共同组成了我们的实验环境，所以在配置的时候要注意它们的网络选项，必须是在同一个网段，你可以再回顾一下课前准备，保证它们使用的是同一个“Host-Only”（VirtualBox）或者“自定”（VMWare Fusion）网络。
+
+### 安装前的准备工作
+
+不过有了架构图里的这些主机之后，我们还不能立即开始使用 kubeadm 安装 Kubernetes，因为 Kubernetes 对系统有一些特殊要求，我们必须还要在 Master 和 Worker 节点上做一些准备。
+这些工作的详细信息你都可以在 Kubernetes 的官网上找到，但它们分散在不同的文档里，比较凌乱，所以我把它们整合到了这里，包括改主机名、改 Docker 配置、改网络设置、改交换分区这四步。
+第一，由于 Kubernetes 使用主机名来区分集群里的节点，所以每个节点的 hostname 必须不能重名。你需要修改“/etc/hostname”这个文件，把它改成容易辨识的名字，比如 Master 节点就叫 master，Worker 节点就叫 worker：
+
+```
+sudo vi /etc/hostname
+
+```
+
+第二，虽然 Kubernetes 目前支持多种容器运行时，但 Docker 还是最方便最易用的一种，所以我们仍然继续使用 Docker 作为 Kubernetes 的底层支持，使用 apt 安装 Docker Engine（可参考第 1 讲）。
+安装完成后需要你再对 Docker 的配置做一点修改，在“/etc/docker/daemon.json”里把 cgroup 的驱动程序改成 systemd ，然后重启 Docker 的守护进程，具体的操作我列在了下面：
+
+```
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+sudo systemctl enable docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+第三，为了让 Kubernetes 能够检查、转发网络流量，你需要修改 iptables 的配置，启用“br_netfilter”模块：
+
+```
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward=1 # better than modify /etc/sysctl.conf
+EOF
+sudo sysctl --system
+```
+
+第四，你需要修改“/etc/fstab”，关闭 Linux 的 swap 分区，提升 Kubernetes 的性能：
+
+```
+sudo swapoff -a
+sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+```
+
+完成之后，最好记得重启一下系统，然后给虚拟机拍个快照做备份，避免后续的操作失误导致重复劳动。
+
+### 安装 kubeadm
+
+好，现在我们就要安装 kubeadm 了，在 Master 节点和 Worker 节点上都要做这一步。
+kubeadm 可以直接从 Google 自己的软件仓库下载安装，但国内的网络不稳定，很难下载成功，需要改用其他的软件源，这里我选择了国内的某云厂商：
+
+```
+sudo apt install -y apt-transport-https ca-certificates curl
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+EOF
+sudo apt update
+```
+
+更新了软件仓库，我们就可以用 apt install 获取 kubeadm、kubelet 和 kubectl 这三个安装必备工具了。apt 默认会下载最新版本，但我们也可以指定版本号，比如使用和 minikube 相同的“1.23.3”：
+
+```
+sudo apt install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
+
+```
+
+安装完成之后，你可以用 kubeadm version、kubectl version 来验证版本是否正确：
+
+```
+kubeadm version
+kubectl version --client
+```
+
+![img](https://static001.geekbang.org/resource/image/72/c9/72d79f46d9132af0dca110d982eff1c9.png?wh=1408x306)另外按照 Kubernetes 官网的要求，我们最好再使用命令 apt-mark hold ，锁定这三个软件的版本，避免意外升级导致版本错误：
+
+```
+sudo apt-mark hold kubeadm kubelet kubectl
+
+```
+
+### 下载 Kubernetes 组件镜像
+
+前面我说过，kubeadm 把 apiserver、etcd、scheduler 等组件都打包成了镜像，以容器的方式启动 Kubernetes，但这些镜像不是放在 Docker Hub 上，而是放在 Google 自己的镜像仓库网站 gcr.io，而它在国内的访问很困难，直接拉取镜像几乎是不可能的。
+所以我们需要采取一些变通措施，提前把镜像下载到本地。
+使用命令 kubeadm config images list 可以查看安装 Kubernetes 所需的镜像列表，参数 --kubernetes-version 可以指定版本号：
+
+```
+kubeadm config images list --kubernetes-version v1.23.3
+k8s.gcr.io/kube-apiserver:v1.23.3
+k8s.gcr.io/kube-controller-manager:v1.23.3
+k8s.gcr.io/kube-scheduler:v1.23.3
+k8s.gcr.io/kube-proxy:v1.23.3
+k8s.gcr.io/pause:3.6
+k8s.gcr.io/etcd:3.5.1-0
+k8s.gcr.io/coredns/coredns:v1.8.6
+```
+
+知道了镜像的名字和标签就好办了，我们有两种方法可以比较容易地获取这些镜像。
+第一种方法是利用 minikube。因为 minikube 本身也打包了 Kubernetes 的组件镜像，所以完全可以从它的节点里把这些镜像导出之后再拷贝过来。
+具体做法也很简单，先启动 minikube，然后 minikube ssh 登录进虚拟节点，用 docker save -o 命令把相应版本的镜像都保存下来，再用 minikube cp 拷贝到本地，剩下的事情就不用我多说了：![img](https://static001.geekbang.org/resource/image/66/4f/6609a62525bbf5d77eb7331f9835244f.png?wh=1848x484)
+
+这种方法安全可靠，不过操作上麻烦了些，所以就有了第二种方法，从国内的镜像网站下载然后再用 docker tag 改名，能够使用 Shell 编程实现自动化：
+
+```
+repo=registry.aliyuncs.com/google_containers
+for name in `kubeadm config images list --kubernetes-version v1.23.3`; do
+    src_name=${name#k8s.gcr.io/}
+    src_name=${src_name#coredns/}
+    docker pull $repo/$src_name
+    docker tag $repo/$src_name $name
+    docker rmi $repo/$src_name
+done
+```
+
+第二种方法速度快，但也有隐患，万一网站不提供服务，或者改动了镜像就比较危险了。
+所以你可以把这两种方法结合起来，先用脚本从国内镜像仓库下载，然后再用 minikube 里的镜像做对比，只要 IMAGE ID 是一样就说明镜像是正确的。
+这张截图就是 Kubernetes 1.23.3 的镜像列表（amd64/arm64），你在安装时可以参考：![img](https://static001.geekbang.org/resource/image/11/5c/11d9d4c91b08d95e82e75406a4d3aa5c.png?wh=1920x353)
+
+amd64![img](https://static001.geekbang.org/resource/image/52/6c/528d9913620015f594988e648eeac66c.png?wh=1920x420)
+
+arm64
+
+### 安装 Master 节点
+
+准备工作都做好了，现在就可以开始正式安装 Kubernetes 了，我们先从 Master 节点开始。
+kubeadm 的用法非常简单，只需要一个命令 kubeadm init 就可以把组件在 Master 节点上运行起来，不过它还有很多参数用来调整集群的配置，你可以用 -h 查看。这里我只说一下我们实验环境用到的 3 个参数：
+--pod-network-cidr，设置集群里 Pod 的 IP 地址段。
+--apiserver-advertise-address，设置 apiserver 的 IP 地址，对于多网卡服务器来说很重要（比如 VirtualBox 虚拟机就用了两块网卡），可以指定 apiserver 在哪个网卡上对外提供服务。
+--kubernetes-version，指定 Kubernetes 的版本号。
+下面的这个安装命令里，我指定了 Pod 的地址段是“10.10.0.0/16”，apiserver 的服务地址是“192.168.10.210”，Kubernetes 的版本号是“1.23.3”：
+
+```
+sudo kubeadm init \
+    --pod-network-cidr=10.10.0.0/16 \
+    --apiserver-advertise-address=192.168.10.210 \
+    --kubernetes-version=v1.23.3
+```
+
+因为我们已经提前把镜像下载到了本地，所以 kubeadm 的安装过程很快就完成了，它还会提示出接下来要做的工作：
+
+```
+To start using your cluster, you need to run the following as a regular user:
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+意思是要在本地建立一个“.kube”目录，然后拷贝 kubectl 的配置文件，你只要原样拷贝粘贴就行。
+另外还有一个很重要的“kubeadm join”提示，其他节点要加入集群必须要用指令里的 token 和 ca 证书，所以这条命令务必拷贝后保存好：
+
+```
+Then you can join any number of worker nodes by running the following on each as root:
+kubeadm join 192.168.10.210:6443 --token tv9mkx.tw7it9vphe158e74 \
+  --discovery-token-ca-cert-hash sha256:e8721b8630d5b562e23c010c70559a6d3084f629abad6a2920e87855f8fb96f3
+```
+
+安装完成后，你就可以使用 kubectl version、kubectl get node 来检查 Kubernetes 的版本和集群的节点状态了：
+
+```
+kubectl version
+kubectl get node
+```
+
+![img](https://static001.geekbang.org/resource/image/c6/09/c63ce96bfyy0e1bc2927d575a66ee209.png?wh=1482x366)你会注意到 Master 节点的状态是“NotReady”，这是由于还缺少网络插件，集群的内部网络还没有正常运作。
+
+### 安装 Flannel 网络插件
+
+Kubernetes 定义了 CNI 标准，有很多网络插件，这里我选择最常用的 Flannel，可以在它的 GitHub 仓库里（https://github.com/flannel-io/flannel/)找到相关文档。
+它安装也很简单，只需要使用项目的“kube-flannel.yml”在 Kubernetes 里部署一下就好了。不过因为它应用了 Kubernetes 的网段地址，你需要修改文件里的“net-conf.json”字段，把 Network 改成刚才 kubeadm 的参数 --pod-network-cidr 设置的地址段。
+比如在这里，就要修改成“10.10.0.0/16”：
+
+```
+net-conf.json: |
+    {
+      "Network": "10.10.0.0/16",
+      "Backend": {
+        "Type": "vxlan"
+      }
+    }
+```
+
+改好后，你就可以用 kubectl apply 来安装 Flannel 网络了：
+
+```
+kubectl apply -f kube-flannel.yml
+
+```
+
+稍等一小会，等镜像拉取下来并运行之后，你就可以执行 kubectl get node 来看节点状态：
+
+```
+kubectl get node
+```
+
+![img](https://static001.geekbang.org/resource/image/6a/7a/6a3c852abe5b193a6997b154163ed67a.png?wh=1434x184)这时你应该能够看到 Master 节点的状态是“Ready”，表明节点网络也工作正常了。
+
+### 安装 Worker 节点
+
+如果你成功安装了 Master 节点，那么 Worker 节点的安装就简单多了，只需要用之前拷贝的那条 kubeadm join 命令就可以了，记得要用 sudo 来执行：
+
+```
+sudo \
+kubeadm join 192.168.10.210:6443 --token tv9mkx.tw7it9vphe158e74 \
+  --discovery-token-ca-cert-hash sha256:e8721b8630d5b562e23c010c70559a6d3084f629abad6a2920e87855f8fb96f3
+```
+
+它会连接 Master 节点，然后拉取镜像，安装网络插件，最后把节点加入集群。
+当然，这个过程中同样也会遇到拉取镜像的问题，你可以如法炮制，提前把镜像下载到 Worker 节点本地，这样安装过程中就不会再有障碍了。
+Worker 节点安装完毕后，执行 kubectl get node ，就会看到两个节点都是“Ready”状态：![img](https://static001.geekbang.org/resource/image/f7/26/f756ece9e81af80a7204243f15777026.png?wh=1430x246)
+
+现在让我们用 kubectl run ，运行 Nginx 来测试一下：
+
+```
+kubectl run ngx --image=nginx:alpine
+kubectl get pod -o wide
+```
+
+会看到 Pod 运行在 Worker 节点上，IP 地址是“10.10.1.2”，表明我们的 Kubernetes 集群部署成功。
+
+### 小结
+
+好了，把 Master 节点和 Worker 节点都安装好，我们今天的任务就算是基本完成了。
+后面 Console 节点的部署工作更加简单，它只需要安装一个 kubectl，然后复制“config”文件就行，你可以直接在 Master 节点上用“scp”远程拷贝，例如：
+
+```
+scp `which kubectl` chrono@192.168.10.208:~/
+scp ~/.kube/config chrono@192.168.10.208:~/.kube
+```
+
+今天的过程多一些，要点我列在了下面：
+kubeadm 是一个方便易用的 Kubernetes 工具，能够部署生产级别的 Kubernetes 集群。
+安装 Kubernetes 之前需要修改主机的配置，包括主机名、Docker 配置、网络设置、交换分区等。
+Kubernetes 的组件镜像存放在 gcr.io，国内下载比较麻烦，可以考虑从 minikube 或者国内镜像网站获取。
+安装 Master 节点需要使用命令 kubeadm init，安装 Worker 节点需要使用命令 kubeadm join，还要部署 Flannel 等网络插件才能让集群正常工作。
+因为这些操作都是各种 Linux 命令，全手动敲下来确实很繁琐，所以我把这些步骤都做成了 Shell 脚本放在了 GitHub 上（https://github.com/chronolaw/k8s_study/tree/master/admin），你可以下载后直接运行。
+
+
+## 18｜Deployment：让应用永不宕机
+
+在上一节课里，我们使用 kubeadm 搭建了一个由两个节点组成的小型 Kubernetes 集群，比起单机的 minikube，它更接近真实环境，在这里面做实验我们今后也更容易过渡到生产系统。
+有了这个 Kubernetes 环境，接下来我们就在“初级篇”里学习的 Pod 知识基础上，深入研究一些由 Pod 衍生出来的其他 API 对象。
+今天要看的 API 对象名字叫“Deployment”，顾名思义，它是专门用来部署应用程序的，能够让应用永不宕机，多用来发布无状态的应用，是 Kubernetes 里最常用也是最有用的一个对象。
+
+### 为什么要有 Deployment
+
+在第 13 讲里，我们学习了 API 对象 Job 和 CronJob，它们代表了生产环境中的离线业务，通过对 Pod 的包装，向 Pod 添加控制字段，实现了基于 Pod 运行临时任务和定时任务的功能。
+那么，除了“离线业务”，另一大类业务——也就是“在线业务”，在 Kubernetes 里应该如何处理呢？
+我们先看看用 Pod 是否就足够了。因为它在 YAML 里使用“containers”就可以任意编排容器，而且还有一个“restartPolicy”字段，默认值就是 Always，可以监控 Pod 里容器的状态，一旦发生异常，就会自动重启容器。
+不过，“restartPolicy”只能保证容器正常工作。不知你有没有想到，如果容器之外的 Pod 出错了该怎么办呢？比如说，有人不小心用 kubectl delete 误删了 Pod，或者 Pod 运行的节点发生了断电故障，那么 Pod 就会在集群里彻底消失，对容器的控制也就无从谈起了。
+还有我们也都知道，在线业务远不是单纯启动一个 Pod 这么简单，还有多实例、高可用、版本更新等许多复杂的操作。比如最简单的多实例需求，为了提高系统的服务能力，应对突发的流量和压力，我们需要创建多个应用的副本，还要即时监控它们的状态。如果还是只使用 Pod，那就会又走回手工管理的老路，没有利用好 Kubernetes 自动化运维的优势。
+其实，解决的办法也很简单，因为 Kubernetes 已经给我们提供了处理这种问题的思路，就是“单一职责”和“对象组合”。既然 Pod 管理不了自己，那么我们就再创建一个新的对象，由它来管理 Pod，采用和 Job/CronJob 一样的形式——“对象套对象”。
+这个用来管理 Pod，实现在线业务应用的新 API 对象，就是 Deployment。
+
+### 如何使用 YAML 描述 Deployment
+
+我们先用命令 kubectl api-resources 来看看 Deployment 的基本信息：
+
+```
+kubectl api-resources
+NAME         SHORTNAMES   APIVERSION   NAMESPACED   KIND
+deployments  deploy       apps/v1      true        Deployment
+```
+
+从它的输出信息里可以知道，Deployment 的简称是“deploy”，它的 apiVersion 是“apps/v1”，kind 是“Deployment”。
+所以，依据前面学习 Pod、Job 的经验，你就应该知道 Deployment 的 YAML 文件头该怎么写了：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xxx-dep
+```
+
+当然了，我们还是可以使用命令 kubectl create 来创建 Deployment 的 YAML 样板，免去反复手工输入的麻烦。
+创建 Deployment 样板的方式和 Job 也差不多，先指定类型是 Deployment（简写 deploy），然后是它的名字，再用 --image 参数指定镜像名字。
+比如下面的这条命令，我就创建了一个名字叫 ngx-dep 的对象，使用的镜像是 nginx:alpine：
+
+```
+export out="--dry-run=client -o yaml"
+kubectl create deploy ngx-dep --image=nginx:alpine $out
+```
+
+得到的 Deployment 样板大概是下面的这个样子：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ngx-dep
+  name: ngx-dep
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ngx-dep
+      
+  template:
+    metadata:
+      labels:
+        app: ngx-dep
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx
+```
+
+把它和 Job/CronJob 对比一下，你会发现有相似也有不同。相似的地方是都有“spec”“template”字段，“template”字段里也是一个 Pod；不同的地方在于它的“spec”部分多了 replicas、selector 这两个新字段，聪明的你应该会猜到，这或许就会是 Deployment 特殊能力的根本。
+没错，这两个新字段就是 Deployment 实现多实例、高可用等功能的关键所在。
+
+### Deployment 的关键字段
+
+先看 replicas 字段。它的含义比较简单明了，就是“副本数量”的意思，也就是说，指定要在 Kubernetes 集群里运行多少个 Pod 实例。
+有了这个字段，就相当于为 Kubernetes 明确了应用部署的“期望状态”，Deployment 对象就可以扮演运维监控人员的角色，自动地在集群里调整 Pod 的数量。
+比如，Deployment 对象刚创建出来的时候，Pod 数量肯定是 0，那么它就会根据 YAML 文件里的 Pod 模板，逐个创建出要求数量的 Pod。
+接下来 Kubernetes 还会持续地监控 Pod 的运行状态，万一有 Pod 发生意外消失了，数量不满足“期望状态”，它就会通过 apiserver、scheduler 等核心组件去选择新的节点，创建出新的 Pod，直至数量与“期望状态”一致。
+这里面的工作流程很复杂，但对于我们这些外部用户来说，设置起来却是非常简单，只需要一个 replicas 字段就搞定了，不需要再用人工监控管理，整个过程完全自动化。
+下面我们再来看另一个关键字段 selector，它的作用是“筛选”出要被 Deployment 管理的 Pod 对象，下属字段“matchLabels”定义了 Pod 对象应该携带的 label，它必须和“template”里 Pod 定义的“labels”完全相同，否则 Deployment 就会找不到要控制的 Pod 对象，apiserver 也会告诉你 YAML 格式校验错误无法创建。
+这个 selector 字段的用法初看起来好像是有点多余，为了保证 Deployment 成功创建，我们必须在 YAML 里把 label 重复写两次：一次是在“selector.matchLabels”，另一次是在“template.matadata”。像在这里，你就要在这两个地方连续写 app: ngx-dep ：
+
+```
+...
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ngx-dep
+      
+  template:
+    metadata:
+      labels:
+        app: ngx-dep
+    ...
+```
+
+你也许会产生疑问：为什么要这么麻烦？为什么不能像 Job 对象一样，直接用“template”里定义好的 Pod 就行了呢？
+这是因为在线业务和离线业务的应用场景差异很大。离线业务中的 Pod 基本上是一次性的，只与这个业务有关，紧紧地绑定在 Job 对象里，一般不会被其他对象所使用。
+而在线业务就要复杂得多了，因为 Pod 永远在线，除了要在 Deployment 里部署运行，还可能会被其他的 API 对象引用来管理，比如负责负载均衡的 Service 对象。
+所以 Deployment 和 Pod 实际上是一种松散的组合关系，Deployment 实际上并不“持有”Pod 对象，它只是帮助 Pod 对象能够有足够的副本数量运行，仅此而已。如果像 Job 那样，把 Pod 在模板里“写死”，那么其他的对象再想要去管理这些 Pod 就无能为力了。
+好明白了这一点，那我们该用什么方式来描述 Deployment 和 Pod 的组合关系呢？
+Kubernetes 采用的是这种“贴标签”的方式，通过在 API 对象的“metadata”元信息里加各种标签（labels），我们就可以使用类似关系数据库里查询语句的方式，筛选出具有特定标识的那些对象。通过标签这种设计，Kubernetes 就解除了 Deployment 和模板里 Pod 的强绑定，把组合关系变成了“弱引用”。
+虽然话是这么说，但对于很多 Kubernetes 的初学者来说，理解 Deployment 里的 spec 定义还是一个难点。
+所以我还是画了一张图，用不同的颜色来区分 Deployment YAML 里的字段，并且用虚线特别标记了 matchLabels 和 labels 之间的联系，希望能够帮助你理解 Deployment 与被它管理的 Pod 的组合关系。![img](https://static001.geekbang.org/resource/image/1f/b0/1f1fdcd112a07cce85757e27fbcc1bb0.jpg?wh=1920x2316)
+
+### 如何使用 kubectl 操作 Deployment
+
+把 Deployment 的 YAML 写好之后，我们就可以用 kubectl apply 来创建对象了：
+
+```
+kubectl apply -f deploy.yml
+
+```
+
+要查看 Deployment 的状态，仍然是用 kubectl get 命令：
+
+```
+kubectl get deploy
+```
+
+![img](https://static001.geekbang.org/resource/image/a5/72/a5b3f8a4c6ac5560dc9dfyybfb257872.png?wh=1222x184)它显示的信息都很重要：
+READY 表示运行的 Pod 数量，前面的数字是当前数量，后面的数字是期望数量，所以“2/2”的意思就是要求有两个 Pod 运行，现在已经启动了两个 Pod。
+UP-TO-DATE 指的是当前已经更新到最新状态的 Pod 数量。因为如果要部署的 Pod 数量很多或者 Pod 启动比较慢，Deployment 完全生效需要一个过程，UP-TO-DATE 就表示现在有多少个 Pod 已经完成了部署，达成了模板里的“期望状态”。
+AVAILABLE 要比 READY、UP-TO-DATE 更进一步，不仅要求已经运行，还必须是健康状态，能够正常对外提供服务，它才是我们最关心的 Deployment 指标。
+最后一个 AGE 就简单了，表示 Deployment 从创建到现在所经过的时间，也就是运行的时间。
+因为 Deployment 管理的是 Pod，我们最终用的也是 Pod，所以还需要用 kubectl get pod 命令来看看 Pod 的状态：
+
+```
+kubectl get pod
+```
+
+![img](https://static001.geekbang.org/resource/image/4e/cb/4e47298ab0fa443e2c8936ac8ed9e5cb.png?wh=1554x244)从截图里你可以看到，被 Deployment 管理的 Pod 自动带上了名字，命名的规则是 Deployment 的名字加上两串随机数（其实是 Pod 模板的 Hash 值)。
+好，到现在对象创建成功，Deployment 和 Pod 的状态也都没问题，可以正常服务，我们是时候检验一下 Deployment 部署的效果了，看看是否如前面所说的，Deployment 部署的应用真的可以做到“永不宕机”？
+来尝试一下吧，让我们用 kubectl delete 删除一个 Pod，模拟一下 Pod 发生故障的情景：
+
+```
+kubectl delete pod ngx-dep-6796688696-jm6tt
+
+```
+
+然后再查看 Pod 的状态：
+
+```
+kubectl get pod
+```
+
+![img](https://static001.geekbang.org/resource/image/44/80/4467538713d83434bf6ff983acde1c80.png?wh=1562x248)你就会“惊喜”地发现，被删除的 Pod 确实是消失了，但 Kubernetes 在 Deployment 的管理之下，很快又创建出了一个新的 Pod，保证了应用实例的数量始终是我们在 YAML 里定义的数量。
+这就证明，Deployment 确实实现了它预定的目标，能够让应用“永远在线”“永不宕机”。
+在 Deployment 部署成功之后，你还可以随时调整 Pod 的数量，实现所谓的“应用伸缩”。这项工作在 Kubernetes 出现之前对于运维来说是一件很困难的事情，而现在由于有了 Deployment 就变得轻而易举了。
+kubectl scale 是专门用于实现“扩容”和“缩容”的命令，你只要用参数 --replicas 指定需要的副本数量，Kubernetes 就会自动增加或者删除 Pod，让最终的 Pod 数量达到“期望状态”。
+比如下面的这条命令，就把 Nginx 应用扩容到了 5 个：
+
+```
+kubectl scale --replicas=5 deploy ngx-dep
+```
+
+![img](https://static001.geekbang.org/resource/image/84/c4/843cc2d702b4e4034bb3a2f2f988fdc4.png?wh=1486x302)但要注意， kubectl scale 是命令式操作，扩容和缩容只是临时的措施，如果应用需要长时间保持一个确定的 Pod 数量，最好还是编辑 Deployment 的 YAML 文件，改动“replicas”，再以声明式的 kubectl apply 修改对象的状态。
+因为 Deployment 使用了 selector 字段，这里我就顺便提一下 Kubernetes 里 labels 字段的使用方法吧。
+之前我们通过 labels 为对象“贴”了各种“标签”，在使用 kubectl get 命令的时候，加上参数 -l，使用 ==、!=、in、notin 的表达式，就能够很容易地用“标签”筛选、过滤出所要查找的对象（有点类似社交媒体的 #tag 功能），效果和 Deployment 里的 selector 字段是一样的。
+看两个例子，第一条命令找出“app”标签是 nginx 的所有 Pod，第二条命令找出“app”标签是 ngx、nginx、ngx-dep 的所有 Pod：
+
+```
+kubectl get pod -l app=nginx
+kubectl get pod -l 'app in (ngx, nginx, ngx-dep)'
+```
+
+![img](https://static001.geekbang.org/resource/image/b0/26/b07ba6a3a9207a5a998c237a6ef49d26.png?wh=1692x546)
+
+### 小结
+
+好了，今天我们学习了 Kubernetes 里的一个重要的对象：Deployment，它表示的是在线业务，和 Job/CronJob 的结构类似，也包装了 Pod 对象，通过添加额外的控制功能实现了应用永不宕机，你也可以再对比一下第 13 讲来加深对它的理解。
+我再简单小结一下今天的内容：
+Pod 只能管理容器，不能管理自身，所以就出现了 Deployment，由它来管理 Pod。
+Deployment 里有三个关键字段，其中的 template 和 Job 一样，定义了要运行的 Pod 模板。
+replicas 字段定义了 Pod 的“期望数量”，Kubernetes 会自动维护 Pod 数量到正常水平。
+selector 字段定义了基于 labels 筛选 Pod 的规则，它必须与 template 里 Pod 的 labels 一致。
+创建 Deployment 使用命令 kubectl apply，应用的扩容、缩容使用命令 kubectl scale。
+学了 Deployment 这个 API 对象，我们今后就不应该再使用“裸 Pod”了。即使我们只运行一个 Pod，也要以 Deployment 的方式来创建它，虽然它的 replicas 字段值是 1，但 Deployment 会保证应用永远在线。
+另外，作为 Kubernetes 里最常用的对象，Deployment 的本事还不止这些，它还支持滚动更新、版本回退，自动伸缩等高级功能，这些在“高级篇”里我们再详细学习。
+
+
+
+## 19｜Daemonset：忠实可靠的看门狗
+
+上一次课里我们学习了 Kubernetes 里的一个新 API 对象 Deployment，它代表了在线业务，能够管理多个 Pod 副本，让应用永远在线，还能够任意扩容缩容。
+虽然 Deployment 非常有用，但是，它并没有完全解决运维部署应用程序的所有难题。因为和简单的离线业务比起来，在线业务的应用场景太多太复杂，Deployment 的功能特性只覆盖了其中的一部分，无法满足其他场景的需求。
+今天我们就来看看另一类代表在线业务 API 对象：DaemonSet，它会在 Kubernetes 集群的每个节点上都运行一个 Pod，就好像是 Linux 系统里的“守护进程”（Daemon）。
+
+### 为什么要有 DaemonSet
+
+想知道为什么 Kubernetes 会引入 DaemonSet 对象，那就得知道 Deployment 有哪些不足。
+我们先简单复习一下 Deployment，它能够创建任意多个的 Pod 实例，并且维护这些 Pod 的正常运行，保证应用始终处于可用状态。
+但是，Deployment 并不关心这些 Pod 会在集群的哪些节点上运行，在它看来，Pod 的运行环境与功能是无关的，只要 Pod 的数量足够，应用程序应该会正常工作。
+这个假设对于大多数业务来说是没问题的，比如 Nginx、WordPress、MySQL，它们不需要知道集群、节点的细节信息，只要配置好环境变量和存储卷，在哪里“跑”都是一样的。
+但是有一些业务比较特殊，它们不是完全独立于系统运行的，而是与主机存在“绑定”关系，必须要依附于节点才能产生价值，比如说：
+网络应用（如 kube-proxy），必须每个节点都运行一个 Pod，否则节点就无法加入 Kubernetes 网络。
+监控应用（如 Prometheus），必须每个节点都有一个 Pod 用来监控节点的状态，实时上报信息。
+日志应用（如 Fluentd），必须在每个节点上运行一个 Pod，才能够搜集容器运行时产生的日志数据。
+安全应用，同样的，每个节点都要有一个 Pod 来执行安全审计、入侵检查、漏洞扫描等工作。
+这些业务如果用 Deployment 来部署就不太合适了，因为 Deployment 所管理的 Pod 数量是固定的，而且可能会在集群里“漂移”，但，实际的需求却是要在集群里的每个节点上都运行 Pod，也就是说 Pod 的数量与节点数量保持同步。
+所以，Kubernetes 就定义了新的 API 对象 DaemonSet，它在形式上和 Deployment 类似，都是管理控制 Pod，但管理调度策略却不同。DaemonSet 的目标是在集群的每个节点上运行且仅运行一个 Pod，就好像是为节点配上一只“看门狗”，忠实地“守护”着节点，这就是 DaemonSet 名字的由来。
+
+### 如何使用 YAML 描述 DaemonSet
+
+DaemonSet 和 Deployment 都属于在线业务，所以它们也都是“apps”组，使用命令  kubectl api-resources  可以知道它的简称是 ds ，YAML 文件头信息应该是：
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: xxx-ds
+```
+
+不过非常奇怪，kubectl 不提供自动创建 DaemonSet YAML 样板的功能，也就是说，我们不能用命令 kubectl create 直接创建出一个 DaemonSet 对象。![img](https://static001.geekbang.org/resource/image/99/7f/99b434fc4089ce23a7e54ed8b857a27f.png?wh=1190x304)	
+
+这个缺点对于我们使用 DaemonSet 的确造成了不小的麻烦，毕竟如果用 kubectl explain 一个个地去查字段再去写 YAML 实在是太辛苦了。
+不过，Kubernetes 不给我们生成样板文件的机会，我们也可以自己去“抄”。你可以在 Kubernetes 的官网（https://kubernetes.io/zh/docs/concepts/workloads/controllers/daemonset/）上找到一份 DaemonSet 的 YAML 示例，把它拷贝下来，再去掉多余的部分，就可以做成自己的一份样板文件，大概是下面的这个样子：
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: redis-ds
+  labels:
+    app: redis-ds
+spec:
+  selector:
+    matchLabels:
+      name: redis-ds
+  template:
+    metadata:
+      labels:
+        name: redis-ds
+    spec:
+      containers:
+      - image: redis:5-alpine
+        name: redis
+        ports:
+        - containerPort: 6379
+```
+
+这个 DaemonSet 对象的名字是 redis-ds，镜像是 redis:5-alpine，使用了流行的 NoSQL 数据库 Redis（你也许对它很熟悉）。
+把这份 YAML 和上节课里的 Deployment 对象简单对比一下，你会发现：
+前面的 kind、metadata 是对象独有的信息，自然是不同的，但下面的 spec 部分，DaemonSet 也有 selector 字段，匹配 template 里 Pod 的 labels 标签，和 Deployment 对象几乎一模一样。
+再仔细观察，我们就会看到，DaemonSet 在 spec 里没有 replicas 字段，这是它与 Deployment 的一个关键不同点，意味着它不会在集群里创建多个 Pod 副本，而是要在每个节点上只创建出一个 Pod 实例。
+也就是说，DaemonSet 仅仅是在 Pod 的部署调度策略上和 Deployment 不同，其他的都是相同的，某种程度上我们也可以把 DaemonSet 看做是 Deployment 的一个特例。
+我还是把 YAML 描述文件画了一张图，好让你看清楚与 Deployment 的差异：![img](https://static001.geekbang.org/resource/image/c1/1c/c1dee411aa02f4ff2b8caaf0bd627a1c.jpg?wh=1920x1173)
+
+了解到这些区别，现在，我们就可以用变通的方法来创建 DaemonSet 的 YAML 样板了，你只需要用 kubectl create 先创建出一个 Deployment 对象，然后把 kind 改成 DaemonSet，再删除 spec.replicas 就行了，比如：
+
+```
+export out="--dry-run=client -o yaml"
+
+# change "kind" to DaemonSet
+
+kubectl create deploy redis-ds --image=redis:5-alpine $out
+```
+
+### 如何在 Kubernetes 里使用 DaemonSet
+
+现在，让我们执行命令 kubectl apply，把 YAML 发送给 Kubernetes，让它创建 DaemonSet 对象，再用 kubectl get 查看对象的状态：![img](https://static001.geekbang.org/resource/image/43/f3/4349f1f2aed7f4ffac017ee6064059f3.png?wh=1884x486)
+
+看这张截图，虽然我们没有指定 DaemonSet 里 Pod 要运行的数量，但它自己就会去查找集群里的节点，在节点里创建 Pod。因为我们的实验环境里有一个 Master 一个 Worker，而 Master 默认是不跑应用的，所以 DaemonSet 就只生成了一个 Pod，运行在了“worker”节点上。
+暂停一下，你发现这里有什么不对劲了吗？
+按照 DaemonSet 的本意，应该在每个节点上都运行一个 Pod 实例才对，但 Master 节点却被排除在外了，这就不符合我们当初的设想了。
+显然，DaemonSet 没有尽到“看门”的职责，它的设计与 Kubernetes 集群的工作机制发生了冲突，有没有办法解决呢？
+当然，Kubernetes 早就想到了这点，为了应对 Pod 在某些节点的“调度”和“驱逐”问题，它定义了两个新的概念：污点（taint）和容忍度（toleration）。
+
+### 什么是污点（taint）和容忍度（toleration）
+
+“污点”是 Kubernetes 节点的一个属性，它的作用也是给节点“贴标签”，但为了不和已有的 labels 字段混淆，就改成了 taint。
+和“污点”相对的，就是 Pod 的“容忍度”，顾名思义，就是 Pod 能否“容忍”污点。
+我们把它俩放在一起就比较好理解了。集群里的节点各式各样，有的节点“纯洁无瑕”，没有“污点”；而有的节点因为某种原因粘上了“泥巴”，也就有了“污点”。Pod 也脾气各异，有的“洁癖”很严重，不能容忍“污点”，只能挑选“干净”的节点；而有的 Pod 则比较“大大咧咧”，要求不那么高，可以适当地容忍一些小“污点”。
+这么看来，“污点”和“容忍度”倒是有点像是一个“相亲”的过程。Pod 就是一个挑剔的“甲方”，而“乙方”就是集群里的各个节点，Pod 会根据自己对“污点”的“容忍程度”来选择合适的目标，比如要求“不抽烟不喝酒”，但可以“无车无房”，最终决定在哪个节点上“落户”。
+Kubernetes 在创建集群的时候会自动给节点 Node 加上一些“污点”，方便 Pod 的调度和部署。你可以用 kubectl describe node 来查看 Master 和 Worker 的状态：
+
+```
+kubectl describe node master
+Name:     master
+Roles:    control-plane,master
+...
+Taints:   node-role.kubernetes.io/master:NoSchedule
+...
+kubectl describe node worker
+Name:     worker
+Roles:    <none>
+...
+Taints:   <none>
+...
+```
+
+可以看到，Master 节点默认有一个 taint，名字是 node-role.kubernetes.io/master，它的效果是 NoSchedule，也就是说这个污点会拒绝 Pod 调度到本节点上运行，而 Worker 节点的 taint 字段则是空的。
+这正是 Master 和 Worker 在 Pod 调度策略上的区别所在，通常来说 Pod 都不能容忍任何“污点”，所以加上了 taint 属性的 Master 节点也就会无缘 Pod 了。
+明白了“污点”和“容忍度”的概念，你就知道该怎么让 DaemonSet 在 Master 节点（或者任意其他节点）上运行了，方法有两种。
+第一种方法是去掉 Master 节点上的 taint，让 Master 变得和 Worker 一样“纯洁无瑕”，DaemonSet 自然就不需要再区分 Master/Worker。
+操作 Node 上的“污点”属性需要使用命令 kubectl taint，然后指定节点名、污点名和污点的效果，去掉污点要额外加上一个 -。
+比如要去掉 Master 节点的“NoSchedule”效果，就要用这条命令：
+
+```
+kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
+```
+
+![img](https://static001.geekbang.org/resource/image/e8/0e/e8e877c960e43a407ab0d95963de400e.png?wh=1920x103)因为 DaemonSet 一直在监控集群节点的状态，命令执行后 Master 节点已经没有了“污点”，所以它立刻就会发现变化，然后就会在 Master 节点上创建一个“守护”Pod。你可以用 kubectl get 来查看这个变动情况：![img](https://static001.geekbang.org/resource/image/44/37/4440c4f05dd7718c52152ef20fc77237.png?wh=1882x422)
+
+但是，这种方法修改的是 Node 的状态，影响面会比较大，可能会导致很多 Pod 都跑到这个节点上运行，所以我们可以保留 Node 的“污点”，为需要的 Pod 添加“容忍度”，只让某些 Pod 运行在个别节点上，实现“精细化”调度。
+这就是第二种方法，为 Pod 添加字段 tolerations，让它能够“容忍”某些“污点”，就可以在任意的节点上运行了。
+tolerations 是一个数组，里面可以列出多个被“容忍”的“污点”，需要写清楚“污点”的名字、效果。比较特别是要用 operator 字段指定如何匹配“污点”，一般我们都使用 Exists，也就是说存在这个名字和效果的“污点”。
+如果我们想让 DaemonSet 里的 Pod 能够在 Master 节点上运行，就要写出这样的一个 tolerations，容忍节点的 node-role.kubernetes.io/master:NoSchedule 这个污点：
+
+```
+tolerations:
+
+- key: node-role.kubernetes.io/master
+  effect: NoSchedule
+  operator: Exists
+```
+
+现在我们先用 kubectl taint 命令把 Master 的“污点”加上：
+
+```
+kubectl taint node master node-role.kubernetes.io/master:NoSchedule
+```
+
+![img](https://static001.geekbang.org/resource/image/3e/c4/3eb49484fd460e53a40fb239298077c4.png?wh=1920x103)然后我们再重新部署加上了“容忍度”的 DaemonSet：
+
+```
+kubectl apply -f ds.yml
+```
+
+![img](https://static001.geekbang.org/resource/image/20/e8/2060a08c2b5572b71780c5f5dyyedae8.png?wh=1888x542)你就会看到 DaemonSet 仍然有两个 Pod，分别运行在 Master 和 Worker 节点上，与第一种方法的效果相同。
+需要特别说明一下，“容忍度”并不是 DaemonSet 独有的概念，而是从属于 Pod，所以理解了“污点”和“容忍度”之后，你可以在 Job/CronJob、Deployment 里为它们管理的 Pod 也加上 tolerations，从而能够更灵活地调度应用。
+至于都有哪些污点、污点有哪些效果我就不细说了，Kubernetes 官网文档（https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)上都列的非常清楚，在理解了工作原理之后，相信你自己学起来也不会太难。
+
+### 什么是静态 Pod
+
+DaemonSet 是在 Kubernetes 里运行节点专属 Pod 最常用的方式，但它不是唯一的方式，Kubernetes 还支持另外一种叫“静态 Pod”的应用部署手段。
+“静态 Pod”非常特殊，它不受 Kubernetes 系统的管控，不与 apiserver、scheduler 发生关系，所以是“静态”的。
+但既然它是 Pod，也必然会“跑”在容器运行时上，也会有 YAML 文件来描述它，而唯一能够管理它的 Kubernetes 组件也就只有在每个节点上运行的 kubelet 了。
+“静态 Pod”的 YAML 文件默认都存放在节点的 /etc/kubernetes/manifests 目录下，它是 Kubernetes 的专用目录。
+下面的这张截图就是 Master 节点里目录的情况：![img](https://static001.geekbang.org/resource/image/f5/c2/f5477bf666beffcaf3b8663d5a5692c2.png?wh=1842x486)
+
+你可以看到，Kubernetes 的 4 个核心组件 apiserver、etcd、scheduler、controller-manager 原来都以静态 Pod 的形式存在的，这也是为什么它们能够先于 Kubernetes 集群启动的原因。
+如果你有一些 DaemonSet 无法满足的特殊的需求，可以考虑使用静态 Pod，编写一个 YAML 文件放到这个目录里，节点的 kubelet 会定期检查目录里的文件，发现变化就会调用容器运行时创建或者删除静态 Pod。
+
+### 小结
+
+好了，今天我们学习了 Kubernetes 里部署应用程序的另一种方式：DaemonSet，它与 Deployment 很类似，差别只在于 Pod 的调度策略，适用于在系统里运行节点的“守护进程”。
+简单小结一下今天的内容：
+DaemonSet 的目标是为集群里的每个节点部署唯一的 Pod，常用于监控、日志等业务。
+DaemonSet 的 YAML 描述与 Deployment 非常接近，只是没有 replicas 字段。
+“污点”和“容忍度”是与 DaemonSet 相关的两个重要概念，分别从属于 Node 和 Pod，共同决定了 Pod 的调度策略。
+静态 Pod 也可以实现和 DaemonSet 同样的效果，但它不受 Kubernetes 控制，必须在节点上纯手动部署，应当慎用。
+
+
+## 20｜Service：微服务架构的应对之道
+
+在前面的课里我们学习了 Deployment 和 DaemonSet 这两个 API 对象，它们都是在线业务，只是以不同的策略部署应用，Deployment 创建任意多个实例，Daemon 为每个节点创建一个实例。
+这两个 API 对象可以部署多种形式的应用，而在云原生时代，微服务无疑是应用的主流形态。为了更好地支持微服务以及服务网格这样的应用架构，Kubernetes 又专门定义了一个新的对象：Service，它是集群内部的负载均衡机制，用来解决服务发现的关键问题。
+今天我们就来看看什么是 Service、如何使用 YAML 来定义 Service，以及如何在 Kubernetes 里用好 Service。
+
+### 为什么要有 Service
+
+有了 Deployment 和 DaemonSet，我们在集群里发布应用程序的工作轻松了很多。借助 Kubernetes 强大的自动化运维能力，我们可以把应用的更新上线频率由以前的月、周级别提升到天、小时级别，让服务质量更上一层楼。
+不过，在应用程序快速版本迭代的同时，另一个问题也逐渐显现出来了，就是“服务发现”。
+在 Kubernetes 集群里 Pod 的生命周期是比较“短暂”的，虽然 Deployment 和 DaemonSet 可以维持 Pod 总体数量的稳定，但在运行过程中，难免会有 Pod 销毁又重建，这就会导致 Pod 集合处于动态的变化之中。
+这种“动态稳定”对于现在流行的微服务架构来说是非常致命的，试想一下，后台 Pod 的 IP 地址老是变来变去，客户端该怎么访问呢？如果不处理好这个问题，Deployment 和 DaemonSet 把 Pod 管理得再完善也是没有价值的。
+其实，这个问题也并不是什么难事，业内早就有解决方案来针对这样“不稳定”的后端服务，那就是“负载均衡”，典型的应用有 LVS、Nginx 等等。它们在前端与后端之间加入了一个“中间层”，屏蔽后端的变化，为前端提供一个稳定的服务。
+但 LVS、Nginx 毕竟不是云原生技术，所以 Kubernetes 就按照这个思路，定义了新的 API 对象：Service。
+所以估计你也能想到，Service 的工作原理和 LVS、Nginx 差不多，Kubernetes 会给它分配一个静态 IP 地址，然后它再去自动管理、维护后面动态变化的 Pod 集合，当客户端访问 Service，它就根据某种策略，把流量转发给后面的某个 Pod。
+下面的这张图来自 Kubernetes官网文档，比较清楚地展示了 Service 的工作原理：![img](https://static001.geekbang.org/resource/image/03/74/0347a0b3bae55fb9ef6c07469e964b74.png?wh=1622x1214)
+
+你可以看到，这里 Service 使用了 iptables 技术，每个节点上的 kube-proxy 组件自动维护 iptables 规则，客户不再关心 Pod 的具体地址，只要访问 Service 的固定 IP 地址，Service 就会根据 iptables 规则转发请求给它管理的多个 Pod，是典型的负载均衡架构。
+不过 Service 并不是只能使用 iptables 来实现负载均衡，它还有另外两种实现技术：性能更差的 userspace 和性能更好的 ipvs，但这些都属于底层细节，我们不需要刻意关注。
+
+### 如何使用 YAML 描述 Service
+
+知道了 Service 的基本工作原理，我们来看看怎么为 Service 编写 YAML 描述文件。
+照例我们还是可以用命令 kubectl api-resources 查看它的基本信息，可以知道它的简称是svc，apiVersion 是 v1。注意，这说明它与 Pod 一样，属于 Kubernetes 的核心对象，不关联业务应用，与 Job、Deployment 是不同的。
+现在，相信你很容易写出 Service 的 YAML 文件头了吧：
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: xxx-svc
+```
+
+同样的，能否让 Kubernetes 为我们自动创建 Service 的 YAML 样板呢？还是使用命令 kubectl create 吗？
+这里 Kubernetes 又表现出了行为上的不一致。虽然它可以自动创建 YAML 样板，但不是用命令 kubectl create，而是另外一个命令 kubectl expose，也许 Kubernetes 认为“expose”能够更好地表达 Service“暴露”服务地址的意思吧。
+因为在 Kubernetes 里提供服务的是 Pod，而 Pod 又可以用 Deployment/DaemonSet 对象来部署，所以 kubectl expose  支持从多种对象创建服务，Pod、Deployment、DaemonSet 都可以。
+使用 kubectl expose 指令时还需要用参数 --port 和 --target-port 分别指定映射端口和容器端口，而 Service 自己的 IP 地址和后端 Pod 的 IP 地址可以自动生成，用法上和 Docker 的命令行参数 -p 很类似，只是略微麻烦一点。
+比如，如果我们要为第 18 讲里的 ngx-dep 对象生成 Service，命令就要这么写：
+
+```
+export out="--dry-run=client -o yaml"
+kubectl expose deploy ngx-dep --port=80 --target-port=80 $out
+```
+
+生成的 Service YAML 大概是这样的：
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngx-svc
+
+spec:
+  selector:
+    app: ngx-dep
+    
+  ports:
+
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+```
+
+你会发现，Service 的定义非常简单，在“spec”里只有两个关键字段，selector 和 ports。
+selector 和 Deployment/DaemonSet 里的作用是一样的，用来过滤出要代理的那些 Pod。因为我们指定要代理 Deployment，所以 Kubernetes 就为我们自动填上了 ngx-dep 的标签，会选择这个 Deployment 对象部署的所有 Pod。
+从这里你也可以看到，Kubernetes 的这个标签机制虽然很简单，却非常强大有效，很轻松就关联上了 Deployment 的 Pod。
+ports 就很好理解了，里面的三个字段分别表示外部端口、内部端口和使用的协议，在这里就是内外部都使用 80 端口，协议是 TCP。
+当然，你在这里也可以把 ports 改成“8080”等其他的端口，这样外部服务看到的就是 Service 给出的端口，而不会知道 Pod 的真正服务端口。
+为了让你看清楚 Service 与它引用的 Pod 的关系，我把这两个 YAML 对象画在了下面的这张图里，需要重点关注的是 selector、targetPort 与 Pod 的关联：![img](https://static001.geekbang.org/resource/image/0f/64/0f74ae3a71a6a661376698e481903d64.jpg?wh=1920x1322)
+
+### 如何在 Kubernetes 里使用 Service
+
+在使用 YAML 创建 Service 对象之前，让我们先对第 18 讲里的 Deployment 做一点改造，方便观察 Service 的效果。
+首先，我们创建一个 ConfigMap，定义一个 Nginx 的配置片段，它会输出服务器的地址、主机名、请求的 URI 等基本信息：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ngx-conf
+data:
+  default.conf: |
+    server {
+      listen 80;
+      location / {
+        default_type text/plain;
+        return 200
+          'srv : $server_addr:$server_port\nhost: $hostname\nuri : $request_method $host $request_uri\ndate: $time_iso8601\n';
+      }
+    }
+```
+
+然后我们在 Deployment 的“template.volumes”里定义存储卷，再用“volumeMounts”把配置文件加载进 Nginx 容器里：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ngx-dep
+  template:
+    metadata:
+      labels:
+        app: ngx-dep
+    spec:
+      volumes:
+      - name: ngx-conf-vol
+        configMap:
+          name: ngx-conf
+      containers:
+      - image: nginx:alpine
+        name: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: ngx-conf-vol
+```
+
+这两处修改用到了第 14 讲里的知识，如果你还没有熟练掌握，可以回去复习一下。
+部署这个 Deployment 之后，我们就可以创建 Service 对象了，用的还是 kubectl apply：
+
+```
+kubectl apply -f svc.yml
+
+```
+
+创建之后，用命令 kubectl get 就可以看到它的状态：![img](https://static001.geekbang.org/resource/image/c3/e1/c3502c6c00d870eyy506351e2ba828e1.png?wh=1844x362)
+
+你可以看到，Kubernetes 为 Service 对象自动分配了一个 IP 地址“10.96.240.115”，这个地址段是独立于 Pod 地址段的（比如第 17 讲里的 10.10.xx.xx）。而且 Service 对象的 IP 地址还有一个特点，它是一个“虚地址”，不存在实体，只能用来转发流量。
+想要看 Service 代理了哪些后端的 Pod，你可以用 kubectl describe 命令：
+
+```
+kubectl describe svc ngx-svc
+```
+
+![img](https://static001.geekbang.org/resource/image/80/16/80b6e738bc13e1f1d56fa99080f65716.png?wh=1244x846)截图里显示 Service 对象管理了两个 endpoint，分别是“10.10.0.232:80”和“10.10.1.86:80”，初步判断与 Service、Deployment 的定义相符，那么这两个 IP 地址是不是 Nginx Pod 的实际地址呢？
+我们还是用 kubectl get pod 来看一下，加上参数 -o wide：
+
+```
+kubectl get pod -o wide
+```
+
+![img](https://static001.geekbang.org/resource/image/35/34/355129b4eb2290b3df50f7c184c06634.png?wh=1920x241)把 Pod 的地址与 Service 的信息做个对比，我们就能够验证 Service 确实用一个静态 IP 地址代理了两个 Pod 的动态 IP 地址。
+那怎么测试 Service 的负载均衡效果呢？
+因为 Service、 Pod 的 IP 地址都是 Kubernetes 集群的内部网段，所以我们需要用 kubectl exec 进入到 Pod 内部（或者 ssh 登录集群节点)，再用 curl 等工具来访问 Service：
+
+```
+kubectl exec -it ngx-dep-6796688696-r2j6t -- sh
+```
+
+![img](https://static001.geekbang.org/resource/image/72/28/72eab1f20e7d91ddfe07b5e521712b28.png?wh=1638x838)在 Pod 里，用 curl 访问 Service 的 IP 地址，就会看到它把数据转发给后端的 Pod，输出信息会显示具体是哪个 Pod 响应了请求，就表明 Service 确实完成了对 Pod 的负载均衡任务。
+我们再试着删除一个 Pod，看看 Service 是否会更新后端 Pod 的信息，实现自动化的服务发现：
+
+```
+kubectl delete pod ngx-dep-6796688696-r2j6t
+```
+
+![img](https://static001.geekbang.org/resource/image/68/65/688362b0d462ba94fed6f9c2fcbed565.png?wh=1920x1200)由于 Pod 被 Deployment 对象管理，删除后会自动重建，而 Service 又会通过 controller-manager 实时监控 Pod 的变化情况，所以就会立即更新它代理的 IP 地址。通过截图你就可以看到有一个 IP 地址“10.10.1.86”消失了，换成了新的“10.10.1.87”，它就是新创建的 Pod。
+你也可以再尝试一下使用“ping”来测试 Service 的 IP 地址：![img](https://static001.geekbang.org/resource/image/71/1d/7182131d675c5d03ab9c91be4869a51d.png?wh=1638x428)
+
+会发现根本 ping 不通，因为 Service 的 IP 地址是“虚”的，只用于转发流量，所以 ping 无法得到回应数据包，也就失败了。
+
+### 如何以域名的方式使用 Service
+
+到这里 Service 的基本用法就讲得差不多了，不过它还有一些高级特性值得了解。
+我们先来看看 DNS 域名。
+Service 对象的 IP 地址是静态的，保持稳定，这在微服务里确实很重要，不过数字形式的 IP 地址用起来还是不太方便。这个时候 Kubernetes 的 DNS 插件就派上了用处，它可以为 Service 创建易写易记的域名，让 Service 更容易使用。
+使用 DNS 域名之前，我们要先了解一个新的概念：名字空间（namespace）。
+注意它与我们在第 2 讲里说的用于资源隔离的 Linux namespace 技术完全不同，千万不要弄混了。Kubernetes 只是借用了这个术语，但目标是类似的，用来在集群里实现对 API 对象的隔离和分组。
+namespace 的简写是“ns”，你可以使用命令 kubectl get ns 来查看当前集群里都有哪些名字空间，也就是说 API 对象有哪些分组：
+
+```
+kubectl get ns
+```
+
+![img](https://static001.geekbang.org/resource/image/16/09/169398a24700368f1550950f0e34b409.png?wh=854x368)Kubernetes 有一个默认的名字空间，叫“default”，如果不显式指定，API 对象都会在这个“default”名字空间里。而其他的名字空间都有各自的用途，比如“kube-system”就包含了 apiserver、etcd 等核心组件的 Pod。
+因为 DNS 是一种层次结构，为了避免太多的域名导致冲突，Kubernetes 就把名字空间作为域名的一部分，减少了重名的可能性。
+Service 对象的域名完全形式是“对象. 名字空间.svc.cluster.local”，但很多时候也可以省略后面的部分，直接写“对象. 名字空间”甚至“对象名”就足够了，默认会使用对象所在的名字空间（比如这里就是 default)。
+现在我们来试验一下 DNS 域名的用法，还是先 kubectl exec  进入 Pod，然后用 curl 访问 ngx-svc、ngx-svc.default 等域名：![img](https://static001.geekbang.org/resource/image/9b/8b/9b8f58e19f7551f9e3a152d79d9d1e8b.png?wh=1638x1204)
+
+可以看到，现在我们就不再关心 Service 对象的 IP 地址，只需要知道它的名字，就可以用 DNS 的方式去访问后端服务。
+比起 Docker，这无疑是一个巨大的进步，而且对比其他微服务框架（如 Dubbo、Spring Cloud），由于服务发现机制被集成在了基础设施里，也会让应用的开发更加便捷。
+（顺便说一下，Kubernetes 也为每个 Pod 分配了域名，形式是“IP 地址. 名字空间.pod.cluster.local”，但需要把 IP 地址里的 . 改成 - 。比如地址 10.10.1.87，它对应的域名就是 10-10-1-87.default.pod。）
+
+### 如何让 Service 对外暴露服务
+
+由于 Service 是一种负载均衡技术，所以它不仅能够管理 Kubernetes 集群内部的服务，还能够担当向集群外部暴露服务的重任。
+Service 对象有一个关键字段“type”，表示 Service 是哪种类型的负载均衡。前面我们看到的用法都是对集群内部 Pod 的负载均衡，所以这个字段的值就是默认的“ClusterIP”，Service 的静态 IP 地址只能在集群内访问。
+除了“ClusterIP”，Service 还支持其他三种类型，分别是“ExternalName”“LoadBalancer”“NodePort”。不过前两种类型一般由云服务商提供，我们的实验环境用不到，所以接下来就重点看“NodePort”这个类型。
+如果我们在使用命令 kubectl expose 的时候加上参数 --type=NodePort，或者在 YAML 里添加字段 type:NodePort，那么 Service 除了会对后端的 Pod 做负载均衡之外，还会在集群里的每个节点上创建一个独立的端口，用这个端口对外提供服务，这也正是“NodePort”这个名字的由来。
+让我们修改一下 Service 的 YAML 文件，加上字段“type”：
+
+```
+apiVersion: v1
+...
+spec:
+  ...
+  type: NodePort
+```
+
+然后创建对象，再查看它的状态：
+
+```
+kubectl get svc
+```
+
+![img](https://static001.geekbang.org/resource/image/64/f9/643cf4690a42f723732f9f150021fff9.png?wh=1756x248)就会看到“TYPE”变成了“NodePort”，而在“PORT”列里的端口信息也不一样，除了集群内部使用的“80”端口，还多出了一个“30651”端口，这就是 Kubernetes 在节点上为 Service 创建的专用映射端口。
+因为这个端口号属于节点，外部能够直接访问，所以现在我们就可以不用登录集群节点或者进入 Pod 内部，直接在集群外使用任意一个节点的 IP 地址，就能够访问 Service 和它代理的后端服务了。
+比如我现在所在的服务器是“192.168.10.208”，在这台主机上用 curl 访问 Kubernetes 集群的两个节点“192.168.10.210”“192.168.10.220”，就可以得到 Nginx Pod 的响应数据：![img](https://static001.geekbang.org/resource/image/eb/75/eb917ecdf52cc3f266e6555bd7a1b075.png?wh=1076x666)
+
+我把 NodePort 与 Service、Deployment 的对应关系画成了图，你看了应该就能更好地明白它的工作原理：![img](https://static001.geekbang.org/resource/image/fy/4a/fyyebea67e4471aa53cb3a0e8ebe624a.jpg?wh=1920x940)
+
+学到这里，你是不是觉得 NodePort 类型的 Service 很方便呢。
+不过它也有一些缺点。
+第一个缺点是它的端口数量很有限。Kubernetes 为了避免端口冲突，默认只在“30000~32767”这个范围内随机分配，只有 2000 多个，而且都不是标准端口号，这对于具有大量业务应用的系统来说根本不够用。
+第二个缺点是它会在每个节点上都开端口，然后使用 kube-proxy 路由到真正的后端 Service，这对于有很多计算节点的大集群来说就带来了一些网络通信成本，不是特别经济。
+第三个缺点，它要求向外界暴露节点的 IP 地址，这在很多时候是不可行的，为了安全还需要在集群外再搭一个反向代理，增加了方案的复杂度。
+虽然有这些缺点，但 NodePort 仍然是 Kubernetes 对外提供服务的一种简单易行的方式，在其他更好的方式出现之前，我们也只能使用它。
+
+### 小结
+
+好了，今天我们学习了 Service 对象，它实现了负载均衡和服务发现技术，是 Kubernetes 应对微服务、服务网格等现代流行应用架构的解决方案。
+我再小结一下今天的要点：
+Pod 的生命周期很短暂，会不停地创建销毁，所以就需要用 Service 来实现负载均衡，它由 Kubernetes 分配固定的 IP 地址，能够屏蔽后端的 Pod 变化。
+Service 对象使用与 Deployment、DaemonSet 相同的“selector”字段，选择要代理的后端 Pod，是松耦合关系。
+基于 DNS 插件，我们能够以域名的方式访问 Service，比静态 IP 地址更方便。
+名字空间是 Kubernetes 用来隔离对象的一种方式，实现了逻辑上的对象分组，Service 的域名里就包含了名字空间限定。
+Service 的默认类型是“ClusterIP”，只能在集群内部访问，如果改成“NodePort”，就会在节点上开启一个随机端口号，让外界也能够访问内部的服务。
+
+
+## 21｜Ingress：集群进出流量的总管
+
+上次课里我们学习了 Service 对象，它是 Kubernetes 内置的负载均衡机制，使用静态 IP 地址代理动态变化的 Pod，支持域名访问和服务发现，是微服务架构必需的基础设施。
+Service 很有用，但也只能说是“基础设施”，它对网络流量的管理方案还是太简单，离复杂的现代应用架构需求还有很大的差距，所以 Kubernetes 就在 Service 之上又提出了一个新的概念：Ingress。
+比起 Service，Ingress 更接近实际业务，对它的开发、应用和讨论也是社区里最火爆的，今天我们就来看看 Ingress，还有与它关联的 Ingress Controller、Ingress Class 等对象。
+
+### 为什么要有 Ingress
+
+通过上次课程的讲解，我们知道了 Service 的功能和运行机制，它本质上就是一个由 kube-proxy 控制的四层负载均衡，在 TCP/IP 协议栈上转发流量（Service 工作原理示意图）：![img](https://static001.geekbang.org/resource/image/03/74/0347a0b3bae55fb9ef6c07469e964b74.png?wh=1622x1214)
+
+但在四层上的负载均衡功能还是太有限了，只能够依据 IP 地址和端口号做一些简单的判断和组合，而我们现在的绝大多数应用都是跑在七层的 HTTP/HTTPS 协议上的，有更多的高级路由条件，比如主机名、URI、请求头、证书等等，而这些在 TCP/IP 网络栈里是根本看不见的。
+Service 还有一个缺点，它比较适合代理集群内部的服务。如果想要把服务暴露到集群外部，就只能使用 NodePort 或者 LoadBalancer 这两种方式，而它们都缺乏足够的灵活性，难以管控，这就导致了一种很无奈的局面：我们的服务空有一身本领，却没有合适的机会走出去大展拳脚。
+该怎么解决这个问题呢？
+Kubernetes 还是沿用了 Service 的思路，既然 Service 是四层的负载均衡，那么我再引入一个新的 API 对象，在七层上做负载均衡是不是就可以了呢？
+不过除了七层负载均衡，这个对象还应该承担更多的职责，也就是作为流量的总入口，统管集群的进出口数据，“扇入”“扇出”流量（也就是我们常说的“南北向”），让外部用户能够安全、顺畅、便捷地访问内部服务（图片来源）：![img](https://static001.geekbang.org/resource/image/e6/55/e6ce31b027ba2a8d94cdc553a2c97255.png?wh=1288x834)
+
+所以，这个 API 对象就顺理成章地被命名为 Ingress，意思就是集群内外边界上的入口。
+
+### 为什么要有 Ingress Controller
+
+再对比一下 Service 我们就能更透彻地理解 Ingress。
+Ingress 可以说是在七层上另一种形式的 Service，它同样会代理一些后端的 Pod，也有一些路由规则来定义流量应该如何分配、转发，只不过这些规则都使用的是 HTTP/HTTPS 协议。
+你应该知道，Service 本身是没有服务能力的，它只是一些 iptables 规则，真正配置、应用这些规则的实际上是节点里的 kube-proxy 组件。如果没有 kube-proxy，Service 定义得再完善也没有用。
+同样的，Ingress 也只是一些 HTTP 路由规则的集合，相当于一份静态的描述文件，真正要把这些规则在集群里实施运行，还需要有另外一个东西，这就是 Ingress Controller，它的作用就相当于 Service 的 kube-proxy，能够读取、应用 Ingress 规则，处理、调度流量。
+按理来说，Kubernetes 应该把 Ingress Controller 内置实现，作为基础设施的一部分，就像 kube-proxy 一样。
+不过 Ingress Controller 要做的事情太多，与上层业务联系太密切，所以 Kubernetes 把 Ingress Controller 的实现交给了社区，任何人都可以开发 Ingress Controller，只要遵守 Ingress 规则就好。
+这就造成了 Ingress Controller“百花齐放”的盛况。
+由于 Ingress Controller 把守了集群流量的关键入口，掌握了它就拥有了控制集群应用的“话语权”，所以众多公司纷纷入场，精心打造自己的 Ingress Controller，意图在 Kubernetes 流量进出管理这个领域占有一席之地。
+这些实现中最著名的，就是老牌的反向代理和负载均衡软件 Nginx 了。从 Ingress Controller 的描述上我们也可以看到，HTTP 层面的流量管理、安全控制等功能其实就是经典的反向代理，而 Nginx 则是其中稳定性最好、性能最高的产品，所以它也理所当然成为了 Kubernetes 里应用得最广泛的 Ingress Controller。
+不过，因为 Nginx 是开源的，谁都可以基于源码做二次开发，所以它又有很多的变种，比如社区的 Kubernetes Ingress Controller（https://github.com/kubernetes/ingress-nginx）、Nginx 公司自己的 Nginx Ingress Controller（https://github.com/nginxinc/kubernetes-ingress）、还有基于 OpenResty 的 Kong Ingress Controller（https://github.com/Kong/kubernetes-ingress-controller）等等。
+根据 Docker Hub 上的统计，Nginx 公司的开发实现是下载量最多的 Ingress Controller，所以我将以它为例，讲解 Ingress 和 Ingress Controller 的用法。
+下面的这张图就来自 Nginx 官网，比较清楚地展示了 Ingress Controller 在 Kubernetes 集群里的地位：![img](https://static001.geekbang.org/resource/image/eb/f8/ebebd12312fa5e6eb1ea90c930bd5ef8.png?wh=1920x706)
+
+### 为什么要有 IngressClass
+
+那么到现在，有了 Ingress 和 Ingress Controller，我们是不是就可以完美地管理集群的进出流量了呢？
+最初 Kubernetes 也是这么想的，一个集群里有一个 Ingress Controller，再给它配上许多不同的 Ingress 规则，应该就可以解决请求的路由和分发问题了。
+但随着 Ingress 在实践中的大量应用，很多用户发现这种用法会带来一些问题，比如：
+由于某些原因，项目组需要引入不同的 Ingress Controller，但 Kubernetes 不允许这样做；
+Ingress 规则太多，都交给一个 Ingress Controller 处理会让它不堪重负；
+多个 Ingress 对象没有很好的逻辑分组方式，管理和维护成本很高；
+集群里有不同的租户，他们对 Ingress 的需求差异很大甚至有冲突，无法部署在同一个 Ingress Controller 上。
+所以，Kubernetes 就又提出了一个 Ingress Class 的概念，让它插在 Ingress 和 Ingress Controller 中间，作为流量规则和控制器的协调人，解除了 Ingress 和 Ingress Controller 的强绑定关系。
+现在，Kubernetes 用户可以转向管理 Ingress Class，用它来定义不同的业务逻辑分组，简化 Ingress 规则的复杂度。比如说，我们可以用 Class A 处理博客流量、Class B 处理短视频流量、Class C 处理购物流量。![img](https://static001.geekbang.org/resource/image/88/0e/8843704c6314706c9b6f4f2399ca940e.jpg?wh=1920x1306)
+
+这些 Ingress 和 Ingress Controller 彼此独立，不会发生冲突，所以上面的那些问题也就随着 Ingress Class 的引入迎刃而解了。
+
+### 如何使用 YAML 描述 Ingress/Ingress Class
+
+我们花了比较多的篇幅学习 Ingress、 Ingress Controller、Ingress Class 这三个对象，全是理论，你可能觉得学得有点累。但这也是没办法的事情，毕竟现实的业务就是这么复杂，而且这个设计架构也是社区经过长期讨论后达成的一致结论，是我们目前能获得的最佳解决方案。
+好，了解了这三个概念之后，我们就可以来看看如何为它们编写 YAML 描述文件了。
+和之前学习 Deployment、Service 对象一样，首先应当用命令 kubectl api-resources 查看它们的基本信息，输出列在这里了：
+
+```
+kubectl api-resources
+NAME          SHORTNAMES   APIVERSION           NAMESPACED   KIND
+ingresses       ing          networking.k8s.io/v1   true         Ingress
+ingressclasses               networking.k8s.io/v1   false        IngressClass
+```
+
+你可以看到，Ingress 和 Ingress Class 的 apiVersion 都是“networking.k8s.io/v1”，而且 Ingress 有一个简写“ing”，但 Ingress Controller 怎么找不到呢？
+这是因为 Ingress Controller 和其他两个对象不太一样，它不只是描述文件，是一个要实际干活、处理流量的应用程序，而应用程序在 Kubernetes 里早就有对象来管理了，那就是 Deployment 和 DaemonSet，所以我们只需要再学习 Ingress 和 Ingress Class 的的用法就可以了。
+先看 Ingress。
+Ingress 也是可以使用 kubectl create 来创建样板文件的，和 Service 类似，它也需要用两个附加参数：
+--class，指定 Ingress 从属的 Ingress Class 对象。
+--rule，指定路由规则，基本形式是“URI=Service”，也就是说是访问 HTTP 路径就转发到对应的 Service 对象，再由 Service 对象转发给后端的 Pod。
+好，现在我们就执行命令，看看 Ingress 到底长什么样：
+
+```
+export out="--dry-run=client -o yaml"
+kubectl create ing ngx-ing --rule="ngx.test/=ngx-svc:80" --class=ngx-ink $out
+```
+
+```
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: ngx-ing
+  
+  spec:
+    ingressClassName: ngx-ink
+  
+    rules:
+  
+    - host: ngx.test
+      http:
+        paths:
+        - path: /
+          pathType: Exact
+        backend:
+            service:
+            name: ngx-svc
+            port:
+                number: 80
+```
+
+在这份 Ingress 的 YAML 里，有两个关键字段：“ingressClassName”和“rules”，分别对应了命令行参数，含义还是比较好理解的。
+只是“rules”的格式比较复杂，嵌套层次很深。不过仔细点看就会发现它是把路由规则拆散了，有 host 和 http path，在 path 里又指定了路径的匹配方式，可以是精确匹配（Exact）或者是前缀匹配（Prefix），再用 backend 来指定转发的目标 Service 对象。
+不过我个人觉得，Ingress YAML 里的描述还不如 kubectl create 命令行里的 --rule 参数来得直观易懂，而且 YAML 里的字段太多也很容易弄错，建议你还是让 kubectl 来自动生成规则，然后再略作修改比较好。
+有了 Ingress 对象，那么与它关联的 Ingress Class 是什么样的呢？
+其实 Ingress Class 本身并没有什么实际的功能，只是起到联系 Ingress 和 Ingress Controller 的作用，所以它的定义非常简单，在“spec”里只有一个必需的字段“controller”，表示要使用哪个 Ingress Controller，具体的名字就要看实现文档了。
+比如，如果我要用 Nginx 开发的 Ingress Controller，那么就要用名字“nginx.org/ingress-controller”：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: ngx-ink
+spec:
+  controller: nginx.org/ingress-controller
+```
+
+Ingress 和 Service、Ingress Class 的关系我也画成了一张图，方便你参考：![img](https://static001.geekbang.org/resource/image/6b/af/6bd934a9c8c81a9f194d2d90ede172af.jpg?wh=1920x1005)
+
+### 如何在 Kubernetes 里使用 Ingress/Ingress Class
+
+因为 Ingress Class 很小，所以我把它与 Ingress 合成了一个 YAML 文件，让我们用 kubectl apply 创建这两个对象：
+
+```
+kubectl apply -f ingress.yml
+
+```
+
+然后我们用 kubectl get 来查看对象的状态：
+
+```
+kubectl get ingressclass
+kubectl get ing
+```
+
+![img](https://static001.geekbang.org/resource/image/f9/b9/f9396112f84076528d9072e358d1ebb9.png?wh=1510x366)命令 kubectl describe 可以看到更详细的 Ingress 信息：
+
+```
+kubectl describe ing ngx-ing
+```
+
+![img](https://static001.geekbang.org/resource/image/b7/13/b708b7d41ef44844af7bf02cbb334313.png?wh=1576x664)可以看到，Ingress 对象的路由规则 Host/Path 就是在 YAML 里设置的域名“ngx.test/”，而且已经关联了第 20 讲里创建的 Service 对象，还有 Service 后面的两个 Pod。
+另外，不要对 Ingress 里“Default backend”的错误提示感到惊讶，在找不到路由的时候，它被设计用来提供一个默认的后端服务，但不设置也不会有什么问题，所以大多数时候我们都忽略它。
+
+### 如何在 Kubernetes 里使用 Ingress Controller
+
+准备好了 Ingress 和 Ingress Class，接下来我们就需要部署真正处理路由规则的 Ingress Controller。
+你可以在 GitHub 上找到 Nginx Ingress Controller 的项目（https://github.com/nginxinc/kubernetes-ingress），因为它以 Pod 的形式运行在 Kubernetes 里，所以同时支持 Deployment 和 DaemonSet 两种部署方式。这里我选择的是 Deployment，相关的 YAML 也都在我们课程的项目（https://github.com/chronolaw/k8s_study/tree/master/ingress)里复制了一份。
+Nginx Ingress Controller 的安装略微麻烦一些，有很多个 YAML 需要执行，但如果只是做简单的试验，就只需要用到 4 个 YAML：
+
+```
+kubectl apply -f common/ns-and-sa.yaml
+kubectl apply -f rbac/rbac.yaml
+kubectl apply -f common/nginx-config.yaml
+kubectl apply -f common/default-server-secret.yaml
+```
+
+前两条命令为 Ingress Controller 创建了一个独立的名字空间“nginx-ingress”，还有相应的账号和权限，这是为了访问 apiserver 获取 Service、Endpoint 信息用的；后两条则是创建了一个 ConfigMap 和 Secret，用来配置 HTTP/HTTPS 服务。
+部署 Ingress Controller 不需要我们自己从头编写 Deployment，Nginx 已经为我们提供了示例 YAML，但创建之前为了适配我们自己的应用还必须要做几处小改动：
+metadata 里的 name 要改成自己的名字，比如 ngx-kic-dep。
+spec.selector 和 template.metadata.labels 也要修改成自己的名字，比如还是用 ngx-kic-dep。
+containers.image 可以改用 apline 版本，加快下载速度，比如 nginx/nginx-ingress:2.2-alpine。
+最下面的 args 要加上 -ingress-class=ngx-ink，也就是前面创建的 Ingress Class 的名字，这是让 Ingress Controller 管理 Ingress 的关键。
+修改完之后，Ingress Controller 的 YAML 大概是这个样子：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-kic-dep
+  namespace: nginx-ingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngx-kic-dep
+  template:
+    metadata:
+      labels:
+        app: ngx-kic-dep
+    ...
+    spec:
+      containers:
+      - image: nginx/nginx-ingress:2.2-alpine
+        ...
+        args:
+          - -ingress-class=ngx-ink
+```
+
+有了 Ingress Controller，这些 API 对象的关联就更复杂了，你可以用下面的这张图来看出它们是如何使用对象名字联系起来的：![img](https://static001.geekbang.org/resource/image/bb/14/bb7a911e10c103fb839e01438e184914.jpg?wh=1920x736)
+
+确认 Ingress Controller 的 YAML 修改完毕之后，就可以用 kubectl apply 创建对象：
+
+```
+kubectl apply -f kic.yml
+
+```
+
+注意 Ingress Controller 位于名字空间“nginx-ingress”，所以查看状态需要用“-n”参数显式指定，否则我们只能看到“default”名字空间里的 Pod：
+
+```
+kubectl get deploy -n nginx-ingress
+kubectl get pod -n nginx-ingress
+```
+
+![img](https://static001.geekbang.org/resource/image/63/a6/6389033863c8f809b4c0048be44903a6.png?wh=1476x364)现在 Ingress Controller 就算是运行起来了。
+不过还有最后一道工序，因为 Ingress Controller 本身也是一个 Pod，想要向外提供服务还是要依赖于 Service 对象。所以你至少还要再为它定义一个 Service，使用 NodePort 或者 LoadBalancer 暴露端口，才能真正把集群的内外流量打通。这个工作就交给你课下自己去完成了。
+这里，我就用第 15 讲里提到的命令kubectl port-forward，它可以直接把本地的端口映射到 Kubernetes 集群的某个 Pod 里，在测试验证的时候非常方便。
+下面这条命令就把本地的 8080 端口映射到了 Ingress Controller Pod 的 80 端口：
+
+```
+kubectl port-forward -n nginx-ingress ngx-kic-dep-8859b7b86-cplgp 8080:80 &
+```
+
+![img](https://static001.geekbang.org/resource/image/1f/67/1f9cyy6e78d19e23db9594a272fa4267.png?wh=1920x349)我们在 curl 发测试请求的时候需要注意，因为 Ingress 的路由规则是 HTTP 协议，所以就不能用 IP 地址的方式访问，必须要用域名、URI。
+你可以修改 /etc/hosts 来手工添加域名解析，也可以使用 --resolve 参数，指定域名的解析规则，比如在这里我就把“ngx.test”强制解析到“127.0.0.1”，也就是被 kubectl port-forward 转发的本地地址：
+
+```
+curl --resolve ngx.test:8080:127.0.0.1 http://ngx.test:8080
+```
+
+![img](https://static001.geekbang.org/resource/image/24/ec/2410bb40faa73be25e8d9b3c46c6deec.png?wh=1920x767)把这个访问结果和上一节课里的 Service 对比一下，你会发现最终效果是一样的，都是把请求转发到了集群内部的 Pod，但 Ingress 的路由规则不再是 IP 地址，而是 HTTP 协议里的域名、URI 等要素。
+
+### 小结
+
+好了，今天就讲到这里，我们学习了 Kubernetes 里七层的反向代理和负载均衡对象，包括 Ingress、Ingress Controller、Ingress Class，它们联合起来管理了集群的进出流量，是集群入口的总管。
+小结一下今天的主要内容：
+Service 是四层负载均衡，能力有限，所以就出现了 Ingress，它基于 HTTP/HTTPS 协议定义路由规则。
+Ingress 只是规则的集合，自身不具备流量管理能力，需要 Ingress Controller 应用 Ingress 规则才能真正发挥作用。
+Ingress Class 解耦了 Ingress 和 Ingress Controller，我们应当使用 Ingress Class 来管理 Ingress 资源。
+最流行的 Ingress Controller 是 Nginx Ingress Controller，它基于经典反向代理软件 Nginx。
+再补充一点，目前的 Kubernetes 流量管理功能主要集中在 Ingress Controller 上，已经远不止于管理“入口流量”了，它还能管理“出口流量”，也就是 egress，甚至还可以管理集群内部服务之间的“东西向流量”。
+此外，Ingress Controller 通常还有很多的其他功能，比如 TLS 终止、网络应用防火墙、限流限速、流量拆分、身份认证、访问控制等等，完全可以认为它是一个全功能的反向代理或者网关，感兴趣的话你可以找找这方面的资料。
+
+
+## 22｜实战演练：玩转Kubernetes（2）
+
+我们的“中级篇”到今天马上就要结束了，感谢你这段时间坚持不懈的学习。
+作为“中级篇”的收尾课程，我照例还是会对前面学过的内容做一个全面的回顾和总结，把知识点都串联起来，加深你对它们的印象。
+下面我先梳理一下“中级篇”里讲过的 Kubernetes 知识要点，然后是实战演示，搭建 WordPress 网站。当然这次比前两次又有进步，不用 Docker，也不用裸 Pod，而是用我们新学习的 Deployment、Service、Ingress 等对象。
+
+### Kubernetes 技术要点回顾
+
+Kubernetes 是云原生时代的操作系统，它能够管理大量节点构成的集群，让计算资源“池化”，从而能够自动地调度运维各种形式的应用。
+搭建多节点的 Kubernetes 集群是一件颇具挑战性的工作，好在社区里及时出现了 kubeadm 这样的工具，可以“一键操作”，使用 kubeadm init、kubeadm join 等命令从无到有地搭建出生产级别的集群（17 讲）。
+kubeadm 使用容器技术封装了 Kubernetes 组件，所以只要节点上安装了容器运行时（Docker、containerd 等），它就可以自动从网上拉取镜像，然后以容器的方式运行组件，非常简单方便。
+在这个更接近实际生产环境的 Kubernetes 集群里，我们学习了 Deployment、DaemonSet、Service、Ingress、Ingress Controller 等 API 对象。
+（18 讲）Deployment 是用来管理 Pod 的一种对象，它代表了运维工作中最常见的一类在线业务，在集群中部署应用的多个实例，而且可以很容易地增加或者减少实例数量，从容应对流量压力。
+Deployment 的定义里有两个关键字段：一个是 replicas，它指定了实例的数量；另一个是 selector，它的作用是使用标签“筛选”出被 Deployment 管理的 Pod，这是一种非常灵活的关联机制，实现了 API 对象之间的松耦合。
+（19 讲）DaemonSet 是另一种部署在线业务的方式，它很类似 Deployment，但会在集群里的每一个节点上运行一个 Pod 实例，类似 Linux 系统里的“守护进程”，适合日志、监控等类型的应用。
+DaemonSet 能够任意部署 Pod 的关键概念是“污点”（taint）和“容忍度”（toleration）。Node 会有各种“污点”，而 Pod 可以使用“容忍度”来忽略“污点”，合理使用这两个概念就可以调整 Pod 在集群里的部署策略。
+（20 讲）由 Deployment 和 DaemonSet 部署的 Pod，在集群中处于“动态平衡”的状态，总数量保持恒定，但也有临时销毁重建的可能，所以 IP 地址是变化的，这就为微服务等应用架构带来了麻烦。
+Service 是对 Pod IP 地址的抽象，它拥有一个固定的 IP 地址，再使用 iptables 规则把流量负载均衡到后面的 Pod，节点上的 kube-proxy 组件会实时维护被代理的 Pod 状态，保证 Service 只会转发给健康的 Pod。
+Service 还基于 DNS 插件支持域名，所以客户端就不再需要关心 Pod 的具体情况，只要通过 Service 这个稳定的中间层，就能够访问到 Pod 提供的服务。
+（21 讲）Service 是四层的负载均衡，但现在的绝大多数应用都是 HTTP/HTTPS 协议，要实现七层的负载均衡就要使用 Ingress 对象。
+Ingress 定义了基于 HTTP 协议的路由规则，但要让规则生效，还需要 Ingress Controller 和 Ingress Class 来配合工作。
+Ingress Controller 是真正的集群入口，应用 Ingress 规则调度、分发流量，此外还能够扮演反向代理的角色，提供安全防护、TLS 卸载等更多功能。
+Ingress Class 是用来管理 Ingress 和 Ingress Controller 的概念，方便我们分组路由规则，降低维护成本。
+不过 Ingress Controller 本身也是一个 Pod，想要把服务暴露到集群外部还是要依靠 Service。Service 支持 NodePort、LoadBalancer 等方式，但 NodePort 的端口范围有限，LoadBalancer 又依赖于云服务厂商，都不是很灵活。
+折中的办法是用少量 NodePort 暴露 Ingress Controller，用 Ingress 路由到内部服务，外部再用反向代理或者 LoadBalancer 把流量引进来。
+
+### WordPress 网站基本架构
+
+简略回顾了 Kubernetes 里这些 API 对象，下面我们就来使用它们再搭建出 WordPress 网站，实践加深理解。
+既然我们已经掌握了 Deployment、Service、Ingress 这些 Pod 之上的概念，网站自然会有新变化，架构图我放在了这里：![img](https://static001.geekbang.org/resource/image/96/07/9634b8850c3abf62047689b885d7ef07.jpg?wh=1920x1138)
+
+这次的部署形式比起 Docker、minikube 又有了一些细微的差别，重点是我们已经完全舍弃了 Docker，把所有的应用都放在 Kubernetes 集群里运行，部署方式也不再是裸 Pod，而是使用 Deployment，稳定性大幅度提升。
+原来的 Nginx 的作用是反向代理，那么在 Kubernetes 里它就升级成了具有相同功能的 Ingress Controller。WordPress 原来只有一个实例，现在变成了两个实例（你也可以任意横向扩容），可用性也就因此提高了不少。而 MariaDB 数据库因为要保证数据的一致性，暂时还是一个实例。
+还有，因为 Kubernetes 内置了服务发现机制 Service，我们再也不需要去手动查看 Pod 的 IP 地址了，只要为它们定义 Service 对象，然后使用域名就可以访问 MariaDB、WordPress 这些服务。
+网站对外提供服务我选择了两种方式。
+一种是让 WordPress 的 Service 对象以 NodePort 的方式直接对外暴露端口 30088，方便测试；另一种是给 Nginx Ingress Controller 添加“hostNetwork”属性，直接使用节点上的端口号，类似 Docker 的 host 网络模式，好处是可以避开 NodePort 的端口范围限制。
+下面我们就按照这个基本架构来逐步搭建出新版本的 WordPress 网站，编写 YAML 声明。
+这里有个小技巧，在实际操作的时候你一定要记得善用 kubectl create、kubectl expose 创建样板文件，节约时间的同时，也能避免低级的格式错误。
+### 1. WordPress 网站部署 MariaDB
+
+首先我们还是要部署 MariaDB，这个步骤和在第 15 讲里做的也差不多。
+先要用 ConfigMap 定义数据库的环境变量，有 DATABASE、USER、PASSWORD、ROOT_PASSWORD：
+
+```
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: maria-cm
+  data:
+    DATABASE: 'db'
+    USER: 'wp'
+    PASSWORD: '123'
+    ROOT_PASSWORD: '123'
+```
+
+然后我们需要把 MariaDB 由 Pod 改成 Deployment 的方式，replicas 设置成 1 个，template 里面的 Pod 部分没有任何变化，还是要用 envFrom把配置信息以环境变量的形式注入 Pod，相当于把 Pod 套了一个 Deployment 的“外壳”：
+```
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+     labels:
+   app: maria-dep
+    name: maria-dep
+  spec:
+    replicas: 1
+     selector:
+    matchLabels:
+     app: maria-dep
+     template:
+    metadata:
+      labels:
+        app: maria-dep
+    spec:
+      containers:
+
+      - image: mariadb:10
+        name: mariadb
+        ports:
+        - containerPort: 3306
+        envFrom:
+        - prefix: 'MARIADB_'
+         configMapRef:
+           name: maria-cm
+```
+我们还需要再为 MariaDB 定义一个 Service 对象，映射端口 3306，让其他应用不再关心 IP 地址，直接用 Service 对象的名字来访问数据库服务：
+
+```
+ apiVersion: v1
+  kind: Service
+    metadata:
+  labels:
+    app: maria-dep
+  name: maria-svc
+  spec:
+  ports:
+
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+    selector:
+    app: maria-dep
+```
+
+因为这三个对象都是数据库相关的，所以可以在一个 YAML 文件里书写，对象之间用 --- 分开，这样用 kubectl apply 就可以一次性创建好：
+
+```
+kubectl apply -f wp-maria.yml
+
+```
+
+执行命令后，你应该用 kubectl get 查看对象是否创建成功，是否正常运行：![img](https://static001.geekbang.org/resource/image/2f/a4/2fa0050d5bf61224dc17dc67f6da16a4.png?wh=1664x852)
+
+### 2. WordPress 网站部署 WordPress
+第二步是部署 WordPress 应用。
+因为刚才创建了 MariaDB 的 Service，所以在写 ConfigMap 配置的时候“HOST”就不应该是 IP 地址了，而应该是 DNS 域名，也就是 Service 的名字maria-svc，这点需要特别注意：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+name: wp-cm
+data:
+HOST: 'maria-svc'
+USER: 'wp'
+PASSWORD: '123'
+NAME: 'db'
+```
+
+WordPress 的 Deployment 写法和 MariaDB 也是一样的，给 Pod 套一个 Deployment 的“外壳”，replicas 设置成 2 个，用字段“envFrom”配置环境变量：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+labels:
+app: wp-dep
+name: wp-dep
+spec:
+replicas: 2
+selector:
+matchLabels:
+  app: wp-dep
+template:
+metadata:
+  labels:
+    app: wp-dep
+spec:
+  containers:
+
+  - image: wordpress:5
+    name: wordpress
+    ports:
+    - containerPort: 80
+      envFrom:
+    - prefix: 'WORDPRESS_DB_'
+      configMapRef:
+        name: wp-cm
+```
+
+然后我们仍然要为 WordPress 创建 Service 对象，这里我使用了“NodePort”类型，并且手工指定了端口号“30088”（必须在 30000~32767 之间）：
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+labels:
+app: wp-dep
+name: wp-svc
+spec:
+ports:
+
+- name: http80
+  port: 80
+  protocol: TCP
+  targetPort: 80
+  nodePort: 30088
+  selector:
+  app: wp-dep
+  type: NodePort
+```
+
+现在让我们用 kubectl apply 部署 WordPress：
+
+```
+kubectl apply  -f wp-dep.yml
+
+```
+
+这些对象的状态可以从下面的截图看出来：![img](https://static001.geekbang.org/resource/image/da/4f/daeb742118aca29577e1af91c89aff4f.png?wh=1920x1022)
+
+因为 WordPress 的 Service 对象是 NodePort 类型的，我们可以在集群的每个节点上访问 WordPress 服务。
+比如一个节点的 IP 地址是“192.168.10.210”，那么你就在浏览器的地址栏里输入“http://192.168.10.210:30088”，其中的“30088”就是在 Service 里指定的节点端口号，然后就能够看到 WordPress 的安装界面了：![img](https://static001.geekbang.org/resource/image/1f/38/1f5fa840441d52e94d3e7609a3bb9438.png?wh=874x1162)
+
+### 3. WordPress 网站部署 Nginx Ingress Controller
+现在 MariaDB，WordPress 都已经部署成功了，第三步就是部署 Nginx Ingress Controller。
+首先我们需要定义 Ingress Class，名字就叫“wp-ink”，非常简单：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+name: wp-ink
+spec:
+controller: nginx.org/ingress-controller
+```
+
+然后用 kubectl create 命令生成 Ingress 的样板文件，指定域名是“wp.test”，后端 Service 是“wp-svc:80”，Ingress Class 就是刚定义的“wp-ink”：
+
+```
+kubectl create ing wp-ing --rule="wp.test/=wp-svc:80" --class=wp-ink $out
+
+```
+
+得到的 Ingress YAML 就是这样，注意路径类型我还是用的前缀匹配“Prefix”：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+name: wp-ing
+spec:
+ingressClassName: wp-ink
+rules:
+
+- host: wp.test
+  http:
+  paths:
+  - path: /
+    pathType: Prefix
+    backend:
+      service:
+        name: wp-svc
+        port:
+          number: 80
+```
+
+接下来就是最关键的 Ingress Controller 对象了，它仍然需要从 Nginx 项目的示例 YAML 修改而来，要改动名字、标签，还有参数里的 Ingress Class。
+在之前讲基本架构的时候我说过了，这个 Ingress Controller 不使用 Service，而是给它的 Pod 加上一个特殊字段 hostNetwork，让 Pod 能够使用宿主机的网络，相当于另一种形式的 NodePort：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: wp-kic-dep
+namespace: nginx-ingress
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: wp-kic-dep
+template:
+metadata:
+labels:
+app: wp-kic-dep
+spec:
+serviceAccountName: nginx-ingress
+
+- # use host network
+
+  hostNetwork: true
+  containers:
+  ...
+```
+
+准备好 Ingress 资源后，我们创建这些对象：
+
+```
+kubectl apply -f wp-ing.yml -f wp-kic.yml
+```
+
+![img](https://static001.geekbang.org/resource/image/f5/6a/f57224b4c64ecc6b04651d1986406c6a.png?wh=1614x666)现在所有的应用都已经部署完毕，可以在集群外面访问网站来验证结果了。
+不过你要注意，Ingress 使用的是 HTTP 路由规则，用 IP 地址访问是无效的，所以在集群外的主机上必须能够识别我们的“wp.test”域名，也就是说要把域名“wp.test”解析到 Ingress Controller 所在的节点上。
+如果你用的是 Mac，那就修改 /etc/hosts；如果你用的是 Windows，就修改 C:\Windows\System32\Drivers\etc\hosts，添加一条解析规则就行：
+
+```
+cat /etc/hosts
+192.168.10.210  wp.test
+```
+
+有了域名解析，在浏览器里你就不必使用 IP 地址，直接用域名“wp.test”走 Ingress Controller 就能访问我们的 WordPress 网站了：![img](https://static001.geekbang.org/resource/image/e1/ea/e10a1f53d9d163e74a53fb18d81cf5ea.png?wh=1550x1098)
+
+到这里，我们在 Kubernetes 上部署 WordPress 网站的工作就全部完成了。
+
+### 小结
+
+这节课我们回顾了“中级篇”里的一些知识要点，我把它们总结成了思维导图，你课后可以对照着它查缺补漏，巩固学习成果。![img](https://static001.geekbang.org/resource/image/6c/7c/6c051e3c12db763851b1yya34a90c67c.jpg?wh=1920x1543)
+
+今天我们还在 Kubernetes 集群里再次搭建了 WordPress 网站，应用了新对象 Deployment、Service、Ingress，为网站增加了横向扩容、服务发现和七层负载均衡这三个非常重要的功能，提升了网站的稳定性和可用性，基本上解决了在“初级篇”所遇到的问题。
+虽然这个网站离真正实用还差得比较远，但框架已经很完善了，你可以在这个基础上添加其他功能，比如创建证书 Secret、让 Ingress 支持 HTTPS 等等。
+另外，我们保证了网站各项服务的高可用，但对于数据库 MariaDB 来说，虽然 Deployment 在发生故障时能够及时重启 Pod，新 Pod 却不会从旧 Pod 继承数据，之前网站的数据会彻底消失，这个后果是完全不可接受的。
+所以在后续的“高级篇”里，我们会继续学习持久化存储对象 PersistentVolume，以及有状态的 StatefulSet 等对象，进一步完善我们的网站。
+
+
+
+## 23｜视频：中级篇实操总结
+https://time.geekbang.org/column/article/546594
+
+## 加餐｜docker-compose：单机环境下的容器编排工具
+
+我们的课程学到了这里，你已经对 Kubernetes 有相当程度的了解了吧。
+作为云原生时代的操作系统，Kubernetes 源自 Docker 又超越了 Docker，依靠着它的 master/node 架构，掌控成百上千台的计算节点，然后使用 YAML 语言定义各种 API 对象来编排调度容器，实现了对现代应用的管理。
+不过，你有没有觉得，在 Docker 和 Kubernetes 之间，是否还缺了一点什么东西呢？
+Kubernetes 的确是非常强大的容器编排平台，但强大的功能也伴随着复杂度和成本的提升，不说那几十个用途各异的 API 对象，单单说把 Kubernetes 运行起来搭建一个小型的集群，就需要耗费不少精力。但是，有的时候，我们只是想快速启动一组容器来执行简单的开发、测试工作，并不想承担 Kubernetes 里 apiserver、scheduler、etcd 这些组件的运行成本。
+显然，在这种简易任务的应用场景里，Kubernetes 就显得有些“笨重”了。即使是“玩具”性质的 minikube、kind，对电脑也有比较高的要求，会“吃”掉不少的计算资源，属于“大材小用”。
+那到底有没有这样的工具，既像 Docker 一样轻巧易用，又像 Kubernetes 一样具备容器编排能力呢？
+今天我就来介绍 docker-compose，它恰好满足了刚才的需求，是一个在单机环境里轻量级的容器编排工具，填补了 Docker 和 Kubernetes 之间的空白位置。
+
+### 什么是 docker-compose
+
+还是让我们从 Docker 诞生那会讲起。
+在 Docker 把容器技术大众化之后，Docker 周边涌现出了数不胜数的扩展、增强产品，其中有一个名字叫“Fig”的小项目格外令人瞩目。
+Fig 为 Docker 引入了“容器编排”的概念，使用 YAML 来定义容器的启动参数、先后顺序和依赖关系，让用户不再有 Docker 冗长命令行的烦恼，第一次见识到了“声明式”的威力。
+Docker 公司也很快意识到了 Fig 这个小工具的价值，于是就在 2014 年 7 月把它买了下来，集成进 Docker 内部，然后改名成了“docker-compose”。![img](https://static001.geekbang.org/resource/image/ec/ab/ecb1194e994c0a127d4818310dac14ab.png?wh=400x300)
+
+图片来自网络
+从这段简短的历史中你可以看到，虽然 docker-compose 也是容器编排技术，也使用 YAML，但它的基因与 Kubernetes 完全不同，走的是 Docker 的技术路线，所以在设计理念和使用方法上有差异就不足为怪了。
+docker-compose 自身的定位是管理和运行多个 Docker 容器的工具，很显然，它没有 Kubernetes 那么“宏伟”的目标，只是用来方便用户使用 Docker 而已，所以学习难度比较低，上手容易，很多概念都是与 Docker 命令一一对应的。
+但这有时候也会给我们带来困扰，毕竟 docker-compose 和 Kubernetes 同属容器编排领域，用法不一致就容易导致认知冲突、混乱。考虑到这一点，我们在学习 docker-compose 的时候就要把握一个“度”，够用就行，不要太过深究，否则会对 Kubernetes 的学习造成一些不良影响。
+
+### 如何使用 docker-compose
+
+docker-compose 的安装非常简单，它在 GitHub（https://github.com/docker/compose）上提供了多种形式的二进制可执行文件，支持 Windows、macOS、Linux 等操作系统，也支持 x86_64、arm64 等硬件架构，可以直接下载。
+在 Linux 上安装的 Shell 命令我放在这里了，用的是最新的 2.6.1 版本：
+
+```
+# intel x86_64
+
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 \
+          -o /usr/local/bin/docker-compose
+
+# apple m1
+
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-aarch64 \
+          -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+安装完成之后，来看一下它的版本号，命令是 docker-compose version，用法和 docker version 是一样的：
+
+```
+docker-compose version
+```
+
+![img](https://static001.geekbang.org/resource/image/12/79/12a28accca14eec348353521a89d4879.png?wh=996x120)接下来，我们就要编写 YAML 文件，来管理 Docker 容器了，先用第 7 讲里的私有镜像仓库作为示范吧。
+docker-compose 里管理容器的核心概念是“service”。注意，它与 Kubernetes 里的 Service 虽然名字很像，但却是完全不同的东西。docker-compose 里的“service”就是一个容器化的应用程序，通常是一个后台服务，用 YAML 定义这些容器的参数和相互之间的关系。
+如果硬要和 Kubernetes 对比的话，和“service”最像的 API 对象应该算是 Pod 里的 container 了，同样是管理容器运行，但 docker-compose 的“service”又融合了一些 Service、Deployment 的特性。
+下面的这个就是私有镜像仓库 Registry 的 YAML 文件，关键字段就是“services”，对应的 Docker 命令我也列了出来：
+
+```
+docker run -d -p 5000:5000 registry
+
+```
+
+```
+services:
+  registry:
+    image: registry
+    container_name: registry
+    restart: always
+    ports:
+      - 5000:5000
+```
+
+把它和 Kubernetes 对比一下，你会发现它和 Pod 定义非常像，“services”相当于 Pod，而里面的“service”就相当于“spec.containers”：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ngx-pod
+spec:
+  restartPolicy: Always
+  containers:
+
+  - image: nginx:alpine
+    name: ngx
+    ports:
+    - containerPort: 80
+```
+
+比如用 image 声明镜像，用 ports 声明端口，很容易理解，只是在用法上有些不一样，像端口映射用的就还是 Docker 的语法。
+由于 docker-compose 的字段定义在官网（https://docs.docker.com/compose/compose-file/）上有详细的说明文档，我就不在这里费口舌解释了，你可以自行参考。
+需要提醒的是，在 docker-compose 里，每个“service”都有一个自己的名字，它同时也是这个容器的唯一网络标识，有点类似 Kubernetes 里 Service 域名的作用。
+好，现在我们就可以启动应用了，命令是 docker-compose up -d，同时还要用 -f 参数来指定 YAML 文件，和 kubectl apply 差不多：
+
+```
+docker-compose -f reg-compose.yml up -d
+```
+
+![img](https://static001.geekbang.org/resource/image/8e/b5/8ed5ba47b5bc6c6dc4b999415772deb5.png?wh=1440x246)因为 docker-compose 在底层还是调用的 Docker，所以它启动的容器用 docker ps 也能够看到：![img](https://static001.geekbang.org/resource/image/3c/3e/3c89d2d81c380a120d5d05617602c43e.png?wh=1546x158)
+
+不过，我们用 docker-compose ps 能够看到更多的信息：
+
+```
+docker-compose -f reg-compose.yml ps
+```
+
+![img](https://static001.geekbang.org/resource/image/5f/5f/5fab07a5ba4736a65380729ba392645f.png?wh=1896x186)下面我们把 Nginx 的镜像改个标签，上传到私有仓库里测试一下：
+
+```
+docker tag nginx:alpine 127.0.0.1:5000/nginx:v1
+docker push 127.0.0.1:5000/nginx:v1
+```
+
+再用 curl 查看一下它的标签列表，就可以看到确实上传成功了：
+
+```
+curl 127.1:5000/v2/nginx/tags/list
+```
+
+![img](https://static001.geekbang.org/resource/image/c5/d8/c56a4bfdc87ce8cf945fa055997486d8.png?wh=1300x126)想要停止应用，我们需要使用 docker-compose down 命令：
+
+```
+docker-compose -f reg-compose.yml down
+```
+
+![img](https://static001.geekbang.org/resource/image/4c/5e/4c681530438eb50b1e2ba90c0c8de45e.png?wh=1406x246)通过这个小例子，我们就成功地把“命令式”的 Docker 操作，转换成了“声明式”的 docker-compose 操作，用法与 Kubernetes 十分接近，同时还没有 Kubernetes 那些昂贵的运行成本，在单机环境里可以说是最适合不过了。
+
+### 使用 docker-compose 搭建 WordPress 网站
+
+不过，私有镜像仓库 Registry 里只有一个容器，不能体现 docker-compose 容器编排的好处，我们再用它来搭建一次 WordPress 网站，深入感受一下。
+架构图和第 7 讲还是一样的：![img](https://static001.geekbang.org/resource/image/59/ca/59dfbe961bcd233b83e1c1ec064e2eca.png?wh=1920x643)
+
+第一步还是定义数据库 MariaDB，环境变量的写法与 Kubernetes 的 ConfigMap 有点类似，但使用的字段是 environment，直接定义，不用再“绕一下”：
+
+```
+services:
+  mariadb:
+    image: mariadb:10
+    container_name: mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: db
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: 123
+      MARIADB_ROOT_PASSWORD: 123
+```
+
+我们可以再对比第 7 讲里启动 MariaDB 的 Docker 命令，可以发现 docker-compose 的 YAML 和命令行是非常像的，几乎可以直接照搬：
+
+```
+docker run -d --rm \
+    --env MARIADB_DATABASE=db \
+    --env MARIADB_USER=wp \
+    --env MARIADB_PASSWORD=123 \
+    --env MARIADB_ROOT_PASSWORD=123 \
+    mariadb:10
+```
+
+第二步是定义 WordPress 网站，它也使用 environment 来设置环境变量：
+
+```
+services:
+  ...
+
+  wordpress:
+    image: wordpress:5
+    container_name: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mariadb  #注意这里，数据库的网络标识
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: 123
+      WORDPRESS_DB_NAME: db
+    depends_on:
+      - mariadb
+```
+
+不过，因为 docker-compose 会自动把 MariaDB 的名字用做网络标识，所以在连接数据库的时候（字段 WORDPRESS_DB_HOST）就不需要手动指定 IP 地址了，直接用“service”的名字 mariadb 就行了。这是 docker-compose 比 Docker 命令要方便的一个地方，和 Kubernetes 的域名机制很像。
+WordPress 定义里还有一个值得注意的是字段 depends_on，它用来设置容器的依赖关系，指定容器启动的先后顺序，这在编排由多个容器组成的应用的时候是一个非常便利的特性。
+第三步就是定义 Nginx 反向代理了，不过很可惜，docker-compose 里没有 ConfigMap、Secret 这样的概念，要加载配置还是必须用外部文件，无法集成进 YAML。
+Nginx 的配置文件和第 7 讲里也差不多，同样的，在 proxy_pass 指令里不需要写 IP 地址了，直接用 WordPress 的名字就行：
+
+```
+server {
+  listen 80;
+  default_type text/html;
+  location / {
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+      proxy_pass http://wordpress;  #注意这里，网站的网络标识
+  }
+}
+```
+
+然后我们就可以在 YAML 里定义 Nginx 了，加载配置文件用的是 volumes 字段，和 Kubernetes 一样，但里面的语法却又是 Docker 的形式：
+
+```
+services:
+  ...
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    hostname: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./wp.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - wordpress
+```
+
+到这里三个“service”就都定义好了，我们用 docker-compose up -d 启动网站，记得还是要用 -f 参数指定 YAML 文件：
+
+```
+docker-compose -f wp-compose.yml up -d
+
+```
+
+启动之后，用 docker-compose ps 来查看状态：![img](https://static001.geekbang.org/resource/image/e2/b9/e23953ca3dd05a79a660c7be9509c1b9.png?wh=1426x782)
+
+我们也可以用 docker-compose exec 来进入容器内部，验证一下这几个容器的网络标识是否工作正常：
+
+```
+docker-compose -f wp-compose.yml exec -it nginx sh
+```
+
+![img](https://static001.geekbang.org/resource/image/60/cb/6019120aa14369ce6cb83e880382c1cb.png?wh=1714x1204)从截图里你可以看到，我们分别 ping 了 mariadb 和 wordpress 这两个服务，网络都是通的，不过它的 IP 地址段用的是“172.22.0.0/16”，和 Docker 默认的“172.17.0.0/16”不一样。
+再打开浏览器，输入本机的“127.0.0.1”或者是虚拟机的 IP 地址（我这里是“http://192.168.10.208”)，就又可以看到熟悉的 WordPress 界面了：![img](https://static001.geekbang.org/resource/image/db/7d/db87232f578ea8556c452c2557db437d.png?wh=1920x1411)
+
+### 小结
+
+好了，今天我们暂时离开了 Kubernetes，回头看了一下 Docker 世界里的容器编排工具 docker-compose。
+和 Kubernetes 比起来，docker-compose 有它自己的局限性，比如只能用于单机，编排功能比较简单，缺乏运维监控手段等等。但它也有优点：小巧轻便，对软硬件的要求不高，只要有 Docker 就能够运行。
+所以虽然 Kubernetes 已经成为了容器编排领域的霸主，但 docker-compose 还是有一定的生存空间，像 GitHub 上就有很多项目提供了 docker-compose YAML 来快速搭建原型或者测试环境，其中的一个典型就是 CNCF Harbor。
+对于我们日常工作来说，docker-compose 也是很有用的。如果是只有几个容器的简单应用，用 Kubernetes 来运行实在是有种“杀鸡用牛刀”的感觉，而用 Docker 命令、Shell 脚本又很不方便，这就是 docker-compose 出场的时候了，它能够让我们彻底摆脱“命令式”，全面使用“声明式”来操作容器。
+我再简单小结一下今天的内容：
+docker-compose 源自 Fig，是专门用来编排 Docker 容器的工具。
+docker-compose 也使用 YAML 来描述容器，但语法语义更接近 Docker 命令行。
+docker-compose YAML 里的关键概念是“service”，它是一个容器化的应用。
+docker-compose 的命令与 Docker 类似，比较常用的有 up、ps、down，用来启动、查看和停止应用。
+另外，docker-compose 里还有不少有用的功能，比如存储卷、自定义网络、特权进程等等，感兴趣的话可以再去看看官网资料。
+欢迎留言交流你的学习想法，我们下节课回归正课，下节课见。
+
+
+
+## 24｜PersistentVolume：怎么解决数据持久化的难题？
+经过了“初级篇”和“中级篇”的学习，相信你对 Kubernetes 的认识已经比较全面了，那么在接下来的“高级篇”里，我们再进一步，探索 Kubernetes 更深层次的知识点和更高级的应用技巧。
+今天就先从 PersistentVolume 讲起。
+早在第 14 讲介绍 ConfigMap/Secret 的时候，我们就遇到过 Kubernetes 里的 Volume 存储卷的概念，它使用字段 volumes 和 volumeMounts，相当于是给 Pod 挂载了一个“虚拟盘”，把配置信息以文件的形式注入进 Pod 供进程使用。
+不过，那个时候的 Volume 只能存放较少的数据，离真正的“虚拟盘”还差得很远。
+今天我们就一起来了解 Volume 的高级用法，看看 Kubernetes 管理存储资源的 API 对象 PersistentVolume、PersistentVolumeClaim、StorageClass，然后使用本地磁盘来创建实际可用的存储卷。
+
+### 什么是 PersistentVolume
+
+在刚完成的“中级篇”实战中（22 讲），我们在 Kubernetes 集群里搭建了 WordPress 网站，但其中存在一个很严重的问题：Pod 没有持久化功能，导致 MariaDB 无法“永久”存储数据。
+因为 Pod 里的容器是由镜像产生的，而镜像文件本身是只读的，进程要读写磁盘只能用一个临时的存储空间，一旦 Pod 销毁，临时存储也就会立即回收释放，数据也就丢失了。
+为了保证即使 Pod 销毁后重建数据依然存在，我们就需要找出一个解决方案，让 Pod 用上真正的“虚拟盘”。怎么办呢？
+其实，Kubernetes 的 Volume 对数据存储已经给出了一个很好的抽象，它只是定义了有这么一个“存储卷”，而这个“存储卷”是什么类型、有多大容量、怎么存储，我们都可以自由发挥。Pod 不需要关心那些专业、复杂的细节，只要设置好 volumeMounts，就可以把 Volume 加载进容器里使用。
+所以，Kubernetes 就顺着 Volume 的概念，延伸出了 PersistentVolume 对象，它专门用来表示持久存储设备，但隐藏了存储的底层实现，我们只需要知道它能安全可靠地保管数据就可以了（由于 PersistentVolume 这个词很长，一般都把它简称为 PV）。
+那么，集群里的 PV 都从哪里来呢？
+作为存储的抽象，PV 实际上就是一些存储设备、文件系统，比如 Ceph、GlusterFS、NFS，甚至是本地磁盘，管理它们已经超出了 Kubernetes 的能力范围，所以，一般会由系统管理员单独维护，然后再在 Kubernetes 里创建对应的 PV。
+要注意的是，PV 属于集群的系统资源，是和 Node 平级的一种对象，Pod 对它没有管理权，只有使用权。
+
+### 什么是 PersistentVolumeClaim/StorageClass
+
+现在有了 PV，我们是不是可以直接在 Pod 里挂载使用了呢？
+还不行。因为不同存储设备的差异实在是太大了：有的速度快，有的速度慢；有的可以共享读写，有的只能独占读写；有的容量小，只有几百 MB，有的容量大到 TB、PB 级别……
+这么多种存储设备，只用一个 PV 对象来管理还是有点太勉强了，不符合“单一职责”的原则，让 Pod 直接去选择 PV 也很不灵活。于是 Kubernetes 就又增加了两个新对象，PersistentVolumeClaim 和 StorageClass，用的还是“中间层”的思想，把存储卷的分配管理过程再次细化。
+我们看这两个新对象。
+PersistentVolumeClaim，简称 PVC，从名字上看比较好理解，就是用来向 Kubernetes 申请存储资源的。PVC 是给 Pod 使用的对象，它相当于是 Pod 的代理，代表 Pod 向系统申请 PV。一旦资源申请成功，Kubernetes 就会把 PV 和 PVC 关联在一起，这个动作叫做“绑定”（bind）。
+但是，系统里的存储资源非常多，如果要 PVC 去直接遍历查找合适的 PV 也很麻烦，所以就要用到 StorageClass。
+StorageClass 的作用有点像第 21 讲里的 IngressClass，它抽象了特定类型的存储系统（比如 Ceph、NFS），在 PVC 和 PV 之间充当“协调人”的角色，帮助 PVC 找到合适的 PV。也就是说它可以简化 Pod 挂载“虚拟盘”的过程，让 Pod 看不到 PV 的实现细节。![img](https://static001.geekbang.org/resource/image/5e/22/5e21d007a6152ec9594919300c2b6e22.jpg?wh=1920x1053)
+
+如果看到这里，你觉得还是差点理解也不要着急，我们找个生活中的例子来类比一下。毕竟和常用的 CPU、内存比起来，我们对存储系统的认识还是比较少的，所以 Kubernetes 里，PV、PVC 和 StorageClass 这三个新概念也不是特别好掌握。
+看例子，假设你在公司里想要 10 张纸打印资料，于是你给前台打电话讲清楚了需求。
+“打电话”这个动作，就相当于 PVC，向 Kubernetes 申请存储资源。
+前台里有各种牌子的办公用纸，大小、规格也不一样，这就相当于 StorageClass。
+前台根据你的需要，挑选了一个品牌，再从库存里拿出一包 A4 纸，可能不止 10 张，但也能够满足要求，就在登记表上新添了一条记录，写上你在某天申领了办公用品。这个过程就是 PVC 到 PV 的绑定。
+而最后到你手里的 A4 纸包，就是 PV 存储对象。
+好，大概了解了这些 API 对象，我们接下来可以结合 YAML 描述和实际操作再慢慢体会。
+
+### 如何使用 YAML 描述 PersistentVolume
+
+Kubernetes 里有很多种类型的 PV，我们先看看最容易的本机存储“HostPath”，它和 Docker 里挂载本地目录的 -v 参数非常类似，可以用它来初步认识一下 PV 的用法。
+因为 Pod 会在集群的任意节点上运行，所以首先，我们要作为系统管理员在每个节点上创建一个目录，它将会作为本地存储卷挂载到 Pod 里。
+为了省事，我就在 /tmp 里建立名字是 host-10m-pv 的目录，表示一个只有 10MB 容量的存储设备。
+有了存储，我们就可以使用 YAML 来描述这个 PV 对象了。
+不过很遗憾，你不能用 kubectl create 直接创建 PV 对象，只能用 kubectl api-resources、kubectl explain 查看 PV 的字段说明，手动编写 PV 的 YAML 描述文件。
+下面我给出一个 YAML 示例，你可以把它作为样板，编辑出自己的 PV：
+
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: host-10m-pv
+spec:
+  storageClassName: host-test
+  accessModes:
+
+  - ReadWriteOnce
+    capacity:
+    storage: 10Mi
+      hostPath:
+    path: /tmp/host-10m-pv/
+```
+
+PV 对象的文件头部分很简单，还是 API 对象的“老一套”，我就不再详细解释了，重点看它的 spec 部分，每个字段都很重要，描述了存储的详细信息。
+“storageClassName”就是刚才说过的，对存储类型的抽象 StorageClass。这个 PV 是我们手动管理的，名字可以任意起，这里我写的是 host-test，你也可以把它改成 manual、hand-work 之类的词汇。
+“accessModes”定义了存储设备的访问模式，简单来说就是虚拟盘的读写权限，和 Linux 的文件访问模式差不多，目前 Kubernetes 里有 3 种：
+ReadWriteOnce：存储卷可读可写，但只能被一个节点上的 Pod 挂载。
+ReadOnlyMany：存储卷只读不可写，可以被任意节点上的 Pod 多次挂载。
+ReadWriteMany：存储卷可读可写，也可以被任意节点上的 Pod 多次挂载。
+你要注意，这 3 种访问模式限制的对象是节点而不是 Pod，因为存储是系统级别的概念，不属于 Pod 里的进程。
+显然，本地目录只能是在本机使用，所以这个 PV 使用了 ReadWriteOnce。
+第三个字段“capacity”就很好理解了，表示存储设备的容量，这里我设置为 10MB。
+再次提醒你注意，Kubernetes 里定义存储容量使用的是国际标准，我们日常习惯使用的 KB/MB/GB 的基数是 1024，要写成 Ki/Mi/Gi，一定要小心不要写错了，否则单位不一致实际容量就会对不上。
+最后一个字段“hostPath”最简单，它指定了存储卷的本地路径，也就是我们在节点上创建的目录。
+用这些字段把 PV 的类型、访问模式、容量、存储位置都描述清楚，一个存储设备就创建好了。
+
+### 如何使用 YAML 描述 PersistentVolumeClaim
+
+有了 PV，就表示集群里有了这么一个持久化存储可以供 Pod 使用，我们需要再定义 PVC 对象，向 Kubernetes 申请存储。
+下面这份 YAML 就是一个 PVC，要求使用一个 5MB 的存储设备，访问模式是 ReadWriteOnce：
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: host-5m-pvc
+spec:
+  storageClassName: host-test
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Mi
+```
+
+PVC 的内容与 PV 很像，但它不表示实际的存储，而是一个“申请”或者“声明”，spec 里的字段描述的是对存储的“期望状态”。
+所以 PVC 里的 storageClassName、accessModes 和 PV 是一样的，但不会有字段 capacity，而是要用 resources.request 表示希望要有多大的容量。
+这样，Kubernetes 就会根据 PVC 里的描述，去找能够匹配 StorageClass 和容量的 PV，然后把 PV 和 PVC“绑定”在一起，实现存储的分配，和前面打电话要 A4 纸的过程差不多。
+
+### 如何在 Kubernetes 里使用 PersistentVolume
+
+现在我们已经准备好了 PV 和 PVC，就可以让 Pod 实现持久化存储了。
+首先需要用 kubectl apply 创建 PV 对象：
+
+```
+kubectl apply -f host-path-pv.yml
+
+```
+
+然后用 kubectl get  查看它的状态：
+
+```
+kubectl get pv
+```
+
+![img](https://static001.geekbang.org/resource/image/5c/37/5ca80e12c71d162f5707d37bf6009c37.png?wh=1920x150)从截图里我们可以看到，这个 PV 的容量是 10MB，访问模式是 RWO（ReadWriteOnce)，StorageClass 是我们自己定义的 host-test，状态显示的是 Available，也就是处于可用状态，可以随时分配给 Pod 使用。
+接下来我们创建 PVC，申请存储资源：
+
+```
+kubectl apply -f host-path-pvc.yml
+kubectl get pvc
+```
+
+![img](https://static001.geekbang.org/resource/image/fd/1f/fd6f1cb75f5d349860928594db29a11f.png?wh=1920x367)一旦 PVC 对象创建成功，Kubernetes 就会立即通过 StorageClass、resources 等条件在集群里查找符合要求的 PV，如果找到合适的存储对象就会把它俩“绑定”在一起。
+PVC 对象申请的是 5MB，但现在系统里只有一个 10MB 的 PV，没有更合适的对象，所以 Kubernetes 也只能把这个 PV 分配出去，多出的容量就算是“福利”了。
+你会看到这两个对象的状态都是 Bound，也就是说存储申请成功，PVC 的实际容量就是 PV 的容量 10MB，而不是最初申请的容量 5MB。
+那么，如果我们把 PVC 的申请容量改大一些会怎么样呢？比如改成 100MB：![img](https://static001.geekbang.org/resource/image/25/0c/25241a47c63cf629b88590ba1773710c.png?wh=1920x350)
+
+你会看到 PVC 会一直处于 Pending 状态，这意味着 Kubernetes 在系统里没有找到符合要求的存储，无法分配资源，只能等有满足要求的 PV 才能完成绑定。
+
+### 如何为 Pod 挂载 PersistentVolume
+
+PV 和 PVC 绑定好了，有了持久化存储，现在我们就可以为 Pod 挂载存储卷。用法和第 14 讲里差不多，先要在 spec.volumes 定义存储卷，然后在 containers.volumeMounts 挂载进容器。
+不过因为我们用的是 PVC，所以要在 volumes 里用字段 persistentVolumeClaim 指定 PVC 的名字。
+下面就是 Pod 的 YAML 描述文件，把存储卷挂载到了 Nginx 容器的 /tmp 目录：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-pvc-pod
+spec:
+  volumes:
+
+  - name: host-pvc-vol
+    persistentVolumeClaim:
+      claimName: host-5m-pvc
+    containers:
+    - name: ngx-pvc-pod
+      image: nginx:alpine
+      ports:
+      - containerPort: 80
+        volumeMounts:
+      - name: host-pvc-vol
+        mountPath: /tmp
+```
+
+我把 Pod 和 PVC/PV 的关系画成了图（省略了字段 accessModes），你可以从图里看出它们是如何联系起来的：![img](https://static001.geekbang.org/resource/image/a4/d8/a4d709808a0ef729604c884c50748bd8.jpg?wh=1920x1310)
+
+现在我们创建这个 Pod，查看它的状态：
+
+```
+kubectl apply -f host-path-pod.yml
+kubectl get pod -o wide
+```
+
+![img](https://static001.geekbang.org/resource/image/d4/9d/d4a2771c2c32597a4e5e2e60823c159d.png?wh=1846x192)它被 Kubernetes 调到了 worker 节点上，那么 PV 是否确实挂载成功了呢？让我们用 kubectl exec 进入容器，执行一些命令看看：![img](https://static001.geekbang.org/resource/image/c4/24/c42a618688eee98555cda33c5c1d6824.png?wh=1320x364)
+
+容器的 /tmp 目录里生成了一个 a.txt 的文件，根据 PV 的定义，它就应该落在 worker 节点的磁盘上，所以我们就登录 worker 节点检查一下：![img](https://static001.geekbang.org/resource/image/9d/c4/9dc40b80e2e4edb2d9449e2d43b02ac4.png?wh=988x242)
+
+你会看到确实在 worker 节点的本地目录有一个 a.txt 的文件，再对一下时间，就可以确认是刚才在 Pod 里生成的文件。
+因为 Pod 产生的数据已经通过 PV 存在了磁盘上，所以如果 Pod 删除后再重新创建，挂载存储卷时会依然使用这个目录，数据保持不变，也就实现了持久化存储。
+不过还有一点小问题，因为这个 PV 是 HostPath 类型，只在本节点存储，如果 Pod 重建时被调度到了其他节点上，那么即使加载了本地目录，也不会是之前的存储位置，持久化功能也就失效了。
+所以，HostPath 类型的 PV 一般用来做测试，或者是用于 DaemonSet 这样与节点关系比较密切的应用，我们下节课再讲实现真正任意的数据持久化。
+
+### 小结
+
+好了，今天我们一起学习了 Kubernetes 里应对持久化存储的解决方案，一共有三个 API 对象，分别是 PersistentVolume、PersistentVolumeClaim、StorageClass。它们管理的是集群里的存储资源，简单来说就是磁盘，Pod 必须通过它们才能够实现数据持久化。
+再小结一下今天的主要内容：
+PersistentVolume 简称为 PV，是 Kubernetes 对存储设备的抽象，由系统管理员维护，需要描述清楚存储设备的类型、访问模式、容量等信息。
+PersistentVolumeClaim 简称为 PVC，代表 Pod 向系统申请存储资源，它声明对存储的要求，Kubernetes 会查找最合适的 PV 然后绑定。
+StorageClass 抽象特定类型的存储系统，归类分组 PV 对象，用来简化 PV/PVC 的绑定过程。
+HostPath 是最简单的一种 PV，数据存储在节点本地，速度快但不能跟随 Pod 迁移。
+
+
+## 25｜PersistentVolume + NFS：怎么使用网络共享存储？
+
+在上节课里我们看到了 Kubernetes 里的持久化存储对象 PersistentVolume、PersistentVolumeClaim、StorageClass，把它们联合起来就可以为 Pod 挂载一块“虚拟盘”，让 Pod 在其中任意读写数据。
+不过当时我们使用的是 HostPath，存储卷只能在本机使用，而 Kubernetes 里的 Pod 经常会在集群里“漂移”，所以这种方式不是特别实用。
+要想让存储卷真正能被 Pod 任意挂载，我们需要变更存储的方式，不能限定在本地磁盘，而是要改成网络存储，这样 Pod 无论在哪里运行，只要知道 IP 地址或者域名，就可以通过网络通信访问存储设备。
+网络存储是一个非常热门的应用领域，有很多知名的产品，比如 AWS、Azure、Ceph，Kubernetes 还专门定义了 CSI（Container Storage Interface）规范，不过这些存储类型的安装、使用都比较复杂，在我们的实验环境里部署难度比较高。
+所以今天的这次课里，我选择了相对来说比较简单的 NFS 系统（Network File System），以它为例讲解如何在 Kubernetes 里使用网络存储，以及静态存储卷和动态存储卷的概念。
+
+### 如何安装 NFS 服务器
+
+作为一个经典的网络存储系统，NFS 有着近 40 年的发展历史，基本上已经成为了各种 UNIX 系统的标准配置，Linux 自然也提供对它的支持。
+NFS 采用的是 Client/Server 架构，需要选定一台主机作为 Server，安装 NFS 服务端；其他要使用存储的主机作为 Client，安装 NFS 客户端工具。
+所以接下来，我们在自己的 Kubernetes 集群里再增添一台名字叫 Storage 的服务器，在上面安装 NFS，实现网络存储、共享网盘的功能。不过这台 Storage 也只是一个逻辑概念，我们在实际安装部署的时候完全可以把它合并到集群里的某台主机里，比如这里我就复用了第 17 讲里的 Console。
+新的网络架构如下图所示：![img](https://static001.geekbang.org/resource/image/78/07/786e13af0e2f62f9cd73f5ab555a4507.jpg?wh=1920x1235)
+
+在 Ubuntu 系统里安装 NFS 服务端很容易，使用 apt 即可：
+
+```
+sudo apt -y install nfs-kernel-server
+
+```
+
+安装好之后，你需要给 NFS 指定一个存储位置，也就是网络共享目录。一般来说，应该建立一个专门的 /data 目录，这里为了简单起见，我就使用了临时目录 /tmp/nfs：
+
+```
+mkdir -p /tmp/nfs
+
+```
+
+接下来你需要配置 NFS 访问共享目录，修改 /etc/exports，指定目录名、允许访问的网段，还有权限等参数。这些规则比较琐碎，和我们的 Kubernetes 课程关联不大，我就不详细解释了，你只要把下面这行加上就行，注意目录名和 IP 地址要改成和自己的环境一致：
+
+```
+/tmp/nfs 192.168.10.0/24(rw,sync,no_subtree_check,no_root_squash,insecure)
+
+```
+
+改好之后，需要用 exportfs -ra 通知 NFS，让配置生效，再用 exportfs -v 验证效果：
+
+```
+sudo exportfs -ra
+sudo exportfs -v
+```
+
+![img](https://static001.geekbang.org/resource/image/0c/d1/0cd8889ee51c6d8a8947f6bd615d6bd1.png?wh=1920x116)现在，你就可以使用 systemctl 来启动 NFS 服务器了：
+
+```
+sudo systemctl start  nfs-server
+sudo systemctl enable nfs-server
+sudo systemctl status nfs-server
+```
+
+![img](https://static001.geekbang.org/resource/image/29/5a/29fb58f93f0e764ca8309ed9eff5175a.png?wh=1832x486)你还可以使用命令 showmount 来检查 NFS 的网络挂载情况：
+
+```
+showmount -e 127.0.0.1
+```
+
+### 如何安装 NFS 客户端
+
+有了 NFS 服务器之后，为了让 Kubernetes 集群能够访问 NFS 存储服务，我们还需要在每个节点上都安装 NFS 客户端。
+这项工作只需要一条 apt 命令，不需要额外的配置：
+
+```
+sudo apt -y install nfs-common
+
+```
+
+同样，在节点上可以用 showmount 检查 NFS 能否正常挂载，注意 IP 地址要写成 NFS 服务器的地址，我在这里就是“192.168.10.208”：![img](https://static001.geekbang.org/resource/image/7e/9c/7ed89f8468d6d4fa315a6d456f2eee9c.png?wh=1182x186)
+
+现在让我们尝试手动挂载一下 NFS 网络存储，先创建一个目录 /tmp/test 作为挂载点：
+
+```
+mkdir -p /tmp/test
+
+```
+
+然后用命令 mount 把 NFS 服务器的共享目录挂载到刚才创建的本地目录上：
+
+```
+sudo mount -t nfs 192.168.10.208:/tmp/nfs /tmp/test
+
+```
+
+最后测试一下，我们在 /tmp/test 里随便创建一个文件，比如 x.yml：
+
+```
+touch /tmp/test/x.yml
+
+```
+
+再回到 NFS 服务器，检查共享目录 /tmp/nfs，应该会看到也出现了一个同样的文件 x.yml，这就说明 NFS 安装成功了。之后集群里的任意节点，只要通过 NFS 客户端，就能把数据写入 NFS 服务器，实现网络存储。
+
+### 如何使用 NFS 存储卷
+
+现在我们已经为 Kubernetes 配置好了 NFS 存储系统，就可以使用它来创建新的 PV 存储对象了。
+先来手工分配一个存储卷，需要指定 storageClassName 是 nfs，而 accessModes 可以设置成 ReadWriteMany，这是由 NFS 的特性决定的，它支持多个节点同时访问一个共享目录。
+因为这个存储卷是 NFS 系统，所以我们还需要在 YAML 里添加 nfs 字段，指定 NFS 服务器的 IP 地址和共享目录名。
+这里我在 NFS 服务器的 /tmp/nfs 目录里又创建了一个新的目录 1g-pv，表示分配了 1GB 的可用存储空间，相应的，PV 里的 capacity 也要设置成同样的数值，也就是 1Gi。
+把这些字段都整理好后，我们就得到了一个使用 NFS 网络存储的 YAML 描述文件：
+
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-1g-pv
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  nfs:
+    path: /tmp/nfs/1g-pv
+    server: 192.168.10.208
+```
+
+现在就可以用命令 kubectl apply 来创建 PV 对象，再用 kubectl get pv 查看它的状态：
+
+```
+kubectl apply -f nfs-static-pv.yml
+kubectl get pv
+```
+
+![img](https://static001.geekbang.org/resource/image/3b/39/3bb0be2483e92467d3cac14fbc635739.png?wh=1688x300)再次提醒你注意，spec.nfs 里的 IP 地址一定要正确，路径一定要存在（事先创建好)，否则 Kubernetes 按照 PV 的描述会无法挂载 NFS 共享目录，PV 就会处于“pending”状态无法使用。
+有了 PV，我们就可以定义申请存储的 PVC 对象了，它的内容和 PV 差不多，但不涉及 NFS 存储的细节，只需要用 resources.request 来表示希望要有多大的容量，这里我写成 1GB，和 PV 的容量相同：
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-static-pvc
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+创建 PVC 对象之后，Kubernetes 就会根据 PVC 的描述，找到最合适的 PV，把它们“绑定”在一起，也就是存储分配成功：![img](https://static001.geekbang.org/resource/image/a7/8c/a7bbcc5dce117f9872cee3f08e6a6c8c.png?wh=1920x309)
+
+我们再创建一个 Pod，把 PVC 挂载成它的一个 volume，具体的做法和上节课是一样的，用 persistentVolumeClaim 指定 PVC 的名字就可以了：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-static-pod
+spec:
+  volumes:
+
+  - name: nfs-pvc-vol
+    persistentVolumeClaim:
+      claimName: nfs-static-pvc
+    containers:
+    - name: nfs-pvc-test
+      image: nginx:alpine
+      ports:
+      - containerPort: 80
+        volumeMounts:
+        - name: nfs-pvc-vol
+          mountPath: /tmp
+```
+
+Pod、PVC、PV 和 NFS 存储的关系可以用下图来形象地表示，你可以对比一下 HostPath PV 的用法，看看有什么不同：![img](https://static001.geekbang.org/resource/image/2a/a7/2a21d16b028afdea4f525439bd8f06a7.jpg?wh=1920x1125)
+
+因为我们在 PV/PVC 里指定了 storageClassName 是 nfs，节点上也安装了 NFS 客户端，所以 Kubernetes 就会自动执行 NFS 挂载动作，把 NFS 的共享目录 /tmp/nfs/1g-pv 挂载到 Pod 里的 /tmp，完全不需要我们去手动管理。
+最后还是测试一下，用 kubectl apply 创建 Pod 之后，我们用 kubectl exec 进入 Pod，再试着操作 NFS 共享目录：![img](https://static001.geekbang.org/resource/image/bb/90/bbc244b6cd21b71f50807864718d8990.png?wh=1386x542)
+
+退出 Pod，再看一下 NFS 服务器的 /tmp/nfs/1g-pv 目录，你就会发现 Pod 里创建的文件确实写入了共享目录：![img](https://static001.geekbang.org/resource/image/87/d0/87cdc722da478db6f938db4d424be0d0.png?wh=756x354)
+
+而且更好的是，因为 NFS 是一个网络服务，不会受 Pod 调度位置的影响，所以只要网络通畅，这个 PV 对象就会一直可用，数据也就实现了真正的持久化存储。
+
+### 如何部署 NFS Provisoner
+
+现在有了 NFS 这样的网络存储系统，你是不是认为 Kubernetes 里的数据持久化问题就已经解决了呢？
+对于这个问题，我觉得可以套用一句现在的流行语：“解决了，但没有完全解决。”
+说它“解决了”，是因为网络存储系统确实能够让集群里的 Pod 任意访问，数据在 Pod 销毁后仍然存在，新创建的 Pod 可以再次挂载，然后读取之前写入的数据，整个过程完全是自动化的。
+说它“没有完全解决”，是因为 PV 还是需要人工管理，必须要由系统管理员手动维护各种存储设备，再根据开发需求逐个创建 PV，而且 PV 的大小也很难精确控制，容易出现空间不足或者空间浪费的情况。
+在我们的这个实验环境里，只有很少的 PV 需求，管理员可以很快分配 PV 存储卷，但是在一个大集群里，每天可能会有几百几千个应用需要 PV 存储，如果仍然用人力来管理分配存储，管理员很可能会忙得焦头烂额，导致分配存储的工作大量积压。
+那么能不能让创建 PV 的工作也实现自动化呢？或者说，让计算机来代替人类来分配存储卷呢？
+这个在 Kubernetes 里就是“动态存储卷”的概念，它可以用 StorageClass 绑定一个 Provisioner 对象，而这个 Provisioner 就是一个能够自动管理存储、创建 PV 的应用，代替了原来系统管理员的手工劳动。
+有了“动态存储卷”的概念，前面我们讲的手工创建的 PV 就可以称为“静态存储卷”。
+目前，Kubernetes 里每类存储设备都有相应的 Provisioner 对象，对于 NFS 来说，它的 Provisioner 就是“NFS subdir external provisioner”，你可以在 GitHub 上找到这个项目（https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner）。
+NFS Provisioner 也是以 Pod 的形式运行在 Kubernetes 里的，在 GitHub 的 deploy 目录里是部署它所需的 YAML 文件，一共有三个，分别是 rbac.yaml、class.yaml 和 deployment.yaml。
+不过这三个文件只是示例，想在我们的集群里真正运行起来还要修改其中的两个文件。
+第一个要修改的是 rbac.yaml，它使用的是默认的 default 名字空间，应该把它改成其他的名字空间，避免与普通应用混在一起，你可以用“查找替换”的方式把它统一改成 kube-system。
+第二个要修改的是 deployment.yaml，它要修改的地方比较多。首先要把名字空间改成和 rbac.yaml 一样，比如是 kube-system，然后重点要修改 volumes 和 env 里的 IP 地址和共享目录名，必须和集群里的 NFS 服务器配置一样。
+按照我们当前的环境设置，就应该把 IP 地址改成 192.168.10.208，目录名改成 /tmp/nfs：
+
+```
+spec:
+  template:
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+      ...
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/nfs-subdir-external-provisioner
+            - name: NFS_SERVER
+              value: 192.168.10.208        #改IP地址
+            - name: NFS_PATH
+              value: /tmp/nfs              #改共享目录名
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: 192.168.10.208         #改IP地址
+            Path: /tmp/nfs                 #改共享目录名
+```
+
+还有一件麻烦事，deployment.yaml 的镜像仓库用的是 gcr.io，拉取很困难，而国内的镜像网站上偏偏还没有它，为了让实验能够顺利进行，我不得不“曲线救国”，把它的镜像转存到了 Docker Hub 上。
+所以你还需要把镜像的名字由原来的“k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2”改成“chronolaw/nfs-subdir-external-provisioner:v4.0.2”，其实也就是变动一下镜像的用户名而已。
+把这两个 YAML 修改好之后，我们就可以在 Kubernetes 里创建 NFS Provisioner 了：
+
+```
+kubectl apply -f rbac.yaml
+kubectl apply -f class.yaml
+kubectl apply -f deployment.yaml
+```
+
+使用命令 kubectl get，再加上名字空间限定 -n kube-system，就可以看到 NFS Provisioner 在 Kubernetes 里运行起来了。![img](https://static001.geekbang.org/resource/image/35/6d/35758cbe60ddf264bcf59d703fd4986d.png?wh=1920x407)
+
+### 如何使用 NFS 动态存储卷
+
+比起静态存储卷，动态存储卷的用法简单了很多。因为有了 Provisioner，我们就不再需要手工定义 PV 对象了，只需要在 PVC 里指定 StorageClass 对象，它再关联到 Provisioner。
+我们来看一下 NFS 默认的 StorageClass 定义：
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner 
+parameters:
+  archiveOnDelete: "false"
+```
+
+YAML 里的关键字段是 provisioner，它指定了应该使用哪个 Provisioner。另一个字段 parameters 是调节 Provisioner 运行的参数，需要参考文档来确定具体值，在这里的 archiveOnDelete: "false" 就是自动回收存储空间。
+理解了 StorageClass 的 YAML 之后，你也可以不使用默认的 StorageClass，而是根据自己的需求，任意定制具有不同存储特性的 StorageClass，比如添加字段 onDelete: "retain" 暂时保留分配的存储，之后再手动删除：
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client-retained
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+parameters:
+  onDelete: "retain"
+```
+
+接下来我们定义一个 PVC，向系统申请 10MB 的存储空间，使用的 StorageClass 是默认的 nfs-client：
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-dyn-10m-pvc
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Mi
+```
+
+写好了 PVC，我们还是在 Pod 里用 volumes 和 volumeMounts 挂载，然后 Kubernetes 就会自动找到 NFS Provisioner，在 NFS 的共享目录上创建出合适的 PV 对象：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-dyn-pod
+spec:
+  volumes:
+
+  - name: nfs-dyn-10m-vol
+    persistentVolumeClaim:
+      claimName: nfs-dyn-10m-pvc
+    containers:
+    - name: nfs-dyn-test
+      image: nginx:alpine
+      ports:
+      - containerPort: 80
+        volumeMounts:
+        - name: nfs-dyn-10m-vol
+          mountPath: /tmp
+```
+
+使用 kubectl apply 创建好 PVC 和 Pod，让我们来查看一下集群里的 PV 状态：![img](https://static001.geekbang.org/resource/image/57/bb/570d73409db1edc757yy10e6aba56ebb.png?wh=1920x271)
+
+从截图你可以看到，虽然我们没有直接定义 PV 对象，但由于有 NFS Provisioner，它就自动创建一个 PV，大小刚好是在 PVC 里申请的 10MB。
+如果你这个时候再去 NFS 服务器上查看共享目录，也会发现多出了一个目录，名字与这个自动创建的 PV 一样，但加上了名字空间和 PVC 的前缀：![img](https://static001.geekbang.org/resource/image/a9/ea/a9b6942b824bc9f7841850ee15yy68ea.png?wh=1714x126)
+
+我还是把 Pod、PVC、StorageClass 和 Provisioner 的关系画成了一张图，你可以清楚地看出来这些对象的关联关系，还有 Pod 是如何最终找到存储设备的：![img](https://static001.geekbang.org/resource/image/e3/1e/e3905990be6fb8739fb51a4ab9856f1e.jpg?wh=1920x856)
+
+### 小结
+
+好了，今天的这节课里我们继续学习 PV/PVC，引入了网络存储系统，以 NFS 为例研究了静态存储卷和动态存储卷的用法，其中的核心对象是 StorageClass 和 Provisioner。
+我再小结一下今天的要点：
+在 Kubernetes 集群里，网络存储系统更适合数据持久化，NFS 是最容易使用的一种网络存储系统，要事先安装好服务端和客户端。
+可以编写 PV 手工定义 NFS 静态存储卷，要指定 NFS 服务器的 IP 地址和共享目录名。
+使用 NFS 动态存储卷必须要部署相应的 Provisioner，在 YAML 里正确配置 NFS 服务器。
+动态存储卷不需要手工定义 PV，而是要定义 StorageClass，由关联的 Provisioner 自动创建 PV 完成绑定。
+
+## 26｜StatefulSet：怎么管理有状态的应用？
+
+在中级篇里，我们学习了 Deployment 和 DaemonSet 两种 API 对象，它们是在 Kubernetes 集群里部署应用的重要工具，不过它们也有一个缺点，只能管理“无状态应用”（Stateless Application），不能管理“有状态应用”（Stateful Application）。
+“有状态应用”的处理比较复杂，要考虑的事情很多，但是这些问题我们其实可以通过组合之前学过的 Deployment、Service、PersistentVolume 等对象来解决。
+今天我们就来研究一下什么是“有状态应用”，然后看看 Kubernetes 为什么会设计一个新对象——StatefulSet 来专门管理“有状态应用”。
+
+### 什么是有状态的应用
+
+我们先从 PersistentVolume 谈起，它为 Kubernetes 带来了持久化存储的功能，能够让应用把数据存放在本地或者远程的磁盘上。
+那么你有没有想过，持久化存储，对应用来说，究竟意味着什么呢？
+有了持久化存储，应用就可以把一些运行时的关键数据落盘，相当于有了一份“保险”，如果 Pod 发生意外崩溃，也只不过像是按下了暂停键，等重启后挂载 Volume，再加载原数据就能够满血复活，恢复之前的“状态”继续运行。
+注意到了吗？这里有一个关键词——“状态”，应用保存的数据，实际上就是它某个时刻的“运行状态”。
+所以从这个角度来说，理论上任何应用都是有状态的。
+只是有的应用的状态信息不是很重要，即使不恢复状态也能够正常运行，这就是我们常说的“无状态应用”。“无状态应用”典型的例子就是 Nginx 这样的 Web 服务器，它只是处理 HTTP 请求，本身不生产数据（日志除外），不需要特意保存状态，无论以什么状态重启都能很好地对外提供服务。
+还有一些应用，运行状态信息就很重要了，如果因为重启而丢失了状态是绝对无法接受的，这样的应用就是“有状态应用”。
+“有状态应用”的例子也有很多，比如 Redis、MySQL 这样的数据库，它们的“状态”就是在内存或者磁盘上产生的数据，是应用的核心价值所在，如果不能够把这些数据及时保存再恢复，那绝对会是灾难性的后果。
+理解了这一点，我们结合目前学到的知识思考一下：Deployment 加上 PersistentVolume，在 Kubernetes 里是不是可以轻松管理有状态的应用了呢？
+的确，用 Deployment 来保证高可用，用 PersistentVolume 来存储数据，确实可以部分达到管理“有状态应用”的目的（你可以自己试着编写这样的 YAML）。
+但是 Kubernetes 的眼光则更加全面和长远，它认为“状态”不仅仅是数据持久化，在集群化、分布式的场景里，还有多实例的依赖关系、启动顺序和网络标识等问题需要解决，而这些问题恰恰是 Deployment 力所不及的。
+因为只使用 Deployment，多个实例之间是无关的，启动的顺序不固定，Pod 的名字、IP 地址、域名也都是完全随机的，这正是“无状态应用”的特点。
+但对于“有状态应用”，多个实例之间可能存在依赖关系，比如 master/slave、active/passive，需要依次启动才能保证应用正常运行，外界的客户端也可能要使用固定的网络标识来访问实例，而且这些信息还必须要保证在 Pod 重启后不变。
+所以，Kubernetes 就在 Deployment 的基础之上定义了一个新的 API 对象，名字也很好理解，就叫 StatefulSet，专门用来管理有状态的应用。
+
+### 如何使用 YAML 描述 StatefulSet
+
+首先我们还是用命令 kubectl api-resources 来查看 StatefulSet 的基本信息，可以知道它的简称是 sts，YAML 文件头信息是：
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: xxx-sts
+```
+
+和 DaemonSet 类似，StatefulSet 也可以看做是 Deployment 的一个特例，它也不能直接用 kubectl create 创建样板文件，但它的对象描述和 Deployment 差不多，你同样可以把 Deployment 适当修改一下，就变成了 StatefulSet 对象。
+这里我给出了一个使用 Redis 的 StatefulSet，你来看看它与 Deployment 有什么差异：
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-sts
+spec:
+  serviceName: redis-svc
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-sts
+  template:
+    metadata:
+      labels:
+        app: redis-sts
+    spec:
+      containers:
+      - image: redis:5-alpine
+        name: redis
+        ports:
+        - containerPort: 6379
+```
+
+我们会发现，YAML 文件里除了 kind 必须是“StatefulSet”，在 spec 里还多出了一个“serviceName”字段，其余的部分和 Deployment 是一模一样的，比如 replicas、selector、template 等等。
+这两个不同之处其实就是 StatefulSet 与 Deployment 的关键区别。想要真正理解这一点，我们得结合 StatefulSet 在 Kubernetes 里的使用方法来分析。
+
+### 如何在 Kubernetes 里使用 StatefulSet
+
+让我们用 kubectl apply 创建 StatefulSet 对象，用 kubectl get 先看看它是什么样的：
+
+```
+kubectl apply -f redis-sts.yml
+kubectl get sts
+kubectl get pod
+```
+
+![img](https://static001.geekbang.org/resource/image/71/88/71b485401dca6946fe4788fa97e3fd88.png?wh=1268x414)从截图里，你应该能够看到，StatefulSet 所管理的 Pod 不再是随机的名字了，而是有了顺序编号，从 0 开始分别被命名为 redis-sts-0、redis-sts-1，Kubernetes 也会按照这个顺序依次创建（0 号比 1 号的 AGE 要长一点)，这就解决了“有状态应用”的第一个问题：启动顺序。
+有了启动的先后顺序，应用该怎么知道自己的身份，进而确定互相之间的依赖关系呢？
+Kubernetes 给出的方法是使用 hostname，也就是每个 Pod 里的主机名，让我们再用 kubectl exec 登录 Pod 内部看看：
+
+```
+kubectl exec -it redis-sts-0 -- sh
+```
+
+![img](https://static001.geekbang.org/resource/image/be/39/be44f94eaf07f3591c7a2a8b9cdd1739.png?wh=1308x468)在 Pod 里查看环境变量 $HOSTNAME 或者是执行命令 hostname，都可以得到这个 Pod 的名字 redis-sts-0。
+有了这个唯一的名字，应用就可以自行决定依赖关系了，比如在这个 Redis 例子里，就可以让先启动的 0 号 Pod 是主实例，后启动的 1 号 Pod 是从实例。
+解决了启动顺序和依赖关系，还剩下第三个问题：网络标识，这就需要用到 Service 对象。
+不过这里又有一点奇怪的地方，我们不能用命令 kubectl expose 直接为 StatefulSet 生成 Service，只能手动编写 YAML。但是这肯定难不倒你，经过了这么多练习，现在你应该能很轻松地写出一个 Service 对象。
+因为不能自动生成，你在写 Service 对象的时候要小心一些，metadata.name 必须和 StatefulSet 里的 serviceName 相同，selector 里的标签也必须和 StatefulSet 里的一致：
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-svc
+spec:
+  selector:
+    app: redis-sts
+  ports:
+
+  - port: 6379
+    protocol: TCP
+    targetPort: 6379
+```
+
+写好 Service 之后，还是用 kubectl apply 创建这个对象：![img](https://static001.geekbang.org/resource/image/5f/c8/5f8e4dbedaa563801bb6bbe09c441dc8.png?wh=1584x1056)
+
+可以看到这个 Service 并没有什么特殊的地方，也是用标签选择器找到 StatefulSet 管理的两个 Pod，然后找到它们的 IP 地址。
+不过，StatefulSet 的奥秘就在它的域名上。
+还记得在第 20 讲里我们说过的 Service 的域名用法吗？Service 自己会有一个域名，格式是“对象名. 名字空间”，每个 Pod 也会有一个域名，形式是“IP 地址. 名字空间”。但因为 IP 地址不稳定，所以 Pod 的域名并不实用，一般我们会使用稳定的 Service 域名。
+当我们把 Service 对象应用于 StatefulSet 的时候，情况就不一样了。
+Service 发现这些 Pod 不是一般的应用，而是有状态应用，需要有稳定的网络标识，所以就会为 Pod 再多创建出一个新的域名，格式是“Pod 名. 服务名. 名字空间.svc.cluster.local”。当然，这个域名也可以简写成“Pod 名. 服务名”。
+我们还是用 kubectl exec 进入 Pod 内部，用 ping 命令来验证一下：
+
+```
+kubectl exec -it redis-sts-0 -- sh
+```
+
+![img](https://static001.geekbang.org/resource/image/f1/39/f1b058b5fb3e5218c638ca0534b92439.png?wh=1524x1338)显然，在 StatefulSet 里的这两个 Pod 都有了各自的域名，也就是稳定的网络标识。那么接下来，外部的客户端只要知道了 StatefulSet 对象，就可以用固定的编号去访问某个具体的实例了，虽然 Pod 的 IP 地址可能会变，但这个有编号的域名由 Service 对象维护，是稳定不变的。
+到这里，通过 StatefulSet 和 Service 的联合使用，Kubernetes 就解决了“有状态应用”的依赖关系、启动顺序和网络标识这三个问题，剩下的多实例之间内部沟通协调等事情就需要应用自己去想办法处理了。
+关于 Service，有一点值得再多提一下。
+Service 原本的目的是负载均衡，应该由它在 Pod 前面来转发流量，但是对 StatefulSet 来说，这项功能反而是不必要的，因为 Pod 已经有了稳定的域名，外界访问服务就不应该再通过 Service 这一层了。所以，从安全和节约系统资源的角度考虑，我们可以在 Service 里添加一个字段 clusterIP: None ，告诉 Kubernetes 不必再为这个对象分配 IP 地址。
+我画了一张图展示 StatefulSet 与 Service 对象的关系，你可以参考一下它们字段之间的互相引用：![img](https://static001.geekbang.org/resource/image/49/22/490d814cf0f25db56537a20f3af57e22.jpg?wh=1920x1094)
+
+### 如何实现 StatefulSet 的数据持久化
+
+现在 StatefulSet 已经有了固定的名字、启动顺序和网络标识，只要再给它加上数据持久化功能，我们就可以实现对“有状态应用”的管理了。
+这里就能用到上一节课里学的 PersistentVolume 和 NFS 的知识，我们可以很容易地定义 StorageClass，然后编写 PVC，再给 Pod 挂载 Volume。
+不过，为了强调持久化存储与 StatefulSet 的一对一绑定关系，Kubernetes 为 StatefulSet 专门定义了一个字段“volumeClaimTemplates”，直接把 PVC 定义嵌入 StatefulSet 的 YAML 文件里。这样能保证创建 StatefulSet 的同时，就会为每个 Pod 自动创建 PVC，让 StatefulSet 的可用性更高。
+“volumeClaimTemplates”这个字段好像有点难以理解，你可以把它和 Pod 的 template、Job 的 jobTemplate 对比起来学习，它其实也是一个“套娃”的对象组合结构，里面就是应用了 StorageClass 的普通 PVC 而已。
+让我们把刚才的 Redis StatefulSet 对象稍微改造一下，加上持久化存储功能：
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-pv-sts
+spec:
+  serviceName: redis-pv-svc
+  volumeClaimTemplates:
+
+  - metadata:
+    name: redis-100m-pvc
+    spec:
+      storageClassName: nfs-client
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 100Mi
+    replicas: 2
+    selector:
+    matchLabels:
+      app: redis-pv-sts
+    template:
+    metadata:
+      labels:
+        app: redis-pv-sts
+    spec:
+      containers:
+      - image: redis:5-alpine
+        name: redis
+        ports:
+        - containerPort: 6379
+          volumeMounts:
+        - name: redis-100m-pvc
+          mountPath: /data
+```
+
+  这个 YAML 文件比较长，内容比较多，不过你只要有点耐心，分功能模块逐个去看也能很快看明白。
+  首先 StatefulSet 对象的名字是 redis-pv-sts，表示它使用了 PV 存储。然后“volumeClaimTemplates”里定义了一个 PVC，名字是 redis-100m-pvc，申请了 100MB 的 NFS 存储。在 Pod 模板里用 volumeMounts 引用了这个 PVC，把网盘挂载到了 /data 目录，也就是 Redis 的数据目录。
+  下面的这张图就是这个 StatefulSet 对象完整的关系图：![img](https://static001.geekbang.org/resource/image/1a/0f/1a06987c87f3db948b591883a81bac0f.jpg?wh=4000x2946)
+
+最后使用 kubectl apply 创建这些对象，一个带持久化功能的“有状态应用”就算是运行起来了：
+
+```
+kubectl apply -f redis-pv-sts.yml
+
+```
+
+你可以使用命令 kubectl get pvc 来查看 StatefulSet 关联的存储卷状态：![img](https://static001.geekbang.org/resource/image/33/f5/33eee3c5a5033e4bf73f5003669c4ff5.png?wh=1920x189)
+
+看这两个 PVC 的命名，不是随机的，是有规律的，用的是 PVC 名字加上 StatefulSet 的名字组合而成，所以即使 Pod 被销毁，因为它的名字不变，还能够找到这个 PVC，再次绑定使用之前存储的数据。
+那我们就来实地验证一下吧，用 kubectl exec 运行 Redis 的客户端，在里面添加一些 KV 数据：
+
+```
+kubectl exec -it redis-pv-sts-0 -- redis-cli
+```
+
+![img](https://static001.geekbang.org/resource/image/94/b7/94a96b1b8a000dcd852d2ea11yy8ddb7.png?wh=1562x530)这里我设置了两个值，分别是 a=111 和 b=222。
+现在我们模拟意外事故，删除这个 Pod：
+
+```
+kubectl delete pod redis-pv-sts-0
+
+```
+
+由于 StatefulSet 和 Deployment 一样会监控 Pod 的实例，发现 Pod 数量少了就会很快创建出新的 Pod，并且名字、网络标识也都会和之前的 Pod 一模一样：![img](https://static001.geekbang.org/resource/image/52/23/52e2f02a1d80d8bba2a42c8258cda923.png?wh=1300x236)
+
+那 Redis 里存储的数据怎么样了呢？是不是真的用到了持久化存储，也完全恢复了呢？
+你可以再用 Redis 客户端登录去检查一下：
+
+```
+kubectl exec -it redis-pv-sts-0 -- redis-cli
+```
+
+![img](https://static001.geekbang.org/resource/image/c7/08/c78ca845ee20459dd2d8bayy3db71808.png?wh=1544x530)因为我们把 NFS 网络存储挂载到了 Pod 的 /data 目录，Redis 就会定期把数据落盘保存，所以新创建的 Pod 再次挂载目录的时候会从备份文件里恢复数据，内存里的数据就恢复原状了。
+
+### 小结
+
+好了，今天我们学习了专门部署“有状态应用”的 API 对象 StatefulSet，它与 Deployment 非常相似，区别是由它管理的 Pod 会有固定的名字、启动顺序和网络标识，这些特性对于在集群里实施有主从、主备等关系的应用非常重要。
+我再简单小结一下今天的内容：
+StatefulSet 的 YAML 描述和 Deployment 几乎完全相同，只是多了一个关键字段 serviceName。
+要为 StatefulSet 里的 Pod 生成稳定的域名，需要定义 Service 对象，它的名字必须和 StatefulSet 里的 serviceName 一致。
+访问 StatefulSet 应该使用每个 Pod 的单独域名，形式是“Pod 名. 服务名”，不应该使用 Service 的负载均衡功能。
+在 StatefulSet 里可以用字段“volumeClaimTemplates”直接定义 PVC，让 Pod 实现数据持久化存储。
+
+## 27｜滚动更新：如何做到平滑的应用升级降级？
+
+上次课里我们学习了管理有状态应用的对象 StatefulSet，再加上管理无状态应用的 Deployment 和 DaemonSet，我们就能在 Kubernetes 里部署任意形式的应用了。
+不过，只是把应用发布到集群里是远远不够的，要让应用稳定可靠地运行，还需要有持续的运维工作。
+如果你还记得在第 18 节课里，我们学过 Deployment 的“应用伸缩”功能就是一种常见的运维操作，在 Kubernetes 里，使用命令 kubectl scale，我们就可以轻松调整 Deployment 下属的 Pod 数量，因为 StatefulSet 是 Deployment 的一种特例，所以它也可以使用 kubectl scale 来实现“应用伸缩”。
+除了“应用伸缩”，其他的运维操作比如应用更新、版本回退等工作，该怎么做呢？这些也是我们日常运维中经常会遇到的问题。
+今天我就以 Deployment 为例，来讲讲 Kubernetes 在应用管理方面的高级操作：滚动更新，使用 kubectl rollout 实现用户无感知的应用升级和降级。
+
+### Kubernetes 如何定义应用版本
+
+应用的版本更新，大家都知道是怎么回事，比如我们发布了 V1 版，过了几天加了新功能，要发布 V2 版。
+不过说起来简单，版本更新实际做起来是一个相当棘手的事。因为系统已经上线运行，必须要保证不间断地对外提供服务，通俗地说就是“给空中的飞机换引擎”。尤其在以前，需要开发、测试、运维、监控、网络等各个部门的一大堆人来协同工作，费时又费力。
+但是，应用的版本更新其实是有章可循的，现在我们有了 Kubernetes 这个强大的自动化运维管理系统，就可以把它的过程抽象出来，让计算机去完成那些复杂繁琐的人工操作。
+在 Kubernetes 里，版本更新使用的不是 API 对象，而是两个命令：kubectl apply 和 kubectl rollout，当然它们也要搭配部署应用所需要的 Deployment、DaemonSet 等 YAML 文件。
+不过在我们信心满满开始操作之前，首先要理解在 Kubernetes 里，所谓的“版本”到底是什么？
+我们常常会简单地认为“版本”就是应用程序的“版本号”，或者是容器镜像的“标签”，但不要忘了，在 Kubernetes 里应用都是以 Pod 的形式运行的，而 Pod 通常又会被 Deployment 等对象来管理，所以应用的“版本更新”实际上更新的是整个 Pod。
+那 Pod 又是由什么来决定的呢？
+仔细回忆一下之前我们创建的那么多个对象，你就会发现，Pod 是由 YAML 描述文件来确定的，更准确地说，是 Deployment 等对象里的字段 template。
+所以，在 Kubernetes 里应用的版本变化就是 template 里 Pod 的变化，哪怕 template 里只变动了一个字段，那也会形成一个新的版本，也算是版本变化。
+但 template 里的内容太多了，拿这么长的字符串来当做“版本号”不太现实，所以 Kubernetes 就使用了“摘要”功能，用摘要算法计算 template 的 Hash 值作为“版本号”，虽然不太方便识别，但是很实用。
+我们就拿第 18 讲里的 Nginx Deployment 作为例子吧，创建对象之后，使用 kubectl get 来查看 Pod 的状态：![img](https://static001.geekbang.org/resource/image/67/7b/67bc5178acde882a57265d6413158a7b.png?wh=1550x234)
+
+Pod 名字里的那串随机数“6796……”就是 Pod 模板的 Hash 值，也就是 Pod 的“版本号”。
+如果你变动了 Pod YAML 描述，比如把镜像改成 nginx:stable-alpine，或者把容器名字改成 nginx-test，都会生成一个新的应用版本，kubectl apply 后就会重新创建 Pod：![img](https://static001.geekbang.org/resource/image/15/1e/15e17760079a03f046aa67f6e34b511e.png?wh=1560x236)
+
+你可以看到，Pod 名字里的 Hash 值变成了“7c6c……”，这就表示 Pod 的版本更新了。
+
+### Kubernetes 如何实现应用更新
+
+为了更仔细地研究 Kubernetes 的应用更新过程，让我们来略微改造一下 Nginx Deployment 对象，看看 Kubernetes 到底是怎么实现版本更新的。
+首先修改 ConfigMap，让它输出 Nginx 的版本号，方便我们用 curl 查看版本：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ngx-conf
+data:
+  default.conf: |
+    server {
+      listen 80;
+      location / {
+        default_type text/plain;
+        return 200
+          'ver : $nginx_version\nsrv : $server_addr:$server_port\nhost: $hostname\n';
+      }
+    }
+```
+
+然后我们修改 Pod 镜像，明确地指定版本号是 1.21-alpine，实例数设置为 4 个：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+spec:
+  replicas: 4
+  ... ...
+      containers:
+      - image: nginx:1.21-alpine
+  ... ...
+```
+
+把它命名为 ngx-v1.yml，然后执行命令 kubectl apply 部署这个应用：
+
+```
+kubectl apply -f ngx-v1.yml
+
+```
+
+我们还可以为它创建 Service 对象，再用 kubectl port-forward 转发请求来查看状态：
+
+```
+kubectl port-forward svc/ngx-svc 8080:80 &
+curl 127.1:8080
+```
+
+![img](https://static001.geekbang.org/resource/image/20/52/20d23af1305e2d2b4f66b951c09dac52.png?wh=1532x928)从 curl 命令的输出中可以看到，现在应用的版本是 1.21.6。
+现在，让我们编写一个新版本对象 ngx-v2.yml，把镜像升级到 nginx:1.22-alpine，其他的都不变。
+因为 Kubernetes 的动作太快了，为了能够观察到应用更新的过程，我们还需要添加一个字段 minReadySeconds，让 Kubernetes 在更新过程中等待一点时间，确认 Pod 没问题才继续其余 Pod 的创建工作。
+要提醒你注意的是，minReadySeconds 这个字段不属于 Pod 模板，所以它不会影响 Pod 版本：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+spec:
+  minReadySeconds: 15      # 确认Pod就绪的等待时间 
+  replicas: 4
+  ... ...
+      containers:
+      - image: nginx:1.22-alpine
+  ... ...
+```
+
+现在我们执行命令 kubectl apply 来更新应用，因为改动了镜像名，Pod 模板变了，就会触发“版本更新”，然后用一个新命令：kubectl rollout status，来查看应用更新的状态：
+
+```
+kubectl apply -f ngx-v2.yml
+kubectl rollout status deployment ngx-dep
+```
+
+![img](https://static001.geekbang.org/resource/image/6d/7f/6d4023181fe180d50eb4cca7755a207f.png?wh=1920x486)更新完成后，你再执行 kubectl get pod，就会看到 Pod 已经全部替换成了新版本“d575……”，用 curl 访问 Nginx，输出信息也变成了“1.22.0”：![img](https://static001.geekbang.org/resource/image/6a/64/6a1776c3yy1ec374510af9e560401064.png?wh=1594x646)
+
+仔细查看 kubectl rollout status 的输出信息，你可以发现，Kubernetes 不是把旧 Pod 全部销毁再一次性创建出新 Pod，而是在逐个地创建新 Pod，同时也在销毁旧 Pod，保证系统里始终有足够数量的 Pod 在运行，不会有“空窗期”中断服务。
+新 Pod 数量增加的过程有点像是“滚雪球”，从零开始，越滚越大，所以这就是所谓的“滚动更新”（rolling update）。
+使用命令 kubectl describe 可以更清楚地看到 Pod 的变化情况：
+
+```
+kubectl describe deploy ngx-dep
+```
+
+![img](https://static001.geekbang.org/resource/image/3b/fa/3b88d6b0d609e3b99f33b4f8e997c3fa.png?wh=1232x550)一开始的时候 V1 Pod（即 ngx-dep-54b865d75）的数量是 4；
+当“滚动更新”开始的时候，Kubernetes 创建 1 个 V2 Pod（即 ngx-dep-d575d5776)，并且把 V1 Pod 数量减少到 3；
+接着再增加 V2 Pod 的数量到 2，同时 V1 Pod 的数量变成了 1；
+最后 V2 Pod 的数量达到预期值 4，V1 Pod 的数量变成了 0，整个更新过程就结束了。
+看到这里你是不是有点明白了呢，其实“滚动更新”就是由 Deployment 控制的两个同步进行的“应用伸缩”操作，老版本缩容到 0，同时新版本扩容到指定值，是一个“此消彼长”的过程。
+这个滚动更新的过程我画了一张图，你可以参考它来进一步体会：![img](https://static001.geekbang.org/resource/image/b3/31/b3abe70db73a9da71a1793722e743731.jpg?wh=1920x729)
+
+### Kubernetes 如何管理应用更新
+
+Kubernetes 的“滚动更新”功能确实非常方便，不需要任何人工干预就能简单地把应用升级到新版本，也不会中断服务，不过如果更新过程中发生了错误或者更新后发现有 Bug 该怎么办呢？
+要解决这两个问题，我们还是要用 kubectl rollout 命令。
+在应用更新的过程中，你可以随时使用 kubectl rollout pause 来暂停更新，检查、修改 Pod，或者测试验证，如果确认没问题，再用 kubectl rollout resume 来继续更新。
+这两个命令比较简单，我就不多做介绍了，要注意的是它们只支持 Deployment，不能用在 DaemonSet、StatefulSet 上（最新的 1.24 支持了 StatefulSet 的滚动更新）。
+对于更新后出现的问题，Kubernetes 为我们提供了“后悔药”，也就是更新历史，你可以查看之前的每次更新记录，并且回退到任何位置，和我们开发常用的 Git 等版本控制软件非常类似。
+查看更新历史使用的命令是 kubectl rollout history：
+
+```
+kubectl rollout history deploy ngx-dep
+```
+
+![img](https://static001.geekbang.org/resource/image/7c/09/7cc86862b28829c58c00eeb0fcdfbd09.png?wh=1398x306)它会输出一个版本列表，因为我们创建 Nginx Deployment 是一个版本，更新又是一个版本，所以这里就会有两条历史记录。
+但 kubectl rollout history 的列表输出的有用信息太少，你可以在命令后加上参数 --revision 来查看每个版本的详细信息，包括标签、镜像名、环境变量、存储卷等等，通过这些就可以大致了解每次都变动了哪些关键字段：
+
+```
+kubectl rollout history deploy --revision=2
+```
+
+![img](https://static001.geekbang.org/resource/image/0f/7c/0f8c4d0a230b97bb1a74d745c220677c.png?wh=1608x1054)假设我们认为刚刚更新的 nginx:1.22-alpine 不好，想要回退到上一个版本，就可以使用命令 kubectl rollout undo，也可以加上参数 --to-revision 回退到任意一个历史版本：
+
+```
+kubectl rollout undo deploy ngx-dep
+```
+
+![img](https://static001.geekbang.org/resource/image/14/c7/149345b7df104ac70c23a6c877a9b1c7.png?wh=1408x406)kubectl rollout undo 的操作过程其实和 kubectl apply 是一样的，执行的仍然是“滚动更新”，只不过使用的是旧版本 Pod 模板，把新版本 Pod 数量收缩到 0，同时把老版本 Pod 扩展到指定值。
+这个 V2 到 V1 的“版本降级”的过程我同样画了一张图，它和从 V1 到 V2 的“版本升级”过程是完全一样的，不同的只是版本号的变化方向：![img](https://static001.geekbang.org/resource/image/0c/29/0cbb6eec008546c4f5106de5ece20329.jpg?wh=1920x695)
+
+### Kubernetes 如何添加更新描述
+
+讲到这里，Kubernetes 里应用更新的功能就学得差不多了。
+不过，你有没有觉得 kubectl rollout history 的版本列表好像有点太简单了呢？只有一个版本更新序号，而另一列 CHANGE-CAUSE 为什么总是显示成 <none> 呢？能不能像 Git 一样，每次更新也加上说明信息呢？![img](https://static001.geekbang.org/resource/image/7c/09/7cc86862b28829c58c00eeb0fcdfbd09.png?wh=1398x306)
+
+这当然是可以的，做法也很简单，我们只需要在 Deployment 的 metadata 里加上一个新的字段 annotations。
+annotations 字段的含义是“注解”“注释”，形式上和 labels 一样，都是 Key-Value，也都是给 API 对象附加一些额外的信息，但是用途上区别很大。
+annotations 添加的信息一般是给 Kubernetes 内部的各种对象使用的，有点像是“扩展属性”；
+labels 主要面对的是 Kubernetes 外部的用户，用来筛选、过滤对象的。
+如果用一个简单的比喻来说呢，annotations 就是包装盒里的产品说明书，而 labels 是包装盒外的标签贴纸。
+借助 annotations，Kubernetes 既不破坏对象的结构，也不用新增字段，就能够给 API 对象添加任意的附加信息，这就是面向对象设计中典型的 OCP“开闭原则”，让对象更具扩展性和灵活性。
+annotations 里的值可以任意写，Kubernetes 会自动忽略不理解的 Key-Value，但要编写更新说明就需要使用特定的字段 kubernetes.io/change-cause。
+下面来操作一下，我们创建 3 个版本的 Nginx 应用，同时添加更新说明：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+  annotations:
+    kubernetes.io/change-cause: v1, ngx=1.21
+... ...
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+  annotations:
+    kubernetes.io/change-cause: update to v2, ngx=1.22
+... ...
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-dep
+  annotations:
+    kubernetes.io/change-cause: update to v3, change name
+... ...
+```
+
+你需要注意 YAML 里的 metadata 部分，使用 annotations.kubernetes.io/change-cause 描述了版本更新的情况，相比 kubectl rollout history --revision 的罗列大量信息更容易理解。
+依次使用 kubectl apply 创建并更新对象之后，我们再用 kubectl rollout history 来看一下更新历史：![img](https://static001.geekbang.org/resource/image/74/69/74bcc2020yy6b121634b3cbf972fe669.png?wh=1398x356)
+
+这次显示的列表信息就好看多了，每个版本的主要变动情况列得非常清楚，和 Git 版本管理的感觉很像。
+
+### 小结
+
+好，今天我们一起学习了 Kubernetes 里的高级应用管理功能：滚动更新，它会自动缩放新旧版本的 Pod 数量，能够在用户无感知的情况下实现服务升级或降级，让原本复杂棘手的运维工作变得简单又轻松。
+再小结一下今天的要点：
+在 Kubernetes 里应用的版本不仅仅是容器镜像，而是整个 Pod 模板，为了便于处理使用了摘要算法，计算模板的 Hash 值作为版本号。
+Kubernetes 更新应用采用的是滚动更新策略，减少旧版本 Pod 的同时增加新版本 Pod，保证在更新过程中服务始终可用。
+管理应用更新使用的命令是 kubectl rollout，子命令有 status、history、undo 等。
+Kubernetes 会记录应用的更新历史，可以使用 history --revision 查看每个版本的详细信息，也可以在每次更新时添加注解 kubernetes.io/change-cause。
+另外，在 Deployment 里还有其他一些字段可以对滚动更新的过程做更细致的控制，它们都在 spec.strategy.rollingUpdate 里，比如 maxSurge、maxUnavailable 等字段，分别控制最多新增 Pod 数和最多不可用 Pod 数，一般用默认值就足够了，你如果感兴趣也可以查看 Kubernetes 文档进一步研究。
+
+
+## 28｜应用保障：如何让Pod运行得更健康？
+
+在前面这么多节的课程中，我们都是在研究如何使用各种 API 对象来管理、操作 Pod，而对 Pod 本身的关注却不是太多。
+作为 Kubernetes 里的核心概念和原子调度单位，Pod 的主要职责是管理容器，以逻辑主机、容器集合、进程组的形式来代表应用，它的重要性是不言而喻的。
+那么今天我们回过头来，在之前那些上层 API 对象的基础上，一起来看看在 Kubernetes 里配置 Pod 的两种方法：资源配额 Resources、检查探针 Probe，它们能够给 Pod 添加各种运行保障，让应用运行得更健康。
+
+### 容器资源配额
+
+早在第 2 讲的时候我们就说过，创建容器有三大隔离技术：namespace、cgroup、chroot。其中的 namespace 实现了独立的进程空间，chroot 实现了独立的文件系统，但唯独没有看到 cgroup 的具体应用。
+cgroup 的作用是管控 CPU、内存，保证容器不会无节制地占用基础资源，进而影响到系统里的其他应用。
+不过，容器总是要使用 CPU 和内存的，该怎么处理好需求与限制这两者之间的关系呢？
+Kubernetes 的做法与我们在第 24 讲里提到的 PersistentVolumeClaim 用法有些类似，就是容器需要先提出一个“书面申请”，Kubernetes 再依据这个“申请”决定资源是否分配和如何分配。
+但是 CPU、内存与存储卷有明显的不同，因为它是直接“内置”在系统里的，不像硬盘那样需要“外挂”，所以申请和管理的过程也就会简单很多。
+具体的申请方法很简单，只要在 Pod 容器的描述部分添加一个新字段 resources 就可以了，它就相当于申请资源的 Claim。
+来看一个 YAML 示例：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ngx-pod-resources
+spec:
+  containers:
+
+  - image: nginx:alpine
+    name: ngx
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        cpu: 20m
+        memory: 200Mi
+```
+
+这个 YAML 文件定义了一个 Nginx Pod，我们需要重点学习的是 containers.resources，它下面有两个字段：
+“requests”，意思是容器要申请的资源，也就是说要求 Kubernetes 在创建 Pod 的时候必须分配这里列出的资源，否则容器就无法运行。
+“limits”，意思是容器使用资源的上限，不能超过设定值，否则就有可能被强制停止运行。
+在请求 cpu 和 memory 这两种资源的时候，你需要特别注意它们的表示方式。
+内存的写法和磁盘容量一样，使用 Ki、Mi、Gi 来表示 KB、MB、GB，比如 512Ki、100Mi、0.5Gi 等。
+而 CPU 因为在计算机中数量有限，非常宝贵，所以 Kubernetes 允许容器精细分割 CPU，即可以 1 个、2 个地完整使用 CPU，也可以用小数 0.1、0.2 的方式来部分使用 CPU。这其实是效仿了 UNIX“时间片”的用法，意思是进程最多可以占用多少 CPU 时间。
+不过 CPU 时间也不能无限分割，Kubernetes 里 CPU 的最小使用单位是 0.001，为了方便表示用了一个特别的单位 m，也就是“milli”“毫”的意思，比如说 500m 就相当于 0.5。
+现在我们再来看这个 YAML，你就应该明白了，它向系统申请的是 1% 的 CPU 时间和 100MB 的内存，运行时的资源上限是 2%CPU 时间和 200MB 内存。有了这个申请，Kubernetes 就会在集群中查找最符合这个资源要求的节点去运行 Pod。
+下面是我在网上找的一张动图，Kubernetes 会根据每个 Pod 声明的需求，像搭积木或者玩俄罗斯方块一样，把节点尽量“塞满”，充分利用每个节点的资源，让集群的效益最大化。![img](https://static001.geekbang.org/resource/image/39/91/397bfabd8234f8d859ca877a58f0d191.gif?wh=800x765)
+
+你可能会有疑问：如果 Pod 不写 resources 字段，Kubernetes 会如何处理呢？
+这就意味着 Pod 对运行的资源要求“既没有下限，也没有上限”，Kubernetes 不用管 CPU 和内存是否足够，可以把 Pod 调度到任意的节点上，而且后续 Pod 运行时也可以无限制地使用 CPU 和内存。
+我们课程里是实验环境，这样做是当然是没有问题的，但如果是生产环境就很危险了，Pod 可能会因为资源不足而运行缓慢，或者是占用太多资源而影响其他应用，所以我们应当合理评估 Pod 的资源使用情况，尽量为 Pod 加上限制。
+看到这里估计你会继续追问：如果预估错误，Pod 申请的资源太多，系统无法满足会怎么样呢？
+让我们来试一下吧，先删除 Pod 的资源限制 resources.limits，把 resources.request.cpu 改成比较极端的“10”，也就是要求 10 个 CPU：
+  ...
+
+    resources:
+      requests:
+        cpu: 10
+然后使用 kubectl apply 创建这个 Pod，你可能会惊奇地发现，虽然我们的 Kubernetes 集群里只有 3 个 CPU，但 Pod 也能创建成功。
+不过我们再用 kubectl get pod 去查看的话，就会发现它处于“Pending”状态，实际上并没有真正被调度运行：![img](https://static001.geekbang.org/resource/image/b1/d4/b1154e089533df5cfabc18c7e9c442d4.png?wh=1380x176)
+
+使用命令 kubectl describe 来查看具体原因，会发现有这么一句提示：![img](https://static001.geekbang.org/resource/image/95/02/9577c36e53c723b8e28ddb2d5e77e502.png?wh=1920x156)
+
+这就很明确地告诉我们 Kubernetes 调度失败，当前集群里的所有节点都无法运行这个 Pod，因为它要求的 CPU 实在是太多了。
+
+### 什么是容器状态探针
+
+现在，我们使用 resources 字段加上资源配额之后，Pod 在 Kubernetes 里的运行就有了初步保障，Kubernetes 会监控 Pod 的资源使用情况，让它既不会“饿死”也不会“撑死”。
+但这只是最初级的运行保障，如果你开发或者运维过实际的后台服务就会知道，一个程序即使正常启动了，它也有可能因为某些原因无法对外提供服务。其中最常见的情况就是运行时发生“死锁”或者“死循环”的故障，这个时候从外部来看进程一切都是正常的，但内部已经是一团糟了。
+所以，我们还希望 Kubernetes 这个“保姆”能够更细致地监控 Pod 的状态，除了保证崩溃重启，还必须要能够探查到 Pod 的内部运行状态，定时给应用做“体检”，让应用时刻保持“健康”，能够满负荷稳定工作。
+那应该用什么手段来检查应用的健康状态呢？
+因为应用程序各式各样，对于外界来说就是一个黑盒子，只能看到启动、运行、停止这三个基本状态，此外就没有什么好的办法来知道它内部是否正常了。
+所以，我们必须把应用变成灰盒子，让部分内部信息对外可见，这样 Kubernetes 才能够探查到内部的状态。
+这么说起来，检查的过程倒是有点像现在我们很熟悉的核酸检测，Kubernetes 用一根小棉签在应用的“检查口”里提取点数据，就可以从这些信息来判断应用是否“健康”了，这项功能也就被形象地命名为“探针”（Probe），也可以叫“探测器”。
+Kubernetes 为检查应用状态定义了三种探针，它们分别对应容器不同的状态：
+Startup，启动探针，用来检查应用是否已经启动成功，适合那些有大量初始化工作要做，启动很慢的应用。
+Liveness，存活探针，用来检查应用是否正常运行，是否存在死锁、死循环。
+Readiness，就绪探针，用来检查应用是否可以接收流量，是否能够对外提供服务。
+你需要注意这三种探针是递进的关系：应用程序先启动，加载完配置文件等基本的初始化数据就进入了 Startup 状态，之后如果没有什么异常就是 Liveness 存活状态，但可能有一些准备工作没有完成，还不一定能对外提供服务，只有到最后的 Readiness 状态才是一个容器最健康可用的状态。
+初次接触这三种状态可能有点难理解，我画了一张图，你可以看一下状态与探针的对应关系：![img](https://static001.geekbang.org/resource/image/ea/84/eaff5e640171984a4b1b2285982ee184.jpg?wh=1920x1000)
+
+那 Kubernetes 具体是如何使用状态和探针来管理容器的呢？
+如果一个 Pod 里的容器配置了探针，Kubernetes 在启动容器后就会不断地调用探针来检查容器的状态：
+如果 Startup 探针失败，Kubernetes 会认为容器没有正常启动，就会尝试反复重启，当然其后面的 Liveness 探针和 Readiness 探针也不会启动。
+如果 Liveness 探针失败，Kubernetes 就会认为容器发生了异常，也会重启容器。
+如果 Readiness 探针失败，Kubernetes 会认为容器虽然在运行，但内部有错误，不能正常提供服务，就会把容器从 Service 对象的负载均衡集合中排除，不会给它分配流量。
+知道了 Kubernetes 对这三种状态的处理方式，我们就可以在开发应用的时候编写适当的检查机制，让 Kubernetes 用“探针”定时为应用做“体检”了。
+在刚才图的基础上，我又补充了 Kubernetes 的处理动作，看这张图你就能很好地理解容器探针的工作流程了：![img](https://static001.geekbang.org/resource/image/64/d9/64fde55dd2eab68f9968ff34218646d9.jpg?wh=1920x1200)
+
+### 如何使用容器状态探针
+
+掌握了资源配额和检查探针的概念，我们进入今天的高潮部分，看看如何在 Pod 的 YAML 描述文件里定义探针。
+startupProbe、livenessProbe、readinessProbe 这三种探针的配置方式都是一样的，关键字段有这么几个：
+periodSeconds，执行探测动作的时间间隔，默认是 10 秒探测一次。
+timeoutSeconds，探测动作的超时时间，如果超时就认为探测失败，默认是 1 秒。
+successThreshold，连续几次探测成功才认为是正常，对于 startupProbe 和 livenessProbe 来说它只能是 1。
+failureThreshold，连续探测失败几次才认为是真正发生了异常，默认是 3 次。
+至于探测方式，Kubernetes 支持 3 种：Shell、TCP Socket、HTTP GET，它们也需要在探针里配置：
+exec，执行一个 Linux 命令，比如 ps、cat 等等，和 container 的 command 字段很类似。
+tcpSocket，使用 TCP 协议尝试连接容器的指定端口。
+httpGet，连接端口并发送 HTTP GET 请求。
+要使用这些探针，我们必须要在开发应用时预留出“检查口”，这样 Kubernetes 才能调用探针获取信息。这里我还是以 Nginx 作为示例，用 ConfigMap 编写一个配置文件：
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ngx-conf
+data:
+  default.conf: |
+    server {
+      listen 80;
+      location = /ready {
+        return 200 'I am ready';
+      }
+    }
+```
+
+你可能不是太熟悉 Nginx 的配置语法，我简单解释一下。
+在这个配置文件里，我们启用了 80 端口，然后用 location 指令定义了 HTTP 路径 /ready，它作为对外暴露的“检查口”，用来检测就绪状态，返回简单的 200 状态码和一个字符串表示工作正常。
+现在我们来看一下 Pod 里三种探针的具体定义：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ngx-pod-probe
+spec:
+  volumes:
+
+  - name: ngx-conf-vol
+    configMap:
+      name: ngx-conf
+    containers:
+  - image: nginx:alpine
+    name: ngx
+    ports:
+    - containerPort: 80
+      volumeMounts:
+    - mountPath: /etc/nginx/conf.d
+      name: ngx-conf-vol
+      startupProbe:
+      periodSeconds: 1
+      exec:
+        command: ["cat", "/var/run/nginx.pid"]
+      livenessProbe:
+      periodSeconds: 10
+      tcpSocket:
+        port: 80
+      readinessProbe:
+      periodSeconds: 5
+      httpGet:
+        path: /ready
+        port: 80
+```
+
+StartupProbe 使用了 Shell 方式，使用 cat 命令检查 Nginx 存在磁盘上的进程号文件（/var/run/nginx.pid），如果存在就认为是启动成功，它的执行频率是每秒探测一次。
+LivenessProbe 使用了 TCP Socket 方式，尝试连接 Nginx 的 80 端口，每 10 秒探测一次。
+ReadinessProbe 使用的是 HTTP GET 方式，访问容器的 /ready 路径，每 5 秒发一次请求。
+现在我们用 kubectl apply 创建这个 Pod，然后查看它的状态：![img](https://static001.geekbang.org/resource/image/ac/6c/ac6b405074a5e93d33dd7154f299486c.png?wh=1272x174)
+
+当然，因为这个 Nginx 应用非常简单，它启动后探针的检查都会是正常的，你可以用 kubectl logs 来查看 Nginx 的访问日志，里面会记录 HTTP GET 探针的执行情况：![img](https://static001.geekbang.org/resource/image/ed/6b/edf9fb3337bf3dd5a9b2fba8dfbc326b.png?wh=1920x527)
+
+从截图中你可以看到，Kubernetes 正是以大约 5 秒一次的频率，向 URI /ready 发送 HTTP 请求，不断地检查容器是否处于就绪状态。
+为了验证另两个探针的工作情况，我们可以修改探针，比如把命令改成检查错误的文件、错误的端口号：
+
+```
+ startupProbe:
+      exec:
+        command: ["cat", "nginx.pid"]  #错误的文件
+    livenessProbe:
+      tcpSocket:
+        port: 8080                     #错误的端口号
+```
+
+然后我们重新创建 Pod 对象，观察它的状态。
+当 StartupProbe 探测失败的时候，Kubernetes 就会不停地重启容器，现象就是 RESTARTS 次数不停地增加，而 livenessProbe 和 readinessProbePod 没有执行，Pod 虽然是 Running 状态，也永远不会 READY：![img](https://static001.geekbang.org/resource/image/90/7f/900468e4b86c241a53256584e514b47f.png?wh=1348x182)
+
+因为 failureThreshold 的次数默认是三次，所以 Kubernetes 会连续执行三次 livenessProbe TCP Socket 探测，每次间隔 10 秒，30 秒之后都失败才重启容器：![img](https://static001.geekbang.org/resource/image/c3/e1/c31bf2cf6672c62ebd42f305534dbae1.png?wh=1366x178)
+
+你也可以自己试着改一下 readinessProbe，看看它失败时 Pod 会是什么样的状态。
+
+### 小结
+
+好了，今天我们学习了两种为 Pod 配置运行保障的方式：Resources 和 Probe。Resources 就是为容器加上资源限制，而 Probe 就是主动健康检查，让 Kubernetes 实时地监控应用的运行状态。
+再简单小结一下今天的内容：
+资源配额使用的是 cgroup 技术，可以限制容器使用的 CPU 和内存数量，让 Pod 合理利用系统资源，也能够让 Kubernetes 更容易调度 Pod。
+Kubernetes 定义了 Startup、Liveness、Readiness 三种健康探针，它们分别探测应用的启动、存活和就绪状态。
+探测状态可以使用 Shell、TCP Socket、HTTP Get 三种方式，还可以调整探测的频率和超时时间等参数。
+
+
+
+## 29｜集群管理：如何用名字空间分隔系统资源？
+
+在上一节课里我们学习了资源配额和检查探针，它们可以保障 Pod 这个微观单位很好地运行。那么很自然地，我们就会想：在集群的宏观层次，会不会也有类似的方法来为 Kubernetes 提供运行保障呢？
+这是毫无疑问的，因为 Kubernetes 在各个方面都考虑得非常周密，也有很多的手段来管理、控制集群的资源。
+今天我们就来看看名字空间（namespace）的一些高级用法。
+
+### 为什么要有名字空间
+
+其实我们很早就接触过 Kubernetes 的名字空间，比如第 10 讲中查看 apiserver 等组件要用到 kube-system 名字空间，还有在第 20 讲里的 Service 对象，DNS 的完整域名里也会用到名字空间。
+不过之前学习的重点是 Kubernetes 架构和 API 对象，对名字空间没有特别关注，而且也过去比较久了，所以现在我们来重新认识一下名字空间。
+首先要明白，Kubernetes 的名字空间并不是一个实体对象，只是一个逻辑上的概念。它可以把集群切分成一个个彼此独立的区域，然后我们把对象放到这些区域里，就实现了类似容器技术里 namespace 的隔离效果，应用只能在自己的名字空间里分配资源和运行，不会干扰到其他名字空间里的应用。
+你可能要问了：Kubernetes 的 Master/Node 架构已经能很好地管理集群，为什么还要引入名字空间这个东西呢？它的实际意义是什么呢？
+我觉得，这恰恰是 Kubernetes面对大规模集群、海量节点时的一种现实考虑。因为集群很大、计算资源充足，会有非常多的用户在 Kubernetes 里创建各式各样的应用，可能会有百万数量级别的 Pod，这就使得资源争抢和命名冲突的概率大大增加了，情形和单机 Linux 系统里是非常相似的。
+比如说，现在有一个 Kubernetes 集群，前端组、后端组、测试组都在使用它。这个时候就很容易命名冲突，比如后端组先创建了一个 Pod 叫“Web”，这个名字就被“占用”了，之后前端组和测试组就只能绞尽脑汁再新起一个不冲突的名字。接着资源争抢也容易出现，比如某一天，测试组不小心部署了有 Bug 的应用，在节点上把资源都给“吃”完了，就会导致其他组的同事根本无法工作。
+所以，当多团队、多项目共用 Kubernetes 的时候，为了避免这些问题的出现，我们就需要把集群给适当地“局部化”，为每一类用户创建出只属于它自己的“工作空间”。
+如果把 Kubernetes 比做一个大牧场的话，API 对象就是里面的鸡鸭牛羊，而名字空间就是圈养它们的围栏，有了各自合适的活动区域，就能更有效、更安全地利用 Kubernetes。
+
+### 如何使用名字空间
+
+名字空间也是一种 API 对象，使用命令 kubectl api-resources 可以看到它的简称是“ns”，命令 kubectl create 不需要额外的参数，可以很容易地创建一个名字空间，比如：
+
+```
+kubectl create ns test-ns 
+kubectl get ns
+```
+
+Kubernetes 初始化集群的时候也会预设 4 个名字空间：default、kube-system、kube-public、kube-node-lease。我们常用的是前两个，default 是用户对象默认的名字空间，kube-system 是系统组件所在的名字空间，相信你对它们已经很熟悉了。
+想要把一个对象放入特定的名字空间，需要在它的 metadata 里添加一个 namespace 字段，比如我们要在“test-ns”里创建一个简单的 Nginx Pod，就要这样写：
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ngx
+  namespace: test-ns
+spec:
+  containers:
+  - image: nginx:alpine
+    name: ngx
+```
+kubectl apply 创建这个对象之后，我们直接用 kubectl get 是看不到它的，因为默认查看的是“default”名字空间，想要操作其他名字空间的对象必须要用 -n 参数明确指定：
+
+```
+kubectl get pod -n test-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/9d/9f/9dc2521b55e1ac34ee59454339ddc59f.png?wh=1088x298)因为名字空间里的对象都从属于名字空间，所以在删除名字空间的时候一定要小心，一旦名字空间被删除，它里面的所有对象也都会消失。
+你可以执行一下 kubectl delete，试着删除刚才创建的名字空间“test-ns”：
+
+```
+kubectl delete ns test-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/20/a7/20d2e6874d74767bc1711972ae1022a7.png?wh=1088x236)就会发现删除名字空间后，它里面的 Pod 也会无影无踪了。
+
+### 什么是资源配额
+
+有了名字空间，我们就可以像管理容器一样，给名字空间设定配额，把整个集群的计算资源分割成不同的大小，按需分配给团队或项目使用。
+不过集群和单机不一样，除了限制最基本的 CPU 和内存，还必须限制各种对象的数量，否则对象之间也会互相挤占资源。
+名字空间的资源配额需要使用一个专门的 API 对象，叫做 ResourceQuota，简称是 quota，我们可以使用命令 kubectl create 创建一个它的样板文件：
+
+```
+export out="--dry-run=client -o yaml"
+kubectl create quota dev-qt $out
+```
+
+因为资源配额对象必须依附在某个名字空间上，所以在它的 metadata 字段里必须明确写出 namespace（否则就会应用到 default 名字空间)。
+下面我们先创建一个名字空间“dev-ns”，再创建一个资源配额对象“dev-qt”：
+
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+
+  name: dev-ns
+---
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-qt
+  namespace: dev-ns
+spec:
+  ... ...
+```
+
+ResourceQuota 对象的使用方式比较灵活，既可以限制整个名字空间的配额，也可以只限制某些类型的对象（使用 scopeSelector），今天我们看第一种，它需要在 spec 里使用 hard 字段，意思就是“硬性全局限制”。
+在 ResourceQuota 里可以设置各类资源配额，字段非常多，我简单地归了一下类，你可以课后再去官方文档上查找详细信息：
+CPU 和内存配额，使用 request.*、limits.*，这是和容器资源限制是一样的。
+存储容量配额，使 requests.storage 限制的是 PVC 的存储总量，也可以用 persistentvolumeclaims 限制 PVC 的个数。
+核心对象配额，使用对象的名字（英语复数形式），比如 pods、configmaps、secrets、services。
+其他 API 对象配额，使用 count/name.group 的形式，比如 count/jobs.batch、count/deployments.apps。
+下面的这个 YAML 就是一个比较完整的资源配额对象：
+
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-qt
+  namespace: dev-ns
+spec:
+  hard:
+    requests.cpu: 10
+    requests.memory: 10Gi
+    limits.cpu: 10
+    limits.memory: 20Gi
+    requests.storage: 100Gi
+    persistentvolumeclaims: 100
+    pods: 100
+    configmaps: 100
+    secrets: 100
+    services: 10
+    count/jobs.batch: 1
+    count/cronjobs.batch: 1
+    count/deployments.apps: 1
+```
+
+我来稍微解释一下它为名字空间加上的全局资源配额：
+所有 Pod 的需求总量最多是 10 个 CPU 和 10GB 的内存，上限总量是 10 个 CPU 和 20GB 的内存。
+只能创建 100 个 PVC 对象，使用 100GB 的持久化存储空间。
+只能创建 100 个 Pod，100 个 ConfigMap，100 个 Secret，10 个 Service。
+只能创建 1 个 Job，1 个 CronJob，1 个 Deployment。
+这个 YAML 文件比较大，字段比较多，如果你觉得不是太容易阅读的话，也可以把它拆成几个小的 YAML，分类限制资源数量，也许会更灵活一些。比如：
+
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: cpu-mem-qt
+  namespace: dev-ns
+spec:
+  hard:
+    requests.cpu: 10
+    requests.memory: 10Gi
+    limits.cpu: 10
+    limits.memory: 20Gi
+```
+
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: core-obj-qt
+  namespace: dev-ns
+spec:
+  hard:
+    pods: 100
+    configmaps: 100
+    secrets: 100
+    services: 10
+```
+
+### 如何使用资源配额
+
+现在让我们用 kubectl apply 创建这个资源配额对象，然后用 kubectl get 查看，记得要用 -n 指定名字空间：
+
+```
+kubectl apply -f quota-ns.yml
+kubectl get quota -n dev-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/c2/49/c2f22c420f62686c18831de0895fd449.png?wh=1598x402)你可以看到输出了 ResourceQuota 的全部信息，但都挤在了一起，看起来很困难，这时可以再用命令 kubectl describe 来查看对象，它会给出一个清晰的表格：
+
+```
+kubectl describe quota -n dev-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/6b/8b/6bc46986f7535393198c52e78b04yy8b.png?wh=1246x1044)现在让我们尝试在这个名字空间里运行两个 busybox Job，同样要加上 -n 参数：
+
+```
+kubectl create job echo1 -n dev-ns --image=busybox -- echo hello
+kubectl create job echo2 -n dev-ns --image=busybox -- echo hello
+```
+
+![img](https://static001.geekbang.org/resource/image/9f/c8/9f7430yy76638fa76ec22b7d37b16ac8.png?wh=1920x204)ResourceQuota 限制了名字空间里最多只能有一个 Job，所以创建第二个 Job 对象时会失败，提示超出了资源配额。
+再用命令 kubectl describe 来查看，也会发现 Job 资源已经到达了上限：![img](https://static001.geekbang.org/resource/image/00/d8/004deb0cb87b3d3dbb050342b6f087d8.png?wh=1242x532)
+
+不过，只要我们删除刚才的 Job，就又可以运行一个新的离线业务了：![img](https://static001.geekbang.org/resource/image/f5/eb/f5db572d679257705a1dcab125e148eb.png?wh=1920x213)
+
+同样的，这个“dev-ns”里也只能创建一个 CronJob 和一个 Deployment，你可以课后自己尝试一下。
+
+### 默认资源配额
+
+学到这里估计你也发现了，在名字空间加上了资源配额限制之后，它会有一个合理但比较“烦人”的约束：要求所有在里面运行的 Pod 都必须用字段 resources 声明资源需求，否则就无法创建。
+比如说，现在我们想用命令 kubectl run 创建一个 Pod：
+
+```
+kubectl run ngx --image=nginx:alpine -n dev-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/45/d5/45e19f5fa9db52efc7b34a1bfd3a49d5.png?wh=1920x169)发现给出了一个“Forbidden”的错误提示，说不满足配额要求。
+Kubernetes 这样做的原因也很好理解，上一讲里我们说过，如果 Pod 里没有 resources 字段，就可以无限制地使用 CPU 和内存，这显然与名字空间的资源配额相冲突。为了保证名字空间的资源总量可管可控，Kubernetes 就只能拒绝创建这样的 Pod 了。
+这个约束对于集群管理来说是好事，但对于普通用户来说却带来了一点麻烦，本来 YAML 文件就已经够大够复杂的了，现在还要再增加几个字段，再费心估算它的资源配额。如果有很多小应用、临时 Pod 要运行的话，这样做的人力成本就比较高，不是太划算。
+那么能不能让 Kubernetes 自动为 Pod 加上资源限制呢？也就是说给个默认值，这样就可以省去反复设置配额的烦心事。
+这个时候就要用到一个很小但很有用的辅助对象了—— LimitRange，简称是 limits，它能为 API 对象添加默认的资源配额限制。
+你可以用命令 kubectl explain limits 来查看它的 YAML 字段详细说明，这里说几个要点：
+spec.limits 是它的核心属性，描述了默认的资源限制。
+type 是要限制的对象类型，可以是 Container、Pod、PersistentVolumeClaim。
+default 是默认的资源上限，对应容器里的 resources.limits，只适用于 Container。
+defaultRequest 默认申请的资源，对应容器里的 resources.requests，同样也只适用于 Container。
+max、min 是对象能使用的资源的最大最小值。
+这个 YAML 就示范了一个 LimitRange 对象：
+
+```
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: dev-limits
+  namespace: dev-ns
+spec:
+  limits:
+
+  - type: Container
+    defaultRequest:
+      cpu: 200m
+      memory: 50Mi
+    default:
+      cpu: 500m
+      memory: 100Mi
+  - type: Pod
+    max:
+      cpu: 800m
+      memory: 200Mi
+```
+
+它设置了每个容器默认申请 0.2 的 CPU 和 50MB 内存，容器的资源上限是 0.5 的 CPU 和 100MB 内存，每个 Pod 的最大使用量是 0.8 的 CPU 和 200MB 内存。
+使用 kubectl apply 创建 LimitRange 之后，再用 kubectl describe 就可以看到它的状态：
+
+```
+kubectl describe limitranges -n dev-ns
+```
+
+![img](https://static001.geekbang.org/resource/image/fd/1e/fdfab789e7b3f7c744eec4bfb137cd1e.png?wh=1688x524)现在我们就可以不用编写 resources 字段直接创建 Pod 了，再运行之前的 kubectl run 命令：
+
+```
+kubectl run ngx --image=nginx:alpine -n dev-ns
+
+```
+
+有了这个默认的资源配额作为“保底”，这次就没有报错，Pod 顺利创建成功，用 kubectl describe 查看 Pod 的状态，也可以看到 LimitRange 为它自动加上的资源配额：![img](https://static001.geekbang.org/resource/image/cf/92/cfd5fef8aefe5321b505859029075792.png?wh=948x988)
+
+### 小结
+
+今天我们学习了如何使用名字空间来管理 Kubernetes 集群资源。
+在我们的实验环境里，因为只有一个用户（也就是你自己），可以独占全部资源，所以使用名字空间的意义不大。
+但是在生产环境里会有很多用户共同使用 Kubernetes，必然会有对资源的竞争，为了公平起见，避免某些用户过度消耗资源，就非常有必要用名字空间做好集群的资源规划了。
+再简单小结一下今天的内容：
+名字空间是一个逻辑概念，没有实体，它的目标是为资源和对象划分出一个逻辑边界，避免冲突。
+ResourceQuota 对象可以为名字空间添加资源配额，限制全局的 CPU、内存和 API 对象数量。
+LimitRange 对象可以为容器或者 Pod 添加默认的资源配额，简化对象的创建工作。
+
+
+
+## 30｜系统监控：如何使用Metrics Server和Prometheus？
+
+在前面的两节课里，我们学习了对 Pod 和对集群的一些管理方法，其中的要点就是设置资源配额，让 Kubernetes 用户能公平合理地利用系统资源。
+虽然有了这些方法，但距离我们把 Pod 和集群管好用好还缺少一个很重要的方面——集群的可观测性。也就是说，我们希望给集群也安装上“检查探针”，观察到集群的资源利用率和其他指标，让集群的整体运行状况对我们“透明可见”，这样才能更准确更方便地做好集群的运维工作。
+但是观测集群是不能用“探针”这种简单的方式的，所以今天我就带你一起来看看 Kubernetes 为集群提供的两种系统级别的监控项目：Metrics Server 和 Prometheus，以及基于它们的水平自动伸缩对象 HorizontalPodAutoscaler。
+
+### Metrics Server
+
+如果你对 Linux 系统有所了解的话，也许知道有一个命令 top 能够实时显示当前系统的 CPU 和内存利用率，它是性能分析和调优的基本工具，非常有用。Kubernetes 也提供了类似的命令，就是 kubectl top，不过默认情况下这个命令不会生效，必须要安装一个插件 Metrics Server 才可以。
+Metrics Server 是一个专门用来收集 Kubernetes 核心资源指标（metrics）的工具，它定时从所有节点的 kubelet 里采集信息，但是对集群的整体性能影响极小，每个节点只大约会占用 1m 的 CPU 和 2MB 的内存，所以性价比非常高。
+下面的这张图来自 Kubernetes 官网，你可以对 Metrics Server 的工作方式有个大概了解：它调用 kubelet 的 API 拿到节点和 Pod 的指标，再把这些信息交给 apiserver，这样 kubectl、HPA 就可以利用 apiserver 来读取指标了：![img](https://static001.geekbang.org/resource/image/8f/9e/8f4a22788c03b06377cabe791c67989e.png?wh=1562x572)
+
+在 Metrics Server 的项目网址（https://github.com/kubernetes-sigs/metrics-server）可以看到它的说明文档和安装步骤，不过如果你已经按照第 17 讲用 kubeadm 搭建了 Kubernetes 集群，就已经具备了全部前提条件，接下来只需要几个简单的操作就可以完成安装。
+Metrics Server 的所有依赖都放在了一个 YAML 描述文件里，你可以使用 wget 或者 curl 下载：
+
+```
+wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+```
+
+但是在 kubectl apply 创建对象之前，我们还有两个准备工作要做。
+第一个工作，是修改 YAML 文件。你需要在 Metrics Server 的 Deployment 对象里，加上一个额外的运行参数 --kubelet-insecure-tls，也就是这样：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-server
+  namespace: kube-system
+spec:
+  ... ... 
+  template:
+    spec:
+      containers:
+      - args:
+        - --kubelet-insecure-tls
+        ... ... 
+```
+
+这是因为 Metrics Server 默认使用 TLS 协议，要验证证书才能与 kubelet 实现安全通信，而我们的实验环境里没有这个必要，加上这个参数可以让我们的部署工作简单很多（生产环境里就要慎用）。
+第二个工作，是预先下载 Metrics Server 的镜像。看这个 YAML 文件，你会发现 Metrics Server 的镜像仓库用的是 gcr.io，下载很困难。好在它也有国内的镜像网站，你可以用第 17 讲里的办法，下载后再改名，然后把镜像加载到集群里的节点上。
+这里我给出一段 Shell 脚本代码，供你参考：
+
+```
+repo=registry.aliyuncs.com/google_containers
+name=k8s.gcr.io/metrics-server/metrics-server:v0.6.1
+src_name=metrics-server:v0.6.1
+docker pull $repo/$src_name
+docker tag $repo/$src_name $name
+docker rmi $repo/$src_name
+```
+
+两个准备工作都完成之后，我们就可以使用 YAML 部署 Metrics Server 了：
+
+```
+kubectl apply -f components.yaml
+
+```
+
+Metrics Server 属于名字空间“kube-system”，可以用 kubectl get pod 加上 -n 参数查看它是否正常运行：
+
+```
+kubectl get pod -n kube-system
+```
+
+![img](https://static001.geekbang.org/resource/image/b9/93/b93124cbc1b7d98b7c4f055f0723bf93.png?wh=1506x822)现在有了 Metrics Server 插件，我们就可以使用命令 kubectl top 来查看 Kubernetes 集群当前的资源状态了。它有两个子命令，node 查看节点的资源使用率，pod 查看 Pod 的资源使用率。
+由于 Metrics Server 收集信息需要时间，我们必须等一小会儿才能执行命令，查看集群里节点和 Pod 状态：
+
+```
+kubectl top node
+kubectl top pod -n kube-system
+```
+
+![img](https://static001.geekbang.org/resource/image/d4/61/d450b7e01f5f47ac56335f6c69707e61.png?wh=1800x1052)从这个截图里你可以看到：
+集群里两个节点 CPU 使用率都不高，分别是 8% 和 4%，但内存用的很多，master 节点用了差不多一半（48%），而 worker 节点几乎用满了（89%）。
+名字空间“kube-system”里有很多 Pod，其中 apiserver 最消耗资源，使用了 75m 的 CPU 和 363MB 的内存。
+
+### HorizontalPodAutoscaler
+
+有了 Metrics Server，我们就可以轻松地查看集群的资源使用状况了，不过它另外一个更重要的功能是辅助实现应用的“水平自动伸缩”。
+在第 18 讲里我们提到有一个命令 kubectl scale，可以任意增减 Deployment 部署的 Pod 数量，也就是水平方向的“扩容”和“缩容”。但是手动调整应用实例数量还是比较麻烦的，需要人工参与，也很难准确把握时机，难以及时应对生产环境中突发的大流量，所以最好能把这个“扩容”“缩容”也变成自动化的操作。
+Kubernetes 为此就定义了一个新的 API 对象，叫做“HorizontalPodAutoscaler”，简称是“hpa”。顾名思义，它是专门用来自动伸缩 Pod 数量的对象，适用于 Deployment 和 StatefulSet，但不能用于 DaemonSet（原因很明显吧)。
+HorizontalPodAutoscaler 的能力完全基于 Metrics Server，它从 Metrics Server 获取当前应用的运行指标，主要是 CPU 使用率，再依据预定的策略增加或者减少 Pod 的数量。
+下面我们就来看看该怎么使用 HorizontalPodAutoscaler，首先要定义 Deployment 和 Service，创建一个 Nginx 应用，作为自动伸缩的目标对象：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngx-hpa-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngx-hpa-dep
+  template:
+    metadata:
+      labels:
+        app: ngx-hpa-dep
+    spec:
+      containers:
+
+   - image: nginx:alpine
+     name: nginx
+     ports:
+     - containerPort: 80
+       resources:
+       requests:
+         cpu: 50m
+         memory: 10Mi
+       limits:
+         cpu: 100m
+
+            memory: 20Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngx-hpa-svc
+spec:
+  ports:
+
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    selector:
+    app: ngx-hpa-dep
+```
+
+在这个 YAML 里我只部署了一个 Nginx 实例，名字是 ngx-hpa-dep。注意在它的 spec 里一定要用 resources 字段写清楚资源配额，否则 HorizontalPodAutoscaler 会无法获取 Pod 的指标，也就无法实现自动化扩缩容。
+接下来我们要用命令 kubectl autoscale 创建一个 HorizontalPodAutoscaler 的样板 YAML 文件，它有三个参数：
+min，Pod 数量的最小值，也就是缩容的下限。
+max，Pod 数量的最大值，也就是扩容的上限。
+cpu-percent，CPU 使用率指标，当大于这个值时扩容，小于这个值时缩容。
+好，现在我们就来为刚才的 Nginx 应用创建 HorizontalPodAutoscaler，指定 Pod 数量最少 2 个，最多 10 个，CPU 使用率指标设置的小一点，5%，方便我们观察扩容现象：
+
+```
+export out="--dry-run=client -o yaml"              # 定义Shell变量
+kubectl autoscale deploy ngx-hpa-dep --min=2 --max=10 --cpu-percent=5 $out
+```
+
+得到的 YAML 描述文件就是这样：
+
+```
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+name: ngx-hpa
+spec:
+maxReplicas: 10
+minReplicas: 2
+scaleTargetRef:
+apiVersion: apps/v1
+kind: Deployment
+name: ngx-hpa-dep
+targetCPUUtilizationPercentage: 5
+```
+
+我们再使用命令 kubectl apply 创建这个 HorizontalPodAutoscaler 后，它会发现 Deployment 里的实例只有 1 个，不符合 min 定义的下限的要求，就先扩容到 2 个：![img](https://static001.geekbang.org/resource/image/3e/6c/3ec01a9746274ac28b10d612f1512a6c.png?wh=1630x704)
+
+从这张截图里你可以看到，HorizontalPodAutoscaler 会根据 YAML 里的描述，找到要管理的 Deployment，把 Pod 数量调整成 2 个，再通过 Metrics Server 不断地监测 Pod 的 CPU 使用率。
+下面我们来给 Nginx 加上压力流量，运行一个测试 Pod，使用的镜像是“httpd:alpine”，它里面有 HTTP 性能测试工具 ab（Apache Bench）：
+
+```
+kubectl run test -it --image=httpd:alpine -- sh
+```
+
+![img](https://static001.geekbang.org/resource/image/d0/bd/d058182500cb83ac3e3c9cc01a42c9bd.png?wh=1896x354)然后我们向 Nginx 发送一百万个请求，持续 1 分钟，再用 kubectl get hpa 来观察 HorizontalPodAutoscaler 的运行状况：
+
+```
+ab -c 10 -t 60 -n 1000000 'http://ngx-hpa-svc/'
+```
+
+![img](https://static001.geekbang.org/resource/image/65/b4/6538ecd78118fabeb8d7c8f4fbabdbb4.png?wh=1920x794)因为 Metrics Server 大约每 15 秒采集一次数据，所以 HorizontalPodAutoscaler 的自动化扩容和缩容也是按照这个时间点来逐步处理的。
+当它发现目标的 CPU 使用率超过了预定的 5% 后，就会以 2 的倍数开始扩容，一直到数量上限，然后持续监控一段时间，如果 CPU 使用率回落，就会再缩容到最小值。
+
+### Prometheus
+
+显然，有了 Metrics Server 和 HorizontalPodAutoscaler 的帮助，我们的应用管理工作又轻松了一些。不过，Metrics Server 能够获取的指标还是太少了，只有 CPU 和内存，想要监控到更多更全面的应用运行状况，还得请出这方面的权威项目“Prometheus”。
+其实，Prometheus 的历史比 Kubernetes 还要早一些，它最初是由 Google 的离职员工在 2012 年创建的开源项目，灵感来源于 Borg 配套的 BorgMon 监控系统。后来在 2016 年，Prometheus 作为第二个项目加入了 CNCF，并在 2018 年继 Kubernetes 之后顺利毕业，成为了 CNCF 的不折不扣的“二当家”，也是云原生监控领域的“事实标准”。![img](https://static001.geekbang.org/resource/image/69/58/69f4b76ca7323433cyy28574f1ee9358.png?wh=1200x600)
+
+和 Kubernetes 一样，Prometheus 也是一个庞大的系统，我们这里就只做一个简略的介绍。
+下面的这张图是 Prometheus 官方的架构图，几乎所有文章在讲 Prometheus 的时候必然要拿出来，所以我也没办法“免俗”：![img](https://static001.geekbang.org/resource/image/e6/64/e62cebb3acc995246f203d698dfdc964.png?wh=1351x811)
+
+Prometheus 系统的核心是它的 Server，里面有一个时序数据库 TSDB，用来存储监控数据，另一个组件 Retrieval 使用拉取（Pull）的方式从各个目标收集数据，再通过 HTTP Server 把这些数据交给外界使用。
+在 Prometheus Server 之外还有三个重要的组件：
+Push Gateway，用来适配一些特殊的监控目标，把默认的 Pull 模式转变为 Push 模式。
+Alert Manager，告警中心，预先设定规则，发现问题时就通过邮件等方式告警。
+Grafana 是图形化界面，可以定制大量直观的监控仪表盘。
+由于同属于 CNCF，所以 Prometheus 自然就是“云原生”，在 Kubernetes 里运行是顺理成章的事情。不过它包含的组件实在是太多，部署起来有点麻烦，这里我选用了“kube-prometheus”项目（https://github.com/prometheus-operator/kube-prometheus/），感觉操作起来比较容易些。
+下面就跟着我来在 Kubernetes 实验环境里体验一下 Prometheus 吧。
+我们先要下载 kube-prometheus 的源码包，当前的最新版本是 0.11：
+
+```
+wget https://github.com/prometheus-operator/kube-prometheus/archive/refs/tags/v0.11.0.tar.gz
+
+```
+
+解压缩后，Prometheus 部署相关的 YAML 文件都在 manifests 目录里，有近 100 个，你可以先大概看一下。
+和 Metrics Server 一样，我们也必须要做一些准备工作，才能够安装 Prometheus。
+第一步，是修改 prometheus-service.yaml、grafana-service.yaml。
+这两个文件定义了 Prometheus 和 Grafana 服务对象，我们可以给它们添加 type: NodePort（参考第 20 讲），这样就可以直接通过节点的 IP 地址访问（当然你也可以配置成 Ingress）。
+第二步，是修改 kubeStateMetrics-deployment.yaml、prometheusAdapter-deployment.yaml，因为它们里面有两个存放在 gcr.io 的镜像，必须解决下载镜像的问题。
+但很遗憾，我没有在国内网站上找到它们的下载方式，为了能够顺利安装，只能把它们下载后再上传到 Docker Hub 上。所以你需要修改镜像名字，把前缀都改成 chronolaw：
+
+```
+image: k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.5.0
+image: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.9.1
+image: chronolaw/kube-state-metrics:v2.5.0
+image: chronolaw/prometheus-adapter:v0.9.1
+```
+
+这两个准备工作完成之后，我们要执行两个 kubectl create 命令来部署 Prometheus，先是 manifests/setup 目录，创建名字空间等基本对象，然后才是 manifests 目录：
+
+```
+kubectl create -f manifests/setup
+kubectl create -f manifests
+```
+
+Prometheus 的对象都在名字空间“monitoring”里，创建之后可以用 kubectl get 来查看状态：![img](https://static001.geekbang.org/resource/image/1b/09/1b4a1a1313ede9058b348c13a1020c09.png?wh=1894x878)
+
+确定这些 Pod 都运行正常，我们再来看看它对外的服务端口：
+
+```
+kubectl get svc -n monitoring
+```
+
+![img](https://static001.geekbang.org/resource/image/4c/59/4c423a203a688271d9d08b15a6782d59.png?wh=1920x531)前面修改了 Grafana 和 Prometheus 的 Service 对象，所以这两个服务就在节点上开了端口，Grafana 是“30358”，Prometheus 有两个端口，其中“9090”对应的“30827”是 Web 端口。
+在浏览器里输入节点的 IP 地址（我这里是“http://192.168.10.210”)，再加上端口号“30827”，我们就能看到 Prometheus 自带的 Web 界面，：![img](https://static001.geekbang.org/resource/image/1b/dc/1b73040e258dfa8776c2a0a657a885dc.png?wh=1906x1934)
+
+Web 界面上有一个查询框，可以使用 PromQL 来查询指标，生成可视化图表，比如在这个截图里我就选择了“node_memory_Active_bytes”这个指标，意思是当前正在使用的内存容量。
+Prometheus 的 Web 界面比较简单，通常只用来调试、测试，不适合实际监控。我们再来看 Grafana，访问节点的端口“30358”（我这里是“http://192.168.10.210:30358”），它会要求你先登录，默认的用户名和密码都是“admin”：![img](https://static001.geekbang.org/resource/image/a2/31/a2614b09347b3436c317644374c36e31.png?wh=1906x1934)
+
+Grafana 内部已经预置了很多强大易用的仪表盘，你可以在左侧菜单栏的“Dashboards - Browse”里任意挑选一个：![img](https://static001.geekbang.org/resource/image/23/5a/23ddb3db05e36c2da4a8f8067366f55a.png?wh=1906x1934)
+
+比如我选择了“Kubernetes / Compute Resources / Namespace (Pods)”这个仪表盘，就会出来一个非常漂亮图表，比 Metrics Server 的 kubectl top 命令要好看得多，各种数据一目了然：![img](https://static001.geekbang.org/resource/image/1f/bd/1f6ccc0b6d358c29419276fbf74e38bd.png?wh=1920x1696)
+
+关于 Prometheus 就暂时介绍到这里，再往下讲可能就要偏离我们的 Kubernetes 主题了，如果你对它感兴趣的话，可以课后再去它的官网上看文档，或者参考其他的学习资料。
+
+### 小结
+
+在云原生时代，系统的透明性和可观测性是非常重要的。今天我们一起学习了 Kubernetes 里的两个系统监控项目：命令行方式的 Metrics Server、图形化界面的 Prometheus，利用好它们就可以让我们随时掌握 Kubernetes 集群的运行状态，做到“明察秋毫”。
+再简单小结一下今天的内容：
+Metrics Server 是一个 Kubernetes 插件，能够收集系统的核心资源指标，相关的命令是 kubectl top。
+Prometheus 是云原生监控领域的“事实标准”，用 PromQL 语言来查询数据，配合 Grafana 可以展示直观的图形界面，方便监控。
+HorizontalPodAutoscaler 实现了应用的自动水平伸缩功能，它从 Metrics Server 获取应用的运行指标，再实时调整 Pod 数量，可以很好地应对突发流量。
+
+
+## 31｜网络通信：CNI是怎么回事？又是怎么工作的？
+
+到现在，我们对 Kubernetes 已经非常熟悉了，它是一个集群操作系统，能够管理大量计算节点和运行在里面的应用。不过，还有一个很重要的基础知识我们还没有学习，那就是“网络通信”。
+早在“入门篇”的第 6 讲里，我们就简单介绍过 Docker 的网络模式，然后在“中级篇”的第 17 讲，我们又为 Kubernetes 安装了一个网络插件 Flannel。这些都与网络相关，但也只是浅尝辄止，并没有太多深究。
+如果你是一个喜欢刨根问底的人，会不会很好奇：Flannel 到底是如何工作的呢？它为什么能够让 Kubernetes 集群正常通信呢？还有没有其他网络插件呢？
+今天我们就来聊一下这个话题，讲讲 Kubernetes 的网络接口标准 CNI，以及 Calico、Cilium 等性能更好的网络插件。
+
+### Kubernetes 的网络模型
+
+在学习 Kubernetes 的网络之前，我们还是要先简单回顾一下 Docker 的网络知识。
+你对 Docker 的 null、host 和 bridge 三种网络模式还有印象吗？这里我重新画了一张图，描述了 Docker 里最常用的 bridge 网络模式：![img](https://static001.geekbang.org/resource/image/0b/85/0b7954a362b9e04db8b588fbed5b7185.jpg?wh=1920x1148)
+
+Docker 会创建一个名字叫“docker0”的网桥，默认是私有网段“172.17.0.0/16”。每个容器都会创建一个虚拟网卡对（veth pair），两个虚拟网卡分别“插”在容器和网桥上，这样容器之间就可以互联互通了。
+Docker 的网络方案简单有效，但问题是它只局限在单机环境里工作，跨主机通信非常困难（需要做端口映射和网络地址转换）。
+针对 Docker 的网络缺陷，Kubernetes 提出了一个自己的网络模型“IP-per-pod”，能够很好地适应集群系统的网络需求，它有下面的这 4 点基本假设：
+集群里的每个 Pod 都会有唯一的一个 IP 地址。
+Pod 里的所有容器共享这个 IP 地址。
+集群里的所有 Pod 都属于同一个网段。
+Pod 直接可以基于 IP 地址直接访问另一个 Pod，不需要做麻烦的网络地址转换（NAT）。
+我画了一张 Kubernetes 网络模型的示意图，你可以看一下：![img](https://static001.geekbang.org/resource/image/81/6c/81d67c2f0a6e97b847c306c16048c06c.jpg?wh=1920x1114)
+
+这个网络让 Pod 摆脱了主机的硬限制，是一个“平坦”的网络模型，很好理解，通信自然也非常简单。
+因为 Pod 都具有独立的 IP 地址，相当于一台虚拟机，而且直连互通，也就可以很容易地实施域名解析、负载均衡、服务发现等工作，以前的运维经验都能够直接使用，对应用的管理和迁移都非常友好。
+
+### 什么是 CNI
+
+Kubernetes 定义的这个网络模型很完美，但要把这个模型落地实现就不那么容易了。所以 Kubernetes 就专门制定了一个标准：CNI（Container Networking Interface）。
+CNI 为网络插件定义了一系列通用接口，开发者只要遵循这个规范就可以接入 Kubernetes，为 Pod 创建虚拟网卡、分配 IP 地址、设置路由规则，最后就能够实现“IP-per-pod”网络模型。
+依据实现技术的不同，CNI 插件可以大致上分成“Overlay”“Route”和“Underlay”三种。
+Overlay 的原意是“覆盖”，是指它构建了一个工作在真实底层网络之上的“逻辑网络”，把原始的 Pod 网络数据封包，再通过下层网络发送出去，到了目的地再拆包。因为这个特点，它对底层网络的要求低，适应性强，缺点就是有额外的传输成本，性能较低。
+Route 也是在底层网络之上工作，但它没有封包和拆包，而是使用系统内置的路由功能来实现 Pod 跨主机通信。它的好处是性能高，不过对底层网络的依赖性比较强，如果底层不支持就没办法工作了。
+Underlay 就是直接用底层网络来实现 CNI，也就是说 Pod 和宿主机都在一个网络里，Pod 和宿主机是平等的。它对底层的硬件和网络的依赖性是最强的，因而不够灵活，但性能最高。
+自从 2015 年 CNI 发布以来，由于它的接口定义宽松，有很大的自由发挥空间，所以社区里就涌现出了非常多的网络插件，我们之前在第 17 讲里提到的 Flannel 就是其中之一。
+Flannel（https://github.com/flannel-io/flannel/）由 CoreOS 公司（已被 Redhat 收购）开发，最早是一种 Overlay 模式的网络插件，使用 UDP 和 VXLAN 技术，后来又用 Host-Gateway 技术支持了 Route 模式。Flannel 简单易用，是 Kubernetes 里最流行的 CNI 插件，但它在性能方面表现不是太好，所以一般不建议在生产环境里使用。
+现在还有两个常用 CNI 插件：Calico、Cilium，我们做个简略的介绍。![img](https://static001.geekbang.org/resource/image/a9/7a/a96dd70ef544e4a69ff6f705a79acb7a.png?wh=1920x746)
+
+Calico（https://github.com/projectcalico/calico）是一种 Route 模式的网络插件，使用 BGP 协议（Border Gateway Protocol）来维护路由信息，性能要比 Flannel 好，而且支持多种网络策略，具备数据加密、安全隔离、流量整形等功能。
+Cilium（https://github.com/cilium/cilium）是一个比较新的网络插件，同时支持 Overlay 模式和 Route 模式，它的特点是深度使用了 Linux eBPF 技术，在内核层次操作网络数据，所以性能很高，可以灵活实现各种功能。在 2021 年它加入了 CNCF，成为了孵化项目，是非常有前途的 CNI 插件。
+
+### CNI 插件是怎么工作的
+
+Flannel 比较简单，我们先以它为例看看 CNI 在 Kubernetes 里的工作方式。
+这里必须要说明一点，计算机网络很复杂，有 IP 地址、MAC 地址、网段、网卡、网桥、路由等许许多多的概念，而且数据会流经多个设备，理清楚脉络比较麻烦，今天我们会做一个大概的描述，不会讲那些太底层的细节。
+我们先来在实验环境里用 Deployment 创建 3 个 Nginx Pod，作为研究对象：
+
+```
+kubectl create deploy ngx-dep --image=nginx:alpine --replicas=3
+
+```
+
+使用命令 kubectl get pod 可以看到，有两个 Pod 运行在 master 节点上，IP 地址分别是“10.10.0.3”“10.10.0.4”，另一个 Pod 运行在 worker 节点上，IP 地址是“10.10.1.77”：![img](https://static001.geekbang.org/resource/image/e6/b8/e63ecfb640e7a032a27817c0b7ff49b8.png?wh=1920x281)
+
+Flannel 默认使用的是基于 VXLAN 的 Overlay 模式，整个集群的网络结构我画了一张示意图，你可以对比一下 Docker 的网络结构：![img](https://static001.geekbang.org/resource/image/96/b7/96ffd51d7c843596f6736d23467888b7.jpg?wh=1920x1037)
+
+从单机的角度来看的话，Flannel 的网络结构和 Docker 几乎是一模一样的，只不过网桥换成了“cni0”，而不是“docker0”。
+接下来我们来操作一下，看看 Pod 里的虚拟网卡是如何接入 cni0 网桥的。
+在 Pod 里执行命令 ip addr 就可以看到它里面的虚拟网卡“eth0”：![img](https://static001.geekbang.org/resource/image/b8/84/b85c5c010689b1e3b7075aa2e0d2bc84.png?wh=1920x416)
+
+你需要注意它的形式，第一个数字“3”是序号，意思是第 3 号设备，“@if45”就是它另一端连接的虚拟网卡，序号是 45。
+因为这个 Pod 的宿主机是 master，我们就要登录到 master 节点，看看这个节点上的网络情况，同样还是用命令 ip addr：![img](https://static001.geekbang.org/resource/image/bb/e9/bb8342853bab79aea1842eae5f48bde9.png?wh=1920x389)
+
+这里就可以看到宿主机（master）节点上的第 45 号设备了，它的名字是 veth41586979@if3，“veth”表示它是一个虚拟网卡，而后面的“@if3”就是 Pod 里对应的 3 号设备，也就是“eth0”网卡了。
+那么“cni0”网桥的信息该怎么查看呢？这需要在宿主机（master）上使用命令 brctl show：![img](https://static001.geekbang.org/resource/image/13/b3/13563817d53f094fe6fd6d734c7c49b3.png?wh=1920x387)
+
+从这张截图里，你可以发现“cni0”网桥上有 4 个虚拟网卡，第三个就是“veth41586979”，所以这个网卡就被“插”在了“cni0”网桥上，然后因为虚拟网卡的“结对”特性，Pod 也就连上了“cni0”网桥。
+单纯用 Linux 命令不太容易看清楚网卡和网桥的联系，所以我把它们整合在了下面的图里，加上了虚线标记，这样你就能更清晰地理解 Pod、veth 和 cni0 的引用关系了：![img](https://static001.geekbang.org/resource/image/e3/14/e3c4f523cee0e39b74e94d1b96e5a014.jpg?wh=1920x1176)
+
+使用同样的方式，你可以知道另一个 Pod “10.10.0.4”的网卡是 veth2b3ef56d@if3，它也在“cni0”网桥上，所以借助这个网桥，本机的 Pod 就可以直接通信。
+弄清楚了本机网络，我们再来看跨主机的网络，它的关键是节点的路由表，用命令 route 查看：![img](https://static001.geekbang.org/resource/image/df/39/df13160c3885b59233c0d90823cde239.png?wh=1920x489)
+
+它告诉我们有这些信息：
+10.10.0.0/24 网段的数据，都要走 cni0 设备，也就是“cni0”网桥。
+10.10.1.0/24 网段的数据，都要走 flannel.1 设备，也就是 Flannel。
+192.168.10.0/24 网段的数据，都要走 ens160 设备，也就是我们宿主机的网卡。
+假设我们要从 master 节点的“10.10.0.3”访问 worker 节点的“10.10.1.77”，因为 master 节点的“cni0”网桥管理的只是“10.10.0.0/24”这个网段，所以按照路由表，凡是“10.10.1.0/24”都要让 flannel.1 来处理，这样就进入了 Flannel 插件的工作流程。
+然后 Flannel 就要来决定应该如何把数据发到另一个节点，在各种表里去查询。因为这个过程比较枯燥，我就不详细说了，你可以参考下面的示意图，用到的命令有 ip neighbor、bridge fdb 等等：![img](https://static001.geekbang.org/resource/image/8e/7b/8e2f69cb47cd0bf32e20a8420e9b577b.png?wh=1920x1112)
+
+Flannel 得到的结果就是要把数据发到“192.168.10.220”，也就是 worker 节点，所以它就会在原始网络包前面加上这些额外的信息，封装成 VXLAN 报文，用“ens160”网卡发出去，worker 节点收到后再拆包，执行类似的反向处理，就可以把数据交给真正的目标 Pod 了。
+
+### 使用 Calico 网络插件
+
+看到这里，是不是觉得 Flannel 的 Overlay 处理流程非常复杂，绕来绕去很容易让人头晕，那下面我们就来看看另一个 Route 模式的插件 Calico。
+你可以在 Calico 的网站（https://www.tigera.io/project-calico/）上找到它的安装方式，我选择的是“本地自助安装（Self-managed on-premises）”，可以直接下载 YAML 文件：
+
+```
+wget https://projectcalico.docs.tigera.io/manifests/calico.yaml
+
+```
+
+由于 Calico 使用的镜像较大，为了加快安装速度，可以考虑在每个节点上预先使用 docker pull 拉取镜像：
+
+```
+docker pull calico/cni:v3.23.1
+docker pull calico/node:v3.23.1
+docker pull calico/kube-controllers:v3.23.1
+```
+
+Calico 的安装非常简单，只需要用 kubectl apply 就可以（记得安装之前最好把 Flannel 删除）：
+
+```
+kubectl apply -f calico.yaml
+
+```
+
+安装之后我们来查看一下 Calico 的运行状态，注意它也是在“kube-system”名字空间：![img](https://static001.geekbang.org/resource/image/98/95/983c6a271a394d0febc83f21c108e195.png?wh=1520x304)
+
+我们仍然创建 3 个 Nginx Pod 来做实验：
+
+```
+kubectl create deploy ngx-dep --image=nginx:alpine --replicas=3
+
+```
+
+我们会看到 master 节点上有两个 Pod，worker 节点上有一个 Pod，但它们的 IP 地址与刚才 Flannel 的明显不一样了，分别是“10.10.219.*”和“10.10.171.*”，这说明 Calico 的 IP 地址分配策略和 Flannel 是不同的：![img](https://static001.geekbang.org/resource/image/aa/81/aa8917fd298cc633fbdf190e3a767581.png?wh=1920x262)
+
+然后我们来看看 Pod 里的网卡情况，你会发现虽然还是有虚拟网卡，但宿主机上的网卡名字变成了 calica17a7ab6ab@if4，而且并没有连接到“cni0”网桥上：![img](https://static001.geekbang.org/resource/image/75/69/756e9ea5e78489c386219722f302c969.jpg?wh=1920x1236)
+
+这是不是很奇怪？
+其实这是 Calico 的工作模式导致的正常现象。因为 Calico 不是 Overlay 模式，而是 Route 模式，所以它就没有用 Flannel 那一套，而是在宿主机上创建路由规则，让数据包不经过网桥直接“跳”到目标网卡去。
+来看一下节点上的路由表就能明白：![img](https://static001.geekbang.org/resource/image/0f/d3/0f94b581ff1e72b08103bfbe900e53d3.png?wh=1920x663)
+
+假设 Pod A“10.10.219.67”要访问 Pod B“10.10.219.68”，那么查路由表，知道要走“cali051dd144e34”这个设备，而它恰好就在 Pod B 里，所以数据就会直接进 Pod B 的网卡，省去了网桥的中间步骤。
+Calico 的网络架构我也画了一张示意图，你可以再对比 Flannel 来学习：![img](https://static001.geekbang.org/resource/image/yy/c7/yyb9c0ee93730542ebb5475a734991c7.jpg?wh=1920x1012)
+
+至于在 Calico 里跨主机通信是如何路由的，你完全可以对照着路由表，一步步地“跳”到目标 Pod 去（提示：tunl0 设备）。
+
+### 小结
+
+好说了这么多，你应该看到了，Kubernetes 的整个网络数据传输过程有大量的细节，非常多的环节都参与其中，想把它彻底弄明白还真不是件容易的事情。
+不过好在 CNI 通过“依赖倒置”的原则把这些工作都交给插件去解决了，不管下层是什么样的环境，不管插件是怎么实现的，我们在 Kubernetes 集群里只会有一个干净、整洁的网络空间。
+我来简单小结一下今天的内容：
+Kubernetes 使用的是“IP-per-pod”网络模型，每个 Pod 都会有唯一的 IP 地址，所以简单易管理。
+CNI 是 Kubernetes 定义的网络插件接口标准，按照实现方式可以分成“Overlay”“Route”和“Underlay”三种，常见的 CNI 插件有 Flannel、Calico 和 Cilium。
+Flannel 支持 Overlay 模式，它使用了 cni0 网桥和 flannel.1 设备，本机通信直接走 cni0，跨主机通信会把原始数据包封装成 VXLAN 包再走宿主机网卡发送，有性能损失。
+Calico 支持 Route 模式，它不使用 cni0 网桥，而是创建路由规则，把数据包直接发送到目标网卡，所以性能高。
+
+
+## 32｜实战演练：玩转Kubernetes（3）
+
+到今天，我们的“高级篇”课程也要结束了。比起前面的“初级篇”“中级篇”来说，这里的知识点比较多，难度也要高一些。如果你能够一篇不漏地学习下来，相信一定对 Kubernetes 有更深层次的认识和理解。
+今天的这节课还是来对前面的知识做回顾与总结，提炼出文章里的学习要点和重点，你也可以顺便检验一下自己的掌握程度，试试在不回看课程的情况下，自己能不能流畅说出关联的操作细节。
+复习之后，我们就来进行最后一次实战演练了。首先会继续改进贯穿课程始终的 WordPress 网站，把 MariaDB 改成 StatefulSet，加上 NFS 持久化存储；然后我们会在 Kubernetes 集群里安装 Dashboard，综合实践 Ingress、namespace 的用法。
+
+### 要点回顾一：API 对象
+
+“高级篇”可以分成三个部分，第一部分讲的是 PersistentVolume、StatefulSet 等 API 对象。
+（24 讲）PersistentVolume 简称 PV，是 Kubernetes 对持久化存储的抽象，代表了 LocalDisk、NFS、Ceph 等存储设备，和 CPU、内存一样，属于集群的公共资源。
+因为不同存储设备之间的差异很大，为了更好地描述 PV 特征，就出现了 StorageClass，它的作用是分类存储设备，让我们更容易去选择 PV 对象。
+PV 一般由系统管理员来创建，我们如果要使用 PV 就要用 PVC（PersistentVolumeClaim）去申请，说清楚需求的容量、访问模式等参数，然后 Kubernetes 就会查找最合适的 PV 分配给我们使用。
+（25 讲）手动创建 PV 的工作量很大，麻烦而且容易出错，所以就有了“动态存储卷”的概念，需要在 StorageClass 里绑定一个 Provisioner 对象，由它来代替人工，根据 PVC 自动创建出符合要求的 PV。
+有了 PV 和 PVC，我们就可以在 Pod 里用“persistentVolumeClaim”来引用 PVC，创建出可供容器使用的 Volume，然后在容器里用“volumeMounts”把它挂载到某个路径上，这样容器就可以读写 PV，实现数据的持久化存储了。
+（26 讲）持久化存储的一个重要应用领域就是保存应用的状态数据，管理有状态的应用，就要使用新的对象 StatefulSet，可以认为它是管理无状态应用对象 Deployment 的一个特例。
+StatefulSet 对象的 YAML 描述和 Deployment 非常像，“spec”里只是多了一个“serviceName”字段，但它部署应用的方式却与 Deployment 差距很大。
+Deployment 创建的 Pod 是随机的名字，而 StatefulSet 会对 Pod 顺序编号、顺序创建，保证应用有一个确定的启动先后次序，这样就可以实现主从、主备等关系。
+在使用 Service 为 StatefulSet 创建服务的时候，它也会为每个 Pod 单独创建域名，同样也是顺序编号，保证 Pod 有稳定的网络标识，外部用户就可以用这个域名来准确地访问到某个具体的 Pod。
+StatefulSet 还使用“volumeClaimTemplates”字段来定义持久化存储，里面其实就是一个 PVC，每个 Pod 可以用这个模板来生成自己的 PVC 去申请 PV，实现存储卷与 Pod 的独立绑定。
+通过启动顺序、稳定域名和存储模板这三个关键能力，StatefulSet 就可以很好地处理 Redis、MySQL 等有状态应用了。
+
+### 要点回顾二：应用管理
+
+“高级篇”第二部分讲的是应用管理，包括滚动更新、资源配额和健康检查等内容。
+（27 讲）在 Kubernetes 里部署好应用后，我们还需要对它做持续的运维管理，其中一项任务是版本的更新和回退。
+版本更新很简单，只要编写一个新的 YAML（Deployment、DaemonSet、StatefulSet），再用 kubectl apply 应用就可以了。Kubernetes 采用的是“滚动更新”策略，实际上是两个同步进行的“扩容”和“缩容”动作，这样在更新的过程中始终会有 Pod 处于可用状态，能够平稳地对外提供服务。
+应用的更新历史可以用命令 kubectl rollout history 查看，如果有什么意外，就可以用 kubectl rollout undo 来回退。这两个命令相当于给我们的更新流程上了一个保险，可以放心大胆操作，失败就用“S/L 大法”。
+（28 讲）为了让 Pod 里的容器能够稳定运行，我们可以采用资源配额和检查探针这两种手段。
+资源配额能够限制容器申请的 CPU 和内存数量，不至于过多或者过少，保持在一个合理的程度，更有利于 Kubernetes 调度。
+检查探针是 Kubernetes 内置的应用监控工具，有 Startup、Liveness、Readiness 三种，分别探测启动、存活、就绪状态，探测的方式也有 exec、tcpSocket、httpGet 三种。组合运用这些就可以灵活地检查容器的状态，Kubernetes 发现不可用就会重启容器，让应用在总体上处于健康水平。
+
+### 要点回顾三：集群管理
+
+“高级篇”第三部分讲的是集群管理，有名字空间、系统监控和网络通信等知识点。
+（29 讲）Kubernetes 的集群里虽然有很多计算资源，但毕竟是有限的，除了要给 Pod 加上资源配额，我们也要为集群加上资源配额，方法就是用名字空间，把整体的资源池切分成多个小块，按需分配给不同的用户使用。
+名字空间的资源配额使用的是“ResourceQuota”，除了基本的 CPU 和内存，它还能够限制存储容量和各种 API 对象的数量，这样就可以避免多用户互相挤占，更高效地利用集群资源。
+（30 讲）系统监控是集群管理的另一个重要方面，Kubernetes 提供了 Metrics Server 和 Prometheus 两个工具：
+Metrics Server 专门用来收集 Kubernetes 核心资源指标，可以用 kubectl top 来查看集群的状态，它也是水平自动伸缩对象 HorizontalPodAutoscaler 的前提条件。
+Prometheus，继 Kubernetes 之后的第二个 CNCF 毕业项目，是云原生监控领域的“事实标准”，在集群里部署之后就可以用 Grafana 可视化监控各种指标，还可以集成自动报警等功能。
+（31 讲）对于底层的基础网络设施，Kubernetes 定义了平坦的网络模型“IP-per-pod”，实现它就要符合 CNI 标准。常用的网络插件有 Flannel、Calico、Cilium 等，Flannel 使用 Overlay 模式，性能较低，Calico 使用 Route 模式，性能较高。
+现在，“高级篇”的众多知识要点我们都完整地过了一遍，你是否已经都理解、掌握了它们呢？
+
+### 搭建 WordPress 网站
+
+接下来我们就来在第 22 讲的基础上继续优化 WordPress 网站，其中的关键是让数据库 MariaDB 实现数据持久化。
+网站的整体架构图变化不大，前面的 Nginx、WordPress 还是原样，只需要修改 MariaDB：![img](https://static001.geekbang.org/resource/image/7c/1b/7cd3726d03ae12172b9073d1abf9fe1b.jpg?wh=1920x967)
+
+因为 MariaDB 由 Deployment 改成了 StatefulSet，所以我们要修改 YAML，添加“serviceName”“volumeClaimTemplates”这两个字段，定义网络标识和 NFS 动态存储卷，然后在容器部分用“volumeMounts”挂载到容器里的数据目录“/var/lib/mysql”。
+修改后的 YAML 就是这个样子：
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: maria-sts
+  name: maria-sts
+spec:
+
+  # headless svc
+
+  serviceName: maria-svc
+
+  # pvc
+
+  volumeClaimTemplates:
+
+  - metadata:
+    name: maria-100m-pvc
+    spec:
+      storageClassName: nfs-client
+      accessModes:
+
+       - ReadWriteMany
+         resources:
+             requests:
+         storage: 100Mi
+         replicas: 1
+         selector:
+         matchLabels:
+           app: maria-sts
+         template:
+         metadata:
+           labels:
+             app: maria-sts
+         spec:
+           containers:
+
+      - image: mariadb:10
+        name: mariadb
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
+          envFrom:
+        - prefix: 'MARIADB_'
+          configMapRef:
+            name: maria-cm
+          volumeMounts:
+        - name: maria-100m-pvc
+          mountPath: /var/lib/mysql
+```
+
+  改完 MariaDB，我们还要再对 WordPress 做一点小修改。
+  还记得吗？StatefulSet 管理的每个 Pod 都有自己的域名，所以要把 WordPress 的环境变量改成 MariaDB 的新名字，也就是“maria-sts-0.maria-svc”：
+
+```
+ apiVersion: v1
+  kind: ConfigMap
+  metadata:
+name: wp-cm
+  data:
+HOST: 'maria-sts-0.maria-svc'  #注意这里
+USER: 'wp'
+PASSWORD: '123'
+NAME: 'db'
+```
+
+  改完这两个 YAML，我们就可以逐个创建 MariaDB、WordPress、Ingress 等对象了。
+  和之前一样，访问 NodePort 的“30088”端口，或者是用 Ingress Controller 的“wp.test”域名，都可以进入 WordPress 网站：![img](https://static001.geekbang.org/resource/image/fc/46/fc3b52f96f138f01b23e3a7487730746.png?wh=916x1166)
+
+StatefulSet 的持久化存储是否生效了呢？
+你可以把这些对象都删除后重新创建，再进入网站，看看是否原来的数据依然存在。或者更简单一点，直接查看 NFS 的存储目录，应该可以看到 MariaDB 生成的一些数据库文件：![img](https://static001.geekbang.org/resource/image/42/18/428886b77e4797dc7ded5a43yyc0b218.png?wh=1920x124)
+
+这两种方式都能够证明，我们的 MariaDB 使用 StatefulSet 部署后数据已经保存在了磁盘上，不会因为对象的销毁而丢失。
+到这里，第一个小实践你就已经完成了，给自己鼓鼓劲，我们一起来做第二个实践，在 Kubernetes 集群里安装 Dashboard。
+
+### 部署 Dashboard
+
+在“初级篇”的实战演练课里（第 15 讲），我简单介绍了 Kubernetes 的图形管理界面，也就是 Dashboard，不知道你是否还有印象。当时 Dashboard 是直接内置在 minikube 里的，不需要安装，一个命令启动，就能在浏览器里直观地管理 Kubernetes 集群了，非常方便。
+那现在我们用 kubeadm 部署了实际的多节点集群，能否也用上 Dashboard 呢？接下来我就带你来一起动手，从零开始安装 Dashboard。
+首先，你应该先去 Dashboard 的项目网站（https://github.com/kubernetes/dashboard），看一下它的说明文档，了解一下它的基本情况。
+它的安装很简单，只需要一个 YAML 文件，可以直接下载：
+
+```
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+
+```
+
+这个 YAML 里包含了很多对象，虽然文件比较大，但现在的你应该基本都能够看懂了，要点有这么几个：
+所有的对象都属于“kubernetes-dashboard”名字空间。
+Dashboard 使用 Deployment 部署了一个实例，端口号是 8443。
+容器启用了 Liveness 探针，使用 HTTPS 方式检查存活状态。
+Service 对象使用的是 443 端口，它映射了 Dashboard 的 8443 端口。
+使用命令 kubectl apply 就可以轻松部署 Dashboard 了：
+
+```
+kubectl apply -f dashboard.yaml
+```
+
+![img](https://static001.geekbang.org/resource/image/c5/79/c56f8936e187047a2b7d100f7ae0f779.png?wh=1586x250)
+
+### 部署 Ingress/Ingress Controller
+
+不过，为了给我们的实战增加一点难度，我们可以在前面配一个 Ingress 入口，用反向代理的方式来访问它。
+由于 Dashboard 默认使用的是加密的 HTTPS 协议，拒绝明文 HTTP 访问，所以我们要先生成证书，让 Ingress 也走 HTTPS 协议。
+简单起见，我直接用 Linux 里的命令行工具“openssl”来生成一个自签名的证书（如果你有条件，也可以考虑找 CA 网站申请免费证书）：
+
+```
+openssl req -x509 -days 365 -out k8s.test.crt -keyout k8s.test.key \
+  -newkey rsa:2048 -nodes -sha256 \
+    -subj '/CN=k8s.test' -extensions EXT -config <( \
+       printf "[dn]\nCN=k8s.test\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:k8s.test\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
+
+openssl 的命令比较长，我简单解释一下：它生成的是一个 X509 格式的证书，有效期 365 天，私钥是 RSA2048 位，摘要算法是 SHA256，签发的网站是“k8s.test”。
+运行命令行后会生成两个文件，一个是证书“k8s.test.crt”，另一个是私钥“k8s.test.key”，我们需要把这两个文件存入 Kubernetes 里供 Ingress 使用。
+因为这两个文件属于机密信息，存储的方式当然就是用 Secret 了。你仍然可以用命令 kubectl create secret 来自动创建 YAML，不过类型不是“generic”，而是“tls”，同时还要用 -n 指定名字空间，用 --cert、--key 指定文件：
+
+```
+export out="--dry-run=client -o yaml"
+kubectl create secret tls dash-tls -n kubernetes-dashboard --cert=k8s.test.crt --key=k8s.test.key $out > cert.yml
+```
+
+出来的 YAML 大概是这个样子：
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dash-tls
+  namespace: kubernetes-dashboard
+type: kubernetes.io/tls
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJU...
+  tls.key: LS0tLS1CRUdJTiBQUklW...
+```
+
+创建这个 Secret 对象之后，你可以再用 kubectl describe 来检查它的状态：![img](https://static001.geekbang.org/resource/image/26/cc/2615d5c6c3yy704cc63c5bf6df5b87cc.png?wh=1904x716)
+
+接下来我们就来编写 Ingress Class 和 Ingress 对象，为了保持名字空间的整齐，也把它放在“kubernetes-dashboard”名字空间里。
+Ingress Class 对象很简单，名字是“dash-ink”，指定 Controller 还是我们之前用的 Nginx 官方的 Ingress Controller：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: dash-ink
+  namespace: kubernetes-dashboard
+spec:
+  controller: nginx.org/ingress-controller
+```
+
+Ingress 对象可以用 kubectl create 命令自动生成，如果你有点忘记的话，可以回头参考一下第 21 讲：
+
+```
+kubectl create ing dash-ing --rule="k8s.test/=kubernetes-dashboard:443" --class=dash-ink -n kubernetes-dashboard $out
+
+```
+
+但这次因为是 HTTPS 协议，所以我们要在 Ingress 里多加一点东西，一个是“annotations”字段，指定后端目标是 HTTPS 服务，另一个是“tls”字段，指定域名和证书，也就是刚才创建的 Secret：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dash-ing
+  namespace: kubernetes-dashboard
+  annotations:
+    nginx.org/ssl-services: "kubernetes-dashboard"
+spec:
+  ingressClassName: dash-ink
+  tls:
+    - hosts:
+      - k8s.test
+      secretName: dash-tls
+  rules:
+
+  - host: k8s.test
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port:
+              number: 443
+```
+
+最后一个对象，就是 Ingress Controller 了，还是拿现成的模板修改，记得要把“args”里的 Ingress Class 改成我们自己的“dash-ink”：
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dash-kic-dep
+  namespace: nginx-ingress
+spec:
+  ...
+        args:
+          - -ingress-class=dash-ink
+```
+
+要让我们在外面能够访问 Ingress Controller，还要为它再定义一个 Service，类型是“NodePort”，端口指定是“30443”：
+
+```
+  apiVersion: v1
+  kind: Service
+  metadata:
+name: dash-kic-svc
+namespace: nginx-ingress
+  spec:
+ports:
+
+  - port: 443
+    protocol: TCP
+    targetPort: 443
+    nodePort: 30443
+    selector:
+    app: dash-kic-dep
+    type: NodePort
+```
+
+把上面的 Secret、Ingress Class、Ingress、Ingress Controller、Service 都创建好之后，我们再来确认一下它们的运行状态：![img](https://static001.geekbang.org/resource/image/40/b2/4062d4e5c8c57f74a480ee21ca3717b2.png?wh=1920x821)
+
+因为这些对象比较多，处于不同的名字空间，关联有点复杂，我画了一个简单的示意图，你可以看一下：![img](https://static001.geekbang.org/resource/image/b7/50/b720648a0fefab28fa940b7cd6afb350.jpg?wh=1920x793)
+
+### 访问 Dashboard
+
+到这里，Dashboard 的部署工作就基本完成了。为了能正常访问，我们还要为它创建一个用户，才能登录进 Dashboard。
+Dashboard 的网站上有一个简单示例（https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md），我们直接拿来用就行：
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+
+  namespace: kubernetes-dashboard
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
+
+这个 YAML 创建了一个 Dashboard 的管理员账号，名字叫“admin-user”，使用的是 Kubernetes 的 RBAC 机制，就不展开细讲了。
+这个账号不能用简单的“用户名 + 密码”的方式登录，需要用到一个 Token，可以用 kubectl get secret、kubectl describe secret 查到：
+
+```
+kubectl get secret -n kubernetes-dashboard
+kubectl describe secrets -n kubernetes-dashboard admin-user-token-xxxx
+```
+
+![img](https://static001.geekbang.org/resource/image/0f/yy/0ffd4627b0efa2ba5774bf5c65faa1yy.png?wh=1920x1051)Token 是一个很长的字符串，把它拷贝存好，再为它的测试域名“k8s.test”加上域名解析（修改 /etc/hosts)，然后我们就可以在浏览器里输入网址“https://k8s.test:30443”访问 Dashboard 了：![img](https://static001.geekbang.org/resource/image/c8/5d/c83cd71ab4d6696f5b837ea20056ff5d.png?wh=1920x958)
+
+下面的两张截图就是我查看集群里“kube-system”名字空间的情况，由于我们之前安装了 Metrics Server，所以 Dashboard 也能够以图形的方式显示 CPU 和内存状态，有那么一点 Prometheus + Grafana 的意思：![img](https://static001.geekbang.org/resource/image/3c/d9/3ca6e156150a6a06477bb2eb07e00cd9.png?wh=1920x1243)
+
+![img](https://static001.geekbang.org/resource/image/fa/b2/fae2168c30677d2370e8e71c3d98f1b2.png?wh=1920x1243)
+
+### 小结
+
+好了，今天我们一起回顾了“高级篇”里的要点，下面的这张思维导图就是对这些知识点的全面总结，你可以再认真研究一下：![img](https://static001.geekbang.org/resource/image/4a/30/4a9bb79b2e54096yyf5c5799837dd930.jpg?wh=1920x1312)
+
+今天我们有两个实战项目。首先是 WordPress，把后端的存储服务 MariaDB 改造成了 StatefulSet，挂载了 NFS 网盘，这样就实现了一个功能比较完善的网站，达到了基本可用的程度。
+接着我们又在 Kubernetes 里安装了 Dashboard，主要部署在名字空间“kubernetes-dashboard”。Dashboard 自身的安装很简单，但我们又为它在前面搭建了一个反向代理，配上了安全证书，进一步实践了 Ingress 的用法。
+不过这两个项目还没有完全覆盖“高级篇”的内容，你可以再接着改进它们，比如加上健康检查、资源配额、自动水平伸缩等，多动手来巩固所学的知识。
+
+
+## 33｜视频：高级篇实操总结
+https://time.geekbang.org/column/article/558027
+
+## 最后
+
+接下来我就来说说四个可能的方向吧，你可以把它们看成是学习 Kubernetes 的“攻略指引”，帮助你走出属于自己的路。
+第一个是阅读 Kubernetes 官网上的文档。
+Kubernetes 官网（https://kubernetes.io/zh-cn/docs/home/）里的资料非常丰富详细，包括入门介绍、安装指导、基本概念、应用教程、运维任务、参考手册等等。
+当然了，官网文档不是完全面向初学者的，不像我们的课程那样“循序渐进”，写得也不都是那么通俗易懂，要有一定的基础才能够看得下去。但它的优势就是全面、权威，覆盖了 Kubernetes 的每一个特性，你对 Kubernetes 有任何的疑惑和不解，都能够在这些文档里找到答案。
+不过官网文档太多太杂也对我们的学习造成了困难，想要去按部就班地查找知识点会很麻烦，这个时候就要善用它的搜索功能了，用关键字来快速定位文章、页面，节约我们的时间和精力。
+
+第二个学习方向是看 Kubernetes 的博客。
+官网上的文档只是描述了 Kubernetes 的现状，而没有讲它的历史，想要知道 Kubernetes 里的这些 API 对象是怎么设计出来的，怎么一步步发展到今天的这个样子，就要去看它的技术博客文章了。
+这里我推荐你去阅读英文博客（https://kubernetes.io/blog/），虽然中文官网也有博客，但翻译的不全，比较少，而英文博客从 2015 年开始，每个重要特性的变更几乎都有文章来介绍。而且博客和文档不同，它更注重面对普通用户，阐述的是技术决策的思考过程，也就更容易理解一些。
+如果条件允许的话，我建议你从 2015 年的第一篇博客开始看起，最好每篇都简略地过一遍。把这些博客全看完，“以史为鉴”，你就能够理解 Kubernetes 的演变过程了，也会对 Kubernetes 的现状有更深刻的认识。
+
+第三个是上 CNCF 网站（https://www.cncf.io/），看它的全景图，在里面找自己感兴趣的项目，然后在 Kubernetes 环境里部署应用起来，在实践中学习 Kubernetes。
+CNCF 全景图里的项目非常多，其中由它托管的项目又分成毕业（Graduated）项目、孵化（Incubating）项目和沙盒（Sandbox）项目。
+其实这些项目只要进入了 CNCF，质量都是比较高的，区别只在于成熟度的不同而已。毕业项目是最成熟的，已经被业界广泛承认和采用，可用于生产环境；孵化项目应用程度还不太广，贡献者也不是太多，只有少数生产实践；而沙盒项目则属于实验性质，还没有经过充分的测试验证。
+这里我们也可以来简单了解下毕业项目和孵化项目，课后你可以挑自己感兴趣的深入研究。
+这张图是目前 CNCF 里全部的 16 个毕业项目：![https://static001.geekbang.org/resource/image/ea/63/ea3b74e35e092477d06b5e2812b58363.png?wh=1878x1406](https://static001.geekbang.org/resource/image/ea/63/ea3b74e35e092477d06b5e2812b58363.png?wh=1878x1406)
+
+这里面我们已经全面学习了 Kubernetes，简单介绍过 containerd 和 Prometheus，其他我个人比较感兴趣的还有 Harbor、Helm、Vitess。
+CNCF 的孵化项目目前有 39 个，比起毕业项目它们的知名度要略差一些，这个截图列出了一部分，其中我比较感兴趣的有 gRPC、SPIRE、NATS、OpenTelemetry：![https://static001.geekbang.org/resource/image/5e/a5/5e50b691b0097dde219f5b7b214903a5.png?wh=1638x1578](https://static001.geekbang.org/resource/image/5e/a5/5e50b691b0097dde219f5b7b214903a5.png?wh=1638x1578)
+
+第四个学习方向要量力而行，是参加 Kubernetes 的培训并且通过认证（https://kubernetes.io/zh-cn/training/）。
+和很多其他的计算机技术一样，Kubernetes 也设立了官方的培训课程和资质认证，在国内大家都比较了解的应该就是 CKA（Certified Kubernetes Administrator）了，另外还有一个更高级的是 CKS（Certified Kubernetes Security Specialist）。
+CKA 主要考查的是对 Kubernetes 的概念理解和集群管理维护能力，重点是动手操作，使用 kubectl 来解决各种实际环境里可能遇到的问题。它的难度并不太高，但考点覆盖面广，而且考试时间长达 2 个小时（以前是 3 个小时），对脑力和体力都有不小的挑战。
+由于 Kubernetes 在云原生领域“一统天下”，CKA 认证近几年也就“火”了起来，相关的考试资料有很多，你可以轻易地在各大网站上找到，学完了我们的这个专栏课程，再适当地强化训练一下，拿到 CKA 证书应该不是什么太难的事情。
+不过要注意的是，因为 Kubernetes 版本更新很频繁，所以 CKA 是有时效期的，三年（以前是两年）过后失效就得重考，你需要评估一下考试对自己收益再慎重做决定。

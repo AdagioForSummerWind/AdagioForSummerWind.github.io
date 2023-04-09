@@ -9,7 +9,6 @@ draft: false
 ---
 
 
-
 └── .git
     ├── COMMIT_EDITMSG    # 保存最新的commit message
     ├── config    # 仓库的配置文件
@@ -47,6 +46,27 @@ git里的三个对象：commit tree(每个commit 的文件树(夹)快照) blob�
 如果你想创建一个新的分支同时切换到新创建的分支的话，可以通过 git checkout -b <your-branch-name> 来实现。
 
 接下来咱们看看如何将两个分支合并到一起。就是说我们新建一个分支，在其上开发某个新功能，开发完成后再合并回主线。
+
+### git 配置
+配置 Git。我们直接执行如下命令配置 Git：
+
+```bash
+git config --global user.name "JF-011101"    # 用户名改成自己的
+git config --global user.email "2838264218@qq.com"    # 邮箱改成自己的
+git config --global credential.helper store    # 设置 Git，保存用户名和密码
+git config --global core.longpaths true # 解决 Git 中 'Filename too long' 的错误
+```
+在 Git 中，我们会把非 ASCII 字符叫做 Unusual 字符。这类字符在 Git 输出到终端的时候默认是用 8 进制转义字符输出的（以防乱码），但现在的终端多数都支持直接显示非 ASCII 字符，所以我们可以关闭掉这个特性，具体的命令如下：
+
+```bash
+git config --global core.quotepath off
+```
+GitHub 限制最大只能克隆 100M 的单个文件，为了能够克隆大于 100M 的文件，我们还需要安装 Git Large File Storage，安装方式如下：
+
+```bash
+git lfs install --skip-repo
+```
+
 
 ### git tag
 https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE
@@ -608,7 +628,29 @@ pull 也可以用 source:destination 吗? 当然喽
 git pull origin main:foo
 它先在本地创建了一个叫 foo 的分支，从远程仓库中的 main 分支中下载提交记录，并合并到 foo，然后再 merge 到我们的当前检出的分支 bar 上。
 
-
+'''
+ssh-rsa AAAAB3NzaC1yc2E
+AAAADAQABAAABgQC95Cx07/
+jeLLFrSYSXWkrBefj1u2TUgPWwBVa
+/g/j+oCBPT1sQI3jNVRuGtnWpdHp
++ZyAS1+3lvPIThvYyomnFepRY/
+aqtV+3aqyRroq5e8QMF6ACeKhf
+H4FsVbkhaUxXRgIDWTgQ1BF9rsE
+qWqr9LHsn3UidGT40yGdrbDYFs+
+IG5Hbm8SdVhcq9wPNx/6RcctlTWq
+26Ptum84o4eXkOfDX9bQn3NgywNl
+H2qLeiVPI4uNdFSBFeaVcUaYs1Uc
+uGEZOVq3lEwvWqtPpRFvJW74Ptu0
+xogqe4zEPy0Duk8Bc2yAlo0pCpF6h
+7XOxWQRwErkbj1Gz53bTxCkFHD4d
+NuIAtY4dnTyP78NRmWEokMzYGFyd
+NgffcO/ZU2YaoFO9FlGAhRf3oBpPO
+Xd29fiBY0HaN5uRmJQWRgl2DuFumb
+zCoq7apbC/wGQoP5ALDA+fT5ngZyR
+CZFLWQTBfzkadpwMxfyZNq0Ok+nUr
+O1TvD520Ymyswg1EX0hZeIUQ9r4dE
+= ‘2838264218@bishe’
+'''
 
 
 ## gitignore 

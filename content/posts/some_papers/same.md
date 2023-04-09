@@ -28,6 +28,7 @@ Empirical results show that our model outperforms state-of-the-art methods in th
 特别是，我们引入了一种名为 GRIN 的新型图神经网络架构，旨在通过消息传递学习时空表示来重建多元时间序列的不同通道中的缺失数据。
 实证结果表明，我们的模型在相关真实世界基准的插补任务中优于最先进的方法，平均绝对误差改进通常高于 20%
 
+当处理来自现实应用的数据时，处理缺失值和不完整的时间序列是一项费时、繁琐、不可避免的任务。有效的时空表示可以利用来自不同位置传感器的信息，通过插值方法重建缺失的时间数据。然而，标准方法难以捕捉到相互连接的传感器网络中存在的非线性时空依赖关系，并且不能充分利用可用的-并且通常很强-关系信息。值得注意的是，大多数基于深度学习的最先进插值方法并没有明确地建模关系方面的问题，并且在任何情况下都不能利用能够充分表示结构化时空数据的处理框架。相反，图神经网络最近因为具有表达力和可扩展性而在处理具有关系归纳偏差的序列数据方面变得流行。在这项工作中，我们提出了图神经网络在多元时间序列插值中的第一次评估。特别地，我们引入了一种名为GRIN的新型图神经网络架构，它旨在通过消息传递学习时空表示，从而重建多元时间序列中不同通道的缺失数据。实证结果表明，我们的模型在相关的实际基准测试中的插值任务中优于最先进的方法，平均绝对误差改进通常高于20%。
 ## 介绍
 Imputation of missing values is a prominent problem in multivariate time-series analysis (TSA) from both theoretical and practical perspectives (Little & Rubin, 2019).
 In fact, in a world of complex interconnected systems such as those characterizing sensor networks or the Internet of Things, faulty sensors and network failures are widespread phenomena that cause disruptions in the data acquisition process. Luckily, failures of these types are often sparse and localized at the single sensor level, i.e., they do not compromise the entire sensor network at once. 
