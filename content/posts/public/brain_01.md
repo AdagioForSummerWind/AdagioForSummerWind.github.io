@@ -5,7 +5,7 @@ lastmod: 2022-12-06
 tags: [etc]
 categories: [etc]
 slug: 脑科学研究的三大发展方向
-draft: false
+draft: true
 ---
 
 - [脑科学研究的三大发展方向](#脑科学研究的三大发展方向)
